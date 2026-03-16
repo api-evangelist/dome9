@@ -1,63 +1,50 @@
+aid: dome9
 name: Dome9
-description: Dome9 provides cloud security and compliance solutions with APIs for managing cloud infrastructure security posture, compliance policies, and threat protection across AWS, Azure, and Google Cloud Platform.
-image: https://www.dome9.com/wp-content/uploads/2021/01/dome9-logo.png
-url: https://www.dome9.com
-created: '2024'
-modified: '2024'
-specificationVersion: '0.18'
+description: >-
+  Dome9 (now Check Point CloudGuard) provides cloud security and compliance
+  solutions with APIs for managing cloud infrastructure security posture,
+  compliance policies, and threat protection across AWS, Azure, and Google
+  Cloud Platform.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Cloud Security
-- Compliance
-- Security Posture Management
-- Multi-Cloud
-- Infrastructure Security
-apis:
-- name: Dome9 API
-  description: Main API for managing cloud accounts, security policies, compliance policies, and security groups across multiple cloud platforms
-  image: https://www.dome9.com/wp-content/uploads/2021/01/dome9-logo.png
-  humanURL: https://www.dome9.com
-  baseURL: https://api.dome9.com/v2
-  tags:
   - Cloud Security
-  - Policy Management
   - Compliance
-  properties:
-  - type: X-documentation
-    url: https://api-v2-docs.dome9.com/
-  - type: X-openapi
-    url: https://api-v2-docs.dome9.com/openapi.json
-  - type: X-authentication
-    url: https://api-v2-docs.dome9.com/#section/Authentication
-  - type: X-rate-limits
-    url: https://api-v2-docs.dome9.com/#section/Rate-Limiting
-  - type: X-postman-collection
-    url: https://www.postman.com/dome9-security/workspace/dome9-api
-  contact:
-  - FN: Dome9 Support
-    email: support@dome9.com
-    url: https://www.dome9.com/contact
+  - Security Posture Management
+  - Multi-Cloud
+  - Infrastructure Security
+url: https://raw.githubusercontent.com/api-evangelist/dome9/refs/heads/main/apis.yml
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: dome9:dome9-api
+    name: Dome9 API
+    description: >-
+      Main API for managing cloud accounts, security policies, compliance
+      policies, and security groups across multiple cloud platforms.
+    humanURL: https://api-v2-docs.dome9.com/
+    baseURL: https://api.dome9.com/v2
+    tags:
+      - Cloud Security
+      - Policy Management
+      - Compliance
+    properties:
+      - type: Documentation
+        url: https://api-v2-docs.dome9.com/
+      - type: Authentication
+        url: https://api-v2-docs.dome9.com/#section/Authentication
 common:
-- type: X-website
-  url: https://www.dome9.com
-- type: X-blog
-  url: https://www.dome9.com/blog
-- type: X-status
-  url: https://status.dome9.com
-- type: X-support
-  url: https://www.dome9.com/support
-- type: X-pricing
-  url: https://www.dome9.com/pricing
-- type: X-terms-of-service
-  url: https://www.dome9.com/terms-of-service
-- type: X-privacy-policy
-  url: https://www.dome9.com/privacy-policy
-- type: X-twitter
-  url: https://twitter.com/Dome9Security
-- type: X-linkedin
-  url: https://www.linkedin.com/company/dome9-security
-- type: X-github
-  url: https://github.com/Dome9
+  - type: Website
+    url: https://www.checkpoint.com/cloudguard/
+  - type: Blog
+    url: https://blog.checkpoint.com/
+  - type: GitHub Organization
+    url: https://github.com/dome9
+  - type: Terms of Service
+    url: https://www.checkpoint.com/about-us/legal-notice/
+  - type: Privacy Policy
+    url: https://www.checkpoint.com/about-us/privacy-policy/
 maintainers:
-- FN: Dome9 Team
-  email: api@dome9.com
-  url: https://www.dome9.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
