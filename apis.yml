@@ -10,9 +10,9 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Cloud Security
   - Compliance
-  - Security Posture Management
-  - Multi-Cloud
   - Infrastructure Security
+  - Multi-Cloud
+  - Security Posture Management
 url: https://raw.githubusercontent.com/api-evangelist/dome9/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-03-16'
@@ -27,8 +27,8 @@ apis:
     baseURL: https://api.dome9.com/v2
     tags:
       - Cloud Security
-      - Policy Management
       - Compliance
+      - Policy Management
     properties:
       - type: Documentation
         url: https://api-v2-docs.dome9.com/
