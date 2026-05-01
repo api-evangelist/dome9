@@ -1,52 +1,60 @@
 # Dome9 (dome9)
-Dome9 provides cloud security and compliance solutions with APIs for managing cloud infrastructure security posture, compliance policies, and threat protection across AWS, Azure, and Google Cloud Platform.
 
-**URL:** [Visit APIs.json URL](https://www.dome9.com)
+Dome9 (now Check Point CloudGuard) provides cloud security and compliance solutions with APIs for managing cloud infrastructure security posture, compliance policies, and threat protection across AWS, Azure, and Google Cloud Platform.
 
-## Tags:
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/dome9/refs/heads/main/apis.yml)
 
- - Cloud Security, Compliance, Security Posture Management, Multi-Cloud, Infrastructure Security
+## Scope
+
+- **Type:** Index
+- **Position:** Consuming
+- **Access:** 3rd-Party
+
+## Tags
+
+- Cloud Security
+- Compliance
+- Infrastructure Security
+- Multi-Cloud
+- Security Posture Management
 
 ## Timestamps
 
-- **Created:** 2024 
-- **Modified:** 2024 
+- **Created:** 2024-01-01
+- **Modified:** 2026-04-28
 
 ## APIs
 
 ### Dome9 API
-Main API for managing cloud accounts, security policies, compliance policies, and security groups across multiple cloud platforms
 
-**Human URL:** [https://www.dome9.com](https://www.dome9.com)
+Main API for managing cloud accounts, security policies, compliance policies, and security groups across multiple cloud platforms.
 
+- **Human URL:** https://api-v2-docs.dome9.com/
+- **Base URL:** https://api.dome9.com/v2
 
-#### Tags:
+#### Tags
 
- - Cloud Security, Policy Management, Compliance
+- Cloud Security
+- Compliance
+- Policy Management
 
 #### Properties
 
-- [X-documentation](https://api-v2-docs.dome9.com/)
-- [X-openapi](https://api-v2-docs.dome9.com/openapi.json)
-- [X-authentication](https://api-v2-docs.dome9.com/#section/Authentication)
-- [X-rate-limits](https://api-v2-docs.dome9.com/#section/Rate-Limiting)
-- [X-postman-collection](https://www.postman.com/dome9-security/workspace/dome9-api)
+- [Documentation](https://api-v2-docs.dome9.com/)
+- [Authentication](https://api-v2-docs.dome9.com/#section/Authentication)
+- [Rate Limits](https://api-v2-docs.dome9.com/#section/Rate-Limiting)
+- [Postman Collection](https://www.postman.com/dome9-security/workspace/dome9-api)
 
 ## Common Properties
 
-- [X-website](https://www.dome9.com)
-- [X-blog](https://www.dome9.com/blog)
-- [X-status](https://status.dome9.com)
-- [X-support](https://www.dome9.com/support)
-- [X-pricing](https://www.dome9.com/pricing)
-- [X-terms-of-service](https://www.dome9.com/terms-of-service)
-- [X-privacy-policy](https://www.dome9.com/privacy-policy)
-- [X-twitter](https://twitter.com/Dome9Security)
-- [X-linkedin](https://www.linkedin.com/company/dome9-security)
-- [X-github](https://github.com/Dome9)
+- [Website](https://www.checkpoint.com/cloudguard/)
+- [Blog](https://blog.checkpoint.com/)
+- [GitHub Organization](https://github.com/dome9)
+- [Terms of Service](https://www.checkpoint.com/about-us/legal-notice/)
+- [Privacy Policy](https://www.checkpoint.com/about-us/privacy-policy/)
 
 ## Maintainers
 
-**FN:** Dome9 Team
+**FN:** Kin Lane
 
-**Email:** api@dome9.com
+**Email:** kin@apievangelist.com
