@@ -1,0 +1,13 @@
+{
+  "repo": "dome9",
+  "feeds": [
+    {
+      "source": "https://blog.checkpoint.com/",
+      "feed_url": "https://blog.checkpoint.com/feed/",
+      "saved": 10,
+      "title": "Check Point Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:27:10Z"
+}
