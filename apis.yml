@@ -34,7 +34,7 @@ apis:
         url: https://api-v2-docs.dome9.com/
       - type: Authentication
         url: https://api-v2-docs.dome9.com/#section/Authentication
-      - type: Rate Limits
+      - type: RateLimits
         url: https://api-v2-docs.dome9.com/#section/Rate-Limiting
       - type: Postman Collection
         url: https://www.postman.com/dome9-security/workspace/dome9-api
@@ -43,11 +43,11 @@ common:
     url: https://www.checkpoint.com/cloudguard/
   - type: Blog
     url: https://blog.checkpoint.com/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/dome9
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.checkpoint.com/about-us/legal-notice/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.checkpoint.com/about-us/privacy-policy/
 maintainers:
   - FN: Kin Lane
