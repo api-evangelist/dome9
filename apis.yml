@@ -39,6 +39,8 @@ apis:
       - type: Postman Collection
         url: https://www.postman.com/dome9-security/workspace/dome9-api
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/dome9-security
   - type: Website
     url: https://www.checkpoint.com/cloudguard/
   - type: Blog
