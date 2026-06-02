@@ -2,12 +2,20 @@
   "repo": "dome9",
   "feeds": [
     {
-      "source": "https://blog.checkpoint.com/",
+      "source": "https://blog.checkpoint.com/feed/",
       "feed_url": "https://blog.checkpoint.com/feed/",
-      "title": "Check Point Blog",
-      "saved": 7
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.checkpoint.com/cloudguard/",
+      "feed_url": "https://www.checkpoint.com/cloudguard/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 20,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 30,
+  "fetched": "2026-06-01T23:35:02Z"
 }
