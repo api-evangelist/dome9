@@ -2,13 +2,11 @@
 
 Dome9 (now Check Point CloudGuard) provides cloud security and compliance solutions with APIs for managing cloud infrastructure security posture, compliance policies, and threat protection across AWS, Azure, and Google Cloud Platform.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/dome9/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/dome9/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/dome9/refs/heads/main/apis.yml)
 
 ## Scope
 
 - **Type:** Index
-- **Position:** Consuming
-- **Access:** 3rd-Party
 
 ## Tags
 
@@ -29,8 +27,8 @@ Dome9 (now Check Point CloudGuard) provides cloud security and compliance soluti
 
 Main API for managing cloud accounts, security policies, compliance policies, and security groups across multiple cloud platforms.
 
-- **Human URL:** https://api-v2-docs.dome9.com/
-- **Base URL:** https://api.dome9.com/v2
+- **Human URL:** [https://api-v2-docs.dome9.com/](https://api-v2-docs.dome9.com/)
+- **Base URL:** `https://api.dome9.com/v2`
 
 #### Tags
 
@@ -43,10 +41,13 @@ Main API for managing cloud accounts, security policies, compliance policies, an
 - [Documentation](https://api-v2-docs.dome9.com/)
 - [Authentication](https://api-v2-docs.dome9.com/#section/Authentication)
 - [Rate Limits](https://api-v2-docs.dome9.com/#section/Rate-Limiting)
-- [Postman Collection](https://www.postman.com/dome9-security/workspace/dome9-api)
+- [Postman  Collection](https://www.postman.com/dome9-security/workspace/dome9-api)
+- [Postman Collection](collections/dome9.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/dome9.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [LinkedIn](https://www.linkedin.com/company/dome9-security)
 - [Website](https://www.checkpoint.com/cloudguard/)
 - [Blog](https://blog.checkpoint.com/)
 - [GitHub Organization](https://github.com/dome9)
@@ -56,5 +57,4 @@ Main API for managing cloud accounts, security policies, compliance policies, an
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
