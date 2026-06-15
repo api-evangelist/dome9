@@ -1,0 +1,330 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dome9 / CloudGuard API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AWSAccounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List AWS cloud accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dome9.com/v2/cloudaccounts"
+          },
+          "docs": "List AWS cloud accounts"
+        },
+        {
+          "info": {
+            "name": "Add a new AWS cloud account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dome9.com/v2/cloudaccounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new AWS cloud account"
+        },
+        {
+          "info": {
+            "name": "Get AWS cloud account by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dome9.com/v2/cloudaccounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get AWS cloud account by id"
+        },
+        {
+          "info": {
+            "name": "Delete AWS cloud account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dome9.com/v2/cloudaccounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete AWS cloud account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AzureAccounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Azure cloud accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dome9.com/v2/azurecloudaccount"
+          },
+          "docs": "List Azure cloud accounts"
+        },
+        {
+          "info": {
+            "name": "Onboard Azure cloud account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dome9.com/v2/azurecloudaccount",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Onboard Azure cloud account"
+        },
+        {
+          "info": {
+            "name": "Get Azure cloud account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dome9.com/v2/azurecloudaccount/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Azure cloud account"
+        },
+        {
+          "info": {
+            "name": "Delete Azure cloud account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dome9.com/v2/azurecloudaccount/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Azure cloud account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "GoogleAccounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Google cloud accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dome9.com/v2/googlecloudaccount"
+          },
+          "docs": "List Google cloud accounts"
+        },
+        {
+          "info": {
+            "name": "Onboard Google cloud account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dome9.com/v2/googlecloudaccount",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Onboard Google cloud account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Compliance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve compliance findings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dome9.com/v2/compliancefinding",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve compliance findings"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dome9.com/v2/user"
+          },
+          "docs": "List users"
+        },
+        {
+          "info": {
+            "name": "Create user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dome9.com/v2/user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create user"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dome9.com/v2/role"
+          },
+          "docs": "List roles"
+        },
+        {
+          "info": {
+            "name": "Create role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dome9.com/v2/role",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create role"
+        },
+        {
+          "info": {
+            "name": "Update role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.dome9.com/v2/role/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update role"
+        },
+        {
+          "info": {
+            "name": "Delete role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dome9.com/v2/role/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete role"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
