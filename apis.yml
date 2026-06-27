@@ -36,7 +36,7 @@ apis:
         url: https://api-v2-docs.dome9.com/#section/Authentication
       - type: RateLimits
         url: https://api-v2-docs.dome9.com/#section/Rate-Limiting
-      - type: Postman Collection
+      - type: PostmanCollection
         url: https://www.postman.com/dome9-security/workspace/dome9-api
 common:
   - type: LinkedIn

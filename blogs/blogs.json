@@ -5,7 +5,14 @@
       "source": "https://blog.checkpoint.com/feed/",
       "feed_url": "https://blog.checkpoint.com/feed/",
       "title": "",
-      "saved": 7,
+      "saved": 8,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.checkpoint.com/cloudguard/feed/",
+      "feed_url": "https://www.checkpoint.com/cloudguard/feed/",
+      "title": "",
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -16,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 39,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 47,
+  "fetched": "2026-06-27T12:03:07Z"
 }
