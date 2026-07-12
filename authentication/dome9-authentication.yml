@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/dome9-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic with username = API key id and password = API key secret.
+  sources:
+  - openapi/dome9-openapi.yml

@@ -39,6 +39,10 @@ apis:
       - type: PostmanCollection
         url: https://www.postman.com/dome9-security/workspace/dome9-api
 common:
+  - type: DomainSecurity
+    url: security/dome9-domain-security.yml
+  - type: Authentication
+    url: authentication/dome9-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/dome9-security
   - type: Website
