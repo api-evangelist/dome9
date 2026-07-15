@@ -39,6 +39,8 @@ apis:
       - type: PostmanCollection
         url: https://www.postman.com/dome9-security/workspace/dome9-api
 common:
+  - type: AgenticAccess
+    url: agentic-access/dome9-agentic-access.yml
   - type: DomainSecurity
     url: security/dome9-domain-security.yml
   - type: Authentication
