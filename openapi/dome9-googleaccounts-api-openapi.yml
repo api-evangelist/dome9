@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: Dome9 / CloudGuard AWSAccounts GoogleAccounts API
+  description: Dome9 (now Check Point CloudGuard) REST API for managing cloud accounts, security policies, compliance findings, roles, and users across AWS, Azure, and Google Cloud. Endpoints derived from public CloudGuard developer hub documentation at https://docs.cgn.portal.checkpoint.com/ — best-effort, not exhaustive. Uses HTTP Basic authentication where the username is the API key id and the password is the API key secret.
+  version: '2'
+  contact:
+    name: Check Point CloudGuard
+    url: https://www.checkpoint.com/cloudguard/
+  license:
+    name: Proprietary
+servers:
+- url: https://api.dome9.com
+  description: Dome9 / CloudGuard production
+security:
+- BasicAuth: []
+tags:
+- name: GoogleAccounts
+paths:
+  /v2/googlecloudaccount:
+    get:
+      tags:
+      - GoogleAccounts
+      summary: List Google cloud accounts
+      operationId: listGoogleAccounts
+      responses:
+        '200':
+          description: OK
+    post:
+      tags:
+      - GoogleAccounts
+      summary: Onboard Google cloud account
+      operationId: createGoogleAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Created
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic with username = API key id and password = API key secret.
