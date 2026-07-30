@@ -6,7 +6,20 @@ description: >-
   compliance policies, and threat protection across AWS, Azure, and Google
   Cloud Platform.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dome9.png
 tags:
   - Cloud Security
   - Compliance
@@ -18,26 +31,86 @@ created: '2024-01-01'
 modified: '2026-04-28'
 specificationVersion: '0.19'
 apis:
-  - aid: dome9:dome9-api
-    name: Dome9 API
-    description: >-
-      Main API for managing cloud accounts, security policies, compliance
-      policies, and security groups across multiple cloud platforms.
-    humanURL: https://api-v2-docs.dome9.com/
-    baseURL: https://api.dome9.com/v2
-    tags:
-      - Cloud Security
-      - Compliance
-      - Policy Management
-    properties:
-      - type: Documentation
-        url: https://api-v2-docs.dome9.com/
-      - type: Authentication
-        url: https://api-v2-docs.dome9.com/#section/Authentication
-      - type: RateLimits
-        url: https://api-v2-docs.dome9.com/#section/Rate-Limiting
-      - type: PostmanCollection
-        url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-api
+  name: Dome9 API
+  description: >-
+    Main API for managing cloud accounts, security policies, compliance policies, and security groups
+    across multiple cloud platforms.
+  humanURL: https://api-v2-docs.dome9.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Cloud Security
+  - Compliance
+  - Policy Management
+  properties:
+  - type: Documentation
+    url: https://api-v2-docs.dome9.com/
+  - type: Authentication
+    url: https://api-v2-docs.dome9.com/#section/Authentication
+  - type: RateLimits
+    url: https://api-v2-docs.dome9.com/#section/Rate-Limiting
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsaccounts-api
+  name: Dome9 AWSAccounts API
+  description: The AWSAccounts API from Dome9 — 2 operation(s) for awsaccounts.
+  humanURL: https://api-v2-docs.dome9.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AWSAccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsaccounts-api-openapi.yml
+- aid: dome9:dome9-azureaccounts-api
+  name: Dome9 AzureAccounts API
+  description: The AzureAccounts API from Dome9 — 2 operation(s) for azureaccounts.
+  humanURL: https://api-v2-docs.dome9.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureAccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azureaccounts-api-openapi.yml
+- aid: dome9:dome9-compliance-api
+  name: Dome9 Compliance API
+  description: The Compliance API from Dome9 — 1 operation(s) for compliance.
+  humanURL: https://api-v2-docs.dome9.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Compliance
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-compliance-api-openapi.yml
+- aid: dome9:dome9-googleaccounts-api
+  name: Dome9 GoogleAccounts API
+  description: The GoogleAccounts API from Dome9 — 1 operation(s) for googleaccounts.
+  humanURL: https://api-v2-docs.dome9.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GoogleAccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-googleaccounts-api-openapi.yml
+- aid: dome9:dome9-roles-api
+  name: Dome9 Roles API
+  description: The Roles API from Dome9 — 2 operation(s) for roles.
+  humanURL: https://api-v2-docs.dome9.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-roles-api-openapi.yml
+- aid: dome9:dome9-users-api
+  name: Dome9 Users API
+  description: The Users API from Dome9 — 1 operation(s) for users.
+  humanURL: https://api-v2-docs.dome9.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-users-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/dome9-agentic-access.yml
