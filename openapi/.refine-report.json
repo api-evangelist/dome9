@@ -1,0 +1,24 @@
+{
+  "provider": "dome9",
+  "sources": [
+    "dome9-awsaccounts-api-openapi.yml",
+    "dome9-azureaccounts-api-openapi.yml",
+    "dome9-compliance-api-openapi.yml",
+    "dome9-googleaccounts-api-openapi.yml",
+    "dome9-roles-api-openapi.yml",
+    "dome9-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "dome9-awsaccounts-api-openapi.yml",
+    "dome9-azureaccounts-api-openapi.yml",
+    "dome9-compliance-api-openapi.yml",
+    "dome9-googleaccounts-api-openapi.yml",
+    "dome9-roles-api-openapi.yml",
+    "dome9-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

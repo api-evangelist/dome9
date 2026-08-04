@@ -1,0 +1,261 @@
+openapi: 3.1.0
+info:
+  title: Dome9 / CloudGuard API
+  description: >-
+    Dome9 (now Check Point CloudGuard) REST API for managing cloud accounts,
+    security policies, compliance findings, roles, and users across AWS, Azure,
+    and Google Cloud. Endpoints derived from public CloudGuard developer hub
+    documentation at https://docs.cgn.portal.checkpoint.com/ — best-effort,
+    not exhaustive. Uses HTTP Basic authentication where the username is the
+    API key id and the password is the API key secret.
+  version: "2"
+  contact:
+    name: Check Point CloudGuard
+    url: https://www.checkpoint.com/cloudguard/
+  license:
+    name: Proprietary
+servers:
+  - url: https://api.dome9.com
+    description: Dome9 / CloudGuard production
+security:
+  - BasicAuth: []
+tags:
+  - name: AWSAccounts
+  - name: AzureAccounts
+  - name: GoogleAccounts
+  - name: Compliance
+  - name: Users
+  - name: Roles
+paths:
+  /v2/cloudaccounts:
+    get:
+      tags: [AWSAccounts]
+      summary: List AWS cloud accounts
+      operationId: listAwsCloudAccounts
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [AWSAccounts]
+      summary: Add a new AWS cloud account
+      operationId: createAwsCloudAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AwsCloudAccountCreate'
+      responses:
+        '201':
+          description: Created
+  /v2/cloudaccounts/{id}:
+    get:
+      tags: [AWSAccounts]
+      summary: Get AWS cloud account by id
+      operationId: getAwsCloudAccount
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags: [AWSAccounts]
+      summary: Delete AWS cloud account
+      operationId: deleteAwsCloudAccount
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204':
+          description: Deleted
+  /v2/azurecloudaccount:
+    get:
+      tags: [AzureAccounts]
+      summary: List Azure cloud accounts
+      operationId: listAzureAccounts
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [AzureAccounts]
+      summary: Onboard Azure cloud account
+      operationId: createAzureAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Created
+  /v2/azurecloudaccount/{id}:
+    get:
+      tags: [AzureAccounts]
+      summary: Get Azure cloud account
+      operationId: getAzureAccount
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags: [AzureAccounts]
+      summary: Delete Azure cloud account
+      operationId: deleteAzureAccount
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204':
+          description: Deleted
+  /v2/googlecloudaccount:
+    get:
+      tags: [GoogleAccounts]
+      summary: List Google cloud accounts
+      operationId: listGoogleAccounts
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [GoogleAccounts]
+      summary: Onboard Google cloud account
+      operationId: createGoogleAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Created
+  /v2/compliancefinding:
+    get:
+      tags: [Compliance]
+      summary: Retrieve compliance findings
+      operationId: listComplianceFindings
+      parameters:
+        - in: query
+          name: pageSize
+          schema: { type: integer, default: 100 }
+        - in: query
+          name: pageNumber
+          schema: { type: integer, default: 0 }
+      responses:
+        '200':
+          description: OK
+  /v2/user:
+    get:
+      tags: [Users]
+      summary: List users
+      operationId: listUsers
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [Users]
+      summary: Create user
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email: { type: string, format: email }
+                firstName: { type: string }
+                lastName: { type: string }
+                ssoEnabled: { type: boolean }
+      responses:
+        '201':
+          description: Created
+  /v2/role:
+    get:
+      tags: [Roles]
+      summary: List roles
+      operationId: listRoles
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [Roles]
+      summary: Create role
+      operationId: createRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Created
+  /v2/role/{id}:
+    put:
+      tags: [Roles]
+      summary: Update role
+      operationId: updateRole
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Updated
+    delete:
+      tags: [Roles]
+      summary: Delete role
+      operationId: deleteRole
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '204':
+          description: Deleted
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic with username = API key id and password = API key secret.
+  schemas:
+    AwsCloudAccountCreate:
+      type: object
+      required: [name, credentials]
+      properties:
+        name: { type: string }
+        externalAccountNumber: { type: string }
+        credentials:
+          type: object
+          properties:
+            arn: { type: string }
+            secret: { type: string }
+            type: { type: string, enum: [RoleBased, UserBased] }
+        fullProtection: { type: boolean }
