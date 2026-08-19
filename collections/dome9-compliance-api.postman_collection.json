@@ -1,0 +1,132 @@
+{
+  "item": [
+    {
+      "id": "bc64670a-8055-4077-848b-cbd1802f7907",
+      "name": "Compliance",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3cc9b8ce-fa03-445c-8c2b-21e2bdaf5ee2",
+          "name": "Retrieve compliance findings",
+          "request": {
+            "name": "Retrieve compliance findings",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "compliancefinding"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6a621fe-e102-4f99-ba39-74686b17dd3c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "compliancefinding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dome9.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0eb0aad1-5980-47be-b50d-39754ea7e818",
+    "name": "Dome9 / CloudGuard AWSAccounts Compliance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Dome9 (now Check Point CloudGuard) REST API for managing cloud accounts, security policies, compliance findings, roles, and users across AWS, Azure, and Google Cloud. Endpoints derived from public CloudGuard developer hub documentation at https://docs.cgn.portal.checkpoint.com/ — best-effort, not exhaustive. Uses HTTP Basic authentication where the username is the API key id and the password is the API key secret.\n\nContact Support:\n Name: Check Point CloudGuard",
+      "type": "text/plain"
+    }
+  }
+}
