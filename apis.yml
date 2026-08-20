@@ -57,6 +57,8 @@ apis:
   humanURL: https://api-v2-docs.dome9.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - AWS Accounts
+  tags_raw:
   - AWSAccounts
   properties:
   - type: OpenAPI
@@ -107,6 +109,8 @@ apis:
   humanURL: https://api-v2-docs.dome9.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
