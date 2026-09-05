@@ -19,6 +19,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "dome9-awsaccounts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "dome9-azureaccounts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "dome9-compliance-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "dome9-googleaccounts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "dome9-roles-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "dome9-users-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

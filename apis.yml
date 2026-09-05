@@ -150,3 +150,6 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-parent: checkpoint
+x-relationship: acquisition
+x-acquired: 2018
