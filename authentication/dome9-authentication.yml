@@ -1,13 +1,64 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/dome9-openapi.yml
+generated: '2026-09-07'
+method: searched
+source: >-
+  https://docs.cgn.portal.checkpoint.com/reference/authentication (fetched
+  2026-09-07) plus openapi/dome9-api-openapi.json, the first-party Swagger 2.0
+  contract at https://api.dome9.com/swagger/docs/v2.
+docs: https://docs.cgn.portal.checkpoint.com/reference/authentication
+provider: Dome9
+providerId: dome9
 summary:
   types:
   - http
+  oauth2: false
+  openid_connect: false
+  mtls: false
+  api_key_header: false
 schemes:
-- name: BasicAuth
+- name: API key V2
   type: http
   scheme: basic
-  description: HTTP Basic with username = API key id and password = API key secret.
+  description: >-
+    HTTP Basic authentication. The username is the V2 API key id and the
+    password is the API key secret.
+  spec_name_note: >-
+    The contract calls this securityDefinition "API key V2" but declares
+    `type: basic` — it is HTTP Basic carrying an API key pair, not an
+    apiKey-in-header scheme.
+  credential_issuance:
+    where: CloudGuard web application, Settings > Credentials
+    console: https://secure.dome9.com
+    docs: https://sc1.checkpoint.com/documents/CloudGuard_Dome9/Documentation/Settings/Credentials.htm
+  example: curl -u your-api-key-id:your-api-key-secret https://api.dome9.com/v2/CloudAccounts
   sources:
-  - openapi/dome9-openapi.yml
+  - openapi/dome9-api-openapi.json
+  - https://docs.cgn.portal.checkpoint.com/reference/authentication
+authorization_model:
+  style: inherited-user-permissions
+  scopes: false
+  detail: >-
+    Quoting the docs: "Your permissions when using the REST API with the key will
+    be the same as the permissions of the CloudGuard user who generated the key
+    from the CloudGuard web application." There is no scope, audience or
+    least-privilege narrowing at the key level — the blast radius of a key is the
+    blast radius of its creator. Narrowing is done by creating the key under a
+    purpose-built user with a restricted Role (/v2/Role) or a ServiceAccount
+    (/v2/serviceaccount).
+  rbac_surface:
+  - /v2/Role
+  - /v2/user
+  - /v2/serviceaccount
+  - /v2/account/sso
+other_credentials:
+- name: assume-role JWT
+  path: /v2/auth/assume-role/jwt
+  purpose: >-
+    Used by the CloudGuard image-scan CI/CD tooling to exchange for a
+    short-lived token. Documented in the connectivity endpoint tables, not as a
+    general-purpose auth flow, and it is not an OAuth authorization server.
+gaps:
+- No OAuth 2.0 or OpenID Connect.
+- No scopes; see the absence of scopes/dome9-scopes.yml in this repo.
+- No key rotation or expiry policy published.
+- No mTLS.
+- No /.well-known/openid-configuration or oauth-authorization-server on any host.

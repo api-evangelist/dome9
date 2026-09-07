@@ -1,0 +1,174 @@
+generated: '2026-09-07'
+method: probed
+source: >-
+  Direct HTTPS probes of /.well-known/* on every host this record knows —
+  the API host, the docs host and its dome9.com CNAME, the Infinity Portal
+  console host, and the checkpoint.com parent domain — run 2026-09-07.
+provider: Dome9
+providerId: dome9
+summary:
+  documents_served: 0
+  hosts_probed: 6
+  note: >-
+    NO /.well-known document is served anywhere in the Dome9 / CloudGuard
+    estate. api.dome9.com returns a real 404 HTML page for every path.
+    portal.checkpoint.com answers 200 with the SAME 4,051-byte SPA shell for
+    every path including /.well-known/agent-card.json — that is a catch-all,
+    not a document, and is recorded as a miss. checkpoint.com answers 202 with
+    a zero-length body (edge bot-management response) for every path. No
+    security.txt, no OpenID/OAuth metadata, no api-catalog, no agent card.
+    Because nothing returned a real document, this repo emits NO WellKnown,
+    SecurityTxt or AgentCard pointer.
+hosts:
+- host: api.dome9.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: api-v2-docs.dome9.com
+  note: 301 redirect to docs.cgn.portal.checkpoint.com for every path.
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 301
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    file: null
+  - path: /.well-known/api-catalog
+    status: 301
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 301
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 301
+    file: null
+  - path: /.well-known/agent.json
+    status: 301
+    file: null
+- host: docs.cgn.portal.checkpoint.com
+  note: ReadMe-hosted developer hub; 404s carry the hub's HTML shell.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: portal.checkpoint.com
+  note: >-
+    SPA catch-all. Every path returns 200 with an identical 4,051-byte HTML
+    shell — no document. Treated as a miss on all seven paths.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+- host: www.checkpoint.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 301
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    file: null
+  - path: /.well-known/api-catalog
+    status: 301
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 202
+    file: null
+    result: zero-length-bot-management-response
+- host: checkpoint.com
+  note: Every path answers 202 with a zero-length body (edge bot management).
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 202
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 202
+    file: null
+  - path: /.well-known/api-catalog
+    status: 202
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 202
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 202
+    file: null
+  - path: /.well-known/agent.json
+    status: 202
+    file: null

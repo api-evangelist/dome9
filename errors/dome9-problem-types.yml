@@ -1,0 +1,40 @@
+generated: '2026-09-07'
+method: derived
+source: >-
+  openapi/dome9-api-openapi.json (the first-party Swagger 2.0 served at
+  https://api.dome9.com/swagger/docs/v2), plus a search of the CloudGuard
+  developer hub at docs.cgn.portal.checkpoint.com for an error reference.
+provider: Dome9
+providerId: dome9
+format: undeclared
+rfc9457: false
+summary:
+  operations_examined: 722
+  documented_error_responses: 0
+  response_codes_declared:
+    '200': 619
+    '204': 101
+    '201': 3
+problem_types: []
+finding: >-
+  This is an honest zero, not a gap in the harvest. The Dome9 / CloudGuard v2
+  contract declares SUCCESS RESPONSES ONLY. Across all 722 operations there is
+  not a single 400, 401, 403, 404, 409, 422, 429 or 5xx response object, no
+  error schema among the 1,245 definitions, and no application/problem+json
+  anywhere. The developer hub publishes no error-code reference page either —
+  /reference/errors and /reference/error-codes both 404, and the 865-line
+  llms.txt index lists no error page.
+consequence_for_agents: >-
+  An agent calling this API cannot know from the contract what a failure looks
+  like: not the status code, not the body shape, not whether the failure is
+  retryable. Combined with the absence of any idempotency mechanism (see
+  conventions/dome9-conventions.yml) that makes automated retry unsafe on every
+  mutating operation.
+searched:
+- url: https://docs.cgn.portal.checkpoint.com/reference/errors.md
+  status: 404
+- url: https://docs.cgn.portal.checkpoint.com/reference/error-codes.md
+  status: 404
+- url: https://docs.cgn.portal.checkpoint.com/llms.txt
+  status: 200
+  result: 865 indexed pages, none an error reference

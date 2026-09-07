@@ -4,148 +4,43 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Dome9
 providerId: dome9
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-07'
+generated: '2026-09-07'
+method: searched
+source: >-
+  Check Point CloudGuard pricing surface, AWS Marketplace and Azure Marketplace
+  listings for CloudGuard CNAPP, and the CloudGuard developer hub, searched
+  2026-09-07.
 tags:
   - Cloud Security
   - Compliance
-  - Infrastructure Security
-  - Multi-Cloud
-  - Security Posture Management
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
-plans:
-  - id: dome9-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Dome9 API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.dome9.com/v2
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.dome9.com/v2
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Dome9 API
-  - id: dome9-pro
-    name: Professional
-    type: paid
-    description: Production tier for Dome9. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.dome9.com/v2
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.dome9.com/v2
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.dome9.com/v2
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Dome9 API
-  - id: dome9-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Dome9. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.dome9.com/v2
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://api.dome9.com/v2
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Dome9 API
+  - Pricing
+description: >-
+  Published plans and pricing for CloudGuard (Dome9). Check Point publishes no
+  priced tiers for this product.
+plan_count: 0
+plans: []
+pricing_model:
+  style: quote-only
+  metered_on: billable cloud assets
+  detail: >-
+    Licensing is a function of which CloudGuard capabilities are enabled and how
+    many billable assets are protected, and the asset ratio differs by resource
+    type (an EC2 instance counts as one asset; Lambda functions are counted in
+    batches). Check Point publishes no per-asset dollar figure, no starting
+    price and no enterprise ceiling. Both the AWS and Azure Marketplace listings
+    are private-offer / contact-seller rather than public list price. The API
+    itself exposes the tenant's own licensing state
+    (/v2/account/license, /v2/account/plan, /v2/BillableAssets,
+    /v2/BillableAssetsReport) but that is per-account entitlement data behind
+    authentication, not a public price list.
+note: >-
+  REPLACES a 2026-05-04 bulk-sweep scaffold that invented three tiers
+  (dome9-free / dome9-pro / dome9-enterprise) with 1,000 and 100,000 monthly
+  request quotas and "TBD" prices. Check Point has never published those. An
+  honest plan_count of 0 with a stated reason is the correct measurement:
+  CloudGuard is an enterprise sales-led product and its pricing is not a
+  self-serve, published artifact.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

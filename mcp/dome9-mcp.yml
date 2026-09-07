@@ -1,0 +1,143 @@
+generated: '2026-09-07'
+method: derived
+source: >-
+  Searched for a first-party MCP server across github.com/dome9,
+  github.com/CheckPointSW/mcp-servers, the npm registry (@chkp scope) and the
+  CloudGuard developer hub on 2026-09-07; none covers the CloudGuard/Dome9 REST
+  API. Candidate tools are DERIVED from the real Swagger 2.0 contract served at
+  https://api.dome9.com/swagger/docs/v2 (722 operations).
+provider: Dome9
+providerId: dome9
+status: candidate
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: searched
+findings:
+  first_party_server: false
+  note: >-
+    Check Point DOES ship an official MCP suite at
+    github.com/CheckPointSW/mcp-servers (npm scope @chkp/*) — Quantum
+    Management, Threat Prevention, Harmony SASE, Harmony Email, Exposure
+    Management, Workforce AI, Check Point WAF and others, all local-stdio via
+    `npx -y @chkp/<name>-mcp`. NONE of them speaks to api.dome9.com. The one
+    package whose name suggested it might — @chkp/cloudguard-waf-mcp — is a
+    published tombstone ("DEPRECATED: renamed to @chkp/checkpoint-waf-mcp. This
+    package is a tombstone and no longer functional") and in any case targeted
+    Check Point WAF, a sibling product, not the CloudGuard Posture API this
+    record describes. So the 722-operation CloudGuard REST surface has no agent
+    door of any kind: no remote endpoint, no stdio package.
+  checked:
+  - https://github.com/CheckPointSW/mcp-servers
+  - https://registry.npmjs.org/-/v1/search?text=checkpoint%20mcp
+  - https://github.com/dome9
+  - https://docs.cgn.portal.checkpoint.com/llms.txt
+authentication:
+  type: http-basic
+  note: >-
+    Any future server would carry the same credential as the REST API — HTTP
+    Basic where the username is the V2 API key id and the password is the key
+    secret, minted in the CloudGuard portal under Settings > Credentials.
+    Permissions equal those of the user who created the key.
+candidate_tools:
+- name: list_aws_cloud_accounts
+  description: List every AWS cloud account onboarded to CloudGuard.
+  rest: CloudAccounts_Get
+  method: GET
+  path: /v2/CloudAccounts
+  consequence: read
+- name: get_aws_cloud_account
+  description: Fetch one AWS cloud account by id.
+  rest: CloudAccounts_Get
+  method: GET
+  path: /v2/CloudAccounts/{id}
+  consequence: read
+- name: list_azure_cloud_accounts
+  description: List every Azure subscription onboarded to CloudGuard.
+  rest: AzureCloudAccount_Get
+  method: GET
+  path: /v2/AzureCloudAccount
+  consequence: read
+- name: list_google_cloud_accounts
+  description: List every Google Cloud project onboarded to CloudGuard.
+  rest: GoogleCloudAccount_Get
+  method: GET
+  path: /v2/GoogleCloudAccount
+  consequence: read
+- name: search_compliance_findings
+  description: >-
+    Filter posture findings by cloud account, region, VPC, IP or instance name.
+  rest: Finding_Search
+  method: POST
+  path: /v2/Compliance/Finding/search
+  consequence: read
+- name: get_compliance_finding
+  description: Get the full detail of one finding by id.
+  rest: Finding_GetFinding
+  method: GET
+  path: /v2/Compliance/Finding/{id}
+  consequence: read
+- name: acknowledge_finding
+  description: Mark a finding as viewed/acknowledged.
+  rest: Finding_Acknowledge
+  method: PUT
+  path: /v2/Compliance/Finding/{id}/acknowledge
+  consequence: write
+- name: archive_finding
+  description: Archive a finding (reversible via the /unarchive path).
+  rest: Finding_Archive
+  method: POST
+  path: /v2/Compliance/Finding/{id}/archive
+  consequence: write
+- name: list_compliance_rulesets
+  description: List every compliance ruleset (bundle) on the account.
+  rest: ComplianceRuleset_GetAccountBundles
+  method: GET
+  path: /v2/Compliance/Ruleset
+  consequence: read
+- name: run_assessment
+  description: Run an assessment of a cloud environment against a ruleset bundle.
+  rest: Assessment_RunBundleV2Async
+  method: POST
+  path: /v2/assessment/bundleV2
+  consequence: write
+- name: list_continuous_compliance_policies
+  description: List continuous-compliance policies for the account.
+  rest: ContinuousCompliancePolicyV2_GetAsync
+  method: GET
+  path: /v2/ContinuousCompliancePolicyV2
+  consequence: read
+- name: list_alerts
+  description: List CloudGuard alerts, optionally including acknowledged ones.
+  rest: Alert_Get
+  method: GET
+  path: /v2/Alert
+  consequence: read
+- name: list_security_groups
+  description: Fetch CloudGuard-managed security groups by filter type.
+  rest: SecurityGroup_Get
+  method: GET
+  path: /v2/SecurityGroup
+  consequence: read
+- name: list_users
+  description: List CloudGuard users on the account.
+  rest: User_Get
+  method: GET
+  path: /v2/user
+  consequence: read
+- name: list_roles
+  description: List CloudGuard roles on the account.
+  rest: Role_Get
+  method: GET
+  path: /v2/Role
+  consequence: read
+coverage:
+  openapi_operations: 722
+  candidate_tools: 15
+  note: >-
+    A deliberate read-first slice of the 722 operations. Every operationId above
+    is grepped from the live contract; nothing here is invented. Do NOT read this
+    file as evidence that Dome9 ships an MCP server — deployment.mode is `none`.

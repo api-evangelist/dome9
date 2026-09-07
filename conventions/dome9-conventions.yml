@@ -1,0 +1,179 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  https://docs.cgn.portal.checkpoint.com/reference/introduction and
+  /reference/authentication (fetched 2026-09-07), cross-checked against the
+  first-party Swagger 2.0 contract at https://api.dome9.com/swagger/docs/v2.
+provider: Dome9
+providerId: dome9
+description: >-
+  Cross-cutting runtime semantics for the CloudGuard (Dome9) v2 REST API — what
+  an agent has to know before it calls, beyond the operation list.
+authentication:
+  style: http-basic
+  detail: >-
+    HTTP Basic. Username = V2 API key id, password = API key secret, both minted
+    in the CloudGuard portal under Settings > Credentials. The key inherits the
+    permissions of the user who created it — there is no scope or audience
+    narrowing at the key level.
+  docs: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  example: curl -u your-api-key-id:your-api-key-secret https://api.dome9.com/v2/CloudAccounts
+  cross_ref: authentication/dome9-authentication.yml
+base_url:
+  default: https://api.dome9.com/v2/
+  note: >-
+    The API is REGION-PINNED and the docs publish two parallel host families —
+    the legacy dome9.com hosts and the Infinity Portal cgn.portal.checkpoint.com
+    hosts. An agent must call the host for the tenant's region; there is no
+    global router.
+  regions:
+  - region: US
+    dome9: https://api.dome9.com
+    infinity: https://api.us1.cgn.portal.checkpoint.com
+  - region: EU
+    dome9: https://api.eu1.dome9.com
+    infinity: https://api.eu1.cgn.portal.checkpoint.com
+  - region: Australia
+    dome9: https://api.ap2.dome9.com
+    infinity: https://api.ap2.cgn.portal.checkpoint.com
+  - region: Canada
+    dome9: https://api.cace1.dome9.com
+    infinity: https://api.cace1.cgn.portal.checkpoint.com
+  - region: India
+    dome9: https://api.ap3.dome9.com
+    infinity: https://api.ap3.cgn.portal.checkpoint.com
+  - region: Singapore
+    dome9: https://api.ap1.dome9.com
+    infinity: https://api.ap1.cgn.portal.checkpoint.com
+  source: https://docs.cgn.portal.checkpoint.com/reference/introduction
+versioning:
+  style: uri-path
+  current: v2
+  detail: >-
+    Every path is prefixed /v2. No Accept-header or query versioning. Where a
+    resource has been superseded the successor is a NEW path rather than a new
+    version — /v2/ContinuousCompliancePolicyV2 supersedes the V1 policy paths,
+    /v2/AssessmentHistoryV2 supersedes /v2/AssessmentHistory, and
+    /v2/Compliance/Remediation supersedes /v2/ComplianceRemediation
+    (operationId ComplianceRemediationOld_*). Both generations stay live.
+  cross_ref: lifecycle/dome9-lifecycle.yml
+media_type:
+  request: application/json
+  response: application/json
+  detail: >-
+    "The API is based on HTTP requests and responses, and uses JSON blocks."
+    The Swagger declares no global consumes/produces list.
+idempotency:
+  coverage: none
+  header: null
+  scope: []
+  detail: >-
+    No Idempotency-Key header, no client-supplied request id, and no replay
+    window is documented or declared anywhere in the 722-operation contract or
+    the developer hub. A retried POST — onboarding a cloud account, creating a
+    ruleset, creating a notification policy — will create a second object. The
+    only safe retry surface is the PUT/PATCH updates, which are naturally
+    idempotent by virtue of being full or partial replacements.
+  evidence: >-
+    Grep of the contract for "idempot" returns 0 matches across paths,
+    operationIds, parameters and definitions.
+reversibility:
+  grade: documented
+  detail: >-
+    A reversal path exists on ONE surface and nowhere else, and no window is
+    stated for it — so this grades `documented`, not `verified`.
+  reversible:
+  - surface: compliance findings
+    forward: Finding_Archive (POST /v2/Compliance/Finding/{id}/archive)
+    reversal: Finding_Archive (POST /v2/Compliance/Finding/{id}/unarchive)
+    bulk_reversal: Finding_BulkArchive (PUT /v2/Compliance/Finding/bulk/unarchive)
+    window: null
+    window_documented: false
+    docs: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  irreversible:
+  - surface: findings
+    operation: Finding_DeleteAsync (DELETE /v2/Compliance/Finding/{id})
+    note: >-
+      The contract's own summary says the finding "will be permanently deleted".
+      ExternalFindings_DeleteExternalFindings says the same. No restore, undo or
+      recycle-bin operation exists anywhere in the contract.
+  - surface: cloud accounts
+    operation: CloudAccounts_DeleteForce (DELETE /v2/cloudaccounts/{id}/DeleteForce)
+    note: >-
+      Deletes an AWS cloud account and all linked entities. The Alibaba, Azure
+      and Google equivalents (AlibabaCloudAccount_DeleteForceAsync,
+      AzureCloudAccount DeleteForce, GoogleCloudAccount delete) behave the same.
+      No re-attach or restore operation; re-onboarding is a fresh POST.
+  - surface: rulesets, policies, roles, users, security groups
+    note: >-
+      66 DELETE operations across the contract, none paired with a restore,
+      undo, rollback or cancel operation. No reversal window is stated for any
+      of them.
+  no_window_stated: true
+  warning: >-
+    An agent must treat every DELETE on this API as terminal. Nothing in the
+    docs promises a grace period, and this pipeline will not invent one.
+pagination:
+  style: none-standard
+  detail: >-
+    There is NO account-wide pagination convention. Across 722 operations only
+    three carry a paging parameter at all — one `limit`, one `pageNumber`, one
+    `pageSize`. Collection GETs such as /v2/CloudAccounts, /v2/Alert and
+    /v2/Compliance/Ruleset return the full set. Large result sets are instead
+    handled by dedicated POST search endpoints (Finding_Search,
+    ExternalFindings_Search, Alert_GetAlertsDataAsync) that take a filter body,
+    and by asynchronous CSV export workflows
+    (Alert_TriggerExportAsync -> Alert_GetExportStatusAsync ->
+    Alert_GetExportedDataUrlAsync; FindingsReport_ExportToCsv).
+  parameters:
+  - limit
+  - pageNumber
+  - pageSize
+filtering:
+  style: post-search-body
+  detail: >-
+    The idiomatic read pattern is POST to a /search endpoint with a filter
+    object (account, region, VPC, IP, instance name, severity, entity type,
+    tags), not GET with query strings. Bulk mutations follow the same shape:
+    Finding_SelectAllClose / SelectAllAcknowledge / SelectAllSeverity /
+    SelectAllAssign apply an action to everything matching a filter.
+  agent_warning: >-
+    The selectAll family is the highest-blast-radius surface on this API — one
+    call can close or reassign every finding matching a filter, with no
+    idempotency key and no undo for the close. Escalate to a human before use.
+error_envelope:
+  format: undeclared
+  rfc9457: false
+  detail: >-
+    The contract declares only success responses — 619 x 200, 101 x 204, 3 x
+    201 — and not one 4xx or 5xx response object across 722 operations. There is
+    no documented error schema, no problem+json media type, and no error-code
+    reference page on the developer hub.
+  cross_ref: errors/dome9-problem-types.yml
+rate_limit_signaling:
+  documented: false
+  headers: []
+  status_on_exhaustion: null
+  detail: >-
+    No published limits and no documented response headers. See
+    rate-limits/dome9-rate-limits.yml.
+  cross_ref: rate-limits/dome9-rate-limits.yml
+request_tracing:
+  correlation_header: null
+  detail: No request-id or correlation header is documented or declared.
+async_operations:
+  present: true
+  detail: >-
+    Long-running work is modelled as trigger + poll + fetch rather than a
+    callback. Alert export: Alert_TriggerExportAsync returns a workflowGuid,
+    Alert_GetExportStatusAsync polls it, Alert_GetExportedDataUrlAsync returns
+    the data URL. Cloud-account data refresh: CloudAccounts_SyncNow is paired
+    with the EntityFetchStatus resource. Remediation: Remediation_GetStatusRemediation
+    polls by executionId.
+event_delivery:
+  cross_ref: asyncapi/dome9-notifications-webhooks.yml
+  detail: >-
+    Outbound events are configured through the ContinuousComplianceNotification
+    resource rather than a subscription endpoint — the API is where you register
+    a webhook, SNS topic, Slack/Teams channel, Eventarc channel, ticketing
+    system or cloud-native findings sink.

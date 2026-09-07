@@ -1,0 +1,172 @@
+generated: '2026-09-07'
+method: derived
+source: >-
+  openapi/dome9-api-openapi.json — the ContinuousComplianceNotification resource
+  and its notification-data definitions in the first-party Swagger 2.0 contract
+  at https://api.dome9.com/swagger/docs/v2, read 2026-09-07.
+provider: Dome9
+providerId: dome9
+type: Webhooks
+asyncapi_published: false
+asyncapi_note: >-
+  Check Point publishes NO AsyncAPI document for CloudGuard. Searched
+  /asyncapi.yaml and /asyncapi.json on the API and docs hosts, the github.com/dome9
+  org, and the 865-line llms.txt index — nothing. What follows is the webhook /
+  event-delivery catalog DERIVED from the REST contract that configures it.
+  Nothing here is fabricated: every channel, format and field name below is an
+  enum value or property in the live spec.
+description: >-
+  CloudGuard delivers posture events outbound through notification policies you
+  create over the REST API. There is no subscription endpoint and no event
+  envelope schema — the API is where you register a destination, and the
+  destination shape is what the contract declares.
+configuration:
+  resource: ContinuousComplianceNotification
+  operations:
+  - operationId: ContinuousComplianceNotification_Get
+    method: GET
+    path: /v2/Compliance/ContinuousComplianceNotification
+    purpose: list notification policies
+  - operationId: ContinuousComplianceNotification_Post
+    method: POST
+    path: /v2/Compliance/ContinuousComplianceNotification
+    purpose: create a notification policy
+  - operationId: ContinuousComplianceNotification_Put
+    method: PUT
+    path: /v2/Compliance/ContinuousComplianceNotification/{id}
+    purpose: update a notification policy
+  - operationId: ContinuousComplianceNotification_Delete
+    method: DELETE
+    path: /v2/Compliance/ContinuousComplianceNotification/{id}
+    purpose: delete a notification policy
+  - operationId: ContinuousComplianceNotification_PublishOpenedFindingsByPolicyIdAsync
+    method: POST
+    path: /v2/Compliance/ContinuousComplianceNotification/PublishOpenedFindings/{id}
+    purpose: replay every open finding through a policy (resync a destination)
+  - operationId: ContinuousComplianceNotification_WebhookJiraTokens
+    method: GET
+    path: /v2/Compliance/ContinuousComplianceNotification/webhookJiraTokens
+    purpose: list Jira webhook tokens
+  - operationId: ContinuousComplianceNotification_GetAllCircuitBreakerAsync
+    method: GET
+    path: /v2/Compliance/ContinuousComplianceNotification/CircuitBreaker
+    purpose: >-
+      list tripped circuit breakers — CloudGuard disables a delivery integration
+      that keeps failing, and this is how a consumer discovers that its endpoint
+      was cut off
+  - operationId: ContinuousComplianceNotification_DeleteCircuitBreakerAsync
+    method: DELETE
+    path: /v2/Compliance/ContinuousComplianceNotification/CircuitBreaker/{id}/{integrationType}
+    purpose: reset a tripped circuit breaker
+triggers:
+- id: scheduledReport
+  description: Scheduled posture report on a configured schedule.
+  schema: ScheduledReportNotificationViewModel
+- id: changeDetection
+  description: Fired when continuous assessment detects a change in posture.
+  schema: ChangeDetectionNotificationViewModel
+- id: sendOnEachOccurrence
+  description: Per-occurrence rather than aggregated delivery.
+- id: alertsConsole
+  description: Route to the in-product alerts console.
+channels:
+- id: webhook
+  transport: https
+  schema: WebhookNotificationDataViewModel
+  required_fields:
+  - url
+  - httpMethod
+  - authMethod
+  - formatType
+  http_methods:
+  - Post
+  - Put
+  - Get
+  auth_methods:
+  - NoAuth
+  - BasicAuth
+  payload_formats:
+  - JsonWithFullEntity
+  - JsonWithBasicEntity
+  - Json
+  - PlainText
+  - SplunkBasic
+  - ServiceNow
+  - QRadar
+  - JsonFirstLevelEntity
+  - Jira
+  options:
+  - ignoreCertificate
+  - advancedUrl
+  - payloadFormat
+  note: >-
+    Receiver-side authentication is HTTP Basic or nothing — no HMAC signature,
+    no shared-secret header, no timestamp/replay protection is declared. A
+    consumer cannot cryptographically verify that a delivery came from
+    CloudGuard. `ignoreCertificate` exists, which means TLS verification of the
+    receiver can be switched off.
+- id: aws-sns
+  transport: aws-sns
+  schema: SnsDataNotificationViewModel
+  fields:
+  - snsTopicArn
+  - snsOutputFormat
+  note: snsTopicArn is regex-validated against the AWS ARN grammar in the spec.
+- id: aws-security-hub
+  transport: aws-securityhub
+  schema: AwsSecurityHubIntegrationNotificationViewModel
+- id: azure-security-center
+  transport: azure-defender-for-cloud
+  schema: AzureSecurityCenterIntegrationNotificationViewModel
+- id: gcp-security-command-center
+  transport: gcp-scc
+  schema: GcpSecurityCommandCenterIntegrationViewModel
+  fields:
+  - state
+  - projectId
+  - sourceId
+- id: gcp-eventarc
+  transport: gcp-eventarc
+  schema: EventarcNotificationDataViewModel
+  fields:
+  - channelConnectionId
+- id: slack
+  transport: slack
+  schema: SlackNotificationDataViewModel
+- id: microsoft-teams
+  transport: msteams
+  schema: TeamsNotificationDataViewModel
+- id: ticketing
+  transport: itsm
+  schema: TicketingSystemNotificationDataViewModel
+  systems:
+  - ServiceNow
+  - Jira
+  - PagerDuty
+  fields:
+  - systemType
+  - shouldCloseTickets
+  - domain
+  - user
+  - pass
+  - projectKey
+  - issueType
+  note: >-
+    shouldCloseTickets closes the ticket when the finding closes — a two-way
+    lifecycle, not fire-and-forget.
+- id: email
+  transport: email
+  schema: EmailNotificationData / EmailPerFindingNotificationData
+filters:
+  schema: ContinuousComplianceNotificationFilterViewModel
+  by:
+  - severities (Informational, Low, Medium, High, Critical)
+  - entityTypes
+  - entityTags
+  - entityNames
+  - entityIds
+gaps:
+- No AsyncAPI document, so the event payloads themselves have no machine-readable schema.
+- No signature or shared-secret verification on the generic webhook channel.
+- No documented retry/backoff policy; the only delivery-failure signal is the CircuitBreaker resource.
+- No replay-by-time API; the only replay is PublishOpenedFindings, which resends ALL open findings for a policy.

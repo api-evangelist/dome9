@@ -1,0 +1,213 @@
+generated: '2026-09-07'
+method: derived
+source: >-
+  openapi/dome9-api-openapi.json — 1,245 definitions and 601 paths in the
+  first-party Swagger 2.0 contract at https://api.dome9.com/swagger/docs/v2,
+  read 2026-09-07. Relationships are read from id-reference FIELD NAMES and
+  path nesting; nothing is inferred from prose.
+provider: Dome9
+providerId: dome9
+description: >-
+  The entity graph an agent has to hold to work the CloudGuard (Dome9) v2 API.
+  The contract is object-oriented in the .NET sense — 1,245 ViewModels under
+  Dome9.Web.Api.* and Falconetix.Model.* namespaces — but the graph that
+  actually matters is small and hangs off one root: the cloud account.
+identifiers:
+  style: uuid
+  detail: >-
+    Most ids are `format: uuid` strings with the example
+    00000000-0000-0000-0000-000000000000. There are no typed/prefixed ids
+    (no `acct_`-style prefixes), so an id is not self-describing — an agent
+    cannot tell a rulesetId from a cloudAccountId by looking at it.
+  reference_fields:
+    cloudAccountId: 150
+    externalId: 114
+    accountId: 88
+    organizationalUnitId: 11
+    rulesetId: 13
+    bundleId: 8
+    assessmentId: 8
+    securityGroupId: 8
+    ownerId: 9
+    userId: 5
+  note: >-
+    `cloudAccountId` appearing on 150 distinct definitions is the single
+    strongest structural fact about this API: almost everything is scoped to one
+    onboarded cloud account.
+entities:
+- name: Account
+  description: The CloudGuard tenant itself — licensing, SSO, session policy, trust.
+  paths:
+  - /v2/account
+  - /v2/account/plan
+  - /v2/account/license
+  - /v2/account/sso
+  - /v2/account/managing
+  relationships:
+  - has_many: CloudAccount
+  - has_many: User
+  - has_many: Role
+  - has_many: OrganizationalUnit
+- name: CloudAccount
+  description: >-
+    An onboarded cloud environment. Five provider-specific variants share the
+    role: AWS (/v2/CloudAccounts), Azure (/v2/AzureCloudAccount), Google
+    (/v2/GoogleCloudAccount), Alibaba (/v2/AlibabaCloudAccount) and Kubernetes /
+    container registry accounts.
+  paths:
+  - /v2/CloudAccounts
+  - /v2/AzureCloudAccount
+  - /v2/GoogleCloudAccount
+  - /v2/AlibabaCloudAccount
+  - /v2/KubernetesAccount
+  relationships:
+  - belongs_to: Account
+    via: accountId
+  - belongs_to: OrganizationalUnit
+    via: organizationalUnitId
+  - has_many: CloudEntity
+    via: cloudAccountId
+  - has_many: Finding
+    via: cloudAccountId
+  - has_many: SecurityGroup
+    via: cloudAccountId
+  note: >-
+    The provider variants are NOT polymorphic — each has its own paths,
+    ViewModels and credential shape. An agent must branch on cloud provider.
+- name: OrganizationalUnit
+  description: Hierarchy node grouping cloud accounts for policy and reporting.
+  paths:
+  - /v2/organizationalunit
+  relationships:
+  - has_many: CloudAccount
+    via: organizationalUnitId
+  - has_one: OrganizationalUnit
+    via: parent
+- name: Ruleset
+  description: >-
+    A compliance bundle — the set of rules evaluated against an environment.
+    Called both "Ruleset" and "bundle" in the same contract.
+  paths:
+  - /v2/Compliance/Ruleset
+  - /v2/Compliance/Ruleset/{id}/version/{version}
+  relationships:
+  - has_many: Rule
+    via: ruleId
+  - referenced_by: ContinuousCompliancePolicy
+    via: rulesetId
+  - referenced_by: Assessment
+    via: bundleId
+  note: Rulesets are versioned (/version/{version}); policies elect a version per account.
+- name: ContinuousCompliancePolicy
+  description: Binds a ruleset to a cloud account (or OU) for continuous evaluation.
+  paths:
+  - /v2/ContinuousCompliancePolicyV2
+  relationships:
+  - belongs_to: CloudAccount
+    via: cloudAccountId
+  - belongs_to: Ruleset
+    via: rulesetId
+  - has_many: Notification
+    via: notificationIds
+- name: Assessment
+  description: One evaluation run of a ruleset against an environment, plus its history.
+  paths:
+  - /v2/assessment/bundleV2
+  - /v2/AssessmentHistoryV2
+  relationships:
+  - belongs_to: Ruleset
+    via: bundleId
+  - belongs_to: CloudAccount
+    via: cloudAccountId
+  - has_many: Finding
+- name: Finding
+  description: >-
+    A single posture violation. The busiest resource in the contract — search,
+    aggregate, acknowledge, assign, comment, change severity, archive/unarchive,
+    close, bulk and selectAll variants of each.
+  paths:
+  - /v2/Compliance/Finding/search
+  - /v2/Compliance/Finding/{id}
+  - /v2/ExternalFindings
+  relationships:
+  - belongs_to: CloudAccount
+    via: cloudAccountId
+  - belongs_to: Ruleset
+    via: bundleId
+  - belongs_to: Rule
+    via: ruleId
+  - assigned_to: User
+  attributes:
+    severity:
+    - Informational
+    - Low
+    - Medium
+    - High
+    - Critical
+- name: Alert
+  description: Runtime/intelligence alert, distinct from a compliance Finding.
+  paths:
+  - /v2/Alert
+  - /v2/alert/data
+  relationships:
+  - belongs_to: CloudAccount
+    via: cloudAccountId
+- name: Notification
+  description: >-
+    A delivery policy — where findings go (webhook, SNS, Slack, Teams, ticketing,
+    Security Hub, SCC, Eventarc, email).
+  paths:
+  - /v2/Compliance/ContinuousComplianceNotification
+  relationships:
+  - referenced_by: ContinuousCompliancePolicy
+    via: notificationIds
+  cross_ref: asyncapi/dome9-notifications-webhooks.yml
+- name: SecurityGroup
+  description: >-
+    A CloudGuard-managed security group / firewall policy, with inbound and
+    outbound services and whitelists.
+  paths:
+  - /v2/SecurityGroup
+  - /v2/AwsSecurityGroupPolicy
+  - /v2/AzureSecurityGroupPolicy
+  relationships:
+  - belongs_to: CloudAccount
+    via: cloudAccountId
+  - has_many: Service
+- name: AccessLease
+  description: >-
+    Time-bounded elevated access to a protected asset (CloudGuard's JIT access
+    mechanism), plus its invitation flow.
+  paths:
+  - /v2/AccessLease
+  - /v2/AccessLeaseInvitation
+  relationships:
+  - belongs_to: CloudAccount
+    via: cloudAccountId
+  - belongs_to: User
+- name: User
+  description: A CloudGuard console/API user.
+  paths:
+  - /v2/user
+  relationships:
+  - belongs_to: Account
+  - has_many: Role
+- name: Role
+  description: A permission set assigned to users.
+  paths:
+  - /v2/Role
+  relationships:
+  - belongs_to: Account
+  - has_many: User
+- name: ServiceAccount
+  description: Non-human principal for machine access.
+  paths:
+  - /v2/serviceaccount
+  relationships:
+  - belongs_to: Account
+  - has_many: Role
+root_traversal: >-
+  Account -> CloudAccount -> (Finding | SecurityGroup | CloudEntity). Almost
+  every read starts by resolving a cloudAccountId, which is why
+  CloudAccounts_Get / AzureCloudAccount_Get / GoogleCloudAccount_Get are the
+  first calls in every skill in skills/.

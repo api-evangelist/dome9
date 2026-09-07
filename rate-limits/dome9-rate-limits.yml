@@ -4,89 +4,46 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Dome9
 providerId: dome9
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-07'
+generated: '2026-09-07'
+method: searched
+source: >-
+  https://docs.cgn.portal.checkpoint.com/reference/introduction,
+  https://docs.cgn.portal.checkpoint.com/llms.txt (865-page index) and the
+  first-party Swagger 2.0 contract at https://api.dome9.com/swagger/docs/v2,
+  all read 2026-09-07.
 tags:
   - Cloud Security
   - Compliance
-  - Infrastructure Security
-  - Multi-Cloud
-  - Security Posture Management
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Dome9 API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Dome9 API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Dome9 API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Dome9 API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Dome9 API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Dome9 API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+description: >-
+  Published rate limits for the CloudGuard (Dome9) v2 REST API. There are none.
+limit_count: 0
+limits: []
+headers: {}
+responseCodes: {}
+note: >-
+  REPLACES a 2026-05-04 bulk-sweep scaffold that asserted free/professional/
+  enterprise tiers at 10/100/1000 requests per minute with X-RateLimit-* headers
+  and monthly quotas. None of that was published by Check Point — it was
+  placeholder data and is removed. What the provider actually publishes:
+  nothing. The API reference introduction documents base URLs and regions but
+  says nothing about throttling; the 865-line llms.txt index contains no
+  rate-limit page (/reference/rate-limits.md returns 404); and the contract
+  declares no 429 response and no RateLimit-* or Retry-After header on any of
+  its 722 operations. The apis.yml pointer that claimed
+  https://api-v2-docs.dome9.com/#section/Rate-Limiting was a stale Redoc anchor
+  — that docs site now redirects to a ReadMe hub with no such section — and has
+  been removed.
+evidence:
+- url: https://docs.cgn.portal.checkpoint.com/reference/rate-limits.md
+  status: 404
+- url: https://docs.cgn.portal.checkpoint.com/reference/introduction.md
+  status: 200
+  result: base URLs and regional endpoints only; no throttling section
+- url: https://api.dome9.com/swagger/docs/v2
+  status: 200
+  result: 722 operations, zero 429 responses, zero rate-limit headers
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

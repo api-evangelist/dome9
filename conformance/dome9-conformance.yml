@@ -1,0 +1,130 @@
+generated: '2026-09-07'
+method: derived
+source: >-
+  openapi/dome9-api-openapi.json (first-party Swagger 2.0 from
+  https://api.dome9.com/swagger/docs/v2) and the CloudGuard developer hub at
+  docs.cgn.portal.checkpoint.com, read 2026-09-07.
+provider: Dome9
+providerId: dome9
+description: >-
+  Cross-cutting and domain standards the CloudGuard (Dome9) v2 contract does and
+  does not declare. Reward-only: a `conforms: false` row is a measurement, not a
+  penalty.
+conformance:
+- id: openapi
+  conforms: true
+  version: swagger-2.0
+  evidence: >-
+    https://api.dome9.com/swagger/docs/v2 returns a valid Swagger 2.0 document —
+    601 paths, 722 operations, 1,245 definitions — served from the API host
+    itself. Not OpenAPI 3.x; the provider has not migrated.
+- id: http-basic-auth
+  conforms: true
+  evidence: >-
+    securityDefinitions declares "API key V2" of type basic; the docs give the
+    curl -u example verbatim at /reference/authentication.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 or openIdConnect security scheme in the contract and no OAuth
+    documentation. A JWT assume-role endpoint exists for CI/CD image scanning
+    (/v2/auth/assume-role/jwt) but it is not an OAuth authorization server and
+    no /.well-known/oauth-authorization-server is served on any host.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration 404s on api.dome9.com.
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    No application/problem+json anywhere; the contract declares zero 4xx/5xx
+    responses. See errors/dome9-problem-types.yml.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No Idempotency-Key header or equivalent across 722 operations. See
+    conventions/dome9-conventions.yml.
+- id: pagination
+  conforms: false
+  evidence: >-
+    Only 3 of 722 operations carry a paging parameter (limit, pageNumber,
+    pageSize). No account-wide pagination convention.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No Sunset or Deprecation headers; zero operations flagged deprecated.
+- id: json:api
+  conforms: false
+  evidence: Plain JSON envelopes; no JSON:API media type or document structure.
+- id: odata
+  conforms: false
+  evidence: No $metadata surface and no OData query options.
+- id: scim
+  conforms: false
+  evidence: >-
+    User and Role management is a first-party shape (/v2/user, /v2/Role) with no
+    urn:ietf:params:scim schema URNs, despite the API carrying a full
+    user/role/permission surface. SSO is configured through /v2/account/sso
+    rather than a SCIM provisioning endpoint.
+- id: llms-txt
+  conforms: true
+  evidence: >-
+    https://docs.cgn.portal.checkpoint.com/llms.txt returns a 865-line index of
+    every documentation and API-reference page, each with a .md twin. Served on
+    the legacy api-v2-docs.dome9.com host too.
+domain_standards:
+- id: cloud-findings-interchange
+  conforms: true
+  market: cloud security posture management
+  evidence: >-
+    The ContinuousComplianceNotification resource declares first-class
+    integrations with the three cloud-native findings sinks by name —
+    AwsSecurityHubIntegrationNotificationViewModel,
+    AzureSecurityCenterIntegrationNotificationViewModel and
+    GcpSecurityCommandCenterIntegrationViewModel (with projectId + sourceId).
+    Emitting into AWS Security Hub means emitting ASFF; into GCP SCC means the
+    SCC finding shape. This is the CSPM market's actual interchange layer and
+    the contract speaks it natively rather than through a bespoke connector.
+  spec_location: >-
+    definitions.Dome9.Web.Api.Compliance.ContinuousCompliance.{AwsSecurityHubIntegrationNotificationViewModel,AzureSecurityCenterIntegrationNotificationViewModel,GcpSecurityCommandCenterIntegrationViewModel}
+- id: siem-export-formats
+  conforms: true
+  market: security operations
+  evidence: >-
+    WebhookNotificationDataViewModel.formatType and
+    SnsDataNotificationViewModel.snsOutputFormat both enumerate named
+    downstream formats — SplunkBasic, QRadar, ServiceNow, Jira — alongside the
+    generic JSON shapes. The contract commits to specific SIEM/ITSM payload
+    dialects rather than leaving the consumer to transform.
+  spec_location: definitions...WebhookNotificationDataViewModel.formatType
+- id: external-findings-ingest
+  conforms: true
+  market: cloud security posture management
+  evidence: >-
+    /v2/ExternalFindings (POST/search/archive/delete) accepts findings from
+    third-party scanners into the CloudGuard finding model, making the platform
+    a two-way participant in findings interchange rather than an emitter only.
+- id: compliance-frameworks
+  conforms: true
+  market: regulated cloud workloads
+  evidence: >-
+    The Compliance Ruleset surface (/v2/Compliance/Ruleset,
+    /v2/ContinuousCompliancePolicyV2, /v2/assessment/bundleV2) is the API-level
+    expression of published control frameworks — the rulesets CloudGuard ships
+    are the CIS Benchmarks, PCI DSS, NIST, HIPAA, GDPR and ISO control sets.
+    Recorded as a domain signature because the contract exposes framework
+    evaluation as a first-class resource, not because a marketing page claims
+    the certifications.
+  caveat: >-
+    The ruleset CONTENT is account-scoped and behind authentication, so the
+    specific framework list cannot be verified anonymously from the contract.
+compliance_claims:
+  soc2:
+    claimed: true
+    verified: false
+    detail: >-
+      Check Point states SOC 2 attestation covering Check Point Dome9 on its
+      product-certifications page. We could not fetch that page to quote it —
+      www.checkpoint.com answers 202 with a zero-length body to non-browser
+      clients on that path — so it is recorded as an unverified vendor claim,
+      not as evidence.
+    url: https://www.checkpoint.com/about-us/product-certifications/
+    probe_status: 202

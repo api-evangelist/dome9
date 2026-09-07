@@ -1,0 +1,82 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  https://docs.cgn.portal.checkpoint.com/reference/introduction,
+  https://status.checkpoint.com (StatusPage API summary), and the first-party
+  Swagger 2.0 contract at https://api.dome9.com/swagger/docs/v2, read 2026-09-07.
+provider: Dome9
+providerId: dome9
+versioning:
+  scheme: uri-path
+  current: v2
+  since: '2016'
+  detail: >-
+    All 601 paths are prefixed /v2. Check Point publishes no version history,
+    no "current vs previous version" table and no sunset schedule for v1.
+  policy_url: null
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: 0
+  detail: >-
+    No deprecation policy, no RFC 8594 Sunset/Deprecation headers, and NOT ONE
+    operation in the contract carries `deprecated: true` — despite the surface
+    plainly containing superseded generations. The evidence of retirement is in
+    naming, not in metadata.
+  superseded_in_place:
+  - old: /v2/ComplianceRemediation (operationIds ComplianceRemediationOld_*)
+    new: /v2/Compliance/Remediation
+    note: The operationId literally says "Old"; the operation is not marked deprecated.
+  - old: /v2/AssessmentHistory
+    new: /v2/AssessmentHistoryV2
+  - old: /v2/ContinuousCompliancePolicy
+    new: /v2/ContinuousCompliancePolicyV2
+  - old: /v2/KubernetesImageAssurancePolicy, /v2/ShiftLeftPolicy
+    new: /v2/vulnerability/policy
+    note: >-
+      The docs summaries say "(move to use /v2/vulnerability/policy)" in prose.
+      That is the only migration signal an agent gets, and it is unreadable to a
+      machine.
+  agent_warning: >-
+    A client cannot detect retirement from this contract. Nothing is flagged and
+    nothing is dated — you have to read operationId spelling and summary prose.
+status_page:
+  published: true
+  url: https://status.checkpoint.com
+  platform: Atlassian Statuspage
+  machine_readable: https://status.checkpoint.com/api/v2/summary.json
+  components:
+  - CloudGuard - US Region
+  - CloudGuard - EU - Ireland Region
+  detail: >-
+    Check Point runs one Statuspage for all services with CloudGuard broken out
+    per region. Verified by fetching the Statuspage v2 summary API (HTTP 200,
+    page id 23tk2y3t5qh7) on 2026-09-07.
+sla:
+  published: false
+  detail: No public SLA document for the CloudGuard API was found.
+support:
+  url: https://support.checkpoint.com/
+  detail: >-
+    The docs direct API users to the Check Point Support Center, or to "Contact
+    an expert" from the lifesaver icon in the CloudGuard portal.
+regional_lifecycle:
+  detail: >-
+    The API runs as six independent regional deployments (US, EU, AU, CA, IN,
+    SG) under two host families — the legacy *.dome9.com hosts and the Infinity
+    Portal *.cgn.portal.checkpoint.com hosts. The dome9.com brand is a decade
+    past the 2018 Check Point acquisition and is still the DEFAULT documented
+    base URL, so both families must be treated as current.
+  cross_ref: conventions/dome9-conventions.yml
+changelog:
+  published: false
+  detail: >-
+    No dated public changelog or release-notes page for the CloudGuard API was
+    found. The ReadMe hub's /changelog path 404s and the 865-entry llms.txt
+    index lists no changelog page. Product-level "What's New" material sits
+    behind the Check Point support portal rather than on the developer hub.
+  evidence:
+  - url: https://docs.cgn.portal.checkpoint.com/changelog
+    status: 404

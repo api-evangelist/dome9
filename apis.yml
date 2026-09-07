@@ -1,10 +1,16 @@
 aid: dome9
 name: Dome9
 description: >-
-  Dome9 (now Check Point CloudGuard) provides cloud security and compliance
-  solutions with APIs for managing cloud infrastructure security posture,
-  compliance policies, and threat protection across AWS, Azure, and Google
-  Cloud Platform.
+  Dome9, acquired by Check Point in 2018 and now sold as Check Point CloudGuard,
+  provides cloud security posture management and compliance across AWS, Azure,
+  Google Cloud, Alibaba Cloud, Kubernetes and container registries. Its v2 REST
+  API at api.dome9.com is a large, genuinely public surface — 601 paths and 722
+  operations described by a first-party Swagger 2.0 contract the API host serves
+  itself — covering cloud-account onboarding, compliance rulesets and
+  assessments, posture findings and alerts, security groups and firewall policy,
+  just-in-time access leases, users, roles and service accounts, plus outbound
+  delivery of findings to webhooks, SNS, Slack, Teams, ITSM systems and the
+  AWS/Azure/GCP native findings sinks.
 type: Index
 deliveryModel:
   model: saas
@@ -41,100 +47,83 @@ tags:
   - Security Posture Management
 url: https://raw.githubusercontent.com/api-evangelist/dome9/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-04-28'
+modified: '2026-09-07'
 specificationVersion: '0.23'
 apis:
 - aid: dome9:dome9-api
   name: Dome9 API
   description: >-
-    Main API for managing cloud accounts, security policies, compliance policies, and security groups
-    across multiple cloud platforms.
-  humanURL: https://api-v2-docs.dome9.com/
+    The CloudGuard (Dome9) v2 REST API — 601 paths and 722 operations covering
+    cloud-account onboarding for AWS, Azure, Google, Alibaba, Kubernetes and
+    container registries, compliance rulesets and assessments, posture findings
+    and alerts, security groups and firewall policy, access leases, users, roles
+    and service accounts. HTTP Basic auth with a V2 API key id and secret. The
+    API is region-pinned across six deployments.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dome9.png
   tags:
   - Cloud Security
   - Compliance
   - Policy Management
   properties:
+  - type: OpenAPI
+    url: openapi/dome9-api-openapi.json
+  - type: Overlay
+    url: overlays/dome9-api-overlay.yaml
   - type: Documentation
-    url: https://api-v2-docs.dome9.com/
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
   - type: Authentication
-    url: https://api-v2-docs.dome9.com/#section/Authentication
-  - type: RateLimits
-    url: https://api-v2-docs.dome9.com/#section/Rate-Limiting
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
   - type: PostmanCollection
     url: https://www.postman.com/dome9-security/workspace/dome9-api
-- aid: dome9:dome9-awsaccounts-api
-  name: Dome9 AWSAccounts API
-  description: The AWSAccounts API from Dome9 — 2 operation(s) for awsaccounts.
-  humanURL: https://api-v2-docs.dome9.com/
-  baseURL: https://api.dome9.com/v2
-  tags:
-  - AWS Accounts
-  tags_raw:
-  - AWSAccounts
-  properties:
-  - type: OpenAPI
-    url: openapi/dome9-awsaccounts-api-openapi.yml
-- aid: dome9:dome9-azureaccounts-api
-  name: Dome9 AzureAccounts API
-  description: The AzureAccounts API from Dome9 — 2 operation(s) for azureaccounts.
-  humanURL: https://api-v2-docs.dome9.com/
-  baseURL: https://api.dome9.com/v2
-  tags:
-  - AzureAccounts
-  properties:
-  - type: OpenAPI
-    url: openapi/dome9-azureaccounts-api-openapi.yml
-- aid: dome9:dome9-compliance-api
-  name: Dome9 Compliance API
-  description: The Compliance API from Dome9 — 1 operation(s) for compliance.
-  humanURL: https://api-v2-docs.dome9.com/
-  baseURL: https://api.dome9.com/v2
-  tags:
-  - Compliance
-  properties:
-  - type: OpenAPI
-    url: openapi/dome9-compliance-api-openapi.yml
-- aid: dome9:dome9-googleaccounts-api
-  name: Dome9 GoogleAccounts API
-  description: The GoogleAccounts API from Dome9 — 1 operation(s) for googleaccounts.
-  humanURL: https://api-v2-docs.dome9.com/
-  baseURL: https://api.dome9.com/v2
-  tags:
-  - GoogleAccounts
-  properties:
-  - type: OpenAPI
-    url: openapi/dome9-googleaccounts-api-openapi.yml
-- aid: dome9:dome9-roles-api
-  name: Dome9 Roles API
-  description: The Roles API from Dome9 — 2 operation(s) for roles.
-  humanURL: https://api-v2-docs.dome9.com/
-  baseURL: https://api.dome9.com/v2
-  tags:
-  - Roles
-  properties:
-  - type: OpenAPI
-    url: openapi/dome9-roles-api-openapi.yml
-- aid: dome9:dome9-users-api
-  name: Dome9 Users API
-  description: The Users API from Dome9 — 1 operation(s) for users.
-  humanURL: https://api-v2-docs.dome9.com/
-  baseURL: https://api.dome9.com/v2
-  tags:
-  - User
-  tags_raw:
-  - Users
-  properties:
-  - type: OpenAPI
-    url: openapi/dome9-users-api-openapi.yml
 common:
-  - type: AgenticAccess
-    url: agentic-access/dome9-agentic-access.yml
   - type: DomainSecurity
     url: security/dome9-domain-security.yml
   - type: Authentication
     url: authentication/dome9-authentication.yml
+  - type: Packages
+    url: packages/dome9-packages.yml
+  - type: SDKs
+    url: packages/dome9-packages.yml
+  - type: MCPServer
+    url: mcp/dome9-mcp.yml
+  - type: LLMsTxt
+    url: llms/dome9-llms.txt
+  - type: Conventions
+    url: conventions/dome9-conventions.yml
+  - type: Conformance
+    url: conformance/dome9-conformance.yml
+  - type: ErrorCatalog
+    url: errors/dome9-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/dome9-lifecycle.yml
+  - type: StatusPage
+    url: https://status.checkpoint.com
+  - type: DataModel
+    url: data-model/dome9-data-model.yml
+  - type: Webhooks
+    url: asyncapi/dome9-notifications-webhooks.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Plans
+    url: plans/dome9-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/dome9-rate-limits.yml
+  - type: VulnerabilityDisclosure
+    url: security/dome9-vulnerability-disclosure.yml
+  - type: Security
+    url: https://www.checkpoint.com/vulnerability-disclosure-policy/
+  - type: DeveloperPortal
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: Support
+    url: https://support.checkpoint.com/
+  - type: SignUp
+    url: https://portal.checkpoint.com/create-account
   - type: LinkedIn
     url: https://www.linkedin.com/company/dome9-security
   - type: Website
@@ -153,3 +142,8 @@ maintainers:
 x-parent: checkpoint
 x-relationship: acquisition
 x-acquired: 2018
+x-enrichment:
+  date: '2026-09-07'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v3

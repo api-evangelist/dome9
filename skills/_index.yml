@@ -1,0 +1,38 @@
+generated: '2026-09-07'
+method: generated
+source: >-
+  Authored from openapi/dome9-api-openapi.json — the first-party Swagger 2.0
+  contract at https://api.dome9.com/swagger/docs/v2 — plus
+  conventions/dome9-conventions.yml and errors/dome9-problem-types.yml. Every
+  operationId referenced in every skill was grepped from that contract; none is
+  invented. Check Point publishes no skills/ or AGENTS.md of its own (searched
+  github.com/dome9 and the 865-entry docs llms.txt on 2026-09-07).
+provider: Dome9
+providerId: dome9
+api: Dome9 API
+base_url: https://api.dome9.com/v2
+authentication: http-basic (V2 API key id + secret)
+skills:
+- name: dome9-triage-compliance-findings
+  file: dome9-triage-compliance-findings.md
+  description: Search, read and act on CloudGuard posture findings, including the bulk/selectAll blast radius.
+  operations: 8
+- name: dome9-onboard-cloud-account
+  file: dome9-onboard-cloud-account.md
+  description: Onboard AWS/Azure/Google/Alibaba accounts, verify permissions, place in an OU, force a sync.
+  operations: 9
+- name: dome9-run-compliance-assessment
+  file: dome9-run-compliance-assessment.md
+  description: List rulesets, run a bundle assessment, read results and trend, export an executive report.
+  operations: 8
+- name: dome9-route-findings-to-a-destination
+  file: dome9-route-findings-to-a-destination.md
+  description: Configure webhook/SNS/Slack/Teams/ITSM/Security Hub/SCC delivery and reset a tripped circuit breaker.
+  operations: 8
+safety_rules_shared_by_all_skills:
+- No idempotency mechanism exists on this API — never blind-retry a POST.
+- The contract declares zero 4xx/5xx responses; treat any non-2xx as opaque and surface the raw body.
+- Archive/unarchive of a finding is the only reversible write, and no window is documented.
+- 66 DELETE operations have no restore counterpart; require explicit human confirmation.
+- The selectAll/* family acts on a filter, not a list — preview with Finding_Search first.
+- The API is region-pinned; call the host for the tenant's region.

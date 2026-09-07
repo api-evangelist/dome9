@@ -1,0 +1,865 @@
+# CloudGuard Documentation
+
+> Documentation for CloudGuard
+
+Append .md to any documentation page URL to get its markdown version.
+
+## Guides
+- [Documentation](https://docs.cgn.portal.checkpoint.com/docs.md): CloudGuard documentation
+
+## API Reference
+- [Delete Force](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_deleteforceasync.md): Delete an Alibaba account from a Dome9 account (the Alibaba account is not deleted from Alibaba) and linked entities
+- [Get Cloud Account Stats](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_getcloudaccountstatsasync.md): Gets Cloud Account network statistics on cloud account page
+- [Get Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_getmissingpermissions.md): Get a list of missing permissions (needed by Dome9 to manage the accounts) for all Alibaba accounts in Dome9
+- [Get Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_getmissingpermissionsasync_by_id.md): Get a list of missing permissions for a specific account. These permissions are needed by Dome9 to manage accounts.
+- [Update Ignorable Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_updateignorablemissingpermissionsasync_put_v2alibabacloudaccountidmissingpermissions.md): Get a list of missing permissions for a specific account. These are permissions needed by Dome9 to manage accounts.
+- [Get Missing Permissions By Entity Type](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_getmissingpermissionsbyentitytypeasync_get_v2alibabacloudaccountidmissingpermissionsentitytype.md): Get missing permissions for a specific entity type for a specific Alibaba Cloud account
+- [Reset Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_resetmissingpermissionsasync.md): Reset (re-validate) a Alibaba Cloud account credentials in Dome9.  Will cause all entities to retry fetching from the Alibaba cloud account.
+- [Update Account Name](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_updateaccountnameasync.md): Update a Alibaba Cloud account name (as it appears in Dome9)
+- [Update Alibaba Cloud Account Credentials](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_updatealibabacloudaccountcredentialsasync.md)
+- [Sync Now](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_syncnow.md)
+- [Update Organizational Id](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_updateorganizationalid_put_v2alibabacloudaccountidorganizationalunit.md): Update the ID of the Organizational Unit that this cloud account will be attached to. Use 'null' for the root organizational unit
+- [Move Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_movecloudaccountstoorganizationalunit_put_v2alibabacloudaccountorganizationalunitmove.md): Detach cloud accounts from an Organizational unit and attach them to another Organizational unit. Use 'null' for root organizational unit
+- [Move All Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_moveallcloudaccountstoorganizationalunit_put_v2alibabacloudaccountorganizationalunitmoveall.md): Detach all cloud accounts from their current organizational unit and attach them to a new one. Default is to root organizational unit
+- [Post Attach Multi](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_postattachmulti_post_v2alibabacloudaccountorganizationalunitattach.md): Attach several cloud accounts to a specific Organizational Unit. User 'null' as root Organizational Unit as target
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_get_get_v2alibabacloudaccount.md): Get a list of all Alibaba cloud accounts
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_post_post_v2alibabacloudaccount.md): Add (onboard) a new Alibaba cloud account to Dome9
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_get_get_v2alibabacloudaccountid.md): Get details for a specific Alibaba Cloud Account
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/alibabacloudaccount_delete_delete_v2alibabacloudaccountid.md): Delete an Alibaba account from a Dome9 account (the Alibaba account is not deleted from Alibaba)
+- [Aws  Cloud  Account](https://docs.cgn.portal.checkpoint.com/reference/aws-cloud-account.md)
+- [Delete Force](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_deleteforce_delete_v2cloudaccountsiddeleteforce.md): Delete an AWS cloud account and linked entities.
+- [Update Cloud Account Name](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_updatecloudaccountname_put_v2cloudaccountsname.md): Update an AWS cloud account name.
+- [Update Cloud Account Region Conf](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_updatecloudaccountregionconf_put_v2cloudaccountsregion-conf.md): Update an AWS cloud account region configuration.
+- [Update Cloud Account Credentials](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_updatecloudaccountcredentials_put_v2cloudaccountscredentials.md): Update credentials for an AWS cloud account in Dome9. At least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"
+- [Get Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_getmissingpermissionsasync_get_v2cloudaccountsmissingpermissions.md): Get a list of missing permissions for all accounts. These are permissions needed by Dome9 to manage accounts.
+- [Get Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_getmissingpermissionsasync_get_v2cloudaccountsidmissingpermissions.md): Get a list of missing permissions for a specific account. These permissions are needed by Dome9 to manage accounts.
+- [Update Ignorable Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_updateignorablemissingpermissionsasync_put_v2cloudaccountsidmissingpermissions.md): Get a list of missing permissions for a specific account. These are permissions needed by Dome9 to manage accounts.
+- [Get Missing Permissions By Entity Type](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_getmissingpermissionsbyentitytypeasync_get_v2cloudaccountsidmissingpermissionsentitytype.md): Get a list of missing permissions for a specific cloud entity type and cloud account
+- [Cloud Account Has Assume Role Permission Issue](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_cloudaccounthasassumerolepermissionissueasync_get_v2cloudaccountsidcloudaccounthasassumerolepermissionissue.md): check if the cloud account's role has permission issues or was deleted
+- [Reset Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_resetmissingpermissionsasync_put_v2cloudaccountsidmissingpermissionsreset.md): reset (re-validate) an account
+- [Sync Now](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_syncnow_post_v2cloudaccountsidsyncnow.md): Send a data sync command to immediately fetch cloud account data into Dome9's system caches. This API is used in conjunction with EntityFetchStatus API resource to query the fetch status. Read more and see a full example here: https://github.com/Dome9/Python_API_SDK/blob/master/implementation/runSyncAssessment.md
+- [Update Organizational Id](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_updateorganizationalid_put_v2cloudaccountsidorganizationalunit.md): Update the ID of the Organizational Unit that this cloud account will be attached to. Use 'null' for the root Organizational Unit
+- [Move Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_movecloudaccountstoorganizationalunit_put_v2cloudaccountsorganizationalunitmove.md): Detach cloud accounts from an Organizational unit and attach them to another Organizational unit Use 'null' for root organizational unit
+- [Move All Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_moveallcloudaccountstoorganizationalunit_put_v2cloudaccountsorganizationalunitmoveall.md): Detach all cloud accounts from their current organizational unit and attach them to a new one. Default is to root organizational unit
+- [Post Attach Multi](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_postattachmulti_post_v2cloudaccountsorganizationalunitattach.md): Attach several cloud accounts to a specific Organizational Unit. User 'null' as root Organizational Unit as target
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_get_get_v2cloudaccounts.md): Get all AWS cloud accounts
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_post_post_v2cloudaccounts.md): Add a new AWS cloud account to CloudGuard <br /> Onboarding an AWS cloud account manually (legacy method) requires CloudGuard to obtain permissions to access the account.<br /> For more information, see the procedure on the onboarding with API on the Secure Knowledge center:<br /><a href="https://support.checkpoint.com/results/sk/sk147832">How to onboard an AWS account to CloudGuard using the REST API</a>
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_get_get_v2cloudaccountsid.md): Fetch a specific AWS cloud account
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/cloudaccounts_delete_delete_v2cloudaccountsid.md): Delete an AWS cloud account.
+- [Get Stack Config](https://docs.cgn.portal.checkpoint.com/reference/awsunifiedonboarding_getstackconfig_post_v2awsunifiedonboardingstackconfig.md): Returns the configuration should be set to the AWS cloud formation SDK for creating the Stack for the onboarding
+- [Get Update Stack Config](https://docs.cgn.portal.checkpoint.com/reference/awsunifiedonboarding_getupdatestackconfig_get_v2awsunifiedonboardingupdateversionstackconfigonboardingid.md): Returns the configuration should be set to the AWS cloud formation SDK for an update
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsunifiedonboarding_get_get_v2awsunifiedonboardingid.md): Gets the Onboarding information
+- [Azure Cloud Account](https://docs.cgn.portal.checkpoint.com/reference/azure-cloud-account.md)
+- [Delete Force](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_deleteforce_delete_v2azurecloudaccountiddeleteforce.md): Delete an Azure account from a Dome9 account (the Azure account is not deleted from Azure) and linked entities
+- [Get Onboarding Script For Preview](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_getonboardingscriptforpreviewasync_get_v2azurecloudaccountonboardingexecutionpreview.md): Get the script that performs Azure account onboarding
+- [Generate Onboarding Execution Command](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_generateonboardingexecutioncommand_post_v2azurecloudaccountonboardingexecutioncommand.md): Get the cloud account command line execution for Azure shell <param name="requestModel">Details for Azure cloud account.</param>
+- [Get Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_getmissingpermissions_get_v2azurecloudaccountmissingpermissions.md): Get a list of missing permissions (required by Dome9) for all Azure accounts in a Dome9 account
+- [Get Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_getmissingpermissionsasync_get_v2azurecloudaccountidmissingpermissions.md): Get a list of missing permissions for a specific account. These permissions are needed by Dome9 to manage accounts.
+- [Update Ignorable Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_updateignorablemissingpermissionsasync_put_v2azurecloudaccountidmissingpermissions.md): Get a list of missing permissions for a specific account. These are permissions needed by Dome9 to manage accounts.
+- [Get Missing Permissions By Entity Type](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_getmissingpermissionsbyentitytypeasync_get_v2azurecloudaccountidmissingpermissionsentitytype.md): Get a list of missing permissions for a specific cloud entity type and Azure cloud account
+- [Reset Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_resetmissingpermissions_put_v2azurecloudaccountidmissingpermissionsreset.md): Reset (re-validate) the missing permissions indication for an Azure account in Dome9
+- [Update Operation Mode](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_updateoperationmodeasync_put_v2azurecloudaccountidoperationmode.md): Update the operations mode for an Azure account in Dome9. Modes can be Read-Only or Manage
+- [Update Account Name](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_updateaccountname_put_v2azurecloudaccountidaccountname.md): Update the account name (in Dome9) for an Azure account
+- [Update Cloud Account Credentials](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_updatecloudaccountcredentials_put_v2azurecloudaccountidcredentials.md)
+- [Sync Now](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_syncnow_post_v2azurecloudaccountidsyncnow.md)
+- [Get Credentials Service Principal Id](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_getcredentialsserviceprincipalidasync_get_v2azurecloudaccountidcredentialsserviceprincipalid.md)
+- [Update Organizational Id](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_updateorganizationalid_put_v2azurecloudaccountidorganizationalunit.md): Update the ID of the Organizational Unit that this cloud account will be attached to. Use 'null' for the root organizational unit
+- [Move Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_movecloudaccountstoorganizationalunit_put_v2azurecloudaccountorganizationalunitmove.md): Detach cloud accounts from an Organizational unit and attach them to another Organizational unit. Use 'null' for root organizational unit
+- [Move All Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_moveallcloudaccountstoorganizationalunit_put_v2azurecloudaccountorganizationalunitmoveall.md): Detach all cloud accounts from their current organizational unit and attach them to a new one. Default is to root organizational unit
+- [Post Attach Multi](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_postattachmulti_post_v2azurecloudaccountorganizationalunitattach.md): Attach several cloud accounts to a specific Organizational Unit. User 'null' as root Organizational Unit as target
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_get_get_v2azurecloudaccountid.md): Get details for a specific Azure account
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_delete_delete_v2azurecloudaccountid.md): Delete an Azure account from a Dome9 account (the Azure account is not deleted from Azure)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_get_get_v2azurecloudaccount.md): Get details for all Azure accounts for the Dome9 user
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/azurecloudaccount_post_post_v2azurecloudaccount.md): Add (onboard) an Azure account to the user's Dome9 account
+- [Google Cloud Account](https://docs.cgn.portal.checkpoint.com/reference/google-cloud-account.md)
+- [Delete Force](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_deleteforce_delete_v2googlecloudaccountiddeleteforce.md): Delete a Google cloud account (from Dome9) and linked entities
+- [Delete Gsuite](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_deletegsuite_put_v2googlecloudaccountiddeletegsuite.md): Delete a Google cloud Gsuite account Only
+- [Get Cloud Account Details](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_getcloudaccountdetailsasync_get_v2googlecloudaccountiddetails.md)
+- [Get Cloud Account Stats](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_getcloudaccountstats_get_v2googlecloudaccountcloudaccountidaccount-stats.md): Gets Cloud Account network statistics on cloud account page
+- [Get Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_getmissingpermissions_get_v2googlecloudaccountmissingpermissions.md): Get a list of missing permissions (needed by Dome9 to manage the accounts) for all Google accounts in Dome9
+- [Get Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_getmissingpermissionsasync_get_v2googlecloudaccountidmissingpermissions.md): Get a list of missing permissions for a specific account. These permissions needed by Dome9 to manage accounts.
+- [Update Ignorable Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_updateignorablemissingpermissionsasync_put_v2googlecloudaccountidmissingpermissions.md): Get a list of missing permissions for a specific account. These are permissions needed by Dome9 to manage accounts.
+- [Get Missing Permissions By Entity Type](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_getmissingpermissionsbyentitytypeasync_get_v2googlecloudaccountidmissingpermissionsentitytype.md): Get missing permissions for a specific entity type for a specific Google Cloud account
+- [Reset Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_resetmissingpermissionsasync_put_v2googlecloudaccountidmissingpermissionsreset.md): Reset (re-validate) a Google Cloud account credentials in Dome9.  Will cause all entities to retry fetching from the Google cloud account.
+- [Update Account Name](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_updateaccountname_put_v2googlecloudaccountidaccountname.md): Update a Google Cloud account name (as it appears in Dome9)
+- [Update Account Gsuite](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_updateaccountgsuite_put_v2googlecloudaccountidcredentialsgsuite.md): Update a Google Cloud account Gsuite data
+- [Update Google Cloud Account Credentials](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_updategooglecloudaccountcredentials_put_v2googlecloudaccountidcredentials.md)
+- [Sync Now](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_syncnow_post_v2googlecloudaccountidsyncnow.md)
+- [Update Organizational Id](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_updateorganizationalid_put_v2googlecloudaccountidorganizationalunit.md): Update the ID of the Organizational Unit that this cloud account will be attached to. Use 'null' for the root Organizational Unit
+- [Move Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_movecloudaccountstoorganizationalunit_put_v2googlecloudaccountorganizationalunitmove.md): Detach cloud accounts from an Organizational unit and attach them to another Organizational unit Use 'null' for root organizational unit
+- [Move All Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_moveallcloudaccountstoorganizationalunit_put_v2googlecloudaccountorganizationalunitmoveall.md): Detach all cloud accounts from their current organizational unit and attach them to a new one. Default is to root organizational unit
+- [Post Attach Multi](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_postattachmulti_post_v2googlecloudaccountorganizationalunitattach.md): Attach several cloud accounts to a specific Organizational Unit. User 'null' as root Organizational Unit as target
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_get_get_v2googlecloudaccount.md): Get a list of all Google cloud accounts
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_post_post_v2googlecloudaccount.md): Add (onboard) a new Google cloud account to Dome9
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_get_get_v2googlecloudaccountid.md): Get details for a specific Google Cloud Account
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/googlecloudaccount_delete_delete_v2googlecloudaccountid.md): Delete a Google cloud account (from Dome9)
+- [Kubernetes Account](https://docs.cgn.portal.checkpoint.com/reference/kubernetes-account.md)
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_getall_get_v2kubernetesaccount.md): Get a list of all Kubernetes accounts
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_post_post_v2kubernetesaccount.md): Add (onboard) a new Kubernetes account to CloudGuard
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_get_get_v2kubernetesaccountid.md): Get details for a specific Kubernetes Account
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_delete_delete_v2kubernetesaccountid.md): Delete a Kubernetes account (from CloudGuard)
+- [Update Account Name](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_updateaccountname_put_v2kubernetesaccountidaccountname.md): Update a Kubernetes account name (as it appears in CloudGuard)
+- [Update Account Description](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_updateaccountdescription_put_v2kubernetesaccountidaccountdescription.md): Update a Kubernetes account description (as it appears in CloudGuard)
+- [Enable Image Assurance](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_enableimageassurance_post_v2kubernetesaccountidimageassuranceenable.md): Enable Image Assurance feature for Kubernetes (cluster) account
+- [Disable Image Assurance](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_disableimageassurance_post_v2kubernetesaccountidimageassurancedisable.md): Disable Image Assurance feature for Kubernetes (cluster) account
+- [Enable Runtime Protection](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_enableruntimeprotection_post_v2kubernetesaccountidruntimeprotectionenable.md): Enable Runtime Protection for Kubernetes account
+- [Enable Admission Control](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_enableadmissioncontrol_post_v2kubernetesaccountidadmissioncontrolenable.md): Enable Admission Control for Kubernetes account
+- [Disable Admission Control](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_disableadmissioncontrol_post_v2kubernetesaccountidadmissioncontroldisable.md): Disable Admission Control for Kubernetes account
+- [Get Account Summary](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_getaccountsummary_get_v2kubernetesaccountidaccountsummary.md): Get Kubernetes account summary data
+- [Get Account Agent Status](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_getaccountagentstatus_get_v2kubernetesaccountaccountagentstatus.md): Get Kubernetes account agent status
+- [Get Csv Account Agent Status](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_getcsvaccountagentstatus_post_v2kubernetesaccountagentstatusreportcsv.md): Get a CSV table that provides the status of all agents in the Kubernetes account
+- [Get Agent Summary](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_getagentsummary_get_v2kubernetesaccountidagentsummary.md): Get Kubernetes account agent summary data
+- [Resolve Multiple Onboarding](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_resolvemultipleonboarding_post_v2kubernetesaccountidresolvemultipleonboarding.md): Unblock Kubernetes account due to Multiple Onboarding
+- [Update Organizational Id](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_updateorganizationalid_put_v2kubernetesaccountidorganizationalunit.md): Update the ID of the Organizational unit that this cloud account will be attached to. Use 'null' for root organizational unit
+- [Move Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_movecloudaccountstoorganizationalunit_put_v2kubernetesaccountorganizationalunitmove.md): Detach cloud accounts from an Organizational unit and attach them to another Organizational unit Use 'null' for root organizational unit
+- [Move All Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_moveallcloudaccountstoorganizationalunit_put_v2kubernetesaccountorganizationalunitmoveall.md): Detach all Kubernetes accounts from their current organizational unit and attach them to a new one. Default is to root organizational unit
+- [Post Attach Multi](https://docs.cgn.portal.checkpoint.com/reference/kubernetesaccount_postattachmulti_post_v2kubernetesaccountorganizationalunitattach.md): Attach several Kubernetes accounts to a specific Organizational Unit. User 'null' as root Organizational Unit as target
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_getall_get_v2containerregistryaccount.md): get all container registry
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_post_post_v2containerregistryaccount.md): create new container registry
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_get_get_v2containerregistryaccountid.md): get single container registry by id
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_delete_delete_v2containerregistryaccountid.md): delete container registry
+- [Update Account Description](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_updateaccountdescription_put_v2containerregistryaccountidaccountdescription.md): Update a container registry account description (as it appears in Dome9 --> CloudGuard)
+- [Update Account Name](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_updateaccountname_put_v2containerregistryaccountidaccountnamenewname.md): updating container registry name
+- [Update Linked Scanning Environments](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_updatelinkedscanningenvironments_put_v2containerregistryaccountidlinkedscanningenvironments.md): update linkedScanningEnvironments
+- [Update Linked Scanning Environment](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_updatelinkedscanningenvironment_put_v2containerregistryaccountidlinkedscanningenvironment.md): update or add linkedScanningEnvironment
+- [Delete Linked Scanning Environment](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_deletelinkedscanningenvironment_delete_v2containerregistryaccountidlinkedscanningenvironmentlinkedenvironmentid.md): delete single linkedScanningEnvironment from containerRegistry
+- [Set Environment Settings](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_setenvironmentsettings_put_v2containerregistryaccountidsettings.md): Set user configurable properties for the environment
+- [Update Environment Settings](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_updateenvironmentsettings_patch_v2containerregistryaccountidsettings.md): Update user configurable properties for the environment
+- [Get Environment Settings](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_getenvironmentsettings_get_v2containerregistryaccountidsettings.md): Get user configurable properties for the environment
+- [Update Organizational Id](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_updateorganizationalid_put_v2containerregistryaccountidorganizationalunit.md): Update the ID of the Organizational unit that this cloud account will be attached to. Use 'null' for root organizational unit
+- [Move Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_movecloudaccountstoorganizationalunit_put_v2containerregistryaccountorganizationalunitmove.md): Detach cloud accounts from an Organizational unit and attach them to another Organizational unit Use 'null' for root organizational unit
+- [Move All Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_moveallcloudaccountstoorganizationalunit_put_v2containerregistryaccountorganizationalunitmoveall.md): Detach all container registry accounts from their current organizational unit and attach them to a new one. Default is to root organizational unit
+- [Post Attach Multi](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_postattachmulti_post_v2containerregistryaccountorganizationalunitattach.md): Attach several container registry accounts to a specific Organizational Unit. User 'null' as root Organizational Unit as target
+- [Get Agent Summary](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_getagentsummary_get_v2containerregistryaccountidagentsummary.md): Get Container registry account agent summary data
+- [Get Account Agent Status](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_getaccountagentstatus_get_v2containerregistryaccountaccountagentstatus.md): Get container registry account agents status
+- [Get Account Summary](https://docs.cgn.portal.checkpoint.com/reference/containerregistryaccount_getaccountsummary_get_v2containerregistryaccountidaccountsummary.md): Get Container registry account summary data
+- [Get All Oci Cloud Accounts](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_getallocicloudaccounts_get_v2oci-cloud-account.md): Get a list of all OCI cloud accounts
+- [Add Oci Cloud Account](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_addocicloudaccount_post_v2oci-cloud-account.md): The second step in the onboarding ("create-terraform" API call is the first step): Add (onboard) a new OCI cloud account to CloudGuard
+- [Delete Oci Cloud Account](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_deleteocicloudaccount_delete_v2oci-cloud-account.md): Delete an OCI account from a CloudGuard account (the OCI account is not deleted from OCI)
+- [Get Oci Cloud Accounts By Id](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_getocicloudaccountsbyid_get_v2oci-cloud-accountid.md): Get details for a specific OCI Cloud Account
+- [Save Temp Data And Export Terraform Conf File](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_savetempdataandexportterraformconffile_post_v2oci-cloud-accountcreate-terraform.md): The first step in the onboarding (with terraform file): Save temp data for the onboarding process and export terraform configuration file. The Terraform should be run in the OCI account: Navigate to "Developer" -> "ServicesResource" -> "ManagerStacks", and select "Create Stack".
+- [Save Temp Data](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_savetempdata_post_v2oci-cloud-accountsave-temp-data.md): The first step in the onboarding (without terraform file): Save temp data for the onboarding process. To use this call the OCI API must be used.
+- [Force Delete Oci Cloud Account](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_forcedeleteocicloudaccount_delete_v2oci-cloud-accountiddelete-force.md): Delete an OCI account from a CloudGuard account (the OCI account is not deleted from OCI) and linked entities
+- [Update Account Name](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_updateaccountname_put_v2oci-cloud-accountidaccount-name.md): Update an OCI Cloud account name (as it appears in CloudGuard)
+- [Update Credentials](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_updatecredentials_put_v2oci-cloud-accountidcredentials.md): Update an OCI Cloud credentials after terraform run has finished successfully
+- [Update Credentials Terraform](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_updatecredentialsterraform_put_v2oci-cloud-accountidcredentials-terraform.md): Update an OCI Cloud credentials request before creating stack with the Terraform file
+- [Sync Now](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_syncnow_post_v2oci-cloud-accountidsync-now.md)
+- [Get Missing Permissions All](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_getmissingpermissionsall_get_v2oci-cloud-accountmissing-permissions.md): Get a list of missing permissions (needed by CloudGuard to manage the accounts) for all OCI accounts in CloudGuard
+- [Get Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_getmissingpermissions_get_v2oci-cloud-accountidmissing-permissions.md): Get a list of missing permissions for a specific account. These permissions are needed by Dome9 to manage accounts.
+- [Update Ignorable Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_updateignorablemissingpermissions_put_v2oci-cloud-accountidmissing-permissions.md): Get a list of missing permissions for a specific account. These are permissions needed by Dome9 to manage accounts.
+- [Get Missing Permissions By Entity Type](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_getmissingpermissionsbyentitytype_get_v2oci-cloud-accountidmissing-permissionsentity-type.md): Get missing permissions for a specific entity type for a specific OCI Cloud account
+- [Reset Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_resetmissingpermissions_put_v2oci-cloud-accountidmissing-permissionsreset.md): Reset (re-validate) a OCI Cloud account credentials in CloudGuard.  Will cause all entities to retry fetching from the OCI cloud account.
+- [Update Organizational Unit Id](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_updateorganizationalunitid_put_v2oci-cloud-accountidorganizational-unit.md): Update the ID of the Organizational Unit that this cloud account will be attached to. Use 'null' for the root organizational unit
+- [Move Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_movecloudaccountstoorganizationalunit_put_v2oci-cloud-accountorganizational-unitmove.md): Detach cloud accounts from an Organizational unit and attach them to another Organizational unit. Use 'null' for root organizational unit
+- [Move All Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_moveallcloudaccountstoorganizationalunit_put_v2oci-cloud-accountorganizational-unitmove-all.md): Detach all cloud accounts from their current organizational unit and attach them to a new one. Default is to root organizational unit
+- [Attach Multi Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/ocicloudaccount_attachmultiorganizationalunit_post_v2oci-cloud-accountorganizational-unitattach.md): Attach several cloud accounts to a specific Organizational Unit. User 'null' as root Organizational Unit as target
+- [Create Organization Management](https://docs.cgn.portal.checkpoint.com/reference/awsorganizationmanagement_createorganizationmanagement_post_v2aws-organization-management.md): Create new AWS organization management entity.
+- [Get All Organization Management](https://docs.cgn.portal.checkpoint.com/reference/awsorganizationmanagement_getallorganizationmanagement_get_v2aws-organization-management.md): Get AWS organization management entities.
+- [Update Organization Management](https://docs.cgn.portal.checkpoint.com/reference/awsorganizationmanagement_updateorganizationmanagement_put_v2aws-organization-managementid.md): Update existing AWS organization management entity.
+- [Get Organization Management By Id](https://docs.cgn.portal.checkpoint.com/reference/awsorganizationmanagement_getorganizationmanagementbyid_get_v2aws-organization-managementid.md): Get AWS organization management entity by its ID.
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/awsorganizationmanagement_delete_delete_v2aws-organization-managementid.md): Delete AWS organization management After this API call each account that is under this organization need to be deleted separately.
+- [Update Stack Set Arn](https://docs.cgn.portal.checkpoint.com/reference/awsorganizationmanagement_updatestacksetarn_put_v2aws-organization-managementidstackset-arn.md): Update existing AWS organization management entity with the StackSet arn.
+- [Update Configuration](https://docs.cgn.portal.checkpoint.com/reference/awsorganizationmanagement_updateconfiguration_put_v2aws-organization-managementidconfiguration.md): Update organization configuration.
+- [Reset Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/awsorganizationmanagement_resetmissingpermissions_put_v2aws-organization-managementidmissing-permissionsreset.md): Resets all environments of the given aws organization id.
+- [Get Onboarding Configuration](https://docs.cgn.portal.checkpoint.com/reference/awsorganizationmanagementonboarding_getonboardingconfiguration_get_v2aws-organization-management-onboardingmanagement-stack.md): Get management stack configuration for given AWS account. For empty awsAccountId, return the default configuration.
+- [Get Member Account Configuration](https://docs.cgn.portal.checkpoint.com/reference/awsorganizationmanagementonboarding_getmemberaccountconfiguration_get_v2aws-organization-management-onboardingmember-account-configuration.md): Get onboarding CFT.
+- [Create Organization Management](https://docs.cgn.portal.checkpoint.com/reference/azureorganizationmanagement_createorganizationmanagement_post_v2azure-organization-management.md): Create new Azure organization management entity.
+- [Get All Organization Management](https://docs.cgn.portal.checkpoint.com/reference/azureorganizationmanagement_getallorganizationmanagement_get_v2azure-organization-management.md): Get Azure organization management entities.
+- [Update Organization Management](https://docs.cgn.portal.checkpoint.com/reference/azureorganizationmanagement_updateorganizationmanagement_put_v2azure-organization-managementid.md): Update existing Azure organization management entity name by its ID.
+- [Get Organization Management By Id](https://docs.cgn.portal.checkpoint.com/reference/azureorganizationmanagement_getorganizationmanagementbyid_get_v2azure-organization-managementid.md): Get Azure organization management entity by its ID.
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/azureorganizationmanagement_delete_delete_v2azure-organization-managementid.md): Delete Azure organization management. After this API call each account that is under this organization need to be deleted separately.
+- [Get Azure Organization Management By Tenant And Management Group](https://docs.cgn.portal.checkpoint.com/reference/azureorganizationmanagement_getazureorganizationmanagementbytenantandmanagementgroup_get_v2azure-organization-managementtenanttenantidmanagement-groupmanagementgroupid.md): Get Azure organization management by Tenant Id and Management Group Id. The Azure Tenant Id. Management Group Id or Tenant Id.
+- [Reset Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/azureorganizationmanagement_resetmissingpermissions_put_v2azure-organization-managementidmissing-permissionsreset.md): Resets all environments of the given CloudGuard's Azure organization management id.
+- [Generate Onboarding Execution Command](https://docs.cgn.portal.checkpoint.com/reference/gcporganizationmanagement_generateonboardingexecutioncommand_get_v2gcp-organization-managementexecution-command.md): Get the cloud account command line execution for GCP shell Details for GCP cloud account.
+- [Get Onboarding Script For Preview](https://docs.cgn.portal.checkpoint.com/reference/gcporganizationmanagement_getonboardingscriptforpreview_get_v2gcp-organization-managementonboarding-execution-preview.md): Get the script that performs GCP account onboarding
+- [Finding](https://docs.cgn.portal.checkpoint.com/reference/finding.md)
+- [Get Stats By Property](https://docs.cgn.portal.checkpoint.com/reference/finding_getstatsbyproperty_get_v2compliancefindingstatsaggregatedbyproperty.md): Get aggregation per property
+- [Get Bundle Stats](https://docs.cgn.portal.checkpoint.com/reference/finding_getbundlestats_get_v2compliancefindingbundlebundleidstats.md): Get statistics for each rule in a bundle (number failures)
+- [Get Findings](https://docs.cgn.portal.checkpoint.com/reference/finding_getfindings_get_v2compliancefindingbundlebundleid.md): Get the findings for a specific rule in a bundle, for all of the user's accounts. Results are paged, so each request returns findings for a specific page.
+- [Get Finding](https://docs.cgn.portal.checkpoint.com/reference/finding_getfinding_get_v2compliancefindingid.md): Get details for a specific finding, identified by its id.
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/finding_deleteasync_delete_v2compliancefindingid.md): Delete finding originated in Magellan by id (Guid)
+- [Get Finding By Key](https://docs.cgn.portal.checkpoint.com/reference/finding_getfindingbykey_post_v2compliancefindinggetbykey.md): Get details for a specific finding, identified by finding key.
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/finding_deleteasync_delete_v2compliancefindingarchiveid.md): Delete finding originated in Magellan by id (Guid)
+- [Bulk Delete](https://docs.cgn.portal.checkpoint.com/reference/finding_bulkdeleteasync_post_v2compliancefindingbulkclose.md): Delete findings originated in Magellan by ids (Guid)
+- [Bulk Delete](https://docs.cgn.portal.checkpoint.com/reference/finding_bulkdeleteasync_post_v2compliancefindingbulkarchiveclose.md): Delete findings originated in Magellan by ids (Guid)
+- [Select All Close](https://docs.cgn.portal.checkpoint.com/reference/finding_selectallclose_post_v2compliancefindingselectallclose.md): Filter findings by account, region, VPC, IP, instance name.. Then perform the action that selected - Delete findings originated in Magellan by ids (Guid).
+- [Select All Close](https://docs.cgn.portal.checkpoint.com/reference/finding_selectallclose_post_v2compliancefindingselectallarchiveclose.md): Filter findings by account, region, VPC, IP, instance name.. Then perform the action that selected - Delete findings originated in Magellan by ids (Guid).
+- [Search](https://docs.cgn.portal.checkpoint.com/reference/finding_search_post_v2compliancefindingsearch.md): Filter findings by account, region, VPC, IP, or instance name
+- [Search Aggregate](https://docs.cgn.portal.checkpoint.com/reference/finding_searchaggregate_post_v2compliancefindingsearchaggregate.md): Filter findings by account, region, VPC, IP, or instance name , returns only aggregations appear in the searchRequest's filter
+- [Get Supported Sources](https://docs.cgn.portal.checkpoint.com/reference/finding_getsupportedsources_get_v2compliancefindingsources.md): returns all the supported sources and their metadata
+- [Acknowledge](https://docs.cgn.portal.checkpoint.com/reference/finding_acknowledge_put_v2compliancefindingidacknowledge.md): Acknowledge a finding. Acknowledging a finding indicates it was viewed (or retrieved), but does not indicate it was resolved.
+- [Bulk Acknowledge](https://docs.cgn.portal.checkpoint.com/reference/finding_bulkacknowledge_put_v2compliancefindingbulkacknowledge.md)
+- [Select All Acknowledge](https://docs.cgn.portal.checkpoint.com/reference/finding_selectallacknowledge_put_v2compliancefindingselectallacknowledge.md): Filter findings by account, region, VPC, IP, instance name.. Then perform the action that selected - Acknowledge a finding. Acknowledging a finding indicates it was viewed (or retrieved), but does not indicate it was resolved..
+- [Change Severity](https://docs.cgn.portal.checkpoint.com/reference/finding_changeseverity_put_v2compliancefindingidseverity.md): Change the severity of a specific finding
+- [Bulk Severity](https://docs.cgn.portal.checkpoint.com/reference/finding_bulkseverity_put_v2compliancefindingbulkseverity.md)
+- [Select All Severity](https://docs.cgn.portal.checkpoint.com/reference/finding_selectallseverity_put_v2compliancefindingselectallseverity.md): Filter findings by account, region, VPC, IP, instance name.. Then perform the action that selected - Change the severity of all specific findings.
+- [Assign](https://docs.cgn.portal.checkpoint.com/reference/finding_assign_put_v2compliancefindingidassign.md): Assign a finding to a user.
+- [Bulk Assign](https://docs.cgn.portal.checkpoint.com/reference/finding_bulkassign_put_v2compliancefindingbulkassign.md)
+- [Select All Assign](https://docs.cgn.portal.checkpoint.com/reference/finding_selectallassign_put_v2compliancefindingselectallassign.md): Filter findings by account, region, VPC, IP, instance name.. Then perform the action - Assign a finding to a user.
+- [Add Comment](https://docs.cgn.portal.checkpoint.com/reference/finding_addcomment_post_v2compliancefindingidcomment.md): Add a comment for a finding
+- [Bulk Comment](https://docs.cgn.portal.checkpoint.com/reference/finding_bulkcomment_put_v2compliancefindingbulkcomment.md)
+- [Select All Comment](https://docs.cgn.portal.checkpoint.com/reference/finding_selectallcomment_put_v2compliancefindingselectallcomment.md): Filter findings by account, region, VPC, IP, instance name.. Then perform the action that selected - Add a comment for the findings.
+- [Archive](https://docs.cgn.portal.checkpoint.com/reference/finding_archive_post_v2compliancefindingidarchive.md): Archive/unarchive a specific finding
+- [Archive](https://docs.cgn.portal.checkpoint.com/reference/finding_archive_post_v2compliancefindingidunarchive.md): Archive/unarchive a specific finding
+- [Bulk Archive](https://docs.cgn.portal.checkpoint.com/reference/finding_bulkarchive_put_v2compliancefindingbulkarchive.md): Bulk archive/unarchive findings
+- [Bulk Archive](https://docs.cgn.portal.checkpoint.com/reference/finding_bulkarchive_put_v2compliancefindingbulkunarchive.md): Bulk archive/unarchive findings
+- [Add Comment By Finding Key](https://docs.cgn.portal.checkpoint.com/reference/finding_addcommentbyfindingkey_post_v2compliancefindingcomment.md): Add a comment for a finding
+- [Get Origins](https://docs.cgn.portal.checkpoint.com/reference/finding_getorigins_get_v2compliancefindingorigins.md)
+- [External Findings](https://docs.cgn.portal.checkpoint.com/reference/external-findings.md)
+- [Archive External Finding](https://docs.cgn.portal.checkpoint.com/reference/externalfindings_archiveexternalfinding_post_v2externalfindingsidarchive.md): Archive a specific external finding. The finding in Dome9 will be marked as 'archived', but not deleted. It will be searchable.
+- [Archive External Findings](https://docs.cgn.portal.checkpoint.com/reference/externalfindings_archiveexternalfindings_post_v2externalfindingsarchive.md): Archive selected external findings according filter settings. The findings will be marked as 'archived', but not deleted. They will be searchable.
+- [Search](https://docs.cgn.portal.checkpoint.com/reference/externalfindings_search_post_v2externalfindingssearch.md)
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/externalfindings_post_post_v2externalfindings.md): Add a list  of findings to Dome9, from an external source. The findings will be labelled as external, but will be searchable as any other finding. Findings much have a unique findingId (per source).
+- [Delete External Findings](https://docs.cgn.portal.checkpoint.com/reference/externalfindings_deleteexternalfindings_delete_v2externalfindings.md): Delete selected external findings in Dome9. The findings will be permanently removed from Dome9 and will not be searchable.
+- [Delete External Finding](https://docs.cgn.portal.checkpoint.com/reference/externalfindings_deleteexternalfinding_delete_v2externalfindingsid.md): Delete a specific finding in Dome9. The finding will be permanently deleted, and will not be searchable.
+- [Export To Csv](https://docs.cgn.portal.checkpoint.com/reference/findingsreport_exporttocsv_post_v2findingsreportexporttocsv.md)
+- [Export To Csv Download Link](https://docs.cgn.portal.checkpoint.com/reference/findingsreport_exporttocsvdownloadlink_post_v2findingsreportexporttocsvdownloadlink.md)
+- [Export To Csv DownloadCSV](https://docs.cgn.portal.checkpoint.com/reference/findingsreport_exporttocsvdownloadcsv_post_v2findingsreportexporttocsvdownloadcsv.md)
+- [Export To Csv](https://docs.cgn.portal.checkpoint.com/reference/protectedassetsreport_exporttocsv_post_v2protectedassetsreportexporttocsv.md)
+- [Export To Csv Download Link](https://docs.cgn.portal.checkpoint.com/reference/protectedassetsreport_exporttocsvdownloadlink_post_v2protectedassetsreportexporttocsvdownloadlink.md)
+- [Export To Csv DownloadCSV](https://docs.cgn.portal.checkpoint.com/reference/protectedassetsreport_exporttocsvdownloadcsv_post_v2protectedassetsreportexporttocsvdownloadcsv.md)
+- [Assessment](https://docs.cgn.portal.checkpoint.com/reference/assessment.md)
+- [Run Bundle V2](https://docs.cgn.portal.checkpoint.com/reference/assessment_runbundlev2async_post_v2assessmentbundlev2.md): Run an assessment on a cloud environment using a bundle (V2)
+- [Assessment History V2](https://docs.cgn.portal.checkpoint.com/reference/assessment-history-v2.md)
+- [Get Bundle Results](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getbundleresults_get_v2assessmenthistoryv2bundleresults.md): Get most recent assessment results for a specific bundle, for a list of cloud accounts
+- [Get Assessment Trend Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getassessmenttrendorganizationalunit_get_v2assessmenthistoryv2assessmenttrendorganizationalunit.md): Get the assessment trend for the selected time range (maximum of 93 days)
+- [Get Assessment Trend V2](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getassessmenttrendv2_get_v2assessmenthistoryv2assessmenttrendv2.md): Get the assessment trend for the selected time range (maximum of 93 days)
+- [Get Last Assessment Results View](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getlastassessmentresultsview_post_v2assessmenthistoryv2lastassessmentresultsview.md): Get last assessment results for selected cloud accounts and bundles. Does not return details for the tests or test entities.
+- [Get Last Assessment Results](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getlastassessmentresults_post_v2assessmenthistoryv2lastassessmentresults.md): Get last assessment results for selected cloud accounts and bundles. Includes details of tests and test entities.
+- [Get Last Assessment Results Mini](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getlastassessmentresultsmini_post_v2assessmenthistoryv2lastassessmentresultsminimized.md): Get last assessment results for selected cloud accounts and bundles as Minimized Entity.
+- [Get Last Assessment Results Mini To Executive Summary](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getlastassessmentresultsminitoexecutivesummary_get_v2assessmenthistoryv2executivereportvendorrulesetid.md): Get an executive report of assessments for the selected ruleset and platform
+- [Send Executive ReportCSV By Email](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_sendexecutivereportcsvbyemail_post_v2assessmenthistoryv2executivereportemailvendorrulesetid.md): Send email with link to s3 bucket to the Executive Report
+- [Get Assessment Executive ReportCSV](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getassessmentexecutivereportcsv_get_v2assessmenthistoryv2assessmentidexecutivereportcsv.md): Get a csv executive report of assessment
+- [Get Organizational Units Last Assessment Statistics](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getorganizationalunitslastassessmentstatistics_post_v2assessmenthistoryv2organizationalunitslastassessmentstatistics.md): Get last assessment statistics for selected Organizational Units and bundles.
+- [Find Result Views By Time Range](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_findresultviewsbytimerangeasync_post_v2assessmenthistoryv2viewtimerange.md): Get assessment history (list of assessments) for specified time range and filters
+- [Get View History](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getviewhistoryasync_get_v2assessmenthistoryv2viewid.md): Get result statistics for a specific assessment
+- [Get Assessment Result Csv](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_getassessmentresultcsv_get_v2assessmenthistoryv2csvassessmentresultid.md): Get assessment result CSV
+- [Get History](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_gethistoryasync_get_v2assessmenthistoryv2id.md): Get results for a specific assessment
+- [Delete History](https://docs.cgn.portal.checkpoint.com/reference/assessmenthistoryv2_deletehistoryasync_delete_v2assessmenthistoryv2.md): Delete an assessment
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/complianceexclusion_getall_get_v2complianceexclusion.md): Get a list of exclusions for the account
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/complianceexclusion_post_post_v2complianceexclusion.md): Add a new exclusion
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/complianceexclusion_put_put_v2complianceexclusion.md): Update an exclusion
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/complianceexclusion_delete_delete_v2complianceexclusion.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/complianceexclusion_get_get_v2complianceexclusionid.md)
+- [Create By Finding Id](https://docs.cgn.portal.checkpoint.com/reference/complianceexclusion_createbyfindingid_post_v2complianceexclusionbyfindingid.md): Create an exclusion from finding ID
+- [Create By Finding Key](https://docs.cgn.portal.checkpoint.com/reference/complianceexclusion_createbyfindingkey_post_v2complianceexclusionbyfindingkey.md): Create an exclusion from finding key
+- [Bulk Delete](https://docs.cgn.portal.checkpoint.com/reference/complianceexclusion_bulkdelete_post_v2complianceexclusionbulkdelete.md): Delete Multiple Exclusions by Ids
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/complianceremediation_get_get_v2complianceremediation.md): Get a list of remediations for the account
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/complianceremediation_put_put_v2complianceremediation.md): Update a remediation
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/complianceremediation_post_post_v2complianceremediation.md): Add a new remediation
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/complianceremediation_delete_delete_v2complianceremediation.md): Delete a remediation
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/complianceremediationold_get_get_v2complianceremediation.md): Get a list of remediations for the account
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/complianceremediationold_put_put_v2complianceremediation.md): Update a remediation
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/complianceremediationold_post_post_v2complianceremediation.md): Add a new remediation
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/complianceremediationold_delete_delete_v2complianceremediationid.md): Delete a remediation
+- [Create Rule Bundle](https://docs.cgn.portal.checkpoint.com/reference/complianceruleset_createrulebundle_post_v2complianceruleset.md): Create a new ruleset
+- [Get Account Bundles](https://docs.cgn.portal.checkpoint.com/reference/complianceruleset_getaccountbundles_get_v2complianceruleset.md): Get all rulesets for the account
+- [Update Rule Bundle](https://docs.cgn.portal.checkpoint.com/reference/complianceruleset_updaterulebundle_put_v2compliancerulesetid.md): Update a Ruleset
+- [Get Bundle By Id](https://docs.cgn.portal.checkpoint.com/reference/complianceruleset_getbundlebyid_get_v2compliancerulesetid.md): Get a specific ruleset
+- [Delete Bundle](https://docs.cgn.portal.checkpoint.com/reference/complianceruleset_deletebundle_delete_v2compliancerulesetid.md): Delete a ruleset in the account
+- [Get Versioned Bundle By Id](https://docs.cgn.portal.checkpoint.com/reference/complianceruleset_getversionedbundlebyid_get_v2compliancerulesetidversionversion.md): Get a specific versioned ruleset
+- [Evaluate Ruleset Versions](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancepolicyv2_evaluaterulesetversionsasync_post_v2compliancecontinuouscompliancepolicyv2evaluaterulesetversions.md): Evaluate the ruleset version elected for each cloud account, based on the configured policies.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancepolicyv2_get_get_v2continuouscompliancepolicyv2id.md): Get single policy by its ID. Returns a policy matching a given ID.
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancepolicyv2_delete.md): Delete policy by its ID.
+- [Get By Id](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancepolicyv2_getbyid_get_v2continuouscompliancepolicyv2.md): Get single policy by its ID or Get All policies for the requesting account. Returns a policy matching a given ID or a collection of policies.
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancepolicyv2_post_post_v2continuouscompliancepolicyv2.md): Create new policies. Returns a multi status response containing successfully created policies without an error message and failed policies with an error message.
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancepolicyv2_put_put_v2continuouscompliancepolicyv2.md): Update policies. Returns a multi status response containing successfully updated policies without an error message and failed policies with an error message.
+- [Delete By Id](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancepolicyv2_deletebyid_delete_v2continuouscompliancepolicyv2.md): Delete policy by its ID.
+- [Evaluate Ruleset Versions](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancepolicyv2_evaluaterulesetversions_post_v2continuouscompliancepolicyv2evaluaterulesetversions.md): Evaluate the ruleset version elected for each cloud account, based on the configured policies.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/exclusionold_get_get_v2exclusion.md): Get a list of exclusions for the account
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/exclusionold_put_put_v2exclusion.md): Update an exclusion
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/exclusionold_post_post_v2exclusion.md): Add a new exclusion
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/exclusionold_get_get_v2exclusionid.md): Get details for a specific exclusion
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/exclusionold_delete_delete_v2exclusionid.md): Delete an exclusion
+- [Generic List](https://docs.cgn.portal.checkpoint.com/reference/generic-list.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/genericlist_get_get_v2genericlistid.md): Get a generic list by its ID
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/genericlist_delete_delete_v2genericlistid.md): Delete a generic list by its ID
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/genericlist_get_get_v2genericlist.md): Get all generic lists
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/genericlist_put_put_v2genericlist.md): Update a generic list Returns the updated generic list
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/genericlist_post_post_v2genericlist.md): Create a new generic list Returns the created generic list
+- [Access Lease](https://docs.cgn.portal.checkpoint.com/reference/access-lease.md)
+- [Acquire Aws Lease](https://docs.cgn.portal.checkpoint.com/reference/accesslease_acquireawslease_post_v2accessleaseaws.md): Create a new Access Lease for an AWS service
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/accesslease_get_get_v2accesslease.md): Get a list of all active Access Leases
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/accesslease_delete_delete_v2accessleaseid.md): Terminate an Access Lease
+- [Access Lease Invitation](https://docs.cgn.portal.checkpoint.com/reference/access-lease-invitation.md)
+- [Access Invitation](https://docs.cgn.portal.checkpoint.com/reference/accessleaseinvitation_accessinvitation_get_v2access-lease-invitationaccessinvitationid.md): Get a specific invitation
+- [Get Pending Invitations](https://docs.cgn.portal.checkpoint.com/reference/accessleaseinvitation_getpendinginvitations_get_v2accessleaseinvitation.md): Get a list of pending invitations (invitations not yet activated)
+- [Create Invitation](https://docs.cgn.portal.checkpoint.com/reference/accessleaseinvitation_createinvitationasync_post_v2accessleaseinvitation.md): Create a new Lease Invitation
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/accessleaseinvitation_delete_delete_v2accessleaseinvitationid.md): Delete a lease invitation
+- [Get All Referenced Security Groups](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygroup_getallreferencedsecuritygroups_get_v2awssecuritygroupidreferencinggroups.md): Get all referenced security groups
+- [Get All Security Groups](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygroup_getallsecuritygroups_get_v2awssecuritygroup.md): Get all Aws security group Entities
+- [Get By Cloud Account](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygrouppolicy_getbycloudaccount_get_v2awssecuritygrouppolicycloudaccountid.md): Get all security groups policies of cloud account by cloud account id
+- [Get By External Security Group Id](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygrouppolicy_getbyexternalsecuritygroupid_get_v2awssecuritygrouppolicycloudaccountcloudaccountidpolicyexternalid.md): Get security group policy by external security group id and cloud account id
+- [Delete Cloud Security Group](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygrouppolicy_deletecloudsecuritygroup_delete_v2awssecuritygrouppolicycloudaccountcloudaccountidpolicyexternalid.md): Delete an AWS security group
+- [Post Protection Mode](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygrouppolicy_postprotectionmode_post_v2awssecuritygrouppolicycloudaccountcloudaccountidpolicyexternalidprotectionmode.md): Update protection mode to security group
+- [Update Service In Security Group](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygrouppolicy_updateserviceinsecuritygroup.md): Update a service (rule) for an AWS security group
+- [Add Service To Security Group](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygrouppolicy_addservicetosecuritygroup_post.md): Creat a new Service (rule) for the security group
+- [Delete Service From Security Group](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygrouppolicy_deleteservicefromsecuritygroup.md): Delete a service (rule) from an AWS security group
+- [Update Tags](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygrouppolicy_updatetags.md): Update tags
+- [Get All Security Groups Of Account](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygrouppolicy_getallsecuritygroupsofaccount.md): Get a list of all security groups
+- [Create Aws Security Group](https://docs.cgn.portal.checkpoint.com/reference/awssecuritygrouppolicy_createawssecuritygroup.md): Create a new AWS security group
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuresecuritygroup_get_by_id.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuresecuritygroup_get.md)
+- [Azure Security Group Policy](https://docs.cgn.portal.checkpoint.com/reference/azure-security-group-policy.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuresecuritygrouppolicy_get_by_id.md): Get details for a specific Azure Network Security Group policy
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/azuresecuritygrouppolicy_put.md): Update a security group policy
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/azuresecuritygrouppolicy_delete.md): Delete a security group policy
+- [Update Protection Mode](https://docs.cgn.portal.checkpoint.com/reference/azuresecuritygrouppolicy_updateprotectionmode.md): Enable or disable Tamper Protetion for a specific security group policy
+- [Get Stats](https://docs.cgn.portal.checkpoint.com/reference/azuresecuritygrouppolicy_getstats.md): Get statistics for the security group policies for the Dome9 user
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuresecuritygrouppolicy_get.md): Get a list of all Network Security Group Policies for the Azure accounts in the Dome9 account
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/azuresecuritygrouppolicy_post.md): Create a security group policy
+- [Cloud Security Group](https://docs.cgn.portal.checkpoint.com/reference/cloud-security-group.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_get_by_id.md): Get a specific AWS security group
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_put.md): Update an AWS security group
+- [Delete Cloud Security Group](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_deletecloudsecuritygroup.md): Delete an AWS security group
+- [Update Sec Group](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_updatesecgroup_patch.md): Updates an AWS security group protection mode
+- [Change Protection Mode](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_changeprotectionmode_post.md): Change the protection mode for an AWS security group
+- [Update Service For Cloud To Security Group](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_updateserviceforcloudtosecuritygroup_put.md): Update a service (rule) for an AWS security group
+- [Add Service Cloud To Security Group](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_addservicecloudtosecuritygroup_post.md): Creat a new Service (rule) for the security group
+- [Delete Service For Cloud To Security Group](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_deleteserviceforcloudtosecuritygroup_delete.md): Delete a service from an AWS security group
+- [Update Tags](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_updatetags_post.md): Update the list of tags for an AWS securitry group
+- [Get Security Group Revision History](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_getsecuritygrouprevisionhistory_get.md): Get the list of group revisions and their corresponding events for an AWS security group.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_get_get.md): Get AWS security groups for a specific cloud account and region
+- [Create Cloud Security Group](https://docs.cgn.portal.checkpoint.com/reference/cloudsecuritygroup_createcloudsecuritygroup.md): Create a new AWS security group
+- [Ip Address Metadata](https://docs.cgn.portal.checkpoint.com/reference/ip-address-metadata.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/ipaddressmetadata_get.md): Get all IP addresses metadata
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/ipaddressmetadata_put.md): Update an existing IP address metadata
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/ipaddressmetadata_post.md): Add a new IP address metadata
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/ipaddressmetadata_delete.md): delete an IP address metadata with a specific CIDR
+- [Ip List](https://docs.cgn.portal.checkpoint.com/reference/ip-list.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/iplist_get.md): Get all IP Lists for the account
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/iplist_post.md): Add a new IP List
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/iplist_get_by_id.md): Get an IP List by id
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/iplist_put.md): Update an IP List. This will override the exisitng ip list
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/iplist_delete.md): Delete an IP List by id
+- [Get Sentra Accounts](https://docs.cgn.portal.checkpoint.com/reference/dspm_getsentraaccounts_get_v2ermdspmsentra-account.md): Retrieves all the Sentra accounts associated with the current account
+- [Add Sentra Account](https://docs.cgn.portal.checkpoint.com/reference/dspm_addsentraaccount_post_v2ermdspmsentra-account.md): Adds a new Sentra account
+- [Get Sentra Account](https://docs.cgn.portal.checkpoint.com/reference/dspm_getsentraaccount_get_v2ermdspmsentra-accountid.md): Retrieves a specific Sentra account by id
+- [Update Sentra Account](https://docs.cgn.portal.checkpoint.com/reference/dspm_updatesentraaccount_put_v2ermdspmsentra-accountid.md): Updates credentials in Sentra account
+- [Delete Sentra Account](https://docs.cgn.portal.checkpoint.com/reference/dspm_deletesentraaccount_delete_v2ermdspmsentra-accountid.md): Deletes a Sentra account by id
+- [Get Cyera Accounts](https://docs.cgn.portal.checkpoint.com/reference/dspm_getcyeraaccounts_get_v2ermdspmcyera-account.md): Retrieves all the Cyera accounts associated with the current account
+- [Add Cyera Account](https://docs.cgn.portal.checkpoint.com/reference/dspm_addcyeraaccount_post_v2ermdspmcyera-account.md): Adds a new Cyera account
+- [Get Cyera Account](https://docs.cgn.portal.checkpoint.com/reference/dspm_getcyeraaccount_get_v2ermdspmcyera-accountid.md): Retrieves a specific Cyera account by id
+- [Update Cyera Account](https://docs.cgn.portal.checkpoint.com/reference/dspm_updatecyeraaccount_put_v2ermdspmcyera-accountid.md): Updates credentials in Cyera account
+- [Delete Cyera Account](https://docs.cgn.portal.checkpoint.com/reference/dspm_deletecyeraaccount_delete_v2ermdspmcyera-accountid.md): Deletes a Cyera account by id
+- [Get Stats](https://docs.cgn.portal.checkpoint.com/reference/waf_getstats_post_v2ermwafstats.md): Get statistics of Cloud Guard WAF coverage and risk distribution of publicly exposed assets
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/exclusioncontroller_get_get_v2security-graphexclusionsid.md): Get an exclusion by ID
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/exclusioncontroller_delete_delete_v2security-graphexclusionsid.md): Delete an exclusion by ID
+- [Update](https://docs.cgn.portal.checkpoint.com/reference/exclusioncontroller_update_put_v2security-graphexclusionsid.md): Update an exclusion by ID
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/exclusioncontroller_getall_get_v2security-graphexclusions.md): Get all exclusions
+- [Insert](https://docs.cgn.portal.checkpoint.com/reference/exclusioncontroller_insert_post_v2security-graphexclusions.md): Insert a new exclusion by ID
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/rulecontroller_get_get_v2security-graphrulesid.md): Get a rule by ID
+- [Get Query](https://docs.cgn.portal.checkpoint.com/reference/rulecontroller_getquery_get_v2security-graphrulesqueryid.md): Get a rule query by ID
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/rulecontroller_getall_get_v2security-graphrules.md): Get all rules by filter
+- [Add Rule](https://docs.cgn.portal.checkpoint.com/reference/businessprioritymodifier_addrule_post_v2ermbusinesspriorityadd-rule.md): Create a new Business Priority rule
+- [Update Rule](https://docs.cgn.portal.checkpoint.com/reference/businessprioritymodifier_updaterule_put_v2ermbusinesspriorityupdate-rule.md): Update an existing Business Priority rule
+- [Delete Rule](https://docs.cgn.portal.checkpoint.com/reference/businessprioritymodifier_deleterule_delete_v2ermbusinessprioritydelete-rule.md): Delete an existing Business Priority rule
+- [Get Rules](https://docs.cgn.portal.checkpoint.com/reference/businessprioritymodifier_getrules_get_v2ermbusinesspriorityget-rules.md): Get all configured Business Priority rules
+- [Set](https://docs.cgn.portal.checkpoint.com/reference/customruleset_set_post_v2ermrulesetset-custom-ruleset.md): Define platform specific ruleset for Risk Managemnet (Currently one ruleset per platform is supported)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/customruleset_get_get_v2ermrulesetget-custom-ruleset.md): Get all configured rulesets for Risk Managemnet
+- [Remove](https://docs.cgn.portal.checkpoint.com/reference/customruleset_remove_delete_v2ermrulesetremove-custom-ruleset.md): Delete platform specific ruleset from Risk Managemnet
+- [Remove All](https://docs.cgn.portal.checkpoint.com/reference/customruleset_removeall_delete_v2ermrulesetremove-all-custom-rulesets.md): Delete all platform specific rulesets from Risk Managemnet (Currently one ruleset per platform is supported)
+- [Get Groups Risk Data](https://docs.cgn.portal.checkpoint.com/reference/groupriskmanagement_getgroupsriskdata_post_v2ermgroupsrisk-data.md): List groups risk data by Group Type. Risk Data includes Risk Score and Level and the distribution of the risk level among the group's assets. The list is ordered descending by the group Risk Score
+- [Get Top Remediation Actions](https://docs.cgn.portal.checkpoint.com/reference/remediationactions_gettopremediationactions_post_v2ermremediationtop-actions.md): Get top X remediation actions of an asset ordered by severity and remediation type
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/riskmodifiers_get_get_v2ermasset-typessupported-types.md): Get all supported assets per risk modifiers
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/entitytypescontroller_getall_get_v2security-graphentity-types.md): Get all supported entity types with the supported platform
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/evidencepathcontroller_get_get_v2security-graphevidence-path.md): Get the evidence path for a given findingId
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/ignorecvescontroller_get_get_v2security-graphignore-cvesid.md): Get an ignored CVE by ID
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/ignorecvescontroller_delete_delete_v2security-graphignore-cvesid.md): Delete an ignored CVE by ID
+- [Update](https://docs.cgn.portal.checkpoint.com/reference/ignorecvescontroller_update_put_v2security-graphignore-cvesid.md): Update an ignored CVE by ID
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/ignorecvescontroller_getall_get_v2security-graphignore-cves.md): Get all ignored CVEs
+- [Insert](https://docs.cgn.portal.checkpoint.com/reference/ignorecvescontroller_insert_post_v2security-graphignore-cves.md): Insert a new ignored CVE by ID
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/ignoremalwarescontroller_get_get_v2security-graphignore-malwaresid.md): Get an ignored malware by ID
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/ignoremalwarescontroller_delete_delete_v2security-graphignore-malwaresid.md): Delete an ignored malware by ID
+- [Update](https://docs.cgn.portal.checkpoint.com/reference/ignoremalwarescontroller_update_put_v2security-graphignore-malwaresid.md): Update an ignored malware by ID
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/ignoremalwarescontroller_getall_get_v2security-graphignore-malwares.md): Get all ignored malwares
+- [Insert](https://docs.cgn.portal.checkpoint.com/reference/ignoremalwarescontroller_insert_post_v2security-graphignore-malwares.md): Insert a new ignored malware by ID
+- [Get Vulnerabilities](https://docs.cgn.portal.checkpoint.com/reference/issuecontroller_getvulnerabilities_get_v2security-graphissuesvulnerabilities.md): Get vulnerabilities of an issue's asset
+- [Get Iam Sensitivity](https://docs.cgn.portal.checkpoint.com/reference/issuecontroller_getiamsensitivity_get_v2security-graphissuesiam-sensitivity.md): Get IAM sensitivity of an issue's asset
+- [Get Main Entities](https://docs.cgn.portal.checkpoint.com/reference/issuecontroller_getmainentities_get_v2security-graphissuesmain-entities.md): Get main entities of an issue
+- [Get Security Events](https://docs.cgn.portal.checkpoint.com/reference/issuecontroller_getsecurityevents_get_v2security-graphissuessecurity-event.md): Get security events of an issue's asset
+- [Get Data Sensitivity](https://docs.cgn.portal.checkpoint.com/reference/issuecontroller_getdatasensitivity_get_v2security-graphissuesdata-sensitivity.md): Get data sensitivity of an issue's asset
+- [Get Container Images](https://docs.cgn.portal.checkpoint.com/reference/issuecontroller_getcontainerimages_get_v2security-graphissuescontainer-images.md): Get container images of an issue's asset
+- [Get Malware](https://docs.cgn.portal.checkpoint.com/reference/issuecontroller_getmalware_get_v2security-graphissuesmalware.md): Get Malware of an issue's asset
+- [Get Enrichment Categories](https://docs.cgn.portal.checkpoint.com/reference/issuecontroller_getenrichmentcategories_get_v2security-graphissuesenrichment-categories.md): Get all enrichment categories for an issue
+- [Execute Toxic Combination Query](https://docs.cgn.portal.checkpoint.com/reference/querycontroller_executetoxiccombinationquery_post_v2security-graphquery.md): Execute a query for toxic combination entities preview
+- [Execute Toxic Combination Evidence Query](https://docs.cgn.portal.checkpoint.com/reference/querycontroller_executetoxiccombinationevidencequery_post_v2security-graphqueryevidence-pathqueryrunrequestid.md): Execute a query for toxic combination evidence path preview
+- [Get Toxic Combination Evidence Sync](https://docs.cgn.portal.checkpoint.com/reference/querycontroller_gettoxiccombinationevidencesync_get_v2security-graphqueryevidence-pathsyncqueryrunrequestidsrl.md): Execute a query for toxic combination issue preview immediately
+- [Get Toxic Combination Evidence](https://docs.cgn.portal.checkpoint.com/reference/querycontroller_gettoxiccombinationevidence_get_v2security-graphqueryevidence-pathrequestid.md): Get a query result SRLs by request ID
+- [Execute Toxic Combination Query Sync](https://docs.cgn.portal.checkpoint.com/reference/querycontroller_executetoxiccombinationquerysync_post_v2security-graphquerysync.md): Execute a query for toxic combination issue preview immediately
+- [Get Toxic Combination Entity Srls](https://docs.cgn.portal.checkpoint.com/reference/querycontroller_gettoxiccombinationentitysrls_get_v2security-graphqueryrequestid.md): Get a query result SRLs by request ID
+- [Get Entity Schema](https://docs.cgn.portal.checkpoint.com/reference/entityschemacontroller_getentityschema_get_v2security-graphentity-schema.md): Get the schema of entities and relationships
+- [Get Finding](https://docs.cgn.portal.checkpoint.com/reference/findingscontroller_getfinding_get_v2findingsid.md): Get a finding by ID
+- [Search](https://docs.cgn.portal.checkpoint.com/reference/findingscontroller_search_post_v2findingssearch.md): Search findings
+- [Group](https://docs.cgn.portal.checkpoint.com/reference/findingscontroller_group_post_v2findingsgroup.md): Group findings
+- [Search Adv](https://docs.cgn.portal.checkpoint.com/reference/findingscontroller_searchadv_post_v2findingssearch-adv.md): Search findings with recursive filter
+- [Group Adv](https://docs.cgn.portal.checkpoint.com/reference/findingscontroller_groupadv_post_v2findingsgroup-adv.md): Group findings with recursive filter
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/findingspoliciescontroller_getall_get_v2findings-policies.md): Get all automated actions
+- [Create Findings Policy](https://docs.cgn.portal.checkpoint.com/reference/findingspoliciescontroller_createfindingspolicy_post_v2findings-policies.md): Create a new automated action
+- [Get Single](https://docs.cgn.portal.checkpoint.com/reference/findingspoliciescontroller_getsingle_get_v2findings-policiesid.md): Get an automated action by ID
+- [Update Findings Policy](https://docs.cgn.portal.checkpoint.com/reference/findingspoliciescontroller_updatefindingspolicy_put_v2findings-policiesid.md): Update an automated action by ID
+- [Delete Findings Policy](https://docs.cgn.portal.checkpoint.com/reference/findingspoliciescontroller_deletefindingspolicy_delete_v2findings-policiesid.md): Delete an automated action by ID
+- [Iam Safe Lease](https://docs.cgn.portal.checkpoint.com/reference/iam-safe-lease.md)
+- [Get Only Mine](https://docs.cgn.portal.checkpoint.com/reference/iamsafelease_getonlymine.md): Get leases for this user (me)
+- [Post Custom Lease](https://docs.cgn.portal.checkpoint.com/reference/iamsafelease_postcustomlease.md): Create a new lease for AWS IAM user or role
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/iamsafelease_delete.md): Delete a lease
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/iamsafelease_get.md): Get leases for AWS account
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/iamsafelease_post.md): Create a new lease
+- [Agentless](https://docs.cgn.portal.checkpoint.com/reference/agentless.md)
+- [Enable Aws Account](https://docs.cgn.portal.checkpoint.com/reference/agentless_enableawsaccount_post_v2workloadagentlessawsaccountsidenable.md): Enable AWP AWS account
+- [Enable Azure Account](https://docs.cgn.portal.checkpoint.com/reference/agentless_enableazureaccount_post_v2workloadagentlessazureaccountsidenable.md): Enable AWP Azure account
+- [Add Aws Centralized Account](https://docs.cgn.portal.checkpoint.com/reference/agentless_addawscentralizedaccount_post_v2workloadagentlessawsaccountsidenablecentralizedaccount.md): Add AWP AWS Centralized account
+- [Add Azure Centralized Account](https://docs.cgn.portal.checkpoint.com/reference/agentless_addazurecentralizedaccount_post_v2workloadagentlessazureaccountsidenablecentralizedaccount.md): Add AWP Azure Centralized account
+- [Add Aws Sub Account](https://docs.cgn.portal.checkpoint.com/reference/agentless_addawssubaccount_post_v2workloadagentlessawsaccountsidenablesubaccount.md): Add AWP AWS Sub account
+- [Add Azure Sub Account](https://docs.cgn.portal.checkpoint.com/reference/agentless_addazuresubaccount_post_v2workloadagentlessazureaccountsidenablesubaccount.md): Add AWP Azure Sub account
+- [Get Accounts States](https://docs.cgn.portal.checkpoint.com/reference/agentless_getaccountsstates_get_v2workloadagentlesscloudprovideraccountsstates.md): Get current AWP accounts states
+- [Get Account State](https://docs.cgn.portal.checkpoint.com/reference/agentless_getaccountstate_get_v2workloadagentlesscloudprovideraccountsstatesid.md): Get AWP account state
+- [Get Account](https://docs.cgn.portal.checkpoint.com/reference/agentless_getaccount_get_v2workloadagentlesscloudprovideraccountsid.md): Get AWP account scanner configuration
+- [Modify Account Settings](https://docs.cgn.portal.checkpoint.com/reference/agentless_modifyaccountsettings_patch_v2workloadagentlesscloudprovideraccountsidsettings.md): Modify a single AWP account scanner settings (supported for inAccount and Saas scan mode)
+- [Modify Centralized Account Settings](https://docs.cgn.portal.checkpoint.com/reference/agentless_modifycentralizedaccountsettings_patch_v2workloadagentlesscloudprovideraccountsidcentralizedaccountsettings.md): Modify a single AWP centralized account scanner settings
+- [Disable Aws Account](https://docs.cgn.portal.checkpoint.com/reference/agentless_disableawsaccount_delete_v2workloadagentlessawsaccountsid.md): Disable AWS account
+- [Disable Azure Account](https://docs.cgn.portal.checkpoint.com/reference/agentless_disableazureaccount_delete_v2workloadagentlessazureaccountsid.md): Disable Azure account
+- [Get Workload](https://docs.cgn.portal.checkpoint.com/reference/agentless_getworkload_get_v2workloadagentlessawsinstancesid.md): Get AWP workload scan details
+- [Generate Aws Onboarding Data](https://docs.cgn.portal.checkpoint.com/reference/agentless_generateawsonboardingdata_post_v2workloadagentlessawsaccountsidgenerate-onboarding-data.md): Generate Aws onboarding data
+- [Generate Azure Onboarding Data](https://docs.cgn.portal.checkpoint.com/reference/agentless_generateazureonboardingdata_post_v2workloadagentlessazureaccountsidgenerate-onboarding-data.md): Generate Azure onboarding data
+- [Get Azure Offboarding Data](https://docs.cgn.portal.checkpoint.com/reference/agentless_getazureoffboardingdata_get_v2workloadagentlessazureaccountsidoffboarding.md): Get Azure offboarding data
+- [Check For Onboarding Update](https://docs.cgn.portal.checkpoint.com/reference/agentless_checkforonboardingupdate_get_v2workloadagentlesscloudprovideraccountsidonboardingcheckforupdate.md): Check if the AWP account needs to be updated
+- [Get Azure Centralized Accounts](https://docs.cgn.portal.checkpoint.com/reference/agentless_getazurecentralizedaccounts_get_v2workloadagentlessazureaccountsidcentralizedaccounts.md): Get Azure centralized accounts data
+- [Get Tenant Settings](https://docs.cgn.portal.checkpoint.com/reference/agentless_gettenantsettings_get_v2workloadagentlessaccountsettings.md): Get all AWP accounts scanner settings
+- [Modify Tenant Settings](https://docs.cgn.portal.checkpoint.com/reference/agentless_modifytenantsettings_patch_v2workloadagentlessaccountsettings.md): Modify all AWP accounts scanner settings
+- [Serverless](https://docs.cgn.portal.checkpoint.com/reference/serverless.md)
+- [Post Account](https://docs.cgn.portal.checkpoint.com/reference/serverless_postaccount.md): Enable Serverless protection
+- [Get Account](https://docs.cgn.portal.checkpoint.com/reference/serverless_getaccount.md)
+- [Put Account](https://docs.cgn.portal.checkpoint.com/reference/serverless_putaccount_patch_v2serverlessaccountscloudaccountid.md): Update policy config or add FSP for an AWS Cloud account
+- [Put Account](https://docs.cgn.portal.checkpoint.com/reference/serverless_putaccount_patch_v2serverlesscloudprovideraccountscloudaccountid.md): Update policy config or add FSP for an AWS Cloud account
+- [Get Accounts State](https://docs.cgn.portal.checkpoint.com/reference/serverless_getaccountsstate.md)
+- [Get Accounts State](https://docs.cgn.portal.checkpoint.com/reference/serverless_getaccountsstate_by_cloudprovider.md)
+- [Get Account State](https://docs.cgn.portal.checkpoint.com/reference/serverless_getaccountstate_by_cloudaccountid.md)
+- [Get Account State](https://docs.cgn.portal.checkpoint.com/reference/serverless_getaccountstate_by_cloudprovider_and_cloudaccountid.md)
+- [Get Account Exclusions](https://docs.cgn.portal.checkpoint.com/reference/serverless_getaccountexclusions_by_cloudaccountid.md)
+- [Post Exclusion](https://docs.cgn.portal.checkpoint.com/reference/serverless_postexclusion_by_cloudaccountid.md)
+- [Get Account Exclusions](https://docs.cgn.portal.checkpoint.com/reference/serverless_getaccountexclusions_by_cloudprovider_and_cloudaccountid.md)
+- [Post Exclusion](https://docs.cgn.portal.checkpoint.com/reference/serverless_postexclusion_by_cloudprovider_and_cloudaccountid.md)
+- [Get Account Rules](https://docs.cgn.portal.checkpoint.com/reference/serverless_getaccountrules_by_cloudaccountid.md)
+- [Post Rule](https://docs.cgn.portal.checkpoint.com/reference/serverless_postrule_by_cloudaccountid.md)
+- [Get Account Rules](https://docs.cgn.portal.checkpoint.com/reference/serverless_getaccountrules_by_cloudprovider_and_cloudaccountid.md)
+- [Post Rule](https://docs.cgn.portal.checkpoint.com/reference/serverless_postrule.md)
+- [Get Rule](https://docs.cgn.portal.checkpoint.com/reference/serverless_getrule_by_cloudaccountid_and_ruleid.md)
+- [Put Rule](https://docs.cgn.portal.checkpoint.com/reference/serverless_putrule.md)
+- [Delete Rule](https://docs.cgn.portal.checkpoint.com/reference/serverless_deleterule.md)
+- [Get Rule](https://docs.cgn.portal.checkpoint.com/reference/serverless_getrule_by_cloudprovider_cloudaccountid_ruleid.md)
+- [Put Rule](https://docs.cgn.portal.checkpoint.com/reference/serverless_putrule_by_cloudprovider_cloudaccountid_ruleid.md)
+- [Delete Rule](https://docs.cgn.portal.checkpoint.com/reference/serverless_deleterule_by_cloudprovider_cloudaccountid_ruleid.md)
+- [Get Exclusion](https://docs.cgn.portal.checkpoint.com/reference/serverless_getexclusion_by_cloudaccountid_exclusionid.md)
+- [Put Exclusion](https://docs.cgn.portal.checkpoint.com/reference/serverless_putexclusion_by_cloudaccountid_exclusionid.md)
+- [Delete Exclusion](https://docs.cgn.portal.checkpoint.com/reference/serverless_deleteexclusion_by_cloudaccountid_exclusionid.md)
+- [Get Exclusion](https://docs.cgn.portal.checkpoint.com/reference/serverless_getexclusion_by_cloudprovider_cloudaccountid_exclusionid.md)
+- [Put Exclusion](https://docs.cgn.portal.checkpoint.com/reference/serverless_putexclusion_by_cloudprovider_cloudaccountid_exclusionid.md)
+- [Delete Exclusion](https://docs.cgn.portal.checkpoint.com/reference/serverless_deleteexclusion_by_cloudprovider_cloudaccountid_exclusionid.md)
+- [Get Account Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/serverless_getaccountmissingpermissions.md)
+- [Validate Account Missing Permissions](https://docs.cgn.portal.checkpoint.com/reference/serverless_validateaccountmissingpermissions.md)
+- [Get Function](https://docs.cgn.portal.checkpoint.com/reference/serverless_getfunction_by_id.md)
+- [Get Function](https://docs.cgn.portal.checkpoint.com/reference/serverless_getfunction_aws_by_id.md)
+- [Get Azure Function App](https://docs.cgn.portal.checkpoint.com/reference/serverless_getazurefunctionapp.md)
+- [Get Kubernetes Pod Group](https://docs.cgn.portal.checkpoint.com/reference/serverless_getkubernetespodgroup.md)
+- [Function Add Log Subscription](https://docs.cgn.portal.checkpoint.com/reference/serverless_functionaddlogsubscription.md)
+- [Put Functions](https://docs.cgn.portal.checkpoint.com/reference/serverless_putfunctions_patch_v2serverlesscloudprovideraccountscloudaccountidfunctions.md)
+- [Put Function](https://docs.cgn.portal.checkpoint.com/reference/serverless_putfunction_patch_v2serverlesscloudproviderfunctionsid.md)
+- [Put Function Auto Fsp](https://docs.cgn.portal.checkpoint.com/reference/serverless_putfunctionautofsp_patch_v2serverlessfunctionsidfsp.md)
+- [Put Function Fsp Block](https://docs.cgn.portal.checkpoint.com/reference/serverless_putfunctionfspblock_patch_v2serverlessfunctionsidfspmode.md)
+- [Put Function Fsp Block](https://docs.cgn.portal.checkpoint.com/reference/serverless_putfunctionfspblock_patch_v2serverlesscloudproviderfunctionsidfspmode.md)
+- [Get Function Whitelist](https://docs.cgn.portal.checkpoint.com/reference/serverless_getfunctionwhitelist_get_v2serverlessfunctionsidwhitelist.md)
+- [Get Function Whitelist](https://docs.cgn.portal.checkpoint.com/reference/serverless_getfunctionwhitelist_get_v2serverlesscloudproviderfunctionsidwhitelist.md)
+- [Get Azure Function Whitelist](https://docs.cgn.portal.checkpoint.com/reference/serverless_getazurefunctionwhitelist_get_v2serverlessazurefunctionsidwhitelistfunctionname.md)
+- [Get Function Exclusions](https://docs.cgn.portal.checkpoint.com/reference/serverless_getfunctionexclusions_get_v2serverlessfunctionsidexclusions.md)
+- [Get Function Exclusions](https://docs.cgn.portal.checkpoint.com/reference/serverless_getfunctionexclusions_get_v2serverlesscloudproviderfunctionsidexclusions.md)
+- [Get Function Rules](https://docs.cgn.portal.checkpoint.com/reference/serverless_getfunctionrules_get_v2serverlessfunctionsidrules.md)
+- [Get Function Rules](https://docs.cgn.portal.checkpoint.com/reference/serverless_getfunctionrules_get_v2serverlesscloudproviderfunctionsidrules.md)
+- [Get Fsp Versions](https://docs.cgn.portal.checkpoint.com/reference/serverless_getfspversions_get_v2serverlessfspversions.md)
+- [Get Supported Runtimes](https://docs.cgn.portal.checkpoint.com/reference/serverless_getsupportedruntimes_get_v2serverlessworkloadprotectionruntimes.md)
+- [Get Scan Results](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilities_getscanresults_get_v2vulnerabilityscan-results.md): Get vulnerabilities scan results for an entity
+- [Get Scan Results Metadata](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilities_getscanresultsmetadata_get_v2vulnerabilityscan-results-metadata.md): Get vulnerabilities scan results metadata for an entity
+- [Get Scan Metadata](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilities_getscanmetadata_get_v2vulnerabilityscan-metadata.md): Get vulnerabilities scan results metadata for an entity
+- [Get Scan](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilities_getscan_get_v2vulnerabilityscan.md): retrieve vulnerability scan report for an entity
+- [Export Scan Results To Csv](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilities_exportscanresultstocsv_get_v2vulnerabilityscan-results-export-csvs.md): export vulnerabilities scan results for an entity
+- [Export Scan To Csv](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilities_exportscantocsv_get_v2vulnerabilityscan-export-csvs.md): export vulnerabilities scan results for an entity
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/protegostatistics_get.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/serverlesspolicy_getasync_get_v2serverlesspolicyid.md): Get single policy by its ID. Returns a policy matching a given ID.
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/serverlesspolicy_deleteasync_delete_v2serverlesspolicyid.md): Delete policy by its ID.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/serverlesspolicy_getasync_get_v2serverlesspolicy.md): Get all policies for the requesting account. Returns a collection of policies.
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/serverlesspolicy_putasync_put_v2serverlesspolicy.md): Update policies. Returns a multi status response containing successfully updated policies without an error message and failed policies with an error message.
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/serverlesspolicy_postasync_post_v2serverlesspolicy.md): Create new policies. Returns a multi status response containing successfully created policies without an error message and failed policies with an error message.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/shiftleft_get_get_v2shiftlefturl.md): proxy to ShiftLeft backend
+- [Get Blades](https://docs.cgn.portal.checkpoint.com/reference/shiftleft_getblades_get_v2shiftleftblades.md): proxy to ShiftLeft Cli page
+- [Get Blades Os](https://docs.cgn.portal.checkpoint.com/reference/shiftleft_getbladesos_get_v2shiftleftbladesosarch.md): proxy to ShiftLeft Cli page
+- [Get Account Settings](https://docs.cgn.portal.checkpoint.com/reference/workloadaccountsetting_getaccountsettings_get_v2workloadaccountsetting.md)
+- [Set Account Settings](https://docs.cgn.portal.checkpoint.com/reference/workloadaccountsetting_setaccountsettings_put_v2workloadaccountsetting.md)
+- [Update Account Settings](https://docs.cgn.portal.checkpoint.com/reference/workloadaccountsetting_updateaccountsettings_patch_v2workloadaccountsetting.md)
+- [Get Daemon Set Pod List](https://docs.cgn.portal.checkpoint.com/reference/kubernetespodgroup_getdaemonsetpodlist.md): Get daemon set pods
+- [Get Deployment Pod List](https://docs.cgn.portal.checkpoint.com/reference/kubernetespodgroup_getdeploymentpodlist.md): Get deployment pods
+- [Get Replica Set Pod List](https://docs.cgn.portal.checkpoint.com/reference/kubernetespodgroup_getreplicasetpodlist.md): Get replica set pods
+- [Get Stateful Set Pod List](https://docs.cgn.portal.checkpoint.com/reference/kubernetespodgroup_getstatefulsetpodlist.md): Get stateful set pods
+- [Get Pod Images](https://docs.cgn.portal.checkpoint.com/reference/kubernetespodgroup_getpodimages.md): Get pod images
+- [Get Cron Job Images](https://docs.cgn.portal.checkpoint.com/reference/kubernetespodgroup_getcronjobimages.md): Get pod images
+- [Get Daemon Set Images](https://docs.cgn.portal.checkpoint.com/reference/kubernetespodgroup_getdaemonsetimages.md): Get daemonset images
+- [Get Deployment Images](https://docs.cgn.portal.checkpoint.com/reference/kubernetespodgroup_getdeploymentimages.md): Get deployment images
+- [Get Replica Set Images](https://docs.cgn.portal.checkpoint.com/reference/kubernetespodgroup_getreplicasetimages.md): Get replica set images
+- [Get Stateful Set Images](https://docs.cgn.portal.checkpoint.com/reference/kubernetespodgroup_getstatefulsetimages.md): Get stateful set images
+- [Get Image](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageassurance_getimage.md): Fetch a specific image
+- [Get Image Vulnerabilities](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageassurance_getimagevulnerabilities.md): Get the list of all vulnerabilities for a specific image (this api is deprecated, please use '/v2/vulnerability/' instead)
+- [Get Pod Groups](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageassurance_getpodgroups.md): Get pod groups that have running pod with specific image.          Use either Dome9 Image Id for results in current environment, or External Image Id for results in all environments of the account.
+- [Get Cluster Pod And Images](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageassurance_getclusterpodandimages_get_v2kubernetesimageassuranceaccountclusteridpodsimages.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageassurancepolicy_get.md): Get single policy by its ID. Returns a policy matching a given ID. (move to use /v2/vulnerability/policy)
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageassurancepolicy_delete.md): Delete policy by its ID. (move to use /v2/vulnerability/policy)
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageassurancepolicy_getall.md): Get all policies for the requesting account. Returns a collection of policies. (move to use /v2/vulnerability/policy)
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageassurancepolicy_post.md): Create new policies. Returns a multi status response containing successfully created policies without an error message and failed policies with an error message. (move to use /v2/vulnerability/policy)
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageassurancepolicy_put.md): Update policies. Returns a multi status response containing successfully updated policies without an error message and failed policies with an error message. (move to use /v2/vulnerability/policy)
+- [Get Workload Images By Dome9 Id](https://docs.cgn.portal.checkpoint.com/reference/workloadimageassurance_getworkloadimagesbydome9id_get_v2workloadimageassuranceimages.md): Get images by workload dome9id
+- [Get Image](https://docs.cgn.portal.checkpoint.com/reference/workloadimageassurance_getimage_get_v2workloadimageassuranceimage.md): Get image details by image-id or digest
+- [Get Image Workloads By Image Id](https://docs.cgn.portal.checkpoint.com/reference/workloadimageassurance_getimageworkloadsbyimageid_get_v2workloadimageassuranceimageworkloads.md)
+- [Get Task Images](https://docs.cgn.portal.checkpoint.com/reference/workloadimageassurance_gettaskimages_get_v2workloadimageassuranceecstaskimages.md): Get EcsTask images
+- [Get Service Images](https://docs.cgn.portal.checkpoint.com/reference/workloadimageassurance_getserviceimages_get_v2workloadimageassuranceecsserviceimages.md): Get EcsService images
+- [Get Cluster Images](https://docs.cgn.portal.checkpoint.com/reference/workloadimageassurance_getclusterimages_get_v2workloadimageassuranceecsclusterimages.md): Get EcsCluster images
+- [Scan Image](https://docs.cgn.portal.checkpoint.com/reference/workloadimageassurance_scanimage_post_v2workloadimageassurancescanimage.md)
+- [Scan Environment All](https://docs.cgn.portal.checkpoint.com/reference/workloadimageassurance_scanenvironmentall_post_v2workloadimageassurancescanenvironmentenvironmentidall.md)
+- [Scan Environment Failed](https://docs.cgn.portal.checkpoint.com/reference/workloadimageassurance_scanenvironmentfailed_post_v2workloadimageassurancescanenvironmentenvironmentidfailed.md)
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_getall_get_v2shiftleftaccount.md): Get a list of all  ShiftLeft accounts
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_post_post_v2shiftleftaccount.md): Add (onboard) a new ShiftLeft account to CloudGuard
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_get_get_v2shiftleftaccountid.md): Get details for a specific  ShiftLeft Account
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_delete_delete_v2shiftleftaccountid.md): Delete a ShiftLeft account and linked entities from CloudGuard.
+- [Update Account Name](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_updateaccountname_put_v2shiftleftaccountidaccountname.md): Update a ShiftLeft account name (as it appears in CloudGuard)
+- [Update Account Description](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_updateaccountdescription_put_v2shiftleftaccountidaccountdescription.md): Update a ShiftLeft account description (as it appears in CloudGuard)
+- [Delete Force](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_deleteforce_delete_v2shiftleftaccountiddeleteforce.md): Delete a ShiftLeft account and linked entities from CloudGuard.
+- [Update Organizational Id](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_updateorganizationalid_put_v2shiftleftaccountidorganizationalunit.md): Update the ID of the Organizational unit that this cloud account will be attached to. Use 'null' for root organizational unit
+- [Move Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_movecloudaccountstoorganizationalunit_put_v2shiftleftaccountorganizationalunitmove.md): Detach cloud accounts from an Organizational unit and attach them to another Organizational unit Use 'null' for root organizational unit
+- [Move All Cloud Accounts To Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_moveallcloudaccountstoorganizationalunit_put_v2shiftleftaccountorganizationalunitmoveall.md): Detach all cloud accounts from their current organizational unit and attach them to a new one. Default is to root organizational unit
+- [Post Attach Multi](https://docs.cgn.portal.checkpoint.com/reference/shiftleftaccount_postattachmulti_post_v2shiftleftaccountorganizationalunitattach.md): Attach several cloud accounts to a specific Organizational Unit. User 'null' as root Organizational Unit as target
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/shiftleftpolicy_get_get_v2shiftleftpolicyid.md): Get single policy by its ID. Returns a policy matching a given ID. (move to use /v2/vulnerability/policy)
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/shiftleftpolicy_getall_get_v2shiftleftpolicy.md): Get all policies for the requesting account. Returns a collection of policies. (move to use /v2/vulnerability/policy)
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/shiftleftpolicy_post_post_v2shiftleftpolicy.md): Create new policies. Returns a multi status response containing successfully created policies without an error message and failed policies with an error message. (move to use /v2/vulnerability/policy)
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/shiftleftpolicy_put_put_v2shiftleftpolicy.md): Update policies. Returns a multi status response containing successfully updated policies without an error message and failed policies with an error message. (move to use /v2/vulnerability/policy)
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/shiftleftpolicy_delete_delete_v2shiftleftpolicy.md): Delete policy by its ID. (move to use /v2/vulnerability/policy)
+- [Get Policy](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_getpolicy.md): Get single policy by its ID. Returns a policy matching a given ID.
+- [Delete Policy](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_deletepolicy.md): Delete policy by its ID.
+- [Get Policy All](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_getpolicyall.md): Get all policies for the requesting account. Returns a collection of policies.
+- [Post Policy](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_postpolicy.md): Create new policies. Returns a multi status response containing successfully created policies without an error message and failed policies with an error message.
+- [Put Policy](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_putpolicy.md): Update policies. Returns a multi status response containing successfully updated policies without an error message and failed policies with an error message.
+- [Get Agent Policies Summary](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_getagentpoliciessummary.md): Get Admission Control policies for a specific Kubernetes Account
+- [Validate Assessment](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_validateassessment.md): Validate the GSL Rules Syntax and Run GSL rules assessment on inventory Returns the GSL verifications and Assessments result.
+- [Validate Rule](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_validaterule.md): Validate the GSL Rules Syntax Returns the GSL verifications result.
+- [Validate Historical](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_validatehistorical.md): Running the GSL Rules on the Historical Admission Reviews for the Kubernetes Cluster Returns the Evaluation results when running the GSL Rules
+- [Get Exclusions](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_getexclusions.md): Get all exclusions for the requesting account. Returns a collection of exclusions.
+- [Post Exclusion](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_postexclusion.md): Add a new exclusion
+- [Delete Exclusion](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_deleteexclusion.md): Delete an ac exclusion
+- [Put Exclusion](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_putexclusion.md): Update an exclusion
+- [Get Exclusion](https://docs.cgn.portal.checkpoint.com/reference/kubernetesadmissioncontrol_getexclusion.md): Get single exclusion by its ID. Returns an exclusion matching a given ID.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/imageadmissionexclusion_get_get_v2kubernetesadmissioncontrolimageadmissionexclusionid.md): Get single exclusion by exclusion ID. Returns an exclusion matching a given exclusion ID.
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/imageadmissionexclusion_delete_delete_v2kubernetesadmissioncontrolimageadmissionexclusionid.md): Delete exclusion by exclusion ID.
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/imageadmissionexclusion_getall_get_v2kubernetesadmissioncontrolimageadmissionexclusion.md): Get all exclusions for the requesting account. Returns a collection of exclusions.
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/imageadmissionexclusion_put_put_v2kubernetesadmissioncontrolimageadmissionexclusion.md): Update exclusions. Returns updated exclusion.
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/imageadmissionexclusion_post_post_v2kubernetesadmissioncontrolimageadmissionexclusion.md): Create new exclusions. Returns created exclusion.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageadmissionexclusion_get.md): Get single exclusion by ruleset ID. Returns a exclusion matching a given ruleset ID. (this api is deprecated, please use '/v2/kubernetes/admissionControl/imageAdmissionExclusion' instead)
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageadmissionexclusion_delete.md): Delete exclusion by ruleset ID. (this api is deprecated, please use '/v2/kubernetes/admissionControl/imageAdmissionExclusion' instead)
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageadmissionexclusion_getall.md): Get all exclusions for the requesting account. Returns a collection of exclusions. (this api is deprecated, please use '/v2/kubernetes/admissionControl/imageAdmissionExclusion' instead)
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/kubernetesimageadmissionexclusion_put.md): Create or update new exclusions. Returns created\updated exclusion. (this api is deprecated, please use '/v2/kubernetes/admissionControl/imageAdmissionExclusion' instead)
+- [Enable Or Disable Ecs Image Scan](https://docs.cgn.portal.checkpoint.com/reference/ecsimagescan_enableordisableecsimagescan_post_v2cloudaccountecscloudaccountid.md): Enable or Disable ECS Image Scan
+- [Get Ecs Image Scan Config](https://docs.cgn.portal.checkpoint.com/reference/ecsimagescan_getecsimagescanconfig_get_v2cloudaccountecscloudaccountid.md): Get ECS Image Scan Enable/Disable status
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilitypolicy_get_get_v2vulnerabilitypolicyid.md): Get single policy by its ID. Returns a policy matching a given ID.
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilitypolicy_getall_get_v2vulnerabilitypolicy.md): Get all policies for the requesting account. Returns a collection of policies.
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilitypolicy_post_post_v2vulnerabilitypolicy.md): Create new policies. Returns a multi status response containing successfully created policies without an error message and failed policies with an error message.
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilitypolicy_put_put_v2vulnerabilitypolicy.md): Update policies. Returns a multi status response containing successfully updated policies without an error message and failed policies with an error message.
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilitypolicy_delete_delete_v2vulnerabilitypolicy.md): Delete policy by its ID.
+- [SBOM Format Versions](https://docs.cgn.portal.checkpoint.com/reference/sbomexport_sbomformatversions_get_v2sbomformats.md): Get the available SBOM formats
+- [ExportSBOM](https://docs.cgn.portal.checkpoint.com/reference/sbomexport_exportsbom_get_v2sbomexport.md): Export SBOM to a file
+- [Get All Exclusions Vulnerabilities](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilityexclusions_getallexclusionsvulnerabilities_get_v2vulnerabilityexclusions.md)
+- [Create Exclusions Vulnerabilities](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilityexclusions_createexclusionsvulnerabilities_post_v2vulnerabilityexclusions.md)
+- [Update Exclusion](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilityexclusions_updateexclusion_put_v2vulnerabilityexclusions.md)
+- [Delete Exclusions](https://docs.cgn.portal.checkpoint.com/reference/vulnerabilityexclusions_deleteexclusions_post_v2vulnerabilityexclusionsbulk-delete.md)
+- [Offboard Account](https://docs.cgn.portal.checkpoint.com/reference/intelligence_offboardaccount_post_v2viewmagellandisable-magellan-for-cloud-account.md): Offboard cloud account from Intelligence. The cloud account must already be onboarded to Intelligence.
+- [Set Usage Notification Rate](https://docs.cgn.portal.checkpoint.com/reference/intelligence_setusagenotificationrate_put_v2viewmagellanusage-notification-rate.md): Set usage notification emails rate. By default, the system will send an email notification when Intelligence usage reaches 80%, 90% and 100% of your allowed quota.  Use this API call to configure sending an email notification every time you consumed the defined % of your quota.
+- [Set Usage Notification Ancestors Update](https://docs.cgn.portal.checkpoint.com/reference/intelligence_setusagenotificationancestorsupdate_put_v2viewmagellanusage-notification-update-ancestors.md): Enable sending usage notification updates to parent accounts (all levels).
+- [Aws Network Traffic Onboarding](https://docs.cgn.portal.checkpoint.com/reference/intelligence_awsnetworktrafficonboarding_post_v2viewmagellanmagellan-flowlogs-onboarding.md): Onboard an account for Network Traffic. The account must already be onboarded to CloudGuard Please follow the Intelligence onboarding "Prerequisites" screen and the "Prepare IAM Policy for CloudGuard Intelligence" screen on the CloudGuard portal.
+- [Aws Account Activity Onboarding](https://docs.cgn.portal.checkpoint.com/reference/intelligence_awsaccountactivityonboarding_post_v2viewmagellanmagellan-cloudtrail-onboarding.md): Onboard an account for Account Activity. The account must already be onboarded to CloudGuard. Please follow the Intelligence onboarding "Prerequisites" screen and the "Prepare IAM Policy for CloudGuard Intelligence" screen on the CloudGuard portal.
+- [Aws Custom Onboarding](https://docs.cgn.portal.checkpoint.com/reference/intelligence_awscustomonboarding_post_v2viewmagellanmagellan-custom-onboarding.md): Custom onboard Account Activity or Network Traffic of your cloud environment to Intelligence. The cloud accounts must already be onboarded to CloudGuard. Please follow the Intelligence onboarding "Prerequisites" screen and the "Prepare IAM Policy for CloudGuard Intelligence" screen on the CloudGuard portal.
+- [Alibaba Accoount Activity Onboarding](https://docs.cgn.portal.checkpoint.com/reference/intelligence_alibabaaccoountactivityonboarding_post_v2viewmagellanmagellan-alibaba-actiontrail-onboarding.md): Onboard Alibaba account for Account Activity. The account must already be onboarded to CloudGuard. Please follow Intelligence onboarding "Prerequisites" screen on CloudGuard portal.
+- [Azure Network Traffic New Storage Onboarding](https://docs.cgn.portal.checkpoint.com/reference/intelligence_azurenetworktrafficnewstorageonboarding_post_v2viewmagellanprovide-azure-storage-details.md): After calling AzureNetworkTrafficOnboardingWithArm and creating the required resources in Azure using the ARM template, Intelligence needs access to the storage keys.
+- [Gcp Onboarding](https://docs.cgn.portal.checkpoint.com/reference/intelligence_gcponboarding_post_v2viewmagellanmagellan-gcp-onboarding.md): Onboard Gcp project. The project must already be onboarded to CloudGuard. For network traffic please follow the Intelligence onboarding "Prerequisites" screen on the CloudGuard portal. This is the API for onboarding your gcp project in CloudGuard side. In addition, you need to create some resources in GCP as part of the onboarding. The following GIT contains a code that you can run on your computer. The code creates the needed resources and makes an API call to CloudGuard: https://github.com/dome9/gcp-onboarding/tree/main/onboarding-api
+- [Azure Account Activity New Storage Onboarding](https://docs.cgn.portal.checkpoint.com/reference/azure_azureaccountactivitynewstorageonboarding_post_v2intelligenceazureonboarding-account-activity.md): After calling get-arm-to-onboard-resources-account-activity API and creating the required resources in Azure using the ARM template, need to onboard the storages and the subscriptions to Intelligence.
+- [Azure Network Traffic New Centralized Storage Onboarding](https://docs.cgn.portal.checkpoint.com/reference/azure_azurenetworktrafficnewcentralizedstorageonboarding_post_v2intelligenceazureonboarding-network-traffic.md): After calling get-arm-to-onboard-resources-network-traffic-centralized API and creating the required resources in Azure using the ARM template, need to onboard the storages and the subscriptions to Intelligence.
+- [Get Arm To Onboard Resources Network Traffic Centralized](https://docs.cgn.portal.checkpoint.com/reference/azure_getarmtoonboardresourcesnetworktrafficcentralized_post_v2intelligenceazureget-arm-to-onboard-resources-network-traffic-centralized.md): Onboard Centralized Network Traffic for your Azure environment. The function creates an ARM template that you need to run in your Azure environment. The function returns the url of the ARM template. The Azure environment must already be onboarded to CloudGuard. Please follow the Intelligence onboarding "Prerequisites" screen on the CloudGuard portal.
+- [Get Arm To Onboard Resources Account Activity](https://docs.cgn.portal.checkpoint.com/reference/azure_getarmtoonboardresourcesaccountactivity_post_v2intelligenceazureget-arm-to-onboard-resources-account-activity.md): Onboard Account Activity for your Azure environment. The function creates an ARM template that you need to run in your Azure environment. The Azure environment must already be onboarded to CloudGuard. Make the first call to get the ARM: https://docs.cgn.portal.checkpoint.com/reference/azure_getarmtoonboardresourcesaccountactivity_post_v2intelligenceazureget-arm-to-onboard-resources-account-activity. Make sure that {{returnJsonUrl }} is set to false. The function returns the URL of the ARM template. Use the ARM URL to run the ARM deployment When the deployment is finished, make the second API call to onboard the account and the storages to the databases: https://docs.cgn.portal.checkpoint.com/reference/azure_azureaccountactivitynewstorageonboarding_post_v2intelligenceazureonboarding-account-activity Please follow the Intelligence onboarding "Prerequisites" screen on the CloudGuard portal.
+- [Azure Network Traffic Nsg Onboarding With Arm](https://docs.cgn.portal.checkpoint.com/reference/azure_azurenetworktrafficnsgonboardingwitharm_post_v2intelligenceazuremagellan-azure-flowlogs-onboarding-with-arm.md): This API is for onboarding azure from the context of NSG, to onboard storage account use: /v2/intelligence/azure/get-arm-to-onboard-resources-network-traffic-centralized Onboard Network Traffic for your Azure environment. Using NSG information, the function creates an ARM template that you need to run in your Azure environment. The function returns the url of the ARM template. The Azure environment must already be onboarded to CloudGuard. Please follow the Intelligence onboarding "Prerequisites" screen on the CloudGuard portal.
+- [Post Trigger Remediation](https://docs.cgn.portal.checkpoint.com/reference/remediation_posttriggerremediation_post_v2remediationtrigger.md): External api execute command for remediation
+- [Get Status Remediation](https://docs.cgn.portal.checkpoint.com/reference/remediation_getstatusremediation_get_v2remediationstatusexecutionid.md): Get status for remediation
+- [Get Reports](https://docs.cgn.portal.checkpoint.com/reference/reports_getreports_get_v2reports.md): Get reports
+- [Create Report](https://docs.cgn.portal.checkpoint.com/reference/reports_createreport_post_v2reports.md): Create Report
+- [Delete Reports](https://docs.cgn.portal.checkpoint.com/reference/reports_deletereports_delete_v2reports.md): Delete Reports
+- [Update Report](https://docs.cgn.portal.checkpoint.com/reference/reports_updatereport_put_v2reportsreportid.md): Update Report
+- [Audit](https://docs.cgn.portal.checkpoint.com/reference/audit.md)
+- [Get Event Types](https://docs.cgn.portal.checkpoint.com/reference/audit_geteventtypes_get_v2auditevent-types.md): Get a list of available audit event types
+- [Get Audit Events For Aws Sec Group](https://docs.cgn.portal.checkpoint.com/reference/audit_getauditeventsforawssecgroup_get_v2auditawsgroupgroupid.md): Get audit events for a specific AWS Security Group
+- [Get Export](https://docs.cgn.portal.checkpoint.com/reference/audit_getexport_get_v2auditexport.md): Export an audit events report in a csv format
+- [Get Row Data Api](https://docs.cgn.portal.checkpoint.com/reference/audit_getrowdataapi_get_v2auditrow-data-api.md): get api events audit row data
+- [Get Row Data System](https://docs.cgn.portal.checkpoint.com/reference/audit_getrowdatasystem_get_v2auditrow-data-system.md): get system events audit row data
+- [Get Row Data Count](https://docs.cgn.portal.checkpoint.com/reference/audit_getrowdatacount_get_v2auditdata-count.md): get row data result count by type api/system
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/audit_get_get_v2audit.md): Get audit events with optional filters
+- [Get Audit Event Metadata](https://docs.cgn.portal.checkpoint.com/reference/audit_getauditeventmetadata_get_v2auditid.md): Get audit metadata
+- [Role](https://docs.cgn.portal.checkpoint.com/reference/role.md)
+- [Put Role By External Account Id](https://docs.cgn.portal.checkpoint.com/reference/role_putrolebyexternalaccountid_put_idexternal.md): Update a role
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/role_get_get_v2role.md): Get all roles for the account.
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/role_post_post_v2role.md): Create a new role
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/role_get_get_v2roleid.md): Get the specific role with the specified id
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/role_put_put_v2roleid.md): Update a role
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/role_delete_delete_v2roleid.md): Delete a role
+- [Settings](https://docs.cgn.portal.checkpoint.com/reference/settings.md)
+- [Update Lease Time](https://docs.cgn.portal.checkpoint.com/reference/settings_updateleasetime_put_v2settingslease-time.md): Update default lease time duration
+- [Update Email Notifications](https://docs.cgn.portal.checkpoint.com/reference/settings_updateemailnotifications_put_v2settingsemail-notifications.md): Update email notifications <para>Set what entities related notifications will be sent by email</para>
+- [Update Sns Integration](https://docs.cgn.portal.checkpoint.com/reference/settings_updatesnsintegration_put_v2settingssns.md): Update AWS SNS settings for account
+- [Add Sns Integration](https://docs.cgn.portal.checkpoint.com/reference/settings_addsnsintegration_post_v2settingssns.md): Create new AWS SNS settings for account
+- [Delete Sns Integration](https://docs.cgn.portal.checkpoint.com/reference/settings_deletesnsintegration_delete_v2settingssns.md): Delete SNS notifications for account
+- [Get Email Notification Filters](https://docs.cgn.portal.checkpoint.com/reference/settings_getemailnotificationfilters_get_v2settingsemail-notification-filterscloudaccounts.md): Get the cloud acounts set to receive email notifications
+- [Update Email Notification Filters](https://docs.cgn.portal.checkpoint.com/reference/settings_updateemailnotificationfilters_put_v2settingsemail-notification-filterscloudaccounts.md)
+- [Delete Email Notification Filters](https://docs.cgn.portal.checkpoint.com/reference/settings_deleteemailnotificationfilters_delete_v2settingsemail-notification-filterscloudaccounts.md): Set the cloud accounts to null so all events emails will be sent for all cloud accounts
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/settings_get_get_v2settings.md): Get account settings
+- [Update Settings](https://docs.cgn.portal.checkpoint.com/reference/settings_updatesettings_patch_v2settings.md): Update account settings (partial)
+- [User](https://docs.cgn.portal.checkpoint.com/reference/user.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/user_get_get_v2userid.md): Get the user with the specified id.
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/user_put_put_v2userid.md): Update the user with the specified id
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/user_delete_delete_v2userid.md): Delete a user
+- [Unlock User](https://docs.cgn.portal.checkpoint.com/reference/user_unlockuser_put_v2useridunlock.md): Unlock a user that was locked out after a certain number of failed authentications.
+- [Put Iam Safe Account Iam Entities](https://docs.cgn.portal.checkpoint.com/reference/user_putiamsafeaccountiamentities_put_v2useridiam-safeaccountsaccountidiamentities.md): Update IAM Safe entities for a user.
+- [Post Iam Safe Account Iam Entities](https://docs.cgn.portal.checkpoint.com/reference/user_postiamsafeaccountiamentitiesasync_post_v2useridiam-safeaccountscloudaccountidiamentities.md): Add IAM Safe entities for a user.
+- [Delete Iam Safe Entities For User](https://docs.cgn.portal.checkpoint.com/reference/user_deleteiamsafeentitiesforuser_post_v2useridiam-safeaccountsaccountiddeleteiamentities.md): Delete iam entities for user
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/user_get_get_v2user.md): Get all Dome9 users for the Dome9 account.
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/user_post_post_v2user.md): Create a new Dome9 user
+- [Create Integration](https://docs.cgn.portal.checkpoint.com/reference/integration_createintegration_post_v2integration.md)
+- [Get All Integrations](https://docs.cgn.portal.checkpoint.com/reference/integration_getallintegrations_get_v2integration.md)
+- [Update Integration](https://docs.cgn.portal.checkpoint.com/reference/integration_updateintegration_put_v2integration.md)
+- [Get Integration By Id](https://docs.cgn.portal.checkpoint.com/reference/integration_getintegrationbyid_get_v2integrationid.md)
+- [Delete Integration](https://docs.cgn.portal.checkpoint.com/reference/integration_deleteintegration_delete_v2integrationid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/notification_get_get_v2notificationid.md)
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/notification_delete_delete_v2notificationid.md)
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/notification_getall_get_v2notification.md)
+- [Create](https://docs.cgn.portal.checkpoint.com/reference/notification_create_post_v2notification.md)
+- [Update](https://docs.cgn.portal.checkpoint.com/reference/notification_update_put_v2notification.md)
+- [Account Trust](https://docs.cgn.portal.checkpoint.com/reference/account-trust.md)
+- [Get Assumable Roles](https://docs.cgn.portal.checkpoint.com/reference/accounttrust_getassumableroles_get_v2accounttrustassumable-roles.md): Get a list of objects that represent a trusted account and its assumebale roles
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/accounttrust_get_get_v2accounttrust.md): Get a list of accounts which are trusted by or trust this account according to the given "trustDirection"
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/accounttrust_post_post_v2accounttrust.md): Create a new account trust where this account is the target based on the given "SourceAccountId", i.e. this account trusts the source account
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/accounttrust_put_put_v2accounttrustid.md): Update the account trust description or restrictions
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/accounttrust_delete_delete_v2accounttrustid.md): Delete an account trust
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/billableassets_get_get_v2billableassets.md)
+- [Billable Assets Report](https://docs.cgn.portal.checkpoint.com/reference/billable-assets-report.md)
+- [Get Daily Usage Billable Assets Report](https://docs.cgn.portal.checkpoint.com/reference/billableassetsreport_getdailyusagebillableassetsreport_get_v2billableassetsreportdailyusage.md): Get daily usage billable assets report
+- [Get Billable Assets Report](https://docs.cgn.portal.checkpoint.com/reference/billableassetsreport_getbillableassetsreport_get_v2billableassetsreport.md): Get last month billable assets report
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudinfrauser_get_get_v2cloudinfrauser.md)
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/cloudinfrauser_post_post_v2cloudinfrauser.md)
+- [Continuous Compliance Notification](https://docs.cgn.portal.checkpoint.com/reference/continuous-compliance-notification.md): Some methods in this API are reaching end-of-life; please see the details below.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_get_get_v2compliancecontinuouscompliancenotificationid.md): Get a Notification policy
+- [Put](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_put_put_v2compliancecontinuouscompliancenotificationid.md): Update a Notification policy
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_delete_delete_v2compliancecontinuouscompliancenotificationid.md): Delete a Notification policy
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_get_get_v2compliancecontinuouscompliancenotification.md): Get all Notification policies
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_post_post_v2compliancecontinuouscompliancenotification.md): Create a new Notification policy
+- [Get By Name](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_getbyname_get_v2compliancecontinuouscompliancenotificationget-by-name.md): Get a Notification policy
+- [Publish Opened Findings By Policy Id](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_publishopenedfindingsbypolicyidasync_post_v2compliancecontinuouscompliancenotificationpublishopenedfindingsid.md): Publish (notify) all findings for a specific policy. This method is used to sync (send) all existing findings via the designated SNS topic assigned to this notification policy.<br /> It is mostly used for testing of automatic remediation actions (see: https://cloudbots.dome9.com/)
+- [Webhook Jira Tokens](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_webhookjiratokens_get_v2compliancecontinuouscompliancenotificationwebhookjiratokens.md): Gets all the webhook Jira's tokens
+- [Get All Circuit Breaker](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_getallcircuitbreakerasync_get_v2compliancecontinuouscompliancenotificationcircuitbreaker.md): Gets all the notifications that have at least one integration issue
+- [Get Circuit Breaker](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_getcircuitbreakerasync_get_v2compliancecontinuouscompliancenotificationcircuitbreakerid.md): Gets all the integration issues of the given notification
+- [Delete Circuit Breaker](https://docs.cgn.portal.checkpoint.com/reference/continuouscompliancenotification_deletecircuitbreakerasync_delete_v2compliancecontinuouscompliancenotificationcircuitbreakeridintegrationtype.md): Deletes the integration issue of the given notification and integration
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/globalsearch_get_get_v2globalsearch.md): Get top results for each service
+- [Update Service Account](https://docs.cgn.portal.checkpoint.com/reference/serviceaccount_updateserviceaccount_post_v2service-accountupdate.md): Update a Service Account (Name and Roles)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/serviceaccount_get_get_v2service-accountid.md): Get details on all service accounts in the account
+- [Delete Service Account](https://docs.cgn.portal.checkpoint.com/reference/serviceaccount_deleteserviceaccount_delete_v2service-accountserviceaccountid.md): Delete a specific Service Account by ID
+- [Generate Secret For Service Account](https://docs.cgn.portal.checkpoint.com/reference/serviceaccount_generatesecretforserviceaccount_post_v2service-accountgenerate-key.md): Generate a new access key and secret for a specific Service Account
+- [Get Service Accounts](https://docs.cgn.portal.checkpoint.com/reference/serviceaccount_getserviceaccounts_get_v2service-account.md): Get details on all service accounts in the account
+- [Post Service Account](https://docs.cgn.portal.checkpoint.com/reference/serviceaccount_postserviceaccount_post_v2service-account.md): Create a new Service Account
+- [Delete All Service Accounts For User](https://docs.cgn.portal.checkpoint.com/reference/serviceaccount_deleteallserviceaccountsforuser_delete_v2service-account.md): Delete all Service Accounts in the account
+- [Validate Permissions](https://docs.cgn.portal.checkpoint.com/reference/tenableaccount_validatepermissions_post_v2tenableaccountidvalidate.md)
+- [Sync Vulnerabilities](https://docs.cgn.portal.checkpoint.com/reference/tenableaccount_syncvulnerabilities_post_v2tenableaccountsync.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/tenableaccount_get_get_v2tenableaccount.md)
+- [Post](https://docs.cgn.portal.checkpoint.com/reference/tenableaccount_post_post_v2tenableaccount.md)
+- [Delete](https://docs.cgn.portal.checkpoint.com/reference/tenableaccount_delete_delete_v2tenableaccount.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/clouds3bucket_get_get_v2clouds3bucket-1.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudsqs_get_get_v2cloudsqs.md)
+- [Entity Fetch Status](https://docs.cgn.portal.checkpoint.com/reference/entity-fetch-status.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/entityfetchstatus_get_get_v2entityfetchstatus.md)
+- [Get By Cloud Account Id](https://docs.cgn.portal.checkpoint.com/reference/entityreport_getbycloudaccountid_post_v2entityreportrequestcloudvendortype.md): Post a request to export all assets held by CloudGuard Dome9.
+- [Get Report](https://docs.cgn.portal.checkpoint.com/reference/entityreport_getreport_get_v2entityreportdownloadreportrequestuuid.md): Get a CSV report file containing all cloud assets held by CloudGuard Dome9.
+- [Search](https://docs.cgn.portal.checkpoint.com/reference/protectedasset_search_post_v2protected-assetsearch.md): Search API for protected assets.
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/cloudapplicationloadbalancer_getall_get_v2cloudapplicationloadbalancer.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudapplicationloadbalancer_get_get_v2cloudapplicationloadbalancerid-1.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudnetworkloadbalancer_get_get_v2cloudnetworkloadbalancer.md)
+- [Get  By Id](https://docs.cgn.portal.checkpoint.com/reference/cloudnetworkloadbalancer_getasyncbyid_get_v2cloudnetworkloadbalancerid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsconfigsettings_get_get_v2awsconfigsettings.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsconfigsettings_get_get_v2awsconfigsettingsid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudloggroups_get_get_v2cloudloggroups.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudmetricalarm_get_get_v2cloudmetricalarm.md)
+- [Cloud Trail](https://docs.cgn.portal.checkpoint.com/reference/cloud-trail.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudtrail_get_get_v2cloudtrail.md): Get CloudTrail events for a Dome9 user
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudwatcheventsrule_get_get_v2cloudwatcheventsrule.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awscustomergateway_get_get_v2awscustomergateway.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awselasticip_get_get_v2awselasticip.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsloadbalancersnetworkinterfaces_get_get_v2awsloadbalancersnetworkinterfaces.md): Get all AWS Load Balancers with attached Network Interfaces
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsvpcendpoint_get_get_v2awsvpcendpoint.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsvpcendpoint_get_get_v2awsvpcendpointid.md)
+- [Get Metrics](https://docs.cgn.portal.checkpoint.com/reference/clouddirectconnect_getmetrics_get_v2clouddirectconnectdirectconnectidmetrics.md): Fetches the last day metrics for the given direct connect connection
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/clouddirectconnect_get_get_v2clouddirectconnect.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudfrontdistribution_get_get_v2cloudfrontdistribution.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudinternetgateway_get_get_v2cloudinternetgateway.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudnacl_get_get_v2cloudnacl.md): Fetch all cloud subnets for the user from all cloud accounts.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudroute53domain_get_get_v2cloudroute53domain.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudroute53domain_get_get_v2cloudroute53domainid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudroute53hostedzone_get_get_v2cloudroute53hostedzone.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudroute53recordsetgroup_get_get_v2cloudroute53recordsetgroup.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudroutetable_get_get_v2cloudroutetable.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudsubnet_get_get_v2cloudsubnet.md): Fetch all cloud subnets for the user from all cloud accounts.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudvpc_get_get_v2cloudvpc.md): Fetch all cloud instances for the user from all cloud accounts.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudvpc_get_get_v2cloudvpcid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudvpcpeeringconnection_get_get_v2cloudvpcpeeringconnection.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudvpnconnection_get_get_v2cloudvpnconnection.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudvpngateway_get_get_v2cloudvpngateway.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awselasticsearchdomain_get_get_v2awselasticsearchdomain.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsemrcluster_get_get_v2awsemrcluster.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsemrcluster_get_get_v2awsemrclusterid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsquicksightaccount_get_get_v2awsquicksightaccount.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsquicksightgroup_get_get_v2awsquicksightgroup.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsquicksightuser_get_get_v2awsquicksightuser.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsquicksightvpcconnections_get_get_v2awsquicksightvpcconnections.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudkinesisstream_get_get_v2cloudkinesisstream.md)
+- [Get Organizations](https://docs.cgn.portal.checkpoint.com/reference/awsorganizations_getorganizations_get_v2awsorganizationorganizations.md)
+- [Get Accounts](https://docs.cgn.portal.checkpoint.com/reference/awsorganizations_getaccounts_get_v2awsorganizationaccounts.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudregion_get_get_v2cloudregion.md)
+- [Get Organizational Units View](https://docs.cgn.portal.checkpoint.com/reference/organizationalunit_getorganizationalunitsviewasync_get_v2organizationalunitview.md): Get organizational unit view entities
+- [Get Flat Organizational Units](https://docs.cgn.portal.checkpoint.com/reference/organizationalunit_getflatorganizationalunitsasync_get_v2organizationalunitgetflatorganizationalunits.md): Get all organizational units flat
+- [Delete Force Organizational Unit By Id](https://docs.cgn.portal.checkpoint.com/reference/organizationalunit_deleteforceorganizationalunitbyidasync_delete_v2organizationalunitiddeleteforce.md): Delete an organizational unit by its id and attach its cloud accounts to the the root organizational unit, and delete all its linked policies
+- [Delete All Organizational Units](https://docs.cgn.portal.checkpoint.com/reference/organizationalunit_deleteallorganizationalunitsasync_delete_v2organizationalunitdeleteall.md): Delete all organizational units, detach all clouad accounts from the organizational unit they belong to and attach them to the root organizational unit
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/organizationalunit_get_get_v2organizationalunit.md): Get all the organizational units of the account as tree
+- [Post Organizational Unit](https://docs.cgn.portal.checkpoint.com/reference/organizationalunit_postorganizationalunitasync_post_v2organizationalunit.md): Create a new Organizational unit. Only name is required. Path is optional and should be in the format of 'parent-id'.'parent-id'...
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/organizationalunit_get_get_v2organizationalunitid.md): Get an organizational unit by its id
+- [Update By Id](https://docs.cgn.portal.checkpoint.com/reference/organizationalunit_updatebyidasync_put_v2organizationalunitid.md): Update an organizational unit by its id
+- [Delete Organizational Unit By Id](https://docs.cgn.portal.checkpoint.com/reference/organizationalunit_deleteorganizationalunitbyidasync_delete_v2organizationalunitid.md): Delete an organizational unit by its id and attach its cloud accounts to the the root organizational unit
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awssagemaker_get_get_v2awssagemaker.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudacmcertificate_get_get_v2cloudacmcertificate.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudkmsalias_get_get_v2cloudkmsalias.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudwafregional_get_get_v2cloudwafregional.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/clouddynamodb_get_get_v2clouddynamodb.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudredshiftcluster_get_get_v2cloudredshiftcluster.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudredshiftcluster_get_get_v2cloudredshiftclusterid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsbackupvault_get_get_v2awsbackupvault.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudefs_get_get_v2cloudefs.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudefs_get_get_v2cloudefsid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudiamaccountsummary_get_get_v2cloudiamaccountsummary.md)
+- [Get User](https://docs.cgn.portal.checkpoint.com/reference/cloudiamcredentialreport_getuser_get_v2cloudiamcredentialreportuser.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudiamcredentialreport_get_get_v2cloudiamcredentialreport.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudiamgroup_get_get_v2cloudiamgroup.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudiampasswordpolicy_get_get_v2cloudiampasswordpolicy.md): Fetch all IAM roles for the user from all cloud accounts.
+- [Get Defaults](https://docs.cgn.portal.checkpoint.com/reference/cloudiampolicy_getdefaultsasync_get_v2cloudiampolicydefaults.md): Fetch all defaults IAM policies.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudiampolicy_getasync_get_v2cloudiampolicy.md): Fetch all IAM policies.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudiamrole_get_get_v2cloudiamrole.md): Fetch all IAM roles for the user from all cloud accounts.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudiamservercertificate_get_get_v2cloudiamservercertificate.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudiamuser_getasync_get_v2cloudiamuser.md): Fetch all IAM users for the user from all cloud accounts.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudiamvirtualmfadevice_get_get_v2cloudiamvirtualmfadevice.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsappsync_get_get_v2awsappsync.md)
+- [Get By Topic](https://docs.cgn.portal.checkpoint.com/reference/cloudsnssubscription_getbytopic_get_v2cloudsnssubscriptioncloudaccountid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudsnssubscription_get_get_v2cloudsnssubscription.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudsnstopic_get_get_v2cloudsnstopic.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awsecstask_get_get_v2awsecstask.md)
+- [Get By Cloud Account](https://docs.cgn.portal.checkpoint.com/reference/awseks_getbycloudaccount_get_v2awseksgetbycloudaccount.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awseks_get_get_v2awseks.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/awseks_get_get_v2awseksid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudami_get_get_v2cloudami.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudami_get_get_v2cloudamiid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudautoscalinggroup_get_get_v2cloudautoscalinggroup.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/clouddbinstance_get_get_v2clouddbinstance.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/clouddbinstance_get_get_v2clouddbinstanceid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudecscluster_get_get_v2cloudecscluster.md)
+- [Get By External Id And Cloud Account](https://docs.cgn.portal.checkpoint.com/reference/cloudecsservice_getbyexternalidandcloudaccountasync_get_v2cloudecsserviceby-external-id-and-cloud-account.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudecsservice_get_get_v2cloudecsservice.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudecstaskdefinition_get_get_v2cloudecstaskdefinition.md)
+- [Cloud Instance](https://docs.cgn.portal.checkpoint.com/reference/cloud-instance.md)
+- [Get By Id And Cloud Account](https://docs.cgn.portal.checkpoint.com/reference/cloudinstance_getbyidandcloudaccountasync_get_v2cloudinstanceby-external-id-and-cloud-account.md)
+- [Get Instance Guard Duty Findings](https://docs.cgn.portal.checkpoint.com/reference/cloudinstance_getinstanceguarddutyfindings_get_v2cloudinstanceguard-duty-findings.md): Fetch AWS GuardDuty findings for a specific AWS instance
+- [Attach Security Group To Instance](https://docs.cgn.portal.checkpoint.com/reference/cloudinstance_attachsecuritygrouptoinstance_post_v2cloudinstanceexternalidsec-groups.md): Attach security Group to an AWS EC2 Instance
+- [Detach Security Group From Instance](https://docs.cgn.portal.checkpoint.com/reference/cloudinstance_detachsecuritygroupfrominstance_delete_v2cloudinstanceexternalidsec-groups.md): Detach security Group from an AWS EC2 Instance
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudinstance_get_get_v2cloudinstance.md): Fetch all AWS EC2 instances for the user from all cloud accounts.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudinstance_get_get_v2cloudinstanceid.md): Fetch a specific AWS EC2 instance
+- [Get By External Id And Cloud Account](https://docs.cgn.portal.checkpoint.com/reference/cloudlambdafunction_getbyexternalidandcloudaccountasync_get_v2cloudlambdafunctionby-external-id-and-cloud-account.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudlambdafunction_get_get_v2cloudlambdafunction.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudlambdafunction_get_get_v2cloudlambdafunctionid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudloadbalancer_get_get_v2cloudloadbalancer.md): Fetch all cloud instances for the user from all cloud accounts.
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudloadbalancer_get_get_v2cloudloadbalancerid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudvolume_get_get_v2cloudvolume.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/bigtable_get_get_v2bigtable.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/cloudsql_get_get_v2cloudsql.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/gcpdisk_get_get_v2gcpdisk.md)
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/gcpgkecluster_getall_get_v2gcpgkecluster.md): Get a list of GKE clusters for a specific Google Cloud account
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/gcpimage_get_get_v2gcpimage.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/gcpprojectinfo_get_get_v2gcpprojectinfo.md): Get Project Info for a Google account
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/gcppubsub_get_get_topics.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/gcppubsub_get_get_topicscloudaccountid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/gcppubsub_get_get_subscriptionscloudaccountidprojecttopic.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/googlecloudfirewallrule_get_get_v2googlecloudfirewallrule.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/googlecloudfunction_get_get_v2googlecloudfunction.md): Get all Gcp Cloud Functions for account
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/googlecloudiampolicy_get_get_v2googlecloudiampolicy.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/googlecloudiampolicy_get_get_v2googlecloudiampolicyid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/googlecloudnetwork_get_get_v2googlecloudnetwork.md): Get network details for a Google account
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/googlecloudsubnet_get_get_v2googlecloudsubnet.md)
+- [Get Network Details By Instance Id](https://docs.cgn.portal.checkpoint.com/reference/googlecloudvminstance_getnetworkdetailsbyinstanceid_get_v2googlecloudvminstancecloudaccountidnetwork-details.md)
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/googlecloudvminstance_getall_get_v2googlecloudvminstance.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/googlecloudvminstance_get_get_v2googlecloudvminstanceid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/gcpmachineimage_get_get_v2gcpmachineimage.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureanalysisservice_get_get_v2azureanalysisservice.md): Fetch all Analysis Service Servers for all cloud accounts
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureanalysisservice_get_get_v2azureanalysisserviceid.md): Get Analysis Service Server by Dome9Id or throw exception
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureapplicationgateway_get_get_v2azureapplicationgateway.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureapplicationgateway_get_get_v2azureapplicationgatewayid.md)
+- [Get By Id](https://docs.cgn.portal.checkpoint.com/reference/azureapplicationsecuritygroup_getbyid_get_v2azureapplicationsecuritygroupid.md): get a specific Application Security Group by name and resource group
+- [Get By Cloud Account And Region](https://docs.cgn.portal.checkpoint.com/reference/azureapplicationsecuritygroup_getbycloudaccountandregion_get_v2azureapplicationsecuritygroupcloudaccountidcloudaccountidregionregion.md): get all application security group of cloudAccount by region
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureapplicationsecuritygroup_get_get_v2azureapplicationsecuritygroup.md): get all Application Security Groups
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurecomputegalleryimage_getasync_get_v2azurecomputegalleryimage.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurecosmosdbaccount_get_get_v2azurecosmosdbaccount.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurecosmosdbaccount_get_get_v2azurecosmosdbaccountid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuredisk_get_get_v2azuredisk.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuredisk_get_get_v2azurediskid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurefunction_get_get_v2azurefunction.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurefunction_get_get_v2azurefunctionid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurekeyvault_get_get_v2azurekeyvault.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurekeyvault_get_get_v2azurekeyvaultid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurekubernetes_get_get_v2azurekubernetes.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurekubernetes_get_get_v2azurekubernetesid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureloadbalancer_get_get_v2azureloadbalancer.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureloadbalancer_get_get_v2azureloadbalancerid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurelock_get_get_v2azurelock.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurelock_get_get_v2azurelockid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurelogicapp_get_get_v2azurelogicapp.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurelogicapp_get_get_v2azurelogicappid.md): Get specific LogicApp by Dome9 Id
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurelogprofile_get_get_v2azurelogprofile.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurepolicyassignment_get_get_v2azurepolicyassignmentid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurepolicyassignment_get_get_v2azurepolicyassignment.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurerediscache_get_get_v2azurerediscache.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurerediscache_get_get_v2azurerediscacheid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureresourcegroup_get_get_v2azureresourcegroup.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureresourcegroup_get_get_v2azureresourcegroupid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureroutetable_getasync_get_v2azureroutetable.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureroutetable_getasync_get_v2azureroutetableid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuresnapshot_get_get_v2azuresnapshot.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuresnapshot_get_get_v2azuresnapshotid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuresqlserver_get_get_v2azuresqlserver.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuresqlserver_get_get_v2azuresqlserverid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurestorageaccounts_get_get_v2azurestorageaccounts.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurestorageaccounts_get_get_v2azurestorageaccountsid.md)
+- [Get All](https://docs.cgn.portal.checkpoint.com/reference/azurestorageblobcontainer_getall_get_v2azurestorageblobcontainer.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuresubnet_get_get_v2azuresubnet.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azuresubnet_get_get_v2azuresubnetid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureuser_get_get_v2azureuser.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azureuser_get_get_v2azureuserid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurevirtualmachine_get_get_v2azurevirtualmachine.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurevirtualmachine_get_get_v2azurevirtualmachineid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurevirtualmachineimage_getasync_get_v2azurevirtualmachineimage.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurevirtualmachinescaleset_get_get_v2azurevirtualmachinescaleset.md): Get all ScaleSets by CloudAccountId
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurevirtualnetworkpeering_get_get_v2azurevirtualnetworkpeering.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurevirtualnetworkpeering_get_get_v2azurevirtualnetworkpeeringid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurewebapp_get_get_v2azurewebapp.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/azurewebapp_get_get_v2azurewebappid.md)
+- [Get](https://docs.cgn.portal.checkpoint.com/reference/ocicompartment_get_get_v2ocicompartment.md)
+- [Get All Compartments By Cloud Account Id](https://docs.cgn.portal.checkpoint.com/reference/ocicompartment_getallcompartmentsbycloudaccountid_get_v2ocicompartmentcloudaccountid.md)
+- [Get Ciem Findings](https://docs.cgn.portal.checkpoint.com/reference/alerts_getciemfindings_post_v2alertsciemfindings.md): External api get ciem findings

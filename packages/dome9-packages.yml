@@ -1,0 +1,102 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  github.com/dome9 organization listing, proxy.golang.org, registry.terraform.io
+  and registry.npmjs.org / pypi.org metadata endpoints, probed 2026-09-07.
+provider: Dome9
+providerId: dome9
+description: >-
+  First-party client libraries and infrastructure providers published by the
+  Dome9 (Check Point CloudGuard) engineering org for the CloudGuard REST API at
+  https://api.dome9.com/v2. Currency is recorded as structured version/published
+  fields read from each registry's own metadata endpoint.
+note: >-
+  Dome9 publishes no client SDK to npm, PyPI, Maven Central, NuGet, RubyGems,
+  Packagist or crates.io. The Go SDK is consumed by Go module path only and the
+  Terraform provider is distributed through the Terraform Registry. The PyPI
+  package named `dome9` (0.6.1, 2022-06-03) is a THIRD-PARTY wrapper by David
+  Amrani Hernandez, not a Check Point release, and is recorded as official:false.
+packages:
+- name: github.com/dome9/terraform-provider-dome9
+  registry: terraform
+  registry_url: https://registry.terraform.io/providers/dome9/dome9
+  language: go
+  kind: terraform-provider
+  official: true
+  version: 1.40.4
+  published: '2025-10-30'
+  license: MPL-2.0
+  repository: https://github.com/dome9/terraform-provider-dome9
+  downloads: 5464365
+  note: >-
+    Read from registry.terraform.io/v1/providers/dome9/dome9 on 2026-09-07.
+    The most actively maintained first-party distribution — it wraps the same
+    /v2 REST surface the OpenAPI describes.
+- name: github.com/dome9/dome9-sdk-go
+  registry: go
+  registry_url: https://pkg.go.dev/github.com/dome9/dome9-sdk-go
+  language: go
+  kind: sdk
+  official: true
+  version: v1.23.12
+  published: '2025-01-26'
+  license: MIT
+  repository: https://github.com/dome9/dome9-sdk-go
+  note: >-
+    Read from proxy.golang.org/github.com/dome9/dome9-sdk-go/@latest on
+    2026-09-07. Backs the Terraform provider.
+- name: dome9-sdk-python
+  registry: null
+  registry_url: null
+  language: python
+  kind: sdk
+  official: true
+  version: '1.0.0'
+  published: null
+  license: BSD-3-Clause
+  repository: https://github.com/dome9/dome9-sdk-python
+  note: >-
+    Published only as a Git repository — never uploaded to PyPI, so there is no
+    registry metadata endpoint to date it. version 1.0.0 is read from the repo's
+    own VERSION file; `published:` is null because no registry release exists.
+    setup.py declares name='dome9' (author "dome9 sre team",
+    d9ops@checkpoint.com) but the PyPI name `dome9` is held by a third party.
+    Last pushed 2022-07-25 — four years behind the 722-operation API it wraps.
+- name: github.com/dome9/cloud-bots
+  registry: null
+  registry_url: null
+  language: python
+  kind: tooling
+  official: true
+  version: 2.0.2
+  published: '2019-08-25'
+  license: BSD-3-Clause
+  repository: https://github.com/dome9/cloud-bots
+  note: >-
+    Auto-remediation bot framework driven by the CloudGuard Compliance Engine.
+    Distributed as a repo/Lambda bundle, not a package registry; version and date
+    are the latest GitHub release. Repo still pushed 2025-07-10.
+- name: dome9
+  registry: pypi
+  registry_url: https://pypi.org/project/dome9/
+  language: python
+  kind: sdk
+  official: false
+  version: 0.6.1
+  published: '2022-06-03'
+  license: null
+  repository: https://github.com/davidmoremad/dome9
+  note: >-
+    THIRD-PARTY community wrapper (author David Amrani Hernandez). Recorded so
+    that the PyPI namespace collision with the first-party dome9-sdk-python is
+    visible; not a Check Point release.
+registries_checked:
+- npm
+- pypi
+- go
+- terraform
+- rubygems
+- nuget
+- maven
+- crates.io
+- packagist
