@@ -50,27 +50,3955 @@ created: '2024-01-01'
 modified: '2026-09-07'
 specificationVersion: '0.23'
 apis:
-- aid: dome9:dome9-api
-  name: Dome9 API
-  description: >-
-    The CloudGuard (Dome9) v2 REST API — 601 paths and 722 operations covering
-    cloud-account onboarding for AWS, Azure, Google, Alibaba, Kubernetes and
-    container registries, compliance rulesets and assessments, posture findings
-    and alerts, security groups and firewall policy, access leases, users, roles
-    and service accounts. HTTP Basic auth with a V2 API key id and secret. The
-    API is region-pinned across six deployments.
+- aid: dome9:dome9-accesslease-api
+  name: Dome9 Access Lease API
+  description: Access Leases
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dome9.png
   tags:
-  - Cloud Security
-  - Compliance
-  - Policy Management
+  - AccessLease
   properties:
   - type: OpenAPI
-    url: openapi/dome9-api-openapi.json
-  - type: Overlay
-    url: overlays/dome9-api-overlay.yaml
+    url: openapi/dome9-accesslease-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-accessleaseinvitation-api
+  name: Dome9 Access Lease Invitation API
+  description: Access Lease Invitations
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AccessLeaseInvitation
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-accessleaseinvitation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-account-api
+  name: Dome9 Account API
+  description: The Account API from Dome9 — 21 operation(s) for account.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-accountlimitation-api
+  name: Dome9 Account Limitation API
+  description: The AccountLimitation API from Dome9 — 1 operation(s) for accountlimitation.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AccountLimitation
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-accountlimitation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-accountpollinginterval-api
+  name: Dome9 Account Polling Interval API
+  description: The AccountPollingInterval API from Dome9 — 2 operation(s) for accountpollinginterval.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AccountPollingInterval
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-accountpollinginterval-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-accountregistration-api
+  name: Dome9 Account Registration API
+  description: The AccountRegistration API from Dome9 — 3 operation(s) for accountregistration.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AccountRegistration
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-accountregistration-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-accounttrust-api
+  name: Dome9 Account Trust API
+  description: "Allow you to define a trust between accounts in order to allow users in a certain account\
+    \ to make changes and operation on another account.\nActions can be taken on a trustee account via\
+    \ a role which is defined on it. \nThe role should be assumed by a user from the trusted account."
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AccountTrust
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-accounttrust-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-agent-api
+  name: Dome9 Agent API
+  description: The Agent API from Dome9 — 6 operation(s) for agent.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Agent
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-agent-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-agentless-api
+  name: Dome9 Agentless API
+  description: Agentless Workload Posture
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Agentless
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-agentless-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-alert-api
+  name: Dome9 Alert API
+  description: The Alert API from Dome9 — 10 operation(s) for alert.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Alert
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-alert-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-alibabacloudaccount-api
+  name: Dome9 Alibaba Cloud Account API
+  description: Alibaba Cloud Accounts
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AlibabaCloudAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-alibabacloudaccount-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-application-api
+  name: Dome9 Application API
+  description: The Application API from Dome9 — 3 operation(s) for application.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Application
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-application-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-assessment-api
+  name: Dome9 Assessment API
+  description: Run and View Compliance Assessments
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Assessment
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-assessment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-assessmenthistory-api
+  name: Dome9 Assessment History API
+  description: The AssessmentHistory API from Dome9 — 4 operation(s) for assessmenthistory.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AssessmentHistory
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-assessmenthistory-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-assessmenthistoryv2-api
+  name: Dome9 Assessment History V2 API
+  description: Compliance Assessment History
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AssessmentHistoryV2
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-assessmenthistoryv2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-audit-api
+  name: Dome9 Audit API
+  description: Audit logs
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Audit
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-audit-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-auth-api
+  name: Dome9 Auth API
+  description: The Auth API from Dome9 — 7 operation(s) for auth.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-auth-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-aws-cloud-account-api
+  name: Dome9 Aws Cloud Account API
+  description: Manage AWS Cloud Accounts
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Aws Cloud Account
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-aws-cloud-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsappsync-api
+  name: Dome9 Aws App Sync API
+  description: The AwsAppSync API from Dome9 — 1 operation(s) for awsappsync.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsAppSync
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsappsync-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsbackupvault-api
+  name: Dome9 Aws Backup Vault API
+  description: The AwsBackupVault API from Dome9 — 1 operation(s) for awsbackupvault.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsBackupVault
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsbackupvault-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsconfigsettings-api
+  name: Dome9 Aws Config Settings API
+  description: The AwsConfigSettings API from Dome9 — 2 operation(s) for awsconfigsettings.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsConfigSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsconfigsettings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awscustomergateway-api
+  name: Dome9 Aws Customer Gateway API
+  description: The AwsCustomerGateway API from Dome9 — 1 operation(s) for awscustomergateway.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsCustomerGateway
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awscustomergateway-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsecstask-api
+  name: Dome9 Aws Ecs Task API
+  description: The AwsEcsTask API from Dome9 — 1 operation(s) for awsecstask.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsEcsTask
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsecstask-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awseks-api
+  name: Dome9 Aws Eks API
+  description: The AwsEks API from Dome9 — 3 operation(s) for awseks.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsEks
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awseks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awselasticip-api
+  name: Dome9 Aws Elastic Ip API
+  description: The AwsElasticIp API from Dome9 — 1 operation(s) for awselasticip.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsElasticIp
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awselasticip-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awselasticsearchdomain-api
+  name: Dome9 Aws Elasticsearch Domain API
+  description: The AwsElasticsearchDomain API from Dome9 — 1 operation(s) for awselasticsearchdomain.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsElasticsearchDomain
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awselasticsearchdomain-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsemrcluster-api
+  name: Dome9 Aws Emr Cluster API
+  description: The AwsEmrCluster API from Dome9 — 2 operation(s) for awsemrcluster.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsEmrCluster
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsemrcluster-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsinspectorfindings-api
+  name: Dome9 Aws Inspector Findings API
+  description: The AwsInspectorFindings API from Dome9 — 1 operation(s) for awsinspectorfindings.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsInspectorFindings
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsinspectorfindings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsinspectorruns-api
+  name: Dome9 Aws Inspector Runs API
+  description: The AwsInspectorRuns API from Dome9 — 1 operation(s) for awsinspectorruns.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsInspectorRuns
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsinspectorruns-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsloadbalancersnetworkinterfaces-api
+  name: Dome9 Aws Load Balancers Network Interfaces API
+  description: >-
+    The AwsLoadBalancersNetworkInterfaces API from Dome9 — 1 operation(s) for awsloadbalancersnetworkinterfaces.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsLoadBalancersNetworkInterfaces
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsloadbalancersnetworkinterfaces-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsorganizations-api
+  name: Dome9 Aws Organizations API
+  description: The AwsOrganizations API from Dome9 — 2 operation(s) for awsorganizations.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsOrganizations
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsorganizations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsquicksightaccount-api
+  name: Dome9 Aws Quick Sight Account API
+  description: The AwsQuickSightAccount API from Dome9 — 1 operation(s) for awsquicksightaccount.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsQuickSightAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsquicksightaccount-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsquicksightgroup-api
+  name: Dome9 Aws Quick Sight Group API
+  description: The AwsQuickSightGroup API from Dome9 — 1 operation(s) for awsquicksightgroup.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsQuickSightGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsquicksightgroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsquicksightuser-api
+  name: Dome9 Aws Quick Sight User API
+  description: The AwsQuickSightUser API from Dome9 — 1 operation(s) for awsquicksightuser.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsQuickSightUser
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsquicksightuser-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsquicksightvpcconnections-api
+  name: Dome9 Aws Quick Sight Vpc Connections API
+  description: >-
+    The AwsQuickSightVpcConnections API from Dome9 — 1 operation(s) for awsquicksightvpcconnections.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsQuickSightVpcConnections
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsquicksightvpcconnections-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awssagemaker-api
+  name: Dome9 Aws Sage Maker API
+  description: The AwsSageMaker API from Dome9 — 1 operation(s) for awssagemaker.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsSageMaker
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awssagemaker-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awssecuritygroup-api
+  name: Dome9 Aws Security Group API
+  description: The AwsSecurityGroup API from Dome9 — 2 operation(s) for awssecuritygroup.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsSecurityGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awssecuritygroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awssecuritygrouppolicy-api
+  name: Dome9 Aws Security Group Policy API
+  description: The AwsSecurityGroupPolicy API from Dome9 — 7 operation(s) for awssecuritygrouppolicy.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsSecurityGroupPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awssecuritygrouppolicy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awssecuritygroupsindex-api
+  name: Dome9 Aws Security Groups Index API
+  description: The AwsSecurityGroupsIndex API from Dome9 — 1 operation(s) for awssecuritygroupsindex.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsSecurityGroupsIndex
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awssecuritygroupsindex-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsunifiedonboarding-api
+  name: Dome9 Aws Unified Onboarding API
+  description: Aws Unified Onboarding
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsUnifiedOnboarding
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsunifiedonboarding-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-awsvpcendpoint-api
+  name: Dome9 Aws Vpc Endpoint API
+  description: The AwsVpcEndpoint API from Dome9 — 2 operation(s) for awsvpcendpoint.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AwsVpcEndpoint
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-awsvpcendpoint-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azureanalysisservice-api
+  name: Dome9 Azure Analysis Service API
+  description: The AzureAnalysisService API from Dome9 — 2 operation(s) for azureanalysisservice.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureAnalysisService
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azureanalysisservice-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azureapplicationgateway-api
+  name: Dome9 Azure Application Gateway API
+  description: The AzureApplicationGateway API from Dome9 — 2 operation(s) for azureapplicationgateway.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureApplicationGateway
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azureapplicationgateway-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azureapplicationsecuritygroup-api
+  name: Dome9 Azure Application Security Group API
+  description: >-
+    The AzureApplicationSecurityGroup API from Dome9 — 3 operation(s) for azureapplicationsecuritygroup.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureApplicationSecurityGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azureapplicationsecuritygroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurecloudaccount-api
+  name: Dome9 Azure Cloud Account API
+  description: Onboard Azure accounts
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureCloudAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurecloudaccount-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurecomputegalleryimage-api
+  name: Dome9 Azure Compute Gallery Image API
+  description: >-
+    The AzureComputeGalleryImage API from Dome9 — 1 operation(s) for azurecomputegalleryimage.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureComputeGalleryImage
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurecomputegalleryimage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurecosmosdbaccount-api
+  name: Dome9 Azure Cosmos Db Account API
+  description: The AzureCosmosDbAccount API from Dome9 — 2 operation(s) for azurecosmosdbaccount.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureCosmosDbAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurecosmosdbaccount-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azuredisk-api
+  name: Dome9 Azure Disk API
+  description: The AzureDisk API from Dome9 — 2 operation(s) for azuredisk.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureDisk
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azuredisk-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurefunction-api
+  name: Dome9 Azure Function API
+  description: The AzureFunction API from Dome9 — 2 operation(s) for azurefunction.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureFunction
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurefunction-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurekeyvault-api
+  name: Dome9 Azure Key Vault API
+  description: The AzureKeyVault API from Dome9 — 2 operation(s) for azurekeyvault.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureKeyVault
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurekeyvault-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurekubernetes-api
+  name: Dome9 Azure Kubernetes API
+  description: The AzureKubernetes API from Dome9 — 2 operation(s) for azurekubernetes.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureKubernetes
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurekubernetes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azureloadbalancer-api
+  name: Dome9 Azure Load Balancer API
+  description: The AzureLoadBalancer API from Dome9 — 2 operation(s) for azureloadbalancer.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureLoadBalancer
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azureloadbalancer-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurelock-api
+  name: Dome9 Azure Lock API
+  description: The AzureLock API from Dome9 — 2 operation(s) for azurelock.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureLock
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurelock-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurelogicapp-api
+  name: Dome9 Azure Logic App API
+  description: The AzureLogicApp API from Dome9 — 2 operation(s) for azurelogicapp.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureLogicApp
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurelogicapp-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurelogprofile-api
+  name: Dome9 Azure Log Profile API
+  description: The AzureLogProfile API from Dome9 — 1 operation(s) for azurelogprofile.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureLogProfile
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurelogprofile-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurepolicyassignment-api
+  name: Dome9 Azure Policy Assignment API
+  description: The AzurePolicyAssignment API from Dome9 — 2 operation(s) for azurepolicyassignment.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzurePolicyAssignment
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurepolicyassignment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurerediscache-api
+  name: Dome9 Azure Redis Cache API
+  description: The AzureRedisCache API from Dome9 — 2 operation(s) for azurerediscache.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureRedisCache
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurerediscache-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azureresourcegroup-api
+  name: Dome9 Azure Resource Group API
+  description: The AzureResourceGroup API from Dome9 — 2 operation(s) for azureresourcegroup.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureResourceGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azureresourcegroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azureroutetable-api
+  name: Dome9 Azure Route Table API
+  description: The AzureRouteTable API from Dome9 — 2 operation(s) for azureroutetable.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureRouteTable
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azureroutetable-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azuresecuritygroup-api
+  name: Dome9 Azure Security Group API
+  description: The AzureSecurityGroup API from Dome9 — 2 operation(s) for azuresecuritygroup.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureSecurityGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azuresecuritygroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azuresecuritygrouppolicy-api
+  name: Dome9 Azure Security Group Policy API
+  description: Azure Network Security Group Policies
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureSecurityGroupPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azuresecuritygrouppolicy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azuresnapshot-api
+  name: Dome9 Azure Snapshot API
+  description: The AzureSnapshot API from Dome9 — 2 operation(s) for azuresnapshot.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureSnapshot
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azuresnapshot-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azuresqldb-api
+  name: Dome9 Azure Sql Db API
+  description: The AzureSqlDb API from Dome9 — 1 operation(s) for azuresqldb.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureSqlDb
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azuresqldb-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azuresqlserver-api
+  name: Dome9 Azure Sql Server API
+  description: The AzureSqlServer API from Dome9 — 2 operation(s) for azuresqlserver.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureSqlServer
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azuresqlserver-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurestorageaccounts-api
+  name: Dome9 Azure Storage Accounts API
+  description: The AzureStorageAccounts API from Dome9 — 2 operation(s) for azurestorageaccounts.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureStorageAccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurestorageaccounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurestorageblobcontainer-api
+  name: Dome9 Azure Storage Blob Container API
+  description: >-
+    The AzureStorageBlobContainer API from Dome9 — 1 operation(s) for azurestorageblobcontainer.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureStorageBlobContainer
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurestorageblobcontainer-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azuresubnet-api
+  name: Dome9 Azure Subnet API
+  description: The AzureSubnet API from Dome9 — 2 operation(s) for azuresubnet.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureSubnet
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azuresubnet-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azureuser-api
+  name: Dome9 Azure User API
+  description: The AzureUser API from Dome9 — 2 operation(s) for azureuser.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureUser
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azureuser-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurevirtualmachine-api
+  name: Dome9 Azure Virtual Machine API
+  description: The AzureVirtualMachine API from Dome9 — 2 operation(s) for azurevirtualmachine.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureVirtualMachine
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurevirtualmachine-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurevirtualmachineimage-api
+  name: Dome9 Azure Virtual Machine Image API
+  description: >-
+    The AzureVirtualMachineImage API from Dome9 — 1 operation(s) for azurevirtualmachineimage.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureVirtualMachineImage
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurevirtualmachineimage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurevirtualmachinescaleset-api
+  name: Dome9 Azure Virtual Machine Scale Set API
+  description: >-
+    The AzureVirtualMachineScaleSet API from Dome9 — 1 operation(s) for azurevirtualmachinescaleset.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureVirtualMachineScaleSet
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurevirtualmachinescaleset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurevirtualnetworkpeering-api
+  name: Dome9 Azure Virtual Network Peering API
+  description: >-
+    The AzureVirtualNetworkPeering API from Dome9 — 2 operation(s) for azurevirtualnetworkpeering.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureVirtualNetworkPeering
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurevirtualnetworkpeering-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-azurewebapp-api
+  name: Dome9 Azure Web App API
+  description: The AzureWebApp API from Dome9 — 2 operation(s) for azurewebapp.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - AzureWebApp
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-azurewebapp-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-bigtable-api
+  name: Dome9 Big Table API
+  description: The BigTable API from Dome9 — 1 operation(s) for bigtable.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - BigTable
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-bigtable-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-billableassets-api
+  name: Dome9 Billable Assets API
+  description: Retrieve billable assets data
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - BillableAssets
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-billableassets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-billableassetsreport-api
+  name: Dome9 Billable Assets Report API
+  description: Billable Assets Report
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - BillableAssetsReport
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-billableassetsreport-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-billing-api
+  name: Dome9 Billing API
+  description: The Billing API from Dome9 — 4 operation(s) for billing.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-billing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-clarity-api
+  name: Dome9 Clarity API
+  description: The Clarity API from Dome9 — 12 operation(s) for clarity.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Clarity
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-clarity-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudacmcertificate-api
+  name: Dome9 Cloud Acm Certificate API
+  description: The CloudAcmCertificate API from Dome9 — 1 operation(s) for cloudacmcertificate.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudAcmCertificate
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudacmcertificate-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudami-api
+  name: Dome9 Cloud Ami API
+  description: The CloudAmi API from Dome9 — 2 operation(s) for cloudami.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudAmi
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudami-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudautoscalinggroup-api
+  name: Dome9 Cloud Auto Scaling Group API
+  description: The CloudAutoScalingGroup API from Dome9 — 1 operation(s) for cloudautoscalinggroup.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudAutoScalingGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudautoscalinggroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-clouddbinstance-api
+  name: Dome9 Cloud Db Instance API
+  description: The CloudDbInstance API from Dome9 — 2 operation(s) for clouddbinstance.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudDbInstance
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-clouddbinstance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-clouddirectconnect-api
+  name: Dome9 Cloud Direct Connect API
+  description: The CloudDirectConnect API from Dome9 — 2 operation(s) for clouddirectconnect.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudDirectConnect
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-clouddirectconnect-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-clouddynamodb-api
+  name: Dome9 Cloud Dynamo Db API
+  description: The CloudDynamoDb API from Dome9 — 1 operation(s) for clouddynamodb.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudDynamoDb
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-clouddynamodb-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudecscluster-api
+  name: Dome9 Cloud Ecs Cluster API
+  description: The CloudEcsCluster API from Dome9 — 1 operation(s) for cloudecscluster.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudEcsCluster
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudecscluster-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudecsservice-api
+  name: Dome9 Cloud Ecs Service API
+  description: Cloud Ecs Service
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudEcsService
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudecsservice-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudecstaskdefinition-api
+  name: Dome9 Cloud Ecs Task Definition API
+  description: The CloudEcsTaskDefinition API from Dome9 — 1 operation(s) for cloudecstaskdefinition.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudEcsTaskDefinition
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudecstaskdefinition-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudefs-api
+  name: Dome9 Cloud Efs API
+  description: The CloudEfs API from Dome9 — 2 operation(s) for cloudefs.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudEfs
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudefs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudelasticachecluster-api
+  name: Dome9 Cloud Elasti Cache Cluster API
+  description: The CloudElastiCacheCluster API from Dome9 — 1 operation(s) for cloudelasticachecluster.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudElastiCacheCluster
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudelasticachecluster-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudflowlogs-api
+  name: Dome9 Cloud Flow Logs API
+  description: The CloudFlowLogs API from Dome9 — 1 operation(s) for cloudflowlogs.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudFlowLogs
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudflowlogs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudfrontdistribution-api
+  name: Dome9 Cloud Front Distribution API
+  description: The CloudFrontDistribution API from Dome9 — 1 operation(s) for cloudfrontdistribution.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudFrontDistribution
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudfrontdistribution-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudguarddutydetector-api
+  name: Dome9 Cloud Guard Duty Detector API
+  description: The CloudGuardDutyDetector API from Dome9 — 1 operation(s) for cloudguarddutydetector.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudGuardDutyDetector
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudguarddutydetector-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudiamaccountsummary-api
+  name: Dome9 Cloud Iam Account Summary API
+  description: The CloudIamAccountSummary API from Dome9 — 1 operation(s) for cloudiamaccountsummary.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudIamAccountSummary
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudiamaccountsummary-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudiamcredentialreport-api
+  name: Dome9 Cloud Iam Credential Report API
+  description: >-
+    The CloudIamCredentialReport API from Dome9 — 2 operation(s) for cloudiamcredentialreport.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudIamCredentialReport
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudiamcredentialreport-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudiamgroup-api
+  name: Dome9 Cloud Iam Group API
+  description: The CloudIamGroup API from Dome9 — 1 operation(s) for cloudiamgroup.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudIamGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudiamgroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudiampasswordpolicy-api
+  name: Dome9 Cloud Iam Password Policy API
+  description: The CloudIamPasswordPolicy API from Dome9 — 1 operation(s) for cloudiampasswordpolicy.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudIamPasswordPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudiampasswordpolicy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudiampolicy-api
+  name: Dome9 Cloud Iam Policy API
+  description: The CloudIamPolicy API from Dome9 — 2 operation(s) for cloudiampolicy.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudIamPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudiampolicy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudiamrole-api
+  name: Dome9 Cloud Iam Role API
+  description: The CloudIamRole API from Dome9 — 1 operation(s) for cloudiamrole.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudIamRole
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudiamrole-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudiamservercertificate-api
+  name: Dome9 Cloud Iam Server Certificate API
+  description: >-
+    The CloudIamServerCertificate API from Dome9 — 1 operation(s) for cloudiamservercertificate.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudIamServerCertificate
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudiamservercertificate-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudiamuser-api
+  name: Dome9 Cloud Iam User API
+  description: The CloudIamUser API from Dome9 — 1 operation(s) for cloudiamuser.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudIamUser
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudiamuser-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudiamvirtualmfadevice-api
+  name: Dome9 Cloud Iam Virtual Mfa Device API
+  description: >-
+    The CloudIamVirtualMfaDevice API from Dome9 — 1 operation(s) for cloudiamvirtualmfadevice.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudIamVirtualMfaDevice
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudiamvirtualmfadevice-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudinfrauser-api
+  name: Dome9 Cloud Infra User API
+  description: CloudInfra Users
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudInfraUser
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudinfrauser-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudinstance-api
+  name: Dome9 Cloud Instance API
+  description: Cloud Instances
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudInstance
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudinstance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudinternetgateway-api
+  name: Dome9 Cloud Internet Gateway API
+  description: The CloudInternetGateway API from Dome9 — 1 operation(s) for cloudinternetgateway.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudInternetGateway
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudinternetgateway-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudkinesisstream-api
+  name: Dome9 Cloud Kinesis Stream API
+  description: The CloudKinesisStream API from Dome9 — 1 operation(s) for cloudkinesisstream.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudKinesisStream
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudkinesisstream-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudkms-api
+  name: Dome9 Cloud Kms API
+  description: The CloudKms API from Dome9 — 1 operation(s) for cloudkms.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudKms
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudkms-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudkmsalias-api
+  name: Dome9 Cloud Kms Alias API
+  description: The CloudKmsAlias API from Dome9 — 1 operation(s) for cloudkmsalias.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudKmsAlias
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudkmsalias-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudlambdafunction-api
+  name: Dome9 Cloud Lambda Function API
+  description: Cloud Lambda Function
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudLambdaFunction
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudlambdafunction-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudloadbalancer-api
+  name: Dome9 Cloud Load Balancer API
+  description: The CloudLoadBalancer API from Dome9 — 2 operation(s) for cloudloadbalancer.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudLoadBalancer
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudloadbalancer-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudloggroups-api
+  name: Dome9 Cloud Log Groups API
+  description: The CloudLogGroups API from Dome9 — 1 operation(s) for cloudloggroups.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudLogGroups
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudloggroups-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudmetricalarm-api
+  name: Dome9 Cloud Metric Alarm API
+  description: The CloudMetricAlarm API from Dome9 — 1 operation(s) for cloudmetricalarm.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudMetricAlarm
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudmetricalarm-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudnacl-api
+  name: Dome9 Cloud Nacl API
+  description: The CloudNacl API from Dome9 — 1 operation(s) for cloudnacl.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudNacl
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudnacl-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudnetworkinterfaces-api
+  name: Dome9 Cloud Network Interfaces API
+  description: The CloudNetworkInterfaces API from Dome9 — 1 operation(s) for cloudnetworkinterfaces.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudNetworkInterfaces
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudnetworkinterfaces-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudredshiftcluster-api
+  name: Dome9 Cloud Redshift Cluster API
+  description: The CloudRedshiftCluster API from Dome9 — 2 operation(s) for cloudredshiftcluster.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudRedshiftCluster
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudredshiftcluster-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudregion-api
+  name: Dome9 Cloud Region API
+  description: The CloudRegion API from Dome9 — 1 operation(s) for cloudregion.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudRegion
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudregion-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudroute53domain-api
+  name: Dome9 Cloud Route53 Domain API
+  description: The CloudRoute53Domain API from Dome9 — 2 operation(s) for cloudroute53domain.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudRoute53Domain
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudroute53domain-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudroute53hostedzone-api
+  name: Dome9 Cloud Route53 Hosted Zone API
+  description: The CloudRoute53HostedZone API from Dome9 — 1 operation(s) for cloudroute53hostedzone.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudRoute53HostedZone
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudroute53hostedzone-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudroute53recordsetgroup-api
+  name: Dome9 Cloud Route53 Record Set Group API
+  description: >-
+    The CloudRoute53RecordSetGroup API from Dome9 — 1 operation(s) for cloudroute53recordsetgroup.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudRoute53RecordSetGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudroute53recordsetgroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudroutetable-api
+  name: Dome9 Cloud Route Table API
+  description: The CloudRouteTable API from Dome9 — 1 operation(s) for cloudroutetable.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudRouteTable
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudroutetable-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-clouds3bucket-api
+  name: Dome9 Cloud S3 Bucket API
+  description: The CloudS3Bucket API from Dome9 — 1 operation(s) for clouds3bucket.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudS3Bucket
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-clouds3bucket-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudsecuritygroup-api
+  name: Dome9 Cloud Security Group API
+  description: AWS Security Groups
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudSecurityGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudsecuritygroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudsnssubscription-api
+  name: Dome9 Cloud Sns Subscription API
+  description: The CloudSnsSubscription API from Dome9 — 2 operation(s) for cloudsnssubscription.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudSnsSubscription
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudsnssubscription-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudsnstopic-api
+  name: Dome9 Cloud Sns Topic API
+  description: The CloudSnsTopic API from Dome9 — 1 operation(s) for cloudsnstopic.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudSnsTopic
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudsnstopic-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudsql-api
+  name: Dome9 Cloud Sql API
+  description: The CloudSql API from Dome9 — 1 operation(s) for cloudsql.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudSql
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudsql-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudsqs-api
+  name: Dome9 Cloud Sqs API
+  description: The CloudSqs API from Dome9 — 1 operation(s) for cloudsqs.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudSqs
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudsqs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudsubnet-api
+  name: Dome9 Cloud Subnet API
+  description: The CloudSubnet API from Dome9 — 1 operation(s) for cloudsubnet.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudSubnet
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudsubnet-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudtrail-api
+  name: Dome9 Cloud Trail API
+  description: CloudTrail
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudTrail
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudtrail-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudvolume-api
+  name: Dome9 Cloud Volume API
+  description: The CloudVolume API from Dome9 — 1 operation(s) for cloudvolume.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudVolume
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudvolume-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudvpc-api
+  name: Dome9 Cloud Vpc API
+  description: The CloudVpc API from Dome9 — 2 operation(s) for cloudvpc.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudVpc
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudvpc-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudvpcpeeringconnection-api
+  name: Dome9 Cloud Vpc Peering Connection API
+  description: >-
+    The CloudVpcPeeringConnection API from Dome9 — 1 operation(s) for cloudvpcpeeringconnection.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudVpcPeeringConnection
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudvpcpeeringconnection-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudvpnconnection-api
+  name: Dome9 Cloud VPN Connection API
+  description: The CloudVPNConnection API from Dome9 — 1 operation(s) for cloudvpnconnection.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudVPNConnection
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudvpnconnection-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudvpngateway-api
+  name: Dome9 Cloud Vpn Gateway API
+  description: The CloudVpnGateway API from Dome9 — 1 operation(s) for cloudvpngateway.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudVpnGateway
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudvpngateway-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudwafregional-api
+  name: Dome9 Cloud WAF Regional API
+  description: The CloudWAFRegional API from Dome9 — 1 operation(s) for cloudwafregional.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudWAFRegional
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudwafregional-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-cloudwatcheventsrule-api
+  name: Dome9 Cloud Watch Events Rule API
+  description: CloudWatchEventsRule
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CloudWatchEventsRule
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-cloudwatcheventsrule-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-complianceexclusion-api
+  name: Dome9 Compliance Exclusion API
+  description: Compliance Exclusions
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ComplianceExclusion
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-complianceexclusion-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-compliancepolicy-api
+  name: Dome9 Compliance Policy API
+  description: The CompliancePolicy API from Dome9 — 2 operation(s) for compliancepolicy.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - CompliancePolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-compliancepolicy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-complianceremediation-api
+  name: Dome9 Compliance Remediation API
+  description: Compliance Remediation
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ComplianceRemediation
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-complianceremediation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-complianceremediationold-api
+  name: Dome9 Compliance Remediation Old API
+  description: Compliance Remediation - DEPRECATED - please use /Compliance/Remediation instead
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ComplianceRemediationOld
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-complianceremediationold-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-complianceruleset-api
+  name: Dome9 Compliance Ruleset API
+  description: Compliance Ruleset
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ComplianceRuleset
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-complianceruleset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-continuouscompliancenotification-api
+  name: Dome9 Continuous Compliance Notification API
+  description: Continuous Compliance Notification Policies
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ContinuousComplianceNotification
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-continuouscompliancenotification-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-continuouscompliancepolicy-api
+  name: Dome9 Continuous Compliance Policy API
+  description: >-
+    The ContinuousCompliancePolicy API from Dome9 — 3 operation(s) for continuouscompliancepolicy.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ContinuousCompliancePolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-continuouscompliancepolicy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-continuouscompliancepolicyv2-api
+  name: Dome9 Continuous Compliance Policy V2 API
+  description: Continuous Compliance Policies
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ContinuousCompliancePolicyV2
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-continuouscompliancepolicyv2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-emergencypolicy-api
+  name: Dome9 Emergency Policy API
+  description: The EmergencyPolicy API from Dome9 — 4 operation(s) for emergencypolicy.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - EmergencyPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-emergencypolicy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-entityfetchstatus-api
+  name: Dome9 Entity Fetch Status API
+  description: The EntityFetchStatus API from Dome9 — 1 operation(s) for entityfetchstatus.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - EntityFetchStatus
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-entityfetchstatus-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-entityreport-api
+  name: Dome9 Entity Report API
+  description: The EntityReport API from Dome9 — 2 operation(s) for entityreport.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - EntityReport
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-entityreport-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-exclusionold-api
+  name: Dome9 Exclusion Old API
+  description: Compliance Exclusions - DEPRECATED - please use /Compliance/Exclusion instead
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ExclusionOld
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-exclusionold-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-externalfindings-api
+  name: Dome9 External Findings API
+  description: Findings from External (3rd-party) systems
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ExternalFindings
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-externalfindings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-fim-api
+  name: Dome9 Fim API
+  description: The Fim API from Dome9 — 2 operation(s) for fim.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Fim
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-fim-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-finding-api
+  name: Dome9 Finding API
+  description: Compliance Findings
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Finding
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-finding-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-findingsreport-api
+  name: Dome9 Findings Report API
+  description: Compliance Findings csv reports
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - FindingsReport
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-findingsreport-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-gcpbigquery-api
+  name: Dome9 Gcp Big Query API
+  description: The GcpBigQuery API from Dome9 — 1 operation(s) for gcpbigquery.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GcpBigQuery
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-gcpbigquery-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-gcpdisk-api
+  name: Dome9 Gcp Disk API
+  description: The GcpDisk API from Dome9 — 1 operation(s) for gcpdisk.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GcpDisk
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-gcpdisk-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-gcpgkecluster-api
+  name: Dome9 Gcp Gke Cluster API
+  description: The GcpGkeCluster API from Dome9 — 1 operation(s) for gcpgkecluster.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GcpGkeCluster
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-gcpgkecluster-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-gcpimage-api
+  name: Dome9 Gcp Image API
+  description: The GcpImage API from Dome9 — 1 operation(s) for gcpimage.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GcpImage
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-gcpimage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-gcpkmskeyring-api
+  name: Dome9 Gcp Kms Key Ring API
+  description: The GcpKmsKeyRing API from Dome9 — 1 operation(s) for gcpkmskeyring.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GcpKmsKeyRing
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-gcpkmskeyring-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-gcpprojectinfo-api
+  name: Dome9 Gcp Project Info API
+  description: Google Cloud Project Info
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GcpProjectInfo
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-gcpprojectinfo-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-gcppubsub-api
+  name: Dome9 Gcp Pub Sub API
+  description: The GcpPubSub API from Dome9 — 3 operation(s) for gcppubsub.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GcpPubSub
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-gcppubsub-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-gcpsecuritygroup-api
+  name: Dome9 Gcp Security Group API
+  description: The GcpSecurityGroup API from Dome9 — 2 operation(s) for gcpsecuritygroup.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GcpSecurityGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-gcpsecuritygroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-gcpserviceaccount-api
+  name: Dome9 Gcp Service Account API
+  description: The GcpServiceAccount API from Dome9 — 2 operation(s) for gcpserviceaccount.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GcpServiceAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-gcpserviceaccount-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-gcpstoragebucket-api
+  name: Dome9 Gcp Storage Bucket API
+  description: The GcpStorageBucket API from Dome9 — 2 operation(s) for gcpstoragebucket.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GcpStorageBucket
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-gcpstoragebucket-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-genericlist-api
+  name: Dome9 Generic List API
+  description: Generic Lists
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GenericList
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-genericlist-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-globalsearch-api
+  name: Dome9 Global Search API
+  description: Global search for all CloudGuard services
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GlobalSearch
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-globalsearch-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-googlecloudaccount-api
+  name: Dome9 Google Cloud Account API
+  description: Google Cloud Accounts
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GoogleCloudAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-googlecloudaccount-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-googlecloudfirewallrule-api
+  name: Dome9 Google Cloud Firewall Rule API
+  description: The GoogleCloudFirewallRule API from Dome9 — 1 operation(s) for googlecloudfirewallrule.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GoogleCloudFirewallRule
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-googlecloudfirewallrule-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-googlecloudfunction-api
+  name: Dome9 Google Cloud Function API
+  description: The GoogleCloudFunction API from Dome9 — 1 operation(s) for googlecloudfunction.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GoogleCloudFunction
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-googlecloudfunction-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-googlecloudiampolicy-api
+  name: Dome9 Google Cloud Iam Policy API
+  description: The GoogleCloudIamPolicy API from Dome9 — 2 operation(s) for googlecloudiampolicy.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GoogleCloudIamPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-googlecloudiampolicy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-googlecloudnetwork-api
+  name: Dome9 Google Cloud Network API
+  description: Google Cloud Network
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GoogleCloudNetwork
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-googlecloudnetwork-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-googlecloudsubnet-api
+  name: Dome9 Google Cloud Subnet API
+  description: The GoogleCloudSubnet API from Dome9 — 1 operation(s) for googlecloudsubnet.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GoogleCloudSubnet
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-googlecloudsubnet-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-googlecloudvminstance-api
+  name: Dome9 Google Cloud VM Instance API
+  description: The GoogleCloudVMInstance API from Dome9 — 3 operation(s) for googlecloudvminstance.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - GoogleCloudVMInstance
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-googlecloudvminstance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-home-api
+  name: Dome9 Home API
+  description: The Home API from Dome9 — 1 operation(s) for home.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Home
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-home-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-iamsafelease-api
+  name: Dome9 Iam Safe Lease API
+  description: IAM Safety Leases
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - IamSafeLease
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-iamsafelease-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-incidentsstatus-api
+  name: Dome9 Incidents Status API
+  description: The IncidentsStatus API from Dome9 — 2 operation(s) for incidentsstatus.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - IncidentsStatus
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-incidentsstatus-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-infrastructureassessment-api
+  name: Dome9 Infrastructure Assessment API
+  description: >-
+    The InfrastructureAssessment API from Dome9 — 3 operation(s) for infrastructureassessment.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - InfrastructureAssessment
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-infrastructureassessment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-intelligence-api
+  name: Dome9 Intelligence API
+  description: >-
+    CloudGuard Intelligence allows you to visualize and analyze Account Activity and Network Traffic into
+    and out of your cloud environment.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Intelligence
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-intelligence-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-ipaddressmetadata-api
+  name: Dome9 Ip Address Metadata API
+  description: IP Address Metadata
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - IpAddressMetadata
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-ipaddressmetadata-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-iplist-api
+  name: Dome9 Ip List API
+  description: IP Lists
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - IpList
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-iplist-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-licenseactivator-api
+  name: Dome9 License Activator API
+  description: The LicenseActivator API from Dome9 — 4 operation(s) for licenseactivator.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - LicenseActivator
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-licenseactivator-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-licensing-api
+  name: Dome9 Licensing API
+  description: The Licensing API from Dome9 — 3 operation(s) for licensing.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Licensing
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-licensing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-managedgenericlist-api
+  name: Dome9 Managed Generic List API
+  description: The ManagedGenericList API from Dome9 — 3 operation(s) for managedgenericlist.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ManagedGenericList
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-managedgenericlist-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-msp-api
+  name: Dome9 Msp API
+  description: The Msp API from Dome9 — 6 operation(s) for msp.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Msp
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-msp-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-organizationalunit-api
+  name: Dome9 Organizational Unit API
+  description: Manage Organizational Units
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - OrganizationalUnit
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-organizationalunit-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-permission-api
+  name: Dome9 Permission API
+  description: The Permission API from Dome9 — 1 operation(s) for permission.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Permission
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-permission-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-protectedasset-api
+  name: Dome9 Protected Asset API
+  description: The ProtectedAsset API from Dome9 — 1 operation(s) for protectedasset.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ProtectedAsset
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-protectedasset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-protectedassetsreport-api
+  name: Dome9 Protected Assets Report API
+  description: Compliance Protected Asset csv reports
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ProtectedAssetsReport
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-protectedassetsreport-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-protegostatistics-api
+  name: Dome9 Protego Statistics API
+  description: Protego statistics by dates
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ProtegoStatistics
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-protegostatistics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-role-api
+  name: Dome9 Role API
+  description: CloudGuard Roles
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Role
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-role-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-rulesengine-api
+  name: Dome9 Rules Engine API
+  description: The RulesEngine API from Dome9 — 1 operation(s) for rulesengine.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - RulesEngine
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-rulesengine-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-securitygroup-api
+  name: Dome9 Security Group API
+  description: The SecurityGroup API from Dome9 — 11 operation(s) for securitygroup.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - SecurityGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-securitygroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-serverless-api
+  name: Dome9 Serverless API
+  description: The Serverless API from Dome9 — 36 operation(s) for serverless.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Serverless
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-serverless-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-serverlesspolicy-api
+  name: Dome9 Serverless Policy API
+  description: Serverless policy
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ServerlessPolicy
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-serverlesspolicy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-serviceaccount-api
+  name: Dome9 Service Account API
+  description: CloudGuard Service Accounts
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ServiceAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-serviceaccount-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-serviceport-api
+  name: Dome9 Service Port API
+  description: The ServicePort API from Dome9 — 1 operation(s) for serviceport.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ServicePort
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-serviceport-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-settings-api
+  name: Dome9 Settings API
+  description: Account Settings
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-settings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-shiftleft-api
+  name: Dome9 Shift Left API
+  description: ShiftLeft
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - ShiftLeft
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-shiftleft-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-systemhealth-api
+  name: Dome9 System Health API
+  description: The SystemHealth API from Dome9 — 2 operation(s) for systemhealth.
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - SystemHealth
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-systemhealth-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-tenableaccount-api
+  name: Dome9 Tenable Account API
+  description: Onboard Tenable accounts
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - TenableAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-tenableaccount-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cgn.portal.checkpoint.com/
+  - type: APIReference
+    url: https://docs.cgn.portal.checkpoint.com/reference/introduction
+  - type: GettingStarted
+    url: https://docs.cgn.portal.checkpoint.com/docs
+  - type: Authentication
+    url: https://docs.cgn.portal.checkpoint.com/reference/authentication
+  - type: PostmanCollection
+    url: https://www.postman.com/dome9-security/workspace/dome9-api
+- aid: dome9:dome9-user-api
+  name: Dome9 User API
+  description: CloudGuard account users
+  humanURL: https://docs.cgn.portal.checkpoint.com/
+  baseURL: https://api.dome9.com/v2
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/dome9-user-api-openapi.yml
   - type: Documentation
     url: https://docs.cgn.portal.checkpoint.com/
   - type: APIReference
@@ -82,6 +4010,8 @@ apis:
   - type: PostmanCollection
     url: https://www.postman.com/dome9-security/workspace/dome9-api
 common:
+  - type: Overlay
+    url: overlays/dome9-api-overlay.yaml
   - type: DomainSecurity
     url: security/dome9-domain-security.yml
   - type: Authentication
