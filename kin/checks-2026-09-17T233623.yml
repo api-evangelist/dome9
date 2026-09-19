@@ -2,27 +2,51 @@
 kin_checks:
   slug: dome9
   schema_version: 0.22.0
-  scored_at: '2026-09-15'
-  run_ts: 2026-09-15T230249
-  note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.22.0.yml; counts below let you verify that.
+  scored_at: '2026-09-17'
+  run_ts: 2026-09-17T233623
+  note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
+    apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
+    below let you verify that.
   counts:
     total: 136
-    earned: 31
-    partial: 9
-    missed: 53
-    na: 43
+    earned: 37
+    partial: 14
+    missed: 60
+    na: 25
   checks:
+  - id: maintainer_present
+    status: missed
   - id: multiple_apis
+    status: missed
+  - id: human_url_per_api
+    status: missed
+  - id: base_url_per_api
     status: missed
   - id: well_known_published
     status: missed
   - id: apis_json_self_hosted
     status: missed
-  - id: servers_resolvable
+  - id: openapi_3_2
     status: missed
-  - id: examples_present
+    detail: 0 of 197 openapi documents pass
+  - id: openapi_3_1
     status: missed
+    detail: 0 of 197 openapi documents pass
+  - id: openapi_3_0
+    status: missed
+    detail: 0 of 197 openapi documents pass
+  - id: info_complete
+    status: missed
+    detail: 0 of 197 openapi documents pass
+  - id: error_responses_documented
+    status: missed
+    detail: 0 of 197 openapi documents pass
+  - id: security_applied
+    status: missed
+    detail: 0 of 197 openapi documents pass
+  - id: webhooks_or_callbacks
+    status: missed
+    detail: 0 of 197 openapi documents pass
   - id: inbound_contract_published
     status: missed
   - id: json_schema_present
@@ -108,8 +132,6 @@ kin_checks:
     status: missed
   - id: idempotency
     status: missed
-  - id: openapi_examples
-    status: missed
   - id: consent_identity
     status: missed
   - id: agent_card
@@ -124,6 +146,21 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
+  - id: operations_description_coverage
+    status: partial
+    earned: 0.03
+    detail: 1 of 197 openapi documents pass
+  - id: operations_operation_ids
+    status: partial
+    earned: 2.68
+    detail: 132 of 197 openapi documents pass
+  - id: examples_present
+    status: partial
+    earned: 0.03
+  - id: components_reuse
+    status: partial
+    earned: 1.46
+    detail: 96 of 197 openapi documents pass
   - id: lifecycle_documented
     status: partial
     earned: 2.97
@@ -145,6 +182,10 @@ kin_checks:
     status: partial
     earned: 4.0
     detail: 'grade: documented'
+  - id: openapi_examples
+    status: partial
+    earned: 3.5
+    detail: 'grade: partial'
   - id: rate_limit_signal
     status: partial
     earned: 3.5
@@ -157,3 +198,29 @@ kin_checks:
     status: partial
     earned: 1.25
     detail: 'authorship: derived'
+  na:
+  - asyncapi_3_x
+  - channels_defined
+  - contract_self_operated
+  - fhir_capability_statement
+  - fhir_resource_coverage
+  - graphql_descriptions
+  - graphql_sdl_present
+  - graphql_type_depth
+  - messages_with_schema
+  - os_code_of_conduct
+  - os_contribution_guide
+  - os_releases
+  - os_security_policy
+  - reg_camara_conformance
+  - reg_certification_signal
+  - reg_consent_model
+  - reg_entitlement_terms
+  - reg_fapi_profile
+  - reg_mandate_verified
+  - reg_named_standard_conformance
+  - reg_pci_sca
+  - reg_smart_configuration
+  - reg_write_surface
+  - security_schemes
+  - server_bindings

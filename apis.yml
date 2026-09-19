@@ -136,6 +136,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - Agents
+  tags_raw:
   - Agent
   properties:
   - type: OpenAPI
@@ -276,6 +278,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -296,6 +300,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - Aws  Cloud  Account
+  tags_raw:
   - Aws Cloud Account
   properties:
   - type: OpenAPI
@@ -637,6 +643,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - FIM
+  tags_raw:
   - Fim
   properties:
   - type: OpenAPI
@@ -777,6 +785,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - Homes
+  tags_raw:
   - Home
   properties:
   - type: OpenAPI
@@ -920,6 +930,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - MSP
+  tags_raw:
   - Msp
   properties:
   - type: OpenAPI
@@ -2220,6 +2232,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - Bigtable
+  tags_raw:
   - Big Table
   properties:
   - type: OpenAPI
@@ -3110,6 +3124,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - CloudTrail
+  tags_raw:
   - Cloud Trail
   properties:
   - type: OpenAPI
@@ -3932,6 +3948,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - SecurityGroup
+  tags_raw:
   - Security Group
   properties:
   - type: OpenAPI
@@ -3972,6 +3990,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - ServiceAccount
+  tags_raw:
   - Service Account
   properties:
   - type: OpenAPI
@@ -3992,6 +4012,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - shiftleft
+  tags_raw:
   - Shift Left
   properties:
   - type: OpenAPI
