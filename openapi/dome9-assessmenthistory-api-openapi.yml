@@ -1,0 +1,441 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Assessment History API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: AssessmentHistory
+  type: Unclassified
+paths:
+  /v2/AssessmentHistory/bundle:
+    get:
+      tags:
+      - AssessmentHistory
+      operationId: AssessmentHistory_GetResults
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: lastTime
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+      summary: Assessment history get results
+      x-summary-source: derived
+  /v2/AssessmentHistory/view:
+    get:
+      tags:
+      - AssessmentHistory
+      operationId: AssessmentHistory_GetResultViewsAsync
+      parameters:
+      - name: lastTime
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryViewResultViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryViewResultViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryViewResultViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryViewResultViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryViewResultViewModel'
+      summary: Assessment history get result views async
+      x-summary-source: derived
+  /v2/AssessmentHistory:
+    get:
+      tags:
+      - AssessmentHistory
+      operationId: AssessmentHistory_GetResults
+      parameters:
+      - name: lastTime
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+      summary: Assessment history get results
+      x-summary-source: derived
+    delete:
+      tags:
+      - AssessmentHistory
+      operationId: AssessmentHistory_DeleteHistoryAsync
+      parameters:
+      - name: historyId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+      summary: Assessment history delete history async
+      x-summary-source: derived
+  /v2/AssessmentHistory/{id}:
+    get:
+      tags:
+      - AssessmentHistory
+      operationId: AssessmentHistory_GetHistory
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel'
+      summary: Assessment history get history
+      x-summary-source: derived
+components:
+  schemas:
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryViewResultViewModel:
+      type: object
+      properties:
+        createdTime:
+          format: date-time
+          type: string
+        id:
+          format: int64
+          type: integer
+        assessmentId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        request:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryBundleResultViewModel'
+        assessmentPassed:
+          type: boolean
+        hasErrors:
+          type: boolean
+        stats:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel'
+    Falconetix.Model.RuleEngine.Entities.ValidationResult:
+      type: object
+      properties:
+        validationStatus:
+          enum:
+          - Relevant
+          - Valid
+          - Excluded
+          type: string
+        isRelevant:
+          description: 'means if entity is relevant for this rule
+
+            for example rule = "Instance where name like ''%db%'' should have...", returns false in instance name = ''scheduler1'''
+          type: boolean
+        isValid:
+          description: 'means if entity is compliant.
+
+            for example for rule="Instance should have vpc", return true if instance i-123 is under vpc-234, and false if not'
+          type: boolean
+        isExcluded:
+          description: 'means if entity is excluded.
+
+            for example for rule="Instance should have vpc exclude name=''test''", return true if instance name is test, and false if not'
+          type: boolean
+        exclusionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        remediationId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        error:
+          description: note that the lambda is not aware of this field
+          type: string
+        testObj:
+          description: note that the lambda is not aware of this field
+          type: object
+    Falconetix.Model.RuleEngine.Entities.RuleTestResult:
+      type: object
+      properties:
+        error:
+          type: string
+        testedCount:
+          format: int32
+          type: integer
+        relevantCount:
+          format: int32
+          type: integer
+        nonComplyingCount:
+          format: int32
+          type: integer
+        exclusionStats:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleTestResultStats'
+        entityResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.ValidationResult'
+        rule:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleEntity'
+        testPassed:
+          type: boolean
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryBundleResultViewModel:
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        isTemplate:
+          type: boolean
+        name:
+          type: string
+        description:
+          type: string
+        dome9CloudAccountId:
+          format: uuid
+          description: The Dome9 account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalCloudAccountId:
+          description: account id on cloud provider (AWS, Azure, GCP)
+          type: string
+        cloudAccountId:
+          description: account id on cloud provider (AWS, Azure, GCP)
+          type: string
+        cloudAccountType:
+          description: the cloud provider (AWS/Azure/GCP)
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        requestId:
+          format: uuid
+          description: the assessment id (returned in the response)
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        shouldMinimizeResult:
+          description: Minimized the entity results
+          type: boolean
+    Falconetix.Model.RuleEngine.Entities.RuleTestResultStats:
+      type: object
+      properties:
+        testedCount:
+          format: int32
+          type: integer
+        relevantCount:
+          format: int32
+          type: integer
+        nonComplyingCount:
+          format: int32
+          type: integer
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel:
+      type: object
+      properties:
+        passed:
+          format: int32
+          type: integer
+        failed:
+          format: int32
+          type: integer
+        error:
+          format: int32
+          type: integer
+        failedEntities:
+          format: int32
+          type: integer
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel:
+      type: object
+      properties:
+        tests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleTestResult'
+        createdTime:
+          format: date-time
+          type: string
+        id:
+          format: int64
+          type: integer
+        assessmentId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        request:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryBundleResultViewModel'
+        assessmentPassed:
+          type: boolean
+        hasErrors:
+          type: boolean
+        stats:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel'
+    Falconetix.Model.RuleEngine.Entities.RuleEntity:
+      type: object
+      properties:
+        rlmId:
+          format: uuid
+          description: rlm rule id, do not expose this on API for now
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: rule name
+          type: string
+        severity:
+          description: rule severity (High/Medium/Low)
+          enum:
+          - Informational
+          - Low
+          - Medium
+          - High
+          - Critical
+          type: string
+        logic:
+          description: the GSL statement for the rule (text string)
+          type: string
+        description:
+          description: description of the rule (text)
+          type: string
+        remediation:
+          description: remediation text for the rule (text)
+          type: string
+        cloudbots:
+          description: the Cloudbots section for the rule (optional)
+          type: string
+        complianceTag:
+          description: the compliance section for the rule (optional)
+          type: string
+        domain:
+          description: this field is not used
+          type: string
+        priority:
+          description: this field is not used
+          type: string
+        controlTitle:
+          description: this field is not used
+          type: string
+        ruleId:
+          description: this field is not used
+          type: string
+        category:
+          description: Rule Category
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        logicHash:
+          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
+          type: string
+          readOnly: true
+        isDefault:
+          description: The property represents default rule
+          type: boolean
+          readOnly: true
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

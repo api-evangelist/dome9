@@ -1,0 +1,120 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Billable Assets API
+  description: Retrieve billable assets data
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Billable Assets
+  description: Retrieve billable assets data
+  type: Administration
+paths:
+  /v2/BillableAssets:
+    get:
+      tags:
+      - Billable Assets
+      operationId: BillableAssets_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.BillableAssets.AccountBillableAssetsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.BillableAssets.AccountBillableAssetsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.BillableAssets.AccountBillableAssetsViewModel'
+      summary: Billable assets get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.BillableAssets.AccountBillableAssetsViewModel:
+      type: object
+      properties:
+        accountId:
+          format: int64
+          type: integer
+        accountName:
+          type: string
+        purcahseOrderInstances:
+          format: int32
+          type: integer
+        cloudAccountsData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.BillableAssets.CloudAccountBillableAssetsViewModel'
+        totals:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.BillableAssets.AccountAssetsTotalData'
+        grandTotals:
+          $ref: '#/components/schemas/Falconetix.Model.BillableAssets.GrandTotalData'
+    Falconetix.Model.BillableAssets.GrandTotalData:
+      type: object
+      properties:
+        grandTotalCount:
+          format: int32
+          type: integer
+        grandTotalBillable:
+          format: int32
+          type: integer
+        grandTotalNonBillable:
+          format: int32
+          type: integer
+        grandTotalOnLineCount:
+          format: int32
+          type: integer
+    Falconetix.Model.BillableAssets.AccountAssetsTotalData:
+      type: object
+      properties:
+        vendor:
+          type: string
+        assetType:
+          type: string
+        totalCount:
+          format: int32
+          type: integer
+        totalBillable:
+          format: int32
+          type: integer
+        totalNonBillable:
+          format: int32
+          type: integer
+        totalOnLineCount:
+          format: int32
+          type: integer
+    Dome9.Web.Api.BillableAssets.AssetsViewModel:
+      type: object
+      properties:
+        assetType:
+          type: string
+        totalCount:
+          format: int32
+          type: integer
+        billableCount:
+          format: int32
+          type: integer
+        nonBillableCount:
+          format: int32
+          type: integer
+    Dome9.Web.Api.BillableAssets.CloudAccountBillableAssetsViewModel:
+      type: object
+      properties:
+        cloudVendor:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        assetsCount:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.BillableAssets.AssetsViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

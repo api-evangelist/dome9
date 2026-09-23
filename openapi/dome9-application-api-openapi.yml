@@ -1,0 +1,123 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Application API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Application
+  type: Unclassified
+paths:
+  /v2/application/menu:
+    get:
+      tags:
+      - Application
+      operationId: Application_Menu
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppMenuViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppMenuViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppMenuViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppMenuViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppMenuViewModel'
+      summary: Application menu
+      x-summary-source: derived
+  /v2/application/d9awsaccount:
+    get:
+      tags:
+      - Application
+      operationId: Application_D9AccountInfo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppD9AccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppD9AccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppD9AccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppD9AccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppD9AccountViewModel'
+      summary: Application D9 account info
+      x-summary-source: derived
+  /v2/application/intercom:
+    get:
+      tags:
+      - Application
+      operationId: Application_GetIntercomData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppIntercomViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppIntercomViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppIntercomViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppIntercomViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AppIntercomViewModel'
+      summary: Application get intercom data
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Models.AppIntercomViewModel:
+      type: object
+      properties:
+        appId:
+          type: string
+        userHash:
+          type: string
+        userName:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        name:
+          type: string
+        createdAt:
+          format: int64
+          type: integer
+    Dome9.Web.Api.Models.AppMenuViewModel:
+      type: object
+      properties:
+        permissions:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Models.AppD9AccountViewModel:
+      type: object
+      properties:
+        d9AwsAccountNumber:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

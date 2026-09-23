@@ -1,0 +1,1116 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Access Lease API
+  description: Access Leases
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Access Lease
+  description: Access Leases
+  type: NetworkSecurity
+paths:
+  /v2/accesslease/aws:
+    post:
+      tags:
+      - Access Lease
+      summary: Create a new Access Lease for an AWS service
+      operationId: AccessLease_AcquireAwsLease
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsAccessLeasePostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsAccessLeasePostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsAccessLeasePostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsAccessLeasePostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsAccessLeasePostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsAccessLeasePostViewModel'
+        description: details for the lease
+        required: true
+  /v2/AccessLease:
+    get:
+      tags:
+      - Access Lease
+      summary: Get a list of all active Access Leases
+      operationId: AccessLease_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeasesGroupedViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeasesGroupedViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeasesGroupedViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeasesGroupedViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeasesGroupedViewModel'
+  /v2/AccessLease/{id}:
+    delete:
+      tags:
+      - Access Lease
+      summary: Terminate an Access Lease
+      operationId: AccessLease_Delete
+      parameters:
+      - name: id
+        in: path
+        description: the id of the lease to terminate
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Dome9.Web.Api.Models.AgentAccessLeaseViewModel:
+      type: object
+      properties:
+        agentId:
+          format: int32
+          type: integer
+        id:
+          format: uuid
+          description: '[readonly] lease id'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        accountId:
+          format: int64
+          description: account id
+          type: integer
+        name:
+          type: string
+        ip:
+          description: IP address of the lease
+          type: string
+        note:
+          description: not used
+          type: string
+        created:
+          format: date-time
+          description: time lease was created
+          type: string
+        user:
+          description: user for whom the lease was created
+          type: string
+        length:
+          description: the duration of the lease ([D].H:M:S)
+          type: string
+        protocol:
+          description: the network protocol to be used in the lease
+          enum:
+          - ALL
+          - HOPOPT
+          - ICMP
+          - IGMP
+          - GGP
+          - IPV4
+          - ST
+          - TCP
+          - CBT
+          - EGP
+          - IGP
+          - BBN_RCC_MON
+          - NVP2
+          - PUP
+          - ARGUS
+          - EMCON
+          - XNET
+          - CHAOS
+          - UDP
+          - MUX
+          - DCN_MEAS
+          - HMP
+          - PRM
+          - XNS_IDP
+          - TRUNK1
+          - TRUNK2
+          - LEAF1
+          - LEAF2
+          - RDP
+          - IRTP
+          - ISO_TP4
+          - NETBLT
+          - MFE_NSP
+          - MERIT_INP
+          - DCCP
+          - ThreePC
+          - IDPR
+          - XTP
+          - DDP
+          - IDPR_CMTP
+          - TPplusplus
+          - IL
+          - IPV6
+          - SDRP
+          - IPV6_ROUTE
+          - IPV6_FRAG
+          - IDRP
+          - RSVP
+          - GRE
+          - DSR
+          - BNA
+          - ESP
+          - AH
+          - I_NLSP
+          - SWIPE
+          - NARP
+          - MOBILE
+          - TLSP
+          - SKIP
+          - ICMPV6
+          - IPV6_NONXT
+          - IPV6_OPTS
+          - CFTP
+          - SAT_EXPAK
+          - KRYPTOLAN
+          - RVD
+          - IPPC
+          - SAT_MON
+          - VISA
+          - IPCV
+          - CPNX
+          - CPHB
+          - WSN
+          - PVP
+          - BR_SAT_MON
+          - SUN_ND
+          - WB_MON
+          - WB_EXPAK
+          - ISO_IP
+          - VMTP
+          - SECURE_VMTP
+          - VINES
+          - TTP
+          - NSFNET_IGP
+          - DGP
+          - TCF
+          - EIGRP
+          - OSPFIGP
+          - SPRITE_RPC
+          - LARP
+          - MTP
+          - AX25
+          - IPIP
+          - MICP
+          - SCC_SP
+          - ETHERIP
+          - ENCAP
+          - GMTP
+          - IFMP
+          - PNNI
+          - PIM
+          - ARIS
+          - SCPS
+          - QNX
+          - AN
+          - IPCOMP
+          - SNP
+          - COMPAQ_PEER
+          - IPX_IN_IP
+          - VRRP
+          - PGM
+          - L2TP
+          - DDX
+          - IATP
+          - STP
+          - SRP
+          - UTI
+          - SMP
+          - SM
+          - PTP
+          - ISIS
+          - FIRE
+          - CRTP
+          - CRUDP
+          - SSCOPMCE
+          - IPLT
+          - SPS
+          - PIPE
+          - SCTP
+          - FC
+          - RSVP_E2E_IGNORE
+          - MOBILITY_HEADER
+          - UDPLITE
+          - MPLS_IN_IP
+          - MANET
+          - HIP
+          - SHIM6
+          - WESP
+          - ROHC
+          type: string
+        portFrom:
+          format: int32
+          description: the source IP port for the lease
+          type: integer
+        portTo:
+          format: int32
+          description: the destination IP port for the lease
+          type: integer
+        srl:
+          description: internal use only
+          type: string
+    Dome9.Web.Api.Models.AwsAccessLeaseViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          description: AWS account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        region:
+          description: AWS region
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+          type: string
+        securityGroupId:
+          format: int64
+          description: Security Group affected by lease
+          type: integer
+        id:
+          format: uuid
+          description: '[readonly] lease id'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        accountId:
+          format: int64
+          description: account id
+          type: integer
+        name:
+          type: string
+        ip:
+          description: IP address of the lease
+          type: string
+        note:
+          description: not used
+          type: string
+        created:
+          format: date-time
+          description: time lease was created
+          type: string
+        user:
+          description: user for whom the lease was created
+          type: string
+        length:
+          description: the duration of the lease ([D].H:M:S)
+          type: string
+        protocol:
+          description: the network protocol to be used in the lease
+          enum:
+          - ALL
+          - HOPOPT
+          - ICMP
+          - IGMP
+          - GGP
+          - IPV4
+          - ST
+          - TCP
+          - CBT
+          - EGP
+          - IGP
+          - BBN_RCC_MON
+          - NVP2
+          - PUP
+          - ARGUS
+          - EMCON
+          - XNET
+          - CHAOS
+          - UDP
+          - MUX
+          - DCN_MEAS
+          - HMP
+          - PRM
+          - XNS_IDP
+          - TRUNK1
+          - TRUNK2
+          - LEAF1
+          - LEAF2
+          - RDP
+          - IRTP
+          - ISO_TP4
+          - NETBLT
+          - MFE_NSP
+          - MERIT_INP
+          - DCCP
+          - ThreePC
+          - IDPR
+          - XTP
+          - DDP
+          - IDPR_CMTP
+          - TPplusplus
+          - IL
+          - IPV6
+          - SDRP
+          - IPV6_ROUTE
+          - IPV6_FRAG
+          - IDRP
+          - RSVP
+          - GRE
+          - DSR
+          - BNA
+          - ESP
+          - AH
+          - I_NLSP
+          - SWIPE
+          - NARP
+          - MOBILE
+          - TLSP
+          - SKIP
+          - ICMPV6
+          - IPV6_NONXT
+          - IPV6_OPTS
+          - CFTP
+          - SAT_EXPAK
+          - KRYPTOLAN
+          - RVD
+          - IPPC
+          - SAT_MON
+          - VISA
+          - IPCV
+          - CPNX
+          - CPHB
+          - WSN
+          - PVP
+          - BR_SAT_MON
+          - SUN_ND
+          - WB_MON
+          - WB_EXPAK
+          - ISO_IP
+          - VMTP
+          - SECURE_VMTP
+          - VINES
+          - TTP
+          - NSFNET_IGP
+          - DGP
+          - TCF
+          - EIGRP
+          - OSPFIGP
+          - SPRITE_RPC
+          - LARP
+          - MTP
+          - AX25
+          - IPIP
+          - MICP
+          - SCC_SP
+          - ETHERIP
+          - ENCAP
+          - GMTP
+          - IFMP
+          - PNNI
+          - PIM
+          - ARIS
+          - SCPS
+          - QNX
+          - AN
+          - IPCOMP
+          - SNP
+          - COMPAQ_PEER
+          - IPX_IN_IP
+          - VRRP
+          - PGM
+          - L2TP
+          - DDX
+          - IATP
+          - STP
+          - SRP
+          - UTI
+          - SMP
+          - SM
+          - PTP
+          - ISIS
+          - FIRE
+          - CRTP
+          - CRUDP
+          - SSCOPMCE
+          - IPLT
+          - SPS
+          - PIPE
+          - SCTP
+          - FC
+          - RSVP_E2E_IGNORE
+          - MOBILITY_HEADER
+          - UDPLITE
+          - MPLS_IN_IP
+          - MANET
+          - HIP
+          - SHIM6
+          - WESP
+          - ROHC
+          type: string
+        portFrom:
+          format: int32
+          description: the source IP port for the lease
+          type: integer
+        portTo:
+          format: int32
+          description: the destination IP port for the lease
+          type: integer
+        srl:
+          description: internal use only
+          type: string
+    Dome9.Web.Api.Models.AccessLeasesGroupedViewModel:
+      type: object
+      properties:
+        aws:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsAccessLeaseViewModel'
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentAccessLeaseViewModel'
+    Dome9.Web.Api.Models.AwsAccessLeasePostViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          description: AWS account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        region:
+          description: AWS region
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+          type: string
+        securityGroupId:
+          description: Security Group id of Security Group affected by lease. Can be in internal Dome9 format (integer) or external AWS format ("sg-XXXXX")
+          type: string
+        id:
+          format: uuid
+          description: '[readonly] lease id'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        accountId:
+          format: int64
+          description: account id
+          type: integer
+        name:
+          type: string
+        ip:
+          description: IP address of the lease
+          type: string
+        note:
+          description: not used
+          type: string
+        created:
+          format: date-time
+          description: time lease was created
+          type: string
+        user:
+          description: user for whom the lease was created
+          type: string
+        length:
+          description: the duration of the lease ([D].H:M:S)
+          type: string
+        protocol:
+          description: the network protocol to be used in the lease
+          enum:
+          - ALL
+          - HOPOPT
+          - ICMP
+          - IGMP
+          - GGP
+          - IPV4
+          - ST
+          - TCP
+          - CBT
+          - EGP
+          - IGP
+          - BBN_RCC_MON
+          - NVP2
+          - PUP
+          - ARGUS
+          - EMCON
+          - XNET
+          - CHAOS
+          - UDP
+          - MUX
+          - DCN_MEAS
+          - HMP
+          - PRM
+          - XNS_IDP
+          - TRUNK1
+          - TRUNK2
+          - LEAF1
+          - LEAF2
+          - RDP
+          - IRTP
+          - ISO_TP4
+          - NETBLT
+          - MFE_NSP
+          - MERIT_INP
+          - DCCP
+          - ThreePC
+          - IDPR
+          - XTP
+          - DDP
+          - IDPR_CMTP
+          - TPplusplus
+          - IL
+          - IPV6
+          - SDRP
+          - IPV6_ROUTE
+          - IPV6_FRAG
+          - IDRP
+          - RSVP
+          - GRE
+          - DSR
+          - BNA
+          - ESP
+          - AH
+          - I_NLSP
+          - SWIPE
+          - NARP
+          - MOBILE
+          - TLSP
+          - SKIP
+          - ICMPV6
+          - IPV6_NONXT
+          - IPV6_OPTS
+          - CFTP
+          - SAT_EXPAK
+          - KRYPTOLAN
+          - RVD
+          - IPPC
+          - SAT_MON
+          - VISA
+          - IPCV
+          - CPNX
+          - CPHB
+          - WSN
+          - PVP
+          - BR_SAT_MON
+          - SUN_ND
+          - WB_MON
+          - WB_EXPAK
+          - ISO_IP
+          - VMTP
+          - SECURE_VMTP
+          - VINES
+          - TTP
+          - NSFNET_IGP
+          - DGP
+          - TCF
+          - EIGRP
+          - OSPFIGP
+          - SPRITE_RPC
+          - LARP
+          - MTP
+          - AX25
+          - IPIP
+          - MICP
+          - SCC_SP
+          - ETHERIP
+          - ENCAP
+          - GMTP
+          - IFMP
+          - PNNI
+          - PIM
+          - ARIS
+          - SCPS
+          - QNX
+          - AN
+          - IPCOMP
+          - SNP
+          - COMPAQ_PEER
+          - IPX_IN_IP
+          - VRRP
+          - PGM
+          - L2TP
+          - DDX
+          - IATP
+          - STP
+          - SRP
+          - UTI
+          - SMP
+          - SM
+          - PTP
+          - ISIS
+          - FIRE
+          - CRTP
+          - CRUDP
+          - SSCOPMCE
+          - IPLT
+          - SPS
+          - PIPE
+          - SCTP
+          - FC
+          - RSVP_E2E_IGNORE
+          - MOBILITY_HEADER
+          - UDPLITE
+          - MPLS_IN_IP
+          - MANET
+          - HIP
+          - SHIM6
+          - WESP
+          - ROHC
+          type: string
+        portFrom:
+          format: int32
+          description: the source IP port for the lease
+          type: integer
+        portTo:
+          format: int32
+          description: the destination IP port for the lease
+          type: integer
+        srl:
+          description: internal use only
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

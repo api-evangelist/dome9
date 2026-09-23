@@ -1,0 +1,127 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Virtual Network Peering API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Virtual Network Peering
+  type: InventoryAzure
+paths:
+  /v2/AzureVirtualNetworkPeering:
+    get:
+      tags:
+      - Azure Virtual Network Peering
+      operationId: AzureVirtualNetworkPeering_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel'
+      summary: Azure virtual network peering get
+      x-summary-source: derived
+  /v2/AzureVirtualNetworkPeering/{id}:
+    get:
+      tags:
+      - Azure Virtual Network Peering
+      operationId: AzureVirtualNetworkPeering_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel'
+      summary: Azure virtual network peering get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        virtualNetworkId:
+          type: string
+        virtualNetworkName:
+          type: string
+        virtualNetworkExternalId:
+          type: string
+        remoteVirtualNetworkName:
+          type: string
+        peeringState:
+          type: string
+        provisioningState:
+          type: string
+        allowForwardTraffic:
+          type: boolean
+        allowGatewayTransit:
+          type: boolean
+        allowVirtualNetworkAccess:
+          type: boolean
+        lastUpdated:
+          format: date-time
+          type: string
+        remoteVirtualNetworkExternalId:
+          type: string
+        remoteVirtualNetworkId:
+          type: string
+        remoteVirtualNetworkCloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        remoteVirtualNetworkRegion:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

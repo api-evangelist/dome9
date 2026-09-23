@@ -1,0 +1,113 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Inspector Runs API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: AwsInspectorRuns
+  type: Unclassified
+paths:
+  /v2/AwsInspectorRuns:
+    get:
+      tags:
+      - AwsInspectorRuns
+      operationId: AwsInspectorRuns_Get
+      parameters:
+      - name: instanceId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsInspectorRunsViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsInspectorRunsViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsInspectorRunsViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsInspectorRunsViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsInspectorRunsViewModel'
+      summary: Aws inspector runs get
+      x-summary-source: derived
+components:
+  schemas:
+    Falconetix.Model.AwsInspectorRunsViewModel:
+      type: object
+      properties:
+        runArn:
+          type: string
+        templateArn:
+          type: string
+        runName:
+          type: string
+        rulesPackages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsInspectorRulesPackageViewModel'
+        durationInSeconds:
+          format: int32
+          type: integer
+        state:
+          type: string
+        findingsCount:
+          type: object
+          properties:
+            high:
+              format: int32
+              type: integer
+            medium:
+              format: int32
+              type: integer
+            low:
+              format: int32
+              type: integer
+            informational:
+              format: int32
+              type: integer
+        creationTime:
+          format: date-time
+          type: string
+        startTime:
+          format: date-time
+          type: string
+        endTime:
+          format: date-time
+          type: string
+    Falconetix.Model.AwsInspectorRulesPackageViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        provider:
+          type: string
+        version:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

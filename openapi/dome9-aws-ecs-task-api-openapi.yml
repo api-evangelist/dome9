@@ -1,0 +1,343 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Ecs Task API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Ecs Task
+  type: InventoryAwsComputeAndContainers
+paths:
+  /v2/AwsEcsTask:
+    get:
+      tags:
+      - Aws Ecs Task
+      operationId: AwsEcsTask_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsTaskViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsTaskViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsTaskViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsTaskViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsTaskViewModel'
+      summary: Aws ecs task get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudEcsTask.AwsEcsTaskViewModel:
+      type: object
+      properties:
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsAttachmentViewModel'
+        securityGroups:
+          type: array
+          items:
+            type: string
+        clusterArn:
+          type: string
+        connectivity:
+          type: string
+        connectivityAt:
+          format: date-time
+          type: string
+        containerInstanceArn:
+          type: string
+        containers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsContainerViewModel'
+        cpu:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        desiredStatus:
+          type: string
+        executionStoppedAt:
+          format: date-time
+          type: string
+        group:
+          type: string
+        healthStatus:
+          type: string
+        lastStatus:
+          type: string
+        launchType:
+          type: string
+        memory:
+          type: string
+        overrides:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsTaskOverrideViewModel'
+        platformVersion:
+          type: string
+        platformFamily:
+          type: string
+        pullStartedAt:
+          format: date-time
+          type: string
+        pullStoppedAt:
+          format: date-time
+          type: string
+        startedAt:
+          format: date-time
+          type: string
+        startedBy:
+          type: string
+        stoppedAt:
+          format: date-time
+          type: string
+        stoppedReason:
+          type: string
+        stoppingAt:
+          format: date-time
+          type: string
+        taskArn:
+          type: string
+        taskDefinitionArn:
+          type: string
+        version:
+          format: int64
+          type: integer
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        service:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudECSServiceViewModel'
+        name:
+          type: string
+    Dome9.Web.Api.CloudEcsTask.AwsEcsNetworkBindingViewModel:
+      type: object
+      properties:
+        bindIP:
+          type: string
+        containerPort:
+          format: int32
+          type: integer
+        hostPort:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+    Dome9.Web.Api.AwsECSDeploymentConfigurationViewModel:
+      type: object
+      properties:
+        maximumPercent:
+          format: int32
+          type: integer
+        minimumHealthyPercent:
+          format: int32
+          type: integer
+    Dome9.Web.Api.AwsECSPlacementStrategyViewModel:
+      type: object
+      properties:
+        field:
+          type: string
+        type:
+          type: string
+    Dome9.Web.Api.CloudEcsTask.AwsEcsKeyValuePairViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.AwsECSPlacementConstraintViewModel:
+      type: object
+      properties:
+        expression:
+          type: string
+        type:
+          type: string
+    Dome9.Web.Api.CloudEcsTask.AwsEcsTaskOverrideViewModel:
+      type: object
+      properties:
+        containerOverrides:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsContainerOverrideViewModel'
+        executionRoleArn:
+          type: string
+        taskRoleArn:
+          type: string
+    Dome9.Web.Api.AwsECSDeploymentViewModel:
+      type: object
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        desiredCount:
+          format: int32
+          type: integer
+        id:
+          type: string
+        pendingCount:
+          format: int32
+          type: integer
+        runningCount:
+          format: int32
+          type: integer
+        status:
+          type: string
+        taskDefinition:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+    Dome9.Web.Api.CloudEcsTask.AwsEcsAttachmentViewModel:
+      type: object
+      properties:
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsKeyValuePairViewModel'
+        id:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+    Dome9.Web.Api.CloudEcsTask.AwsEcsContainerOverrideViewModel:
+      type: object
+      properties:
+        command:
+          type: array
+          items:
+            type: string
+        cpu:
+          format: int32
+          type: integer
+        environment:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsKeyValuePairViewModel'
+        memory:
+          format: int32
+          type: integer
+        memoryReservation:
+          format: int32
+          type: integer
+        name:
+          type: string
+    Dome9.Web.Api.AwsECSLoadBalancerViewModel:
+      type: object
+      properties:
+        containerName:
+          type: string
+        containerPort:
+          format: int32
+          type: integer
+        loadBalancerName:
+          type: string
+        targetGroupArn:
+          type: string
+    Dome9.Web.Api.CloudEcsTask.AwsEcsContainerViewModel:
+      type: object
+      properties:
+        containerArn:
+          type: string
+        exitCode:
+          format: int32
+          type: integer
+        healthStatus:
+          type: string
+        lastStatus:
+          type: string
+        name:
+          type: string
+        networkBindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsNetworkBindingViewModel'
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTask.AwsEcsNetworkInterfaceViewModel'
+        reason:
+          type: string
+        taskArn:
+          type: string
+        image:
+          type: string
+        imageDigest:
+          type: string
+    Dome9.Web.Api.CloudEcsTask.AwsEcsNetworkInterfaceViewModel:
+      type: object
+      properties:
+        attachmentId:
+          type: string
+        ipv6Address:
+          type: string
+        privateIpv4Address:
+          type: string
+    Dome9.Web.Api.CloudECSServiceViewModel:
+      type: object
+      properties:
+        deploymentConfiguration:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsECSDeploymentConfigurationViewModel'
+        deployments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSDeploymentViewModel'
+        desiredCount:
+          format: int32
+          type: integer
+        loadBalancers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSLoadBalancerViewModel'
+        pendingCount:
+          format: int32
+          type: integer
+        placementConstraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSPlacementConstraintViewModel'
+        placementStrategy:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSPlacementStrategyViewModel'
+        roleArn:
+          type: string
+        runningCount:
+          format: int32
+          type: integer
+        serviceArn:
+          type: string
+        serviceName:
+          type: string
+        status:
+          type: string
+        clusterArn:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

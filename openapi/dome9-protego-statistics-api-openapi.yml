@@ -1,0 +1,76 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Protego Statistics API
+  description: Protego statistics by dates
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Protego Statistics
+  description: Protego statistics by dates
+  type: WorkloadProtection
+paths:
+  /v2/protegoStatistics/invocations:
+    get:
+      tags:
+      - Protego Statistics
+      operationId: ProtegoStatistics_Get
+      parameters:
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Serverless.Protego.ProtegoInvocationsEntity'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Serverless.Protego.ProtegoInvocationsEntity'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Serverless.Protego.ProtegoInvocationsEntity'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Serverless.Protego.ProtegoInvocationsEntity'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Serverless.Protego.ProtegoInvocationsEntity'
+      summary: Protego statistics get
+      x-summary-source: derived
+components:
+  schemas:
+    Falconetix.Model.Serverless.Protego.ProtegoInvocationsEntity:
+      type: object
+      properties:
+        date:
+          format: date-time
+          type: string
+        sum:
+          format: double
+          type: number
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

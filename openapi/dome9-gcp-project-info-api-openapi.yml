@@ -1,0 +1,181 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Gcp Project Info API
+  description: Google Cloud Project Info
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Gcp Project Info
+  description: Google Cloud Project Info
+  type: InventoryGcp
+paths:
+  /v2/GcpProjectInfo:
+    get:
+      tags:
+      - Gcp Project Info
+      summary: Get Project Info for a Google account
+      operationId: GcpProjectInfo_Get
+      parameters:
+      - name: cloudAccountId
+        in: query
+        description: the Google cloud account id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.GcpProjectInfoViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.GcpProjectInfoViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.GcpProjectInfoViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.GcpProjectInfoViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.GcpProjectInfoViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.Google.ProjectInfo.GcpProjectInfoViewModel:
+      type: object
+      properties:
+        defaultServiceAccount:
+          type: string
+        description:
+          type: string
+        enabledFeatures:
+          type: array
+          items:
+            type: string
+        metadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.GcpProjectMetadataViewModel'
+        sharedVpcHostProjectId:
+          type: string
+        projectNumber:
+          type: string
+        projectId:
+          type: string
+        lifecycleState:
+          type: string
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        createTime:
+          format: int64
+          type: integer
+        orgPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyViewModel'
+        accessApprovalSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.GcpProjectAccessApprovalSettingsViewModel'
+    Dome9.Web.Api.Google.ProjectInfo.GcpProjectMetadataViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.ItemsDataViewModel'
+        eTag:
+          type: string
+        kind:
+          type: string
+    Dome9.Web.Api.Google.ProjectInfo.GcpProjectEnrolledServiceViewModel:
+      type: object
+      properties:
+        cloudProduct:
+          type: string
+        enrollmentLevel:
+          type: string
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyBooleanPolicyViewModel:
+      type: object
+      properties:
+        enforced:
+          type: boolean
+    Dome9.Web.Api.Google.ProjectInfo.ItemsDataViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyListPolicyViewModel:
+      type: object
+      properties:
+        allowedValues:
+          type: array
+          items:
+            type: string
+        deniedValues:
+          type: array
+          items:
+            type: string
+        allValues:
+          type: string
+        suggestedValue:
+          type: string
+        inheritFromParent:
+          type: boolean
+    Dome9.Web.Api.Google.ProjectInfo.GcpProjectAccessApprovalSettingsViewModel:
+      type: object
+      properties:
+        notificationEmails:
+          type: array
+          items:
+            type: string
+        enrolledServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.GcpProjectEnrolledServiceViewModel'
+        enrolledAncestor:
+          type: boolean
+        activeKeyVersion:
+          type: string
+        ancestorHasActiveKeyVersion:
+          type: boolean
+        invalidKeyVersion:
+          type: boolean
+    Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyViewModel:
+      type: object
+      properties:
+        version:
+          format: int32
+          type: integer
+        constraint:
+          type: string
+        eTag:
+          type: string
+        listPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyListPolicyViewModel'
+        booleanPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyBooleanPolicyViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

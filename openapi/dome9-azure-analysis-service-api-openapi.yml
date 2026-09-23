@@ -1,0 +1,182 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Analysis Service API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Analysis Service
+  type: InventoryAzure
+paths:
+  /v2/AzureAnalysisService:
+    get:
+      tags:
+      - Azure Analysis Service
+      summary: Fetch all Analysis Service Servers for all cloud accounts
+      operationId: AzureAnalysisService_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceViewModel'
+  /v2/AzureAnalysisService/{id}:
+    get:
+      tags:
+      - Azure Analysis Service
+      summary: Get Analysis Service Server by Dome9Id or throw exception
+      operationId: AzureAnalysisService_Get
+      parameters:
+      - name: id
+        in: path
+        description: Dome9Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceIpV4FirewallSettingsViewModel:
+      type: object
+      properties:
+        enablePowerBIService:
+          type: boolean
+        firewallRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceIPv4FirewallRuleViewModel'
+    Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceIPv4FirewallRuleViewModel:
+      type: object
+      properties:
+        firewallRuleName:
+          type: string
+        rangeStart:
+          type: string
+        rangeEnd:
+          type: string
+    Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceSkuViewModel:
+      type: object
+      properties:
+        capacity:
+          format: int64
+          type: integer
+        name:
+          type: string
+        tier:
+          type: string
+    Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceGatewayDetailsViewModel:
+      type: object
+      properties:
+        dmtsClusterUri:
+          type: string
+        gatewayObjectId:
+          type: string
+        gatewayResourceId:
+          type: string
+    Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServicePropertiesViewModel:
+      type: object
+      properties:
+        asAdministrators:
+          type: array
+          items:
+            type: string
+        backupBlobContainerUri:
+          type: string
+        ipV4FirewallSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceIpV4FirewallSettingsViewModel'
+        gatewayDetails:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceGatewayDetailsViewModel'
+        provisioningState:
+          type: string
+        querypoolConnectionMode:
+          type: string
+        serverFullName:
+          type: string
+        state:
+          type: string
+    Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        subscriptionId:
+          type: string
+        resourceGroup:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureResourceGroupViewModel'
+        properties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServicePropertiesViewModel'
+        sku:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AnalysisService.AzureAnalysisServiceSkuViewModel'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Dome9.Web.Api.Models.AzureResourceGroupViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

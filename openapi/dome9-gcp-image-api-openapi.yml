@@ -1,0 +1,92 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Gcp Image API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Gcp Image
+  type: InventoryGcp
+paths:
+  /v2/GcpImage:
+    get:
+      tags:
+      - Gcp Image
+      operationId: GcpImage_Get
+      parameters:
+      - name: externalId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpImage.GcpImageViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpImage.GcpImageViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpImage.GcpImageViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpImage.GcpImageViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpImage.GcpImageViewModel'
+      summary: Gcp image get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Google.GcpImage.GcpImageViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        creationTimestamp:
+          format: int64
+          type: integer
+        status:
+          type: string
+        sourceType:
+          type: string
+        sourceSnapshotId:
+          type: string
+        sourceSnapshot:
+          type: string
+        sourceImage:
+          type: string
+        sourceDiskId:
+          type: string
+        sourceDisk:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

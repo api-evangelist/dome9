@@ -1,0 +1,141 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Managed Generic List API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: ManagedGenericList
+  type: Unclassified
+paths:
+  /v2/ManagedGenericList/ValidateName:
+    post:
+      tags:
+      - ManagedGenericList
+      summary: Get all generic lists
+      operationId: ManagedGenericList_ValidateName
+      parameters:
+      - name: genericListName
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/html:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+  /v2/ManagedGenericList/{id}:
+    get:
+      tags:
+      - ManagedGenericList
+      summary: Get a generic list by its ID
+      operationId: ManagedGenericList_Get
+      parameters:
+      - name: id
+        in: path
+        description: Generic list ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListResponseViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListResponseViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListResponseViewModel'
+  /v2/ManagedGenericList:
+    get:
+      tags:
+      - ManagedGenericList
+      summary: Get all generic lists
+      operationId: ManagedGenericList_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListResponseViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListResponseViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListResponseViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListResponseViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListResponseViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.GenericList.GenericListResponseViewModel:
+      required:
+      - id
+      - name
+      - items
+      type: object
+      properties:
+        isManaged:
+          type: boolean
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          pattern: '[a-zA-Z0-9/\-_:]*[a-zA-Z]+[a-zA-Z0-9/\-_:]*'
+          type: string
+        description:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListValueViewModel'
+    Dome9.Web.Api.GenericList.GenericListValueViewModel:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          pattern: '[a-zA-Z0-9/.\-_:%*{}()=!&|\\$#~^+@ \u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff]+'
+          type: string
+        comment:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

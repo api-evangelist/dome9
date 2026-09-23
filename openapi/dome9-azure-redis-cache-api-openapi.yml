@@ -1,0 +1,261 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Redis Cache API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Redis Cache
+  type: InventoryAzure
+paths:
+  /v2/AzureRedisCache:
+    get:
+      tags:
+      - Azure Redis Cache
+      operationId: AzureRedisCache_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisCacheViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisCacheViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisCacheViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisCacheViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisCacheViewModel'
+      summary: Azure redis cache get
+      x-summary-source: derived
+  /v2/AzureRedisCache/{id}:
+    get:
+      tags:
+      - Azure Redis Cache
+      operationId: AzureRedisCache_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisCacheViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisCacheViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisCacheViewModel'
+      summary: Azure redis cache get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureSkuViewModel:
+      type: object
+      properties:
+        capacity:
+          format: int32
+          type: integer
+        family:
+          type: string
+        name:
+          type: string
+    Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        eventHubAuthorizationRuleId:
+          type: string
+        eventHubName:
+          type: string
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel'
+        storageAccount:
+          type: string
+        workspaceId:
+          type: string
+    Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel:
+      type: object
+      properties:
+        category:
+          type: string
+        enabled:
+          type: boolean
+        retentionDays:
+          format: int32
+          type: integer
+        retentionStatus:
+          type: boolean
+        timeGrain:
+          type: string
+    Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisCacheViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        enableNonSslPort:
+          type: boolean
+        hostName:
+          type: string
+        linkedServersIds:
+          type: array
+          items:
+            type: string
+        nonSslPort:
+          format: int32
+          type: integer
+        provisioningState:
+          type: string
+        redisConfiguration:
+          type: array
+          items:
+            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
+        redisVersion:
+          type: string
+        shardCount:
+          format: int32
+          type: integer
+        sku:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureSkuViewModel'
+        sslPort:
+          format: int32
+          type: integer
+        staticIP:
+          type: string
+        subnetId:
+          type: string
+        tenantSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
+        zones:
+          type: array
+          items:
+            type: string
+        firewallRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisFirewallRuleViewModel'
+        linkedServers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisLinkedServerViewModel'
+        scheduleUpdates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisScheduleEntryViewModel'
+        diagnosticSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel'
+    Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel:
+      type: object
+      properties:
+        category:
+          type: string
+        categoryGroup:
+          type: string
+        enabled:
+          type: boolean
+        retentionDays:
+          format: int32
+          type: integer
+        retentionStatus:
+          type: boolean
+    Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisScheduleEntryViewModel:
+      type: object
+      properties:
+        dayOfWeek:
+          type: string
+        maintenanceWindow:
+          type: string
+        startHourUtc:
+          format: int32
+          type: integer
+    System.Collections.Generic.KeyValuePair_System.String_System.String:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisFirewallRuleViewModel:
+      type: object
+      properties:
+        endIp:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        startIp:
+          type: string
+    Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisLinkedServerViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        linkedRedisCacheId:
+          type: string
+        linkedRedisCacheLocation:
+          type: string
+        name:
+          type: string
+        provisioningState:
+          type: string
+        serverRole:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,112 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Volume API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Volume
+  type: InventoryAwsComputeAndContainers
+paths:
+  /v2/CloudVolume:
+    get:
+      tags:
+      - Cloud Volume
+      operationId: CloudVolume_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudVolume.CloudVolumeViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudVolume.CloudVolumeViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudVolume.CloudVolumeViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudVolume.CloudVolumeViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudVolume.CloudVolumeViewModel'
+      summary: Cloud volume get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudVolume.CloudVolumeAttachmentViewModel:
+      type: object
+      properties:
+        attachTime:
+          format: date-time
+          type: string
+        deleteOnTermination:
+          type: boolean
+        device:
+          type: string
+        instanceId:
+          type: string
+        state:
+          type: string
+        volumeId:
+          type: string
+    Dome9.Web.Api.CloudVolume.CloudVolumeViewModel:
+      type: object
+      properties:
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudVolume.CloudVolumeAttachmentViewModel'
+        availabilityZone:
+          type: string
+        createTime:
+          format: date-time
+          type: string
+        encrypted:
+          type: boolean
+        iops:
+          format: int32
+          type: integer
+        kmsKeyId:
+          type: string
+        size:
+          format: int32
+          type: integer
+        snapshotId:
+          type: string
+        state:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        volumeId:
+          type: string
+        volumeType:
+          type: string
+        region:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccountNumber:
+          type: string
+        id:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

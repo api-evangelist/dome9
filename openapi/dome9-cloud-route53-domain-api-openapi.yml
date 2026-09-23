@@ -1,0 +1,145 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Route53 Domain API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Route53 Domain
+  type: InventoryAwsNetworkingAndContentDelivery
+paths:
+  /v2/CloudRoute53Domain:
+    get:
+      tags:
+      - Cloud Route53 Domain
+      operationId: CloudRoute53Domain_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
+      summary: Cloud route53 domain get
+      x-summary-source: derived
+  /v2/CloudRoute53Domain/{id}:
+    get:
+      tags:
+      - Cloud Route53 Domain
+      operationId: CloudRoute53Domain_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
+      summary: Cloud route53 domain get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudRoute53.CloudRoute53DomainDetailsViewModel:
+      type: object
+      properties:
+        registrarName:
+          type: string
+        registrarUrl:
+          type: string
+        registryDomainId:
+          type: string
+        reseller:
+          type: string
+        nameservers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainNameserverViewModel'
+        dnsSec:
+          type: string
+        statusList:
+          type: array
+          items:
+            type: string
+        whoIsServer:
+          type: string
+        creationTime:
+          format: date-time
+          type: string
+        updatedTime:
+          format: date-time
+          type: string
+    Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        domainName:
+          type: string
+        autoRenew:
+          type: boolean
+        transferLock:
+          type: boolean
+        expirationTime:
+          format: date-time
+          type: string
+        details:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainDetailsViewModel'
+    Dome9.Web.Api.CloudRoute53.CloudRoute53DomainNameserverViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        glueIps:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

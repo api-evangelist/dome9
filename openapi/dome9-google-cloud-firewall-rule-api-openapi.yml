@@ -1,0 +1,120 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Google Cloud Firewall Rule API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Google Cloud Firewall Rule
+  type: InventoryGcp
+paths:
+  /v2/GoogleCloudFirewallRule:
+    get:
+      tags:
+      - Google Cloud Firewall Rule
+      operationId: GoogleCloudFirewallRule_Get
+      parameters:
+      - name: cloudAccountId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Firewall.GoogleCloudFirewallRuleViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Firewall.GoogleCloudFirewallRuleViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Firewall.GoogleCloudFirewallRuleViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Firewall.GoogleCloudFirewallRuleViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Firewall.GoogleCloudFirewallRuleViewModel'
+      summary: Google cloud firewall rule get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Google.Firewall.GoogleFirewallRuleScopeViewModel:
+      type: object
+      properties:
+        ipProtocol:
+          type: string
+        ports:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Google.Firewall.GoogleCloudFirewallRuleViewModel:
+      type: object
+      properties:
+        creationTimestamp:
+          type: string
+        allowed:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Firewall.GoogleFirewallRuleScopeViewModel'
+        denied:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Firewall.GoogleFirewallRuleScopeViewModel'
+        destinationRanges:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        network:
+          type: string
+        sourceRanges:
+          type: array
+          items:
+            type: string
+        sourceTags:
+          type: array
+          items:
+            type: string
+        targetTags:
+          type: array
+          items:
+            type: string
+        isProtected:
+          type: boolean
+        priority:
+          format: int32
+          type: integer
+        direction:
+          enum:
+          - Ingress
+          - Egress
+          type: string
+        enabled:
+          type: boolean
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

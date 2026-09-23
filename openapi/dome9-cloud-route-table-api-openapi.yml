@@ -1,0 +1,132 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Route Table API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Route Table
+  type: InventoryAwsNetworkingAndContentDelivery
+paths:
+  /v2/CloudRouteTable:
+    get:
+      tags:
+      - Cloud Route Table
+      operationId: CloudRouteTable_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRouteTables.CloudRouteTableViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRouteTables.CloudRouteTableViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRouteTables.CloudRouteTableViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRouteTables.CloudRouteTableViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRouteTables.CloudRouteTableViewModel'
+      summary: Cloud route table get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudRouteTables.CloudRouteViewModel:
+      type: object
+      properties:
+        destinationCidrBlock:
+          type: string
+        destinationIpv6CidrBlock:
+          type: string
+        destinationPrefixListId:
+          type: string
+        egressOnlyInternetGatewayId:
+          type: string
+        gatewayId:
+          type: string
+        instanceId:
+          type: string
+        instanceOwnerId:
+          type: string
+        natGatewayId:
+          type: string
+        networkInterfaceId:
+          type: string
+        origin:
+          type: string
+        state:
+          type: string
+        vpcPeeringConnectionId:
+          type: string
+        transitGatewayId:
+          type: string
+    Dome9.Web.Api.CloudRouteTables.CloudRouteTableAssociationViewModel:
+      type: object
+      properties:
+        isMain:
+          type: boolean
+        routeTableAssociationId:
+          type: string
+        routeTableId:
+          type: string
+        subnetId:
+          type: string
+    Dome9.Web.Api.CloudRouteTables.CloudRouteTableViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        vpcId:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        routeTableId:
+          type: string
+          readOnly: true
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudRouteTables.CloudRouteViewModel'
+        propagatingVgws:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudRouteTables.CloudPropagatingVgwViewModel'
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudRouteTables.CloudRouteTableAssociationViewModel'
+    Dome9.Web.Api.CloudRouteTables.CloudPropagatingVgwViewModel:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

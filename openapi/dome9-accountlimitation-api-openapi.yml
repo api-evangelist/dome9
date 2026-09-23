@@ -1,0 +1,25 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Account Limitation API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: AccountLimitation
+  type: Unclassified
+paths:
+  /v2/accountlimitation/clarityentriescount:
+    put:
+      tags:
+      - AccountLimitation
+      operationId: AccountLimitation_ClarityEntriesCount
+      responses:
+        '204':
+          description: No Content
+      summary: Account limitation clarity entries count
+      x-summary-source: derived
+components:
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

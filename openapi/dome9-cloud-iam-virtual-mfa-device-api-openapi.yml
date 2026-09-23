@@ -1,0 +1,78 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Iam Virtual Mfa Device API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Iam Virtual Mfa Device
+  type: InventoryAwsIam
+paths:
+  /v2/CloudIamVirtualMfaDevice:
+    get:
+      tags:
+      - Cloud Iam Virtual Mfa Device
+      operationId: CloudIamVirtualMfaDevice_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamVirtualMfaDevices.CloudIamVirtualMfaDeviceViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamVirtualMfaDevices.CloudIamVirtualMfaDeviceViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamVirtualMfaDevices.CloudIamVirtualMfaDeviceViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamVirtualMfaDevices.CloudIamVirtualMfaDeviceViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamVirtualMfaDevices.CloudIamVirtualMfaDeviceViewModel'
+      summary: Cloud iam virtual mfa device get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudIamVirtualMfaDevices.CloudIamVirtualMfaDeviceViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        enableDate:
+          format: date-time
+          type: string
+        serialNumber:
+          type: string
+        userName:
+          type: string
+        userArn:
+          type: string
+        userId:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,339 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud VPN Connection API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: CloudVPN Connection
+  type: InventoryAwsNetworkingAndContentDelivery
+paths:
+  /v2/CloudVPNConnection:
+    get:
+      tags:
+      - CloudVPN Connection
+      operationId: CloudVPNConnection_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsVPNConnectionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsVPNConnectionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsVPNConnectionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsVPNConnectionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsVPNConnectionViewModel'
+      summary: Cloud VPN connection get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase1IntegrityAlgorithmViewModel:
+      type: object
+      properties:
+        value:
+          type: string
+    Falconetix.Model.AwsVPNConnectionViewModel:
+      type: object
+      properties:
+        customerGatewayConfiguration:
+          $ref: '#/components/schemas/Falconetix.Model.AwsVpnConnectionCustomerGatewayConfigurationViewModel'
+        customerGatewayId:
+          type: string
+        options:
+          $ref: '#/components/schemas/Falconetix.Model.AwsEC2VpnConnectionOptionsViewModel'
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsEC2VpnStaticRouteViewModel'
+        state:
+          type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsEC2TagViewModel'
+        type:
+          type: string
+        vgwTelemetry:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsEC2VgwTelemetryViewModel'
+        vpnConnectionId:
+          type: string
+        vpnGatewayId:
+          type: string
+    Falconetix.Model.VpcConnectionDeadPeerDetectionViewModel:
+      type: object
+      properties:
+        interval:
+          format: int32
+          type: integer
+        retries:
+          format: int32
+          type: integer
+    Falconetix.Model.VpcConnectionCustomerGatewayViewModel:
+      type: object
+      properties:
+        tunnelOutsideAddress:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionTunnelOutsideAddressViewModel'
+        tunnelInsideAddress:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionTunnelInsideAddressViewModel'
+        bgp:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionBgpViewModel'
+    Falconetix.Model.VpcConnectionTunnelInsideAddressViewModel:
+      type: object
+      properties:
+        ipAddress:
+          type: string
+        networkMask:
+          type: string
+        networkCidr:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnTunnelOptionSetViewModel:
+      type: object
+      properties:
+        dpdTimeoutAction:
+          type: string
+        dpdTimeoutSeconds:
+          format: int32
+          type: integer
+        ikeVersions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnIKEVersionViewModel'
+        outsideIpAddress:
+          type: string
+        phase1DHGroupNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase1DHGroupNumberViewModel'
+        phase1EncryptionAlgorithms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase1EncryptionAlgorithmViewModel'
+        phase1IntegrityAlgorithms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase1IntegrityAlgorithmViewModel'
+        phase1LifetimeSeconds:
+          format: int32
+          type: integer
+        phase2DHGroupNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase2DHGroupNumberViewModel'
+        phase2EncryptionAlgorithms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase2EncryptionAlgorithmViewModel'
+        phase2IntegrityAlgorithms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase2IntegrityAlgorithmViewModel'
+        phase2LifetimeSeconds:
+          format: int32
+          type: integer
+        preSharedKey:
+          type: string
+        rekeyFuzzPercentage:
+          format: int32
+          type: integer
+        rekeyMarginTimeSeconds:
+          format: int32
+          type: integer
+        replayWindowSize:
+          format: int32
+          type: integer
+        startupAction:
+          type: string
+        tunnelInsideCidr:
+          type: string
+        tunnelInsideIpv6Cidr:
+          type: string
+    Falconetix.Model.AwsEC2VgwTelemetryViewModel:
+      type: object
+      properties:
+        acceptedRouteCount:
+          format: int32
+          type: integer
+        lastStatusChange:
+          format: date-time
+          type: string
+        outsideIpAddress:
+          type: string
+        status:
+          type: string
+        statusMessage:
+          type: string
+    Falconetix.Model.AwsVpnConnectionCustomerGatewayConfigurationViewModel:
+      type: object
+      properties:
+        customerGatewayId:
+          type: string
+        vpnGatewayId:
+          type: string
+        vpnConnectionType:
+          type: string
+        vpnConnectionAttributes:
+          type: string
+        ipsecTunnel:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.VpcConnectionIpsecTunnelViewModel'
+        id:
+          type: string
+    Falconetix.Model.VpcConnectionTunnelOutsideAddressViewModel:
+      type: object
+      properties:
+        ipAddress:
+          type: string
+    Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase1DHGroupNumberViewModel:
+      type: object
+      properties:
+        value:
+          format: int32
+          type: integer
+    Falconetix.Model.VpcConnectionIpsecViewModel:
+      type: object
+      properties:
+        protocol:
+          type: string
+        authenticationProtocol:
+          type: string
+        encryptionProtocol:
+          type: string
+        lifetime:
+          format: int32
+          type: integer
+        perfectForwardSecrecy:
+          type: string
+        mode:
+          type: string
+        clearDfBit:
+          type: string
+        fragmentationBeforeEncryption:
+          type: string
+        tcpMssAdjustment:
+          format: int32
+          type: integer
+        deadPeerDetection:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionDeadPeerDetectionViewModel'
+    Falconetix.Model.AwsEC2TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnIKEVersionViewModel:
+      type: object
+      properties:
+        value:
+          type: string
+    Falconetix.Model.VpcConnectionIpsecTunnelViewModel:
+      type: object
+      properties:
+        customerGateway:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionCustomerGatewayViewModel'
+        vpnGateway:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionVpnGatewayViewModel'
+        ike:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionIkeViewModel'
+        ipsec:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionIpsecViewModel'
+    Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase2EncryptionAlgorithmViewModel:
+      type: object
+      properties:
+        value:
+          type: string
+    Falconetix.Model.VpcConnectionVpnGatewayViewModel:
+      type: object
+      properties:
+        tunnelOutsideAddress:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionTunnelOutsideAddressViewModel'
+        tunnelInsideAddress:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionTunnelInsideAddressViewModel'
+        bgp:
+          $ref: '#/components/schemas/Falconetix.Model.VpcConnectionBgpViewModel'
+    Falconetix.Model.VpcConnectionIkeViewModel:
+      type: object
+      properties:
+        authenticationProtocol:
+          type: string
+        encryptionProtocol:
+          type: string
+        lifetime:
+          format: int32
+          type: integer
+        perfectForwardSecrecy:
+          type: string
+        mode:
+          type: string
+        preSharedKey:
+          type: string
+    Falconetix.Model.AwsEC2VpnStaticRouteViewModel:
+      type: object
+      properties:
+        destinationCidrBlock:
+          type: string
+        source:
+          type: string
+        state:
+          type: string
+    Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase2IntegrityAlgorithmViewModel:
+      type: object
+      properties:
+        value:
+          type: string
+    Falconetix.Model.VpcConnectionBgpViewModel:
+      type: object
+      properties:
+        asn:
+          format: int64
+          type: integer
+        holdTime:
+          format: int64
+          type: integer
+    Falconetix.Model.AwsEC2VpnConnectionOptionsViewModel:
+      type: object
+      properties:
+        staticRoutesOnly:
+          type: boolean
+        tunnelOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnTunnelOptionSetViewModel'
+    Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase2DHGroupNumberViewModel:
+      type: object
+      properties:
+        value:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudVPNConnection.AwsEC2VpnPhase1EncryptionAlgorithmViewModel:
+      type: object
+      properties:
+        value:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

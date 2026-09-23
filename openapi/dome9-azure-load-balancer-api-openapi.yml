@@ -1,0 +1,221 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Load Balancer API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Load Balancer
+  type: InventoryAzure
+paths:
+  /v2/AzureLoadBalancer:
+    get:
+      tags:
+      - Azure Load Balancer
+      operationId: AzureLoadBalancer_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureLoadBalancerViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureLoadBalancerViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureLoadBalancerViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureLoadBalancerViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureLoadBalancerViewModel'
+      summary: Azure load balancer get
+      x-summary-source: derived
+  /v2/AzureLoadBalancer/{id}:
+    get:
+      tags:
+      - Azure Load Balancer
+      operationId: AzureLoadBalancer_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureLoadBalancerViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureLoadBalancerViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureLoadBalancerViewModel'
+      summary: Azure load balancer get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Models.AzureLoadBalancerViewModel:
+      type: object
+      properties:
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        loadBalancerType:
+          type: string
+        virtualNetworkId:
+          type: string
+        virtualNetworkName:
+          type: string
+        backendAddressPools:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureBackendAddressPoolViewModel'
+        healthProbes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureLoadBalancerProbeViewModel'
+        inboundNatServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureInboundNatServiceViewModel'
+        loadBalancingServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureLoadBalancingServiceViewModel'
+        ipConfigurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureIPConfigurationViewModel'
+    Dome9.Web.Api.Models.AzureIPConfigurationViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        publicIPAddress:
+          type: string
+        publicIPAllocationMethod:
+          enum:
+          - Unallocated
+          - Dynamic
+          - Static
+          type: string
+        dnsName:
+          type: string
+        privateIPAddress:
+          type: string
+        privateIPAllocationMethod:
+          enum:
+          - Unallocated
+          - Dynamic
+          - Static
+          type: string
+        subnet:
+          type: string
+    Dome9.Web.Api.Models.AzureLoadBalancingServiceViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        protocol:
+          type: string
+        backendAddressPool:
+          type: string
+        backendPort:
+          format: int32
+          type: integer
+        frontendPort:
+          format: int32
+          type: integer
+        probe:
+          type: string
+        idleTimeoutInMinutes:
+          format: int32
+          type: integer
+        loadDistribution:
+          type: string
+        enableFloatingIP:
+          type: boolean
+    Dome9.Web.Api.Models.AzureLoadBalancerProbeViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        protocol:
+          type: string
+        port:
+          format: int32
+          type: integer
+        intervalInSeconds:
+          format: int32
+          type: integer
+        unhealthyThreshold:
+          format: int32
+          type: integer
+        requestPath:
+          type: string
+    Dome9.Web.Api.Models.AzureBackendAddressPoolViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        virtualMachines:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Models.AzureInboundNatServiceViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        virtualMachineTarget:
+          type: string
+        backendPort:
+          format: int32
+          type: integer
+        frontendPort:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+        enableFloatingIP:
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

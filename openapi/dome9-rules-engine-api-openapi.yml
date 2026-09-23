@@ -1,0 +1,85 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Rules Engine API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Rules Engine
+  type: Unclassified
+paths:
+  /v2/RulesEngine:
+    get:
+      tags:
+      - Rules Engine
+      operationId: RulesEngine_GetRuleObjectModels
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Controllers.RuleObjectModelResultViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Controllers.RuleObjectModelResultViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Controllers.RuleObjectModelResultViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Controllers.RuleObjectModelResultViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Controllers.RuleObjectModelResultViewModel'
+      summary: Rules engine get rule object models
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Controllers.RuleObjectModelResultViewModel:
+      type: object
+      properties:
+        ruleEntityTypeName:
+          type: string
+        objectModel:
+          type: object
+        cloudType:
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

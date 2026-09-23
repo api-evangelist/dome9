@@ -1,0 +1,369 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Assessment API
+  description: Run and View Compliance Assessments
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Assessment
+  description: Run and View Compliance Assessments
+  type: PostureManagement
+paths:
+  /v2/assessment/bundleV2:
+    post:
+      tags:
+      - Assessment
+      summary: Run an assessment on a cloud environment using a bundle (V2)
+      operationId: Assessment_RunBundleV2Async
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentResultViewModel_Newtonsoft.Json.Linq.JRaw'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentResultViewModel_Newtonsoft.Json.Linq.JRaw'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentResultViewModel_Newtonsoft.Json.Linq.JRaw'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentBundleRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentBundleRequestViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentBundleRequestViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentBundleRequestViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentBundleRequestViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentBundleRequestViewModel'
+        description: The assessment request block
+        required: true
+components:
+  schemas:
+    Falconetix.Model.RuleEngine.ViewModels.LocationConventionMetadataViewModel:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+        externalId:
+          type: string
+    Falconetix.Model.Entites.RuleEngine.LocationMetadata:
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.LocationConventionMetadataViewModel'
+    Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentBundleRequestViewModel:
+      type: object
+      properties:
+        id:
+          format: int64
+          description: the bundle id
+          type: integer
+        version:
+          type: string
+        name:
+          description: the bundle name
+          type: string
+        description:
+          description: the bundle description
+          type: string
+        dome9CloudAccountId:
+          format: uuid
+          description: The Dome9 account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalCloudAccountId:
+          description: account id on cloud provider (AWS, Azure, GCP)
+          type: string
+        cloudAccountId:
+          description: account id on cloud provider (AWS, Azure, GCP)
+          type: string
+        cloudAccountType:
+          description: the cloud provider (AWS/Azure/GCP)
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        requestId:
+          format: uuid
+          description: the assessment id (returned in the response)
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        shouldMinimizeResult:
+          description: Minimized the entity results
+          type: boolean
+    Falconetix.Model.RuleEngine.ViewModels.Assessment.EntityWithPermissionIssueViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        cloudVendorIdentifier:
+          type: string
+    Falconetix.Model.RuleEngine.Entities.ValidationResult:
+      type: object
+      properties:
+        validationStatus:
+          enum:
+          - Relevant
+          - Valid
+          - Excluded
+          type: string
+        isRelevant:
+          description: 'means if entity is relevant for this rule
+
+            for example rule = "Instance where name like ''%db%'' should have...", returns false in instance name = ''scheduler1'''
+          type: boolean
+        isValid:
+          description: 'means if entity is compliant.
+
+            for example for rule="Instance should have vpc", return true if instance i-123 is under vpc-234, and false if not'
+          type: boolean
+        isExcluded:
+          description: 'means if entity is excluded.
+
+            for example for rule="Instance should have vpc exclude name=''test''", return true if instance name is test, and false if not'
+          type: boolean
+        exclusionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        remediationId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        error:
+          description: note that the lambda is not aware of this field
+          type: string
+        testObj:
+          description: note that the lambda is not aware of this field
+          type: object
+    Falconetix.Model.RuleEngine.Entities.RuleTestResult:
+      type: object
+      properties:
+        error:
+          type: string
+        testedCount:
+          format: int32
+          type: integer
+        relevantCount:
+          format: int32
+          type: integer
+        nonComplyingCount:
+          format: int32
+          type: integer
+        exclusionStats:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleTestResultStats'
+        entityResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.ValidationResult'
+        rule:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleEntity'
+        testPassed:
+          type: boolean
+    Falconetix.Model.RuleEngine.Entities.RuleTestResultStats:
+      type: object
+      properties:
+        testedCount:
+          format: int32
+          type: integer
+        relevantCount:
+          format: int32
+          type: integer
+        nonComplyingCount:
+          format: int32
+          type: integer
+    Falconetix.Model.RuleEngine.ViewModels.Assessment.BaseAssessmentRequestViewModel:
+      description: 'Roy note: This is a temp impl that unites the request the result and the rule. All these 3 concepts will be split.'
+      type: object
+      properties:
+        dome9CloudAccountId:
+          format: uuid
+          description: The Dome9 account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalCloudAccountId:
+          description: account id on cloud provider (AWS, Azure, GCP)
+          type: string
+        cloudAccountId:
+          description: account id on cloud provider (AWS, Azure, GCP)
+          type: string
+        cloudAccountType:
+          description: the cloud provider (AWS/Azure/GCP)
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        requestId:
+          format: uuid
+          description: the assessment id (returned in the response)
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        shouldMinimizeResult:
+          description: Minimized the entity results
+          type: boolean
+    Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentResultViewModel_Newtonsoft.Json.Linq.JRaw:
+      description: the API result structure. Aggregates results from multiple tests
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.BaseAssessmentRequestViewModel'
+          description: Request information
+        tests:
+          description: Tests results
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleTestResult'
+        locationMetadata:
+          $ref: '#/components/schemas/Falconetix.Model.Entites.RuleEngine.LocationMetadata'
+          description: Location metadata
+        testEntities:
+          description: list of the cloud entities that were tested by the bundle
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: object
+        dataSyncStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentDataSyncStatusEntityViewModel'
+        assessmentPassed:
+          description: assessment passed
+          type: boolean
+          readOnly: true
+        hasErrors:
+          description: assessment has errors
+          type: boolean
+          readOnly: true
+        id:
+          format: int64
+          type: integer
+        assessmentId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Falconetix.Model.RuleEngine.Entities.RuleEntity:
+      type: object
+      properties:
+        rlmId:
+          format: uuid
+          description: rlm rule id, do not expose this on API for now
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: rule name
+          type: string
+        severity:
+          description: rule severity (High/Medium/Low)
+          enum:
+          - Informational
+          - Low
+          - Medium
+          - High
+          - Critical
+          type: string
+        logic:
+          description: the GSL statement for the rule (text string)
+          type: string
+        description:
+          description: description of the rule (text)
+          type: string
+        remediation:
+          description: remediation text for the rule (text)
+          type: string
+        cloudbots:
+          description: the Cloudbots section for the rule (optional)
+          type: string
+        complianceTag:
+          description: the compliance section for the rule (optional)
+          type: string
+        domain:
+          description: this field is not used
+          type: string
+        priority:
+          description: this field is not used
+          type: string
+        controlTitle:
+          description: this field is not used
+          type: string
+        ruleId:
+          description: this field is not used
+          type: string
+        category:
+          description: Rule Category
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        logicHash:
+          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
+          type: string
+          readOnly: true
+        isDefault:
+          description: The property represents default rule
+          type: boolean
+          readOnly: true
+    Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentDataSyncStatusEntityViewModel:
+      type: object
+      properties:
+        entityType:
+          type: string
+        recentlySuccessfulSync:
+          type: boolean
+        generalFetchPermissionIssues:
+          type: boolean
+        entitiesWithPermissionIssues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.EntityWithPermissionIssueViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

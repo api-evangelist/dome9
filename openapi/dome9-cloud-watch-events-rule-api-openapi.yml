@@ -1,0 +1,111 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Watch Events Rule API
+  description: CloudWatchEventsRule
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Watch Events Rule
+  description: CloudWatchEventsRule
+  type: InventoryAwsManagementTools
+paths:
+  /v2/CloudWatchEventsRule:
+    get:
+      tags:
+      - Cloud Watch Events Rule
+      operationId: CloudWatchEventsRule_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.EventRule.EventRuleViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.EventRule.EventRuleViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.EventRule.EventRuleViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.EventRule.EventRuleViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.EventRule.EventRuleViewModel'
+      summary: Cloud watch events rule get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.EventRule.EventRuleViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        roleArn:
+          type: string
+        managedBy:
+          type: string
+        eventPattern:
+          type: string
+        description:
+          type: string
+        arn:
+          type: string
+        scheduleExpression:
+          type: string
+        state:
+          enum:
+          - Enabled
+          - Disabled
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.EventRule.AwsEventTargetViewModel'
+    Dome9.Web.Api.EventRule.AwsEventTargetTransformerViewModel:
+      type: object
+      properties:
+        inputPathsMap:
+          type: object
+          additionalProperties:
+            type: string
+        inputTemplate:
+          type: string
+    Dome9.Web.Api.EventRule.AwsEventTargetSqsViewModel:
+      type: object
+      properties:
+        messageGroupId:
+          type: string
+    Dome9.Web.Api.EventRule.AwsEventTargetViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        input:
+          type: string
+        inputPath:
+          type: string
+        roleArn:
+          type: string
+        inputTransformer:
+          $ref: '#/components/schemas/Dome9.Web.Api.EventRule.AwsEventTargetTransformerViewModel'
+        sqsParameters:
+          $ref: '#/components/schemas/Dome9.Web.Api.EventRule.AwsEventTargetSqsViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

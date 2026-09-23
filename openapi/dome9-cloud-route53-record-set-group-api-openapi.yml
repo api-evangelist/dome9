@@ -1,0 +1,352 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Route53 Record Set Group API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Route53 Record Set Group
+  type: InventoryAwsNetworkingAndContentDelivery
+paths:
+  /v2/CloudRoute53RecordSetGroup:
+    get:
+      tags:
+      - Cloud Route53 Record Set Group
+      operationId: CloudRoute53RecordSetGroup_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53RecordSetGroupViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53RecordSetGroupViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53RecordSetGroupViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53RecordSetGroupViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53RecordSetGroupViewModel'
+      summary: Cloud route53 record set group get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordSetViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        setIdentifier:
+          type: string
+        weight:
+          format: int64
+          type: integer
+        region:
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+          type: string
+        geoLocation:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53GeoLocationViewModel'
+        failover:
+          type: string
+        multiValueAnswer:
+          type: boolean
+        ttl:
+          format: int64
+          type: integer
+        resourceRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordViewModel'
+        aliasTarget:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53AliasTargetViewModel'
+        healthCheckId:
+          type: string
+        trafficPolicyInstanceId:
+          type: string
+    Dome9.Web.Api.CloudRoute53.CloudRoute53LinkedServiceViewModel:
+      type: object
+      properties:
+        servicePrincipal:
+          type: string
+        description:
+          type: string
+    Dome9.Web.Api.CloudRoute53.CloudRoute53GeoLocationViewModel:
+      type: object
+      properties:
+        continentCode:
+          type: string
+        countryCode:
+          type: string
+        subdivisionCode:
+          type: string
+    Dome9.Web.Api.CloudRoute53.CloudRoute53HostZoneMetadataViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        comment:
+          type: string
+        callerReference:
+          type: string
+        linkedService:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53LinkedServiceViewModel'
+        recordSetCount:
+          format: int64
+          type: integer
+    Dome9.Web.Api.CloudRoute53.CloudRoute53AliasTargetViewModel:
+      type: object
+      properties:
+        hostedZoneId:
+          type: string
+        dnsName:
+          type: string
+        evaluateTargetHealth:
+          type: boolean
+    Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordViewModel:
+      type: object
+      properties:
+        value:
+          type: string
+    Dome9.Web.Api.CloudRoute53.CloudRoute53RecordSetGroupViewModel:
+      type: object
+      properties:
+        hostedZoneMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53HostZoneMetadataViewModel'
+        recordSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordSetViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

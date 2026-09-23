@@ -1,0 +1,155 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Iam Policy API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Iam Policy
+  type: InventoryAwsIam
+paths:
+  /v2/CloudIamPolicy/defaults:
+    get:
+      tags:
+      - Cloud Iam Policy
+      summary: Fetch all defaults IAM policies
+      operationId: CloudIamPolicy_GetDefaultsAsync
+      parameters:
+      - name: roleArns
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
+  /v2/CloudIamPolicy:
+    get:
+      tags:
+      - Cloud Iam Policy
+      summary: Fetch all IAM policies
+      operationId: CloudIamPolicy_GetAsync
+      parameters:
+      - name: roleArns
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: defaults
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.CloudIamPolicyVersionViewModel:
+      type: object
+      properties:
+        versionId:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        document:
+          type: object
+        isDefaultVersion:
+          type: boolean
+    Dome9.Web.Api.CloudIamPolicyViewModel:
+      type: object
+      properties:
+        acccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccountId:
+          type: string
+        arn:
+          type: string
+        attachmentCount:
+          format: int32
+          type: integer
+        createDate:
+          format: date-time
+          type: string
+        defaultVersionId:
+          type: string
+        description:
+          type: string
+        isAttachable:
+          type: boolean
+        policyId:
+          type: string
+        policyName:
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+        version:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyVersionViewModel'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,89 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Quick Sight Account API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Quick Sight Account
+  type: InventoryAwsAnalytics
+paths:
+  /v2/AwsQuickSightAccount:
+    get:
+      tags:
+      - Aws Quick Sight Account
+      operationId: AwsQuickSightAccount_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightAccountViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightAccountViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightAccountViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightAccountViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightAccountViewModel'
+      summary: Aws quick sight account get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.AwsQuickSight.AwsQuickSightAccountViewModel:
+      type: object
+      properties:
+        accountName:
+          type: string
+        defaultNamespace:
+          type: string
+        edition:
+          type: string
+        notificationEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        publicSharingEnabled:
+          type: boolean
+        terminationProtectionEnabled:
+          type: boolean
+        ipRulesEnabled:
+          type: boolean
+        ipRestrictionRuleMap:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.IpRestrictionRuleViewModel'
+        dome9Id:
+          type: string
+        accountNumber:
+          type: string
+        region:
+          type: string
+    Dome9.Web.Api.AwsQuickSight.IpRestrictionRuleViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

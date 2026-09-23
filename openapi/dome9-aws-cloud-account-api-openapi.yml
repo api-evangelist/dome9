@@ -1,0 +1,1399 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Cloud Account API
+  description: Manage AWS Cloud Accounts
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Cloud Account
+  description: Manage AWS Cloud Accounts
+  type: Onboarding
+paths:
+  /v2/cloudaccounts/{id}/DeleteForce:
+    delete:
+      tags:
+      - Aws Cloud Account
+      summary: Delete an AWS cloud account and linked entities
+      operationId: CloudAccounts_DeleteForce
+      parameters:
+      - name: id
+        in: path
+        description: The Dome9 AWS account id (UUID)
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/cloudaccounts/name:
+    put:
+      tags:
+      - Aws Cloud Account
+      summary: Update an AWS cloud account name
+      operationId: CloudAccounts_UpdateCloudAccountName
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_System.String'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_System.String'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_System.String'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_System.String'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_System.String'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_System.String'
+        description: the new name for the account
+        required: true
+  /v2/cloudaccounts/region-conf:
+    put:
+      tags:
+      - Aws Cloud Account
+      summary: Update an AWS cloud account region configuration
+      operationId: CloudAccounts_UpdateCloudAccountRegionConf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+        description: updated Regional Configuration parameters for the account
+        required: true
+  /v2/cloudaccounts/credentials:
+    put:
+      tags:
+      - Aws Cloud Account
+      summary: Update credentials for an AWS cloud account in Dome9.
+      operationId: CloudAccounts_UpdateCloudAccountCredentials
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountCredentialsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountCredentialsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountCredentialsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountCredentialsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountCredentialsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountCredentialsViewModel'
+        description: credentials block
+        required: true
+  /v2/cloudaccounts/MissingPermissions:
+    get:
+      tags:
+      - Aws Cloud Account
+      summary: Get a list of missing permissions for all accounts.
+      operationId: CloudAccounts_GetMissingPermissionsAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+  /v2/cloudaccounts/{id}/MissingPermissions:
+    get:
+      tags:
+      - Aws Cloud Account
+      summary: Get a list of missing permissions for a specific account.
+      operationId: CloudAccounts_GetMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: showIgnored
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+    put:
+      tags:
+      - Aws Cloud Account
+      summary: Get a list of missing permissions for a specific account.
+      operationId: CloudAccounts_UpdateIgnorableMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: CloudAccountId
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/html:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+        description: List of permissions to set ignore or restore flag to
+        required: true
+  /v2/cloudaccounts/{id}/MissingPermissions/EntityType:
+    get:
+      tags:
+      - Aws Cloud Account
+      summary: Get a list of missing permissions for a specific cloud entity type and cloud…
+      operationId: CloudAccounts_GetMissingPermissionsByEntityTypeAsync
+      parameters:
+      - name: id
+        in: path
+        description: The account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: entityType
+        in: query
+        description: The entity type
+        required: true
+        schema:
+          type: string
+      - name: subType
+        in: query
+        description: The entity subtype (optional)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+  /v2/cloudaccounts/{id}/CloudAccountHasAssumeRolePermissionIssue:
+    get:
+      tags:
+      - Aws Cloud Account
+      summary: check if the cloud account's role has permission issues or was deleted
+      operationId: CloudAccounts_CloudAccountHasAssumeRolePermissionIssueAsync
+      parameters:
+      - name: id
+        in: path
+        description: The account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+            text/html:
+              schema:
+                type: boolean
+            application/xml:
+              schema:
+                type: boolean
+            text/xml:
+              schema:
+                type: boolean
+  /v2/cloudaccounts/{id}/MissingPermissions/Reset:
+    put:
+      tags:
+      - Aws Cloud Account
+      summary: reset (re-validate) an account
+      operationId: CloudAccounts_ResetMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: The account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/cloudaccounts/{id}/SyncNow:
+    post:
+      tags:
+      - Aws Cloud Account
+      summary: Send a data sync command to immediately fetch cloud account data into Dome9's…
+      operationId: CloudAccounts_SyncNow
+      parameters:
+      - name: id
+        in: path
+        description: The account id.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSyncNowResultViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSyncNowResultViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSyncNowResultViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSyncNowResultViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSyncNowResultViewModel'
+  /v2/cloudaccounts/{id}/organizationalUnit:
+    put:
+      tags:
+      - Aws Cloud Account
+      summary: Update the ID of the Organizational Unit that this cloud account will be…
+      operationId: CloudAccounts_UpdateOrganizationalId
+      parameters:
+      - name: id
+        in: path
+        description: The Dome9 Guid ID of the AWS cloud account
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+        description: The Guid ID of the Organizational Unit to attach to. Use 'null' to attach to the root Organizational Unit
+        required: true
+  /v2/cloudaccounts/organizationalUnit/move:
+    put:
+      tags:
+      - Aws Cloud Account
+      summary: Detach cloud accounts from an Organizational unit and attach them to another…
+      operationId: CloudAccounts_MoveCloudAccountsToOrganizationalUnit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+        required: true
+  /v2/cloudaccounts/organizationalUnit/moveAll:
+    put:
+      tags:
+      - Aws Cloud Account
+      summary: Detach all cloud accounts from their current organizational unit and attach…
+      operationId: CloudAccounts_MoveAllCloudAccountsToOrganizationalUnit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+        required: true
+  /v2/cloudaccounts/organizationalUnit/attach:
+    post:
+      tags:
+      - Aws Cloud Account
+      summary: Attach several cloud accounts to a specific Organizational Unit.
+      operationId: CloudAccounts_PostAttachMulti
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+        required: true
+  /v2/CloudAccounts:
+    get:
+      tags:
+      - Aws Cloud Account
+      summary: Get all AWS cloud accounts
+      operationId: CloudAccounts_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+    post:
+      tags:
+      - Aws Cloud Account
+      summary: Add a new AWS cloud account to CloudGuard Onboarding an AWS cloud account…
+      operationId: CloudAccounts_Post
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+        description: The new AWS account data
+        required: true
+  /v2/CloudAccounts/{id}:
+    get:
+      tags:
+      - Aws Cloud Account
+      summary: Fetch a specific AWS cloud account
+      operationId: CloudAccounts_Get
+      parameters:
+      - name: id
+        in: path
+        description: The Dome9 AWS account id (UUID) or the AWS external account number (12 digit number)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountViewModel'
+    delete:
+      tags:
+      - Aws Cloud Account
+      summary: Delete an AWS cloud account
+      operationId: CloudAccounts_Delete
+      parameters:
+      - name: id
+        in: path
+        description: The Dome9 AWS account id (UUID)
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel'
+    Dome9.Web.Api.Models.CloudAccountNetSecViewModel:
+      type: object
+      properties:
+        regions:
+          description: List of network security configuration per AWS region
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+    Dome9.Web.Api.Models.SeverlessConfigViewModel:
+      type: object
+      properties:
+        codeAnalyzerEnabled:
+          type: boolean
+        codeDependencyAnalyzerEnabled:
+          type: boolean
+    Dome9.Web.Api.Models.CloudAccountViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: '[Readonly] The Dome9 id'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        vendor:
+          description: '[Readonly] The cloud provider (AWS)'
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        name:
+          description: The cloud account name
+          type: string
+        externalAccountNumber:
+          description: '[Readonly] The AWS account number'
+          type: string
+        error:
+          description: '[Readonly] credentials error status'
+          type: string
+        isFetchingSuspended:
+          description: '[Readonly] fetching suspending status'
+          type: boolean
+        creationDate:
+          format: date-time
+          description: '[Readonly] account creation date'
+          type: string
+        credentials:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountCredentialsViewModel'
+          description: '[Required] The information needed for Dome9 System in order to connect to the AWS cloud account'
+        iamSafe:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountIamSafeViewModel'
+          description: '[Readonly] The IamSafety configuration of the AWS cloud account'
+        netSec:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountNetSecViewModel'
+          description: '[Readonly] The network security configuration for the AWS cloud account.'
+        magellan:
+          description: '[Readonly] Flag to determine if Magellan is enabled/disabled for the account'
+          type: boolean
+        fullProtection:
+          description: "[Required] As part of the AWS account onboarding, the account security groups are imported. \nThis flag determines whether to enable Tamper Protection mode for those security groups."
+          type: boolean
+        allowReadOnly:
+          description: '[Required] Determines the AWS cloud account operation mode.
+
+            For "Manage" set to true, for "Readonly" set to false.'
+          type: boolean
+        organizationId:
+          description: The unique identifier (ID) of an AWS organization. E.g. 9w9xc7rq7p
+          type: string
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        organizationalUnitPath:
+          type: string
+        organizationalUnitName:
+          type: string
+        lambdaScanner:
+          description: Flag indicating if lambda scanner is enabled/disabled for the account
+          type: boolean
+        serverless:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.SeverlessConfigViewModel'
+        onboardingMode:
+          enum:
+          - Undefined
+          - Legacy
+          - CloudGuardManaged
+          - CustomerManaged
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel:
+      required:
+      - isIgnored
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel:
+      type: object
+      properties:
+        permissions:
+          description: list of missing permissions
+          type: array
+          items:
+            type: string
+        entityType:
+          type: string
+        subType:
+          type: string
+    Dome9.Web.Api.Models.CloudAccountIamSafeIamEntitiesViewModel:
+      type: object
+      properties:
+        rolesArns:
+          type: array
+          items:
+            type: string
+        usersArns:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Models.CloudAccountIamSafeViewModel:
+      type: object
+      properties:
+        awsGroupArn:
+          type: string
+        awsPolicyArn:
+          type: string
+        mode:
+          enum:
+          - OptIn
+          - Mandatory
+          type: string
+        state:
+          enum:
+          - Enabled
+          - Disabled
+          type: string
+        excludedIamEntities:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountIamSafeIamEntitiesViewModel'
+        restrictedIamEntities:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountIamSafeIamEntitiesViewModel'
+    Dome9.Web.Api.Models.CloudAccountCredentialsViewModel:
+      type: object
+      properties:
+        apikey:
+          description: '[Deprecated]'
+          type: string
+        arn:
+          description: '[Required] AWS Role ARN (to be assumed by Dome9 System)'
+          type: string
+        secret:
+          description: '[Required] The AWS role External ID (Dome9 System will have to use this secret in order to assume the role)'
+          type: string
+        iamUser:
+          description: '[Deprecated]'
+          type: string
+        type:
+          description: '[Required] The cloud account onbiarding method. Should be set to "RoleBased" as other methods are deprecated'
+          enum:
+          - UserBased
+          - RoleBased
+          type: string
+        isReadOnly:
+          description: '[Readonly] The credential permission state.
+
+            This filed is determined based on the operation response status performed by Dome9 on the target AWS cloud account.'
+          type: boolean
+    Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          description: 'The Dome9 cloud account id, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccountNumber:
+          description: 'Aws external account number, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
+          type: string
+        data:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+    Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    Dome9.Web.Api.Models.AwsSyncNowResultViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          description: the AWS account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: the account name
+          type: string
+        externalAccountNumber:
+          description: the AWS external account number
+          type: string
+        workFlowId:
+          format: uuid
+          description: the AWS workflow id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel:
+      type: object
+      properties:
+        srl:
+          description: internal use
+          type: string
+        consecutiveFails:
+          format: int32
+          description: number of consecutive failures due to missing permissions
+          type: integer
+        lastFail:
+          format: date-time
+          description: time of last failure
+          type: string
+        lastSuccess:
+          format: date-time
+          description: time of last successful attempt
+          type: string
+        firstFail:
+          format: date-time
+          description: time of first successful attempt
+          type: string
+        lastFailErrorCode:
+          description: error code for last failed attempt
+          type: string
+        lastFailMessage:
+          description: error message for last failed attempt
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        retryMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel'
+        cloudAccountId:
+          format: uuid
+          description: Cloud account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        vendor:
+          description: cloud account provider (AWS, Azure, GCP)
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+    Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: string
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel'
+    Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_System.String:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          description: 'The Dome9 cloud account id, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccountNumber:
+          description: 'Aws external account number, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
+          type: string
+        data:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel:
+      type: object
+      properties:
+        region:
+          description: '[Required] Dome9 representation value for the AWS region'
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+          type: string
+        name:
+          description: '[Readonly] The region name'
+          type: string
+        hidden:
+          description: '[Deprecated]'
+          type: boolean
+        newGroupBehavior:
+          description: '[Required] The Protection Mode that Dome9 will apply to new security groups detected in the cloud account. <br /><strong>ReadOnly</strong> New Security Groups will be included in Dome9 in Read-Only mode, without changes to any of the rules<br /><strong>FullManage</strong> New Security Groups will be included in Dome9 in Full Protection mode, without changes to any of the rules<br /><strong>Reset</strong> New Security Groups will be included in Dome9 in Full Protection mode, and all inbound and outbound rules will be cleared'
+          enum:
+          - ReadOnly
+          - FullManage
+          - Reset
+          type: string
+    Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel:
+      type: object
+      properties:
+        sourceOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        targetOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel:
+      type: object
+      properties:
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountCredentialsViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          description: 'The Dome9 cloud account id, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccountNumber:
+          description: 'Aws external account number, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
+          type: string
+        data:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountCredentialsViewModel'
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel:
+      type: object
+      properties:
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

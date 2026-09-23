@@ -1,0 +1,108 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Iam Group API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Iam Group
+  type: InventoryAwsIam
+paths:
+  /v2/CloudIamGroup:
+    get:
+      tags:
+      - Cloud Iam Group
+      operationId: CloudIamGroup_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamGroups.CloudIamGroupViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamGroups.CloudIamGroupViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamGroups.CloudIamGroupViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamGroups.CloudIamGroupViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamGroups.CloudIamGroupViewModel'
+      summary: Cloud iam group get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudIamGroupPolicy.AwsIamGroupPolicyViewModel:
+      type: object
+      properties:
+        arn:
+          description: Arn
+          type: string
+        name:
+          description: name
+          type: string
+    Dome9.Web.Api.CloudIamGroups.CloudIamGroupViewModel:
+      type: object
+      properties:
+        accountId:
+          format: int64
+          description: AccountId
+          type: integer
+        cloudAccountId:
+          format: uuid
+          description: AccountId
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccoutNumber:
+          description: ExternalAccoutNumber
+          type: string
+        arn:
+          description: Arn
+          type: string
+        externalId:
+          description: ExternalId
+          type: string
+        groupId:
+          description: GroupId
+          type: string
+        groupName:
+          description: GroupName
+          type: string
+        attachedUsers:
+          type: array
+          items:
+            type: string
+        attachedManagedPolicies:
+          description: IamGroupPolicies
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudIamGroupPolicy.AwsIamGroupPolicyViewModel'
+        inlinePolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudIamGroups.CloudIamGroupInlinePolicyViewModel'
+    Dome9.Web.Api.CloudIamGroups.CloudIamGroupInlinePolicyViewModel:
+      type: object
+      properties:
+        policyName:
+          type: string
+        policyDocument:
+          type: object
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

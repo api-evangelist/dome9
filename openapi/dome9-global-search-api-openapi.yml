@@ -1,0 +1,58 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Global Search API
+  description: Global search for all CloudGuard services
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Global Search
+  description: Global search for all CloudGuard services
+  type: Administration
+paths:
+  /v2/GlobalSearch:
+    get:
+      tags:
+      - Global Search
+      summary: Get top results for each service
+      operationId: GlobalSearch_Get
+      parameters:
+      - name: freeText
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+            text/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+            text/html:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+            application/xml:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+            text/xml:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+components:
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,93 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Billable Assets Report API
+  description: Billable Assets Report
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Billable Assets Report
+  description: Billable Assets Report
+  type: Administration
+paths:
+  /v2/billableAssetsReport/dailyUsage:
+    get:
+      tags:
+      - Billable Assets Report
+      summary: Get daily usage billable assets report
+      operationId: BillableAssetsReport_GetDailyUsageBillableAssetsReport
+      parameters:
+      - name: fromDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: toDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+  /v2/BillableAssetsReport:
+    get:
+      tags:
+      - Billable Assets Report
+      summary: Get last month billable assets report
+      operationId: BillableAssetsReport_GetBillableAssetsReport
+      parameters:
+      - name: month
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: year
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

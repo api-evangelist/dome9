@@ -1,0 +1,210 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Elasti Cache Cluster API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: CloudElastiCacheCluster
+  type: Unclassified
+paths:
+  /v2/CloudElastiCacheCluster:
+    get:
+      tags:
+      - CloudElastiCacheCluster
+      operationId: CloudElastiCacheCluster_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.CloudElastiCacheClusterViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.CloudElastiCacheClusterViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.CloudElastiCacheClusterViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.CloudElastiCacheClusterViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.CloudElastiCacheClusterViewModel'
+      summary: Cloud elasti cache cluster get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudElastiCache.CloudElastiCacheClusterViewModel:
+      type: object
+      properties:
+        id:
+          description: Id
+          type: string
+          readOnly: true
+        externalId:
+          description: ExternalId
+          type: string
+          readOnly: true
+        name:
+          description: Name
+          type: string
+          readOnly: true
+        cloudAccountId:
+          format: uuid
+          description: CloudAccountId
+          type: string
+          readOnly: true
+          example: 00000000-0000-0000-0000-000000000000
+        accountId:
+          format: int64
+          description: AccountId
+          type: integer
+          readOnly: true
+        externalAccountNumber:
+          description: External account number
+          type: string
+        autoMinorVersionUpgrade:
+          type: boolean
+        cacheClusterCreateTime:
+          format: date-time
+          type: string
+        cacheClusterId:
+          type: string
+        cacheClusterStatus:
+          type: string
+        cacheNodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterNodeVM'
+        cacheNodeType:
+          type: string
+        elastiCacheParameterGroup:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.ElastiCacheParameterGroupStatusVM'
+        cacheSecurityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.ElastiCacheCachedSecurityGroupMembershipVM'
+        cacheSubnetGroupName:
+          type: string
+        clientDownloadLandingPage:
+          type: string
+        configurationEndpoint:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterEndpointVM'
+        engine:
+          type: string
+        engineVersion:
+          type: string
+        elastiCacheNotificationConfiguration:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.ElastiCacheNotificationConfigurationVM'
+        numCacheNodes:
+          format: int32
+          type: integer
+        elastiCachePendingModifiedValues:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.ElastiCachePendingModifiedValuesVM'
+        preferredAvailabilityZone:
+          type: string
+        preferredMaintenanceWindow:
+          type: string
+        replicationGroupId:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.ElastiCacheSecurityGroupMembershipVM'
+        snapshotRetentionLimit:
+          format: int32
+          type: integer
+        snapshotWindow:
+          type: string
+        atRestEncryptionEnabled:
+          type: boolean
+        transitEncryptionEnabled:
+          type: boolean
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterEndpointVM:
+      type: object
+      properties:
+        address:
+          type: string
+        port:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheSecurityGroupMembershipVM:
+      type: object
+      properties:
+        securityGroupId:
+          type: string
+        status:
+          type: string
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheCachedSecurityGroupMembershipVM:
+      type: object
+      properties:
+        cacheSecurityGroupName:
+          type: string
+        status:
+          type: string
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheParameterGroupStatusVM:
+      type: object
+      properties:
+        cacheNodeIdsToReboot:
+          type: array
+          items:
+            type: string
+        cacheParameterGroupName:
+          type: string
+        parameterApplyStatus:
+          type: string
+    Dome9.Web.Api.CloudElastiCache.ElastiCachePendingModifiedValuesVM:
+      type: object
+      properties:
+        cacheNodeIdsToRemove:
+          type: array
+          items:
+            type: string
+        cacheNodeType:
+          type: string
+        engineVersion:
+          type: string
+        numCacheNodes:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheNotificationConfigurationVM:
+      type: object
+      properties:
+        topicArn:
+          type: string
+        topicStatus:
+          type: string
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterNodeVM:
+      type: object
+      properties:
+        cacheNodeCreateTime:
+          format: date-time
+          type: string
+        cacheNodeId:
+          type: string
+        cacheNodeStatus:
+          type: string
+        customerAvailabilityZone:
+          type: string
+        endpoint:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterEndpointVM'
+        parameterGroupStatus:
+          type: string
+        sourceCacheNodeId:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

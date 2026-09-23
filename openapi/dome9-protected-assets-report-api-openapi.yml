@@ -1,0 +1,275 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Protected Assets Report API
+  description: Compliance Protected Asset csv reports
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Protected Assets Report
+  description: Compliance Protected Asset csv reports
+  type: Events
+paths:
+  /v2/ProtectedAssetsReport/exportToCsv:
+    post:
+      tags:
+      - Protected Assets Report
+      operationId: ProtectedAssetsReport_ExportToCsv
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            text/json:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            text/html:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            application/xml:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            text/xml:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+        required: true
+      summary: Protected assets report export to csv
+      x-summary-source: derived
+  /v2/ProtectedAssetsReport/exportToCsv/downloadLink:
+    post:
+      tags:
+      - Protected Assets Report
+      operationId: ProtectedAssetsReport_ExportToCsvDownloadLink
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/html:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+        required: true
+      summary: Protected assets report export to csv download link
+      x-summary-source: derived
+  /v2/ProtectedAssetsReport/exportToCsv/downloadCSV:
+    post:
+      tags:
+      - Protected Assets Report
+      operationId: ProtectedAssetsReport_ExportToCsvDownloadCSV
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+        required: true
+      summary: Protected assets report export to csv download CSV
+      x-summary-source: derived
+components:
+  schemas:
+    CGN.OpenSearch.Model.CommonViewModels.SearchFilterViewModel:
+      type: object
+      properties:
+        freeTextPhrase:
+          type: string
+        freeTextNamePhrase:
+          type: string
+        freeTextForIdsPhrase:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.TagViewModel'
+        includedEntityTypes:
+          type: array
+          items:
+            type: string
+        excludedEntityTypes:
+          type: array
+          items:
+            type: string
+    CGN.OpenSearch.Model.CommonViewModels.SortingViewModel:
+      type: object
+      properties:
+        fieldName:
+          type: string
+        direction:
+          format: int32
+          type: integer
+    Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel:
+      type: object
+      properties:
+        searchRequest:
+          $ref: '#/components/schemas/Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          description: Search request for protected assets
+        recipients:
+          description: Recipients for email
+          type: array
+          items:
+            type: string
+    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    CGN.OpenSearch.Model.CommonViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel:
+      description: Search or filter parameters. This object is passed via url so the field names are short because quary params are limited (about 2000 chars)
+      type: object
+      properties:
+        pageSize:
+          format: int32
+          description: 'page size (number of findings returned per page). default: 10.'
+          maximum: 1000
+          minimum: 0
+          type: integer
+        skipAggregations:
+          type: boolean
+        aggregations:
+          type: array
+          items:
+            type: string
+        sorting:
+          $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.SortingViewModel'
+          description: sort data
+        filter:
+          $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.SearchFilterViewModel'
+          description: filter
+        searchAfter:
+          description: token for the page of findings (first page if not specified)
+          type: array
+          items:
+            type: string
+        additionalFields:
+          $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.AdditionalFieldsRequestViewModel'
+        optionalAggregationFields:
+          type: array
+          items:
+            type: string
+        externalAdditionalFields:
+          $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.AdditionalFieldsRequestViewModel'
+        filterEntitiesWithoutRiskScore:
+          type: boolean
+    CGN.OpenSearch.Model.CommonViewModels.AdditionalFieldsRequestViewModel:
+      type: object
+      properties:
+        source:
+          type: string
+        filterFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
+        sortField:
+          $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.SortingViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

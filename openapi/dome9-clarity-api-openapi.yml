@@ -1,0 +1,3029 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Clarity API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Clarity
+  type: Unclassified
+paths:
+  /v2/view/clarity/vpcs:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetVpcsASync
+      parameters:
+      - name: externalAccountNumber
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: region
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityVpc'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityVpc'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityVpc'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityVpc'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityVpc'
+      summary: Clarity get vpcs ASync
+      x-summary-source: derived
+  /v2/view/clarity/azure-vnets:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetVnetsASync
+      parameters:
+      - name: subscriptionId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: region
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAzureCounterView'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAzureCounterView'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAzureCounterView'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAzureCounterView'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAzureCounterView'
+      summary: Clarity get vnets ASync
+      x-summary-source: derived
+  /v2/view/clarity/google-networks:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetGoogleNetworksAsync
+      parameters:
+      - name: projectId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCounterView'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCounterView'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCounterView'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCounterView'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCounterView'
+      summary: Clarity get google networks async
+      x-summary-source: derived
+  /v2/view/clarity/cloud-accounts:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetCloudAccountsMetaDataASync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityCloudAccountsContainer'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityCloudAccountsContainer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityCloudAccountsContainer'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityCloudAccountsContainer'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityCloudAccountsContainer'
+      summary: Clarity get cloud accounts meta data ASync
+      x-summary-source: derived
+  /v2/view/clarity/aws-regions:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetRegion
+      parameters:
+      - name: externalAccountNumber
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+      summary: Clarity get region
+      x-summary-source: derived
+  /v2/view/clarity/azure-regions:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetAzureRegion
+      parameters:
+      - name: SubscriptionId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: cloudAccountId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+      summary: Clarity get azure region
+      x-summary-source: derived
+  /v2/view/clarity/google-regions:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetGoogleRegion
+      parameters:
+      - name: projectId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: cloudAccountId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityRegion'
+      summary: Clarity get google region
+      x-summary-source: derived
+  /v2/view/clarity/security-groups:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetSecurityGroupsAsync
+      parameters:
+      - name: externalAccountNumber
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: vpcId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel'
+      summary: Clarity get security groups async
+      x-summary-source: derived
+  /v2/view/clarity/azure-security-groups:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetAzureAssetsSecurityGroupsAsync
+      parameters:
+      - name: subscriptionId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: cloudAccountId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: vnetId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAssetsForSecurityGroupsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAssetsForSecurityGroupsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAssetsForSecurityGroupsViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAssetsForSecurityGroupsViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAssetsForSecurityGroupsViewModel'
+      summary: Clarity get azure assets security groups async
+      x-summary-source: derived
+  /v2/view/clarity/ec2-classic-security-groups:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetEc2ClassicSecurityGroupsAsync
+      parameters:
+      - name: externalAccountNumber
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: region
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel'
+      summary: Clarity get ec2 classic security groups async
+      x-summary-source: derived
+  /v2/view/clarity/google-security-groups:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetGoogleAssetsGroupByNetworkAsync
+      parameters:
+      - name: projectId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: cloudAccountId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: network
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleAssetsAndSgContainerViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleAssetsAndSgContainerViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleAssetsAndSgContainerViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleAssetsAndSgContainerViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleAssetsAndSgContainerViewModel'
+      summary: Clarity get google assets group by network async
+      x-summary-source: derived
+  /v2/view/clarity/lambda-functions:
+    get:
+      tags:
+      - Clarity
+      operationId: Clarity_GetLambdaFunctionsByVpc
+      parameters:
+      - name: externalAccountNumber
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: vpcId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudLambdaFunctionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudLambdaFunctionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudLambdaFunctionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudLambdaFunctionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudLambdaFunctionViewModel'
+      summary: Clarity get lambda functions by vpc
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Views.Clarity.GcpServiceRuleViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        number:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+        source:
+          type: string
+        destination:
+          type: string
+        destinationPort:
+          format: int32
+          type: integer
+        destinationPortTo:
+          format: int32
+          type: integer
+        direction:
+          type: string
+        action:
+          type: string
+    Dome9.Web.Api.Models.CloudLambdaFunctionViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+          readOnly: true
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        accountId:
+          format: int64
+          type: integer
+          readOnly: true
+        cloudAccountId:
+          format: uuid
+          type: string
+          readOnly: true
+          example: 00000000-0000-0000-0000-000000000000
+        region:
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+          type: string
+          readOnly: true
+        vpc:
+          type: string
+          readOnly: true
+        securityGroups:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        subnets:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        functionArn:
+          type: string
+          readOnly: true
+        runtimeEnvironment:
+          type: string
+          readOnly: true
+        executionRoleArn:
+          type: string
+          readOnly: true
+        functionHandler:
+          type: string
+          readOnly: true
+        codeSize:
+          format: int64
+          type: integer
+          readOnly: true
+        memorySize:
+          format: int32
+          type: integer
+          readOnly: true
+        executionTimeout:
+          format: int32
+          type: integer
+          readOnly: true
+        lastModified:
+          format: date-time
+          type: string
+          readOnly: true
+        version:
+          type: string
+          readOnly: true
+        codeSha256:
+          type: string
+          readOnly: true
+        kmsKeyArn:
+          type: string
+          readOnly: true
+        deadLetterConfig:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsDeadLetterConfig'
+          readOnly: true
+        tracingConfig:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsTracingConfigResponse'
+          readOnly: true
+        environmentVariables:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsEnvironmentVariable'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        resourcePolicy:
+          type: object
+        urlConfigs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel'
+    Dome9.Web.Api.Views.Clarity.ClarityGoogleFirewallRuleViewModel:
+      type: object
+      properties:
+        creationTimestamp:
+          type: string
+        allowed:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GoogleFirewallRuleScopeViewModel'
+        denied:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GoogleFirewallRuleScopeViewModel'
+        destinationRanges:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        network:
+          type: string
+        sourceRanges:
+          type: array
+          items:
+            type: string
+        sourceTags:
+          type: array
+          items:
+            type: string
+        targetTags:
+          type: array
+          items:
+            type: string
+        isProtected:
+          type: boolean
+        priority:
+          format: int32
+          type: integer
+        direction:
+          enum:
+          - Ingress
+          - Egress
+          type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineScaleSetViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        subscriptionId:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        virtualNetworkId:
+          type: string
+        virtualNetworkName:
+          type: string
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel'
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineViewModel'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Dome9.Web.Api.Views.Clarity.ClarityAzureNicIpConfigurationViewModel:
+      type: object
+      properties:
+        isPrimary:
+          type: boolean
+        privateIPAddress:
+          type: string
+        privateIPAddressVersion:
+          type: string
+        privateIPAllocationMethod:
+          type: string
+        publicIPAddress:
+          type: string
+        subnet:
+          $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureSubnetViewModel'
+        subnetSecurityGroupId:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        kmsKeyName:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        eTag:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AwsEnvironmentVariable:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityGoogleAssetsAndSgContainerViewModel:
+      type: object
+      properties:
+        virtualMachines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel'
+        firewallRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleFirewallRuleViewModel'
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleSecurityGroupViewModel'
+    Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        subscriptionId:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        virtualNetworkId:
+          type: string
+        virtualNetworkName:
+          type: string
+        isRunning:
+          type: boolean
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel'
+        operatingSystem:
+          type: string
+        size:
+          type: string
+        virtualHardDiskUri:
+          type: string
+    Dome9.Web.Api.Views.Clarity.GoogleFirewallRuleScopeViewModel:
+      type: object
+      properties:
+        ipProtocol:
+          type: string
+        ports:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel:
+      type: object
+      properties:
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupViewModel'
+        referencedSecurityGroupsWithPeeredVpc:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupViewModel'
+        unmanagedReferencedSecurityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupViewModel'
+    Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        canIpForward:
+          type: boolean
+        cpuPlatform:
+          type: string
+        creationTimestamp:
+          type: string
+        description:
+          type: string
+        disks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel'
+        machineType:
+          type: string
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel.NetworkInterfaceViewModel'
+        status:
+          type: string
+        statusMessage:
+          type: string
+        networkTags:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        zone:
+          type: string
+        region:
+          type: string
+        isRunning:
+          type: boolean
+          readOnly: true
+        isBillable:
+          type: boolean
+          readOnly: true
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityAzureSecurityGroupViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        externalId:
+          type: string
+        subscriptionId:
+          type: string
+        inboundServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.AzureSecurityGroupServiceViewModel'
+        outboundServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.AzureSecurityGroupServiceViewModel'
+        defaultInboundServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.AzureSecurityGroupServiceViewModel'
+        defaultOutboundServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.AzureSecurityGroupServiceViewModel'
+    Falconetix.Model.Clarity.ClarityGoogleCounterView:
+      type: object
+      properties:
+        projectId:
+          type: string
+        name:
+          type: string
+        externalAccountNumber:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        region:
+          type: string
+        instances:
+          format: int64
+          type: integer
+        firewalls:
+          format: int64
+          type: integer
+        id:
+          type: string
+        cloudAccountName:
+          type: string
+        peerings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Clarity.PeeringStatus'
+        cidrBlock:
+          type: string
+        environmentType:
+          enum:
+          - LOCAL
+          - FOREIGN_REGION
+          - FOREIGN_CLOUD_ACCOUNT
+          - FOREIGN_UNKNOWN
+          type: string
+        assetsCounter:
+          format: int64
+          type: integer
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel:
+      type: object
+      properties:
+        isGoogleManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerSuppliedKey:
+          type: boolean
+          readOnly: true
+    Dome9.Web.Api.Views.Clarity.ClarityGoogleSecurityGroupViewModel:
+      type: object
+      properties:
+        network:
+          type: string
+        externalId:
+          type: string
+        inboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GcpServiceRuleViewModel'
+        outboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GcpServiceRuleViewModel'
+        vmInstances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GcpVmInstanceIdentityViewModel'
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Falconetix.Model.CloudLambdaFunctionCorsViewModel:
+      type: object
+      properties:
+        allowCredentials:
+          type: boolean
+        allowHeaders:
+          type: array
+          items:
+            type: string
+        allowMethods:
+          type: array
+          items:
+            type: string
+        allowOrigins:
+          type: array
+          items:
+            type: string
+        exposeHeaders:
+          type: array
+          items:
+            type: string
+        maxAge:
+          format: int32
+          type: integer
+    Falconetix.Model.Clarity.PeeringStatus:
+      type: object
+      properties:
+        peeringId:
+          type: string
+        cloudAccountId:
+          type: string
+        code:
+          type: string
+    Falconetix.Model.Clarity.ClarityAzureCloudAccount:
+      type: object
+      properties:
+        subscriptionId:
+          type: string
+        tenantId:
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        assetsCounter:
+          format: int64
+          type: integer
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
+    CGN.Inventory.Aws.Model.WrapperModels.AwsDeadLetterConfig:
+      type: object
+      properties:
+        targetArn:
+          type: string
+    Falconetix.Model.Clarity.ClarityGoogleCloudAccount.CredentialsModel:
+      type: object
+      properties:
+        projectId:
+          type: string
+        clientEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+    Falconetix.WebApi.Models.ScopeElementViewModel:
+      type: object
+      properties:
+        type:
+          enum:
+          - CIDR
+          - DNS
+          - IPList
+          - MagicIP
+          - AWS
+          - Tag
+          - ASG
+          - CIDRv6
+          - PrefixList
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+    Falconetix.Model.Clarity.ClarityRegion:
+      type: object
+      properties:
+        regionEnum:
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        assetsCounter:
+          format: int64
+          type: integer
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Dome9.Web.Api.Views.Clarity.AzureSecurityGroupServiceViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        priority:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+        sourceAddressPrefix:
+          type: string
+        sourceAddressPrefixes:
+          type: array
+          items:
+            type: string
+        sourcePortRange:
+          type: string
+        sourcePortRanges:
+          type: array
+          items:
+            type: string
+        destinationAddressPrefix:
+          type: string
+        destinationAddressPrefixes:
+          type: array
+          items:
+            type: string
+        destinationPortRange:
+          type: string
+        destinationPortRanges:
+          type: array
+          items:
+            type: string
+        access:
+          enum:
+          - Allow
+          - Deny
+          type: string
+    Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel:
+      type: object
+      properties:
+        authType:
+          type: string
+        cors:
+          $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionCorsViewModel'
+        creationTime:
+          type: string
+        functionArn:
+          type: string
+        functionUrl:
+          type: string
+        lastModifiedTime:
+          type: string
+    Falconetix.Model.Clarity.ClarityGoogleCloudAccount:
+      type: object
+      properties:
+        credentials:
+          $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCloudAccount.CredentialsModel'
+          readOnly: true
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        assetsCounter:
+          format: int64
+          type: integer
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Dome9.Web.Api.Views.Clarity.GcpVmInstanceIdentityViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        selfLink:
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityAzureSubnetViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        addressRange:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Models.CloudSecurityGroupViewModel:
+      type: object
+      properties:
+        securityGroupId:
+          format: int64
+          type: integer
+        services:
+          type: object
+          properties:
+            inbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupServiceViewModel'
+            outbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupServiceViewModel'
+        externalId:
+          type: string
+        isProtected:
+          type: boolean
+        securityGroupName:
+          type: string
+        description:
+          type: string
+        vpcId:
+          type: string
+        vpcName:
+          type: string
+        regionId:
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+          type: string
+        cloudAccountId:
+          type: string
+        cloudAccountName:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Falconetix.Model.Clarity.ClarityAwsCloudAccount:
+      type: object
+      properties:
+        externalAccountNumber:
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        assetsCounter:
+          format: int64
+          type: integer
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Falconetix.Model.Clarity.ClarityAzureCounterView:
+      type: object
+      properties:
+        subscriptionId:
+          type: string
+        loadBalancer:
+          format: int64
+          type: integer
+        sqlServer:
+          format: int64
+          type: integer
+        virtualMachine:
+          format: int64
+          type: integer
+        virtualMachineScaleSet:
+          format: int64
+          type: integer
+        redisCache:
+          format: int64
+          type: integer
+        region:
+          type: string
+        cidrBlock:
+          type: array
+          items:
+            type: string
+        id:
+          type: string
+        name:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cloudAccountName:
+          type: string
+        peerings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Clarity.PeeringStatus'
+        environmentType:
+          enum:
+          - LOCAL
+          - FOREIGN_REGION
+          - FOREIGN_CLOUD_ACCOUNT
+          - FOREIGN_UNKNOWN
+          type: string
+        assetsCounter:
+          format: int64
+          type: integer
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        ipConfigurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNicIpConfigurationViewModel'
+        enableIPForwarding:
+          type: boolean
+        primary:
+          type: boolean
+        macAddress:
+          type: string
+        networkSecurityGroupId:
+          type: string
+    Falconetix.Model.Clarity.ClarityVpc:
+      type: object
+      properties:
+        externalAccountNumber:
+          type: string
+        rds:
+          format: int64
+          type: integer
+        redshift:
+          format: int64
+          type: integer
+        alb:
+          format: int64
+          type: integer
+        elb:
+          format: int64
+          type: integer
+        efs:
+          format: int64
+          type: integer
+        lambda:
+          format: int64
+          type: integer
+        instances:
+          format: int64
+          type: integer
+        id:
+          type: string
+        name:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cloudAccountName:
+          type: string
+        peerings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Clarity.PeeringStatus'
+        cidrBlock:
+          type: string
+        environmentType:
+          enum:
+          - LOCAL
+          - FOREIGN_REGION
+          - FOREIGN_CLOUD_ACCOUNT
+          - FOREIGN_UNKNOWN
+          type: string
+        region:
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+          type: string
+        assetsCounter:
+          format: int64
+          type: integer
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Dome9.Web.Api.Models.CloudSecurityGroupServiceViewModel:
+      required:
+      - name
+      - protocolType
+      - openForAll
+      type: object
+      properties:
+        inbound:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        protocolType:
+          description: Service Protocol
+          enum:
+          - ALL
+          - HOPOPT
+          - ICMP
+          - IGMP
+          - GGP
+          - IPV4
+          - ST
+          - TCP
+          - CBT
+          - EGP
+          - IGP
+          - BBN_RCC_MON
+          - NVP2
+          - PUP
+          - ARGUS
+          - EMCON
+          - XNET
+          - CHAOS
+          - UDP
+          - MUX
+          - DCN_MEAS
+          - HMP
+          - PRM
+          - XNS_IDP
+          - TRUNK1
+          - TRUNK2
+          - LEAF1
+          - LEAF2
+          - RDP
+          - IRTP
+          - ISO_TP4
+          - NETBLT
+          - MFE_NSP
+          - MERIT_INP
+          - DCCP
+          - ThreePC
+          - IDPR
+          - XTP
+          - DDP
+          - IDPR_CMTP
+          - TPplusplus
+          - IL
+          - IPV6
+          - SDRP
+          - IPV6_ROUTE
+          - IPV6_FRAG
+          - IDRP
+          - RSVP
+          - GRE
+          - DSR
+          - BNA
+          - ESP
+          - AH
+          - I_NLSP
+          - SWIPE
+          - NARP
+          - MOBILE
+          - TLSP
+          - SKIP
+          - ICMPV6
+          - IPV6_NONXT
+          - IPV6_OPTS
+          - CFTP
+          - SAT_EXPAK
+          - KRYPTOLAN
+          - RVD
+          - IPPC
+          - SAT_MON
+          - VISA
+          - IPCV
+          - CPNX
+          - CPHB
+          - WSN
+          - PVP
+          - BR_SAT_MON
+          - SUN_ND
+          - WB_MON
+          - WB_EXPAK
+          - ISO_IP
+          - VMTP
+          - SECURE_VMTP
+          - VINES
+          - TTP
+          - NSFNET_IGP
+          - DGP
+          - TCF
+          - EIGRP
+          - OSPFIGP
+          - SPRITE_RPC
+          - LARP
+          - MTP
+          - AX25
+          - IPIP
+          - MICP
+          - SCC_SP
+          - ETHERIP
+          - ENCAP
+          - GMTP
+          - IFMP
+          - PNNI
+          - PIM
+          - ARIS
+          - SCPS
+          - QNX
+          - AN
+          - IPCOMP
+          - SNP
+          - COMPAQ_PEER
+          - IPX_IN_IP
+          - VRRP
+          - PGM
+          - L2TP
+          - DDX
+          - IATP
+          - STP
+          - SRP
+          - UTI
+          - SMP
+          - SM
+          - PTP
+          - ISIS
+          - FIRE
+          - CRTP
+          - CRUDP
+          - SSCOPMCE
+          - IPLT
+          - SPS
+          - PIPE
+          - SCTP
+          - FC
+          - RSVP_E2E_IGNORE
+          - MOBILITY_HEADER
+          - UDPLITE
+          - MPLS_IN_IP
+          - MANET
+          - HIP
+          - SHIM6
+          - WESP
+          - ROHC
+          type: string
+        port:
+          description: indicates a port range
+          type: string
+        openForAll:
+          description: indicates the service is open to all ports
+          type: boolean
+        scope:
+          description: List of scopes for the service (CIDR / DNS / AWS Security group / IP List / Magic IP)
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        icmpType:
+          description: / ICMP type (when protocol is ICMP)
+          enum:
+          - All
+          - EchoReply
+          - DestinationUnreachable
+          - SourceQuench
+          - Redirect
+          - AlternateHostAddress
+          - Echo
+          - RouterAdvertisement
+          - RouterSelection
+          - TimeExceeded
+          - ParameterProblem
+          - Timestamp
+          - TimestampReply
+          - InformationRequest
+          - InformationReply
+          - AddressMaskRequest
+          - AddressMaskReply
+          - Traceroute
+          - DatagramConversionError
+          - MobileHostRedirect
+          - IPv6WhereAreYou
+          - IPv6IAmHere
+          - MobileRegistrationRequest
+          - MobileRegistrationReply
+          - DomainNameRequest
+          - DomainNameReply
+          - SKIP
+          - Photuris
+          type: string
+        icmpv6Type:
+          description: ICMP V6 type (when protocol is ICMPV6)
+          enum:
+          - All
+          type: string
+    Falconetix.Model.Clarity.ClarityCloudAccountsContainer:
+      type: object
+      properties:
+        awsCloudAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAwsCloudAccount'
+        azureCloudAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAzureCloudAccount'
+        googleCloudAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCloudAccount'
+    Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel.NetworkInterfaceViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        network:
+          type: string
+        networkIP:
+          type: string
+        subnetwork:
+          type: string
+        publicIP:
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityAssetsForSecurityGroupsViewModel:
+      type: object
+      properties:
+        virtualMachines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineViewModel'
+        virtualMachineScaleSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineScaleSetViewModel'
+        loadBalancers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureLoadBalancerViewModel'
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureSecurityGroupViewModel'
+    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel:
+      type: object
+      properties:
+        autoDelete:
+          type: boolean
+        deviceName:
+          type: string
+        guestOsFeatures:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel'
+        eTag:
+          type: string
+        interface:
+          type: string
+        kind:
+          type: string
+        licenses:
+          type: array
+          items:
+            type: string
+        mode:
+          type: string
+        source:
+          type: string
+        type:
+          type: string
+        diskEncryptionType:
+          type: string
+        diskEncryptionTypeMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel'
+        diskEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel'
+        initializeParams:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel'
+        id:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        kmsKeyName:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AwsTracingConfigResponse:
+      type: object
+      properties:
+        mode:
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityAzureLoadBalancerViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        subscriptionId:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalId:
+          type: string
+        backEndIPConfigurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel'
+        inBoundNATs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel'
+        frontEndIPConfigurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNicIpConfigurationViewModel'
+    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel:
+      type: object
+      properties:
+        diskName:
+          type: string
+        diskSizeGb:
+          format: int64
+          type: integer
+        diskType:
+          type: string
+        sourceImage:
+          type: string
+        sourceImageEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel'
+        eTag:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

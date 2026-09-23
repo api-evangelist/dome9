@@ -1,0 +1,176 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Acm Certificate API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Acm Certificate
+  type: InventoryAwsSecurityIdentityAndCompliance
+paths:
+  /v2/CloudAcmCertificate:
+    get:
+      tags:
+      - Cloud Acm Certificate
+      operationId: CloudAcmCertificate_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.CloudAcmCertificateDetailViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.CloudAcmCertificateDetailViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.CloudAcmCertificateDetailViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.CloudAcmCertificateDetailViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.CloudAcmCertificateDetailViewModel'
+      summary: Cloud acm certificate get
+      x-summary-source: derived
+components:
+  schemas:
+    Falconetix.Model.CloudAcmCertificateOptionsSummaryViewModel:
+      type: object
+      properties:
+        certificateTransparencyLoggingPreference:
+          type: string
+    Falconetix.Model.CloudAcmKeyUsageViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+    Falconetix.Model.CloudAcmExtendedKeyUsageViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        oid:
+          type: string
+    Falconetix.Model.CloudAcmDomainValidationViewModel:
+      type: object
+      properties:
+        domainName:
+          type: string
+        resourceRecord:
+          $ref: '#/components/schemas/Falconetix.Model.CloudAcmResourceRecordViewModel'
+        validationDomain:
+          type: string
+        validationEmails:
+          type: array
+          items:
+            type: string
+        validationMethod:
+          type: string
+        validationStatus:
+          type: string
+    Falconetix.Model.CloudAcmRenewalSummaryViewModel:
+      type: object
+      properties:
+        domainValidationOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.CloudAcmDomainValidationViewModel'
+        renewalStatus:
+          type: string
+    Falconetix.Model.CloudAcmResourceRecordViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          type: string
+    Falconetix.Model.CloudAcmCertificateDetailViewModel:
+      type: object
+      properties:
+        certificateArn:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        domainName:
+          type: string
+        domainValidationOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.CloudAcmDomainValidationViewModel'
+        extendedKeyUsages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.CloudAcmExtendedKeyUsageViewModel'
+        failureReason:
+          type: string
+        importedAt:
+          format: date-time
+          type: string
+        inUseBy:
+          type: array
+          items:
+            type: string
+        issuedAt:
+          format: date-time
+          type: string
+        issuer:
+          type: string
+        keyAlgorithm:
+          type: string
+        keyUsages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.CloudAcmKeyUsageViewModel'
+        notAfter:
+          format: date-time
+          type: string
+        notBefore:
+          format: date-time
+          type: string
+        renewalSummary:
+          $ref: '#/components/schemas/Falconetix.Model.CloudAcmRenewalSummaryViewModel'
+        certificateOptions:
+          $ref: '#/components/schemas/Falconetix.Model.CloudAcmCertificateOptionsSummaryViewModel'
+        revocationReason:
+          type: string
+        revokedAt:
+          format: date-time
+          type: string
+        serial:
+          type: string
+        signatureAlgorithm:
+          type: string
+        status:
+          type: string
+        subject:
+          type: string
+        subjectAlternativeNames:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          readOnly: true
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,69 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Vpn Gateway API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Vpn Gateway
+  type: InventoryAwsNetworkingAndContentDelivery
+paths:
+  /v2/CloudVpnGateway:
+    get:
+      tags:
+      - Cloud Vpn Gateway
+      operationId: CloudVpnGateway_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudDirectConnect.AwsVpnGatewayViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudDirectConnect.AwsVpnGatewayViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudDirectConnect.AwsVpnGatewayViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudDirectConnect.AwsVpnGatewayViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudDirectConnect.AwsVpnGatewayViewModel'
+      summary: Cloud vpn gateway get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudDirectConnect.AwsVpnGatewayViewModel:
+      type: object
+      properties:
+        availabilityZone:
+          type: string
+        state:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        type:
+          type: string
+        vpcAttachment:
+          type: string
+        vpnGatewayId:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

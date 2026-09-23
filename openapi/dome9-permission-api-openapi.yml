@@ -1,0 +1,64 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Permission API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Permission
+  type: Unclassified
+paths:
+  /v2/Permission:
+    get:
+      tags:
+      - Permission
+      summary: Fetches the permissions for a specific SRL, for the requesting user.
+      operationId: Permission_Get
+      parameters:
+      - name: srl
+        in: query
+        description: The SRL to fetch permissions for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.PermissionViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.PermissionViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.PermissionViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.PermissionViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.PermissionViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.Models.PermissionViewModel:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+        srl:
+          type: string
+        manage:
+          type: boolean
+        view:
+          type: boolean
+        add:
+          type: boolean
+        access:
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

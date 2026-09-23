@@ -1,0 +1,185 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Logic App API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Logic App
+  type: InventoryAzure
+paths:
+  /v2/AzureLogicApp:
+    get:
+      tags:
+      - Azure Logic App
+      operationId: AzureLogicApp_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppViewModel'
+      summary: Azure logic app get
+      x-summary-source: derived
+  /v2/AzureLogicApp/{id}:
+    get:
+      tags:
+      - Azure Logic App
+      summary: Get specific LogicApp by Dome9 Id
+      operationId: AzureLogicApp_Get
+      parameters:
+      - name: id
+        in: path
+        description: Dome9 Id of Logic App
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppViewModel'
+components:
+  schemas:
+    Falconetix.Model.AzureLogicAppSkuViewModel:
+      type: object
+      properties:
+        name:
+          enum:
+          - NotSpecified
+          - Free
+          - Shared
+          - Basic
+          - Standard
+          - Premium
+          type: string
+        plan:
+          $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppResourceReferenceViewModel'
+    Falconetix.Model.AzureLogicAppWorkflowParameterViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+        value:
+          type: object
+        metadata:
+          type: object
+    Falconetix.Model.AzureLogicAppResourceReferenceViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+    Falconetix.Model.AzureLogicAppViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        location:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        provisioningState:
+          enum:
+          - NotSpecified
+          - Accepted
+          - Running
+          - Ready
+          - Creating
+          - Created
+          - Deleting
+          - Deleted
+          - Canceled
+          - Failed
+          - Succeeded
+          - Moving
+          - Updating
+          - Registering
+          - Registered
+          - Unregistering
+          - Unregistered
+          - Completed
+          type: string
+        createdTime:
+          format: date-time
+          type: string
+        changedTime:
+          format: date-time
+          type: string
+        state:
+          enum:
+          - NotSpecified
+          - Completed
+          - Enabled
+          - Disabled
+          - Deleted
+          - Suspended
+          type: string
+        version:
+          type: string
+        accessEndpoint:
+          type: string
+        definition:
+          type: object
+        sku:
+          $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppSkuViewModel'
+        integrationAccount:
+          $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppResourceReferenceViewModel'
+        parameters:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppWorkflowParameterViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

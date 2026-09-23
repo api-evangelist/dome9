@@ -1,0 +1,51 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Home API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Home
+  type: Unclassified
+paths:
+  /v2/Home:
+    get:
+      tags:
+      - Home
+      operationId: Home_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.HomeViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.HomeViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.HomeViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.HomeViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.HomeViewModel'
+      summary: Home get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Models.HomeViewModel:
+      type: object
+      properties:
+        serversCount:
+          format: int32
+          type: integer
+        cloudAccountsCount:
+          format: int32
+          type: integer
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

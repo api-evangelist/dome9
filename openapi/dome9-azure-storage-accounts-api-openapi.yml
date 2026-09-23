@@ -1,0 +1,214 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Storage Accounts API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Storage Accounts
+  type: InventoryAzure
+paths:
+  /v2/AzureStorageAccounts:
+    get:
+      tags:
+      - Azure Storage Accounts
+      operationId: AzureStorageAccounts_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountViewModel'
+      summary: Azure storage accounts get
+      x-summary-source: derived
+  /v2/AzureStorageAccounts/{id}:
+    get:
+      tags:
+      - Azure Storage Accounts
+      operationId: AzureStorageAccounts_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountViewModel'
+      summary: Azure storage accounts get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        createdOn:
+          format: date-time
+          type: string
+        customDomainName:
+          type: string
+        customDomainUseSubDomain:
+          type: boolean
+        enableHttpsTrafficOnly:
+          type: boolean
+        encryption:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEncryptionViewModel'
+        lastGeoFailoverTime:
+          format: date-time
+          type: string
+        networkRuleSet:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountNetworkRuleSetViewModel'
+        primaryEndPoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEndPointViewModel'
+        secondaryEndPoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEndPointViewModel'
+        secondaryRegion:
+          type: string
+        provisioningState:
+          type: string
+        publicNetworkAccess:
+          type: string
+        publicNetworkAccessAsDisplayedInPortal:
+          type: string
+        statusOfPrimary:
+          type: string
+        statusOfSecondary:
+          type: string
+        performance:
+          type: string
+        replication:
+          type: string
+        blobSoftDeleteEnabled:
+          type: boolean
+        advancedThreatProtectionEnabled:
+          type: boolean
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEncryptionViewModel:
+      type: object
+      properties:
+        keySource:
+          type: string
+        keyVaultProperties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountKeyVaultPropertiesViewModel'
+        servicesEncryption:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEncryptionServiceViewModel'
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEndPointViewModel:
+      type: object
+      properties:
+        service:
+          type: string
+        uri:
+          type: string
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountKeyVaultPropertiesViewModel:
+      type: object
+      properties:
+        keyName:
+          type: string
+        keyVaultUri:
+          type: string
+        keyVersion:
+          type: string
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountIPRuleViewModel:
+      type: object
+      properties:
+        action:
+          type: string
+        ipAddressOrRange:
+          type: string
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountVirtualNetworkRuleViewModel:
+      type: object
+      properties:
+        action:
+          type: string
+        state:
+          type: string
+        virtualNetworkResourceId:
+          type: string
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEncryptionServiceViewModel:
+      type: object
+      properties:
+        serviceType:
+          type: string
+        enabled:
+          type: boolean
+        lastEnabledTime:
+          format: date-time
+          type: string
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountNetworkRuleSetViewModel:
+      type: object
+      properties:
+        bypass:
+          type: string
+        defaultAction:
+          type: string
+        ipRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountIPRuleViewModel'
+        virtualNetworkRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountVirtualNetworkRuleViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

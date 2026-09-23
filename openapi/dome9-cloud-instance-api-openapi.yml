@@ -1,0 +1,1266 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Instance API
+  description: Cloud Instances
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Instance
+  description: Cloud Instances
+  type: InventoryAwsComputeAndContainers
+paths:
+  /v2/cloudinstance/by-external-id-and-cloud-account:
+    get:
+      tags:
+      - Cloud Instance
+      operationId: CloudInstance_GetByIdAndCloudAccountAsync
+      parameters:
+      - name: externalId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: cloudAccountId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+      summary: Cloud instance get by id and cloud account async
+      x-summary-source: derived
+  /v2/cloudinstance/guard-duty-findings:
+    get:
+      tags:
+      - Cloud Instance
+      summary: Fetch AWS GuardDuty findings for a specific AWS instance
+      operationId: CloudInstance_GetInstanceGuardDutyFindings
+      parameters:
+      - name: cloudaccountid
+        in: query
+        description: the cloud account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: region
+        in: query
+        description: the region containing the instanceid
+        required: true
+        schema:
+          type: string
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+      - name: instanceid
+        in: query
+        description: the id of the instance
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyFindingsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyFindingsResponse'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyFindingsResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyFindingsResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyFindingsResponse'
+  /v2/cloudinstance/{externalid}/sec-groups:
+    post:
+      tags:
+      - Cloud Instance
+      summary: Attach security Group to an AWS EC2 Instance
+      operationId: CloudInstance_AttachSecurityGroupToInstance
+      parameters:
+      - name: externalid
+        in: path
+        description: the external id of the instance
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+        description: information to update
+        required: true
+    delete:
+      tags:
+      - Cloud Instance
+      summary: Detach security Group from an AWS EC2 Instance
+      operationId: CloudInstance_DetachSecurityGroupFromInstance
+      parameters:
+      - name: externalid
+        in: path
+        description: details of the instance
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel'
+        description: information to update
+        required: true
+  /v2/CloudInstance:
+    get:
+      tags:
+      - Cloud Instance
+      summary: Fetch all AWS EC2 instances for the user from all cloud accounts
+      operationId: CloudInstance_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+  /v2/CloudInstance/{id}:
+    get:
+      tags:
+      - Cloud Instance
+      summary: Fetch a specific AWS EC2 instance
+      operationId: CloudInstance_Get
+      parameters:
+      - name: id
+        in: path
+        description: The instance external ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+components:
+  schemas:
+    Falconetix.Model.AwsGuardDutyPortProbeActionViewModel:
+      type: object
+      properties:
+        blocked:
+          type: boolean
+        portProbeDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyPortProbeDetailViewModel'
+    Dome9.Web.Api.Models.CloudInstanceNicViewModel:
+      type: object
+      properties:
+        publicIpAddress:
+          type: string
+        privateIpAddress:
+          type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        privateDnsName:
+          type: string
+        name:
+          type: string
+        externalId:
+          type: string
+        subnetId:
+          type: string
+        macAddress:
+          type: string
+    Dome9.Web.Api.Models.CloudInstanceMetadataOptionsViewModel:
+      type: object
+      properties:
+        httpEndpoint:
+          type: string
+        httpPutResponseHopLimit:
+          format: int32
+          type: integer
+        httpTokens:
+          type: string
+        state:
+          type: string
+    Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel:
+      type: object
+      properties:
+        city:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyCityViewModel'
+        country:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyCountryViewModel'
+        geoLocation:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyGeoLocationViewModel'
+        ipAddressV4:
+          type: string
+        organization:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyOrganizationViewModel'
+    Falconetix.Model.AwsGuardDutyAwsApiCallActionViewModel:
+      type: object
+      properties:
+        api:
+          type: string
+        callerType:
+          type: string
+        domainDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyDomainDetailsViewModel'
+        remoteIpDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel'
+        serviceName:
+          type: string
+    Falconetix.Model.AwsGuardDutyIamInstanceProfileViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+    Falconetix.Model.AwsGuardDutyTagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Models.AwsEc2StateReasonViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Falconetix.Model.AwsGuardDutyLocalPortDetailsViewModel:
+      type: object
+      properties:
+        port:
+          format: int32
+          type: integer
+        portName:
+          type: string
+    Dome9.Web.Api.Models.AwsSsmInstanceAssociationStatusAggregatedCountViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          format: int32
+          type: integer
+    Falconetix.Model.AwsGuardDutyServiceViewModel:
+      type: object
+      properties:
+        action:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyActionViewModel'
+        archived:
+          type: boolean
+        count:
+          format: int32
+          type: integer
+        detectorId:
+          type: string
+        eventFirstSeen:
+          type: string
+        eventLastSeen:
+          type: string
+        resourceRole:
+          type: string
+        serviceName:
+          type: string
+        userFeedback:
+          type: string
+    Dome9.Web.Api.Models.CloudSsmInstanceInformationViewModel:
+      type: object
+      properties:
+        activationId:
+          type: string
+        agentVersion:
+          type: string
+        associationOverview:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSsmInstanceInformationAssociationOverviewViewModel'
+        associationStatus:
+          type: string
+        computerName:
+          type: string
+        iamRole:
+          type: string
+        instanceId:
+          type: string
+        ipAddress:
+          type: string
+        isLatestVersion:
+          type: boolean
+        lastAssociationExecutionDate:
+          format: int64
+          type: integer
+        lastSuccessfulAssociationExecutionDate:
+          format: int64
+          type: integer
+        name:
+          type: string
+        pingStatus:
+          type: string
+        platformName:
+          type: string
+        platformType:
+          type: string
+        platformVersion:
+          type: string
+        registrationDate:
+          format: int64
+          type: integer
+        resourceType:
+          type: string
+    Dome9.Web.Api.CloudAmi.CloudEc2TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Falconetix.Model.AwsGuardDutyProductCodeViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        productType:
+          type: string
+    Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel:
+      type: object
+      properties:
+        groupid:
+          format: int32
+          type: integer
+        nicname:
+          type: string
+        policyGroupId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Falconetix.Model.AwsGuardDutyOrganizationViewModel:
+      type: object
+      properties:
+        asn:
+          type: string
+        asnOrg:
+          type: string
+        isp:
+          type: string
+        org:
+          type: string
+    Falconetix.Model.AwsGuardDutyRemotePortDetailsViewModel:
+      type: object
+      properties:
+        port:
+          format: int32
+          type: integer
+        portName:
+          type: string
+    Dome9.Web.Api.Models.CloudInstanceImageDetailsViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        ownerId:
+          type: string
+        imageLocation:
+          type: string
+        isPublic:
+          type: boolean
+        state:
+          type: string
+        description:
+          type: string
+        creationDate:
+          type: string
+        hypervisor:
+          type: string
+        platform:
+          type: string
+        architecture:
+          type: string
+        rootDeviceName:
+          type: string
+        rootDeviceType:
+          type: string
+        virtualizationType:
+          type: string
+        ramdiskId:
+          type: string
+        imageOwnerAlias:
+          type: string
+        imageType:
+          type: string
+        kernelId:
+          type: string
+        productCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsEc2ProductCodeViewModel'
+        enaSupport:
+          type: boolean
+        sriovNetSupport:
+          type: string
+        stateReason:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsEc2StateReasonViewModel'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2TagViewModel'
+    Dome9.Web.Api.Models.AwsSsmInstanceInformationAssociationOverviewViewModel:
+      type: object
+      properties:
+        detailedStatus:
+          type: string
+        instanceAssociationStatusAggregatedCount:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSsmInstanceAssociationStatusAggregatedCountViewModel'
+    Falconetix.Model.AwsGuardDutyInstanceDetailsViewModel:
+      type: object
+      properties:
+        availabilityZone:
+          type: string
+        iamInstanceProfile:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyIamInstanceProfileViewModel'
+        imageId:
+          type: string
+        instanceId:
+          type: string
+        instanceState:
+          type: string
+        instanceType:
+          type: string
+        launchTime:
+          type: string
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyNetworkInterfaceViewModel'
+        platform:
+          type: string
+        productCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyProductCodeViewModel'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyTagViewModel'
+    Falconetix.Model.AwsGuardDutyAccessKeyDetailsViewModel:
+      type: object
+      properties:
+        accessKeyId:
+          type: string
+        principalId:
+          type: string
+        userName:
+          type: string
+        userType:
+          type: string
+    Falconetix.Model.AwsGuardDutyActionViewModel:
+      type: object
+      properties:
+        actionType:
+          type: string
+        awsApiCallAction:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyAwsApiCallActionViewModel'
+        dnsRequestAction:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyDnsRequestActionViewModel'
+        networkConnectionAction:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyNetworkConnectionActionViewModel'
+        portProbeAction:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyPortProbeActionViewModel'
+    Dome9.Web.Api.Models.CloudInstanceViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        region:
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+          type: string
+        vpc:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isRunning:
+          type: boolean
+        instanceType:
+          type: string
+        publicDnsName:
+          type: string
+        nics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceNicViewModel'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        accountId:
+          format: int64
+          type: integer
+        image:
+          type: string
+        kernelId:
+          type: string
+        launchTime:
+          format: date-time
+          type: string
+        platform:
+          type: string
+        profileArn:
+          type: string
+        roleArns:
+          type: array
+          items:
+            type: string
+        isBillable:
+          type: boolean
+        ssmAgentInstanceInformation:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSsmInstanceInformationViewModel'
+        metadataOptions:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceMetadataOptionsViewModel'
+        imageDetails:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceImageDetailsViewModel'
+        ssmInstancePatchState:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSsmInstancePatchStateViewModel'
+    Falconetix.Model.AwsGuardDutyCountryViewModel:
+      type: object
+      properties:
+        countryCode:
+          type: string
+        countryName:
+          type: string
+    Dome9.Web.Api.Models.AwsSsmInstancePatchStateViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        patchGroup:
+          type: string
+        baselineId:
+          type: string
+        installedCount:
+          format: int32
+          type: integer
+        missingCount:
+          format: int32
+          type: integer
+        failedCount:
+          format: int32
+          type: integer
+        installedOtherCount:
+          format: int32
+          type: integer
+        notApplicableCount:
+          format: int32
+          type: integer
+        securityNonCompliantCount:
+          format: int32
+          type: integer
+        unreportedNotApplicableCount:
+          format: int32
+          type: integer
+    Falconetix.Model.AwsGuardDutyDnsRequestActionViewModel:
+      type: object
+      properties:
+        domain:
+          type: string
+    Falconetix.Model.AwsGuardDutyResourceViewModel:
+      type: object
+      properties:
+        accessKeyDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyAccessKeyDetailsViewModel'
+        instanceDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyInstanceDetailsViewModel'
+        resourceType:
+          type: string
+    Falconetix.Model.AwsGuardDutySecurityGroupViewModel:
+      type: object
+      properties:
+        groupId:
+          type: string
+        groupName:
+          type: string
+    Falconetix.Model.AwsGuardDutyPortProbeDetailViewModel:
+      type: object
+      properties:
+        localPortDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyLocalPortDetailsViewModel'
+        remoteIpDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel'
+    Dome9.Web.Api.Models.AwsEc2ProductCodeViewModel:
+      type: object
+      properties:
+        productCodeId:
+          type: string
+        productCodeType:
+          type: string
+    Falconetix.Model.AwsGuardDutyPrivateIpAddressDetailsViewModel:
+      type: object
+      properties:
+        privateDnsName:
+          type: string
+        privateIpAddress:
+          type: string
+    Falconetix.Model.AwsGuardDutyDomainDetailsViewModel:
+      type: object
+      properties: {}
+    Falconetix.Model.AwsGuardDutyFindingViewModel:
+      type: object
+      properties:
+        accountId:
+          type: string
+        arn:
+          type: string
+        confidence:
+          format: double
+          type: number
+        createdAt:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        partition:
+          type: string
+        region:
+          type: string
+        resource:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyResourceViewModel'
+        schemaVersion:
+          type: string
+        service:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyServiceViewModel'
+        severity:
+          format: double
+          type: number
+        title:
+          type: string
+        type:
+          type: string
+        updatedAt:
+          type: string
+    Falconetix.Model.AwsGuardDutyNetworkInterfaceViewModel:
+      type: object
+      properties:
+        ipv6Addresses:
+          type: array
+          items:
+            type: string
+        privateDnsName:
+          type: string
+        privateIpAddress:
+          type: string
+        privateIpAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyPrivateIpAddressDetailsViewModel'
+        publicDnsName:
+          type: string
+        publicIp:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutySecurityGroupViewModel'
+        subnetId:
+          type: string
+        vpcId:
+          type: string
+    Falconetix.Model.AwsGuardDutyNetworkConnectionActionViewModel:
+      type: object
+      properties:
+        blocked:
+          type: boolean
+        connectionDirection:
+          type: string
+        localPortDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyLocalPortDetailsViewModel'
+        protocol:
+          type: string
+        remoteIpDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel'
+        remotePortDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemotePortDetailsViewModel'
+    Falconetix.Model.AwsGuardDutyFindingsResponse:
+      type: object
+      properties:
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyFindingViewModel'
+        guardDutyState:
+          enum:
+          - Enabled
+          - Disabled
+          type: string
+    Falconetix.Model.AwsGuardDutyCityViewModel:
+      type: object
+      properties:
+        cityName:
+          type: string
+    Falconetix.Model.AwsGuardDutyGeoLocationViewModel:
+      type: object
+      properties:
+        lat:
+          format: double
+          type: number
+        lon:
+          format: double
+          type: number
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

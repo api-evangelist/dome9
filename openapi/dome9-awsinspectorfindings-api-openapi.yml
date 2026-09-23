@@ -1,0 +1,97 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Inspector Findings API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: AwsInspectorFindings
+  type: Unclassified
+paths:
+  /v2/AwsInspectorFindings:
+    get:
+      tags:
+      - AwsInspectorFindings
+      operationId: AwsInspectorFindings_Get
+      parameters:
+      - name: instanceId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsInspectorFindingsViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsInspectorFindingsViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsInspectorFindingsViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsInspectorFindingsViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsInspectorFindingsViewModel'
+      summary: Aws inspector findings get
+      x-summary-source: derived
+components:
+  schemas:
+    Falconetix.Model.AwsInspectorRulesPackageViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        provider:
+          type: string
+        version:
+          type: string
+    Falconetix.Model.AwsInspectorFindingsViewModel:
+      type: object
+      properties:
+        findingArn:
+          type: string
+        assessmentRunArn:
+          type: string
+        rulesPackage:
+          $ref: '#/components/schemas/Falconetix.Model.AwsInspectorRulesPackageViewModel'
+        agentId:
+          type: string
+        assetType:
+          type: string
+        creationTime:
+          format: date-time
+          type: string
+        findingId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        recommendation:
+          type: string
+        severity:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,102 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Sage Maker API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Sage Maker
+  type: InventoryAwsMachineLearning
+paths:
+  /v2/AwsSageMaker:
+    get:
+      tags:
+      - Aws Sage Maker
+      operationId: AwsSageMaker_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsSageMaker.AwsSageMakerNotebookViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsSageMaker.AwsSageMakerNotebookViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsSageMaker.AwsSageMakerNotebookViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsSageMaker.AwsSageMakerNotebookViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsSageMaker.AwsSageMakerNotebookViewModel'
+      summary: Aws sage maker get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.AwsSageMaker.AwsSageMakerNotebookViewModel:
+      type: object
+      properties:
+        acceleratorTypes:
+          type: array
+          items:
+            type: string
+        additionalCodeRepositories:
+          type: array
+          items:
+            type: string
+        defaultCodeRepository:
+          type: string
+        directInternetAccess:
+          type: string
+        failureReason:
+          type: string
+        instanceType:
+          type: string
+        kmsKeyId:
+          type: string
+        networkInterfaceId:
+          type: string
+        notebookInstanceArn:
+          type: string
+        notebookInstanceLifecycleConfigName:
+          type: string
+        notebookInstanceName:
+          type: string
+        notebookInstanceStatus:
+          type: string
+        roleArn:
+          type: string
+        rootAccess:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            type: string
+        subnetId:
+          type: string
+        url:
+          type: string
+        volumeSizeInGB:
+          format: int32
+          type: integer
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,497 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Audit API
+  description: Audit logs
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Audit
+  description: Audit logs
+  type: Administration
+paths:
+  /v2/audit/event-types:
+    get:
+      tags:
+      - Audit
+      summary: Get a list of available audit event types
+      operationId: Audit_GetEventTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+            text/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+            text/html:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+            application/xml:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+            text/xml:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /v2/audit/awsgroup/{groupId}:
+    get:
+      tags:
+      - Audit
+      summary: Get audit events for a specific AWS Security Group
+      operationId: Audit_GetAuditEventsForAwsSecGroup
+      parameters:
+      - name: groupId
+        in: path
+        description: the Security Group id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: startTimestamp
+        in: query
+        description: the time of the first event to be fetched
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: endTimestamp
+        in: query
+        description: the time of the last event to be fetched
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+  /v2/audit/export:
+    get:
+      tags:
+      - Audit
+      summary: Export an audit events report in a csv format
+      operationId: Audit_GetExport
+      parameters:
+      - name: startTimestamp
+        in: query
+        description: the time of the first event to be exported in the report
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: endTimestamp
+        in: query
+        description: the time of the last event to be exported in the report
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: userNameFilter
+        in: query
+        description: only events for this specific user will be exported
+        required: false
+        schema:
+          type: string
+      - name: eventType
+        in: query
+        description: only events of this specific type will be exported
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+  /v2/audit/row-data-api:
+    get:
+      tags:
+      - Audit
+      summary: get api events audit row data
+      operationId: Audit_GetRowDataApi
+      parameters:
+      - name: startTimestamp
+        in: query
+        description: the time of the first event  in the report- Epoch time in milliseconds
+        required: false
+        schema:
+          type: string
+      - name: endTimestamp
+        in: query
+        description: the time of the last event in the report - Epoch time in milliseconds
+        required: false
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: qsl query filter
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Audit.ApiAuditResult'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Audit.ApiAuditResult'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Audit.ApiAuditResult'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Audit.ApiAuditResult'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Audit.ApiAuditResult'
+  /v2/audit/row-data-system:
+    get:
+      tags:
+      - Audit
+      summary: get system events audit row data
+      operationId: Audit_GetRowDataSystem
+      parameters:
+      - name: startTimestamp
+        in: query
+        description: the time of the first event  in the report - Epoch time in milliseconds
+        required: false
+        schema:
+          type: string
+      - name: endTimestamp
+        in: query
+        description: the time of the last event in the report - Epoch time in milliseconds
+        required: false
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: qsl query filter
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Audit.SystemAuditResult'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Audit.SystemAuditResult'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Audit.SystemAuditResult'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Audit.SystemAuditResult'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Audit.SystemAuditResult'
+  /v2/audit/data-count:
+    get:
+      tags:
+      - Audit
+      summary: get row data result count by type api/system
+      operationId: Audit_GetRowDataCount
+      parameters:
+      - name: startTimestamp
+        in: query
+        description: the time of the first event  in the report - Epoch time in milliseconds
+        required: false
+        schema:
+          type: string
+      - name: endTimestamp
+        in: query
+        description: the time of the last event in the report- Epoch time in milliseconds
+        required: false
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: qsl query filter
+        required: false
+        schema:
+          type: string
+      - name: eventType
+        in: query
+        description: system events or api events
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Audit.CountAuditResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Audit.CountAuditResult'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Audit.CountAuditResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Audit.CountAuditResult'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Audit.CountAuditResult'
+  /v2/Audit:
+    get:
+      tags:
+      - Audit
+      summary: Get audit events with optional filters
+      operationId: Audit_Get
+      parameters:
+      - name: pageNum
+        in: query
+        description: 'page # in the sequence of audit pages'
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: eventsPerPage
+        in: query
+        description: no. of audit events in the page
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: startTimestamp
+        in: query
+        description: the time of first audit to be fetched
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: endTimestamp
+        in: query
+        description: the time of the last audit to be fetched
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: userName
+        in: query
+        description: only events for this specific user will be fetched
+        required: false
+        schema:
+          type: string
+      - name: eventType
+        in: query
+        description: only events of this specific type will be fetched
+        required: false
+        schema:
+          type: string
+      - name: fim
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditViewModel'
+  /v2/Audit/{id}:
+    get:
+      tags:
+      - Audit
+      summary: Get audit metadata
+      operationId: Audit_GetAuditEventMetadata
+      parameters:
+      - name: id
+        in: path
+        description: The audit event id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+components:
+  schemas:
+    Falconetix.Model.Audit.CountAuditResult:
+      type: object
+      properties:
+        count:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Models.AuditViewModel:
+      type: object
+      properties:
+        total:
+          format: int32
+          description: the number of pages in the view
+          type: integer
+        page:
+          format: int32
+          description: the current page number
+          type: integer
+        records:
+          format: int64
+          description: the total number of records (events) in all the pages
+          type: integer
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+    Falconetix.Model.Audit.SystemAuditResult:
+      type: object
+      properties:
+        description:
+          type: string
+        time:
+          format: date-time
+          type: string
+        event_name:
+          type: string
+        cloud_account_id:
+          type: string
+    Falconetix.Model.Audit.ApiAuditResult:
+      type: object
+      properties:
+        user_name:
+          type: string
+        request_url:
+          type: string
+        http_method:
+          type: string
+        http_status:
+          type: string
+        time:
+          format: date-time
+          type: string
+        request_body:
+          type: string
+        request_parameters:
+          type: string
+        event_name:
+          type: string
+        client_ip:
+          type: string
+    Dome9.Web.Api.Models.AuditEntryViewModel:
+      type: object
+      properties:
+        id:
+          type: object
+        cell:
+          type: array
+          items:
+            type: object
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

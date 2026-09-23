@@ -1,0 +1,466 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Compliance Ruleset API
+  description: Compliance Ruleset
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Compliance Ruleset
+  description: Compliance Ruleset
+  type: PostureManagement
+paths:
+  /v2/Compliance/Ruleset:
+    get:
+      tags:
+      - Compliance Ruleset
+      summary: Get all rulesets for the account
+      operationId: ComplianceRuleset_GetAccountBundles
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+    post:
+      tags:
+      - Compliance Ruleset
+      summary: Create a new ruleset
+      operationId: ComplianceRuleset_CreateRuleBundle
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestPostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestPostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestPostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestPostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestPostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestPostViewModel'
+        required: true
+  /v2/Compliance/Ruleset/{id}:
+    get:
+      tags:
+      - Compliance Ruleset
+      summary: Get a specific ruleset
+      operationId: ComplianceRuleset_GetBundleById
+      parameters:
+      - name: id
+        in: path
+        description: the bundle id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+    put:
+      tags:
+      - Compliance Ruleset
+      summary: Update a Ruleset
+      operationId: ComplianceRuleset_UpdateRuleBundle
+      parameters:
+      - name: id
+        in: path
+        description: the bundle id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestViewModel'
+        description: bundle definition
+        required: true
+    delete:
+      tags:
+      - Compliance Ruleset
+      summary: Delete a ruleset in the account
+      operationId: ComplianceRuleset_DeleteBundleAsync
+      parameters:
+      - name: id
+        in: path
+        description: the bundle id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Falconetix.Model.Compliance.Ruleset.RuleBundleVersionViewModel:
+      type: object
+      properties:
+        version:
+          type: string
+        createdTime:
+          type: string
+    Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel:
+      type: object
+      properties:
+        rules:
+          description: list of rules in the bundle
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleViewModel'
+          readOnly: true
+        accountId:
+          format: int64
+          description: Dome9 account id
+          type: integer
+        createdTime:
+          format: date-time
+          description: bundle creation date
+          type: string
+        updatedTime:
+          format: date-time
+          type: string
+        id:
+          format: int64
+          description: bundle id
+          type: integer
+        name:
+          description: bundle name
+          type: string
+        description:
+          description: bundle description
+          type: string
+        isTemplate:
+          type: boolean
+        hideInCompliance:
+          type: boolean
+        minFeatureTier:
+          enum:
+          - Trial
+          - Basic
+          - Advanced
+          - Premium
+          type: string
+        section:
+          format: int32
+          type: integer
+        tooltipText:
+          description: tooltip text (UI) for the bundle, when hovering over it
+          type: string
+        showBundle:
+          type: boolean
+        systemBundle:
+          type: boolean
+        cloudVendor:
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        version:
+          format: int32
+          type: integer
+        minorVersion:
+          format: int32
+          type: integer
+        availableVersions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleBundleVersionViewModel'
+        language:
+          type: string
+        rulesCount:
+          format: int32
+          type: integer
+        default:
+          type: boolean
+        common:
+          type: boolean
+        icon:
+          type: string
+    Dome9.Web.Api.Models.RuleBundleRequestPostViewModel:
+      required:
+      - name
+      - cloudVendor
+      type: object
+      properties:
+        name:
+          description: bundle name
+          type: string
+        description:
+          description: description of the bundle
+          type: string
+        rules:
+          description: list of rules in the bundle
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleViewModel'
+        hideInCompliance:
+          type: boolean
+        minFeatureTier:
+          enum:
+          - Trial
+          - Basic
+          - Advanced
+          - Premium
+          type: string
+        cloudVendor:
+          description: the cloud provider on which the rule will be run
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        language:
+          description: the language of the text (default, 'en' - English)
+          type: string
+    Dome9.Web.Api.Models.RuleBundleRequestViewModel:
+      required:
+      - name
+      - cloudVendor
+      type: object
+      properties:
+        id:
+          format: int64
+          description: the bundle id (returned in response)
+          type: integer
+        name:
+          description: bundle name
+          type: string
+        description:
+          description: description of the bundle
+          type: string
+        rules:
+          description: list of rules in the bundle
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleViewModel'
+        hideInCompliance:
+          type: boolean
+        minFeatureTier:
+          enum:
+          - Trial
+          - Basic
+          - Advanced
+          - Premium
+          type: string
+        cloudVendor:
+          description: the cloud provider on which the rule will be run
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        language:
+          description: the language of the text (default, 'en' - English)
+          type: string
+    Falconetix.Model.Compliance.Ruleset.RuleViewModel:
+      required:
+      - name
+      - logic
+      type: object
+      properties:
+        name:
+          description: rule name
+          type: string
+        severity:
+          description: rule severity (High/Medium/Low)
+          enum:
+          - Informational
+          - Low
+          - Medium
+          - High
+          - Critical
+          type: string
+        rlmId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        logic:
+          description: the GSL statement for the rule (text string)
+          type: string
+        description:
+          description: description of the rule (text)
+          type: string
+        remediation:
+          description: remediation text for the rule (text)
+          type: string
+        cloudbots:
+          description: the Cloudbots section for the rule (optional)
+          type: string
+        complianceTag:
+          description: the compliance section for the rule (optional)
+          type: string
+        domain:
+          description: this field is not used
+          type: string
+        priority:
+          description: this field is not used
+          type: string
+        controlTitle:
+          description: this field is not used
+          type: string
+        ruleId:
+          description: this field is not used
+          type: string
+        category:
+          description: Rule Category
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        logicHash:
+          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
+          type: string
+        isDefault:
+          description: The property represents default rule
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

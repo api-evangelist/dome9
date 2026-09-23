@@ -1,0 +1,212 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Elasticsearch Domain API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Elasticsearch Domain
+  type: InventoryAwsAnalytics
+paths:
+  /v2/AwsElasticsearchDomain:
+    get:
+      tags:
+      - Aws Elasticsearch Domain
+      operationId: AwsElasticsearchDomain_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchDomainStatusViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchDomainStatusViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchDomainStatusViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchDomainStatusViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchDomainStatusViewModel'
+      summary: Aws elasticsearch domain get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchEBSOptionsViewModel:
+      type: object
+      properties:
+        ebsEnabled:
+          type: boolean
+        iops:
+          format: int32
+          type: integer
+        volumeSize:
+          format: int32
+          type: integer
+        volumeType:
+          type: string
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchZoneAwarenessConfigViewModel:
+      type: object
+      properties:
+        availabilityZoneCount:
+          format: int32
+          type: integer
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchCognitoOptionsViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        identityPoolId:
+          type: string
+        roleArn:
+          type: string
+        userPoolId:
+          type: string
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchVPCDerivedInfoViewModel:
+      type: object
+      properties:
+        availabilityZones:
+          type: array
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        subnetIds:
+          type: array
+          items:
+            type: string
+        vpcId:
+          type: string
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchDomainStatusViewModel:
+      type: object
+      properties:
+        accessPolicies:
+          type: string
+        advancedOptions:
+          type: object
+          additionalProperties:
+            type: string
+        arn:
+          type: string
+        cognitoOptions:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchCognitoOptionsViewModel'
+        created:
+          type: boolean
+        deleted:
+          type: boolean
+        domainId:
+          type: string
+        domainName:
+          type: string
+        ebsOptions:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchEBSOptionsViewModel'
+        elasticsearchClusterConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchClusterConfigViewModel'
+        elasticsearchVersion:
+          type: string
+        encryptionAtRestOptions:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchEncryptionAtRestOptionsViewModel'
+        endpoint:
+          type: string
+        endpoints:
+          type: object
+          additionalProperties:
+            type: string
+        logPublishingOptions:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchLogPublishingOptionViewModel'
+        nodeToNodeEncryptionOptions:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchNodeToNodeEncryptionOptionsViewModel'
+        processing:
+          type: boolean
+        serviceSoftwareOptions:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchServiceSoftwareOptionsViewModel'
+        snapshotOptions:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchSnapshotOptionsViewModel'
+        upgradeProcessing:
+          type: boolean
+        vpcOptions:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchVPCDerivedInfoViewModel'
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchEncryptionAtRestOptionsViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        kmsKeyId:
+          type: string
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchClusterConfigViewModel:
+      type: object
+      properties:
+        dedicatedMasterCount:
+          format: int32
+          type: integer
+        dedicatedMasterEnabled:
+          type: boolean
+        dedicatedMasterType:
+          type: string
+        instanceCount:
+          format: int32
+          type: integer
+        instanceType:
+          type: string
+        zoneAwarenessConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchZoneAwarenessConfigViewModel'
+        zoneAwarenessEnabled:
+          type: boolean
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchSnapshotOptionsViewModel:
+      type: object
+      properties:
+        automatedSnapshotStartHour:
+          format: int32
+          type: integer
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchLogPublishingOptionViewModel:
+      type: object
+      properties:
+        cloudWatchLogsLogGroupArn:
+          type: string
+        enabled:
+          type: boolean
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchServiceSoftwareOptionsViewModel:
+      type: object
+      properties:
+        automatedUpdateDate:
+          format: date-time
+          type: string
+        cancellable:
+          type: boolean
+        currentVersion:
+          type: string
+        description:
+          type: string
+        newVersion:
+          type: string
+        updateAvailable:
+          type: boolean
+        updateStatus:
+          type: string
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchNodeToNodeEncryptionOptionsViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

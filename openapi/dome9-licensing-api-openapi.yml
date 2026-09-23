@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Licensing API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Licensing
+  type: Unclassified
+paths:
+  /v2/licensing/update-account-feature-enabled:
+    put:
+      tags:
+      - Licensing
+      operationId: Licensing_UpdateAccountFeatureEnabled
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.UpdateFeatureModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.UpdateFeatureModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.UpdateFeatureModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.UpdateFeatureModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.UpdateFeatureModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.UpdateFeatureModel'
+        required: true
+      summary: Licensing update account feature enabled
+      x-summary-source: derived
+  /v2/licensing/compliance-approval-needed:
+    get:
+      tags:
+      - Licensing
+      operationId: Licensing_IsComplianceApprovalNeeded
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.ComplianceApprovalNeededViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.ComplianceApprovalNeededViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.ComplianceApprovalNeededViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.ComplianceApprovalNeededViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.ComplianceApprovalNeededViewModel'
+      summary: Licensing is compliance approval needed
+      x-summary-source: derived
+  /v2/Licensing:
+    get:
+      tags:
+      - Licensing
+      operationId: Licensing_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.LicensingViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.LicensingViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.LicensingViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.LicensingViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Controllers.LicensingController.LicensingViewModel'
+      summary: Licensing get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Controllers.LicensingController.LicensingViewModel:
+      type: object
+      properties:
+        emailNotificationsAllowed:
+          type: boolean
+        apiAllowed:
+          type: boolean
+        longAccessLeasesAllowed:
+          type: boolean
+        twoFactorAuthenticationAllowed:
+          type: boolean
+    Dome9.Web.Api.Controllers.LicensingController.ComplianceApprovalNeededViewModel:
+      type: object
+      properties:
+        isComplianceApprovalNeeded:
+          type: boolean
+    Dome9.Web.Api.Controllers.LicensingController.UpdateFeatureModel:
+      type: object
+      properties:
+        feature:
+          enum:
+          - Network
+          - Compliance
+          - IAM Safety
+          - FIM
+          - Enterprise
+          type: string
+        featureEnabled:
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

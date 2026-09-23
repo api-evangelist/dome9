@@ -1,0 +1,400 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Google Cloud VM Instance API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Google CloudVM Instance
+  type: InventoryGcp
+paths:
+  /v2/GoogleCloudVMInstance/{cloudAccountId}/network-details:
+    get:
+      tags:
+      - Google CloudVM Instance
+      operationId: GoogleCloudVMInstance_GetNetworkDetailsByInstanceId
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: instanceExternalId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkDetailViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkDetailViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkDetailViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkDetailViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkDetailViewModel'
+      summary: Google cloud VM instance get network details by instance id
+      x-summary-source: derived
+  /v2/GoogleCloudVMInstance:
+    get:
+      tags:
+      - Google CloudVM Instance
+      operationId: GoogleCloudVMInstance_GetAll
+      parameters:
+      - name: cloudAccountId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+      summary: Google cloud VM instance get all
+      x-summary-source: derived
+  /v2/GoogleCloudVMInstance/{id}:
+    get:
+      tags:
+      - Google CloudVM Instance
+      operationId: GoogleCloudVMInstance_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+      summary: Google cloud VM instance get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel:
+      type: object
+      properties:
+        canIpForward:
+          type: boolean
+        cpuPlatform:
+          type: string
+        externalId:
+          type: string
+        creationTimestamp:
+          type: string
+        description:
+          type: string
+        disks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel'
+        machineType:
+          type: string
+        sourceMachineImage:
+          type: string
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel'
+        status:
+          type: string
+        statusMessage:
+          type: string
+        networkTags:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        zone:
+          type: string
+        region:
+          type: string
+        isRunning:
+          type: boolean
+          readOnly: true
+        isBillable:
+          type: boolean
+          readOnly: true
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        kmsKeyName:
+          type: string
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.Instance.GoogleCloudFirewallRuleWithSecurityGroupsViewModel:
+      type: object
+      properties:
+        securityGroupDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.SecurityGroupOfFirewallRule'
+        creationTimestamp:
+          type: string
+        allowed:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Firewall.GoogleFirewallRuleScopeViewModel'
+        denied:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Firewall.GoogleFirewallRuleScopeViewModel'
+        destinationRanges:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        network:
+          type: string
+        sourceRanges:
+          type: array
+          items:
+            type: string
+        sourceTags:
+          type: array
+          items:
+            type: string
+        targetTags:
+          type: array
+          items:
+            type: string
+        isProtected:
+          type: boolean
+        priority:
+          format: int32
+          type: integer
+        direction:
+          enum:
+          - Ingress
+          - Egress
+          type: string
+        enabled:
+          type: boolean
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Google.Firewall.GoogleFirewallRuleScopeViewModel:
+      type: object
+      properties:
+        ipProtocol:
+          type: string
+        ports:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel:
+      type: object
+      properties:
+        autoDelete:
+          type: boolean
+        deviceName:
+          type: string
+        guestOsFeatures:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel'
+        eTag:
+          type: string
+        interface:
+          type: string
+        kind:
+          type: string
+        licenses:
+          type: array
+          items:
+            type: string
+        mode:
+          type: string
+        source:
+          type: string
+        type:
+          type: string
+        diskEncryptionType:
+          type: string
+        diskEncryptionTypeMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel'
+        diskEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel'
+        initializeParams:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel'
+        id:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        kmsKeyName:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel:
+      type: object
+      properties:
+        isGoogleManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerSuppliedKey:
+          type: boolean
+          readOnly: true
+    Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        network:
+          type: string
+        networkIP:
+          type: string
+        subnetwork:
+          type: string
+        publicIP:
+          type: string
+    Dome9.Web.Api.Google.Instance.SecurityGroupOfFirewallRule:
+      type: object
+      properties:
+        name:
+          type: string
+        externalId:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel:
+      type: object
+      properties:
+        diskName:
+          type: string
+        diskSizeGb:
+          format: int64
+          type: integer
+        diskType:
+          type: string
+        sourceImage:
+          type: string
+        sourceImageEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel'
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.Instance.NetworkDetailViewModel:
+      type: object
+      properties:
+        vmInstanceName:
+          type: string
+        resourceType:
+          enum:
+          - Local
+          - Shared
+          type: string
+        network:
+          type: string
+        inboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GoogleCloudFirewallRuleWithSecurityGroupsViewModel'
+        outboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GoogleCloudFirewallRuleWithSecurityGroupsViewModel'
+        networkInterface:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

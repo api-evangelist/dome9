@@ -1,0 +1,405 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Continuous Compliance Policy V2 API
+  description: Continuous Compliance Policies
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Continuous Compliance Policy V2
+  description: Continuous Compliance Policies
+  type: PostureManagement
+paths:
+  /v2/Compliance/ContinuousCompliancePolicyV2/EvaluateRulesetVersions:
+    post:
+      tags:
+      - Continuous Compliance Policy V2
+      summary: Evaluate the ruleset version elected for each cloud account, based on the…
+      operationId: ContinuousCompliancePolicyV2_EvaluateRulesetVersionsAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+            text/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+            text/html:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+            application/xml:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+            text/xml:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel'
+        description: The ruleset id and version as well as a list of cloud accounts to evaluate ruleset version of configured polices.
+        required: true
+  /v2/ContinuousCompliancePolicyV2/{id}:
+    get:
+      tags:
+      - Continuous Compliance Policy V2
+      summary: Get single policy by its ID. Returns a policy matching a given ID
+      operationId: ContinuousCompliancePolicyV2_GetAsync
+      parameters:
+      - name: id
+        in: path
+        description: Policy's ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+    delete:
+      tags:
+      - Continuous Compliance Policy V2
+      summary: Delete policy by its ID
+      operationId: ContinuousCompliancePolicyV2_DeleteAsync
+      parameters:
+      - name: id
+        in: path
+        description: Policy's ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/ContinuousCompliancePolicyV2:
+    get:
+      tags:
+      - Continuous Compliance Policy V2
+      summary: Get all policies for the requesting account. Returns a collection of policies
+      operationId: ContinuousCompliancePolicyV2_GetAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+    put:
+      tags:
+      - Continuous Compliance Policy V2
+      summary: Update policies.
+      operationId: ContinuousCompliancePolicyV2_PutAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+          text/html:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+          text/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+        description: Policies to update
+        required: true
+    post:
+      tags:
+      - Continuous Compliance Policy V2
+      summary: Create new policies.
+      operationId: ContinuousCompliancePolicyV2_PostAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+          text/html:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+          text/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel'
+        description: Policies to create
+        required: true
+components:
+  schemas:
+    Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel:
+      required:
+      - targetType
+      - rulesetId
+      - notificationIds
+      type: object
+      properties:
+        targetId:
+          type: string
+        targetType:
+          enum:
+          - Aws
+          - Azure
+          - Gcp
+          - Kubernetes
+          - OrganizationalUnit
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Vendor
+          - Oci
+          - CIEM
+          type: string
+        rulesetId:
+          format: int64
+          type: integer
+        rulesetVersion:
+          type: string
+        notificationIds:
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        targetType:
+          enum:
+          - Aws
+          - Azure
+          - Gcp
+          - Kubernetes
+          - OrganizationalUnit
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Vendor
+          - Oci
+          - CIEM
+          type: string
+        vendor:
+          enum:
+          - Aws
+          - Azure
+          - Gcp
+          - Kubernetes
+          - OrganizationalUnit
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Vendor
+          - Oci
+          - CIEM
+          type: string
+        targetInternalId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        targetExternalId:
+          type: string
+        rulesetId:
+          format: int64
+          type: integer
+        notificationIds:
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        errorMessage:
+          type: string
+    Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel:
+      type: object
+      properties:
+        rulesetId:
+          format: int64
+          type: integer
+        cloudAccountIds:
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

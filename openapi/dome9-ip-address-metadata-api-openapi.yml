@@ -1,0 +1,214 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Ip Address Metadata API
+  description: IP Address Metadata
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Ip Address Metadata
+  description: IP Address Metadata
+  type: NetworkSecurity
+paths:
+  /v2/IpAddressMetadata:
+    get:
+      tags:
+      - Ip Address Metadata
+      summary: Get all IP addresses metadata
+      description: 'An Ip Address metadata must contain CIDR, Name and Classification
+
+        Classification can be External or Unsafe or Dmz or InternalVpc or InternalDc or NoClassification'
+      operationId: IpAddressMetadata_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+    put:
+      tags:
+      - Ip Address Metadata
+      summary: Update an existing IP address metadata
+      description: 'An Ip Address metadata must contain CIDR, Name and Classification.
+
+        Classification can only be External or Unsafe or Dmz or InternalVpc or InternalDc or NoClassification.'
+      operationId: IpAddressMetadata_Put
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+        description: updated metadata
+        required: true
+    post:
+      tags:
+      - Ip Address Metadata
+      summary: Add a new IP address metadata
+      description: 'An Ip Address metadata must contain CIDR, Name and Classification
+
+        Classification can be External or Unsafe or Dmz or InternalVpc or InternalDc or NoClassification'
+      operationId: IpAddressMetadata_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.IpAddressMetadataViewModel'
+        description: metadata for the IP address
+        required: true
+    delete:
+      tags:
+      - Ip Address Metadata
+      summary: delete an IP address metadata with a specific CIDR
+      description: The address and mask constructs the CIDR of the IP address metdata.
+      operationId: IpAddressMetadata_Delete
+      parameters:
+      - name: accountId
+        in: query
+        description: the account id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: address
+        in: query
+        description: the IP address to delete
+        required: true
+        schema:
+          type: string
+      - name: mask
+        in: query
+        description: the subnet mask
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Dome9.Web.Api.Models.IpAddressMetadataViewModel:
+      type: object
+      properties:
+        id:
+          description: set or get the internal id for the address
+          type: string
+        cidr:
+          description: set or get the CIDR for the address
+          type: string
+        name:
+          description: set or get the name for the IP address
+          type: string
+        classificaiton:
+          description: set or get the claasification of the IP address
+          enum:
+          - External
+          - Unsafe
+          - Dmz
+          - InternalVpc
+          - InternalDc
+          - NoClassification
+          type: string
+        classification:
+          enum:
+          - External
+          - Unsafe
+          - Dmz
+          - InternalVpc
+          - InternalDc
+          - NoClassification
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,130 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Iam User API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Iam User
+  type: InventoryAwsIam
+paths:
+  /v2/CloudIamUser:
+    get:
+      tags:
+      - Cloud Iam User
+      summary: Fetch all IAM users for the user from all cloud accounts
+      operationId: CloudIamUser_GetAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.Models.CloudIamUserViewModel.PermissionsBoundary:
+      type: object
+      properties:
+        permissionsBoundaryArn:
+          type: string
+        permissionsBoundaryType:
+          type: string
+    Dome9.Web.Api.SubTypes.CloudIamUserAttachedManagedPolicyViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        name:
+          type: string
+    Dome9.Web.Api.Models.CloudIamUserViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        arn:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        path:
+          type: string
+        passwordLastReset:
+          format: date-time
+          type: string
+        attachedManagedPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.SubTypes.CloudIamUserAttachedManagedPolicyViewModel'
+        attachedGroups:
+          type: array
+          items:
+            type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        inlinePolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.SubTypes.CloudIamUserInlinePolicyViewModel'
+        userPermissionsBoundary:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel.PermissionsBoundary'
+        sshPublicKeys:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel.SSHPublicKeyMetaDataViewModel'
+    Dome9.Web.Api.Models.CloudIamUserViewModel.SSHPublicKeyMetaDataViewModel:
+      type: object
+      properties:
+        sshPublicKeyId:
+          type: string
+        status:
+          type: string
+        uploadDate:
+          format: date-time
+          type: string
+        userName:
+          type: string
+    Dome9.Web.Api.SubTypes.CloudIamUserInlinePolicyViewModel:
+      type: object
+      properties:
+        policyName:
+          type: string
+        policyDocument:
+          type: object
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

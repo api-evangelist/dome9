@@ -1,0 +1,188 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Ecs Service API
+  description: Cloud Ecs Service
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Ecs Service
+  description: Cloud Ecs Service
+  type: InventoryAwsComputeAndContainers
+paths:
+  /v2/CloudEcsService/by-external-id-and-cloud-account:
+    get:
+      tags:
+      - Cloud Ecs Service
+      operationId: CloudEcsService_GetByExternalIdAndCloudAccountAsync
+      parameters:
+      - name: externalId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: cloudAccountId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudECSServiceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudECSServiceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudECSServiceViewModel'
+      summary: Cloud ecs service get by external id and cloud account async
+      x-summary-source: derived
+  /v2/CloudEcsService:
+    get:
+      tags:
+      - Cloud Ecs Service
+      operationId: CloudEcsService_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudECSServiceViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudECSServiceViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudECSServiceViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudECSServiceViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudECSServiceViewModel'
+      summary: Cloud ecs service get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.AwsECSDeploymentConfigurationViewModel:
+      type: object
+      properties:
+        maximumPercent:
+          format: int32
+          type: integer
+        minimumHealthyPercent:
+          format: int32
+          type: integer
+    Dome9.Web.Api.AwsECSDeploymentViewModel:
+      type: object
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        desiredCount:
+          format: int32
+          type: integer
+        id:
+          type: string
+        pendingCount:
+          format: int32
+          type: integer
+        runningCount:
+          format: int32
+          type: integer
+        status:
+          type: string
+        taskDefinition:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+    Dome9.Web.Api.AwsECSPlacementConstraintViewModel:
+      type: object
+      properties:
+        expression:
+          type: string
+        type:
+          type: string
+    Dome9.Web.Api.AwsECSLoadBalancerViewModel:
+      type: object
+      properties:
+        containerName:
+          type: string
+        containerPort:
+          format: int32
+          type: integer
+        loadBalancerName:
+          type: string
+        targetGroupArn:
+          type: string
+    Dome9.Web.Api.CloudECSServiceViewModel:
+      type: object
+      properties:
+        deploymentConfiguration:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsECSDeploymentConfigurationViewModel'
+        deployments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSDeploymentViewModel'
+        desiredCount:
+          format: int32
+          type: integer
+        loadBalancers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSLoadBalancerViewModel'
+        pendingCount:
+          format: int32
+          type: integer
+        placementConstraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSPlacementConstraintViewModel'
+        placementStrategy:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSPlacementStrategyViewModel'
+        roleArn:
+          type: string
+        runningCount:
+          format: int32
+          type: integer
+        serviceArn:
+          type: string
+        serviceName:
+          type: string
+        status:
+          type: string
+        clusterArn:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+    Dome9.Web.Api.AwsECSPlacementStrategyViewModel:
+      type: object
+      properties:
+        field:
+          type: string
+        type:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,67 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Incidents Status API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: IncidentsStatus
+  type: Unclassified
+paths:
+  /v2/IncidentsStatus/UnresolvedIncidents:
+    get:
+      tags:
+      - IncidentsStatus
+      operationId: IncidentsStatus_GetUnresolvedIncidentsAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      summary: Incidents status get unresolved incidents async
+      x-summary-source: derived
+  /v2/IncidentsStatus/AllIncidents:
+    get:
+      tags:
+      - IncidentsStatus
+      operationId: IncidentsStatus_GetAllIncidentsAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      summary: Incidents status get all incidents async
+      x-summary-source: derived
+components:
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

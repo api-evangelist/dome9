@@ -1,0 +1,292 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Sql Db API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: AzureSqlDb
+  type: Unclassified
+paths:
+  /v2/AzureSqlDb:
+    get:
+      tags:
+      - AzureSqlDb
+      operationId: AzureSqlDb_Get
+      parameters:
+      - name: subscriptions
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: resourceGroups
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: providers
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: servers
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: databases
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlDbViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlDbViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlDbViewModel'
+      summary: Azure sql db get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.SecurityAleryPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        disabledAlerts:
+          type: string
+        emailAccountAdmins:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        emailAddresses:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        retentionDays:
+          format: int32
+          type: integer
+        state:
+          type: string
+        storageAccountAccessKey:
+          type: string
+        storageEndpoint:
+          type: string
+        useServerDefault:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlDbViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        collation:
+          type: string
+        containmentState:
+          format: int64
+          type: integer
+        creationDate:
+          format: date-time
+          type: string
+        azureDatabaseId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        defaultSecondaryLocation:
+          type: string
+        earliestRestoreDate:
+          format: date-time
+          type: string
+        edition:
+          type: string
+        maxSizeBytes:
+          format: int32
+          type: integer
+        readScale:
+          type: string
+        status:
+          type: string
+        sqlServer:
+          type: string
+        transparentDataEncryption:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.TransparentDataEncryptionViewModel'
+        securityAleryPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.SecurityAleryPolicyViewModel'
+        blobAuditingPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.BlobAuditingPolicyViewModel'
+        dataMaskingRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.DataMaskingRuleViewModel'
+        backupLongTermRetentionPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.BackupLongTermRetentionPolicyViewModel'
+        protectionPolicyResource:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.ProtectionPolicyResourceViewModel'
+        geoBackupPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.GeoBackupPolicyViewModel'
+        replicationLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.ReplicationLinkViewModel'
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.TransparentDataEncryptionViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.ProtectionPolicyResourceViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        retentionPolicyType:
+          type: string
+        retentionPolicyDuration:
+          format: int32
+          type: integer
+        retentionPolicyDurationType:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.ReplicationLinkViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        isTerminationAllowed:
+          type: boolean
+        region:
+          type: string
+        partnerDatabase:
+          type: string
+        partnerRegion:
+          type: string
+        partnerRole:
+          type: string
+        percentComplete:
+          format: int32
+          type: integer
+        replicationMode:
+          type: string
+        replicationState:
+          type: string
+        role:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.BackupLongTermRetentionPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        recoveryServicesBackupPolicyResourceId:
+          type: string
+        state:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.GeoBackupPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        state:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.DataMaskingRuleViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        columnName:
+          type: string
+        dataMaskingRuleId:
+          type: string
+        maskingFunction:
+          type: string
+        numberFrom:
+          format: int32
+          type: integer
+        numberTo:
+          format: int32
+          type: integer
+        prefix:
+          type: string
+        replacementString:
+          type: string
+        suffix:
+          type: string
+        state:
+          type: string
+        schemaName:
+          type: string
+        tableName:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.BlobAuditingPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        auditActionsAndGroups:
+          type: array
+          items:
+            type: string
+        isStorageSecondaryKeyInUse:
+          type: boolean
+        retentionDays:
+          format: int32
+          type: integer
+        state:
+          type: string
+        storageAccountAccessKey:
+          type: string
+        storageAccountSubscriptionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        storageEndpoint:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

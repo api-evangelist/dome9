@@ -1,0 +1,222 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Gcp Pub Sub API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Gcp Pub Sub
+  type: InventoryGcp
+paths:
+  /topics:
+    get:
+      tags:
+      - Gcp Pub Sub
+      operationId: GcpPubSub_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
+      summary: Gcp pub sub get
+      x-summary-source: derived
+  /topics/{cloudAccountId}:
+    get:
+      tags:
+      - Gcp Pub Sub
+      operationId: GcpPubSub_Get
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
+      summary: Gcp pub sub get
+      x-summary-source: derived
+  /subscriptions/{cloudAccountId}/{project}/{topic}:
+    get:
+      tags:
+      - Gcp Pub Sub
+      operationId: GcpPubSub_Get
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubSubscriptionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubSubscriptionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubSubscriptionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubSubscriptionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubSubscriptionViewModel'
+      summary: Gcp pub sub get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Google.PubSub.GcpPubSubTopicMessageStoragePolicyViewModel:
+      type: object
+      properties:
+        allowedRegions:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Google.PubSub.GcpPubSubSubscriptionViewModel:
+      type: object
+      properties:
+        ackDeadlineSeconds:
+          format: int32
+          type: integer
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        messageRetentionDuration:
+          format: int64
+          type: integer
+        pushConfig:
+          type: string
+        retainAckedMessages:
+          type: boolean
+        topic:
+          type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel:
+      type: object
+      properties:
+        messageStoragePolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicMessageStoragePolicyViewModel'
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        policy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel'
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel:
+      type: object
+      properties:
+        bindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel.GcpPubSubPolicyBindingViewModel'
+        eTag:
+          type: string
+        version:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel.GcpPubSubPolicyBindingViewModel:
+      type: object
+      properties:
+        condition:
+          type: object
+        members:
+          type: array
+          items:
+            type: string
+        role:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,81 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Elastic Ip API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Elastic Ip
+  type: InventoryAwsNetworkingAndContentDelivery
+paths:
+  /v2/AwsElasticIp:
+    get:
+      tags:
+      - Aws Elastic Ip
+      operationId: AwsElasticIp_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsElasticIPViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsElasticIPViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsElasticIPViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsElasticIPViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsElasticIPViewModel'
+      summary: Aws elastic ip get
+      x-summary-source: derived
+components:
+  schemas:
+    Falconetix.Model.AwsElasticIPViewModel:
+      type: object
+      properties:
+        allocationId:
+          type: string
+        associationId:
+          type: string
+        domain:
+          type: string
+        instanceId:
+          type: string
+        networkInterfaceId:
+          type: string
+        networkInterfaceOwnerId:
+          type: string
+        privateIpAddress:
+          type: string
+        publicIp:
+          type: string
+        accountNumber:
+          type: string
+        region:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        id:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

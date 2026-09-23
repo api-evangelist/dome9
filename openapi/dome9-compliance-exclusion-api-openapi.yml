@@ -1,0 +1,541 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Compliance Exclusion API
+  description: Compliance Exclusions
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Compliance Exclusion
+  description: Compliance Exclusions
+  type: PostureManagement
+paths:
+  /v2/Compliance/Exclusion:
+    get:
+      tags:
+      - Compliance Exclusion
+      summary: Get a list of exclusions for the account
+      operationId: ComplianceExclusion_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+    put:
+      tags:
+      - Compliance Exclusion
+      summary: Update an exclusion
+      operationId: ComplianceExclusion_Put
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPutRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPutRequestModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPutRequestModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPutRequestModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPutRequestModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPutRequestModel'
+        description: details for the exclusion
+        required: true
+    post:
+      tags:
+      - Compliance Exclusion
+      summary: Add a new exclusion
+      operationId: ComplianceExclusion_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPostRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPostRequestModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPostRequestModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPostRequestModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPostRequestModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Exclusion.ExclusionPostRequestModel'
+        description: details for the exclusion
+        required: true
+    delete:
+      tags:
+      - Compliance Exclusion
+      summary: Delete an exclusion
+      operationId: ComplianceExclusion_Delete
+      parameters:
+      - name: id
+        in: query
+        description: the id of the exclusion to delete
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Dome9.Web.Api.Compliance.Exclusion.ExclusionPostRequestModel:
+      type: object
+      properties:
+        rulesetId:
+          format: int64
+          description: '[Required] Ruleset ID to apply exclusion on.'
+          type: integer
+        rules:
+          description: '[Optional] List of rules to apply the exclusion on.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RuleViewModel'
+        logicExpressions:
+          description: '[Optional] The GSL logic expressions of the exclusion.'
+          pattern: ((id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|((name like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')(( and category = ('Package'|'Malware'))$)?( or name like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'){{0,9}})|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])|(eventInfo\.userInfo\.username like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|('[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' in\(eventInfo\.userInfo\.roles\))|(namespace like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(rootOwner\.kind like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and rootOwner\.name like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(labels contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(labels contain-any [ value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(labels contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(annotations contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(annotations contain-any [ value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(annotations contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|((version|package-manager.path) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and category = 'Package')|(scannedAsset.entityName like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'( or scannedAsset.entityName like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'){{0,9}})|((files contain [file-path like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+']|files contain [contents contain [payload-sha256 like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+']]) and category = 'InsecureContent')|(files contain [file-path like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'] and category = 'Malware')
+          type: array
+          items:
+            type: string
+        regions:
+          description: '[Optional] List of regions to exclude, for example ''us_east_1''.'
+          type: array
+          items:
+            type: string
+        severities:
+          description: '[Optional] List of severities to exclude. Valid values: [''Informational'', ''Low'', ''Medium'', ''High'', ''Critical'']'
+          type: array
+          items:
+            enum:
+            - Informational
+            - Low
+            - Medium
+            - High
+            - Critical
+            type: string
+        cloudAccountIds:
+          description: '[Optional] List of cloud account IDs to apply exclusion on.
+
+            If neither cloud account IDs nor organizational unit IDs are supplied, exclusion will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        organizationalUnitIds:
+          description: '[Optional] List of organizational unit IDs to apply exclusion on.
+
+            If neither organizational unit IDs nor cloud account IDs are supplied, exclusion will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        comment:
+          description: Comment text (free text)
+          type: string
+        dateRange:
+          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
+          description: '[Optional] Date range for the exclusion to take effect.
+
+            The exclusion will take effect permanently unless a specific date range is specified.
+
+            Leaving ''From'' null will take only ''To'' into account.
+
+            Leaving ''To'' null will take only ''From'' into account.
+
+            DateRange with both ''From'' and ''To'' null will be disregarded.'
+        cloudAccountType:
+          description: 'CloudAccountType (string)
+
+            To know from which vendor the exclusion was created
+
+            default null'
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        platform:
+          description: 'Platform (string)
+
+            For CIEM to skip no ruleset validation
+
+            default null'
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+    Falconetix.Model.DateTimeRange:
+      type: object
+      properties:
+        from:
+          format: date-time
+          description: From date time
+          type: string
+        to:
+          format: date-time
+          description: To date time
+          type: string
+    Dome9.Web.Api.Compliance.Exclusion.ExclusionPutRequestModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: '[Required] Exclusion ID'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        rulesetId:
+          format: int64
+          description: '[Required] Ruleset ID to apply exclusion on.'
+          type: integer
+        rules:
+          description: '[Optional] List of rules to apply the exclusion on.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RuleViewModel'
+        logicExpressions:
+          description: '[Optional] The GSL logic expressions of the exclusion.'
+          pattern: ((id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|((name like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')(( and category = ('Package'|'Malware'))$)?( or name like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'){{0,9}})|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])|(eventInfo\.userInfo\.username like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|('[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' in\(eventInfo\.userInfo\.roles\))|(namespace like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(rootOwner\.kind like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and rootOwner\.name like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(labels contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(labels contain-any [ value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(labels contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(annotations contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(annotations contain-any [ value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(annotations contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|((version|package-manager.path) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and category = 'Package')|(scannedAsset.entityName like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'( or scannedAsset.entityName like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'){{0,9}})|((files contain [file-path like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+']|files contain [contents contain [payload-sha256 like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+']]) and category = 'InsecureContent')|(files contain [file-path like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'] and category = 'Malware')
+          type: array
+          items:
+            type: string
+        regions:
+          description: '[Optional] List of regions to exclude, for example ''us_east_1''.'
+          type: array
+          items:
+            type: string
+        severities:
+          description: '[Optional] List of severities to exclude. Valid values: [''Informational'', ''Low'', ''Medium'', ''High'', ''Critical'']'
+          type: array
+          items:
+            enum:
+            - Informational
+            - Low
+            - Medium
+            - High
+            - Critical
+            type: string
+        cloudAccountIds:
+          description: '[Optional] List of cloud account IDs to apply exclusion on.
+
+            If neither cloud account IDs nor organizational unit IDs are supplied, exclusion will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        organizationalUnitIds:
+          description: '[Optional] List of organizational unit IDs to apply exclusion on.
+
+            If neither organizational unit IDs nor cloud account IDs are supplied, exclusion will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        comment:
+          description: Comment text (free text)
+          type: string
+        dateRange:
+          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
+          description: '[Optional] Date range for the exclusion to take effect.
+
+            The exclusion will take effect permanently unless a specific date range is specified.
+
+            Leaving ''From'' null will take only ''To'' into account.
+
+            Leaving ''To'' null will take only ''From'' into account.
+
+            DateRange with both ''From'' and ''To'' null will be disregarded.'
+        cloudAccountType:
+          description: 'CloudAccountType (string)
+
+            To know from which vendor the exclusion was created
+
+            default null'
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        platform:
+          description: 'Platform (string)
+
+            For CIEM to skip no ruleset validation
+
+            default null'
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+    Dome9.Web.Api.Compliance.RuleViewModel:
+      type: object
+      properties:
+        logicHash:
+          description: Rule logic hash
+          pattern: ^[A-Za-z0-9+/]{22}?$
+          type: string
+        rlmId:
+          type: string
+        id:
+          description: Rule ID
+          type: string
+        name:
+          description: Rule name
+          type: string
+    Dome9.Web.Api.Compliance.Exclusion.ExclusionViewModel:
+      type: object
+      properties:
+        platform:
+          description: Exclusion platform
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        id:
+          format: uuid
+          description: '[Required] Exclusion ID'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        rulesetId:
+          format: int64
+          description: '[Required] Ruleset ID to apply exclusion on.'
+          type: integer
+        rules:
+          description: '[Optional] List of rules to apply the exclusion on.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RuleViewModel'
+        logicExpressions:
+          description: '[Optional] The GSL logic expressions of the exclusion.'
+          pattern: ((id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|((name like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')(( and category = ('Package'|'Malware'))$)?( or name like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'){{0,9}})|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])|(eventInfo\.userInfo\.username like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|('[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' in\(eventInfo\.userInfo\.roles\))|(namespace like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(rootOwner\.kind like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and rootOwner\.name like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(labels contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(labels contain-any [ value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(labels contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(annotations contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(annotations contain-any [ value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|(annotations contain-any [ key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' ])|((version|package-manager.path) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and category = 'Package')|(scannedAsset.entityName like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'( or scannedAsset.entityName like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'){{0,9}})|((files contain [file-path like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+']|files contain [contents contain [payload-sha256 like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+']]) and category = 'InsecureContent')|(files contain [file-path like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'] and category = 'Malware')
+          type: array
+          items:
+            type: string
+        regions:
+          description: '[Optional] List of regions to exclude, for example ''us_east_1''.'
+          type: array
+          items:
+            type: string
+        severities:
+          description: '[Optional] List of severities to exclude. Valid values: [''Informational'', ''Low'', ''Medium'', ''High'', ''Critical'']'
+          type: array
+          items:
+            enum:
+            - Informational
+            - Low
+            - Medium
+            - High
+            - Critical
+            type: string
+        cloudAccountIds:
+          description: '[Optional] List of cloud account IDs to apply exclusion on.
+
+            If neither cloud account IDs nor organizational unit IDs are supplied, exclusion will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        organizationalUnitIds:
+          description: '[Optional] List of organizational unit IDs to apply exclusion on.
+
+            If neither organizational unit IDs nor cloud account IDs are supplied, exclusion will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        comment:
+          description: Comment text (free text)
+          type: string
+        dateRange:
+          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
+          description: '[Optional] Date range for the exclusion to take effect.
+
+            The exclusion will take effect permanently unless a specific date range is specified.
+
+            Leaving ''From'' null will take only ''To'' into account.
+
+            Leaving ''To'' null will take only ''From'' into account.
+
+            DateRange with both ''From'' and ''To'' null will be disregarded.'
+        cloudAccountType:
+          description: 'CloudAccountType (string)
+
+            To know from which vendor the exclusion was created
+
+            default null'
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,137 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Billing API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Billing
+  type: Unclassified
+paths:
+  /billing/success:
+    get:
+      tags:
+      - Billing
+      operationId: Billing_PPPResponse
+      parameters:
+      - name: ppp_status
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      summary: Billing PPP response
+      x-summary-source: derived
+  /billing/pending:
+    get:
+      tags:
+      - Billing
+      operationId: Billing_PPPResponse
+      parameters:
+      - name: ppp_status
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      summary: Billing PPP response
+      x-summary-source: derived
+  /billing/failure:
+    get:
+      tags:
+      - Billing
+      operationId: Billing_PPPResponse
+      parameters:
+      - name: ppp_status
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      summary: Billing PPP response
+      x-summary-source: derived
+  /v2/Billing:
+    post:
+      tags:
+      - Billing
+      operationId: Billing_CreatePaymentRequest
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/html:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+      summary: Billing create payment request
+      x-summary-source: derived
+components:
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

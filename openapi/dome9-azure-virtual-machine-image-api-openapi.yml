@@ -1,0 +1,152 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Virtual Machine Image API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Virtual Machine Image
+  type: InventoryAzure
+paths:
+  /v2/AzureVirtualMachineImage:
+    get:
+      tags:
+      - Azure Virtual Machine Image
+      operationId: AzureVirtualMachineImage_GetAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineImageViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineImageViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineImageViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineImageViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineImageViewModel'
+      summary: Azure virtual machine image get async
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineExtendedLocationViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+    Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineStorageProfileDataDiskViewModel:
+      type: object
+      properties:
+        lun:
+          format: int32
+          type: integer
+        diskSizeGb:
+          format: int32
+          type: integer
+        blobUri:
+          type: string
+        caching:
+          type: string
+        storageAccountType:
+          type: string
+        diskEncryptionSet:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineIdSubFieldViewModel'
+        managedDisk:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineIdSubFieldViewModel'
+        snapshot:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineIdSubFieldViewModel'
+    Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineImageViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        location:
+          type: string
+        extendedLocation:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineExtendedLocationViewModel'
+        properties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineImagePropertiesViewModel'
+        usedBy:
+          type: array
+          items:
+            type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineStorageProfileViewModel:
+      type: object
+      properties:
+        osDisk:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineStorageProfileOsDiskViewModel'
+        dataDisks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineStorageProfileDataDiskViewModel'
+        zoneResilient:
+          type: boolean
+    Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineStorageProfileOsDiskViewModel:
+      type: object
+      properties:
+        osType:
+          type: string
+        osState:
+          type: string
+        diskSizeGb:
+          format: int32
+          type: integer
+        blobUri:
+          type: string
+        caching:
+          type: string
+        storageAccountType:
+          type: string
+        diskEncryptionSet:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineIdSubFieldViewModel'
+        managedDisk:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineIdSubFieldViewModel'
+        snapshot:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineIdSubFieldViewModel'
+    Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineIdSubFieldViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+    Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineImagePropertiesViewModel:
+      type: object
+      properties:
+        sourceVirtualMachine:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineIdSubFieldViewModel'
+        storageProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachineImage.AzureVirtualMachineStorageProfileViewModel'
+        provisioningState:
+          type: string
+        hyperVGeneration:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

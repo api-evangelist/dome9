@@ -1,0 +1,369 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Auth API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Auth
+  type: Unclassified
+paths:
+  /v2/auth/assume-role/jwt:
+    post:
+      tags:
+      - Auth
+      operationId: Auth_PostAssumeRoleForApi
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+        required: true
+      summary: Auth post assume role for api
+      x-summary-source: derived
+  /v2/auth/assume-role/web:
+    post:
+      tags:
+      - Auth
+      operationId: Auth_PostAssumeRoleForWeb
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.AssumeRoleViewModel'
+        required: true
+      summary: Auth post assume role for web
+      x-summary-source: derived
+  /v2/auth/reset-password-request:
+    post:
+      tags:
+      - Auth
+      operationId: Auth_PostResetPasswordRequestAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordRequestViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordRequestViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordRequestViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordRequestViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordRequestViewModel'
+        required: true
+      summary: Auth post reset password request async
+      x-summary-source: derived
+  /v2/auth/reset-password-request-by-email:
+    post:
+      tags:
+      - Auth
+      summary: request to reset password to a user without reCaptcha - ONLY to SuperUser
+      operationId: Auth_PostResetPasswordRequestByEmailAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel'
+        required: true
+  /v2/auth/reset-password/{requestId}:
+    get:
+      tags:
+      - Auth
+      operationId: Auth_GetResetPassword
+      parameters:
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordGetViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordGetViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordGetViewModel'
+      summary: Auth get reset password
+      x-summary-source: derived
+  /v2/auth/reset-password:
+    post:
+      tags:
+      - Auth
+      operationId: Auth_PostResetPassword
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordPostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordPostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordPostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordPostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordPostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ResetPasswordPostViewModel'
+        required: true
+      summary: Auth post reset password
+      x-summary-source: derived
+  /v2/auth/change-password:
+    post:
+      tags:
+      - Auth
+      operationId: Auth_PostChangePassword
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ChangePasswordViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ChangePasswordViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ChangePasswordViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ChangePasswordViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ChangePasswordViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Auth.ChangePasswordViewModel'
+        required: true
+      summary: Auth post change password
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Auth.ResetPasswordGetViewModel:
+      required:
+      - verificationToken
+      type: object
+      properties:
+        verificationToken:
+          type: string
+        mfa:
+          type: boolean
+    Dome9.Web.Api.Auth.ChangePasswordViewModel:
+      required:
+      - currentPassword
+      - newPassword
+      type: object
+      properties:
+        currentPassword:
+          type: string
+        newPassword:
+          type: string
+    Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel:
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+    Dome9.Web.Api.Auth.AssumeRoleViewModel:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        roleName:
+          type: string
+        expirationInMin:
+          format: int32
+          maximum: 300
+          minimum: 5
+          type: integer
+    Dome9.Web.Api.Auth.ResetPasswordRequestViewModel:
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        recaptchaResponse:
+          type: string
+    Dome9.Web.Api.Auth.ResetPasswordPostViewModel:
+      required:
+      - requestId
+      - verificationToken
+      - password
+      type: object
+      properties:
+        requestId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        verificationToken:
+          type: string
+        password:
+          type: string
+        mfaCode:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

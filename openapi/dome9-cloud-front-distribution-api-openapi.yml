@@ -1,0 +1,463 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Front Distribution API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Front Distribution
+  type: InventoryAwsNetworkingAndContentDelivery
+paths:
+  /v2/CloudFrontDistribution:
+    get:
+      tags:
+      - Cloud Front Distribution
+      operationId: CloudFrontDistribution_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.CloudFrontDistributionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.CloudFrontDistributionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.CloudFrontDistributionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.CloudFrontDistributionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.CloudFrontDistributionViewModel'
+      summary: Cloud front distribution get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudFront.AwsCloudFrontOriginCustomHeaderViewModel:
+      type: object
+      properties:
+        headerName:
+          type: string
+        headerValue:
+          type: string
+    Dome9.Web.Api.CloudFront.AwsCloudFrontLambdaFunctionAssociationViewModel:
+      type: object
+      properties:
+        eventType:
+          type: string
+        lambdaFunctionARN:
+          type: string
+    Dome9.Web.Api.CloudFront.AwsCloudFrontCustomHeadersViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontOriginCustomHeaderViewModel'
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontOriginSslProtocolsViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontGeoRestrictionViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+        quantity:
+          format: int32
+          type: integer
+        restrictionType:
+          type: string
+    Dome9.Web.Api.CloudFront.AwsCloudFrontLambdaFunctionAssociationsViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontLambdaFunctionAssociationViewModel'
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontCookiePreferenceViewModel:
+      type: object
+      properties:
+        forward:
+          type: string
+        whitelistedNames:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontCookieNamesViewModel'
+    Dome9.Web.Api.CloudFront.AwsCloudFrontSignerViewModel:
+      type: object
+      properties:
+        awsAccountNumber:
+          type: string
+        keyPairIds:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontKeyPairIdsViewModel'
+    Dome9.Web.Api.CloudFront.AwsCloudFrontViewerCertificateViewModel:
+      type: object
+      properties:
+        acmCertificateArn:
+          type: string
+        certificate:
+          type: string
+        certificateSource:
+          type: string
+        cloudFrontDefaultCertificate:
+          type: boolean
+        iamCertificateId:
+          type: string
+        minimumProtocolVersion:
+          type: string
+        sslSupportMethod:
+          type: string
+    Dome9.Web.Api.CloudFront.AwsCloudFrontDistributionConfigViewModel:
+      type: object
+      properties:
+        aliases:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontAliasesViewModel'
+        cacheBehaviors:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontCacheBehaviorsViewModel'
+        callerReference:
+          type: string
+        comment:
+          type: string
+        customErrorResponses:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontCustomErrorResponsesViewModel'
+        defaultCacheBehavior:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontDefaultCacheBehaviorViewModel'
+        defaultRootObject:
+          type: string
+        enabled:
+          type: boolean
+        httpVersion:
+          type: string
+        isIPV6Enabled:
+          type: boolean
+        logging:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontLoggingConfigViewModel'
+        origins:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontOriginsViewModel'
+        priceClass:
+          type: string
+        restrictions:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontRestrictionsViewModel'
+        viewerCertificate:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontViewerCertificateViewModel'
+        webACLId:
+          type: string
+    Dome9.Web.Api.CloudFront.AwsCloudFrontKeyPairIdsViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontQueryStringCacheKeysViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontTrustedSignersViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        items:
+          type: array
+          items:
+            type: string
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontForwardedValuesViewModel:
+      type: object
+      properties:
+        cookies:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontCookiePreferenceViewModel'
+        headers:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontHeadersViewModel'
+        queryString:
+          type: boolean
+        queryStringCacheKeys:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontQueryStringCacheKeysViewModel'
+    Dome9.Web.Api.CloudFront.AwsCloudFrontS3OriginConfigViewModel:
+      type: object
+      properties:
+        originAccessIdentity:
+          type: string
+    Dome9.Web.Api.CloudFront.AwsCloudFrontAllowedMethodsViewModel:
+      type: object
+      properties:
+        cachedMethods:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontCachedMethodsViewModel'
+        items:
+          type: array
+          items:
+            type: string
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontLoggingConfigViewModel:
+      type: object
+      properties:
+        bucket:
+          type: string
+        enabled:
+          type: boolean
+        includeCookies:
+          type: boolean
+        prefix:
+          type: string
+    Dome9.Web.Api.CloudFront.AwsCloudFrontActiveTrustedSignersViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontSignerViewModel'
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontHeadersViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontCustomOriginConfigViewModel:
+      type: object
+      properties:
+        httpPort:
+          format: int32
+          type: integer
+        httpsPort:
+          format: int32
+          type: integer
+        originKeepaliveTimeout:
+          format: int32
+          type: integer
+        originProtocolPolicy:
+          type: string
+        originReadTimeout:
+          format: int32
+          type: integer
+        originSslProtocols:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontOriginSslProtocolsViewModel'
+    Dome9.Web.Api.CloudFront.AwsCloudFrontCustomErrorResponseViewModel:
+      type: object
+      properties:
+        errorCachingMinTTL:
+          format: int64
+          type: integer
+        errorCode:
+          format: int32
+          type: integer
+        responseCode:
+          type: string
+        responsePagePath:
+          type: string
+    Dome9.Web.Api.CloudFront.AwsCloudFrontRestrictionsViewModel:
+      type: object
+      properties:
+        geoRestriction:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontGeoRestrictionViewModel'
+    Dome9.Web.Api.CloudFront.AwsCloudFrontCacheBehaviorsViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontCacheBehaviorViewModel'
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontCookieNamesViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontOriginsViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontOriginViewModel'
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.CloudFrontDistributionViewModel:
+      type: object
+      properties:
+        activeTrustedSigners:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontActiveTrustedSignersViewModel'
+        arn:
+          type: string
+        distributionConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontDistributionConfigViewModel'
+        domainName:
+          type: string
+        id:
+          type: string
+        inProgressInvalidationBatches:
+          format: int32
+          type: integer
+        lastModifiedTime:
+          format: date-time
+          type: string
+        status:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          readOnly: true
+    Dome9.Web.Api.CloudFront.AwsCloudFrontOriginViewModel:
+      type: object
+      properties:
+        customHeaders:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontCustomHeadersViewModel'
+        customOriginConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontCustomOriginConfigViewModel'
+        domainName:
+          type: string
+        id:
+          type: string
+        originPath:
+          type: string
+        s3OriginConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontS3OriginConfigViewModel'
+    Dome9.Web.Api.CloudFront.AwsCloudFrontDefaultCacheBehaviorViewModel:
+      type: object
+      properties:
+        allowedMethods:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontAllowedMethodsViewModel'
+        compress:
+          type: boolean
+        defaultTTL:
+          format: int64
+          type: integer
+        forwardedValues:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontForwardedValuesViewModel'
+        lambdaFunctionAssociations:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontLambdaFunctionAssociationsViewModel'
+        maxTTL:
+          format: int64
+          type: integer
+        minTTL:
+          format: int64
+          type: integer
+        smoothStreaming:
+          type: boolean
+        targetOriginId:
+          type: string
+        trustedSigners:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontTrustedSignersViewModel'
+        viewerProtocolPolicy:
+          type: string
+    Dome9.Web.Api.CloudFront.AwsCloudFrontCustomErrorResponsesViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontCustomErrorResponseViewModel'
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontCacheBehaviorViewModel:
+      type: object
+      properties:
+        allowedMethods:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontAllowedMethodsViewModel'
+        compress:
+          type: boolean
+        defaultTTL:
+          format: int64
+          type: integer
+        forwardedValues:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontForwardedValuesViewModel'
+        lambdaFunctionAssociations:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontLambdaFunctionAssociationsViewModel'
+        maxTTL:
+          format: int64
+          type: integer
+        minTTL:
+          format: int64
+          type: integer
+        pathPattern:
+          type: string
+        smoothStreaming:
+          type: boolean
+        targetOriginId:
+          type: string
+        trustedSigners:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudFront.AwsCloudFrontTrustedSignersViewModel'
+        viewerProtocolPolicy:
+          type: string
+    Dome9.Web.Api.CloudFront.AwsCloudFrontAliasesViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+        quantity:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudFront.AwsCloudFrontCachedMethodsViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+        quantity:
+          format: int32
+          type: integer
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

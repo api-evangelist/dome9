@@ -1,0 +1,1223 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Security Group API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Security Group
+  type: Unclassified
+paths:
+  /v2/SecurityGroup/{id}:
+    get:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+      summary: Security group get
+      x-summary-source: derived
+    put:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_UpdateFimExcludePath
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+          text/html:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+          text/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+        required: true
+      summary: Security group update fim exclude path
+      x-summary-source: derived
+    patch:
+      tags:
+      - Security Group
+      summary: Partial update for security group entity
+      operationId: SecurityGroup_Patch
+      parameters:
+      - name: id
+        in: path
+        description: security group id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+          text/html:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+          text/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.UpdateItem'
+        description: "This is an array of patchItems according to rfc 6902 http://tools.ietf.org/html/rfc6902\ncurrenly we support only the 'add' operation and the path /FIMPolicy/Rules\n\nExample:\n[{\n    \"op\": \"add\",\n    \"path\": \"/FIMPolicy/Rules\",\n    \"value\": {\"type\":\"ExcludePath\", \"value\":\"a/b/c\", \"comment\":\"my comment\"}\n}]"
+        required: true
+  /v2/SecurityGroup/{groupId}:
+    delete:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_DeleteSecurityGroup
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+      summary: Security group delete security group
+      x-summary-source: derived
+  /v2/SecurityGroup/{groupId}/name:
+    put:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_Rename
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupNameViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupNameViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupNameViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupNameViewModel'
+        required: true
+      summary: Security group rename
+      x-summary-source: derived
+  /v2/SecurityGroup/{groupId}/fim-policy/disable:
+    put:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_DisableFIM
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      summary: Security group disable FIM
+      x-summary-source: derived
+  /v2/SecurityGroup/fim-policy:
+    put:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_UpdateFimPolicy
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.FimPolicyUpdateViewModel'
+        required: true
+      summary: Security group update fim policy
+      x-summary-source: derived
+  /v2/SecurityGroup/{groupId}/fim-policy/logging-policy:
+    put:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_UpdateFimLoggingPolicy
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.LoggingPolicyViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.LoggingPolicyViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.LoggingPolicyViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.LoggingPolicyViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.LoggingPolicyViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.LoggingPolicyViewModel'
+        required: true
+      summary: Security group update fim logging policy
+      x-summary-source: derived
+  /v2/SecurityGroup/{groupId}/service/inbound:
+    put:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_UpdateInboundService
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+        required: true
+      summary: Security group update inbound service
+      x-summary-source: derived
+    post:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_CreateInboundService
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+        required: true
+      summary: Security group create inbound service
+      x-summary-source: derived
+    delete:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_DeleteService
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: protocol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: fromPort
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: toPort
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+      summary: Security group delete service
+      x-summary-source: derived
+  /v2/SecurityGroup/{groupId}/service/outbound:
+    put:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_UpdateOutboundService
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+        required: true
+      summary: Security group update outbound service
+      x-summary-source: derived
+    post:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_CreateOutboundService
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentServiceViewModel'
+        required: true
+      summary: Security group create outbound service
+      x-summary-source: derived
+    delete:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_DeleteOutboundService
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: protocol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: fromPort
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: toPort
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+      summary: Security group delete outbound service
+      x-summary-source: derived
+  /v2/SecurityGroup/{groupId}/whitelist/outbound:
+    post:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_OutboundWhitelist
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+          text/html:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+          text/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+        required: true
+      summary: Security group outbound whitelist
+      x-summary-source: derived
+  /v2/SecurityGroup/{groupId}/whitelist/inbound:
+    post:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_InboundWhitelist
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+          text/html:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+          text/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
+        required: true
+      summary: Security group inbound whitelist
+      x-summary-source: derived
+  /v2/SecurityGroup:
+    get:
+      tags:
+      - Security Group
+      summary: Fetch Dome9 security groups according to a filter type
+      operationId: SecurityGroup_Get
+      parameters:
+      - name: filter
+        in: query
+        description: The filter to fetch by (enum)
+        required: true
+        schema:
+          type: string
+          enum:
+          - IpListReference
+      - name: value
+        in: query
+        description: The value used according to filter type, varies by filter
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+    post:
+      tags:
+      - Security Group
+      operationId: SecurityGroup_CreateSecurityGroup
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel'
+        required: true
+      summary: Security group create security group
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Models.FIMPolicyViewModel.FIMRuleViewModel:
+      type: object
+      properties:
+        include:
+          type: boolean
+        value:
+          type: string
+        comment:
+          type: string
+    Falconetix.WebApi.Models.ScopeElementViewModel:
+      type: object
+      properties:
+        type:
+          enum:
+          - CIDR
+          - DNS
+          - IPList
+          - MagicIP
+          - AWS
+          - Tag
+          - ASG
+          - CIDRv6
+          - PrefixList
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+    Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel:
+      required:
+      - name
+      type: object
+      properties:
+        serverId:
+          format: int32
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        description:
+          maxLength: 256
+          minLength: 0
+          type: string
+    Dome9.Web.Api.Models.SecurityGroupServiceViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        protocolType:
+          enum:
+          - ALL
+          - HOPOPT
+          - ICMP
+          - IGMP
+          - GGP
+          - IPV4
+          - ST
+          - TCP
+          - CBT
+          - EGP
+          - IGP
+          - BBN_RCC_MON
+          - NVP2
+          - PUP
+          - ARGUS
+          - EMCON
+          - XNET
+          - CHAOS
+          - UDP
+          - MUX
+          - DCN_MEAS
+          - HMP
+          - PRM
+          - XNS_IDP
+          - TRUNK1
+          - TRUNK2
+          - LEAF1
+          - LEAF2
+          - RDP
+          - IRTP
+          - ISO_TP4
+          - NETBLT
+          - MFE_NSP
+          - MERIT_INP
+          - DCCP
+          - ThreePC
+          - IDPR
+          - XTP
+          - DDP
+          - IDPR_CMTP
+          - TPplusplus
+          - IL
+          - IPV6
+          - SDRP
+          - IPV6_ROUTE
+          - IPV6_FRAG
+          - IDRP
+          - RSVP
+          - GRE
+          - DSR
+          - BNA
+          - ESP
+          - AH
+          - I_NLSP
+          - SWIPE
+          - NARP
+          - MOBILE
+          - TLSP
+          - SKIP
+          - ICMPV6
+          - IPV6_NONXT
+          - IPV6_OPTS
+          - CFTP
+          - SAT_EXPAK
+          - KRYPTOLAN
+          - RVD
+          - IPPC
+          - SAT_MON
+          - VISA
+          - IPCV
+          - CPNX
+          - CPHB
+          - WSN
+          - PVP
+          - BR_SAT_MON
+          - SUN_ND
+          - WB_MON
+          - WB_EXPAK
+          - ISO_IP
+          - VMTP
+          - SECURE_VMTP
+          - VINES
+          - TTP
+          - NSFNET_IGP
+          - DGP
+          - TCF
+          - EIGRP
+          - OSPFIGP
+          - SPRITE_RPC
+          - LARP
+          - MTP
+          - AX25
+          - IPIP
+          - MICP
+          - SCC_SP
+          - ETHERIP
+          - ENCAP
+          - GMTP
+          - IFMP
+          - PNNI
+          - PIM
+          - ARIS
+          - SCPS
+          - QNX
+          - AN
+          - IPCOMP
+          - SNP
+          - COMPAQ_PEER
+          - IPX_IN_IP
+          - VRRP
+          - PGM
+          - L2TP
+          - DDX
+          - IATP
+          - STP
+          - SRP
+          - UTI
+          - SMP
+          - SM
+          - PTP
+          - ISIS
+          - FIRE
+          - CRTP
+          - CRUDP
+          - SSCOPMCE
+          - IPLT
+          - SPS
+          - PIPE
+          - SCTP
+          - FC
+          - RSVP_E2E_IGNORE
+          - MOBILITY_HEADER
+          - UDPLITE
+          - MPLS_IN_IP
+          - MANET
+          - HIP
+          - SHIM6
+          - WESP
+          - ROHC
+          type: string
+        port:
+          type: string
+        scope:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        description:
+          type: string
+    Dome9.Common.DataTypes.PortRange:
+      type: object
+      properties:
+        portFrom:
+          format: int32
+          type: integer
+        portTo:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Models.AgentServiceViewModel:
+      required:
+      - name
+      - protocol
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        description:
+          maxLength: 500
+          minLength: 0
+          type: string
+        portRange:
+          $ref: '#/components/schemas/Dome9.Common.DataTypes.PortRange'
+        protocol:
+          type: string
+        normallyOpen:
+          type: boolean
+        scope:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        icmpType:
+          type: string
+        icmpV6Type:
+          type: string
+    Dome9.Web.Api.Models.SecurityGroupViewModel:
+      type: object
+      properties:
+        securityGroupId:
+          format: int64
+          type: integer
+        securityGroupName:
+          type: string
+        securityGroupDescription:
+          type: string
+        loggingPolicy:
+          enum:
+          - NoLogging
+          - LogSuccess
+          - LogDeny
+          - LogBoth
+          type: string
+        fimPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel'
+        whitelist:
+          type: object
+          properties:
+            inbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+            outbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        services:
+          type: object
+          properties:
+            inbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupServiceViewModel'
+            outbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupServiceViewModel'
+    Dome9.Web.Api.Models.FIMPolicyViewModel:
+      required:
+      - frequency
+      - enabled
+      - rules
+      - excludedFileTypes
+      type: object
+      properties:
+        frequency:
+          enum:
+          - Every6Hours
+          - Every12Hours
+          - OnceADay
+          - OnceAWeek
+          type: string
+        enabled:
+          type: boolean
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel.FIMRuleViewModel'
+        excludedFileTypes:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Models.ScopeViewModel:
+      type: object
+      properties:
+        type:
+          enum:
+          - CIDR
+          - DNS
+          - IPList
+          - MagicIP
+          - AWS
+          - Tag
+          - ASG
+          - CIDRv6
+          - PrefixList
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+    Dome9.Web.Api.Models.FimPolicyUpdateViewModel:
+      type: object
+      properties:
+        sgId:
+          format: int64
+          type: integer
+        fimPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel'
+    Dome9.Web.Api.Models.SecurityGroupNameViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+    Dome9.Web.Api.Models.UpdateItem:
+      type: object
+      properties:
+        op:
+          description: 'Usually one of:
+
+            remove
+
+            add
+
+            replace
+
+            move
+
+            copy
+
+
+            However , can be customized in some cases'
+          type: string
+        path:
+          description: the field or path to field
+          type: string
+        value:
+          description: the target value of the operation. could be basic or complex type
+          type: object
+    Dome9.Web.Api.Models.LoggingPolicyViewModel:
+      type: object
+      properties:
+        loggingPolicy:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

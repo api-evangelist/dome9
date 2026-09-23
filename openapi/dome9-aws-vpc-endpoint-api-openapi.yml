@@ -1,0 +1,166 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Vpc Endpoint API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Vpc Endpoint
+  type: InventoryAwsNetworkingAndContentDelivery
+paths:
+  /v2/AwsVpcEndpoint:
+    get:
+      tags:
+      - Aws Vpc Endpoint
+      operationId: AwsVpcEndpoint_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
+      summary: Aws vpc endpoint get
+      x-summary-source: derived
+  /v2/AwsVpcEndpoint/{id}:
+    get:
+      tags:
+      - Aws Vpc Endpoint
+      operationId: AwsVpcEndpoint_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
+      summary: Aws vpc endpoint get
+      x-summary-source: derived
+components:
+  schemas:
+    Falconetix.Model.AwsServiceTypeDetailViewModel:
+      type: object
+      properties:
+        serviceType:
+          type: string
+    Falconetix.Model.VpcEndpointServiceViewModel:
+      type: object
+      properties:
+        acceptanceRequired:
+          type: boolean
+        availabilityZones:
+          type: array
+          items:
+            type: string
+        baseEndpointDnsNames:
+          type: array
+          items:
+            type: string
+        managesVpcEndpoints:
+          type: boolean
+        owner:
+          type: string
+        payerResponsibility:
+          type: string
+        privateDnsName:
+          type: string
+        privateDnsNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsPrivateDnsDetailsViewModel'
+        privateDnsNameVerificationState:
+          type: string
+        serviceId:
+          type: string
+        serviceName:
+          type: string
+        serviceType:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsServiceTypeDetailViewModel'
+        supportedIpAddressTypes:
+          type: array
+          items:
+            type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        vpcEndpointPolicySupported:
+          type: boolean
+    Falconetix.Model.AwsVpcEndpointViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        creationTimestamp:
+          format: date-time
+          type: string
+        policyDocument:
+          type: string
+        routeTableIds:
+          type: array
+          items:
+            type: string
+        serviceName:
+          type: string
+        endpointServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.VpcEndpointServiceViewModel'
+        state:
+          type: string
+        vpcEndpointId:
+          type: string
+        vpcId:
+          type: string
+    Falconetix.Model.AwsPrivateDnsDetailsViewModel:
+      type: object
+      properties:
+        privateDnsName:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

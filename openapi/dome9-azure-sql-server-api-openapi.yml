@@ -1,0 +1,605 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Sql Server API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Sql Server
+  type: InventoryAzure
+paths:
+  /v2/AzureSqlServer:
+    get:
+      tags:
+      - Azure Sql Server
+      operationId: AzureSqlServer_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlServerViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlServerViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlServerViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlServerViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlServerViewModel'
+      summary: Azure sql server get
+      x-summary-source: derived
+  /v2/AzureSqlServer/{id}:
+    get:
+      tags:
+      - Azure Sql Server
+      operationId: AzureSqlServer_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlServerViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlServerViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlServerViewModel'
+      summary: Azure sql server get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.SecurityAleryPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        disabledAlerts:
+          type: string
+        emailAccountAdmins:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        emailAddresses:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        retentionDays:
+          format: int32
+          type: integer
+        state:
+          type: string
+        storageAccountAccessKey:
+          type: string
+        storageEndpoint:
+          type: string
+        useServerDefault:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlDbViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        collation:
+          type: string
+        containmentState:
+          format: int64
+          type: integer
+        creationDate:
+          format: date-time
+          type: string
+        azureDatabaseId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        defaultSecondaryLocation:
+          type: string
+        earliestRestoreDate:
+          format: date-time
+          type: string
+        edition:
+          type: string
+        maxSizeBytes:
+          format: int32
+          type: integer
+        readScale:
+          type: string
+        status:
+          type: string
+        sqlServer:
+          type: string
+        transparentDataEncryption:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.TransparentDataEncryptionViewModel'
+        securityAleryPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.SecurityAleryPolicyViewModel'
+        blobAuditingPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.BlobAuditingPolicyViewModel'
+        dataMaskingRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.DataMaskingRuleViewModel'
+        backupLongTermRetentionPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.BackupLongTermRetentionPolicyViewModel'
+        protectionPolicyResource:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.ProtectionPolicyResourceViewModel'
+        geoBackupPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.GeoBackupPolicyViewModel'
+        replicationLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.ReplicationLinkViewModel'
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.TransparentDataEncryptionViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.DataMaskingRuleViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        columnName:
+          type: string
+        dataMaskingRuleId:
+          type: string
+        maskingFunction:
+          type: string
+        numberFrom:
+          format: int32
+          type: integer
+        numberTo:
+          format: int32
+          type: integer
+        prefix:
+          type: string
+        replacementString:
+          type: string
+        suffix:
+          type: string
+        state:
+          type: string
+        schemaName:
+          type: string
+        tableName:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.BlobAuditingPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        auditActionsAndGroups:
+          type: array
+          items:
+            type: string
+        isStorageSecondaryKeyInUse:
+          type: boolean
+        retentionDays:
+          format: int32
+          type: integer
+        state:
+          type: string
+        storageAccountAccessKey:
+          type: string
+        storageAccountSubscriptionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        storageEndpoint:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.PartnerServerViewModel:
+      type: object
+      properties:
+        partnerServerExternalId:
+          type: string
+        region:
+          type: string
+        replicationRole:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        eTag:
+          type: string
+        location:
+          type: string
+        properties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogPropertiesViewModel'
+        resourceUri:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.BackupLongTermRetentionPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        recoveryServicesBackupPolicyResourceId:
+          type: string
+        state:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.FirewallRuleViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        startIpAddress:
+          type: string
+        endIpAddress:
+          type: string
+        region:
+          type: string
+        kind:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.FailoverGroupViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        databasesExternalIds:
+          type: array
+          items:
+            type: string
+        region:
+          type: string
+        partnerServers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.PartnerServerViewModel'
+        readOnlyEndpoint:
+          type: string
+        readWriteEndpoint:
+          type: string
+        failoverWithDataLossGracePeriodInMinutes:
+          format: int32
+          type: integer
+        replicationRole:
+          type: string
+        replicationState:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.ElasticPoolViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        region:
+          type: string
+        name:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        databaseDtuMax:
+          format: double
+          type: number
+        databaseDtuMin:
+          format: double
+          type: number
+        dtu:
+          format: int32
+          type: integer
+        edition:
+          type: string
+        state:
+          type: string
+        storageInMB:
+          format: int64
+          type: integer
+        zoneRedundant:
+          type: boolean
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.VirtualNetworkRuleViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        subnetExternalId:
+          type: string
+        ignoreMissingVnetServiceEndpoint:
+          type: boolean
+        nsgFlowLog:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogViewModel'
+        state:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.EncryptionProtectorViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        subRegion:
+          type: string
+        serverKeyType:
+          type: string
+        uri:
+          type: string
+        serverKeyName:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogFormatViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        version:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureADAdministratorViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        login:
+          type: string
+        sid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        tenantId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.GeoBackupPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        state:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogTrafficAnalyticsConfigurationPropertiesViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        trafficAnalyticsInterval:
+          format: int32
+          type: integer
+        workspaceId:
+          type: string
+        workspaceRegion:
+          type: string
+        workspaceResourceId:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.ServerKeyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        creationDate:
+          format: date-time
+          type: string
+        region:
+          type: string
+        subRegion:
+          type: string
+        serverKeyType:
+          type: string
+        uri:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogPropertiesViewModel:
+      type: object
+      properties:
+        provisioningState:
+          type: string
+        targetResourceId:
+          type: string
+        targetResourceGuid:
+          type: string
+        storageId:
+          type: string
+        enabled:
+          type: boolean
+        format:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogFormatViewModel'
+        retentionPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogRetentionPolicyViewModel'
+        flowAnalyticsConfiguration:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogTrafficAnalyticsPropertiesViewModel'
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogTrafficAnalyticsPropertiesViewModel:
+      type: object
+      properties:
+        networkWatcherFlowAnalyticsConfiguration:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogTrafficAnalyticsConfigurationPropertiesViewModel'
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.ProtectionPolicyResourceViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        retentionPolicyType:
+          type: string
+        retentionPolicyDuration:
+          format: int32
+          type: integer
+        retentionPolicyDurationType:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.ReplicationLinkViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        isTerminationAllowed:
+          type: boolean
+        region:
+          type: string
+        partnerDatabase:
+          type: string
+        partnerRegion:
+          type: string
+        partnerRole:
+          type: string
+        percentComplete:
+          format: int32
+          type: integer
+        replicationMode:
+          type: string
+        replicationState:
+          type: string
+        role:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.NsgFlowLogRetentionPolicyViewModel:
+      type: object
+      properties:
+        days:
+          format: int32
+          type: integer
+        enabled:
+          type: boolean
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlServerViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        state:
+          type: string
+        administratorLogin:
+          type: string
+        fullyQualifiedDomainName:
+          type: string
+        version:
+          type: string
+        databases:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlDbViewModel'
+        firewallRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.FirewallRuleViewModel'
+        elasticPools:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.ElasticPoolViewModel'
+        virtualNetworkRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.VirtualNetworkRuleViewModel'
+        activeDirectoryAdministrators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureADAdministratorViewModel'
+        serverKeys:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.ServerKeyViewModel'
+        encryptionProtectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.EncryptionProtectorViewModel'
+        failoverGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.FailoverGroupViewModel'
+        securityAleryPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.SecurityAleryPolicyViewModel'
+        blobAuditingPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.SqlServers.ViewModels.BlobAuditingPolicyViewModel'
+        isBillable:
+          type: boolean
+        isRunning:
+          type: boolean
+        kind:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,410 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Quick Sight Vpc Connections API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Quick Sight Vpc Connections
+  type: InventoryAwsAnalytics
+paths:
+  /v2/AwsQuickSightVpcConnections:
+    get:
+      tags:
+      - Aws Quick Sight Vpc Connections
+      operationId: AwsQuickSightVpcConnections_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightVpcConnectionsViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightVpcConnectionsViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightVpcConnectionsViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightVpcConnectionsViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightVpcConnectionsViewModel'
+      summary: Aws quick sight vpc connections get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Models.CloudIamRoleViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        srl:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        arn:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        path:
+          type: string
+        maxSessionDuration:
+          format: int32
+          type: integer
+        roleLastUsed:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudIamRoles.AwsIamRoleLastUsedViewModel'
+        attachedManagedPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudIamRoles.AwsIamRolePolicyViewModel'
+        inlinePolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudIamRoles.CloudIamRoleInlinePolicyViewModel'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        rolePermissionsBoundary:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel.PermissionsBoundary'
+        assumeRolePolicy:
+          type: object
+    Dome9.Web.Api.AwsQuickSight.AwsQuickSightVpcConnectionsViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        availabilityStatus:
+          type: string
+        createdTime:
+          format: int64
+          type: integer
+        dnsResolvers:
+          type: array
+          items:
+            type: string
+        lastUpdatedTime:
+          format: int64
+          type: integer
+        name:
+          type: string
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.NetworkInterfaceViewModel'
+        roleArn:
+          type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+        vpcConnectionId:
+          type: string
+        vpcId:
+          type: string
+        dome9Id:
+          type: string
+        accountNumber:
+          type: string
+        region:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsSecurityGroup.AwsSecurityGroupViewModel'
+        role:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel'
+    Dome9.Web.Api.CloudIamRoles.AwsIamRoleLastUsedViewModel:
+      type: object
+      properties:
+        roleLastUsed:
+          format: date-time
+          type: string
+        region:
+          type: string
+    Dome9.Web.Api.Models.CloudIamRoleViewModel.PermissionsBoundary:
+      type: object
+      properties:
+        permissionsBoundaryArn:
+          type: string
+        permissionsBoundaryType:
+          type: string
+    Dome9.Web.Api.CloudIamRoles.AwsIamRolePolicyViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        name:
+          type: string
+    Dome9.Web.Api.AwsQuickSight.NetworkInterfaceViewModel:
+      type: object
+      properties:
+        availabilityZone:
+          type: string
+        errorMessage:
+          type: string
+        networkInterfaceId:
+          type: string
+        status:
+          type: string
+    Dome9.Web.Api.CloudIamRoles.CloudIamRoleInlinePolicyViewModel:
+      type: object
+      properties:
+        policyName:
+          type: string
+        policyDocument:
+          type: object
+    Dome9.Web.Api.AwsSecurityGroup.AwsSecurityGroupViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        regionId:
+          enum:
+          - us_east_1
+          - us_west_1
+          - eu_west_1
+          - ap_southeast_1
+          - ap_northeast_1
+          - us_west_2
+          - sa_east_1
+          - az_1_region_a_geo_1
+          - az_2_region_a_geo_1
+          - az_3_region_a_geo_1
+          - ap_southeast_2
+          - mellanox_region
+          - us_gov_west_1
+          - eu_central_1
+          - ap_northeast_2
+          - ap_south_1
+          - us_east_2
+          - ca_central_1
+          - eu_west_2
+          - eu_west_3
+          - eu_north_1
+          - cn_north_1
+          - cn_northwest_1
+          - us_gov_east_1
+          - ap_east_1
+          - me_south_1
+          - af_south_1
+          - eu_south_1
+          - ap_northeast_3
+          - me_central_1
+          - ap_south_2
+          - ap_southeast_3
+          - ap_southeast_4
+          - eu_central_2
+          - eu_south_2
+          - il_central_1
+          - ca_west_1
+          - mx_central_1
+          - ap_southeast_5
+          - ap_southeast_7
+          - westus
+          - eastus
+          - eastus2
+          - northcentralus
+          - westus2
+          - southcentralus
+          - centralus
+          - usgovlowa
+          - usgovvirginia
+          - northeurope
+          - westeurope
+          - eastasia
+          - southeastasia
+          - japaneast
+          - japanwest
+          - brazilsouth
+          - australiaeast
+          - australiasoutheast
+          - centralindia
+          - southindia
+          - westindia
+          - canadaeast
+          - westcentralus
+          - chinaeast
+          - chinanorth
+          - canadacentral
+          - germanycentral
+          - germanynortheast
+          - koreacentral
+          - uksouth
+          - ukwest
+          - koreasouth
+          - francecentral
+          - francesouth
+          - germanywestcentral
+          - usdodcentral
+          - usdodeast
+          - usgovarizona
+          - usgovtexas
+          - australiacentral
+          - australiacentral2
+          - chinaeast2
+          - chinanorth2
+          - southafricanorth
+          - southafricawest
+          - uaecentral
+          - uaenorth
+          - ussecwest
+          - usseceast
+          - germanynorth
+          - switzerlandwest
+          - norwaywest
+          - norwayeast
+          - switzerlandnorth
+          - westus3
+          - swedencentral
+          - chinanorth3
+          - brazilsoutheast
+          - eastus2euap
+          - jioindiawest
+          - jioindiacentral
+          - qatarcentral
+          - spaincentral
+          - italynorth
+          - polandcentral
+          - mexicocentral
+          - asia
+          - asia_east1
+          - asia_northeast1
+          - asia_south1
+          - asia_southeast1
+          - australia_southeast1
+          - europe
+          - europe_north1
+          - europe_west1
+          - europe_west2
+          - europe_west3
+          - europe_west4
+          - northamerica_northeast1
+          - southamerica_east1
+          - us
+          - us_central1
+          - us_east1
+          - us_east4
+          - us_west1
+          - us_west2
+          - global
+          - asia_east2
+          - eur4
+          - nam4
+          - europe_west6
+          - japan_west
+          - asia_northeast2
+          - asia_northeast3
+          - us_west3
+          - us_west4
+          - asia_southeast2
+          - nam3
+          - nam5
+          - nam6
+          - nam7
+          - nam10
+          - nam_eur_asia1
+          - eur3
+          - eur5
+          - asia1
+          - nam11
+          - eu
+          - northamerica_northeast2
+          - southamerica_west1
+          - us_east5
+          - us_south1
+          - europe_central2
+          - europe_southwest1
+          - europe_west8
+          - europe_west9
+          - europe_west10
+          - europe_west12
+          - asia_south2
+          - australia_southeast2
+          - me_central1
+          - me_central2
+          - me_west1
+          - ap_sydney_1
+          - ap_melbourne_1
+          - sa_saopaulo_1
+          - sa_vinhedo_1
+          - ca_montreal_1
+          - ca_toronto_1
+          - sa_santiago_1
+          - eu_paris_1
+          - eu_marseille_1
+          - eu_frankfurt_1
+          - ap_hyderabad_1
+          - ap_mumbai_1
+          - il_jerusalem_1
+          - eu_milan_1
+          - ap_osaka_1
+          - ap_tokyo_1
+          - mx_queretaro_1
+          - eu_amsterdam_1
+          - me_jeddah_1
+          - ap_singapore_1
+          - af_johannesburg_1
+          - ap_seoul_1
+          - ap_chuncheon_1
+          - eu_madrid_1
+          - eu_stockholm_1
+          - eu_zurich_1
+          - me_abudhabi_1
+          - me_dubai_1
+          - uk_london_1
+          - uk_cardiff_1
+          - us_ashburn_1
+          - us_phoenix_1
+          - us_sanjose_1
+          - us_gov_ashburn_1
+          - us_gov_chicago_1
+          - us_gov_phoenix_1
+          - us_langley_1
+          - us_luke_1
+          - uk_gov_london_1
+          - uk_gov_cardiff_1
+          - sa_bogota_1
+          - us_chicago_1
+          - sa_valparaiso_1
+          - mx_monterrey_1
+          - eu_jovanovac_1
+          - ap_singapore_2
+          type: string
+        securityGroupName:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cloudAccountName:
+          type: string
+        vpcId:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

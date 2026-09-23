@@ -1,0 +1,2207 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Intelligence API
+  description: CloudGuard Intelligence allows you to visualize and analyze Account Activity and Network Traffic into and out of your cloud environment.
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Intelligence
+  description: CloudGuard Intelligence allows you to visualize and analyze Account Activity and Network Traffic into and out of your cloud environment.
+  type: Intelligence
+paths:
+  /v2/view/magellan/disable-magellan-for-cloud-account:
+    post:
+      tags:
+      - Intelligence
+      summary: Offboard cloud account from Intelligence.
+      operationId: Intelligence_OffboardAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/html:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            application/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanAccountOffboardingModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanAccountOffboardingModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanAccountOffboardingModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanAccountOffboardingModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanAccountOffboardingModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanAccountOffboardingModel'
+        description: Block indicating cloud account id and vendor to be offboarded from Intelligence
+        required: true
+  /v2/view/magellan/usage-notification-rate:
+    put:
+      tags:
+      - Intelligence
+      summary: Set usage notification emails rate.
+      operationId: Intelligence_SetUsageNotificationRate
+      parameters:
+      - name: rate
+        in: query
+        description: Emails will be sent every {rate} % reached.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/html:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            application/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+  /v2/view/magellan/usage-notification-update-ancestors:
+    put:
+      tags:
+      - Intelligence
+      summary: Enable sending usage notification updates to parent accounts (all levels)
+      operationId: Intelligence_SetUsageNotificationAncestorsUpdate
+      parameters:
+      - name: shouldUpdate
+        in: query
+        description: Indicating if emails should be sent to ancestors.
+        required: true
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/html:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            application/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+  /v2/view/magellan/magellan-flowlogs-onboarding:
+    post:
+      tags:
+      - Intelligence
+      summary: Onboard an account for Network Traffic.
+      operationId: Intelligence_AwsNetworkTrafficOnboarding
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+        description: Block indicating cloud account id and bucket name to be onboarded to Intelligence Network Traffic
+        required: true
+  /v2/view/magellan/magellan-cloudtrail-onboarding:
+    post:
+      tags:
+      - Intelligence
+      summary: Onboard an account for Account Activity.
+      operationId: Intelligence_AwsAccountActivityOnboarding
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingModel'
+        description: Block indicating cloud account id and bucket name to be onboarded to Intelligence Account Activity
+        required: true
+  /v2/view/magellan/magellan-custom-onboarding:
+    post:
+      tags:
+      - Intelligence
+      summary: Custom onboard Account Activity or Network Traffic of your cloud environment to…
+      operationId: Intelligence_AwsCustomOnboarding
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/html:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            application/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanCustomOnboardingModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanCustomOnboardingModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanCustomOnboardingModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanCustomOnboardingModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanCustomOnboardingModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanCustomOnboardingModel'
+        description: Block indicating custom onboarding data to be onboarded to Intelligence
+        required: true
+  /v2/view/magellan/magellan-alibaba-actiontrail-onboarding:
+    post:
+      tags:
+      - Intelligence
+      summary: Onboard Alibaba account for Account Activity.
+      operationId: Intelligence_AlibabaAccoountActivityOnboarding
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/html:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            application/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAlibabaActionTrailOnboardingModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAlibabaActionTrailOnboardingModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAlibabaActionTrailOnboardingModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAlibabaActionTrailOnboardingModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAlibabaActionTrailOnboardingModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAlibabaActionTrailOnboardingModel'
+        description: Block indicating data to be onboarded to Intelligence Event Activity
+        required: true
+  /v2/view/magellan/provide-azure-storage-details:
+    post:
+      tags:
+      - Intelligence
+      summary: After calling AzureNetworkTrafficOnboardingWithArm and creating the required…
+      operationId: Intelligence_AzureNetworkTrafficNewStorageOnboarding
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/html:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            application/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAzureNewStorageDetailsAfterArmModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAzureNewStorageDetailsAfterArmModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAzureNewStorageDetailsAfterArmModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAzureNewStorageDetailsAfterArmModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAzureNewStorageDetailsAfterArmModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAzureNewStorageDetailsAfterArmModel'
+        description: Block indicating data of storage keys to be onboarded to Intelligence Network Traffic
+        required: true
+  /v2/view/magellan/magellan-gcp-onboarding:
+    post:
+      tags:
+      - Intelligence
+      summary: Onboard Gcp project.
+      operationId: Intelligence_GcpOnboarding
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/json:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/html:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            application/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+            text/xml:
+              schema:
+                enum:
+                - Continue
+                - SwitchingProtocols
+                - OK
+                - Created
+                - Accepted
+                - NonAuthoritativeInformation
+                - NoContent
+                - ResetContent
+                - PartialContent
+                - MultipleChoices
+                - Ambiguous
+                - MovedPermanently
+                - Moved
+                - Found
+                - Redirect
+                - SeeOther
+                - RedirectMethod
+                - NotModified
+                - UseProxy
+                - Unused
+                - TemporaryRedirect
+                - RedirectKeepVerb
+                - BadRequest
+                - Unauthorized
+                - PaymentRequired
+                - Forbidden
+                - NotFound
+                - MethodNotAllowed
+                - NotAcceptable
+                - ProxyAuthenticationRequired
+                - RequestTimeout
+                - Conflict
+                - Gone
+                - LengthRequired
+                - PreconditionFailed
+                - RequestEntityTooLarge
+                - RequestUriTooLong
+                - UnsupportedMediaType
+                - RequestedRangeNotSatisfiable
+                - ExpectationFailed
+                - UpgradeRequired
+                - InternalServerError
+                - NotImplemented
+                - BadGateway
+                - ServiceUnavailable
+                - GatewayTimeout
+                - HttpVersionNotSupported
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanGcpOnboardingModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanGcpOnboardingModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanGcpOnboardingModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanGcpOnboardingModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanGcpOnboardingModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Magellan.MagellanGcpOnboardingModel'
+        description: Block indicating data to be onboarded to Intelligence
+        required: true
+components:
+  schemas:
+    Falconetix.Model.Magellan.MagellanAccountOffboardingModel:
+      type: object
+      properties:
+        cloudAccountId:
+          type: string
+        vendor:
+          enum:
+          - AWS
+          - Azure
+          - GCP
+          - Kubernetes
+          - Alibaba
+          - OCI
+          type: string
+        logTypes:
+          type: array
+          items:
+            enum:
+            - flowlogs
+            - CloudTrail
+            - Both
+            - GuardDuty
+            type: string
+    Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          description: AWS cloud account id
+          type: string
+        isOnboarded:
+          description: indicates whether the account was successfully onboarded to Magellan (Log.ic)
+          type: boolean
+        bucketName:
+          description: The name of the bucket that Magellan (logic) will use for the onboarding [case sensitive]
+          type: string
+    Falconetix.Model.Magellan.MagellanCustomOnboardingModel:
+      type: object
+      properties:
+        bucketName:
+          type: string
+        bucketAccountId:
+          type: string
+        topicArn:
+          type: string
+        cloudAccountIds:
+          type: array
+          items:
+            type: string
+        onboardingType:
+          enum:
+          - flowlogs
+          - CloudTrail
+          - Both
+          - GuardDuty
+          type: string
+        isUnifiedOnboarding:
+          description: Boolean that check if the request was from UnifiedOnboarding method. not needed for API.
+          type: boolean
+        rulesetsIds:
+          description: List of rule sets.  not needed for API.
+          type: array
+          items:
+            format: int64
+            type: integer
+        isSubscribedAlready:
+          description: Boolean that check if the account connect to centralized bucket on other account.
+          type: boolean
+        isAutoDiscoveryEnabled:
+          description: Boolean that check if the bucket should support auto discovery of additional accounts
+          type: boolean
+    Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAlibabaActionTrailOnboardingModel:
+      type: object
+      properties:
+        cloudAccountNumbers:
+          type: array
+          items:
+            type: string
+    Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAzureNewStorageDetailsAfterArmModel:
+      type: object
+      properties:
+        storageDetails:
+          type: array
+          items:
+            type: string
+        subscriptionId:
+          type: string
+    Falconetix.Model.Magellan.MagellanOnboardingModel:
+      type: object
+      properties:
+        cloudAccountId:
+          description: AWS cloud account id
+          type: string
+        bucketName:
+          description: The name of the bucket that Magellan (logic) will use for the onboarding [case sensitive]
+          type: string
+        isUnifiedOnboarding:
+          type: boolean
+        rulesetsIds:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Falconetix.Model.Magellan.MagellanGcpOnboardingModel:
+      type: object
+      properties:
+        cloudAccounts:
+          type: array
+          items:
+            type: string
+        logType:
+          enum:
+          - NetworkTraffic
+          - AccountActivity
+          - Both
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

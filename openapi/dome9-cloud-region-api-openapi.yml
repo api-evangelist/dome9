@@ -1,0 +1,72 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Region API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Region
+  type: InventoryAwsGlobal
+paths:
+  /v2/CloudRegion:
+    get:
+      tags:
+      - Cloud Region
+      operationId: CloudRegion_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudAwsRegion.CloudRegionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudAwsRegion.CloudRegionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudAwsRegion.CloudRegionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudAwsRegion.CloudRegionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudAwsRegion.CloudRegionViewModel'
+      summary: Cloud region get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudAwsRegion.CloudRegionViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        accountId:
+          format: int64
+          type: integer
+        externalAccountNumber:
+          type: string
+        regionName:
+          type: string
+        endpoint:
+          type: string
+        isDefaultEndpoint:
+          type: boolean
+        isEnabled:
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,322 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Emr Cluster API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Emr Cluster
+  type: InventoryAwsAnalytics
+paths:
+  /v2/AwsEmrCluster:
+    get:
+      tags:
+      - Aws Emr Cluster
+      operationId: AwsEmrCluster_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel'
+      summary: Aws emr cluster get
+      x-summary-source: derived
+  /v2/AwsEmrCluster/{id}:
+    get:
+      tags:
+      - Aws Emr Cluster
+      operationId: AwsEmrCluster_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel'
+      summary: Aws emr cluster get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceTimelineViewModel:
+      type: object
+      properties:
+        creationDateTime:
+          format: date-time
+          type: string
+        endDateTime:
+          format: date-time
+          type: string
+        readyDateTime:
+          format: date-time
+          type: string
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrEbsVolumeViewModel:
+      type: object
+      properties:
+        device:
+          type: string
+        volumeId:
+          type: string
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStatusViewModel:
+      type: object
+      properties:
+        state:
+          type: string
+        stateChangeReason:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStateChangeReasonViewModel'
+        timeline:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceTimelineViewModel'
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrEc2InstanceAttributesViewModel:
+      type: object
+      properties:
+        additionalMasterSecurityGroups:
+          type: array
+          items:
+            type: string
+        additionalSlaveSecurityGroups:
+          type: array
+          items:
+            type: string
+        ec2AvailabilityZone:
+          type: string
+        ec2KeyName:
+          type: string
+        ec2SubnetId:
+          type: string
+        emrManagedMasterSecurityGroup:
+          type: string
+        emrManagedSlaveSecurityGroup:
+          type: string
+        iamInstanceProfile:
+          type: string
+        requestedEc2AvailabilityZones:
+          type: array
+          items:
+            type: string
+        requestedEc2SubnetIds:
+          type: array
+          items:
+            type: string
+        serviceAccessSecurityGroup:
+          type: string
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceViewModel:
+      type: object
+      properties:
+        ebsVolumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrEbsVolumeViewModel'
+        ec2InstanceId:
+          type: string
+        id:
+          type: string
+        instanceFleetId:
+          type: string
+        instanceGroupId:
+          type: string
+        instanceType:
+          type: string
+        market:
+          type: string
+        privateDnsName:
+          type: string
+        privateIpAddress:
+          type: string
+        publicDnsName:
+          type: string
+        publicIpAddress:
+          type: string
+        status:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStatusViewModel'
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStateChangeReasonViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterTimelineViewModel:
+      type: object
+      properties:
+        creationDateTime:
+          format: date-time
+          type: string
+        endDateTime:
+          format: date-time
+          type: string
+        readyDateTime:
+          format: date-time
+          type: string
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterStatusViewModel:
+      type: object
+      properties:
+        state:
+          type: string
+        stateChangeReason:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterStateChangeReasonViewModel'
+        timeline:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterTimelineViewModel'
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrConfigurationViewModel:
+      type: object
+      properties:
+        classification:
+          type: string
+        configurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrConfigurationViewModel'
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterStateChangeReasonViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    System.Collections.Generic.KeyValuePair_System.String_System.String:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccountNumber:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrApplicationViewModel'
+        autoScalingRole:
+          type: string
+        autoTerminate:
+          type: boolean
+        configurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrConfigurationViewModel'
+        customAmiId:
+          type: string
+        ebsRootVolumeSize:
+          format: int32
+          type: integer
+        ec2InstanceAttributes:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrEc2InstanceAttributesViewModel'
+        instanceCollectionType:
+          type: string
+        logUri:
+          type: string
+        masterPublicDnsName:
+          type: string
+        normalizedInstanceHours:
+          format: int32
+          type: integer
+        releaseLabel:
+          type: string
+        repoUpgradeOnBoot:
+          type: string
+        requestedAmiVersion:
+          type: string
+        runningAmiVersion:
+          type: string
+        scaleDownBehavior:
+          type: string
+        securityConfiguration:
+          type: string
+        serviceRole:
+          type: string
+        status:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterStatusViewModel'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        terminationProtected:
+          type: boolean
+        visibleToAllUsers:
+          type: boolean
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceViewModel'
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrApplicationViewModel:
+      type: object
+      properties:
+        additionalInfo:
+          type: object
+          additionalProperties:
+            type: string
+        args:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        version:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

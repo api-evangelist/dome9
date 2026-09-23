@@ -1,0 +1,268 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Ecs Task Definition API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Ecs Task Definition
+  type: InventoryAwsComputeAndContainers
+paths:
+  /v2/CloudEcsTaskDefinition:
+    get:
+      tags:
+      - Cloud Ecs Task Definition
+      operationId: CloudEcsTaskDefinition_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTaskDefinitionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTaskDefinitionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTaskDefinitionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTaskDefinitionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudEcsTaskDefinitionViewModel'
+      summary: Cloud ecs task definition get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.AwsECSUlimitViewModel:
+      type: object
+      properties:
+        hardLimit:
+          format: int32
+          type: integer
+        name:
+          type: string
+        softLimit:
+          format: int32
+          type: integer
+    Dome9.Web.Api.AwsECSLogConfigurationViewModel:
+      type: object
+      properties:
+        logDriver:
+          type: string
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
+    Dome9.Web.Api.AwsECSVolumeFromViewModel:
+      type: object
+      properties:
+        readOnly:
+          type: boolean
+        sourceContainer:
+          type: string
+    Dome9.Web.Api.AwsECSHostVolumePropertiesViewModel:
+      type: object
+      properties:
+        sourcePath:
+          type: string
+    Dome9.Web.Api.CloudEcsTaskDefinitionViewModel:
+      type: object
+      properties:
+        containerDefinitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSContainerDefinitionViewModel'
+        family:
+          type: string
+        networkMode:
+          type: string
+        placementConstraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSTaskDefinitionPlacementConstraintViewModel'
+        requiresAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSAttributeViewModel'
+        revision:
+          format: int32
+          type: integer
+        status:
+          type: string
+        taskDefinitionArn:
+          type: string
+        taskRoleArn:
+          type: string
+        volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSVolumeViewModel'
+    Dome9.Web.Api.AwsECSAttributeViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        targetId:
+          type: string
+        targetType:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.AwsECSKeyValuePairViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.AwsECSTaskDefinitionPlacementConstraintViewModel:
+      type: object
+      properties:
+        expression:
+          type: string
+        type:
+          type: string
+    Dome9.Web.Api.AwsECSContainerDefinitionViewModel:
+      type: object
+      properties:
+        command:
+          type: array
+          items:
+            type: string
+        cpu:
+          format: int32
+          type: integer
+        disableNetworking:
+          type: boolean
+        dnsSearchDomains:
+          type: array
+          items:
+            type: string
+        dnsServers:
+          type: array
+          items:
+            type: string
+        dockerLabels:
+          type: array
+          items:
+            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
+        dockerSecurityOptions:
+          type: array
+          items:
+            type: string
+        entryPoint:
+          type: array
+          items:
+            type: string
+        environment:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSKeyValuePairViewModel'
+        essential:
+          type: boolean
+        extraHosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSHostEntryViewModel'
+        hostname:
+          type: string
+        image:
+          type: string
+        links:
+          type: array
+          items:
+            type: string
+        logConfiguration:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsECSLogConfigurationViewModel'
+        memory:
+          format: int32
+          type: integer
+        memoryReservation:
+          format: int32
+          type: integer
+        mountPoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSMountPointViewModel'
+        name:
+          type: string
+        portMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSPortMappingViewModel'
+        privileged:
+          type: boolean
+        readonlyRootFilesystem:
+          type: boolean
+        ulimits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSUlimitViewModel'
+        user:
+          type: string
+        volumesFrom:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSVolumeFromViewModel'
+        workingDirectory:
+          type: string
+    Dome9.Web.Api.AwsECSMountPointViewModel:
+      type: object
+      properties:
+        containerPath:
+          type: string
+        readOnly:
+          type: boolean
+        sourceVolume:
+          type: string
+    Dome9.Web.Api.AwsECSPortMappingViewModel:
+      type: object
+      properties:
+        containerPort:
+          format: int32
+          type: integer
+        hostPort:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+    Dome9.Web.Api.AwsECSVolumeViewModel:
+      type: object
+      properties:
+        host:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsECSHostVolumePropertiesViewModel'
+        name:
+          type: string
+    System.Collections.Generic.KeyValuePair_System.String_System.String:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.AwsECSHostEntryViewModel:
+      type: object
+      properties:
+        hostname:
+          type: string
+        ipAddress:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

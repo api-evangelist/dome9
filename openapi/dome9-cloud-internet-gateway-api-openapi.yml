@@ -1,0 +1,81 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Internet Gateway API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Internet Gateway
+  type: InventoryAwsNetworkingAndContentDelivery
+paths:
+  /v2/CloudInternetGateway:
+    get:
+      tags:
+      - Cloud Internet Gateway
+      operationId: CloudInternetGateway_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudInternetGateways.CloudInternetGatewayViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudInternetGateways.CloudInternetGatewayViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudInternetGateways.CloudInternetGatewayViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudInternetGateways.CloudInternetGatewayViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudInternetGateways.CloudInternetGatewayViewModel'
+      summary: Cloud internet gateway get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudInternetGateways.CloudInternetGatewayViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        vpcAttachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.SubTypes.CloudVpcAttachmentViewModel'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Dome9.Web.Api.SubTypes.CloudVpcAttachmentViewModel:
+      type: object
+      properties:
+        state:
+          type: string
+        vpcId:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,1013 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Alibaba Cloud Account API
+  description: Alibaba Cloud Accounts
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Alibaba Cloud Account
+  description: Alibaba Cloud Accounts
+  type: Onboarding
+paths:
+  /v2/AlibabaCloudAccount/{id}/DeleteForce:
+    delete:
+      tags:
+      - Alibaba Cloud Account
+      summary: Delete an Alibaba account from a Dome9 account (the Alibaba account is not…
+      operationId: AlibabaCloudAccount_DeleteForceAsync
+      parameters:
+      - name: id
+        in: path
+        description: the Dome9 account id for the account or the Subscription id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/AlibabaCloudAccount/{cloudAccountId}/account-stats:
+    get:
+      tags:
+      - Alibaba Cloud Account
+      summary: Gets Cloud Account network statistics on cloud account page
+      operationId: AlibabaCloudAccount_GetCloudAccountStatsAsync
+      parameters:
+      - name: cloudAccountId
+        in: path
+        description: The Id of the Alibaba cloud account
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: withData
+        in: query
+        description: Include raw data of networks, security groups and vms, default = false
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountStatsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountStatsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountStatsViewModel'
+  /v2/AlibabaCloudAccount/MissingPermissions:
+    get:
+      tags:
+      - Alibaba Cloud Account
+      summary: Get a list of missing permissions (needed by Dome9 to manage the accounts) for…
+      operationId: AlibabaCloudAccount_GetMissingPermissions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+  /v2/AlibabaCloudAccount/{id}/MissingPermissions:
+    get:
+      tags:
+      - Alibaba Cloud Account
+      summary: Get a list of missing permissions for a specific account.
+      operationId: AlibabaCloudAccount_GetMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: showIgnored
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+    put:
+      tags:
+      - Alibaba Cloud Account
+      summary: Get a list of missing permissions for a specific account.
+      operationId: AlibabaCloudAccount_UpdateIgnorableMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: CloudAccountId
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/html:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+        description: List of permissions to set ignore or restore flag to
+        required: true
+  /v2/AlibabaCloudAccount/{id}/MissingPermissions/EntityType:
+    get:
+      tags:
+      - Alibaba Cloud Account
+      summary: Get missing permissions for a specific entity type for a specific Alibaba Cloud…
+      operationId: AlibabaCloudAccount_GetMissingPermissionsByEntityTypeAsync
+      parameters:
+      - name: id
+        in: path
+        description: The Dome9 Alibaba Cloud Account Id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: entityType
+        in: query
+        description: The entity type for which to get permission issues
+        required: true
+        schema:
+          type: string
+      - name: subType
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+  /v2/AlibabaCloudAccount/{id}/MissingPermissions/Reset:
+    put:
+      tags:
+      - Alibaba Cloud Account
+      summary: Reset (re-validate) a Alibaba Cloud account credentials in Dome9.
+      operationId: AlibabaCloudAccount_ResetMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: the account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/AlibabaCloudAccount/{id}/AccountName:
+    put:
+      tags:
+      - Alibaba Cloud Account
+      summary: Update a Alibaba Cloud account name (as it appears in Dome9)
+      operationId: AlibabaCloudAccount_UpdateAccountNameAsync
+      parameters:
+      - name: id
+        in: path
+        description: the account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountNameViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountNameViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountNameViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountNameViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountNameViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountNameViewModel'
+        description: the updated name as it will appear in Dome9
+        required: true
+  /v2/AlibabaCloudAccount/{id}/Credentials:
+    put:
+      tags:
+      - Alibaba Cloud Account
+      operationId: AlibabaCloudAccount_UpdateAlibabaCloudAccountCredentialsAsync
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountCredentialsViewPostModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountCredentialsViewPostModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountCredentialsViewPostModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountCredentialsViewPostModel'
+        required: true
+      summary: Alibaba cloud account update alibaba cloud account credentials async
+      x-summary-source: derived
+  /v2/AlibabaCloudAccount/{id}/SyncNow:
+    post:
+      tags:
+      - Alibaba Cloud Account
+      operationId: AlibabaCloudAccount_SyncNow
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+      summary: Alibaba cloud account sync now
+      x-summary-source: derived
+  /v2/AlibabaCloudAccount/{id}/organizationalUnit:
+    put:
+      tags:
+      - Alibaba Cloud Account
+      summary: Update the ID of the Organizational Unit that this cloud account will be…
+      operationId: AlibabaCloudAccount_UpdateOrganizationalId
+      parameters:
+      - name: id
+        in: path
+        description: The Dome9 Guid ID of the Alibaba cloud account
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+        description: The Guid ID of the Organizational Unit to attach to. Use 'null' to attach to the root Organizational Unit
+        required: true
+  /v2/AlibabaCloudAccount/organizationalUnit/move:
+    put:
+      tags:
+      - Alibaba Cloud Account
+      summary: Detach cloud accounts from an Organizational unit and attach them to another…
+      operationId: AlibabaCloudAccount_MoveCloudAccountsToOrganizationalUnit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+        description: The guids of the source organizational unit to detach from and the target organizational unit to attach to. Use null for root organizational unit.
+        required: true
+  /v2/AlibabaCloudAccount/organizationalUnit/moveAll:
+    put:
+      tags:
+      - Alibaba Cloud Account
+      summary: Detach all cloud accounts from their current organizational unit and attach…
+      operationId: AlibabaCloudAccount_MoveAllCloudAccountsToOrganizationalUnit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+        required: true
+  /v2/AlibabaCloudAccount/organizationalUnit/attach:
+    post:
+      tags:
+      - Alibaba Cloud Account
+      summary: Attach several cloud accounts to a specific Organizational Unit.
+      operationId: AlibabaCloudAccount_PostAttachMulti
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+        required: true
+  /v2/AlibabaCloudAccount:
+    get:
+      tags:
+      - Alibaba Cloud Account
+      summary: Get a list of all Alibaba cloud accounts
+      operationId: AlibabaCloudAccount_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+    post:
+      tags:
+      - Alibaba Cloud Account
+      summary: Add (onboard) a new Alibaba cloud account to Dome9
+      operationId: AlibabaCloudAccount_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountPostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountPostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountPostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountPostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountPostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountPostViewModel'
+        description: details for the new account
+        required: true
+  /v2/AlibabaCloudAccount/{id}:
+    get:
+      tags:
+      - Alibaba Cloud Account
+      summary: Get details for a specific Alibaba Cloud Account
+      operationId: AlibabaCloudAccount_Get
+      parameters:
+      - name: id
+        in: path
+        description: the Alibaba cloud account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel'
+    delete:
+      tags:
+      - Alibaba Cloud Account
+      summary: Delete an Alibaba account from a Dome9 account (the Alibaba account is not…
+      operationId: AlibabaCloudAccount_Delete
+      parameters:
+      - name: id
+        in: path
+        description: the Dome9 account id for the account or the Subscription id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: string
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel:
+      required:
+      - isIgnored
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+    Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountNameViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel:
+      type: object
+      properties:
+        permissions:
+          description: list of missing permissions
+          type: array
+          items:
+            type: string
+        entityType:
+          type: string
+        subType:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel'
+    Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountGetViewModel:
+      required:
+      - credentials
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: Alibaba id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: Alibaba account name in Dome9
+          type: string
+        creationDate:
+          format: date-time
+          description: creation date for project in Alibaba
+          type: string
+        alibabaAccountId:
+          description: the Alibaba account id (that will be onboarded)
+          type: string
+        credentials:
+          $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountCredentialsViewGetModel'
+          description: ALibaba account credentials
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        organizationalUnitPath:
+          type: string
+        organizationalUnitName:
+          type: string
+        vendor:
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+    Dome9.Web.Api.Alibaba.Accounts.AlibabaCloudAccountPostViewModel:
+      required:
+      - name
+      - credentials
+      type: object
+      properties:
+        name:
+          type: string
+        credentials:
+          $ref: '#/components/schemas/Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountCredentialsViewPostModel'
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel:
+      type: object
+      properties:
+        sourceOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        targetOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountCredentialsViewGetModel:
+      required:
+      - accessKey
+      type: object
+      properties:
+        accessKey:
+          description: Alibaba access key
+          type: string
+    Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel:
+      type: object
+      properties:
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountStatsViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        creationDate:
+          format: date-time
+          type: string
+        alibabaAccountId:
+          type: string
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        vendor:
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel'
+    Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel:
+      type: object
+      properties:
+        srl:
+          description: internal use
+          type: string
+        consecutiveFails:
+          format: int32
+          description: number of consecutive failures due to missing permissions
+          type: integer
+        lastFail:
+          format: date-time
+          description: time of last failure
+          type: string
+        lastSuccess:
+          format: date-time
+          description: time of last successful attempt
+          type: string
+        firstFail:
+          format: date-time
+          description: time of first successful attempt
+          type: string
+        lastFailErrorCode:
+          description: error code for last failed attempt
+          type: string
+        lastFailMessage:
+          description: error message for last failed attempt
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        retryMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel'
+        cloudAccountId:
+          format: uuid
+          description: Cloud account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        vendor:
+          description: cloud account provider (AWS, Azure, GCP)
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel:
+      type: object
+      properties:
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    Dome9.Web.Api.Alibaba.Accounts.AlibabaAccountCredentialsViewPostModel:
+      required:
+      - accessKey
+      - accessSecret
+      type: object
+      properties:
+        accessKey:
+          description: Alibaba access key
+          type: string
+        accessSecret:
+          description: Password for account
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

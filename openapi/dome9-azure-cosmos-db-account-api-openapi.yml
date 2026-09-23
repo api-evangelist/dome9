@@ -1,0 +1,173 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Cosmos Db Account API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Cosmos Db Account
+  type: InventoryAzure
+paths:
+  /v2/AzureCosmosDbAccount:
+    get:
+      tags:
+      - Azure Cosmos Db Account
+      operationId: AzureCosmosDbAccount_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
+      summary: Azure cosmos db account get
+      x-summary-source: derived
+  /v2/AzureCosmosDbAccount/{id}:
+    get:
+      tags:
+      - Azure Cosmos Db Account
+      operationId: AzureCosmosDbAccount_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
+      summary: Azure cosmos db account get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbLocationViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        locationName:
+          type: string
+        documentEndpoint:
+          type: string
+        provisioningState:
+          type: string
+        failoverPriority:
+          format: int32
+          type: integer
+    System.Collections.Generic.KeyValuePair_System.String_System.String:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbConsistencyPolicyViewModel:
+      type: object
+      properties:
+        defaultConsistencyLevel:
+          enum:
+          - Eventual
+          - Session
+          - BoundedStaleness
+          - Strong
+          - ConsistentPrefix
+          type: string
+        maxStalenessPrefix:
+          format: int64
+          type: integer
+        maxIntervalInSeconds:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
+        documentEndpoint:
+          type: string
+        type:
+          type: string
+        kind:
+          type: string
+        consistencyPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbConsistencyPolicyViewModel'
+        defaultConsistencyLevel:
+          enum:
+          - Eventual
+          - Session
+          - BoundedStaleness
+          - Strong
+          - ConsistentPrefix
+          type: string
+        readableReplications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbLocationViewModel'
+        writableReplications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbLocationViewModel'
+        databaseAccountOfferType:
+          enum:
+          - Standard
+          type: string
+        ipRangeFilter:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

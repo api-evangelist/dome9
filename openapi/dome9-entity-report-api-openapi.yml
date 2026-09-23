@@ -1,0 +1,119 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Entity Report API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Entity Report
+  type: Inventory
+paths:
+  /v2/EntityReport/Request/{cloudVendor}/{type}:
+    post:
+      tags:
+      - Entity Report
+      summary: Post a request to export all assets held by CloudGuard Dome9
+      operationId: EntityReport_GetByCloudAccountId
+      parameters:
+      - name: cloudVendor
+        in: path
+        description: 'The cloud vendor.<br />Allowed values: AWS, Azure, GCP, Kubernetes.'
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: path
+        description: The asset type for the report file.<br />Allowed values are the Dome9 Rule Target Types.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/html:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/html:
+            schema:
+              type: array
+              items:
+                type: string
+          application/xml:
+            schema:
+              type: array
+              items:
+                type: string
+          text/xml:
+            schema:
+              type: array
+              items:
+                type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                type: string
+        description: The Dome9 cloud accounts IDs for the report. Use empty array for all allowed cloud accounts report.
+        required: true
+  /v2/EntityReport/Download/{reportRequestUuid}:
+    get:
+      tags:
+      - Entity Report
+      summary: Get a CSV report file containing all cloud assets held by CloudGuard Dome9
+      operationId: EntityReport_GetReport
+      parameters:
+      - name: reportRequestUuid
+        in: path
+        description: The Entity Report request UUID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

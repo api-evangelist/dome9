@@ -1,0 +1,576 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Alert API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Alert
+  type: Unclassified
+paths:
+  /v2/alert/severity:
+    put:
+      tags:
+      - Alert
+      operationId: Alert_UpdateAlertSeverity
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_Falconetix.Model.WarningSeverity'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_Falconetix.Model.WarningSeverity'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_Falconetix.Model.WarningSeverity'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_Falconetix.Model.WarningSeverity'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_Falconetix.Model.WarningSeverity'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_Falconetix.Model.WarningSeverity'
+        required: true
+      summary: Alert update alert severity
+      x-summary-source: derived
+  /v2/alert/acknowledged:
+    put:
+      tags:
+      - Alert
+      operationId: Alert_UpdateAlertAcknowledged
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean'
+        required: true
+      summary: Alert update alert acknowledged
+      x-summary-source: derived
+  /v2/alert/comment:
+    put:
+      tags:
+      - Alert
+      operationId: Alert_UpdateAlertComment
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String'
+        required: true
+      summary: Alert update alert comment
+      x-summary-source: derived
+  /v2/alert/count:
+    get:
+      tags:
+      - Alert
+      operationId: Alert_GetCount
+      parameters:
+      - name: srl
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsCountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsCountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsCountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsCountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertsCountViewModel'
+      summary: Alert get count
+      x-summary-source: derived
+  /v2/alert/data:
+    post:
+      tags:
+      - Alert
+      operationId: Alert_GetAlertsDataAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.GetDataParms_System.Object'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.GetDataParms_System.Object'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.GetDataParms_System.Object'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.GetDataParms_System.Object'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.GetDataParms_System.Object'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.GetDataParms_System.Object'
+        required: true
+      summary: Alert get alerts data async
+      x-summary-source: derived
+  /v2/alert/export:
+    post:
+      tags:
+      - Alert
+      operationId: Alert_TriggerExportAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            text/json:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            text/html:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            application/xml:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            text/xml:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+      summary: Alert trigger export async
+      x-summary-source: derived
+  /v2/alert/export/{workflowGuid}/status:
+    get:
+      tags:
+      - Alert
+      operationId: Alert_GetExportStatusAsync
+      parameters:
+      - name: workflowGuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alerts.ExportStatusModel.ExportStatusInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alerts.ExportStatusModel.ExportStatusInfo'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alerts.ExportStatusModel.ExportStatusInfo'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alerts.ExportStatusModel.ExportStatusInfo'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Alerts.ExportStatusModel.ExportStatusInfo'
+      summary: Alert get export status async
+      x-summary-source: derived
+  /v2/alert/export/{workflowGuid}/data:
+    get:
+      tags:
+      - Alert
+      operationId: Alert_GetExportedDataUrlAsync
+      parameters:
+      - name: workflowGuid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      summary: Alert get exported data url async
+      x-summary-source: derived
+  /v2/Alert:
+    get:
+      tags:
+      - Alert
+      summary: Get multiple alerts.
+      operationId: Alert_Get
+      parameters:
+      - name: filter.getFim
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: filter.getAcknowledged
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: filter.alertTypes
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filter.sgExternalId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertViewModel'
+  /v2/Alert/{id}:
+    get:
+      tags:
+      - Alert
+      summary: Get a single alert by Id
+      operationId: Alert_Get
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertViewModel'
+    patch:
+      tags:
+      - Alert
+      operationId: Alert_Patch
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertPatchViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertPatchViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertPatchViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertPatchViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertPatchViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertPatchViewModel'
+        required: true
+      summary: Alert patch
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Models.AlertViewModel:
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        type:
+          description: Dome9 object type
+          type: string
+        name:
+          description: Human friendly Alert type
+          type: string
+        description:
+          description: Actual content of the alert info
+          type: string
+        comment:
+          description: Free field for user comments
+          type: string
+        canBeAcknowledged:
+          description: Signals whether this Alert can be manually acknowledged
+          type: boolean
+        acknowledged:
+          description: Was this Alert manually acknowledged (muted) by the user
+          type: boolean
+        severity:
+          enum:
+          - None
+          - Low
+          - Med
+          - High
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        locationMetadata:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Falconetix.Model.AlertLocationEntityMetadata'
+        resource:
+          $ref: '#/components/schemas/Falconetix.Model.AlertPivotEntity'
+        srl:
+          type: string
+        created:
+          format: date-time
+          type: string
+        modified:
+          format: date-time
+          type: string
+    Dome9.Web.Api.Models.GetDataParms_System.Object:
+      type: object
+      properties:
+        filter:
+          type: string
+        page_size:
+          format: int64
+          type: integer
+        page_index:
+          format: int64
+          type: integer
+        dateRange:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.GetDataParmsTimeFilter'
+    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean:
+      type: object
+      properties:
+        alertId:
+          format: int64
+          type: integer
+        data:
+          type: boolean
+    Dome9.Web.Api.Alerts.ExportStatusModel.ExportStatusInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - InProgress
+          - Success
+          type: string
+    Falconetix.Model.AlertPivotEntity:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          enum:
+          - SecurityGroup
+          - Agent
+          - CloudAccount
+          - AzureSecurityGroup
+          - AzureCloudAccount
+          - KubernetesCloudAccount
+          type: string
+    Dome9.Web.Api.Models.GetDataParmsTimeFilter:
+      type: object
+      properties:
+        from_epoch:
+          format: int64
+          type: integer
+        to_epoch:
+          format: int64
+          type: integer
+        from:
+          type: string
+        to:
+          type: string
+    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String:
+      type: object
+      properties:
+        alertId:
+          format: int64
+          type: integer
+        data:
+          type: string
+    Falconetix.Model.AlertLocationEntityMetadata:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+    Dome9.Web.Api.Models.AlertPatchViewModel:
+      type: object
+      properties:
+        acknowledged:
+          type: boolean
+        comment:
+          type: string
+        severity:
+          enum:
+          - None
+          - Low
+          - Med
+          - High
+          type: string
+    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_Falconetix.Model.WarningSeverity:
+      type: object
+      properties:
+        alertId:
+          format: int64
+          type: integer
+        data:
+          enum:
+          - None
+          - Low
+          - Med
+          - High
+          type: string
+    Dome9.Web.Api.Models.AlertsCountViewModel:
+      type: object
+      properties:
+        fim:
+          format: int32
+          type: integer
+        general:
+          format: int32
+          type: integer
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

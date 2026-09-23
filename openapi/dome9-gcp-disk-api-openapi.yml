@@ -1,0 +1,100 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Gcp Disk API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Gcp Disk
+  type: InventoryGcp
+paths:
+  /v2/GcpDisk:
+    get:
+      tags:
+      - Gcp Disk
+      operationId: GcpDisk_Get
+      parameters:
+      - name: externalId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpDisk.GcpDiskViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpDisk.GcpDiskViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpDisk.GcpDiskViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpDisk.GcpDiskViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpDisk.GcpDiskViewModel'
+      summary: Gcp disk get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Google.GcpDisk.GcpDiskViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        selfLink:
+          type: string
+        status:
+          type: string
+        creationTimestamp:
+          format: int64
+          type: integer
+        lastAttachTimestamp:
+          format: int64
+          type: integer
+        lastDetachTimestamp:
+          format: int64
+          type: integer
+        sourceImage:
+          type: string
+        sourceImageId:
+          type: string
+        sourceDisk:
+          type: string
+        sourceDiskId:
+          type: string
+        sourceSnapshot:
+          type: string
+        sourceSnapshotId:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

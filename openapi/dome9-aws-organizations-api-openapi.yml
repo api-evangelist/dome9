@@ -1,0 +1,173 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Organizations API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Organizations
+  type: InventoryAwsGlobal
+paths:
+  /v2/AwsOrganization/Organizations:
+    get:
+      tags:
+      - Aws Organizations
+      operationId: AwsOrganizations_GetOrganizations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsOrganizationViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsOrganizationViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsOrganizationViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsOrganizationViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsOrganizationViewModel'
+      summary: Aws organizations get organizations
+      x-summary-source: derived
+  /v2/AwsOrganization/Accounts:
+    get:
+      tags:
+      - Aws Organizations
+      operationId: AwsOrganizations_GetAccounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsOrganizationAccountViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsOrganizationAccountViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsOrganizationAccountViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsOrganizationAccountViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsOrganizationAccountViewModel'
+      summary: Aws organizations get accounts
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Organizations.AwsOrganizationTagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.AwsOrganizationAccountViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        arn:
+          type: string
+        ouPath:
+          type: string
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        joinedMethod:
+          enum:
+          - CREATED
+          - INVITED
+          type: string
+        status:
+          enum:
+          - ACTIVE
+          - SUSPENDED
+          type: string
+        organizationType:
+          enum:
+          - Root
+          - Account
+          - Unit
+          type: string
+        organizationPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Organizations.AwsOrganizationPolicyViewModel'
+        organizationTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Organizations.AwsOrganizationTagViewModel'
+    Dome9.Web.Api.AwsOrganizationViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        unitPath:
+          type: string
+        arn:
+          type: string
+        organizationType:
+          enum:
+          - Root
+          - Account
+          - Unit
+          type: string
+        organizationPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Organizations.AwsOrganizationPolicyViewModel'
+    Dome9.Web.Api.Organizations.AwsOrganizationPolicyViewModel:
+      type: object
+      properties:
+        policyDocument:
+          type: string
+        arn:
+          type: string
+        awsManaged:
+          type: boolean
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        summaryType:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

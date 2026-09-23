@@ -1,0 +1,3045 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Serverless API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Serverless
+  type: WorkloadProtection
+paths:
+  /v2/serverless/accounts:
+    post:
+      tags:
+      - Serverless
+      summary: Enable Serverless protection
+      operationId: Serverless_PostAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAddAccountRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAddAccountRequest'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAddAccountRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAddAccountRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAddAccountRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAddAccountRequest'
+        required: true
+  /v2/serverless/accounts/{cloudAccountId}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAccount
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountViewModel'
+      summary: Serverless get account
+      x-summary-source: derived
+    patch:
+      tags:
+      - Serverless
+      summary: Update policy config or add FSP for an AWS Cloud account
+      operationId: Serverless_PutAccount
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+        required: true
+  /v2/serverless/{cloudProvider}/accounts/{cloudAccountId}:
+    patch:
+      tags:
+      - Serverless
+      summary: Update policy config or add FSP for an AWS Cloud account
+      operationId: Serverless_PutAccount
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
+        required: true
+  /v2/serverless/accounts/states:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAccountsState
+      parameters:
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+      summary: Serverless get accounts state
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/accounts/states:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAccountsState
+      parameters:
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+      summary: Serverless get accounts state
+      x-summary-source: derived
+  /v2/serverless/accounts/states/{cloudAccountId}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAccountState
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+      summary: Serverless get account state
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/accounts/states/{cloudAccountId}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAccountState
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
+      summary: Serverless get account state
+      x-summary-source: derived
+  /v2/serverless/accounts/{cloudAccountId}/exclusions:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAccountExclusions
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+      summary: Serverless get account exclusions
+      x-summary-source: derived
+    post:
+      tags:
+      - Serverless
+      operationId: Serverless_PostExclusion
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+        required: true
+      summary: Serverless post exclusion
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/accounts/{cloudAccountId}/exclusions:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAccountExclusions
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+      summary: Serverless get account exclusions
+      x-summary-source: derived
+    post:
+      tags:
+      - Serverless
+      operationId: Serverless_PostExclusion
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+        required: true
+      summary: Serverless post exclusion
+      x-summary-source: derived
+  /v2/serverless/accounts/{cloudAccountId}/rules:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAccountRules
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+      summary: Serverless get account rules
+      x-summary-source: derived
+    post:
+      tags:
+      - Serverless
+      operationId: Serverless_PostRule
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+        required: true
+      summary: Serverless post rule
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/accounts/{cloudAccountId}/rules:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAccountRules
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+      summary: Serverless get account rules
+      x-summary-source: derived
+    post:
+      tags:
+      - Serverless
+      operationId: Serverless_PostRule
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+        required: true
+      summary: Serverless post rule
+      x-summary-source: derived
+  /v2/serverless/accounts/{cloudAccountId}/rules/{ruleId}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetRule
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ruleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+      summary: Serverless get rule
+      x-summary-source: derived
+    put:
+      tags:
+      - Serverless
+      operationId: Serverless_PutRule
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ruleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+        required: true
+      summary: Serverless put rule
+      x-summary-source: derived
+    delete:
+      tags:
+      - Serverless
+      operationId: Serverless_DeleteRule
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ruleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+      summary: Serverless delete rule
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/accounts/{cloudAccountId}/rules/{ruleId}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetRule
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ruleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+      summary: Serverless get rule
+      x-summary-source: derived
+    put:
+      tags:
+      - Serverless
+      operationId: Serverless_PutRule
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ruleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleModel'
+        required: true
+      summary: Serverless put rule
+      x-summary-source: derived
+    delete:
+      tags:
+      - Serverless
+      operationId: Serverless_DeleteRule
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ruleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+      summary: Serverless delete rule
+      x-summary-source: derived
+  /v2/serverless/accounts/{cloudAccountId}/exclusions/{exclusionId}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetExclusion
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: exclusionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+      summary: Serverless get exclusion
+      x-summary-source: derived
+    put:
+      tags:
+      - Serverless
+      operationId: Serverless_PutExclusion
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: exclusionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+        required: true
+      summary: Serverless put exclusion
+      x-summary-source: derived
+    delete:
+      tags:
+      - Serverless
+      operationId: Serverless_DeleteExclusion
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: exclusionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+      summary: Serverless delete exclusion
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/accounts/{cloudAccountId}/exclusions/{exclusionId}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetExclusion
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: exclusionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+      summary: Serverless get exclusion
+      x-summary-source: derived
+    put:
+      tags:
+      - Serverless
+      operationId: Serverless_PutExclusion
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: exclusionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionModel'
+        required: true
+      summary: Serverless put exclusion
+      x-summary-source: derived
+    delete:
+      tags:
+      - Serverless
+      operationId: Serverless_DeleteExclusion
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: exclusionId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
+      summary: Serverless delete exclusion
+      x-summary-source: derived
+  /v2/serverless/aws/accounts/{cloudAccountId}/missingPermissions:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAccountMissingPermissions
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessMissingPermissionsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessMissingPermissionsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessMissingPermissionsViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessMissingPermissionsViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessMissingPermissionsViewModel'
+      summary: Serverless get account missing permissions
+      x-summary-source: derived
+  /v2/serverless/aws/accounts/{cloudAccountId}/missingPermissions/validate:
+    put:
+      tags:
+      - Serverless
+      operationId: Serverless_ValidateAccountMissingPermissions
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.ServiceInterfaces.Serverless.ServerlessApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.ServiceInterfaces.Serverless.ServerlessApiResponse'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.ServiceInterfaces.Serverless.ServerlessApiResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.ServiceInterfaces.Serverless.ServerlessApiResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.ServiceInterfaces.Serverless.ServerlessApiResponse'
+      summary: Serverless validate account missing permissions
+      x-summary-source: derived
+  /v2/serverless/functions/{id}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetFunction
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionViewModel'
+      summary: Serverless get function
+      x-summary-source: derived
+  /v2/serverless/aws/functions/{id}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetFunction
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionViewModel'
+      summary: Serverless get function
+      x-summary-source: derived
+  /v2/serverless/azure/functions/{id}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAzureFunctionApp
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionAppViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionAppViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionAppViewModel'
+      summary: Serverless get azure function app
+      x-summary-source: derived
+  /v2/serverless/kubernetes/functions/{id}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetKubernetesPodGroup
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPodGroupViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPodGroupViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPodGroupViewModel'
+      summary: Serverless get kubernetes pod group
+      x-summary-source: derived
+  /v2/serverless/aws/functions/{id}/addLogSubscription:
+    post:
+      tags:
+      - Serverless
+      operationId: Serverless_FunctionAddLogSubscription
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      summary: Serverless function add log subscription
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/accounts/{cloudAccountId}/functions:
+    patch:
+      tags:
+      - Serverless
+      operationId: Serverless_PutFunctions
+      parameters:
+      - name: cloudAccountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionResponseViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionResponseViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionResponseViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionResponseViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionResponseViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel'
+        required: true
+      summary: Serverless put functions
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/functions/{id}:
+    patch:
+      tags:
+      - Serverless
+      operationId: Serverless_PutFunction
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutSingleFunctionViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutSingleFunctionViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutSingleFunctionViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutSingleFunctionViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutSingleFunctionViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutSingleFunctionViewModel'
+        required: true
+      summary: Serverless put function
+      x-summary-source: derived
+  /v2/serverless/functions/{id}/fsp:
+    patch:
+      tags:
+      - Serverless
+      operationId: Serverless_PutFunctionAutoFsp
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.EnableFSPViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.EnableFSPViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.EnableFSPViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.EnableFSPViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.EnableFSPViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.EnableFSPViewModel'
+        required: true
+      summary: Serverless put function auto fsp
+      x-summary-source: derived
+  /v2/serverless/functions/{id}/fspMode:
+    patch:
+      tags:
+      - Serverless
+      operationId: Serverless_PutFunctionFspBlock
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+        required: true
+      summary: Serverless put function fsp block
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/functions/{id}/fspMode:
+    patch:
+      tags:
+      - Serverless
+      operationId: Serverless_PutFunctionFspBlock
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody'
+        required: true
+      summary: Serverless put function fsp block
+      x-summary-source: derived
+  /v2/serverless/functions/{id}/whitelist:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetFunctionWhitelist
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+      summary: Serverless get function whitelist
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/functions/{id}/whitelist:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetFunctionWhitelist
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+      summary: Serverless get function whitelist
+      x-summary-source: derived
+  /v2/serverless/azure/functions/{id}/whitelist/{functionName}:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetAzureFunctionWhitelist
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: functionName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
+      summary: Serverless get azure function whitelist
+      x-summary-source: derived
+  /v2/serverless/functions/{id}/exclusions:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetFunctionExclusions
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+      summary: Serverless get function exclusions
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/functions/{id}/exclusions:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetFunctionExclusions
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
+      summary: Serverless get function exclusions
+      x-summary-source: derived
+  /v2/serverless/functions/{id}/rules:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetFunctionRules
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+      summary: Serverless get function rules
+      x-summary-source: derived
+  /v2/serverless/{cloudProvider}/functions/{id}/rules:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetFunctionRules
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+          - kubernetes
+      - name: withPayloadObject
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
+      summary: Serverless get function rules
+      x-summary-source: derived
+  /v2/serverless/fsp/versions:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetFspVersions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFspVersioViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFspVersioViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFspVersioViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFspVersioViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFspVersioViewModel'
+      summary: Serverless get fsp versions
+      x-summary-source: derived
+  /v2/serverless/workloadProtection/runtimes:
+    get:
+      tags:
+      - Serverless
+      operationId: Serverless_GetSupportedRuntimes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFSPSupportedRuntimesViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFSPSupportedRuntimesViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFSPSupportedRuntimesViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFSPSupportedRuntimesViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFSPSupportedRuntimesViewModel'
+      summary: Serverless get supported runtimes
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody:
+      type: object
+      properties:
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessMissingPermissionsViewModel:
+      type: object
+      properties:
+        lastValidatePermissionsTimestamp:
+          format: int64
+          type: integer
+        validatePermissionsStatus:
+          enum:
+          - Success
+          - InProgress
+          - Error
+          type: string
+        denyPermissionsList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPermissionViewModel'
+    Dome9.Web.Api.Serverless.ServerlessAddAccountRequest:
+      required:
+      - cloudAccountId
+      type: object
+      properties:
+        cloudAccountId:
+          type: string
+        cloudProvider:
+          enum:
+          - aws
+          - azure
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPermissionResourceViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        description:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPodGroupViewModel:
+      type: object
+      properties:
+        isLearningModeActive:
+          type: boolean
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+        learningModeStartTime:
+          type: string
+        learningModeEndTime:
+          type: string
+        learningModePeriod:
+          format: int32
+          type: integer
+        whiteListProgressPercent:
+          format: int32
+          type: integer
+    Falconetix.Model.Serverless.ServerlessPoliciesAction:
+      type: object
+      properties:
+        signature:
+          enum:
+          - alert
+          - block
+          type: string
+        malware:
+          enum:
+          - alert
+          - block
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel:
+      type: object
+      properties:
+        fspAutoInstrumentation:
+          type: boolean
+        fspStickyVersion:
+          type: string
+        policiesAction:
+          $ref: '#/components/schemas/Falconetix.Model.Serverless.ServerlessPoliciesAction'
+    Dome9.Web.Api.Serverless.ServerlessFspVersioViewModel:
+      type: object
+      properties:
+        fspVersion:
+          type: string
+        versionState:
+          type: string
+        unsupportedRuntimes:
+          type: array
+          items:
+            type: string
+    Falconetix.Model.ServiceInterfaces.Serverless.ServerlessApiResponse:
+      type: object
+      properties:
+        data:
+          type: object
+        nextToken:
+          type: string
+        statusCode:
+          format: int32
+          type: integer
+        message:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessRuleViewModel:
+      type: object
+      properties:
+        scope:
+          enum:
+          - Account
+          - Function
+          - FunctionGroup
+          - FunctionVersion
+          - FunctionApp
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        payloadsType:
+          enum:
+          - String
+          - SignatureName
+          type: string
+        target:
+          enum:
+          - Host
+          - Ip
+          - File
+          - Process
+          - Api
+          - Http
+          - Io
+          - Signature
+          type: string
+        payloads:
+          type: array
+          items:
+            type: object
+        functions:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.ServerlessRuleModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        payloadsType:
+          enum:
+          - String
+          - SignatureName
+          type: string
+        target:
+          enum:
+          - Host
+          - Ip
+          - File
+          - Process
+          - Api
+          - Http
+          - Io
+          - Signature
+          type: string
+        payloads:
+          type: array
+          items:
+            type: object
+        functions:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.EnableFSPViewModel:
+      type: object
+      properties:
+        enable:
+          type: boolean
+    Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel:
+      type: object
+      properties:
+        completed:
+          type: boolean
+        whiteListProgressPercent:
+          format: int32
+          type: integer
+        files:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        ips:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        hosts:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        apis:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        processes:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        https:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        inputs:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        signatures:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+    Dome9.Web.Api.Serverless.WhiteListResourceViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        action:
+          type: string
+        source:
+          type: array
+          items:
+            type: string
+        callstackInfo:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.ServerlessExclusionModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        payloadsType:
+          enum:
+          - String
+          - IoFingerprint
+          - IoFeature
+          - SignatureName
+          type: string
+        target:
+          enum:
+          - Host
+          - Ip
+          - File
+          - Process
+          - Api
+          - Http
+          - Io
+          - Signature
+          type: string
+        payloads:
+          type: array
+          items:
+            type: object
+        functions:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.ServerlessErrorViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessFunctionSummaryViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        whiteListProgress:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Serverless.ServerlessPutFunctionViewModel:
+      type: object
+      properties:
+        functionId:
+          type: string
+        fspAutoInstrumentation:
+          type: boolean
+        isLearningModeActive:
+          type: boolean
+        learningModePeriod:
+          format: int32
+          type: integer
+        fspStickyVersion:
+          type: string
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPutSingleFunctionViewModel:
+      type: object
+      properties:
+        fspAutoInstrumentation:
+          type: boolean
+        isLearningModeActive:
+          type: boolean
+        learningModePeriod:
+          format: int32
+          type: integer
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+        fspStickyVersion:
+          type: string
+    Dome9.Web.Api.Serverless.FunctionPermissionResourceViewModel:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        resource:
+          type: string
+        action:
+          type: string
+        severity:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessFunctionViewModel:
+      type: object
+      properties:
+        functionArn:
+          type: string
+        region:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        id:
+          type: string
+        name:
+          type: string
+        vpc:
+          type: string
+        funcRiskLevel:
+          type: string
+        funcPostureScore:
+          format: int32
+          type: integer
+        includesFSP:
+          type: boolean
+        isRuntimeSupported:
+          type: boolean
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+        fspVersion:
+          type: string
+        scanStatus:
+          enum:
+          - Disabled
+          - Complete
+          - Partial
+          type: string
+        timeout:
+          format: int32
+          type: integer
+        whiteListProgressPercent:
+          format: int32
+          type: integer
+        runtime:
+          type: string
+        handler:
+          type: string
+        fspAutoInstrumentation:
+          type: boolean
+        fspAutoInstrumentationSupported:
+          type: boolean
+        fspAutoInstrumentationState:
+          type: string
+        fspAutoInstrumentationProgressStep:
+          type: string
+        triggersAnalysis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.FunctionPermissionViewModel'
+        rolePermissionsAnalysis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.FunctionPermissionViewModel'
+        serverlessErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessErrorViewModel'
+        fspFeatures:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.ServerlessFunctionAppViewModel:
+      type: object
+      properties:
+        includesFSP:
+          type: boolean
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+        fspFeatures:
+          type: array
+          items:
+            type: string
+        isRuntimeSupported:
+          type: boolean
+        runtime:
+          type: string
+        functionsSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionSummaryViewModel'
+        serverlessErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessErrorViewModel'
+    Dome9.Web.Api.Serverless.FunctionPermissionViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        suggestedPolicy:
+          type: object
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.FunctionPermissionResourceViewModel'
+    Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel:
+      type: object
+      properties:
+        status:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceViewModel'
+    Dome9.Web.Api.Serverless.ServerlessFSPSupportedRuntimesViewModel:
+      type: object
+      properties:
+        supportedRuntimes:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.ServerlessAccountViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cloudVendor:
+          enum:
+          - aws
+          - azure
+          - kubernetes
+          type: string
+        state:
+          type: string
+        crossAccountRoleTemplateURL:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        status:
+          type: string
+        reason:
+          type: string
+        shouldUpdate:
+          type: boolean
+        isOrgOnboarding:
+          type: boolean
+        isOrgOnboardingManagement:
+          type: boolean
+        hasMissingPermissions:
+          type: boolean
+        deleteAccountRoleTemplateURL:
+          type: string
+        genericTemplateUrl:
+          type: string
+        fspAutoInstrumentation:
+          type: boolean
+        fspAutoInstrumentationState:
+          type: string
+        fspStickyVersion:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessExclusionViewModel:
+      type: object
+      properties:
+        scope:
+          enum:
+          - Account
+          - Function
+          - FunctionGroup
+          - FunctionVersion
+          - FunctionApp
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        payloadsType:
+          enum:
+          - String
+          - IoFingerprint
+          - IoFeature
+          - SignatureName
+          type: string
+        target:
+          enum:
+          - Host
+          - Ip
+          - File
+          - Process
+          - Api
+          - Http
+          - Io
+          - Signature
+          type: string
+        payloads:
+          type: array
+          items:
+            type: object
+        functions:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccountNumber:
+          type: string
+        cloudVendor:
+          enum:
+          - aws
+          - azure
+          - kubernetes
+          type: string
+        state:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        reason:
+          type: string
+        shouldUpdate:
+          type: boolean
+        isOrgOnboarding:
+          type: boolean
+        isOrgOnboardingManagement:
+          type: boolean
+        hasMissingPermissions:
+          type: boolean
+        validatePermissionsStatus:
+          enum:
+          - Success
+          - InProgress
+          - Error
+          type: string
+        lastValidatePermissionsTimestamp:
+          format: int64
+          type: integer
+    Dome9.Web.Api.Serverless.ServerlessPermissionViewModel:
+      type: object
+      properties:
+        serviceAction:
+          type: string
+        roleArn:
+          type: string
+        roleName:
+          type: string
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPermissionResourceViewModel'
+    Dome9.Web.Api.Serverless.ServerlessPutFunctionResponseViewModel:
+      type: object
+      properties:
+        functionId:
+          type: string
+        status:
+          type: string
+        statusCode:
+          enum:
+          - Continue
+          - SwitchingProtocols
+          - OK
+          - Created
+          - Accepted
+          - NonAuthoritativeInformation
+          - NoContent
+          - ResetContent
+          - PartialContent
+          - MultipleChoices
+          - Ambiguous
+          - MovedPermanently
+          - Moved
+          - Found
+          - Redirect
+          - SeeOther
+          - RedirectMethod
+          - NotModified
+          - UseProxy
+          - Unused
+          - TemporaryRedirect
+          - RedirectKeepVerb
+          - BadRequest
+          - Unauthorized
+          - PaymentRequired
+          - Forbidden
+          - NotFound
+          - MethodNotAllowed
+          - NotAcceptable
+          - ProxyAuthenticationRequired
+          - RequestTimeout
+          - Conflict
+          - Gone
+          - LengthRequired
+          - PreconditionFailed
+          - RequestEntityTooLarge
+          - RequestUriTooLong
+          - UnsupportedMediaType
+          - RequestedRangeNotSatisfiable
+          - ExpectationFailed
+          - UpgradeRequired
+          - InternalServerError
+          - NotImplemented
+          - BadGateway
+          - ServiceUnavailable
+          - GatewayTimeout
+          - HttpVersionNotSupported
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel:
+      type: object
+      properties:
+        functionsData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

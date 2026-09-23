@@ -1,0 +1,181 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Big Table API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Big Table
+  type: InventoryGcp
+paths:
+  /v2/BigTable:
+    get:
+      tags:
+      - Big Table
+      operationId: BigTable_Get
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableInstanceViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableInstanceViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableInstanceViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableInstanceViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableInstanceViewModel'
+      summary: Big table get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Google.BigTable.GcpBigTableClusterNameViewModel:
+      type: object
+      properties:
+        projectId:
+          type: string
+        instanceId:
+          type: string
+        clusterId:
+          type: string
+        kind:
+          type: string
+    Dome9.Web.Api.Google.BigTable.GcpBigTableSingleRoutingViewModel:
+      type: object
+      properties:
+        clusterId:
+          type: string
+        allowTransactionalWrites:
+          type: boolean
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.BigTable.GcpBigTableClusterViewModel:
+      type: object
+      properties:
+        serveNodes:
+          format: int32
+          type: integer
+        state:
+          type: string
+        location:
+          type: string
+        name:
+          type: string
+        clusterName:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableClusterNameViewModel'
+        locationAsLocationName:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableLocationNameViewModel'
+        defaultStorageType:
+          type: string
+    Dome9.Web.Api.Google.BigTable.GcpBigTableBindingViewModel:
+      type: object
+      properties:
+        role:
+          type: string
+        members:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Google.BigTable.GcpBigTablePolicyViewModel:
+      type: object
+      properties:
+        version:
+          format: int32
+          type: integer
+        bindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableBindingViewModel'
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.BigTable.GcpBigTableAppProfileViewModel:
+      type: object
+      properties:
+        description:
+          type: string
+        eTag:
+          type: string
+        kind:
+          type: string
+        name:
+          type: string
+        routingPolicyCase:
+          type: string
+        singleClusterRouting:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableSingleRoutingViewModel'
+    Dome9.Web.Api.Google.BigTable.GcpBigTableLocationNameViewModel:
+      type: object
+      properties:
+        projectId:
+          type: string
+        locationId:
+          type: string
+        kind:
+          type: string
+    Dome9.Web.Api.Google.BigTable.GcpBigTableInstanceViewModel:
+      type: object
+      properties:
+        projectId:
+          type: string
+        instanceId:
+          type: string
+        displayName:
+          type: string
+        state:
+          type: string
+        instanceType:
+          type: string
+        policy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTablePolicyViewModel'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        profiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableAppProfileViewModel'
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.BigTable.GcpBigTableClusterViewModel'
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,136 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Google Cloud Iam Policy API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Google Cloud Iam Policy
+  type: InventoryGcp
+paths:
+  /v2/GoogleCloudIamPolicy:
+    get:
+      tags:
+      - Google Cloud Iam Policy
+      operationId: GoogleCloudIamPolicy_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GoogleCloudIamPolicyViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GoogleCloudIamPolicyViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GoogleCloudIamPolicyViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GoogleCloudIamPolicyViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GoogleCloudIamPolicyViewModel'
+      summary: Google cloud iam policy get
+      x-summary-source: derived
+  /v2/GoogleCloudIamPolicy/{id}:
+    get:
+      tags:
+      - Google Cloud Iam Policy
+      operationId: GoogleCloudIamPolicy_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GoogleCloudIamPolicyViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GoogleCloudIamPolicyViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GoogleCloudIamPolicyViewModel'
+      summary: Google cloud iam policy get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyAuditConfigsViewModel.GcpIamPolicyAuditLogConfigsViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        logType:
+          type: string
+        exemptedMembers:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Google.IamPolicy.GoogleCloudIamPolicyViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        version:
+          format: int32
+          type: integer
+        bindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyBindingsViewModel'
+        auditConfigs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyAuditConfigsViewModel'
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyAuditConfigsViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        service:
+          type: string
+        auditLogConfigs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyAuditConfigsViewModel.GcpIamPolicyAuditLogConfigsViewModel'
+    Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyBindingsViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        role:
+          type: string
+        members:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

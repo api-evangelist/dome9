@@ -1,0 +1,67 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud WAF Regional API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: CloudWAF Regional
+  type: InventoryAwsSecurityIdentityAndCompliance
+paths:
+  /v2/CloudWAFRegional:
+    get:
+      tags:
+      - CloudWAF Regional
+      operationId: CloudWAFRegional_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsWAFRegionalViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsWAFRegionalViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsWAFRegionalViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsWAFRegionalViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AwsWAFRegionalViewModel'
+      summary: Cloud WAF regional get
+      x-summary-source: derived
+components:
+  schemas:
+    Falconetix.Model.AwsWAFRegionalViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        webACLId:
+          type: string
+        wafRegionalResources:
+          type: array
+          items:
+            type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

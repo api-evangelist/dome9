@@ -1,0 +1,1454 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Agentless API
+  description: Agentless Workload Posture
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Agentless
+  description: Agentless Workload Posture
+  type: WorkloadProtection
+paths:
+  /v2/workload/agentless/aws/accounts/{id}/enable:
+    post:
+      tags:
+      - Agentless
+      summary: Enable AWP AWS account
+      operationId: Agentless_EnableAwsAccount
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      - name: shouldCreatePolicy
+        in: query
+        description: A flag indicating weather to create a default policy
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsAccountRequestBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsAccountRequestBody'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsAccountRequestBody'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsAccountRequestBody'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsAccountRequestBody'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsAccountRequestBody'
+        required: true
+  /v2/workload/agentless/azure/accounts/{id}/enable:
+    post:
+      tags:
+      - Agentless
+      summary: Enable AWP Azure account
+      operationId: Agentless_EnableAzureAccount
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/subscription Id)
+        required: true
+        schema:
+          type: string
+      - name: shouldCreatePolicy
+        in: query
+        description: A flag indicating weather to create a default policy
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureAccountRequestBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureAccountRequestBody'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureAccountRequestBody'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureAccountRequestBody'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureAccountRequestBody'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureAccountRequestBody'
+        required: true
+  /v2/workload/agentless/aws/accounts/{id}/enableCentralizedAccount:
+    post:
+      tags:
+      - Agentless
+      summary: Add AWP AWS Centralized account
+      operationId: Agentless_AddAwsCentralizedAccount
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsCentralizedAccountRequestBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsCentralizedAccountRequestBody'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsCentralizedAccountRequestBody'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsCentralizedAccountRequestBody'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsCentralizedAccountRequestBody'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsCentralizedAccountRequestBody'
+        required: true
+  /v2/workload/agentless/azure/accounts/{id}/enableCentralizedAccount:
+    post:
+      tags:
+      - Agentless
+      summary: Add AWP Azure Centralized account
+      operationId: Agentless_AddAzureCentralizedAccount
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureCentralizedAccountRequestBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureCentralizedAccountRequestBody'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureCentralizedAccountRequestBody'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureCentralizedAccountRequestBody'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureCentralizedAccountRequestBody'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureCentralizedAccountRequestBody'
+        required: true
+  /v2/workload/agentless/aws/accounts/{id}/enableSubAccount:
+    post:
+      tags:
+      - Agentless
+      summary: Add AWP AWS Sub account
+      operationId: Agentless_AddAwsSubAccount
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      - name: shouldCreatePolicy
+        in: query
+        description: A flag indicating weather to create a default policy
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsSubAccountRequestBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsSubAccountRequestBody'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsSubAccountRequestBody'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsSubAccountRequestBody'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsSubAccountRequestBody'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAwsSubAccountRequestBody'
+        required: true
+  /v2/workload/agentless/azure/accounts/{id}/enableSubAccount:
+    post:
+      tags:
+      - Agentless
+      summary: Add AWP Azure Sub account
+      operationId: Agentless_AddAzureSubAccount
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      - name: shouldCreatePolicy
+        in: query
+        description: A flag indicating weather to create a default policy
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureSubAccountRequestBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureSubAccountRequestBody'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureSubAccountRequestBody'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureSubAccountRequestBody'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureSubAccountRequestBody'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AddAgentlessAzureSubAccountRequestBody'
+        required: true
+  /v2/workload/agentless/{cloudProvider}/accounts/states:
+    get:
+      tags:
+      - Agentless
+      summary: Get current AWP accounts states
+      operationId: Agentless_GetAccountsStates
+      parameters:
+      - name: cloudProvider
+        in: path
+        description: Cloud provider
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountStateViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountStateViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountStateViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountStateViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountStateViewModel'
+  /v2/workload/agentless/{cloudProvider}/accounts/states/{id}:
+    get:
+      tags:
+      - Agentless
+      summary: Get AWP account state
+      operationId: Agentless_GetAccountState
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: Cloud provider
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountStateViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountStateViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountStateViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountStateViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountStateViewModel'
+  /v2/workload/agentless/{cloudProvider}/accounts/{id}:
+    get:
+      tags:
+      - Agentless
+      summary: Get AWP account scanner configuration
+      operationId: Agentless_GetAccount
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: Cloud provider
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AccountViewModel'
+  /v2/workload/agentless/{cloudProvider}/accounts/{id}/settings:
+    patch:
+      tags:
+      - Agentless
+      summary: Modify a single AWP account scanner settings (supported for inAccount and Saas…
+      operationId: Agentless_ModifyAccountSettings
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: Cloud provider
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+        required: true
+  /v2/workload/agentless/{cloudProvider}/accounts/{id}/centralizedAccountSettings:
+    patch:
+      tags:
+      - Agentless
+      summary: Modify a single AWP centralized account scanner settings
+      operationId: Agentless_ModifyCentralizedAccountSettings
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: Cloud provider
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessCentralizedAccountSettingsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessCentralizedAccountSettingsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessCentralizedAccountSettingsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessCentralizedAccountSettingsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessCentralizedAccountSettingsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessCentralizedAccountSettingsViewModel'
+        required: true
+  /v2/workload/agentless/aws/accounts/{id}:
+    delete:
+      tags:
+      - Agentless
+      summary: Disable AWS account
+      operationId: Agentless_DisableAwsAccount
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      - name: forceDelete
+        in: query
+        description: If 'True', AWP will be disabled and the API will skip validating resource removal from the customer account.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+  /v2/workload/agentless/azure/accounts/{id}:
+    delete:
+      tags:
+      - Agentless
+      summary: Disable Azure account
+      operationId: Agentless_DisableAzureAccount
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+  /v2/workload/agentless/aws/instances/{id}:
+    get:
+      tags:
+      - Agentless
+      summary: Get AWP workload scan details
+      operationId: Agentless_GetWorkload
+      parameters:
+      - name: id
+        in: path
+        description: Instance Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessInstanceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessInstanceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessInstanceViewModel'
+  /v2/workload/agentless/aws/accounts/{id}/generate-onboarding-data:
+    post:
+      tags:
+      - Agentless
+      summary: Generate Aws onboarding data
+      operationId: Agentless_GenerateAwsOnboardingData
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAwsOnboardingDataViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAwsOnboardingDataViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAwsOnboardingDataViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAwsOnboardingDataRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAwsOnboardingDataRequest'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAwsOnboardingDataRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAwsOnboardingDataRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAwsOnboardingDataRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAwsOnboardingDataRequest'
+        required: true
+  /v2/workload/agentless/azure/accounts/{id}/generate-onboarding-data:
+    post:
+      tags:
+      - Agentless
+      summary: Generate Azure onboarding data
+      operationId: Agentless_GenerateAzureOnboardingData
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAzureOnboardingDataViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAzureOnboardingDataViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAzureOnboardingDataViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAzureOnboardingDataRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAzureOnboardingDataRequest'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAzureOnboardingDataRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAzureOnboardingDataRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAzureOnboardingDataRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.GenerateAgentlessAzureOnboardingDataRequest'
+        required: true
+  /v2/workload/agentless/azure/accounts/{id}/offboarding:
+    get:
+      tags:
+      - Agentless
+      summary: Get Azure offboarding data
+      operationId: Agentless_GetAzureOffboardingData
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      - name: centralizedId
+        in: query
+        description: In case of inAccountSub, the account id of the centralized account
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAzureOffboardingDataViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAzureOffboardingDataViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAzureOffboardingDataViewModel'
+  /v2/workload/agentless/{cloudProvider}/accounts/{id}/onboarding/checkForUpdate:
+    get:
+      tags:
+      - Agentless
+      summary: Check if the AWP account needs to be updated
+      operationId: Agentless_CheckForOnboardingUpdate
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: Cloud provider
+        required: true
+        schema:
+          type: string
+          enum:
+          - aws
+          - azure
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAwsValidateStackDataViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAwsValidateStackDataViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAwsValidateStackDataViewModel'
+  /v2/workload/agentless/azure/accounts/{id}/centralizedAccounts:
+    get:
+      tags:
+      - Agentless
+      summary: Get Azure centralized accounts data
+      operationId: Agentless_GetAzureCentralizedAccounts
+      parameters:
+      - name: id
+        in: path
+        description: Cloud account Id (CloudGuard/external Id)
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Agentless.CentralizedAzureAccountViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Agentless.CentralizedAzureAccountViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Agentless.CentralizedAzureAccountViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Agentless.CentralizedAzureAccountViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Agentless.CentralizedAzureAccountViewModel'
+  /v2/workload/agentless/accountSettings:
+    get:
+      tags:
+      - Agentless
+      summary: Get all AWP accounts scanner settings
+      operationId: Agentless_GetTenantSettings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+    patch:
+      tags:
+      - Agentless
+      summary: Modify all AWP accounts scanner settings
+      operationId: Agentless_ModifyTenantSettings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessSettingsViewModel'
+        required: true
+components:
+  schemas:
+    Dome9.Web.Api.Agentless.AgentlessAzureCentralizedAccountSettingsViewModel:
+      type: object
+      properties:
+        sseCmkEncryptedDisksScan:
+          description: To enable SSE CMK scanning
+          type: boolean
+        inAccountScannerVPC:
+          description: The VPC mode
+          enum:
+          - ManagedByAWP
+          - ManagedByCustomer
+          type: string
+    Dome9.Web.Api.Agentless.AccountViewModel:
+      type: object
+      properties:
+        agentlessAccountSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+        missingAwpPrivateNetworkRegions:
+          type: array
+          items:
+            type: string
+        accountIssues:
+          $ref: '#/components/schemas/Dome9.BL.Std.Services.Agentless.AccountIssues'
+        createdTime:
+          type: string
+        cloudAccountId:
+          description: The D9 cloud account id
+          type: string
+        agentlessProtectionEnabled:
+          description: A flag indicating whether AWP protection is enabled
+          type: boolean
+        scanMode:
+          description: OSne of saas, inAccount, inAccountHub, inAccountSub
+          type: string
+        provider:
+          description: The cloud provider
+          enum:
+          - aws
+          - azure
+          type: string
+        shouldUpdate:
+          description: A flag indicating whether AWP resources should be updated
+          type: boolean
+        isOrgOnboarding:
+          description: A flag indicating whether AWP was enabled as part of the organization onboarding
+          type: boolean
+        isOrgOnboardingManagement:
+          description: A flag indicating whether AWP was enabled as part of the organization onboarding as management account
+          type: boolean
+        isTerraform:
+          description: A flag indicating whether AWP was enabled from terraform
+          type: boolean
+        centralizedCloudAccountId:
+          description: Centralized account id in case using centralized-sub accounts
+          type: string
+    Dome9.BL.Std.Services.Agentless.IssueItem:
+      type: object
+      properties:
+        issueType:
+          type: string
+    Dome9.Web.Api.Agentless.AddAgentlessAzureCentralizedAccountRequestBody:
+      type: object
+      properties:
+        onboardingCustomizations:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.CentralizedAccountOnboardingCustomizationViewModel'
+          description: Azure Centralized Account Onboarding Customizations
+        managementGroupId:
+          description: The Azure Management group id associated with the enabled Centralized Account
+          type: string
+        isTerraform:
+          description: Indicates whether the account is onboarded with Terraform (Setting True will make AWP assume no cloud formation stack, hence no indication on CFT version updates)
+          type: boolean
+        agentlessAccountSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAzureCentralizedAccountSettingsViewModel'
+          description: AWP account settings
+    Dome9.Web.Api.Agentless.AddAgentlessAzureAccountRequestBody:
+      type: object
+      properties:
+        onboardingCustomizations:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AzureOnboardingCustomizationViewModel'
+          description: AWP Azure Onboarding Customizations
+        scanMode:
+          description: Scan mode
+          enum:
+          - saas
+          - inAccount
+          type: string
+        isTerraform:
+          description: Indicates whether the account is onboarded with Terraform (Setting True will make AWP assume no cloud formation stack, hence no indication on CFT version updates)
+          type: boolean
+        agentlessAccountSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+          description: AWP account settings
+    Dome9.Web.Api.Agentless.AgentlessAzureOnboardingDataViewModel:
+      type: object
+      properties:
+        onboardingScriptCommand:
+          description: The AWP onboarding script command
+          type: string
+        onboardingScriptURL:
+          description: The AWP onboarding script url
+          type: string
+        version:
+          description: AWP onboarding script version
+          type: string
+    Dome9.Web.Api.Agentless.AgentlessInstanceViewModel:
+      type: object
+      properties:
+        state:
+          type: string
+        timestamp:
+          type: string
+        stateDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessInstanceStateDetailsViewModel'
+    Dome9.Web.Api.Agentless.AddAgentlessAzureSubAccountRequestBody:
+      required:
+      - centralizedCloudAccountId
+      type: object
+      properties:
+        centralizedCloudAccountId:
+          description: Centralized cloud account Id that AWP scanners will run
+          type: string
+        agentlessAccountSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+          description: AWP account settings
+        onboardingCustomizations:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.SubAccountOnboardingCustomizationViewModel'
+          description: Azure Sub Account Onboarding Customizations
+        isTerraform:
+          description: Indicates whether the account is onboarded with Terraform (Setting True will make AWP assume no cloud formation stack, hence no indication on CFT version updates)
+          type: boolean
+    Dome9.Web.Api.Agentless.SubAccountOnboardingCustomizationViewModel:
+      type: object
+      properties:
+        resourceGroupName:
+          description: Custom name for the scans resource group at the centralized account
+          type: string
+    Dome9.Web.Api.Agentless.AgentlessAwsValidateStackDataViewModel:
+      type: object
+      properties:
+        shouldUpdate:
+          type: boolean
+        updateStackCloudFormationTemplateURL:
+          type: string
+        version:
+          type: string
+    Dome9.Web.Api.Agentless.AzureOnboardingCustomizationDataViewModel:
+      type: object
+      properties:
+        virtualMachineDataShareRoleName:
+          description: Custom name for the virtual machine data share role, applicable for saas, centralized, and in account mode
+          type: string
+        virtualMachineScanOperatorRoleName:
+          description: Custom name for the virtual machine scan operator role, applicable for centralized, and in account mode
+          type: string
+        functionAppScanOperatorRoleName:
+          description: Custom name for the function-app scan operator role, applicable for centralized, and in account mode
+          type: string
+        functionAppScannerRoleName:
+          description: Custom name for the function-app scanner role, applicable for centralized and in account mode
+          type: string
+        cryptoCreatorRoleName:
+          description: Custom name for the crypto resources creator role, applicable for centralized with SseCmkEncryptedDisksScan enabled
+          type: string
+        diskEncryptorRoleName:
+          description: Custom name for the disk encryptor role, applicable for centralized with SseCmkEncryptedDisksScan enabled
+          type: string
+        resourceGroupName:
+          description: Custom name for the resource group, applicable for centralized, sub and in account mode
+          type: string
+        scannerManagedIdentityName:
+          description: Custom name for the managed-identity used by the function-app scanner, applicable for centralized and in account mode
+          type: string
+    Dome9.Web.Api.Agentless.AgentlessAwsOnboardingDataViewModel:
+      type: object
+      properties:
+        crossAccountTemplateUrl:
+          description: AWP onboarding CloudFormation stack template url
+          type: string
+        crossAccountCloudFormationQuickCreateUrl:
+          description: AWP onboarding CloudFormation stack template quick create url
+          type: string
+        version:
+          description: AWP onboarding script version
+          type: string
+    Dome9.Web.Api.Agentless.GenerateAgentlessAzureOnboardingDataRequest:
+      type: object
+      properties:
+        scanMode:
+          description: One of saas, inAccount, inAccountHub, inAccountSub
+          enum:
+          - saas
+          - inAccount
+          - inAccountHub
+          - inAccountSub
+          type: string
+        centralizedId:
+          description: In case of inAccountSub, the account id of the centralized account
+          type: string
+        skipFunctionAppsScan:
+          description: Skip function apps scan (supported for inAccount and inAccountSub scan modes)
+          type: boolean
+        sseCmkEncryptedDisksScan:
+          description: Scan disks that are encrypted with Azure CMK (supported for inAccountHub scan mode)
+          type: boolean
+        managementGroupId:
+          description: The Azure Management group id associated with the enabled Centralized Account. In case not defined, the scope will be the tenant
+          type: string
+        onboardingCustomizations:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AzureOnboardingCustomizationDataViewModel'
+          description: AWP Azure Onboarding Customizations
+    Dome9.BL.Std.Services.Agentless.AccountIssues:
+      type: object
+      properties:
+        regions:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Dome9.BL.Std.Services.Agentless.IssueItem'
+        account:
+          $ref: '#/components/schemas/Dome9.BL.Std.Services.Agentless.IssueItem'
+    Dome9.Web.Api.Agentless.CentralizedAzureAccountViewModel:
+      type: object
+      properties:
+        accountId:
+          description: The CloudGuard account ID
+          type: string
+        cloudAccountId:
+          description: The CloudGuard cloud account ID
+          type: string
+        externalAccountNumber:
+          description: The external account number
+          type: string
+    Dome9.Web.Api.Agentless.AddAgentlessAwsAccountRequestBody:
+      required:
+      - crossAccountRoleName
+      - crossAccountRoleExternalId
+      type: object
+      properties:
+        crossAccountRoleName:
+          description: The AWP cross account role name
+          type: string
+        crossAccountRoleExternalId:
+          description: The AWP cross account role external id
+          type: string
+        cloudGuardAWPStackName:
+          description: The AWP stack name
+          type: string
+        scanMode:
+          description: Scan mode
+          enum:
+          - saas
+          - inAccount
+          type: string
+        isTerraform:
+          description: Indicates whether the account is onboarded with Terraform (Setting True will make AWP assume no cloud formation stack, hence no indication on CFT version updates)
+          type: boolean
+        agentlessAccountSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+          description: AWP account settings
+    Dome9.Web.Api.Agentless.AccountStateViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          description: The D9 cloud account id
+          type: string
+        agentlessProtectionEnabled:
+          description: A flag indicating whether AWP protection is enabled
+          type: boolean
+        scanMode:
+          description: OSne of saas, inAccount, inAccountHub, inAccountSub
+          type: string
+        provider:
+          description: The cloud provider
+          enum:
+          - aws
+          - azure
+          type: string
+        shouldUpdate:
+          description: A flag indicating whether AWP resources should be updated
+          type: boolean
+        isOrgOnboarding:
+          description: A flag indicating whether AWP was enabled as part of the organization onboarding
+          type: boolean
+        isOrgOnboardingManagement:
+          description: A flag indicating whether AWP was enabled as part of the organization onboarding as management account
+          type: boolean
+        isTerraform:
+          description: A flag indicating whether AWP was enabled from terraform
+          type: boolean
+        centralizedCloudAccountId:
+          description: Centralized account id in case using centralized-sub accounts
+          type: string
+    Dome9.Web.Api.Agentless.AgentlessInstanceStateDetailsViewModel:
+      type: object
+      properties:
+        type:
+          description: The scan result type
+          type: string
+        description:
+          description: The scan result description
+          type: string
+    Dome9.Web.Api.Agentless.AzureOnboardingCustomizationViewModel:
+      type: object
+      properties:
+        virtualMachineDataShareRoleName:
+          type: string
+        virtualMachineScanOperatorRoleName:
+          type: string
+        functionAppScanOperatorRoleName:
+          type: string
+        functionAppScannerRoleName:
+          type: string
+        resourceGroupName:
+          type: string
+        scannerManagedIdentityName:
+          type: string
+    Dome9.Web.Api.Agentless.AgentlessSettingsViewModel:
+      type: object
+      properties:
+        scanMachineIntervalInHours:
+          format: int32
+          description: The interval in hours to scan the account
+          type: integer
+        maxConcurrenceScansPerRegion:
+          format: int32
+          description: The max number of scans that can run concurrently per region
+          type: integer
+        customTags:
+          description: A Dictionary of custom tags that will be added to each resource created by AWP
+          type: object
+          additionalProperties:
+            type: string
+        scanAWSLicensedImages:
+          description: Scan AWS licensed images (supported for AWS inAccount mode)
+          type: boolean
+    Dome9.Web.Api.Agentless.GenerateAgentlessAwsOnboardingDataRequest:
+      type: object
+      properties:
+        scanMode:
+          description: One of saas, inAccount, inAccountHub, inAccountSub
+          enum:
+          - saas
+          - inAccount
+          - inAccountHub
+          - inAccountSub
+          type: string
+        crossAccountRoleExternalId:
+          description: The AWP stack external id
+          type: string
+        cloudGuardAWPStackName:
+          description: The AWP stack name
+          type: string
+        centralizedCloudAccountId:
+          description: In case of inAccountSub, the account id of the centralized account
+          type: string
+    Dome9.Web.Api.Agentless.AgentlessCentralizedAccountSettingsViewModel:
+      type: object
+      properties:
+        inAccountScannerVPC:
+          description: The VPC mode
+          enum:
+          - ManagedByAWP
+          - ManagedByCustomer
+          type: string
+    Dome9.Web.Api.Agentless.CentralizedAccountOnboardingCustomizationViewModel:
+      type: object
+      properties:
+        virtualMachineScanOperatorRoleName:
+          type: string
+        functionAppScanOperatorRoleName:
+          type: string
+        virtualMachineDataShareRoleName:
+          type: string
+        functionAppScannerRoleName:
+          type: string
+        cryptoCreatorRoleName:
+          type: string
+        diskEncryptorRoleName:
+          type: string
+        resourceGroupName:
+          type: string
+        scannerManagedIdentityName:
+          type: string
+    Dome9.Web.Api.Agentless.AgentlessAzureOffboardingDataViewModel:
+      type: object
+      properties:
+        offboardingScriptCommand:
+          description: The AWP offboarding script command
+          type: string
+        offboardingScriptURL:
+          description: The AWP offboarding script url
+          type: string
+        version:
+          description: AWP offboarding script version
+          type: string
+    Dome9.Web.Api.Agentless.AddAgentlessAwsSubAccountRequestBody:
+      required:
+      - crossAccountRoleName
+      - crossAccountRoleExternalId
+      - centralizedCloudAccountId
+      type: object
+      properties:
+        crossAccountRoleName:
+          description: The AWP cross account role name
+          type: string
+        crossAccountRoleExternalId:
+          description: The AWP cross account role external id
+          type: string
+        cloudGuardAWPStackName:
+          description: The AWP stack name
+          type: string
+        centralizedCloudAccountId:
+          description: Centralized cloud account Id that AWP scanners will run in
+          type: string
+        isTerraform:
+          description: Indicates whether the account is onboarded with Terraform (Setting True will make AWP assume no cloud formation stack, hence no indication on CFT version updates)
+          type: boolean
+        agentlessAccountSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel'
+          description: AWP account settings
+    Dome9.Web.Api.Agentless.AgentlessAccountSettingsViewModel:
+      type: object
+      properties:
+        disabledRegions:
+          description: The list of regions that are disabled for the account
+          type: array
+          items:
+            type: string
+        skipFunctionAppsScan:
+          description: Skip Azure Function Apps scan (supported for inAccount and inAccountSub scan modes)
+          type: boolean
+        inAccountScannerVPC:
+          description: The VPC mode (supported for inAccount scan mode)
+          enum:
+          - ManagedByAWP
+          - ManagedByCustomer
+          type: string
+        scanMachineIntervalInHours:
+          format: int32
+          description: The interval in hours to scan the account
+          type: integer
+        maxConcurrenceScansPerRegion:
+          format: int32
+          description: The max number of scans that can run concurrently per region
+          type: integer
+        customTags:
+          description: A Dictionary of custom tags that will be added to each resource created by AWP
+          type: object
+          additionalProperties:
+            type: string
+        scanAWSLicensedImages:
+          description: Scan AWS licensed images (supported for AWS inAccount mode)
+          type: boolean
+    Dome9.Web.Api.Agentless.AddAgentlessAwsCentralizedAccountRequestBody:
+      required:
+      - crossAccountRoleName
+      - crossAccountRoleExternalId
+      type: object
+      properties:
+        crossAccountRoleName:
+          description: The AWP cross account role name
+          type: string
+        crossAccountRoleExternalId:
+          description: The AWP cross account role external id
+          type: string
+        cloudGuardAWPStackName:
+          description: The AWP stack name
+          type: string
+        isTerraform:
+          description: Indicates whether the account is onboarded with Terraform (Setting True will make AWP assume no cloud formation stack, hence no indication on CFT version updates)
+          type: boolean
+        agentlessAccountSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Agentless.AgentlessCentralizedAccountSettingsViewModel'
+          description: AWP account settings
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

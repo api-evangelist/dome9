@@ -1,0 +1,67 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Guard Duty Detector API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: CloudGuardDutyDetector
+  type: Unclassified
+paths:
+  /v2/CloudGuardDutyDetector:
+    get:
+      tags:
+      - CloudGuardDutyDetector
+      operationId: CloudGuardDutyDetector_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudGuardDutyDetector.CloudGuardDutyDetectorViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudGuardDutyDetector.CloudGuardDutyDetectorViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudGuardDutyDetector.CloudGuardDutyDetectorViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudGuardDutyDetector.CloudGuardDutyDetectorViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudGuardDutyDetector.CloudGuardDutyDetectorViewModel'
+      summary: Cloud guard duty detector get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudGuardDutyDetector.CloudGuardDutyDetectorViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        detectorId:
+          type: string
+        createdAt:
+          type: string
+        serviceRole:
+          type: string
+        status:
+          type: string
+        updatedAt:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

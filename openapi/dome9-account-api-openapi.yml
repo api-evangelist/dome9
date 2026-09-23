@@ -1,0 +1,1394 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Account API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Account
+  type: Unclassified
+paths:
+  /v2/account/managing:
+    get:
+      tags:
+      - Account
+      summary: gets the MSP account who manages this one.
+      operationId: Account_GetManagingAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ManagingAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ManagingAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ManagingAccountViewModel'
+  /v2/account/resetAll:
+    put:
+      tags:
+      - Account
+      operationId: Account_ResetAllCloudAccountsMissingPermissions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      summary: Account reset all cloud accounts missing permissions
+      x-summary-source: derived
+  /v2/account/stats:
+    get:
+      tags:
+      - Account
+      operationId: Account_GetAccountStats
+      parameters:
+      - name: dbOnly
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountStatsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountStatsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountStatsViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountStatsViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountStatsViewModel'
+      summary: Account get account stats
+      x-summary-source: derived
+  /v2/account/plan-contact-details:
+    put:
+      tags:
+      - Account
+      summary: Account plan
+      operationId: Account_Plan
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Licensing.UpdatePlanContactDetailsModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Licensing.UpdatePlanContactDetailsModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Licensing.UpdatePlanContactDetailsModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Licensing.UpdatePlanContactDetailsModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Licensing.UpdatePlanContactDetailsModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Licensing.UpdatePlanContactDetailsModel'
+        required: true
+      x-summary-source: derived
+  /v2/account/plan:
+    put:
+      tags:
+      - Account
+      summary: Account plan
+      operationId: Account_Plan
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          text/html:
+            schema:
+              type: string
+          application/xml:
+            schema:
+              type: string
+          text/xml:
+            schema:
+              type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+        required: true
+      x-summary-source: derived
+  /v2/account/azuremarketplace:
+    put:
+      tags:
+      - Account
+      operationId: Account_ActivateAzureMarketplace
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+        required: true
+      summary: Account activate azure marketplace
+      x-summary-source: derived
+  /v2/account/marketplace:
+    put:
+      tags:
+      - Account
+      operationId: Account_ActivateMarketplace
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountMarketplacePutViewModel'
+        required: true
+      summary: Account activate marketplace
+      x-summary-source: derived
+  /v2/account/name:
+    put:
+      tags:
+      - Account
+      operationId: Account_PutName
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          text/html:
+            schema:
+              type: string
+          application/xml:
+            schema:
+              type: string
+          text/xml:
+            schema:
+              type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+        required: true
+      summary: Account put name
+      x-summary-source: derived
+  /v2/account/UseDefaultExternalId:
+    put:
+      tags:
+      - Account
+      operationId: Account_UseDefaultExternalId
+      parameters:
+      - name: useDefaultKey
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: No Content
+      summary: Account use default external id
+      x-summary-source: derived
+  /v2/account/AllowEditExternalId:
+    put:
+      tags:
+      - Account
+      operationId: Account_AllowEditExternalId
+      parameters:
+      - name: allowEditKey
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: No Content
+      summary: Account allow edit external id
+      x-summary-source: derived
+  /v2/account/owner:
+    put:
+      tags:
+      - Account
+      summary: sets a user as an account owner
+      operationId: Account_PutOwnerAsync
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountOwnerViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountOwnerViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountOwnerViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountOwnerViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountOwnerViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountOwnerViewModel'
+        required: true
+  /v2/account/extendtrial:
+    put:
+      tags:
+      - Account
+      operationId: Account_ExtendTrial
+      responses:
+        '204':
+          description: No Content
+      summary: Account extend trial
+      x-summary-source: derived
+  /v2/account/sso:
+    get:
+      tags:
+      - Account
+      operationId: Account_GetSSO
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+      summary: Account get SSO
+      x-summary-source: derived
+    put:
+      tags:
+      - Account
+      operationId: Account_PutSSO
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountSSOConfigViewModel'
+        required: true
+      summary: Account put SSO
+      x-summary-source: derived
+    delete:
+      tags:
+      - Account
+      operationId: Account_DeleteSSO
+      responses:
+        '204':
+          description: No Content
+      summary: Account delete SSO
+      x-summary-source: derived
+  /v2/account/cross-account-identifier:
+    put:
+      tags:
+      - Account
+      operationId: Account_PutCrossAccountIdentifier
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CrossAccountIdentifierViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CrossAccountIdentifierViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CrossAccountIdentifierViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CrossAccountIdentifierViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CrossAccountIdentifierViewModel'
+      summary: Account put cross account identifier
+      x-summary-source: derived
+  /v2/account/daily-usage:
+    get:
+      tags:
+      - Account
+      operationId: Account_GetUsage
+      parameters:
+      - name: fromDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: toDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountUsageViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountUsageViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountUsageViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountUsageViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountUsageViewModel'
+      summary: Account get usage
+      x-summary-source: derived
+  /v2/account/exceeding-resources:
+    get:
+      tags:
+      - Account
+      operationId: Account_GetExceedingResources
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ExceedingLicenseViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ExceedingLicenseViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ExceedingLicenseViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ExceedingLicenseViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.ExceedingLicenseViewModel'
+      summary: Account get exceeding resources
+      x-summary-source: derived
+  /v2/account/license:
+    get:
+      tags:
+      - Account
+      operationId: Account_GetAccountLicense
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.LicenseViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.LicenseViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.LicenseViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.LicenseViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.LicenseViewModel'
+      summary: Account get account license
+      x-summary-source: derived
+  /v2/account/max-invalid-password-attempts:
+    put:
+      tags:
+      - Account
+      operationId: Account_PutMaxInvalidPasswordAttemptsAsync
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel'
+        required: true
+      summary: Account put max invalid password attempts async
+      x-summary-source: derived
+  /v2/account/session-idle-timeout-minutes:
+    put:
+      tags:
+      - Account
+      summary: Set the session idle timeout
+      operationId: Account_PutSessionIdleTimeoutMinutesAsync
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel'
+        required: true
+  /v2/account/email-filters:
+    get:
+      tags:
+      - Account
+      operationId: Account_GetAccountEmailFilters
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AccountEmailFiltersDescriptor'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AccountEmailFiltersDescriptor'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AccountEmailFiltersDescriptor'
+      summary: Account get account email filters
+      x-summary-source: derived
+    put:
+      tags:
+      - Account
+      operationId: Account_UpdateEmailFilters
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.AccountEmailFiltersDescriptor'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.AccountEmailFiltersDescriptor'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.AccountEmailFiltersDescriptor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.AccountEmailFiltersDescriptor'
+        required: true
+      summary: Account update email filters
+      x-summary-source: derived
+    delete:
+      tags:
+      - Account
+      operationId: Account_DeleteAccountEmailFilters
+      responses:
+        '204':
+          description: No Content
+      summary: Account delete account email filters
+      x-summary-source: derived
+  /v2/account:
+    get:
+      tags:
+      - Account
+      operationId: Account_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountViewModel'
+      summary: Account get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Models.AccountStatsViewModel.GoogleCloudStatsViewModel:
+      type: object
+      properties:
+        accounts:
+          format: int32
+          type: integer
+        firewallRules:
+          format: int32
+          type: integer
+        vmInstances:
+          format: int32
+          type: integer
+    Falconetix.Model.Licensing.UpdatePlanContactDetailsModel:
+      type: object
+      properties:
+        plan:
+          enum:
+          - Undecided
+          - Beta_Trial_Plan
+          - FREE
+          - METERED
+          - CF_BASIC
+          - CF_DEFAULT
+          - Starter
+          - Growth
+          - Large
+          - XL
+          - SecOpsR2
+          - SecOpsR5
+          - Enterprise
+          - FREE_Unlimited
+          - SecOpsX20
+          - SecOpsX50
+          - SecOpsX100
+          - Rackers
+          - Amazonian
+          - Reseller
+          - SecOpsX10
+          - MSP
+          - POC
+          - AWS_Metered
+          - Enterprise_Trial
+          - Enterprise_Friend
+          - Core_M
+          - Core_L
+          - Enterprise_New
+          - Googler
+          - CheckpointEmployee
+          - Enterprise_PAYG
+          type: string
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.Models.ManagingAccountViewModel:
+      type: object
+      properties:
+        accountName:
+          type: string
+    Dome9.Web.Api.Models.AccountStatsViewModel:
+      type: object
+      properties:
+        dome9Users:
+          format: int32
+          type: integer
+        dome9Roles:
+          format: int32
+          type: integer
+        awsRdsInstances:
+          format: int32
+          type: integer
+        awsInstances:
+          format: int32
+          type: integer
+        awsElbs:
+          format: int32
+          type: integer
+        awsAlbs:
+          format: int32
+          type: integer
+        awsNlbs:
+          format: int32
+          type: integer
+        agents:
+          format: int32
+          type: integer
+        awsLambdaFunctions:
+          format: int32
+          type: integer
+        awsAccounts:
+          format: int32
+          type: integer
+        awsSecurityGroups:
+          format: int32
+          type: integer
+        awsRedshiftClusters:
+          format: int32
+          type: integer
+        dome9SecurityGroups:
+          format: int32
+          type: integer
+        azureAccounts:
+          format: int32
+          type: integer
+        azureVms:
+          format: int32
+          type: integer
+        azureElbs:
+          format: int32
+          type: integer
+        azureNsgs:
+          format: int32
+          type: integer
+        googleCloud:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountStatsViewModel.GoogleCloudStatsViewModel'
+        awsEfs:
+          format: int32
+          type: integer
+        kubernetesNodes:
+          format: int32
+          type: integer
+        kubernetesAccounts:
+          format: int32
+          type: integer
+        alibabaAccounts:
+          format: int32
+          type: integer
+        alibabaRdsDbInstanceCount:
+          format: int32
+          type: integer
+        alibabaEcsInstanceCount:
+          format: int32
+          type: integer
+        ociAccounts:
+          format: int32
+          type: integer
+        ociOnlineBillableVirtualMachinesCount:
+          format: int32
+          type: integer
+        ociDatabasesCount:
+          format: int32
+          type: integer
+        source:
+          enum:
+          - ElasticSearch
+          - Database
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
+    Dome9.Web.Api.Models.CrossAccountIdentifierViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Models.AccountViewModel:
+      type: object
+      properties:
+        useDefaultExternalId:
+          type: boolean
+        allowEditExternalId:
+          type: boolean
+        pairedToCloudInfra:
+          type: boolean
+        crossAccountIdentifier:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        customMessage:
+          type: string
+        plan:
+          type: string
+        ssoEnabled:
+          type: boolean
+        canGenerateCrossAccountId:
+          type: boolean
+        cloudInfraTenantId:
+          type: string
+        cloudInfraTenantName:
+          type: string
+        billingProvider:
+          description: Dome9 or other billing providers. In case of Appdirect we format it as Appdirect/Partner
+          type: string
+        billingInfo:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.BillingViewModel'
+        activeFeatures:
+          type: array
+          items:
+            type: string
+        iconUrl:
+          type: string
+        isManagedAccount:
+          type: boolean
+        maxInvalidPasswordAttempts:
+          format: int32
+          type: integer
+        sessionIdleTimeoutMinutes:
+          format: int32
+          type: integer
+        isMfaEnforced:
+          type: boolean
+        usersManagedBy:
+          enum:
+          - CloudGuard
+          - CloudInfra
+          type: string
+        planExpirationDate:
+          format: date-time
+          type: string
+    Dome9.Web.Api.Models.LicenseViewModel:
+      description: A view model representation of the account's License informatino
+      type: object
+      properties:
+        planName:
+          type: string
+        agents:
+          format: int32
+          type: integer
+        instances:
+          format: int32
+          type: integer
+        users:
+          format: int32
+          type: integer
+        trialEnd:
+          format: date-time
+          type: string
+        trialExtensionCount:
+          format: int32
+          type: integer
+        maxTrialExtensionsAllowed:
+          format: int32
+          type: integer
+        featureTier:
+          enum:
+          - Trial
+          - Basic
+          - Advanced
+          - Premium
+          type: string
+        maxClarityEntriesAllowed:
+          format: int32
+          type: integer
+        clarityEntriesCount:
+          format: int32
+          type: integer
+        networkEnabled:
+          type: boolean
+        complianceEnabled:
+          type: boolean
+        complianceUpdatedBy:
+          type: string
+        complianceUpdatedDate:
+          format: date-time
+          type: string
+        canUpdateAccountFeatures:
+          type: boolean
+        iamsafeEnabled:
+          type: boolean
+        enterpriseEnabled:
+          type: boolean
+        enterpriseUpdatedBy:
+          type: string
+        enterpriseUpdatedDate:
+          format: date-time
+          type: string
+        fimEnabled:
+          type: boolean
+        allowedUsers:
+          format: int32
+          type: integer
+        poAssets:
+          format: int32
+          type: integer
+        agentsEnabled:
+          type: boolean
+    Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          format: int32
+          description: The value of the session idle timeout in minutes, value must be set to a number between 15 and 720.
+          maximum: 720
+          minimum: 15
+          type: integer
+    Dome9.Web.Api.Models.AccountMarketplacePutViewModel:
+      type: object
+      properties:
+        subscriptionType:
+          enum:
+          - Metered
+          - Contract
+          - Core
+          - Metered2
+          - D9
+          - Logic
+          - AzureD9
+          - AzureD9wh
+          type: string
+    Dome9.Web.Api.Models.AccountSSOConfigViewModel:
+      required:
+      - idpEndpointUrl
+      - accountSSOId
+      - x509Certificate
+      - assertionIssuer
+      - isJitProvisionAllow
+      type: object
+      properties:
+        idpEndpointUrl:
+          type: string
+        accountSSOId:
+          type: string
+        x509Certificate:
+          type: string
+        assertionIssuer:
+          type: string
+        logoutLandingPage:
+          type: string
+        isJitProvisionAllow:
+          type: boolean
+        samlRoleAttributeName:
+          type: string
+    Dome9.Web.Api.Models.BillingViewModel:
+      type: object
+      properties:
+        cardHolder:
+          type: string
+        last4Digits:
+          type: string
+        expMonth:
+          format: int32
+          type: integer
+        expYear:
+          format: int32
+          type: integer
+    Falconetix.Model.EmailFilterItem:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: boolean
+    Dome9.Web.Api.Models.ExceedingLicenseViewModel:
+      type: object
+      properties:
+        exceedingAgents:
+          format: int32
+          type: integer
+        exceedingInstances:
+          format: int32
+          type: integer
+        exceedingUsers:
+          format: int32
+          type: integer
+        isExceeding:
+          type: boolean
+          readOnly: true
+    Dome9.Web.Api.Account.AccountOwnerViewModel:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          format: int32
+          maximum: 100
+          minimum: 3
+          type: integer
+    Dome9.Web.Api.Account.AccountUsageViewModel:
+      type: object
+      properties:
+        timeStamp:
+          format: date-time
+          type: string
+        name:
+          type: string
+        plan:
+          enum:
+          - Undecided
+          - Beta_Trial_Plan
+          - FREE
+          - METERED
+          - CF_BASIC
+          - CF_DEFAULT
+          - Starter
+          - Growth
+          - Large
+          - XL
+          - SecOpsR2
+          - SecOpsR5
+          - Enterprise
+          - FREE_Unlimited
+          - SecOpsX20
+          - SecOpsX50
+          - SecOpsX100
+          - Rackers
+          - Amazonian
+          - Reseller
+          - SecOpsX10
+          - MSP
+          - POC
+          - AWS_Metered
+          - Enterprise_Trial
+          - Enterprise_Friend
+          - Core_M
+          - Core_L
+          - Enterprise_New
+          - Googler
+          - CheckpointEmployee
+          - Enterprise_PAYG
+          type: string
+        planName:
+          type: string
+        billingProvider:
+          enum:
+          - Dome9
+          - CloudFlare
+          - VPLS
+          - AppDirect
+          - Newvem
+          - MSP
+          - AWS
+          - AZURE
+          type: string
+        billingProviderName:
+          type: string
+        serversOnline:
+          format: int32
+          type: integer
+        serversDefined:
+          format: int32
+          type: integer
+        cloudInstancesOnline:
+          format: int32
+          type: integer
+        cloudBillableInstancesOnline:
+          format: int32
+          type: integer
+        cloudNonBillableInstancesOnline:
+          format: int32
+          type: integer
+        cloudLoadBalancers:
+          format: int32
+          type: integer
+        cloudDbInstances:
+          format: int32
+          type: integer
+        cloudBillableDbInstances:
+          format: int32
+          type: integer
+        cloudNonBillableDbInstances:
+          format: int32
+          type: integer
+        cloudLambdaFunctionProtectedFspCount:
+          format: int32
+          type: integer
+        cloudLambdaFunctionProtectEnabledCount:
+          format: int32
+          type: integer
+        cloudLambdaFunctionLatestFspInvocationsCount:
+          format: int32
+          type: integer
+        cloudLambdaFunctionProtectedCount:
+          format: int32
+          type: integer
+        cloudSubnets:
+          format: int32
+          type: integer
+        cloudNacl:
+          format: int32
+          type: integer
+        cloudVPC:
+          format: int32
+          type: integer
+        cloudSecurityGroups:
+          format: int32
+          type: integer
+        cloudLambdaFunctions:
+          format: int32
+          type: integer
+        cloudBillableLambdaFunctions:
+          format: int32
+          type: integer
+        cloudApplicationLoadBalancers:
+          format: int32
+          type: integer
+        cloudRedshifts:
+          format: int32
+          type: integer
+        cloudAccounts:
+          format: int32
+          type: integer
+        cloudAccountsInvalid:
+          format: int32
+          type: integer
+        usersCount:
+          format: int32
+          type: integer
+        iamSafeAccounts:
+          format: int32
+          type: integer
+        totalIamUsers:
+          format: int32
+          type: integer
+        totalIamRoles:
+          format: int32
+          type: integer
+        restrictedIamUsers:
+          format: int32
+          type: integer
+        restrictedIamRoles:
+          format: int32
+          type: integer
+        protectedIamUsers:
+          format: int32
+          type: integer
+        protectedIamRoles:
+          format: int32
+          type: integer
+        azureCloudAccounts:
+          format: int32
+          type: integer
+        azureVirtualMachinesOnline:
+          format: int32
+          type: integer
+        azureVirtualMachinesOnlineBillable:
+          format: int32
+          type: integer
+        azureLoadBalancers:
+          format: int32
+          type: integer
+        azureSecurityGroups:
+          format: int32
+          type: integer
+        googleCloudAccounts:
+          format: int32
+          type: integer
+        googleVms:
+          format: int32
+          type: integer
+        googleVmsBillable:
+          format: int32
+          type: integer
+        cloudEfs:
+          format: int32
+          type: integer
+        cloudS3Buckets:
+          format: int32
+          type: integer
+        cloudKms:
+          format: int32
+          type: integer
+        licenseComplianceEnabled:
+          type: boolean
+        licenseIamSafeEnabled:
+          type: boolean
+        licensefimEnabled:
+          type: boolean
+        licenseEnterpriseFeaturesEnabled:
+          type: boolean
+        licenseAllowedUsers:
+          format: int32
+          type: integer
+        billableAssets:
+          format: int32
+          type: integer
+        billableAwsAssets:
+          format: int32
+          type: integer
+        billableAzureAssets:
+          format: int32
+          type: integer
+        billableGoogleAssets:
+          format: int32
+          type: integer
+        billableKubernetesAssets:
+          format: int32
+          type: integer
+        billableAlibabaAssets:
+          format: int32
+          type: integer
+        azureSqlInstances:
+          format: int32
+          type: integer
+        azureDbInstances:
+          format: int32
+          type: integer
+        ociCloudAccounts:
+          format: int32
+          type: integer
+        ociBillableAssets:
+          format: int32
+          type: integer
+        ociVirtualMachinesAssets:
+          format: int32
+          type: integer
+        ociBillableVirtualMachinesAssets:
+          format: int32
+          type: integer
+        ociDatabasesCount:
+          format: int32
+          type: integer
+        azureVirtualMachinesNonBillable:
+          format: int32
+          type: integer
+        googleVmsNonBillable:
+          format: int32
+          type: integer
+        totalAccountBillabeAndNonBillableAssetsCount:
+          format: int32
+          type: integer
+        kubernetesNodesCount:
+          format: int32
+          type: integer
+        kubernetesInactiveNodesCount:
+          format: int32
+          type: integer
+        kubernetesBillableNodes:
+          format: int32
+          type: integer
+        kubernetesPremiumBillableNodes:
+          format: int32
+          type: integer
+        kubernetesAccounts:
+          format: int32
+          type: integer
+    Falconetix.Model.AccountEmailFiltersDescriptor:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.EmailFilterItem'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

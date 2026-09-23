@@ -1,0 +1,151 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure User API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure User
+  type: InventoryAzure
+paths:
+  /v2/AzureUser:
+    get:
+      tags:
+      - Azure User
+      operationId: AzureUser_Get
+      parameters:
+      - name: cloudAccountId
+        in: query
+        required: false
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserViewModel'
+      summary: Azure user get
+      x-summary-source: derived
+  /v2/AzureUser/{id}:
+    get:
+      tags:
+      - Azure User
+      operationId: AzureUser_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserViewModel'
+      summary: Azure user get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Azure.User.AzureUserPasswordProfileViewModel:
+      type: object
+      properties:
+        forceChangePasswordNextSignIn:
+          type: boolean
+        forceChangePasswordNextSignInWithMfa:
+          type: boolean
+    Dome9.Web.Api.Azure.User.AzureUserCredentialViewModel:
+      type: object
+      properties:
+        isEnableToRegisterForSelfServicePasswordReset:
+          type: boolean
+        isRegisterForSelfServicePasswordReset:
+          type: boolean
+        isRegisterWithMfa:
+          type: boolean
+        selfServicePasswordResetAuthMethods:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Azure.User.AzureUserViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        externalId:
+          type: string
+        userPrincipalName:
+          type: string
+        displayName:
+          type: string
+        userType:
+          type: string
+        createdDateTime:
+          format: date-time
+          type: string
+        lastPasswordChangeDateTime:
+          format: date-time
+          type: string
+        passwordPolicies:
+          type: string
+        userCredentialRegistionDetails:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserCredentialViewModel'
+        passwordProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserPasswordProfileViewModel'
+        licenseAssignmentStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserLicenseAssignmentStatesViewModel'
+    Dome9.Web.Api.Azure.User.AzureUserLicenseAssignmentStatesViewModel:
+      type: object
+      properties:
+        assignedByGroup:
+          type: string
+        error:
+          type: string
+        skuId:
+          type: string
+        state:
+          type: string
+        disabledPlans:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

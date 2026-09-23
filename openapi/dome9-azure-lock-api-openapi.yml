@@ -1,0 +1,106 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Lock API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Lock
+  type: InventoryAzure
+paths:
+  /v2/AzureLock:
+    get:
+      tags:
+      - Azure Lock
+      operationId: AzureLock_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.Locks.AzureLockViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.Locks.AzureLockViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.Locks.AzureLockViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.Locks.AzureLockViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.Locks.AzureLockViewModel'
+      summary: Azure lock get
+      x-summary-source: derived
+  /v2/AzureLock/{id}:
+    get:
+      tags:
+      - Azure Lock
+      operationId: AzureLock_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.Locks.AzureLockViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.Locks.AzureLockViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.Locks.AzureLockViewModel'
+      summary: Azure lock get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Azure.Locks.AzureLockViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        scope:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        resource:
+          type: string
+        level:
+          type: string
+        notes:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

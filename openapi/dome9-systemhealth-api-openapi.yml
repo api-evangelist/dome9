@@ -1,0 +1,79 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. System Health API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: SystemHealth
+  type: Unclassified
+paths:
+  /v2/SystemHealth/A6466E1C1418041A3809D02282C6Aa077:
+    get:
+      tags:
+      - SystemHealth
+      operationId: SystemHealth_SleepingBackendForSeconds
+      parameters:
+      - name: seconds
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/html:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+      summary: System health sleeping backend for seconds
+      x-summary-source: derived
+  /v2/SystemHealth:
+    get:
+      tags:
+      - SystemHealth
+      summary: This endpoint is used by the ALB for "is alive" check.
+      operationId: SystemHealth_Get
+      parameters:
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/html:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

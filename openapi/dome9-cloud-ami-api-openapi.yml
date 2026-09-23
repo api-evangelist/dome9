@@ -1,0 +1,199 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Ami API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Ami
+  type: InventoryAwsComputeAndContainers
+paths:
+  /v2/CloudAmi:
+    get:
+      tags:
+      - Cloud Ami
+      operationId: CloudAmi_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
+      summary: Cloud ami get
+      x-summary-source: derived
+  /v2/CloudAmi/{id}:
+    get:
+      tags:
+      - Cloud Ami
+      operationId: CloudAmi_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
+      summary: Cloud ami get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudAmi.CloudEc2BlockDeviceMappingViewModel:
+      type: object
+      properties:
+        deviceName:
+          type: string
+        ebs:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2EbsBlockDeviceViewModel'
+        noDevice:
+          type: string
+        virtualName:
+          type: string
+    Dome9.Web.Api.CloudAmi.CloudEc2StateReasonViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.CloudAmi.CloudEc2EbsBlockDeviceViewModel:
+      type: object
+      properties:
+        deleteOnTermination:
+          type: boolean
+        encrypted:
+          type: boolean
+        iops:
+          format: int32
+          type: integer
+        snapshotId:
+          type: string
+        volumeSize:
+          format: int32
+          type: integer
+        volumeType:
+          type: string
+    Dome9.Web.Api.CloudAmi.CloudEc2ProductCodeViewModel:
+      type: object
+      properties:
+        productCodeId:
+          type: string
+        productCodeType:
+          type: string
+    Dome9.Web.Api.CloudAmi.CloudEc2TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        imageId:
+          type: string
+        name:
+          type: string
+        ownerId:
+          type: string
+        imageLocation:
+          type: string
+        isPublic:
+          type: boolean
+        state:
+          type: string
+        description:
+          type: string
+        creationDate:
+          type: string
+        hypervisor:
+          type: string
+        platform:
+          type: string
+        architecture:
+          type: string
+        rootDeviceName:
+          type: string
+        rootDeviceType:
+          type: string
+        virtualizationType:
+          type: string
+        ramdiskId:
+          type: string
+        imageOwnerAlias:
+          type: string
+        imageType:
+          type: string
+        kernelId:
+          type: string
+        blockDeviceMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2BlockDeviceMappingViewModel'
+        productCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ProductCodeViewModel'
+        enaSupport:
+          type: boolean
+        sriovNetSupport:
+          type: string
+        stateReason:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2StateReasonViewModel'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2TagViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

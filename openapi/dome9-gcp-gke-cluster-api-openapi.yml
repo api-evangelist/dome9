@@ -1,0 +1,532 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Gcp Gke Cluster API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Gcp Gke Cluster
+  type: InventoryGcp
+paths:
+  /v2/GcpGkeCluster:
+    get:
+      tags:
+      - Gcp Gke Cluster
+      summary: Get a list of GKE clusters for a specific Google Cloud account
+      operationId: GcpGkeCluster_GetAll
+      parameters:
+      - name: cloudAccountId
+        in: query
+        description: The Dome9 Google Cloud Account Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeClusterViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeClusterViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeClusterViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeClusterViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeClusterViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.Google.Gke.GcpGkeStandardRolloutPolicyViewModel:
+      type: object
+      properties:
+        batchPercentage:
+          format: double
+          type: number
+        batchNodeCount:
+          format: int32
+          type: integer
+        batchSoakDuration:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeAutoprovisioningNodePoolDefaultsViewModel:
+      type: object
+      properties:
+        oauthScopes:
+          type: array
+          items:
+            type: string
+        serviceAccount:
+          type: string
+        upgradeSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeUpgradeSettingsViewModel'
+        management:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeNodeManagementViewModel'
+        diskSizeGb:
+          format: int32
+          type: integer
+        diskType:
+          type: string
+        bootDiskKmsKey:
+          type: string
+        shieldedInstanceConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeShieldedInstanceConfigViewModel'
+        imageType:
+          type: string
+        insecureKubeletReadonlyPortEnabled:
+          type: boolean
+    Dome9.Web.Api.Google.Gke.GcpGkeNodeConfigViewModel:
+      type: object
+      properties:
+        accelerators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeAcceleratorConfigViewModel'
+        diskSizeGb:
+          format: int32
+          type: integer
+        imageType:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        localSsdCount:
+          format: int32
+          type: integer
+        machineType:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        minCpuPlatform:
+          type: string
+        oauthScopes:
+          type: array
+          items:
+            type: string
+        preemptible:
+          type: boolean
+        serviceAccount:
+          type: string
+        diskType:
+          type: string
+        taints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeNodeTaintViewModel'
+        workloadMetadataConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeWorkloadMetadataConfigViewModel'
+        sandboxConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeSandboxConfigViewModel'
+        tags:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeNodePoolViewModel:
+      type: object
+      properties:
+        autoScaling:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeNodePoolAutoScalingViewModel'
+        config:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeNodeConfigViewModel'
+        initialNodeCount:
+          format: int32
+          type: integer
+        instanceGroupUrls:
+          type: array
+          items:
+            type: string
+        management:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeNodeManagementViewModel'
+        name:
+          type: string
+        selfLink:
+          type: string
+        status:
+          type: string
+        statusMessage:
+          type: string
+        version:
+          type: string
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeStatusConditionViewModel'
+    Dome9.Web.Api.Google.Gke.GcpGkeResourceLimitViewModel:
+      type: object
+      properties:
+        resourceType:
+          type: string
+        minimum:
+          format: int64
+          type: integer
+        maximum:
+          format: int64
+          type: integer
+    Dome9.Web.Api.Google.Gke.GcpGkeStatusConditionViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeAcceleratorConfigViewModel:
+      type: object
+      properties:
+        acceleratorCount:
+          format: int64
+          type: integer
+        acceleratorType:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeKubernetesDashboardViewModel:
+      type: object
+      properties:
+        disabled:
+          type: boolean
+    Dome9.Web.Api.Google.Gke.GcpGkeCidrBlockViewModel:
+      type: object
+      properties:
+        cidrBlockValue:
+          type: string
+        displayName:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeAutoUpgradeOptionsViewModel:
+      type: object
+      properties:
+        autoUpgradeStartTime:
+          type: string
+        description:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeBlueGreenSettingsViewModel:
+      type: object
+      properties:
+        nodePoolSoakDuration:
+          type: string
+        standardRolloutPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeStandardRolloutPolicyViewModel'
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeMaintenancePolicyViewModel:
+      type: object
+      properties:
+        dailyMaintenanceWindow:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeDailyMaintenanceWindowViewModel'
+    Dome9.Web.Api.Google.Gke.GcpGkeWorkloadMetadataConfigViewModel:
+      type: object
+      properties:
+        mode:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeNetworkPolicyViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        provider:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeOperationErrorViewModel:
+      type: object
+      properties:
+        keyName:
+          type: string
+        errorMessage:
+          type: string
+        timestamp:
+          format: int64
+          type: integer
+    Dome9.Web.Api.Google.Gke.GcpGkeHorizontalPodAutoscalingViewModel:
+      type: object
+      properties:
+        disabled:
+          type: boolean
+    Dome9.Web.Api.Google.Gke.GcpGkeNetworkPolicyConfigViewModel:
+      type: object
+      properties:
+        disabled:
+          type: boolean
+    Dome9.Web.Api.Google.Gke.GcpGkeDailyMaintenanceWindowViewModel:
+      type: object
+      properties:
+        duration:
+          type: string
+        startTime:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeNodeManagementViewModel:
+      type: object
+      properties:
+        autoRepair:
+          type: boolean
+        autoUpgrade:
+          type: boolean
+        upgradeOptions:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeAutoUpgradeOptionsViewModel'
+    Dome9.Web.Api.Google.Gke.GcpGkePrivateClusterConfigViewModel:
+      type: object
+      properties:
+        enablePrivateEndpoint:
+          type: boolean
+        enablePrivateNodes:
+          type: boolean
+        masterIpv4CidrBlock:
+          type: string
+        privateEndpoint:
+          type: string
+        publicEndpoint:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeShieldedInstanceConfigViewModel:
+      type: object
+      properties:
+        enableSecureBoot:
+          type: boolean
+        enableIntegrityMonitoring:
+          type: boolean
+    Dome9.Web.Api.Google.Gke.GcpGkeClusterAutoScalingViewModel:
+      type: object
+      properties:
+        enableNodeAutoprovisioning:
+          type: boolean
+        resourceLimits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeResourceLimitViewModel'
+        autoScalingProfile:
+          type: string
+        autoprovisioningNodePoolDefaults:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeAutoprovisioningNodePoolDefaultsViewModel'
+        autoprovisioningLocations:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeWorkloadIdentityConfigViewModel:
+      type: object
+      properties:
+        workloadPool:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeNodePoolAutoScalingViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        maxNodeCount:
+          format: int32
+          type: integer
+        minNodeCount:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Google.Gke.GcpGkeNodeTaintViewModel:
+      type: object
+      properties:
+        effect:
+          type: string
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeMasterAuthorizedNetworksConfigViewModel:
+      type: object
+      properties:
+        cidrBlocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeCidrBlockViewModel'
+        enabled:
+          type: boolean
+    Dome9.Web.Api.Google.Gke.GcpGkeClusterViewModel:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        nodePools:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeNodePoolViewModel'
+        network:
+          type: string
+        subnetwork:
+          type: string
+        clusterIpv4Cidr:
+          type: string
+        currentNodeCount:
+          format: int32
+          type: integer
+        currentMasterVersion:
+          type: string
+        initialClusterVersion:
+          type: string
+        description:
+          type: string
+        enableKubernetesAlpha:
+          type: boolean
+        endpoint:
+          type: string
+        ipAllocationPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeIPAllocationPolicyViewModel'
+        labelFingerprint:
+          type: string
+        legacyAbac:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeLegacyAbacViewModel'
+        loggingService:
+          type: string
+        maintenancePolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeMaintenancePolicyViewModel'
+        monitoringService:
+          type: string
+        networkPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeNetworkPolicyViewModel'
+        nodeIpv4CidrSize:
+          format: int32
+          type: integer
+        servicesIpv4Cidr:
+          type: string
+        status:
+          type: string
+        statusMessage:
+          type: string
+        addonsConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeAddonsConfigViewModel'
+        autoScaling:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeClusterAutoScalingViewModel'
+        masterAuthorizedNetworksConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeMasterAuthorizedNetworksConfigViewModel'
+        selfLink:
+          type: string
+        region:
+          type: string
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeStatusConditionViewModel'
+        expireTime:
+          type: string
+        privateClusterConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkePrivateClusterConfigViewModel'
+        databaseConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeDatabaseEncryptionViewModel'
+        shieldedNodes:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeShieldedNodesViewModel'
+        releaseChannel:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeReleaseChannelViewModel'
+        workloadIdentityConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeWorkloadIdentityConfigViewModel'
+        binaryAuthorization:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeBinaryAuthorizationViewModel'
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeAddonsConfigViewModel:
+      type: object
+      properties:
+        horizontalPodAutoscaling:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeHorizontalPodAutoscalingViewModel'
+        httpLoadBalancing:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeHttpLoadBalancingViewModel'
+        kubernetesDashboard:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeKubernetesDashboardViewModel'
+        networkPolicyConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeNetworkPolicyConfigViewModel'
+    Dome9.Web.Api.Google.Gke.GcpGkeHttpLoadBalancingViewModel:
+      type: object
+      properties:
+        disabled:
+          type: boolean
+    Dome9.Web.Api.Google.Gke.GcpGkeSandboxConfigViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeDatabaseEncryptionViewModel:
+      type: object
+      properties:
+        keyName:
+          type: string
+        state:
+          type: string
+        decryptionKeys:
+          type: array
+          items:
+            type: string
+        lastOperationErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeOperationErrorViewModel'
+        currentState:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeIPAllocationPolicyViewModel:
+      type: object
+      properties:
+        clusterIpv4CidrBlock:
+          type: string
+        clusterSecondaryRangeName:
+          type: string
+        nodeIpv4CidrBlock:
+          type: string
+        servicesIpv4CidrBlock:
+          type: string
+        servicesSecondaryRangeName:
+          type: string
+        useIpAliases:
+          type: boolean
+    Dome9.Web.Api.Google.Gke.GcpGkeShieldedNodesViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+    Dome9.Web.Api.Google.Gke.GcpGkeBinaryAuthorizationViewModel:
+      type: object
+      properties:
+        evaluationMode:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeReleaseChannelViewModel:
+      type: object
+      properties:
+        channel:
+          type: string
+    Dome9.Web.Api.Google.Gke.GcpGkeUpgradeSettingsViewModel:
+      type: object
+      properties:
+        maxSurge:
+          format: int32
+          type: integer
+        maxUnavailable:
+          format: int32
+          type: integer
+        strategy:
+          type: string
+        blueGreenSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Gke.GcpGkeBlueGreenSettingsViewModel'
+    Dome9.Web.Api.Google.Gke.GcpGkeLegacyAbacViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

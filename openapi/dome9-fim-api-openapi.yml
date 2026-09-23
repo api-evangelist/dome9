@@ -1,0 +1,219 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Fim API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: FIM
+  type: Unclassified
+paths:
+  /v2/fim/ack:
+    post:
+      tags:
+      - FIM
+      operationId: Fim_Acknowledge
+      responses:
+        '204':
+          description: No Content
+      summary: Fim acknowledge
+      x-summary-source: derived
+  /v2/Fim:
+    get:
+      tags:
+      - FIM
+      operationId: Fim_Get
+      parameters:
+      - name: filter.page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: filter.count
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: filter.key
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter.dir
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter.search
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter.created
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: filter.changed
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: filter.deleted
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: filter.serverIdList
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      - name: filter.date
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.FimGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.FimGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.FimGetViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.FimGetViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.FimGetViewModel'
+      summary: Fim get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Models.FimAlertViewModel:
+      description: "An single FIM event representation. \nCurrently based on the AlertViewModel"
+      required:
+      - path
+      type: object
+      properties:
+        serverId:
+          format: int32
+          type: integer
+        timestamp:
+          format: date-time
+          type: string
+        change:
+          enum:
+          - FIMScanStarted
+          - FIMScanEnded
+          - FileCreated
+          - FileDeleted
+          - FileChanged
+          - RegistryCreated
+          - RegistryDeleted
+          - RegistryChanged
+          type: string
+        path:
+          type: string
+        id:
+          format: int64
+          type: integer
+        type:
+          description: Dome9 object type
+          type: string
+        name:
+          description: Human friendly Alert type
+          type: string
+        description:
+          description: Actual content of the alert info
+          type: string
+        comment:
+          description: Free field for user comments
+          type: string
+        canBeAcknowledged:
+          description: Signals whether this Alert can be manually acknowledged
+          type: boolean
+        acknowledged:
+          description: Was this Alert manually acknowledged (muted) by the user
+          type: boolean
+        severity:
+          enum:
+          - None
+          - Low
+          - Med
+          - High
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        locationMetadata:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Falconetix.Model.AlertLocationEntityMetadata'
+        resource:
+          $ref: '#/components/schemas/Falconetix.Model.AlertPivotEntity'
+        srl:
+          type: string
+        created:
+          format: date-time
+          type: string
+        modified:
+          format: date-time
+          type: string
+    Falconetix.Model.AlertPivotEntity:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          enum:
+          - SecurityGroup
+          - Agent
+          - CloudAccount
+          - AzureSecurityGroup
+          - AzureCloudAccount
+          - KubernetesCloudAccount
+          type: string
+    Falconetix.Model.AlertLocationEntityMetadata:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+    Dome9.Web.Api.Models.FimGetViewModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.FimAlertViewModel'
+        total:
+          format: int64
+          type: integer
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

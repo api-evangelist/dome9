@@ -1,0 +1,80 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Quick Sight Group API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Quick Sight Group
+  type: InventoryAwsAnalytics
+paths:
+  /v2/AwsQuickSightGroup:
+    get:
+      tags:
+      - Aws Quick Sight Group
+      operationId: AwsQuickSightGroup_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightGroupViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightGroupViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightGroupViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightGroupViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightGroupViewModel'
+      summary: Aws quick sight group get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.AwsQuickSight.QuickSightGroupMemberViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        memberName:
+          type: string
+    Dome9.Web.Api.AwsQuickSight.AwsQuickSightGroupViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        description:
+          type: string
+        groupName:
+          type: string
+        principalId:
+          type: string
+        groupMemberList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.QuickSightGroupMemberViewModel'
+        dome9Id:
+          type: string
+        accountNumber:
+          type: string
+        region:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

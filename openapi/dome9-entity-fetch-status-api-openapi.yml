@@ -1,0 +1,151 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Entity Fetch Status API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Entity Fetch Status
+  type: Inventory
+paths:
+  /v2/EntityFetchStatus:
+    get:
+      tags:
+      - Entity Fetch Status
+      summary: Entity fetch status get
+      operationId: EntityFetchStatus_Get
+      parameters:
+      - name: externalAccountNumber
+        in: query
+        description: '[Required for an AWS account] AWS/Alibaba/OCI account number'
+        required: false
+        schema:
+          type: string
+      - name: subscriptionId
+        in: query
+        description: '[Required for an Azure subscription]'
+        required: false
+        schema:
+          type: string
+      - name: projectId
+        in: query
+        description: '[Required for a GCP project]'
+        required: false
+        schema:
+          type: string
+      - name: cloudAccountId
+        in: query
+        description: '[Optional] This is the Dome9 CloudAccountId which can replace the AWS externalAccountNumber'
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - name: region
+        in: query
+        description: 'The cloud account region. Note: the API expects ''_'' instead of ''-'' (Example: us_east_1)'
+        required: false
+        schema:
+          type: string
+      - name: resourceGroupName
+        in: query
+        description: Azure resource group name
+        required: false
+        schema:
+          type: string
+      - name: entityType
+        in: query
+        description: The desired cloud entity (type)
+        required: false
+        schema:
+          type: string
+      - name: workFlowId
+        in: query
+        description: (for internal use)
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - name: location
+        in: query
+        description: GCP Location
+        required: false
+        schema:
+          type: string
+      - name: vendor
+        in: query
+        description: the cloud account vendor
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.EntityFetchStatus.FetcherRunStatusViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.EntityFetchStatus.FetcherRunStatusViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.EntityFetchStatus.FetcherRunStatusViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.EntityFetchStatus.FetcherRunStatusViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.EntityFetchStatus.FetcherRunStatusViewModel'
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.EntityFetchStatus.FetcherRunStatusViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccountNumber:
+          type: string
+        subscriptionId:
+          type: string
+        projectId:
+          type: string
+        region:
+          type: string
+        resourceGroupName:
+          type: string
+        workFlowId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        entityType:
+          type: string
+        fetchedEntities:
+          format: int32
+          type: integer
+        lastSuccessfulRun:
+          format: date-time
+          type: string
+        lastFailureRun:
+          format: date-time
+          type: string
+        location:
+          type: string
+        vendor:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

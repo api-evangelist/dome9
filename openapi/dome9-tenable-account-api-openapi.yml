@@ -1,0 +1,229 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Tenable Account API
+  description: Onboard Tenable accounts
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Tenable Account
+  description: Onboard Tenable accounts
+  type: Administration
+paths:
+  /v2/TenableAccount/{id}/Validate:
+    post:
+      tags:
+      - Tenable Account
+      operationId: TenableAccount_ValidatePermissions
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+      summary: Tenable account validate permissions
+      x-summary-source: derived
+  /v2/TenableAccount/Sync:
+    post:
+      tags:
+      - Tenable Account
+      operationId: TenableAccount_SyncVulnerabilities
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncResultViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncResultViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncResultViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncResultViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncResultViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncViewModel'
+        required: true
+      summary: Tenable account sync vulnerabilities
+      x-summary-source: derived
+  /v2/TenableAccount:
+    get:
+      tags:
+      - Tenable Account
+      operationId: TenableAccount_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountStatusViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountStatusViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountStatusViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountStatusViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountStatusViewModel'
+      summary: Tenable account get
+      x-summary-source: derived
+    post:
+      tags:
+      - Tenable Account
+      operationId: TenableAccount_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Tenable.Account.TenableAccountViewModel'
+        required: true
+      summary: Tenable account post
+      x-summary-source: derived
+    delete:
+      tags:
+      - Tenable Account
+      operationId: TenableAccount_Delete
+      responses:
+        '204':
+          description: No Content
+      summary: Tenable account delete
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncResultViewModel:
+      type: object
+      properties:
+        workFlow:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Tenable.Account.TenableAccountStatusViewModel:
+      type: object
+      properties:
+        tenableDome9Id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        tenableExternalAccountNumber:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        lastAssetSync:
+          format: date-time
+          type: string
+        lastMatchedAssetsCount:
+          format: int32
+          type: integer
+        status:
+          type: string
+        lastVulnerabilitySync:
+          format: date-time
+          type: string
+        lastMatchedVulnerabilitiesCount:
+          format: int32
+          type: integer
+        accessKey:
+          type: string
+        secretKey:
+          type: string
+    Dome9.Web.Api.Tenable.Account.TenableAccountViewModel:
+      required:
+      - name
+      - accessKey
+      - secretKey
+      type: object
+      properties:
+        name:
+          description: Tenable account name in Dome9
+          type: string
+        accessKey:
+          description: Tenable API Access Key
+          type: string
+        secretKey:
+          description: Tenable  API Secret Key
+          type: string
+    Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncViewModel:
+      required:
+      - tenableDome9Id
+      type: object
+      properties:
+        since:
+          format: date-time
+          type: string
+        tenableDome9Id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

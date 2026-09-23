@@ -1,0 +1,98 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Resource Group API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Resource Group
+  type: InventoryAzure
+paths:
+  /v2/AzureResourceGroup:
+    get:
+      tags:
+      - Azure Resource Group
+      operationId: AzureResourceGroup_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureResourceGroupViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureResourceGroupViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureResourceGroupViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureResourceGroupViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureResourceGroupViewModel'
+      summary: Azure resource group get
+      x-summary-source: derived
+  /v2/AzureResourceGroup/{id}:
+    get:
+      tags:
+      - Azure Resource Group
+      operationId: AzureResourceGroup_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureResourceGroupViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureResourceGroupViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureResourceGroupViewModel'
+      summary: Azure resource group get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Models.AzureResourceGroupViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

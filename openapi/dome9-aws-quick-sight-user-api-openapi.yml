@@ -1,0 +1,86 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Aws Quick Sight User API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Aws Quick Sight User
+  type: InventoryAwsAnalytics
+paths:
+  /v2/AwsQuickSightUser:
+    get:
+      tags:
+      - Aws Quick Sight User
+      operationId: AwsQuickSightUser_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightUserViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightUserViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightUserViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightUserViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.AwsQuickSightUserViewModel'
+      summary: Aws quick sight user get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.AwsQuickSight.AwsQuickSightUserViewModel:
+      type: object
+      properties:
+        active:
+          type: boolean
+        arn:
+          type: string
+        customPermissionsName:
+          type: string
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        externalLoginFederationProviderType:
+          type: string
+        externalLoginFederationProviderUrl:
+          type: string
+        externalLoginId:
+          type: string
+        identityType:
+          type: string
+        principalId:
+          type: string
+        role:
+          type: string
+        userName:
+          type: string
+        dome9Id:
+          type: string
+        accountNumber:
+          type: string
+        region:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

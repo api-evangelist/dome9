@@ -1,0 +1,157 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Infra User API
+  description: CloudInfra Users
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Infra User
+  description: CloudInfra Users
+  type: Administration
+paths:
+  /v2/CloudInfraUser:
+    get:
+      tags:
+      - Cloud Infra User
+      operationId: CloudInfraUser_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.CloudInfra.CloudInfraUserViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.CloudInfra.CloudInfraUserViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.CloudInfra.CloudInfraUserViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.CloudInfra.CloudInfraUserViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.CloudInfra.CloudInfraUserViewModel'
+      summary: Cloud infra user get
+      x-summary-source: derived
+    post:
+      tags:
+      - Cloud Infra User
+      operationId: CloudInfraUser_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserResponseViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserResponseViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserResponseViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserResponseViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserResponseViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserRequestViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserRequestViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserRequestViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserRequestViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserRequestViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserRequestViewModel'
+        required: true
+      summary: Cloud infra user post
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.UserAndRole.CloudInfraUserCreationFailureResult:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/Falconetix.Model.CloudInfra.CloudInfraUserViewModel'
+        errorMessage:
+          type: string
+    Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserRequestViewModel:
+      type: object
+      properties:
+        usersToCreate:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.CloudInfra.CloudInfraUserViewModel'
+        roleIds:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserResponseViewModel:
+      type: object
+      properties:
+        failedRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CloudInfraUserCreationFailureResult'
+        totalFailedRecords:
+          format: int32
+          type: integer
+          readOnly: true
+        totalSuccessfulRecords:
+          format: int32
+          type: integer
+    Falconetix.Model.CloudInfra.CloudInfraUserViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        name:
+          type: string
+        role:
+          type: string
+        phone:
+          type: string
+        lastLogin:
+          format: date-time
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        existInDome9:
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

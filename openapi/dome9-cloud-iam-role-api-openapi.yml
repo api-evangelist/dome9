@@ -1,0 +1,130 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Iam Role API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Iam Role
+  type: InventoryAwsIam
+paths:
+  /v2/CloudIamRole:
+    get:
+      tags:
+      - Cloud Iam Role
+      summary: Fetch all IAM roles for the user from all cloud accounts
+      operationId: CloudIamRole_Get
+      parameters:
+      - name: roleArns
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.Models.CloudIamRoleViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        srl:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        arn:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        path:
+          type: string
+        maxSessionDuration:
+          format: int32
+          type: integer
+        roleLastUsed:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudIamRoles.AwsIamRoleLastUsedViewModel'
+        attachedManagedPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudIamRoles.AwsIamRolePolicyViewModel'
+        inlinePolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudIamRoles.CloudIamRoleInlinePolicyViewModel'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        rolePermissionsBoundary:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel.PermissionsBoundary'
+        assumeRolePolicy:
+          type: object
+    Dome9.Web.Api.CloudIamRoles.AwsIamRoleLastUsedViewModel:
+      type: object
+      properties:
+        roleLastUsed:
+          format: date-time
+          type: string
+        region:
+          type: string
+    Dome9.Web.Api.Models.CloudIamRoleViewModel.PermissionsBoundary:
+      type: object
+      properties:
+        permissionsBoundaryArn:
+          type: string
+        permissionsBoundaryType:
+          type: string
+    Dome9.Web.Api.CloudIamRoles.AwsIamRolePolicyViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        name:
+          type: string
+    Dome9.Web.Api.CloudIamRoles.CloudIamRoleInlinePolicyViewModel:
+      type: object
+      properties:
+        policyName:
+          type: string
+        policyDocument:
+          type: object
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,483 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Msp API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: MSP
+  type: Unclassified
+paths:
+  /msp/v1/account:
+    get:
+      tags:
+      - MSP
+      summary: Get all managed accounts created by this API
+      operationId: Msp_GetManagedAccounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetViewModel'
+    post:
+      tags:
+      - MSP
+      summary: Create a new managed account
+      operationId: Msp_PostAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostViewModel'
+        required: true
+  /msp/v1/account/{accountId}:
+    delete:
+      tags:
+      - MSP
+      summary: Delete An account that was previously created by this
+      operationId: Msp_DeleteAccount
+      parameters:
+      - name: accountId
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+  /msp/v1/account/user:
+    post:
+      tags:
+      - MSP
+      summary: Create a new user in a managed account
+      operationId: Msp_PostUser
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetUserViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetUserViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetUserViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetUserViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetUserViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostUserViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostUserViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostUserViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostUserViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostUserViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPostUserViewModel'
+        required: true
+  /msp/v1/account/{accountId}/user/{userId}:
+    delete:
+      tags:
+      - MSP
+      summary: Delete a user in a managed account
+      operationId: Msp_DeleteUser
+      parameters:
+      - name: accountId
+        in: path
+        description: Dome9 account unique identifier
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        description: Dome9 user unique identifier
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: email.email
+        in: query
+        description: Email Address
+        required: false
+        schema:
+          type: string
+          format: email
+      responses:
+        '204':
+          description: No Content
+  /msp/v1/account/{accountId}/icon:
+    put:
+      tags:
+      - MSP
+      operationId: Msp_PutIcon
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+        required: true
+      summary: Msp put icon
+      x-summary-source: derived
+    delete:
+      tags:
+      - MSP
+      operationId: Msp_DeleteIcon
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+      summary: Msp delete icon
+      x-summary-source: derived
+  /msp/v1/account/icon:
+    put:
+      tags:
+      - MSP
+      operationId: Msp_PutIcon
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel'
+        required: true
+      summary: Msp put icon
+      x-summary-source: derived
+    delete:
+      tags:
+      - MSP
+      operationId: Msp_DeleteIcon
+      responses:
+        '204':
+          description: No Content
+      summary: Msp delete icon
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.MSP.Api.V1.ManagedAccountPostViewModel:
+      required:
+      - companyName
+      - pointOfContact
+      - adminEmail
+      - adminFirstName
+      - adminLastName
+      type: object
+      properties:
+        trustMspAccount:
+          description: Whether to allow cross-account-access from your MSP account to the newly created managed account
+          type: boolean
+        trustRestrictions:
+          $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel'
+          description: Role restrictions for the cross-account-access permission. relevant only if {Dome9.MSP.Api.V1.ManagedAccountPostViewModel.TrustMspAccount} is true.
+        companyName:
+          type: string
+        pointOfContact:
+          type: string
+        adminEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        adminFirstName:
+          type: string
+        adminLastName:
+          type: string
+    Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel:
+      type: object
+      properties:
+        url:
+          type: string
+        blob:
+          type: string
+    Dome9.Web.Api.Account.AccountTrustViewModel:
+      required:
+      - sourceAccountId
+      - description
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: Account trust id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        targetAccountName:
+          description: The trusting account name
+          type: string
+        sourceAccountName:
+          description: The trsuted account name
+          type: string
+        sourceAccountId:
+          format: uuid
+          description: The Dome9 account id to trust
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        description:
+          description: Description for the trust (a way to document the justification of the trust)
+          type: string
+        restrictions:
+          $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel'
+    Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel:
+      type: object
+      properties:
+        roles:
+          description: A list of role names that can be assumed by a user in the trusted account, leave empty to allow all roles to be assumed
+          type: array
+          items:
+            type: string
+    Dome9.MSP.Api.V1.ManagedAccountGetViewModel:
+      required:
+      - companyName
+      - pointOfContact
+      - adminEmail
+      - adminFirstName
+      - adminLastName
+      type: object
+      properties:
+        accountId:
+          format: int64
+          description: Dome9 account unique identifier
+          type: integer
+        adminUserId:
+          format: int32
+          description: Dome9 user unique identifier. This admin user can't be deleted.
+          type: integer
+        trust:
+          $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountTrustViewModel'
+        companyName:
+          type: string
+        pointOfContact:
+          type: string
+        adminEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        adminFirstName:
+          type: string
+        adminLastName:
+          type: string
+    Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel:
+      type: object
+      properties:
+        url:
+          type: string
+    Dome9.MSP.Api.V1.ManagedAccountPostUserViewModel:
+      required:
+      - managedAccountId
+      - email
+      - firstName
+      - lastName
+      type: object
+      properties:
+        managedAccountId:
+          format: int64
+          description: Dome9 account unique identifier
+          type: integer
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        firstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        ssoEnabled:
+          description: Enabling SAML 2.0 SSO
+          type: boolean
+    Dome9.MSP.Api.V1.ManagedAccountGetUserViewModel:
+      required:
+      - managedAccountId
+      - email
+      - firstName
+      - lastName
+      type: object
+      properties:
+        userId:
+          format: int64
+          description: Dome9 user unique identifier
+          type: integer
+        managedAccountId:
+          format: int64
+          description: Dome9 account unique identifier
+          type: integer
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        firstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        ssoEnabled:
+          description: Enabling SAML 2.0 SSO
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,107 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Storage Blob Container API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Storage Blob Container
+  type: InventoryAzure
+paths:
+  /v2/AzureStorageBlobContainer:
+    get:
+      tags:
+      - Azure Storage Blob Container
+      operationId: AzureStorageBlobContainer_GetAll
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.StorageBlobContainer.AzureStorageBlobContainerViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.StorageBlobContainer.AzureStorageBlobContainerViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.StorageBlobContainer.AzureStorageBlobContainerViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.StorageBlobContainer.AzureStorageBlobContainerViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.StorageBlobContainer.AzureStorageBlobContainerViewModel'
+      summary: Azure storage blob container get all
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Azure.StorageBlobContainer.AzureStorageBlobContainerViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        externalId:
+          type: string
+        srl:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        region:
+          type: string
+        resourceUri:
+          type: string
+        hasImmutabilityPolicy:
+          type: boolean
+        hasLegalHold:
+          type: boolean
+        publicAccess:
+          type: string
+        version:
+          type: string
+        deleted:
+          type: boolean
+        deletedTime:
+          format: date-time
+          type: string
+        remainingRetentionDays:
+          format: int32
+          type: integer
+        defaultEncryptionScope:
+          type: string
+        denyEncryptionScopeOverride:
+          type: boolean
+        lastModifiedTime:
+          format: date-time
+          type: string
+        leaseStatus:
+          type: string
+        leaseState:
+          type: string
+        leaseDuration:
+          type: string
+        etag:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

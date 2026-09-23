@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Gcp Big Query API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: GcpBigQuery
+  type: Unclassified
+paths:
+  /v2/GcpBigQuery:
+    get:
+      tags:
+      - GcpBigQuery
+      operationId: GcpBigQuery_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryViewModel'
+      summary: Gcp big query get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryDatasetAccessViewModel:
+      type: object
+      properties:
+        domain:
+          type: string
+        role:
+          type: string
+        groupByEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        userByEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        specialGroup:
+          type: string
+        iamMember:
+          type: string
+    Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryReferenceViewModel:
+      type: object
+      properties:
+        datasetId:
+          type: string
+        eTag:
+          type: string
+        projectId:
+          type: string
+    Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryViewModel:
+      type: object
+      properties:
+        location:
+          type: string
+        lastModifiedTime:
+          type: string
+        creationTime:
+          type: string
+        description:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        reference:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryReferenceViewModel'
+        datasetAccess:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryDatasetAccessViewModel'
+        defaultEncryptionConfiguration:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryEncryptionConfigurationViewModel'
+        defaultPartitionExpirationMs:
+          format: int64
+          type: integer
+        defaultTableExpirationMs:
+          format: int64
+          type: integer
+        region:
+          type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryEncryptionConfigurationViewModel:
+      type: object
+      properties:
+        kmsKeyName:
+          type: string
+        eTag:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

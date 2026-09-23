@@ -1,0 +1,101 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Log Profile API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Log Profile
+  type: InventoryAzure
+paths:
+  /v2/AzureLogProfile:
+    get:
+      tags:
+      - Azure Log Profile
+      operationId: AzureLogProfile_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfileViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfileViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfileViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfileViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfileViewModel'
+      summary: Azure log profile get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Azure.LogProfile.AzureLogProfileRetentionPolicyViewModel:
+      type: object
+      properties:
+        enabled:
+          type: string
+        days:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Azure.LogProfile.AzureLogProfileViewModel:
+      type: object
+      properties:
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        properties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfilePropertiesViewModel'
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        resourceGroup:
+          type: string
+    Dome9.Web.Api.Azure.LogProfile.AzureLogProfilePropertiesViewModel:
+      type: object
+      properties:
+        storageAccountId:
+          type: string
+        serviceBusRuleId:
+          type: string
+        locations:
+          type: array
+          items:
+            type: string
+        categories:
+          type: array
+          items:
+            type: string
+        retentionPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfileRetentionPolicyViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

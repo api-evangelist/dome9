@@ -1,0 +1,443 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Kubernetes API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Kubernetes
+  type: InventoryAzure
+paths:
+  /v2/AzureKubernetes:
+    get:
+      tags:
+      - Azure Kubernetes
+      operationId: AzureKubernetes_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel'
+      summary: Azure kubernetes get
+      x-summary-source: derived
+  /v2/AzureKubernetes/{id}:
+    get:
+      tags:
+      - Azure Kubernetes
+      operationId: AzureKubernetes_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel'
+      summary: Azure kubernetes get
+      x-summary-source: derived
+components:
+  schemas:
+    ? Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel.ResourceReferenceViewModel
+    : type: object
+      properties:
+        id:
+          type: string
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterKubeletIdentityViewModel:
+      type: object
+      properties:
+        clientId:
+          type: string
+        objectId:
+          type: string
+    Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        eventHubAuthorizationRuleId:
+          type: string
+        eventHubName:
+          type: string
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel'
+        storageAccount:
+          type: string
+        workspaceId:
+          type: string
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAgentPoolProfileViewModel:
+      type: object
+      properties:
+        availabilityZones:
+          type: array
+          items:
+            type: string
+        count:
+          format: int32
+          type: integer
+        enableAutoScaling:
+          type: boolean
+        enableNodePublicIP:
+          type: boolean
+        maxCount:
+          format: int32
+          type: integer
+        maxPods:
+          format: int32
+          type: integer
+        minCount:
+          format: int32
+          type: integer
+        name:
+          type: string
+        nodeTaints:
+          type: array
+          items:
+            type: string
+        orchestratorVersion:
+          type: string
+        osDiskSizeGB:
+          format: int32
+          type: integer
+        osType:
+          type: string
+        provisioningState:
+          type: string
+        scaleSetEvictionPolicy:
+          type: string
+        scaleSetPriority:
+          type: string
+        type:
+          type: string
+        vmSize:
+          type: string
+        vnetSubnetID:
+          type: string
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesContainerServiceSshConfigurationViewModel:
+      type: object
+      properties:
+        publicKeys:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesContainerServiceSshConfigurationViewModel.ContainerServiceSshPublicKeyViewModel'
+    Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel:
+      type: object
+      properties:
+        category:
+          type: string
+        categoryGroup:
+          type: string
+        enabled:
+          type: boolean
+        retentionDays:
+          format: int32
+          type: integer
+        retentionStatus:
+          type: boolean
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterIdentityProfileViewModel:
+      type: object
+      properties:
+        kubeletidentity:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterKubeletIdentityViewModel'
+    System.Collections.Generic.KeyValuePair_System.String_System.String:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesContainerServiceLinuxProfileViewModel:
+      type: object
+      properties:
+        adminUsername:
+          type: string
+        ssh:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesContainerServiceSshConfigurationViewModel'
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterIdentityViewModel:
+      type: object
+      properties:
+        principalId:
+          type: string
+        tenantId:
+          type: string
+        type:
+          type: string
+    ? Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel.AzureKubernetesOutboundIPsViewModel
+    : type: object
+      properties:
+        publicIPs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel.ResourceReferenceViewModel'
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        location:
+          type: string
+        identity:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterIdentityViewModel'
+        properties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesPropertiesViewModel'
+        diagnosticSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel'
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesPropertiesViewModel:
+      type: object
+      properties:
+        aadProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAADProfileViewModel'
+        addonProfiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAddonProfileViewModel'
+        agentPoolProfiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAgentPoolProfileViewModel'
+        apiServerAccessProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAPIServerAccessProfileViewModel'
+        dnsPrefix:
+          type: string
+        enablePodSecurityPolicy:
+          type: boolean
+        enableRBAC:
+          type: boolean
+        fqdn:
+          type: string
+        kubernetesVersion:
+          type: string
+        linuxProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesContainerServiceLinuxProfileViewModel'
+        maxAgentPools:
+          format: int32
+          type: integer
+        networkProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesContainerServiceNetworkProfileViewModel'
+        nodeResourceGroup:
+          type: string
+        provisioningState:
+          type: string
+        servicePrincipalProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterServicePrincipalProfileViewModel'
+        windowsProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterWindowsProfileViewModel'
+        identityProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterIdentityProfileViewModel'
+        powerState:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterPowerStateViewModel'
+        autoUpgradeProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAutoUpgradeProfileViewModel'
+        storageProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterStorageProfileViewModel'
+        httpProxyConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterHTTPProxyConfigViewModel'
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesContainerServiceNetworkProfileViewModel:
+      type: object
+      properties:
+        dnsServiceIP:
+          type: string
+        dockerBridgeCidr:
+          type: string
+        loadBalancerProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel'
+        loadBalancerSku:
+          type: string
+        networkPlugin:
+          type: string
+        networkPolicy:
+          type: string
+        podCidr:
+          type: string
+        serviceCidr:
+          type: string
+    Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel:
+      type: object
+      properties:
+        category:
+          type: string
+        enabled:
+          type: boolean
+        retentionDays:
+          format: int32
+          type: integer
+        retentionStatus:
+          type: boolean
+        timeGrain:
+          type: string
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterServicePrincipalProfileViewModel:
+      type: object
+      properties:
+        clientId:
+          type: string
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAutoUpgradeProfileViewModel:
+      type: object
+      properties:
+        upgradeChannel:
+          type: string
+        nodeOSUpgradeChannel:
+          type: string
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAADProfileViewModel:
+      type: object
+      properties:
+        clientAppID:
+          type: string
+        serverAppID:
+          type: string
+        tenantID:
+          type: string
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAPIServerAccessProfileViewModel:
+      type: object
+      properties:
+        authorizedIPRanges:
+          type: array
+          items:
+            type: string
+        enablePrivateCluster:
+          type: boolean
+    ? System.Collections.Generic.KeyValuePair_System.String_Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAddonProfileViewModel
+    : type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAddonProfileViewModel'
+          readOnly: true
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel:
+      type: object
+      properties:
+        effectiveOutboundIPs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel.ResourceReferenceViewModel'
+        managedOutboundIPs:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel.AzureKubernetesManagedOutboundIPsViewModel'
+        outboundIpPrefixes:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel.OutboundIPPrefixesViewModel'
+        outboundIPs:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel.AzureKubernetesOutboundIPsViewModel'
+    ? Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel.AzureKubernetesManagedOutboundIPsViewModel
+    : type: object
+      properties:
+        count:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterStorageProfileSettingsViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterStorageProfileViewModel:
+      type: object
+      properties:
+        blobCSIDriver:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterStorageProfileSettingsViewModel'
+        diskCSIDriver:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterStorageProfileSettingsViewModel'
+        fileCSIDriver:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterStorageProfileSettingsViewModel'
+        snapshotController:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterStorageProfileSettingsViewModel'
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterWindowsProfileViewModel:
+      type: object
+      properties:
+        adminUsername:
+          type: string
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterHTTPProxyConfigViewModel:
+      type: object
+      properties:
+        httpProxy:
+          type: string
+        httpsProxy:
+          type: string
+        noProxy:
+          type: array
+          items:
+            type: string
+        trustedCa:
+          type: string
+    ? Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesContainerServiceSshConfigurationViewModel.ContainerServiceSshPublicKeyViewModel
+    : type: object
+      properties:
+        keyData:
+          type: string
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterPowerStateViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+    ? Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel.OutboundIPPrefixesViewModel
+    : type: object
+      properties:
+        publicIPPrefixes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterLoadBalancerProfileViewModel.ResourceReferenceViewModel'
+    Dome9.Web.Api.Azure.AzureKubernetesCluster.AzureKubernetesManagedClusterAddonProfileViewModel:
+      type: object
+      properties:
+        config:
+          type: array
+          items:
+            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
+        enabled:
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

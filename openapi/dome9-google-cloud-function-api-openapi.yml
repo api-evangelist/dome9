@@ -1,0 +1,179 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Google Cloud Function API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Google Cloud Function
+  type: InventoryGcp
+paths:
+  /v2/GoogleCloudFunction:
+    get:
+      tags:
+      - Google Cloud Function
+      summary: Get all Gcp Cloud Functions for account
+      operationId: GoogleCloudFunction_Get
+      parameters:
+      - name: cloudAccountId
+        in: query
+        description: Cloud Account Id, to get Cloud Functions for a specific cloud account
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionSourceRepositoryViewModel:
+      type: object
+      properties:
+        deployedUrl:
+          type: string
+        url:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionEventTriggerViewModel:
+      type: object
+      properties:
+        eventType:
+          type: string
+        failurePolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionFailurePolicyViewModel'
+        resource:
+          type: string
+        service:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionEnvironmentVariableViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionTriggerViewModel:
+      type: object
+      properties:
+        eventTrigger:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionEventTriggerViewModel'
+        httpsTrigger:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionHttpsTriggerViewModel'
+    Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionLabelViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionFailurePolicyViewModel:
+      type: object
+      properties:
+        retry:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionRetryViewModel'
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionRetryViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionViewModel:
+      type: object
+      properties:
+        availableMemoryMb:
+          format: int32
+          type: integer
+        description:
+          type: string
+        entryPoint:
+          type: string
+        environmentVariables:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionEnvironmentVariableViewModel'
+        trigger:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionTriggerViewModel'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionLabelViewModel'
+        maxInstances:
+          format: int32
+          type: integer
+        runtime:
+          type: string
+        serviceAccountEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        sourceArchiveUrl:
+          type: string
+        sourceRepository:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionSourceRepositoryViewModel'
+        sourceUploadUrl:
+          type: string
+        status:
+          type: string
+        timeout:
+          type: object
+        updateTime:
+          type: object
+        versionId:
+          format: int64
+          type: integer
+        vpcConnector:
+          type: string
+        eTag:
+          type: string
+        region:
+          type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Google.CloudFunction.GoogleCloudFunctionHttpsTriggerViewModel:
+      type: object
+      properties:
+        url:
+          type: string
+        eTag:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

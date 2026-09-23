@@ -1,0 +1,269 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Findings Report API
+  description: Compliance Findings csv reports
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Findings Report
+  description: Compliance Findings csv reports
+  type: Events
+paths:
+  /v2/findingsReport/exportToCsv:
+    post:
+      tags:
+      - Findings Report
+      operationId: FindingsReport_ExportToCsv
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            text/json:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            text/html:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            application/xml:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+            text/xml:
+              schema:
+                format: uuid
+                type: string
+                example: 00000000-0000-0000-0000-000000000000
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+        required: true
+      summary: Findings report export to csv
+      x-summary-source: derived
+  /v2/findingsReport/exportToCsv/downloadLink:
+    post:
+      tags:
+      - Findings Report
+      operationId: FindingsReport_ExportToCsvDownloadLink
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/html:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+        required: true
+      summary: Findings report export to csv download link
+      x-summary-source: derived
+  /v2/findingsReport/exportToCsv/downloadCSV:
+    post:
+      tags:
+      - Findings Report
+      operationId: FindingsReport_ExportToCsvDownloadCSV
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Report.FindingsReportViewModel'
+        required: true
+      summary: Findings report export to csv download CSV
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel:
+      type: object
+      properties:
+        from:
+          format: date-time
+          type: string
+        to:
+          format: date-time
+          type: string
+    Dome9.Web.Api.Compliance.Finding.SortingViewModel:
+      type: object
+      properties:
+        fieldName:
+          description: Field name
+          type: string
+        direction:
+          format: int32
+          description: direction. 1 is asc, -1 desc
+          type: integer
+    Dome9.Web.Api.Compliance.Finding.SearchFilterViewModel:
+      type: object
+      properties:
+        freeTextPhrase:
+          description: free text
+          type: string
+        fields:
+          description: fields
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
+        onlyCIEM:
+          type: boolean
+        onlyCustomPolicy:
+          description: Filtering all findings created by custom policy
+          type: boolean
+        creationTime:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel'
+        updatedTime:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel'
+        hasRemediation:
+          type: boolean
+    Dome9.Web.Api.Compliance.Finding.SearchRequestViewModel:
+      type: object
+      properties:
+        searchAfter:
+          description: token for the page of findings (first page if not specified)
+          type: array
+          items:
+            type: string
+        pageSize:
+          format: int32
+          description: 'page size (number of findings returned per page). default: 10.'
+          maximum: 10000
+          minimum: 0
+          type: integer
+        skipAggregations:
+          type: boolean
+        lowAggregationsSize:
+          type: boolean
+        sorting:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SortingViewModel'
+          description: sort data
+        multiSorting:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SortingViewModel'
+        filter:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SearchFilterViewModel'
+          description: filter
+        dataSource:
+          enum:
+          - Finding
+          - Archive
+          type: string
+    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Compliance.Report.FindingsReportViewModel:
+      type: object
+      properties:
+        searchRequest:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SearchRequestViewModel'
+          description: search request for findings
+        recipents:
+          description: recipents for mail
+          type: array
+          items:
+            type: string
+        selectedColumns:
+          description: Selected Columns
+          type: array
+          items:
+            type: string
+        showExcluded:
+          description: Show Excluded Column
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

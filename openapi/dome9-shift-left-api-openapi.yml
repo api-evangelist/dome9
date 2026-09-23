@@ -1,0 +1,112 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Shift Left API
+  description: ShiftLeft
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Shift Left
+  description: ShiftLeft
+  type: WorkloadProtection
+paths:
+  /v2/ShiftLeft/{url}:
+    get:
+      tags:
+      - Shift Left
+      summary: proxy to ShiftLeft backend
+      operationId: ShiftLeft_Get
+      parameters:
+      - name: url
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+  /v2/ShiftLeft/blades:
+    get:
+      tags:
+      - Shift Left
+      summary: proxy to ShiftLeft Cli page
+      operationId: ShiftLeft_GetBlades
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+  /v2/ShiftLeft/blades/{os}/{arch}:
+    get:
+      tags:
+      - Shift Left
+      summary: proxy to ShiftLeft Cli page
+      operationId: ShiftLeft_GetBladesOs
+      parameters:
+      - name: os
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      - name: arch
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

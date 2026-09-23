@@ -1,0 +1,655 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. User API
+  description: CloudGuard account users
+servers:
+- url: https://api.dome9.com
+tags:
+- name: User
+  description: CloudGuard account users
+  type: Administration
+paths:
+  /v2/user/{id}:
+    get:
+      tags:
+      - User
+      summary: Get the user with the specified id
+      operationId: User_Get
+      parameters:
+      - name: id
+        in: path
+        description: Can be 'me' or a numeric value
+        required: true
+        schema:
+          type: string
+          default: me
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+    put:
+      tags:
+      - User
+      summary: Update the user with the specified id
+      operationId: User_Put
+      parameters:
+      - name: id
+        in: path
+        description: Can be 'me' or a numeric value
+        required: true
+        schema:
+          type: string
+          default: me
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+        description: Can update permissions with "Permissions", roles with "RoleIds" and SSO Enabled with "SsoEnabled"
+        required: true
+    delete:
+      tags:
+      - User
+      summary: Delete a user
+      operationId: User_Delete
+      parameters:
+      - name: id
+        in: path
+        description: Can be 'me' or a numeric value
+        required: true
+        schema:
+          type: string
+          default: me
+      responses:
+        '204':
+          description: No Content
+  /v2/user/{id}/unlock:
+    put:
+      tags:
+      - User
+      summary: Unlock a user that was locked out after a certain number of failed…
+      operationId: User_UnlockUser
+      parameters:
+      - name: id
+        in: path
+        description: Can be 'me' or a numeric value
+        required: true
+        schema:
+          type: string
+          default: me
+      responses:
+        '204':
+          description: No Content
+  /v2/user/{id}/iam-safe/accounts/{accountId}/iamEntities:
+    put:
+      tags:
+      - User
+      summary: Update IAM Safe entities for a user
+      operationId: User_PutIamSafeAccountIamEntities
+      parameters:
+      - name: id
+        in: path
+        description: Can be 'me' or a numeric value
+        required: true
+        schema:
+          type: string
+          default: me
+      - name: accountId
+        in: path
+        description: The cloud account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+        description: The IAM entities to link
+        required: true
+  /v2/user/{id}/iam-safe/accounts/{cloudAccountId}/iamEntities:
+    post:
+      tags:
+      - User
+      summary: Add IAM Safe entities for a user
+      operationId: User_PostIamSafeAccountIamEntitiesAsync
+      parameters:
+      - name: id
+        in: path
+        description: Can be 'me' or a numeric value
+        required: true
+        schema:
+          type: string
+          default: me
+      - name: cloudAccountId
+        in: path
+        description: Dome9 internal ID or AWS ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+        description: The IAM entities to link
+        required: true
+  /v2/user/{id}/iam-safe/accounts/{accountId}/deleteIamEntities:
+    post:
+      tags:
+      - User
+      summary: Delete iam entities for user
+      operationId: User_DeleteIamSafeEntitiesForUser
+      parameters:
+      - name: id
+        in: path
+        description: Can be 'me' or a numeric value
+        required: true
+        schema:
+          type: string
+          default: me
+      - name: accountId
+        in: path
+        description: The cloud account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel'
+        description: The IAM entities to remove
+        required: true
+  /v2/user:
+    get:
+      tags:
+      - User
+      summary: Get all Dome9 users for the Dome9 account
+      operationId: User_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+    post:
+      tags:
+      - User
+      summary: Create a new Dome9 user
+      operationId: User_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserPostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserPostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserPostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserPostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserPostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.User.UserPostViewModel'
+        description: The new user
+        required: true
+components:
+  schemas:
+    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel:
+      required:
+      - iamEntities
+      type: object
+      properties:
+        iamEntities:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeConfigViewModel:
+      type: object
+      properties:
+        cloudAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountViewModel'
+    Dome9.Web.Api.User.PermissionsViewModel:
+      type: object
+      properties:
+        access:
+          description: Access permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        manage:
+          description: Manage permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        rulesets:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        notifications:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        policies:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        alertActions:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        create:
+          description: Create permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        view:
+          description: View permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        onBoarding:
+          description: View permission SRL
+          type: array
+          items:
+            type: string
+        crossAccountAccess:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.User.UserPostViewModel:
+      required:
+      - email
+      - firstName
+      - lastName
+      type: object
+      properties:
+        email:
+          format: email
+          description: Email Address
+          pattern: ^([0-9a-zA-Z]([-.'\w\+]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*\.)+[a-zA-Z]{2,})$
+          type: string
+          example: MyName@gmail.com
+        firstName:
+          description: '[Required]'
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          description: '[Required]'
+          maxLength: 50
+          minLength: 0
+          type: string
+        ssoEnabled:
+          description: Determines whether this user is an SSO user (as opposed to Dome9 native authentication)
+          type: boolean
+    Dome9.Web.Api.UserAndRole.IamSafe.UserApiKeyViewModel:
+      required:
+      - id
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 0
+          pattern: '[^/]+$'
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        dateCreated:
+          format: date-time
+          type: string
+        lastUsed:
+          format: date-time
+          type: string
+    Dome9.Web.Api.UserAndRole.MfaUserEnforcementViewModel:
+      type: object
+      properties:
+        mfaCoercingDate:
+          type: string
+        isEnforced:
+          type: boolean
+        enforcerFullName:
+          type: string
+    Dome9.Web.Api.UserAndRole.IamSafe.IamEntityLastLeaseTimeViewModel:
+      type: object
+      properties:
+        iamEntity:
+          type: string
+        lastLeaseTime:
+          format: date-time
+          type: string
+    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        externalAccountNumber:
+          type: string
+        lastLeaseTime:
+          format: date-time
+          type: string
+        state:
+          type: string
+        iamEntities:
+          type: array
+          items:
+            type: string
+        iamEntitiesLastLeaseTime:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.IamEntityLastLeaseTimeViewModel'
+        cloudAccountState:
+          type: string
+        iamEntity:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.User.UserViewModel:
+      required:
+      - permissions
+      type: object
+      properties:
+        id:
+          format: int32
+          description: user id
+          type: integer
+          readOnly: true
+        name:
+          description: user name
+          type: string
+          readOnly: true
+        email:
+          format: email
+          description: Email Address
+          type: string
+          readOnly: true
+          example: MyName@gmail.com
+        accountId:
+          format: int64
+          description: The account id of the user
+          type: integer
+          readOnly: true
+        isSuspended:
+          description: user is suspended
+          type: boolean
+          readOnly: true
+        isOwner:
+          description: user is account owner
+          type: boolean
+          readOnly: true
+        isSuperUser:
+          description: user is Super User
+          type: boolean
+          readOnly: true
+        isAuditor:
+          description: user is auditor user
+          type: boolean
+          readOnly: true
+        hasApiKey:
+          description: user has generated an API Key - V1 or V2
+          type: boolean
+          readOnly: true
+        hasApiKeyV1:
+          description: user has generated an API Key - V1
+          type: boolean
+          readOnly: true
+        hasApiKeyV2:
+          description: user has generated an API Key - V2
+          type: boolean
+          readOnly: true
+        isMfaEnabled:
+          description: user has enabled MFA authentication
+          type: boolean
+          readOnly: true
+        ssoEnabled:
+          description: user has enabled SSO sign-on
+          type: boolean
+        roleIds:
+          description: list of roles for the user
+          type: array
+          items:
+            format: int64
+            type: integer
+        iamSafe:
+          $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeConfigViewModel'
+          description: IAM safety details for the user
+        canSwitchRole:
+          description: user can switch roles
+          type: boolean
+        isLocked:
+          type: boolean
+        lastLogin:
+          format: date-time
+          type: string
+        permissions:
+          $ref: '#/components/schemas/Dome9.Web.Api.User.PermissionsViewModel'
+          description: User direct permissions
+        calculatedPermissions:
+          $ref: '#/components/schemas/Dome9.Web.Api.User.PermissionsViewModel'
+        isMobileDevicePaired:
+          description: user has paired mobile device
+          type: boolean
+        mfaEnforcement:
+          $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.MfaUserEnforcementViewModel'
+        apiKeys:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserApiKeyViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

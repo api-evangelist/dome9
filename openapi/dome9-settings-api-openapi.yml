@@ -1,0 +1,425 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Settings API
+  description: Account Settings
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Settings
+  description: Account Settings
+  type: Administration
+paths:
+  /v2/settings/lease-time:
+    put:
+      tags:
+      - Settings
+      summary: Update default lease time duration
+      operationId: Settings_UpdateLeaseTime
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              format: double
+              type: number
+          text/json:
+            schema:
+              format: double
+              type: number
+          text/html:
+            schema:
+              format: double
+              type: number
+          application/xml:
+            schema:
+              format: double
+              type: number
+          text/xml:
+            schema:
+              format: double
+              type: number
+          application/x-www-form-urlencoded:
+            schema:
+              format: double
+              type: number
+        description: default lease time duraion
+        required: true
+  /v2/settings/email-notifications:
+    put:
+      tags:
+      - Settings
+      summary: Update email notifications Set what entities related notifications will be sent…
+      operationId: Settings_UpdateEmailNotifications
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.EmailNotificationsDescriptor'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.EmailNotificationsDescriptor'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.EmailNotificationsDescriptor'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.EmailNotificationsDescriptor'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.EmailNotificationsDescriptor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.EmailNotificationsDescriptor'
+        required: true
+  /v2/settings/Sns:
+    put:
+      tags:
+      - Settings
+      summary: Update AWS SNS settings for account
+      operationId: Settings_UpdateSnsIntegration
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+        description: ARN for AWS SNS Topic
+        required: true
+    post:
+      tags:
+      - Settings
+      summary: Create new AWS SNS settings for account
+      operationId: Settings_AddSnsIntegration
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SnsSettingsViewModel'
+        description: ARN for AWS SNS topic
+        required: true
+    delete:
+      tags:
+      - Settings
+      summary: Delete SNS notifications for account
+      operationId: Settings_DeleteSnsIntegration
+      responses:
+        '204':
+          description: No Content
+  /v2/settings/email-notification-filters/cloudAccounts:
+    get:
+      tags:
+      - Settings
+      summary: Get the cloud acounts set to receive email notifications
+      operationId: Settings_GetEmailNotificationFilters
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+    put:
+      tags:
+      - Settings
+      operationId: Settings_UpdateEmailNotificationFilters
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.EmailNotificationFiltersViewModel'
+        required: true
+      summary: Settings update email notification filters
+      x-summary-source: derived
+    delete:
+      tags:
+      - Settings
+      summary: Set the cloud accounts to null so all events emails will be sent for all cloud…
+      operationId: Settings_DeleteEmailNotificationFilters
+      responses:
+        '204':
+          description: No Content
+  /v2/Settings:
+    get:
+      tags:
+      - Settings
+      summary: Get account settings
+      operationId: Settings_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+    patch:
+      tags:
+      - Settings
+      summary: Update account settings (partial)
+      operationId: Settings_UpdateSettings
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.SettingsViewModel'
+        required: true
+components:
+  schemas:
+    Falconetix.Model.EmailNotificationsDescriptor:
+      type: object
+      properties:
+        state:
+          enum:
+          - Active
+          - Suspended
+          - Deferred
+          type: string
+        serverCreatedOrDeleted:
+          type: boolean
+        serverStatusChange:
+          type: boolean
+        serverUpdated:
+          type: boolean
+        awsProfileCreatedOrDeleted:
+          type: boolean
+        cloudTamperDetected:
+          type: boolean
+        awsInvalidCredentials:
+          type: boolean
+        policyChanges:
+          type: boolean
+        cloudExternalChanges:
+          type: boolean
+        fimChanges:
+          type: boolean
+        invitationEvent:
+          type: boolean
+        leaseEvent:
+          type: boolean
+        userCreatedOrDeleted:
+          type: boolean
+        userPermissionsChange:
+          type: boolean
+        userLogonSuccessfully:
+          type: boolean
+        userLogonFailure:
+          type: boolean
+        userLockOut:
+          type: boolean
+        userForgotPassword:
+          type: boolean
+        userPasswordChange:
+          type: boolean
+        alertEventsNotifyLevel:
+          enum:
+          - None
+          - Low
+          - Med
+          - High
+          type: string
+        usersNotificationsOthers:
+          type: boolean
+        accessNotificationsOthers:
+          type: boolean
+        azureCloudAccountDeleted:
+          type: boolean
+        azureInvalidCredentials:
+          type: boolean
+        alibabaProfileCreatedOrDeleted:
+          type: boolean
+        ociProfileCreatedOrDeleted:
+          type: boolean
+        iamSafe:
+          $ref: '#/components/schemas/Falconetix.Model.IamSafeEmailNotificationsDescriptor'
+        compliance:
+          $ref: '#/components/schemas/Falconetix.Model.ComplianceEmailNotificationsDescriptor'
+        kubernetes:
+          $ref: '#/components/schemas/Falconetix.Model.KubernetesEmailNotificationsDescriptor'
+    Falconetix.Model.IamSafeEmailNotificationsDescriptor:
+      type: object
+      properties:
+        leaseEvent:
+          type: boolean
+        leaseNotificationsOthers:
+          type: boolean
+        tamperDetected:
+          type: boolean
+        enrollmentEvent:
+          type: boolean
+        iamSafetyAccount:
+          type: boolean
+        iamSafetyInvalidCredentials:
+          type: boolean
+    Dome9.Web.Api.Models.EmailNotificationFiltersViewModel:
+      type: object
+      properties:
+        cloudAccounts:
+          type: array
+          items:
+            type: string
+    Falconetix.Model.ComplianceEmailNotificationsDescriptor:
+      type: object
+      properties:
+        bundleAdded:
+          type: boolean
+        bundleDeleted:
+          type: boolean
+        ruleAdded:
+          type: boolean
+        ruleChanged:
+          type: boolean
+        ruleDeleted:
+          type: boolean
+    Falconetix.Model.KubernetesEmailNotificationsDescriptor:
+      type: object
+      properties:
+        agentStatusDegradation:
+          type: boolean
+    Dome9.Web.Api.Models.SettingsViewModel:
+      type: object
+      properties:
+        pairingKey:
+          description: pairing key
+          type: string
+        emailNotifications:
+          $ref: '#/components/schemas/Falconetix.Model.EmailNotificationsDescriptor'
+          description: email notification details
+        defaultLeaseTime:
+          format: double
+          description: default lease time
+          type: number
+        snsTopicArn:
+          description: ARN for SNS Topic
+          type: string
+        mfaEnabled:
+          description: MFA is enabled
+          type: boolean
+        apiKey:
+          description: API Key
+          type: string
+    Dome9.Web.Api.Models.SnsSettingsViewModel:
+      type: object
+      properties:
+        topicArn:
+          description: AWS SNS Topic ARN value
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,191 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Access Lease Invitation API
+  description: Access Lease Invitations
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Access Lease Invitation
+  description: Access Lease Invitations
+  type: NetworkSecurity
+paths:
+  /v2/access-lease-invitation/access/{invitationId}:
+    get:
+      tags:
+      - Access Lease Invitation
+      summary: Get a specific invitation
+      operationId: AccessLeaseInvitation_AccessInvitation
+      parameters:
+      - name: invitationId
+        in: path
+        description: the id of the invitation
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+  /v2/AccessLeaseInvitation:
+    get:
+      tags:
+      - Access Lease Invitation
+      summary: Get a list of pending invitations (invitations not yet activated)
+      description: These are invitations that have not yet been activated
+      operationId: AccessLeaseInvitation_GetPendingInvitations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+    post:
+      tags:
+      - Access Lease Invitation
+      summary: Create a new Lease Invitation
+      operationId: AccessLeaseInvitation_CreateInvitationAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AccessLeaseInvitationViewModel'
+        description: lease invitation details
+        required: true
+  /v2/AccessLeaseInvitation/{id}:
+    delete:
+      tags:
+      - Access Lease Invitation
+      summary: Delete a lease invitation
+      operationId: AccessLeaseInvitation_Delete
+      parameters:
+      - name: id
+        in: path
+        description: the id of the lease to delete
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Dome9.Web.Api.Models.AccessLeaseInvitationViewModel:
+      type: object
+      properties:
+        notifyEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        length:
+          description: the duration of the lease ([D].H:M:S)
+          type: string
+        recipientName:
+          description: email of invitation recipient
+          type: string
+        targetSrl:
+          description: internal use
+          type: string
+        body:
+          type: string
+        id:
+          format: uuid
+          description: lease id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        expirationTime:
+          format: date-time
+          description: invitation expiration time (YYYY-MM-DD HH:MM:SS.MS TZ)
+          type: string
+        pivotEntity:
+          description: Security Group name
+          type: string
+        serviceName:
+          description: Security Group service for which the lease will be opened
+          type: string
+        issuerName:
+          description: email of Dome9 user issuing the lease
+          type: string
+        created:
+          format: date-time
+          description: time lease was created
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

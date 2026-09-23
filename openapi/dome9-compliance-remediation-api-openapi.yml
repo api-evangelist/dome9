@@ -1,0 +1,522 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Compliance Remediation API
+  description: Compliance Remediation
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Compliance Remediation
+  description: Compliance Remediation
+  type: PostureManagement
+paths:
+  /v2/Compliance/Remediation:
+    get:
+      tags:
+      - Compliance Remediation
+      summary: Get a list of remediations for the account
+      operationId: ComplianceRemediation_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+    put:
+      tags:
+      - Compliance Remediation
+      summary: Update a remediation
+      operationId: ComplianceRemediation_Put
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPutRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPutRequestModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPutRequestModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPutRequestModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPutRequestModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPutRequestModel'
+        description: details for the remediation
+        required: true
+    post:
+      tags:
+      - Compliance Remediation
+      summary: Add a new remediation
+      operationId: ComplianceRemediation_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPostRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPostRequestModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPostRequestModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPostRequestModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPostRequestModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Remediation.RemediationPostRequestModel'
+        description: details for the remediation
+        required: true
+    delete:
+      tags:
+      - Compliance Remediation
+      summary: Delete a remediation
+      operationId: ComplianceRemediation_Delete
+      parameters:
+      - name: id
+        in: query
+        description: the id of the remediation to delete
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Falconetix.Model.DateTimeRange:
+      type: object
+      properties:
+        from:
+          format: date-time
+          description: From date time
+          type: string
+        to:
+          format: date-time
+          description: To date time
+          type: string
+    Dome9.Web.Api.Compliance.Remediation.RemediationPostRequestModel:
+      required:
+      - comment
+      type: object
+      properties:
+        rules:
+          description: '[Optional] List of rules to apply the remediation on.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RuleViewModel'
+        logicExpressions:
+          description: '[Optional] The GSL logic expressions of the remediation.'
+          pattern: ((name|id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])
+          type: array
+          items:
+            type: string
+        severities:
+          description: '[Optional] List of severities to remediate. Valid values: [''Informational'', ''Low'', ''Medium'', ''High'', ''Critical'']'
+          type: array
+          items:
+            enum:
+            - Informational
+            - Low
+            - Medium
+            - High
+            - Critical
+            type: string
+        rulesetId:
+          format: int64
+          description: '[Required] Ruleset ID to apply remediation on.'
+          type: integer
+        cloudAccountIds:
+          description: '[Optional] List of cloud account IDs to apply remediation on.
+
+            If neither cloud account IDs nor organizational unit IDs are supplied, remediation will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        comment:
+          description: '[Required] Comment text (free text)'
+          type: string
+        cloudBots:
+          description: Cloud bots execution expressions
+          type: array
+          items:
+            type: string
+        organizationalUnitIds:
+          description: '[Optional] List of organizational unit IDs to apply remediation on.
+
+            If neither organizational unit IDs nor cloud account IDs are supplied, remediation will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        dateRange:
+          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
+          description: '[Optional] Date range for the remediation to take effect.
+
+            The exclusion will take effect permanently unless a specific date range is specified.
+
+            Leaving ''From'' null will take only ''To'' into account.
+
+            Leaving ''To'' null will take only ''From'' into account.
+
+            DateRange with both ''From'' and ''To'' null will be disregarded.'
+        platform:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        cloudAccountType:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+    Dome9.Web.Api.Compliance.Remediation.RemediationViewModel:
+      required:
+      - comment
+      type: object
+      properties:
+        platform:
+          description: Remediation platform
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        id:
+          format: uuid
+          description: '[Required] Remediation ID'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        rules:
+          description: '[Optional] List of rules to apply the remediation on.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RuleViewModel'
+        logicExpressions:
+          description: '[Optional] The GSL logic expressions of the remediation.'
+          pattern: ((name|id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])
+          type: array
+          items:
+            type: string
+        severities:
+          description: '[Optional] List of severities to remediate. Valid values: [''Informational'', ''Low'', ''Medium'', ''High'', ''Critical'']'
+          type: array
+          items:
+            enum:
+            - Informational
+            - Low
+            - Medium
+            - High
+            - Critical
+            type: string
+        rulesetId:
+          format: int64
+          description: '[Required] Ruleset ID to apply remediation on.'
+          type: integer
+        cloudAccountIds:
+          description: '[Optional] List of cloud account IDs to apply remediation on.
+
+            If neither cloud account IDs nor organizational unit IDs are supplied, remediation will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        comment:
+          description: '[Required] Comment text (free text)'
+          type: string
+        cloudBots:
+          description: Cloud bots execution expressions
+          type: array
+          items:
+            type: string
+        organizationalUnitIds:
+          description: '[Optional] List of organizational unit IDs to apply remediation on.
+
+            If neither organizational unit IDs nor cloud account IDs are supplied, remediation will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        dateRange:
+          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
+          description: '[Optional] Date range for the remediation to take effect.
+
+            The exclusion will take effect permanently unless a specific date range is specified.
+
+            Leaving ''From'' null will take only ''To'' into account.
+
+            Leaving ''To'' null will take only ''From'' into account.
+
+            DateRange with both ''From'' and ''To'' null will be disregarded.'
+        cloudAccountType:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+    Dome9.Web.Api.Compliance.RuleViewModel:
+      type: object
+      properties:
+        logicHash:
+          description: Rule logic hash
+          pattern: ^[A-Za-z0-9+/]{22}?$
+          type: string
+        rlmId:
+          type: string
+        id:
+          description: Rule ID
+          type: string
+        name:
+          description: Rule name
+          type: string
+    Dome9.Web.Api.Compliance.Remediation.RemediationPutRequestModel:
+      required:
+      - comment
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: '[Required] Remediation ID'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        rules:
+          description: '[Optional] List of rules to apply the remediation on.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RuleViewModel'
+        logicExpressions:
+          description: '[Optional] The GSL logic expressions of the remediation.'
+          pattern: ((name|id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])
+          type: array
+          items:
+            type: string
+        severities:
+          description: '[Optional] List of severities to remediate. Valid values: [''Informational'', ''Low'', ''Medium'', ''High'', ''Critical'']'
+          type: array
+          items:
+            enum:
+            - Informational
+            - Low
+            - Medium
+            - High
+            - Critical
+            type: string
+        rulesetId:
+          format: int64
+          description: '[Required] Ruleset ID to apply remediation on.'
+          type: integer
+        cloudAccountIds:
+          description: '[Optional] List of cloud account IDs to apply remediation on.
+
+            If neither cloud account IDs nor organizational unit IDs are supplied, remediation will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        comment:
+          description: '[Required] Comment text (free text)'
+          type: string
+        cloudBots:
+          description: Cloud bots execution expressions
+          type: array
+          items:
+            type: string
+        organizationalUnitIds:
+          description: '[Optional] List of organizational unit IDs to apply remediation on.
+
+            If neither organizational unit IDs nor cloud account IDs are supplied, remediation will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        dateRange:
+          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
+          description: '[Optional] Date range for the remediation to take effect.
+
+            The exclusion will take effect permanently unless a specific date range is specified.
+
+            Leaving ''From'' null will take only ''To'' into account.
+
+            Leaving ''To'' null will take only ''From'' into account.
+
+            DateRange with both ''From'' and ''To'' null will be disregarded.'
+        platform:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        cloudAccountType:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

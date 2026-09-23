@@ -1,0 +1,77 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Google Cloud Subnet API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Google Cloud Subnet
+  type: InventoryGcp
+paths:
+  /v2/GoogleCloudSubnet:
+    get:
+      tags:
+      - Google Cloud Subnet
+      operationId: GoogleCloudSubnet_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Subnet.GoogleCloudSubnetViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Subnet.GoogleCloudSubnetViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Subnet.GoogleCloudSubnetViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Subnet.GoogleCloudSubnetViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Subnet.GoogleCloudSubnetViewModel'
+      summary: Google cloud subnet get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.Google.Subnet.GoogleCloudSubnetViewModel:
+      type: object
+      properties:
+        creationTimestamp:
+          type: string
+        description:
+          type: string
+        gatewayAddress:
+          type: string
+        ipCidrRange:
+          type: string
+        network:
+          type: string
+        region:
+          type: string
+        purpose:
+          type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

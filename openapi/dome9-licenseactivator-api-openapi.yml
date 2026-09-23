@@ -1,0 +1,352 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. License Activator API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: LicenseActivator
+  type: Unclassified
+paths:
+  /v2/LicenseActivator/GetAllProductKeys:
+    get:
+      tags:
+      - LicenseActivator
+      summary: Returns all user activate license
+      operationId: LicenseActivator_GetAllProductKeys
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel'
+  /v2/LicenseActivator/GetLicense/{productKey}:
+    get:
+      tags:
+      - LicenseActivator
+      summary: Returns license by given product id
+      operationId: LicenseActivator_GetLicenseByProductKey
+      parameters:
+      - name: productKey
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel'
+  /v2/LicenseActivator/ListAllDome9LicensesFromUserCenter:
+    post:
+      tags:
+      - LicenseActivator
+      summary: Returns user licenses
+      operationId: LicenseActivator_GetAllDome9LicensesFromUserCenter
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseGetRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseGetRequestModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseGetRequestModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseGetRequestModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseGetRequestModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseGetRequestModel'
+        description: Model with UserCenter credentials.
+        required: true
+  /v2/LicenseActivator/ActivateUserLicense:
+    post:
+      tags:
+      - LicenseActivator
+      summary: Activate given license to the account
+      operationId: LicenseActivator_ActivateUserLicense
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel'
+        description: Model with licenses to activate.
+        required: true
+components:
+  schemas:
+    Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel:
+      required:
+      - services
+      type: object
+      properties:
+        userCenterAccountId:
+          format: int64
+          type: integer
+        accountName:
+          type: string
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModelService'
+    Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModelService:
+      type: object
+      properties:
+        id:
+          type: string
+        productType:
+          enum:
+          - Unknown
+          - Dome9
+          - Logic
+          type: string
+        sku:
+          enum:
+          - Undefined
+          - CPCGD9CNX100CONTRACTEVAL
+          - CPCGD9CNP100CONTRACTEVAL
+          - CPCGD9CNP25CONTRACT1Y
+          - CPCGD9CNP25CONTRACTREN1Y
+          - CPCGD9CNP25CONTRACTREN2Y
+          - CPCGD9CNP25CONTRACTREN3Y
+          - CPCGD9CNP25CONTRACT2Y
+          - CPCGD9CNP25CONTRACT3Y
+          - CPCGD9CNP25RENCONTRACT1Y
+          - CPCGD9CNP100CONTRACT1Y
+          - CPCGD9CNP100CONTRACT1YINF
+          - CPCGD9CNP100BUNCONTRACT1Y
+          - CPCGD9CNP100CONTRACT2Y
+          - CPCGD9CNP100CONTRACT2YINF
+          - CPCGD9CNP100CONTRACT3Y
+          - CPCGD9CNP100CONTRACT3YINF
+          - CPCGD9CNP100RENCONTRACT1Y
+          - CPCGD9CNP100RENCONTRACT2Y
+          - CPCGD9CNP100RENCONTRACT3Y
+          - CPMSPCGD9CNPPAYG1M
+          - CPMSPCGD9CNXPAYG1M
+          - CPCGD9CNX252YCONTRACT
+          - CPCGD9CNX25CONTRACT1Y
+          - CPCGD9CNX251YCONTRACT
+          - CPCGD9CNX253YCONTRACT
+          - CPCGD9CNX1001Y
+          - CPCGD9CNX1001YINF
+          - CPCGD9CNX100CONTRACT1Y
+          - CPCGD9CNX100CONTRACT2Y
+          - CPCGD9CNX100CONTRACT3Y
+          - CPCGD9CNX100RENCONTRACT1Y
+          - CPCGD9CNX100RENCONTRACT2Y
+          - CPCGD9CNX100RENCONTRACT3Y
+          - CPCGD9CNX25REN1YCONTRACT
+          - CPCGD9CNX25REN2YCONTRACT
+          - CPCGD9CNX25REN3YCONTRACT
+          - CPCGSPCNT100EVALCONTRACT
+          - CPCGSPCNT25EVALCONTRACT
+          - CPCGSPPCC25EVALCONTRACT
+          - CPCGSPCNT1001YCONTRACT
+          - CPCGSPCNT1002YCONTRACT
+          - CPCGSPCNT1003YCONTRACT
+          - CPCGSPCNT100REN1YCONTRACT
+          - CPCGSPCNT100REN2YCONTRACT
+          - CPCGSPCNT100REN3YCONTRACT
+          - CPCGSPCNT251YCONTRACT
+          - CPCGSPCNT252YCONTRACT
+          - CPCGSPCNT253YCONTRACT
+          - CPCGSPCNT25REN1YCONTRACT
+          - CPCGSPCNT25REN2YCONTRACT
+          - CPCGSPCNT25REN3YCONTRACT
+          - CPCGSPPCC253YCONTRACT
+          - CPCGLG10GBYLOGCONTRACTEVAL
+          - CPCGLG1000GBMLOGCONTRACTEVAL
+          - CPCGLG10TBYLOGCONTRACTEVAL
+          - CPCGLG10TBMLOGCONTRACTEVAL
+          - CPCGLG1000GBYLOGRENCONTRACT1Y
+          - CPCGLG1000GBMLOGCONTRACT1Y
+          - CPCGLG1000GBMLOGCONTRACT2Y
+          - CPCGLG1000GBMLOGCONTRACT3Y
+          - CPCGLG1000GBMLOGRENCONTRACT1Y
+          - CPCGLG1000GBYLOGCONTRACT1Y
+          - CPCGLG1000GBYLOGCONTRACT2Y
+          - CPCGLG1000GBYLOGCONTRACT3Y
+          - CPCGLG10TBMLOGCONTRACT1Y
+          - CPCGLG10TBMLOGCONTRACT2Y
+          - CPCGLG10TBMLOGCONTRACT3Y
+          - CPCGLG10TBYLOGCONTRACT1Y
+          - CPCGLG10TBYLOGCONTRACT2Y
+          - CPCGLG10TBYLOGCONTRACT3Y
+          - CGD9_CNP_100
+          - CGD9_CNX_100
+          - CNP_100
+          - CNX_100
+          - CGLG_1000GB_MLOG
+          - CGLG_10TB_MLOG
+          - CGLG_1000GB_YLOG
+          - CGLG_10TB_YLOG
+          - CP_CGD9_CNP_100_PSMO
+          - CP_CGD9_CNP_100_PS
+          - CP_CGD9_CNP_100_PS_TESTPLAN
+          type: string
+        seats:
+          format: int32
+          type: integer
+        startDate:
+          format: date-time
+          type: string
+        expirationDate:
+          format: date-time
+          type: string
+        amountOfYears:
+          format: int32
+          type: integer
+        macro:
+          type: string
+    Dome9.Web.Api.LicenseActivator.LicenseGetRequestModel:
+      required:
+      - userName
+      - password
+      type: object
+      properties:
+        userName:
+          type: string
+        password:
+          type: string
+    Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel:
+      type: object
+      properties:
+        accountId:
+          format: int64
+          type: integer
+        userCenterId:
+          format: int64
+          type: integer
+        accountName:
+          type: string
+        productId:
+          type: string
+        sku:
+          type: string
+        productType:
+          enum:
+          - Unknown
+          - Dome9
+          - Logic
+          type: string
+        macro:
+          type: string
+        qty:
+          format: int32
+          type: integer
+        startDate:
+          format: date-time
+          type: string
+        expirationDate:
+          format: date-time
+          type: string
+    Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel:
+      required:
+      - licenses
+      - userName
+      - password
+      type: object
+      properties:
+        licenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel'
+        userName:
+          type: string
+        password:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

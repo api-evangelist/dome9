@@ -1,0 +1,1249 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Cloud Account API
+  description: Onboard Azure accounts
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Cloud Account
+  description: Onboard Azure accounts
+  type: Onboarding
+paths:
+  /v2/AzureCloudAccount/{id}/DeleteForce:
+    delete:
+      tags:
+      - Azure Cloud Account
+      summary: Delete an Azure account from a Dome9 account (the Azure account is not deleted…
+      operationId: AzureCloudAccount_DeleteForce
+      parameters:
+      - name: id
+        in: path
+        description: the Dome9 account id for the account or the Subscription id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/AzureCloudAccount/OnboardingExecutionPreview:
+    get:
+      tags:
+      - Azure Cloud Account
+      summary: Get the script that performs Azure account onboarding
+      operationId: AzureCloudAccount_GetOnboardingScriptForPreviewAsync
+      responses:
+        '200':
+          description: OK
+  /v2/AzureCloudAccount/OnboardingExecutionCommand:
+    post:
+      tags:
+      - Azure Cloud Account
+      summary: Get the cloud account command line execution for Azure shell Details for Azure…
+      operationId: AzureCloudAccount_GenerateOnboardingExecutionCommand
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.AzureSimplifiedOnboardingExecCmdRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.AzureSimplifiedOnboardingExecCmdRequest'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.AzureSimplifiedOnboardingExecCmdRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.AzureSimplifiedOnboardingExecCmdRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.AzureSimplifiedOnboardingExecCmdRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.AzureSimplifiedOnboardingExecCmdRequest'
+        required: true
+  /v2/AzureCloudAccount/MissingPermissions:
+    get:
+      tags:
+      - Azure Cloud Account
+      summary: Get a list of missing permissions (required by Dome9) for all Azure accounts in…
+      operationId: AzureCloudAccount_GetMissingPermissions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+  /v2/AzureCloudAccount/{id}/MissingPermissions:
+    get:
+      tags:
+      - Azure Cloud Account
+      summary: Get a list of missing permissions for a specific account.
+      operationId: AzureCloudAccount_GetMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: showIgnored
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+    put:
+      tags:
+      - Azure Cloud Account
+      summary: Get a list of missing permissions for a specific account.
+      operationId: AzureCloudAccount_UpdateIgnorableMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: CloudAccountId
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/html:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+        description: List of permissions to set ignore or restore flag to
+        required: true
+  /v2/AzureCloudAccount/{id}/MissingPermissions/EntityType:
+    get:
+      tags:
+      - Azure Cloud Account
+      summary: Get a list of missing permissions for a specific cloud entity type and Azure…
+      operationId: AzureCloudAccount_GetMissingPermissionsByEntityTypeAsync
+      parameters:
+      - name: id
+        in: path
+        description: the account id for the Azure account in Dome9
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: entityType
+        in: query
+        description: the entity type
+        required: true
+        schema:
+          type: string
+      - name: subType
+        in: query
+        description: the entity subtype
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+  /v2/AzureCloudAccount/{id}/MissingPermissions/Reset:
+    put:
+      tags:
+      - Azure Cloud Account
+      summary: Reset (re-validate) the missing permissions indication for an Azure account in…
+      operationId: AzureCloudAccount_ResetMissingPermissions
+      parameters:
+      - name: id
+        in: path
+        description: the account id for the Azure account in Dome9
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/AzureCloudAccount/{id}/OperationMode:
+    put:
+      tags:
+      - Azure Cloud Account
+      summary: Update the operations mode for an Azure account in Dome9.
+      operationId: AzureCloudAccount_UpdateOperationModeAsync
+      parameters:
+      - name: id
+        in: path
+        description: the account id for the Azure account in Dome9
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountOperationModeViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountOperationModeViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountOperationModeViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountOperationModeViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountOperationModeViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountOperationModeViewModel'
+        description: updated details for the account, including the operations mode
+        required: true
+  /v2/AzureCloudAccount/{id}/AccountName:
+    put:
+      tags:
+      - Azure Cloud Account
+      summary: Update the account name (in Dome9) for an Azure account
+      operationId: AzureCloudAccount_UpdateAccountName
+      parameters:
+      - name: id
+        in: path
+        description: the account id in Dome9
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountNameModeViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountNameModeViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountNameModeViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountNameModeViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountNameModeViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureAccountNameModeViewModel'
+        description: the new name for the account
+        required: true
+  /v2/AzureCloudAccount/{id}/Credentials:
+    put:
+      tags:
+      - Azure Cloud Account
+      operationId: AzureCloudAccount_UpdateCloudAccountCredentials
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureCloudAccountCredentialsPutViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureCloudAccountCredentialsPutViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureCloudAccountCredentialsPutViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.Accounts.AzureCloudAccountCredentialsPutViewModel'
+        required: true
+      summary: Azure cloud account update cloud account credentials
+      x-summary-source: derived
+  /v2/AzureCloudAccount/{id}/SyncNow:
+    post:
+      tags:
+      - Azure Cloud Account
+      operationId: AzureCloudAccount_SyncNow
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+      summary: Azure cloud account sync now
+      x-summary-source: derived
+  /v2/AzureCloudAccount/{id}/CredentialsServicePrincipalId:
+    get:
+      tags:
+      - Azure Cloud Account
+      operationId: AzureCloudAccount_GetCredentialsServicePrincipalIdAsync
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/html:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+      summary: Azure cloud account get credentials service principal id async
+      x-summary-source: derived
+  /v2/AzureCloudAccount/{id}/organizationalUnit:
+    put:
+      tags:
+      - Azure Cloud Account
+      summary: Update the ID of the Organizational Unit that this cloud account will be…
+      operationId: AzureCloudAccount_UpdateOrganizationalId
+      parameters:
+      - name: id
+        in: path
+        description: The Dome9 Guid ID of the Azure cloud account
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+        description: The Guid ID of the Organizational Unit to attach to. Use 'null' to attach to the root Organizational Unit
+        required: true
+  /v2/AzureCloudAccount/organizationalUnit/move:
+    put:
+      tags:
+      - Azure Cloud Account
+      summary: Detach cloud accounts from an Organizational unit and attach them to another…
+      operationId: AzureCloudAccount_MoveCloudAccountsToOrganizationalUnit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+        description: The guids of the source organizational unit to detach from and the target organizational unit to attach to. Use null for root organizational unit.
+        required: true
+  /v2/AzureCloudAccount/organizationalUnit/moveAll:
+    put:
+      tags:
+      - Azure Cloud Account
+      summary: Detach all cloud accounts from their current organizational unit and attach…
+      operationId: AzureCloudAccount_MoveAllCloudAccountsToOrganizationalUnit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+        required: true
+  /v2/AzureCloudAccount/organizationalUnit/attach:
+    post:
+      tags:
+      - Azure Cloud Account
+      summary: Attach several cloud accounts to a specific Organizational Unit.
+      operationId: AzureCloudAccount_PostAttachMulti
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+        required: true
+  /v2/AzureCloudAccount/{id}:
+    get:
+      tags:
+      - Azure Cloud Account
+      summary: Get details for a specific Azure account
+      operationId: AzureCloudAccount_Get
+      parameters:
+      - name: id
+        in: path
+        description: the Dome9 account id for the Azure account
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+    delete:
+      tags:
+      - Azure Cloud Account
+      summary: Delete an Azure account from a Dome9 account (the Azure account is not deleted…
+      operationId: AzureCloudAccount_Delete
+      parameters:
+      - name: id
+        in: path
+        description: the Dome9 account id for the account or the Subscription id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/AzureCloudAccount:
+    get:
+      tags:
+      - Azure Cloud Account
+      summary: Get details for all Azure accounts for the Dome9 user
+      operationId: AzureCloudAccount_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+    post:
+      tags:
+      - Azure Cloud Account
+      summary: Add (onboard) an Azure account to the user's Dome9 account
+      operationId: AzureCloudAccount_Post
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+        description: details for the Azure account
+        required: true
+components:
+  schemas:
+    Dome9.Web.Api.Azure.Accounts.AzureCloudAccountCredentialsPutViewModel:
+      required:
+      - applicationId
+      - applicationKey
+      type: object
+      properties:
+        applicationId:
+          type: string
+        applicationKey:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel'
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.PostureManagement:
+      type: object
+      properties:
+        onboardingMode:
+          enum:
+          - read-only
+          - manage
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel:
+      required:
+      - isIgnored
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel:
+      type: object
+      properties:
+        permissions:
+          description: list of missing permissions
+          type: array
+          items:
+            type: string
+        entityType:
+          type: string
+        subType:
+          type: string
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.ServerlessConfiguration:
+      type: object
+      properties:
+        isEnabled:
+          type: boolean
+    Dome9.Web.Api.Azure.Accounts.AzureAccountNameModeViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.CdrConfiguration:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.StorageAccount'
+        isEnabled:
+          type: boolean
+    Dome9.Web.Api.Models.AzureAccountCredentialsViewModel:
+      required:
+      - clientId
+      - clientPassword
+      type: object
+      properties:
+        clientId:
+          description: Azure account id
+          type: string
+        clientPassword:
+          description: Password for account
+          type: string
+    Dome9.Web.Api.Azure.Accounts.AzureAccountOperationModeViewModel:
+      required:
+      - operationMode
+      type: object
+      properties:
+        operationMode:
+          enum:
+          - Read
+          - Manage
+          type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel:
+      type: object
+      properties:
+        srl:
+          description: internal use
+          type: string
+        consecutiveFails:
+          format: int32
+          description: number of consecutive failures due to missing permissions
+          type: integer
+        lastFail:
+          format: date-time
+          description: time of last failure
+          type: string
+        lastSuccess:
+          format: date-time
+          description: time of last successful attempt
+          type: string
+        firstFail:
+          format: date-time
+          description: time of first successful attempt
+          type: string
+        lastFailErrorCode:
+          description: error code for last failed attempt
+          type: string
+        lastFailMessage:
+          description: error message for last failed attempt
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        retryMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel'
+        cloudAccountId:
+          format: uuid
+          description: Cloud account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        vendor:
+          description: cloud account provider (AWS, Azure, GCP)
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+    Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: string
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    CGN.Common.Model.CloudAccounts.Onboarding.AzureSimplifiedOnboardingExecCmdRequest:
+      required:
+      - activeBlades
+      type: object
+      properties:
+        workflowId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        subscriptionId:
+          type: string
+        managementGroupIdOrTenantId:
+          type: string
+        useCloudGuardManagedApp:
+          type: boolean
+        validatePermission:
+          type: boolean
+        appId:
+          type: string
+        appName:
+          type: string
+        appRegistrationId:
+          type: string
+        accountType:
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        activeBlades:
+          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.Blades'
+    Dome9.Web.Api.Models.AzureCloudAccountViewModel:
+      description: account details
+      required:
+      - subscriptionId
+      - tenantId
+      - credentials
+      - operationMode
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id in Dome9
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: account name (in Dome9)
+          type: string
+        subscriptionId:
+          description: Azure subscription id
+          type: string
+        managementGroupId:
+          description: Azure management group id
+          type: string
+        tenantId:
+          description: Azure tenant id
+          type: string
+        credentials:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureAccountCredentialsViewModel'
+          description: Azure account credentials
+        operationMode:
+          description: Dome9 operation mode for the Azure account (Read-Only or Managed)
+          enum:
+          - Read
+          - Manage
+          type: string
+        error:
+          description: Error status for the account onboarding process to Dome9
+          type: string
+        creationDate:
+          format: date-time
+          description: date Azure account was onboarded to a Dome9 account
+          type: string
+        isMultiTenant:
+          description: Indicates whether the cloud account is managed under a multi-tenant account
+          type: boolean
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        organizationalUnitPath:
+          type: string
+        organizationalUnitName:
+          type: string
+        vendor:
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        onboardingManagementMethod:
+          enum:
+          - Undefined
+          - OrganizationOnboarding
+          - DetachedFromOrganizationOnboarding
+          - UnifiedOnboarding
+          - SimplifiedOnboarding
+          - ManualOnboarding
+          type: string
+        magellan:
+          type: boolean
+        missingPermissions:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel'
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.StorageAccount:
+      type: object
+      properties:
+        storageId:
+          type: string
+        logTypes:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.Blades:
+      required:
+      - awp
+      - serverless
+      - cdr
+      - postureManagement
+      type: object
+      properties:
+        awp:
+          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.AwpConfiguration'
+        serverless:
+          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.ServerlessConfiguration'
+        cdr:
+          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.CdrConfiguration'
+        postureManagement:
+          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.PostureManagement'
+    Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel:
+      type: object
+      properties:
+        sourceOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        targetOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel:
+      type: object
+      properties:
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.AwpConfiguration:
+      type: object
+      properties:
+        onboardingMode:
+          enum:
+          - saas
+          - inAccount
+          - inAccountHub
+          type: string
+        centralizedSubscriptionId:
+          type: string
+        withFunctionAppsScan:
+          type: boolean
+        withSseCmkEncryptedDisksScan:
+          type: boolean
+        isEnabled:
+          type: boolean
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel:
+      type: object
+      properties:
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

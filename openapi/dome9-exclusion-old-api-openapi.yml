@@ -1,0 +1,292 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Exclusion Old API
+  description: Compliance Exclusions - DEPRECATED - please use /Compliance/Exclusion instead
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Exclusion Old
+  description: Compliance Exclusions - DEPRECATED - please use /Compliance/Exclusion instead
+  type: PostureManagement
+paths:
+  /v2/Exclusion:
+    get:
+      tags:
+      - Exclusion Old
+      summary: Get a list of exclusions for the account
+      operationId: ExclusionOld_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+    put:
+      tags:
+      - Exclusion Old
+      summary: Update an exclusion
+      operationId: ExclusionOld_Put
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+        description: details for the exclusion
+        required: true
+    post:
+      tags:
+      - Exclusion Old
+      summary: Add a new exclusion
+      operationId: ExclusionOld_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionPostOldViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionPostOldViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionPostOldViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionPostOldViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionPostOldViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionPostOldViewModel'
+        description: details for the exclusion
+        required: true
+  /v2/Exclusion/{id}:
+    get:
+      tags:
+      - Exclusion Old
+      summary: Get details for a specific exclusion
+      operationId: ExclusionOld_Get
+      parameters:
+      - name: id
+        in: path
+        description: the id of the exclusion
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+    delete:
+      tags:
+      - Exclusion Old
+      summary: Delete an exclusion
+      operationId: ExclusionOld_Delete
+      parameters:
+      - name: id
+        in: path
+        description: the id of the exclusion to delete
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Dome9.Web.Api.Compliance.ExclusionOld.ExclusionPostOldViewModel:
+      required:
+      - comment
+      type: object
+      properties:
+        ruleLogicHash:
+          description: '[Optional] Hash for the rule logic. If not specified, the exclusion logic applies to all rules.'
+          pattern: ^[A-Za-z0-9+/]{22}?$
+          type: string
+        ruleName:
+          type: string
+        ruleId:
+          type: string
+        logic:
+          description: '[Optional] The GSL logic of the exclusion. If not specified, the entire rule is excluded.'
+          pattern: (name|id){1} (like){1} '{1}[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'{1}
+          type: string
+        bundleId:
+          format: int64
+          description: id of the bundle containing the rule, whose findings will be excluded.
+          type: integer
+        cloudAccountId:
+          format: uuid
+          description: '[Optional] id of the cloud account on which the rule is applied, for which findings will be excluded. If not specified, findings for all cloud accounts for which the rule applies will be excluded.'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cloudAccountType:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        comment:
+          description: Comment text (free text)
+          type: string
+    Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel:
+      required:
+      - comment
+      type: object
+      properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        ruleLogicHash:
+          description: '[Optional] Hash for the rule logic. If not specified, the exclusion logic applies to all rules.'
+          pattern: ^[A-Za-z0-9+/]{22}?$
+          type: string
+        ruleName:
+          type: string
+        ruleId:
+          type: string
+        logic:
+          description: '[Optional] The GSL logic of the exclusion. If not specified, the entire rule is excluded.'
+          pattern: (name|id){1} (like){1} '{1}[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'{1}
+          type: string
+        bundleId:
+          format: int64
+          description: id of the bundle containing the rule, whose findings will be excluded.
+          type: integer
+        cloudAccountId:
+          format: uuid
+          description: '[Optional] id of the cloud account on which the rule is applied, for which findings will be excluded. If not specified, findings for all cloud accounts for which the rule applies will be excluded.'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cloudAccountType:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        comment:
+          description: Comment text (free text)
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

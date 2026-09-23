@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Application Security Group API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Application Security Group
+  type: InventoryAzure
+paths:
+  /v2/AzureApplicationSecurityGroup/{id}:
+    get:
+      tags:
+      - Azure Application Security Group
+      summary: get a specific Application Security Group by name and resource group
+      operationId: AzureApplicationSecurityGroup_GetById
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+  /v2/AzureApplicationSecurityGroup/CloudAccountId/{cloudAccountId}/Region/{region}:
+    get:
+      tags:
+      - Azure Application Security Group
+      summary: get all application security group of cloudAccount by region
+      operationId: AzureApplicationSecurityGroup_GetByCloudAccountAndRegion
+      parameters:
+      - name: cloudAccountId
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: region
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+  /v2/AzureApplicationSecurityGroup:
+    get:
+      tags:
+      - Azure Application Security Group
+      summary: get all Application Security Groups
+      operationId: AzureApplicationSecurityGroup_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.Models.AzureApplicationSecurityGroupViewModel:
+      type: object
+      properties:
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        id:
+          type: string
+        externalId:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

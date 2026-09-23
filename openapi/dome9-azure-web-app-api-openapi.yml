@@ -1,0 +1,228 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Web App API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Web App
+  type: InventoryAzure
+paths:
+  /v2/AzureWebApp:
+    get:
+      tags:
+      - Azure Web App
+      operationId: AzureWebApp_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AzureAppServiceViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AzureAppServiceViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AzureAppServiceViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AzureAppServiceViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Falconetix.Model.AzureAppServiceViewModel'
+      summary: Azure web app get
+      x-summary-source: derived
+  /v2/AzureWebApp/{id}:
+    get:
+      tags:
+      - Azure Web App
+      operationId: AzureWebApp_Get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AzureAppServiceViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AzureAppServiceViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AzureAppServiceViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AzureAppServiceViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Falconetix.Model.AzureAppServiceViewModel'
+      summary: Azure web app get
+      x-summary-source: derived
+components:
+  schemas:
+    Falconetix.Model.AppServiceApplicationSettings:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        kind:
+          type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: string
+    Falconetix.Model.AppServiceHostNameSslStateViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        sslState:
+          type: string
+        virtualIP:
+          type: string
+        thumbprint:
+          type: string
+        toUpdate:
+          type: boolean
+        hostType:
+          type: string
+    Falconetix.Model.AppServiceFunctionsViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        kind:
+          type: string
+        functionAppId:
+          type: string
+        scriptRootPathHref:
+          type: string
+        scriptHref:
+          type: string
+        configHref:
+          type: string
+        secretsFileHref:
+          type: string
+        href:
+          type: string
+        config:
+          type: string
+        files:
+          type: object
+          additionalProperties:
+            type: string
+        testData:
+          type: string
+        testDataHref:
+          type: string
+        invokeUrlTemplate:
+          type: string
+        language:
+          type: string
+        isDisabled:
+          type: boolean
+    Falconetix.Model.AppServiceSiteInnerViewModel:
+      type: object
+      properties:
+        hostNames:
+          type: array
+          items:
+            type: string
+        repositorySiteName:
+          type: string
+        enabled:
+          type: boolean
+        enabledHostNames:
+          type: array
+          items:
+            type: string
+        hostNameSslStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AppServiceHostNameSslStateViewModel'
+        serverFarmId:
+          type: string
+        reserved:
+          type: boolean
+        lastModifiedTimeUtc:
+          format: date-time
+          type: string
+        clientCertEnabled:
+          type: boolean
+        outboundIpAddresses:
+          type: array
+          items:
+            type: string
+        possibleOutboundIpAddresses:
+          type: array
+          items:
+            type: string
+        resourceGroup:
+          type: string
+        defaultHostName:
+          type: string
+        kind:
+          type: string
+    Falconetix.Model.AzureAppServiceViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        subscriptionId:
+          type: string
+        tenantId:
+          type: string
+        region:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        inner:
+          $ref: '#/components/schemas/Falconetix.Model.AppServiceSiteInnerViewModel'
+        functions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AppServiceFunctionsViewModel'
+        applicationSettings:
+          $ref: '#/components/schemas/Falconetix.Model.AppServiceApplicationSettings'
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

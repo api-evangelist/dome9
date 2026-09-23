@@ -1,0 +1,280 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Iam Safe Lease API
+  description: IAM Safety Leases
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Iam Safe Lease
+  description: IAM Safety Leases
+  type: Identity
+paths:
+  /v2/iam-safe-leases/me:
+    get:
+      tags:
+      - Iam Safe Lease
+      summary: Get leases for this user (me)
+      operationId: IamSafeLease_GetOnlyMine
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeaseViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeaseViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeaseViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeaseViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeaseViewModel'
+  /v2/iam-safe-leases/custom-lease:
+    post:
+      tags:
+      - Iam Safe Lease
+      summary: Create a new lease for AWS IAM user or role
+      operationId: IamSafeLease_PostCustomLease
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeCustomLeasePostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeCustomLeasePostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeCustomLeasePostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeCustomLeasePostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeCustomLeasePostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeCustomLeasePostViewModel'
+        description: details for the lease
+        required: true
+  /v2/iam-safe-leases/{id}:
+    delete:
+      tags:
+      - Iam Safe Lease
+      summary: Delete a lease
+      operationId: IamSafeLease_Delete
+      parameters:
+      - name: id
+        in: path
+        description: The id of lease to be deleted
+        required: true
+        schema:
+          type: string
+      - name: code
+        in: query
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+  /v2/iam-safe-leases:
+    get:
+      tags:
+      - Iam Safe Lease
+      summary: Get leases for AWS account
+      operationId: IamSafeLease_Get
+      parameters:
+      - name: cloudAccountId
+        in: query
+        description: AWS account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeaseViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeaseViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeaseViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeaseViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeaseViewModel'
+    post:
+      tags:
+      - Iam Safe Lease
+      summary: Create a new lease
+      operationId: IamSafeLease_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeasePostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeasePostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeasePostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeasePostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeasePostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Leases.IamSafeLeasePostViewModel'
+        description: details for the lease
+        required: true
+components:
+  schemas:
+    Dome9.Web.Api.Leases.IamSafeLeasePostViewModel:
+      required:
+      - cloudAccountId
+      - code
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        expirationDate:
+          format: date-time
+          type: string
+        code:
+          type: string
+        iamEntityArn:
+          type: string
+    Dome9.Web.Api.Leases.IamSafeLeaseViewModel:
+      required:
+      - cloudAccountId
+      - expirationDate
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: Lease id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cloudAccountId:
+          format: uuid
+          description: Cloud account id for the user
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        created:
+          format: date-time
+          type: string
+        updated:
+          format: date-time
+          type: string
+        expirationDate:
+          format: date-time
+          description: Lease expiry time
+          type: string
+        user:
+          description: Account user
+          type: string
+        iamEntities:
+          description: AWS IAM users and roles ARN affected by lease
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Leases.IamSafeCustomLeasePostViewModel:
+      required:
+      - cloudAccountId
+      - iamEntityArn
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          description: '[Required] Cloud account id for the user'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        expirationDate:
+          format: date-time
+          description: '[Required] Lease expiry time'
+          type: string
+        iamEntityArn:
+          description: '[Required] AWS IAM user or role ARN affected by lease'
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

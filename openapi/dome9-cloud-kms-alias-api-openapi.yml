@@ -1,0 +1,87 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Kms Alias API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Kms Alias
+  type: InventoryAwsSecurityIdentityAndCompliance
+paths:
+  /v2/CloudKmsAlias:
+    get:
+      tags:
+      - Cloud Kms Alias
+      operationId: CloudKmsAlias_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsAliasViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsAliasViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsAliasViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsAliasViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsAliasViewModel'
+      summary: Cloud kms alias get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudKms.CloudKmsAliasViewModel:
+      type: object
+      properties:
+        id:
+          description: Id
+          type: string
+          readOnly: true
+        externalId:
+          description: ExternalId
+          type: string
+          readOnly: true
+        name:
+          description: Name
+          type: string
+          readOnly: true
+        cloudAccountId:
+          format: uuid
+          description: CloudAccountId
+          type: string
+          readOnly: true
+          example: 00000000-0000-0000-0000-000000000000
+        accountId:
+          format: int64
+          description: AccountId
+          type: integer
+          readOnly: true
+        arn:
+          description: ARN
+          type: string
+        externalAccountNumber:
+          description: External account number
+          type: string
+        targetKeyId:
+          description: Target key ID
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

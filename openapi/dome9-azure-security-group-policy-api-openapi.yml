@@ -1,0 +1,539 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Azure Security Group Policy API
+  description: Azure Network Security Group Policies
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Azure Security Group Policy
+  description: Azure Network Security Group Policies
+  type: NetworkSecurity
+paths:
+  /v2/AzureSecurityGroupPolicy/{id}:
+    get:
+      tags:
+      - Azure Security Group Policy
+      summary: Get details for a specific Azure Network Security Group policy
+      operationId: AzureSecurityGroupPolicy_Get
+      parameters:
+      - name: id
+        in: path
+        description: the policy id (in Dome9)
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+    put:
+      tags:
+      - Azure Security Group Policy
+      summary: Update a security group policy
+      operationId: AzureSecurityGroupPolicy_Put
+      parameters:
+      - name: id
+        in: path
+        description: the security group policy id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+        description: details for the policy, including the changes
+        required: true
+    delete:
+      tags:
+      - Azure Security Group Policy
+      summary: Delete a security group policy
+      operationId: AzureSecurityGroupPolicy_Delete
+      parameters:
+      - name: id
+        in: path
+        description: the security group policy id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/AzureSecurityGroupPolicy/{policyId}/TamperProtected:
+    put:
+      tags:
+      - Azure Security Group Policy
+      summary: Enable or disable Tamper Protetion for a specific security group policy
+      operationId: AzureSecurityGroupPolicy_UpdateProtectionMode
+      parameters:
+      - name: policyId
+        in: path
+        description: the security group policy id&gt;
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: tamperProtected
+        in: query
+        description: enable/disable Tamper protection
+        required: true
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+  /v2/AzureSecurityGroupPolicy/Stats:
+    get:
+      tags:
+      - Azure Security Group Policy
+      summary: Get statistics for the security group policies for the Dome9 user
+      operationId: AzureSecurityGroupPolicy_GetStats
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyStatsViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyStatsViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyStatsViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyStatsViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyStatsViewModel'
+  /v2/AzureSecurityGroupPolicy:
+    get:
+      tags:
+      - Azure Security Group Policy
+      summary: Get a list of all Network Security Group Policies for the Azure accounts in the…
+      operationId: AzureSecurityGroupPolicy_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+    post:
+      tags:
+      - Azure Security Group Policy
+      summary: Create a security group policy
+      operationId: AzureSecurityGroupPolicy_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel'
+        description: details for the policy
+        required: true
+components:
+  schemas:
+    Falconetix.WebApi.Models.ScopeElementViewModel:
+      type: object
+      properties:
+        type:
+          enum:
+          - CIDR
+          - DNS
+          - IPList
+          - MagicIP
+          - AWS
+          - Tag
+          - ASG
+          - CIDRv6
+          - PrefixList
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+    Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyStatsViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: Policy id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: Policy name
+          type: string
+        resourceGroup:
+          description: Azure resource group name
+          type: string
+        region:
+          description: Region in which the policy is defined
+          type: string
+        cloudAccountName:
+          description: Azure cloud account name
+          type: string
+        cloudAccountId:
+          format: uuid
+          description: Azure cloud account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isTamperProtected:
+          description: Tamper protection is enabled for the policy
+          type: boolean
+        alertsCount:
+          format: int32
+          description: The number of alerts opened on the policy
+          type: integer
+    Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyServiceGetViewModel:
+      required:
+      - name
+      - priority
+      - access
+      - protocol
+      - sourceScopes
+      - destinationScopes
+      type: object
+      properties:
+        direction:
+          description: Service direction (Inbound / Outbound)
+          type: string
+        name:
+          description: Service name
+          type: string
+        description:
+          description: Service description
+          type: string
+        priority:
+          format: int32
+          description: Service priority (a number between 100 and 4096)
+          type: integer
+        access:
+          description: Service access (Allow / Deny)
+          type: string
+        protocol:
+          description: Service protocol (UDP / TCP / ANY)
+          type: string
+        sourcePortRanges:
+          description: Source port ranges
+          type: array
+          items:
+            type: string
+        sourceScopes:
+          description: List of source scopes for the service (CIDR / IP List / Tag)
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        destinationPortRanges:
+          description: Destination port ranges
+          type: array
+          items:
+            type: string
+        destinationScopes:
+          description: List of destination scopes for the service (CIDR / IP List / Tag)
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        isDefault:
+          type: boolean
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyGetViewModel:
+      required:
+      - cloudAccountId
+      - name
+      - region
+      - resourceGroup
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        id:
+          format: uuid
+          description: Policy id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalSecurityGroupId:
+          description: Internal use only
+          type: string
+        accountId:
+          format: int64
+          description: Dome9 account id
+          type: integer
+        cloudAccountName:
+          description: Azure cloud account name
+          type: string
+        lastUpdatedByDome9:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureErrorStateViewModel'
+        inboundServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyServiceGetViewModel'
+        outboundServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyServiceGetViewModel'
+        cloudAccountId:
+          format: uuid
+          description: Cloud account id for policy
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: policy name
+          type: string
+        description:
+          description: policy description
+          type: string
+        region:
+          description: policy region
+          type: string
+        resourceGroup:
+          description: Azure resource group name
+          type: string
+        isTamperProtected:
+          description: policy is tamper protected
+          type: boolean
+    Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyServiceViewModel:
+      required:
+      - name
+      - priority
+      - access
+      - protocol
+      - sourceScopes
+      - destinationScopes
+      type: object
+      properties:
+        name:
+          description: Service name
+          type: string
+        description:
+          description: Service description
+          type: string
+        priority:
+          format: int32
+          description: Service priority (a number between 100 and 4096)
+          type: integer
+        access:
+          description: Service access (Allow / Deny)
+          type: string
+        protocol:
+          description: Service protocol (UDP / TCP / ANY)
+          type: string
+        sourcePortRanges:
+          description: Source port ranges
+          type: array
+          items:
+            type: string
+        sourceScopes:
+          description: List of source scopes for the service (CIDR / IP List / Tag)
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        destinationPortRanges:
+          description: Destination port ranges
+          type: array
+          items:
+            type: string
+        destinationScopes:
+          description: List of destination scopes for the service (CIDR / IP List / Tag)
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        isDefault:
+          type: boolean
+    Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyPostViewModel:
+      required:
+      - cloudAccountId
+      - name
+      - region
+      - resourceGroup
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        inboundServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyServiceViewModel'
+        outboundServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.SecurityGroupPolicy.ViewModels.AzureSgPolicyServiceViewModel'
+        cloudAccountId:
+          format: uuid
+          description: Cloud account id for policy
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: policy name
+          type: string
+        description:
+          description: policy description
+          type: string
+        region:
+          description: policy region
+          type: string
+        resourceGroup:
+          description: Azure resource group name
+          type: string
+        isTamperProtected:
+          description: policy is tamper protected
+          type: boolean
+    Dome9.Web.Api.Azure.AzureErrorStateViewModel:
+      type: object
+      properties:
+        action:
+          type: string
+        errorMessage:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

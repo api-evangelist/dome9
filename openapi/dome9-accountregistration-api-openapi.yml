@@ -1,0 +1,208 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Account Registration API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: AccountRegistration
+  type: Unclassified
+paths:
+  /v2/account-registration/invite:
+    post:
+      tags:
+      - AccountRegistration
+      operationId: AccountRegistration_PostInvite
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationWebViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationWebViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationWebViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationWebViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationWebViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationWebViewModel'
+        required: true
+      summary: Account registration post invite
+      x-summary-source: derived
+  /v2/account-registration/verify/{registrationRequestId}:
+    get:
+      tags:
+      - AccountRegistration
+      operationId: AccountRegistration_GetVerify
+      parameters:
+      - name: registrationRequestId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel'
+      summary: Account registration get verify
+      x-summary-source: derived
+  /v2/account-registration/sign-up:
+    post:
+      tags:
+      - AccountRegistration
+      operationId: AccountRegistration_PostSignUp
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Account.AccountRegistrationSignUpViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Account.AccountRegistrationSignUpViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Account.AccountRegistrationSignUpViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Account.AccountRegistrationSignUpViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Account.AccountRegistrationSignUpViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Falconetix.Model.Account.AccountRegistrationSignUpViewModel'
+        required: true
+      summary: Account registration post sign up
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.AccountRegistration.AccountRegistrationWebViewModel:
+      required:
+      - email
+      type: object
+      properties:
+        recaptchaResponse:
+          type: string
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        referrer:
+          type: string
+        code:
+          maxLength: 50
+          minLength: 0
+          type: string
+    Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel:
+      type: object
+      properties:
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        referrer:
+          type: string
+    Falconetix.Model.Account.AccountRegistrationSignUpViewModel:
+      required:
+      - email
+      - registrationRequestId
+      - firstName
+      - lastName
+      - password
+      - accountName
+      - phoneNum
+      type: object
+      properties:
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        registrationRequestId:
+          type: string
+        firstName:
+          maxLength: 150
+          minLength: 0
+          type: string
+        lastName:
+          maxLength: 150
+          minLength: 0
+          type: string
+        password:
+          type: string
+        accountName:
+          maxLength: 150
+          minLength: 0
+          type: string
+        phoneNum:
+          maxLength: 15
+          minLength: 6
+          type: string
+        sendWelcomeEmail:
+          type: boolean
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

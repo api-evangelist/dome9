@@ -1,0 +1,1420 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Google Cloud Account API
+  description: Google Cloud Accounts
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Google Cloud Account
+  description: Google Cloud Accounts
+  type: Onboarding
+paths:
+  /v2/GoogleCloudAccount/{id}/DeleteForce:
+    delete:
+      tags:
+      - Google Cloud Account
+      summary: Delete a Google cloud account (from Dome9) and linked entities
+      operationId: GoogleCloudAccount_DeleteForce
+      parameters:
+      - name: id
+        in: path
+        description: The Id of the Google cloud account
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/GoogleCloudAccount/{id}/DeleteGsuite:
+    put:
+      tags:
+      - Google Cloud Account
+      summary: Delete a Google cloud Gsuite account Only
+      operationId: GoogleCloudAccount_DeleteGsuite
+      parameters:
+      - name: id
+        in: path
+        description: The Id of the Google cloud account
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/GoogleCloudAccount/{id}/details:
+    get:
+      tags:
+      - Google Cloud Account
+      operationId: GoogleCloudAccount_GetCloudAccountDetailsAsync
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountOnboardingDetailsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountOnboardingDetailsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountOnboardingDetailsViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountOnboardingDetailsViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountOnboardingDetailsViewModel'
+      summary: Google cloud account get cloud account details async
+      x-summary-source: derived
+  /v2/GoogleCloudAccount/{cloudAccountId}/account-stats:
+    get:
+      tags:
+      - Google Cloud Account
+      summary: Gets Cloud Account network statistics on cloud account page
+      operationId: GoogleCloudAccount_GetCloudAccountStats
+      parameters:
+      - name: cloudAccountId
+        in: path
+        description: The Id of the Google cloud account
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: withData
+        in: query
+        description: Include raw data of networks, security groups and vms, default = false
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountStatsViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountStatsViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountStatsViewModel'
+  /v2/GoogleCloudAccount/MissingPermissions:
+    get:
+      tags:
+      - Google Cloud Account
+      summary: Get a list of missing permissions (needed by Dome9 to manage the accounts) for…
+      operationId: GoogleCloudAccount_GetMissingPermissions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel'
+  /v2/GoogleCloudAccount/{id}/MissingPermissions:
+    get:
+      tags:
+      - Google Cloud Account
+      summary: Get a list of missing permissions for a specific account.
+      operationId: GoogleCloudAccount_GetMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: showIgnored
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel'
+    put:
+      tags:
+      - Google Cloud Account
+      summary: Get a list of missing permissions for a specific account.
+      operationId: GoogleCloudAccount_UpdateIgnorableMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: CloudAccountId
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/html:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          application/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          text/xml:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel'
+        description: List of permissions to set ignore or restore flag to
+        required: true
+  /v2/GoogleCloudAccount/{id}/MissingPermissions/EntityType:
+    get:
+      tags:
+      - Google Cloud Account
+      summary: Get missing permissions for a specific entity type for a specific Google Cloud…
+      operationId: GoogleCloudAccount_GetMissingPermissionsByEntityTypeAsync
+      parameters:
+      - name: id
+        in: path
+        description: The Dome9 Google Cloud Account Id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: entityType
+        in: query
+        description: The entity type for which to get permission issues
+        required: true
+        schema:
+          type: string
+      - name: subType
+        in: query
+        description: ''
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel'
+  /v2/GoogleCloudAccount/{id}/MissingPermissions/Reset:
+    put:
+      tags:
+      - Google Cloud Account
+      summary: Reset (re-validate) a Google Cloud account credentials in Dome9.
+      operationId: GoogleCloudAccount_ResetMissingPermissionsAsync
+      parameters:
+      - name: id
+        in: path
+        description: the account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+  /v2/GoogleCloudAccount/{id}/AccountName:
+    put:
+      tags:
+      - Google Cloud Account
+      summary: Update a Google Cloud account name (as it appears in Dome9)
+      operationId: GoogleCloudAccount_UpdateAccountName
+      parameters:
+      - name: id
+        in: path
+        description: the account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountNameViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountNameViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountNameViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountNameViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountNameViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountNameViewModel'
+        description: the updated name as it will appear in Dome9
+        required: true
+  /v2/GoogleCloudAccount/{id}/Credentials/Gsuite:
+    put:
+      tags:
+      - Google Cloud Account
+      summary: Update a Google Cloud account Gsuite data
+      operationId: GoogleCloudAccount_UpdateAccountGsuite
+      parameters:
+      - name: id
+        in: path
+        description: the account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountGsuiteViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountGsuiteViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountGsuiteViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountGsuiteViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountGsuiteViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountGsuiteViewModel'
+        description: the updated Gsuite as it will uses in Dome9
+        required: true
+  /v2/GoogleCloudAccount/{id}/Credentials:
+    put:
+      tags:
+      - Google Cloud Account
+      operationId: GoogleCloudAccount_UpdateGoogleCloudAccountCredentials
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: skipComputeValidation
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountUpdateViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountUpdateViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountUpdateViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountUpdateViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountUpdateViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountUpdateViewModel'
+        required: true
+      summary: Google cloud account update google cloud account credentials
+      x-summary-source: derived
+  /v2/GoogleCloudAccount/{id}/SyncNow:
+    post:
+      tags:
+      - Google Cloud Account
+      operationId: GoogleCloudAccount_SyncNow
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+      summary: Google cloud account sync now
+      x-summary-source: derived
+  /v2/GoogleCloudAccount/{id}/organizationalUnit:
+    put:
+      tags:
+      - Google Cloud Account
+      summary: Update the ID of the Organizational Unit that this cloud account will be…
+      operationId: GoogleCloudAccount_UpdateOrganizationalId
+      parameters:
+      - name: id
+        in: path
+        description: The Dome9 Guid ID of the GCP cloud account
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+        description: The Guid ID of the Organizational Unit to attach to. Use 'null'  to attach to the root Organizational Unit
+        required: true
+  /v2/GoogleCloudAccount/organizationalUnit/move:
+    put:
+      tags:
+      - Google Cloud Account
+      summary: Detach cloud accounts from an Organizational unit and attach them to another…
+      operationId: GoogleCloudAccount_MoveCloudAccountsToOrganizationalUnit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel'
+        required: true
+  /v2/GoogleCloudAccount/organizationalUnit/moveAll:
+    put:
+      tags:
+      - Google Cloud Account
+      summary: Detach all cloud accounts from their current organizational unit and attach…
+      operationId: GoogleCloudAccount_MoveAllCloudAccountsToOrganizationalUnit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel'
+        required: true
+  /v2/GoogleCloudAccount/organizationalUnit/attach:
+    post:
+      tags:
+      - Google Cloud Account
+      summary: Attach several cloud accounts to a specific Organizational Unit.
+      operationId: GoogleCloudAccount_PostAttachMulti
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/html:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel'
+        required: true
+  /v2/GoogleCloudAccount:
+    get:
+      tags:
+      - Google Cloud Account
+      summary: Get a list of all Google cloud accounts
+      operationId: GoogleCloudAccount_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+    post:
+      tags:
+      - Google Cloud Account
+      summary: Add (onboard) a new Google cloud account to Dome9
+      operationId: GoogleCloudAccount_Post
+      parameters:
+      - name: skipComputeValidation
+        in: query
+        description: is ondoarding without compute Api enabled
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountPostViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountPostViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountPostViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountPostViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountPostViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountPostViewModel'
+        description: details for the new account
+        required: true
+  /v2/GoogleCloudAccount/{id}:
+    get:
+      tags:
+      - Google Cloud Account
+      summary: Get details for a specific Google Cloud Account
+      operationId: GoogleCloudAccount_Get
+      parameters:
+      - name: id
+        in: path
+        description: the Google cloud account id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel'
+    delete:
+      tags:
+      - Google Cloud Account
+      summary: Delete a Google cloud account (from Dome9)
+      operationId: GoogleCloudAccount_Delete
+      parameters:
+      - name: id
+        in: path
+        description: The Id of the Google cloud account
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel'
+    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        kmsKeyName:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        network:
+          type: string
+        networkIP:
+          type: string
+        subnetwork:
+          type: string
+        publicIP:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel:
+      required:
+      - isIgnored
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel:
+      type: object
+      properties:
+        canIpForward:
+          type: boolean
+        cpuPlatform:
+          type: string
+        externalId:
+          type: string
+        creationTimestamp:
+          type: string
+        description:
+          type: string
+        disks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel'
+        machineType:
+          type: string
+        sourceMachineImage:
+          type: string
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel'
+        status:
+          type: string
+        statusMessage:
+          type: string
+        networkTags:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        zone:
+          type: string
+        region:
+          type: string
+        isRunning:
+          type: boolean
+          readOnly: true
+        isBillable:
+          type: boolean
+          readOnly: true
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel:
+      type: object
+      properties:
+        permissions:
+          description: list of missing permissions
+          type: array
+          items:
+            type: string
+        entityType:
+          type: string
+        subType:
+          type: string
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.SecurityGroup.GcpSecurityGroupViewModel:
+      type: object
+      properties:
+        network:
+          type: string
+        externalId:
+          type: string
+        inboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel'
+        outboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel'
+        vmInstances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Falconetix.Model.Google.NetworkStat:
+      type: object
+      properties:
+        networkId:
+          type: string
+        networkName:
+          type: string
+        resourceType:
+          enum:
+          - Local
+          - Shared
+          type: string
+        vmInstancesCount:
+          format: int32
+          type: integer
+        securityGroupsCount:
+          format: int32
+          type: integer
+        firewallRulesCount:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel:
+      type: object
+      properties:
+        isGoogleManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerSuppliedKey:
+          type: boolean
+          readOnly: true
+    Dome9.Web.Api.Google.Accounts.GoogleAccountStatsViewModel:
+      type: object
+      properties:
+        stats:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Google.NetworkStat'
+        totalVMInstancesCount:
+          format: int32
+          type: integer
+        totalSecurityGroupsCount:
+          format: int32
+          type: integer
+        totalFirewallRulesCount:
+          format: int32
+          type: integer
+        networks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Network.GoogleCloudNetworkViewModel'
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.SecurityGroup.GcpSecurityGroupViewModel'
+        vmInstances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+    Dome9.Web.Api.Google.Accounts.GoogleAccountOnboardingDetailsViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        projectId:
+          type: string
+        clientEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        domainName:
+          type: string
+        gSuitUser:
+          type: string
+    Dome9.Web.Api.Google.Accounts.GoogleCloudAccountPostViewModel:
+      required:
+      - name
+      - serviceAccountCredentials
+      type: object
+      properties:
+        name:
+          description: Google account name in Dome9
+          type: string
+        serviceAccountCredentials:
+          description: The service account JSON block (from the GCP console)
+          type: object
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        gsuiteUser:
+          type: string
+        domainName:
+          type: string
+    Dome9.Web.Api.Google.Accounts.GoogleCloudAccountUpdateViewModel:
+      required:
+      - name
+      - serviceAccountCredentials
+      type: object
+      properties:
+        name:
+          description: Google account name in Dome9
+          type: string
+        serviceAccountCredentials:
+          description: The service account JSON block (from the GCP console)
+          type: object
+    Dome9.Web.Api.Google.Network.GoogleCloudNetworkViewModel:
+      type: object
+      properties:
+        cloudAccountName:
+          type: string
+        autoCreateSubnetworks:
+          type: boolean
+        creationTimestamp:
+          type: string
+        description:
+          type: string
+        eTag:
+          type: string
+        gatewayIPv4:
+          type: string
+        iPv4Range:
+          type: string
+        kind:
+          type: string
+        name:
+          type: string
+        subnetworks:
+          type: array
+          items:
+            type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.Accounts.GoogleAccountGsuiteViewModel:
+      type: object
+      properties:
+        gsuiteUser:
+          type: string
+        domainName:
+          type: string
+    Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        enabled:
+          type: boolean
+        description:
+          type: string
+        number:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+        source:
+          type: string
+        destination:
+          type: string
+        destinationPort:
+          format: int32
+          type: integer
+        destinationPortTo:
+          format: int32
+          type: integer
+        direction:
+          type: string
+        action:
+          type: string
+    Dome9.Web.Api.Google.Accounts.GoogleAccountNameViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel:
+      type: object
+      properties:
+        srl:
+          description: internal use
+          type: string
+        consecutiveFails:
+          format: int32
+          description: number of consecutive failures due to missing permissions
+          type: integer
+        lastFail:
+          format: date-time
+          description: time of last failure
+          type: string
+        lastSuccess:
+          format: date-time
+          description: time of last successful attempt
+          type: string
+        firstFail:
+          format: date-time
+          description: time of first successful attempt
+          type: string
+        lastFailErrorCode:
+          description: error code for last failed attempt
+          type: string
+        lastFailMessage:
+          description: error message for last failed attempt
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        retryMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel'
+        cloudAccountId:
+          format: uuid
+          description: Cloud account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        vendor:
+          description: cloud account provider (AWS, Azure, GCP)
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+    Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: string
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: Google id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: Google account name in Dome9
+          type: string
+        projectId:
+          description: the Google project id (that will be onboarded)
+          type: string
+        creationDate:
+          format: date-time
+          description: creation date for project in Google
+          type: string
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        organizationalUnitPath:
+          type: string
+        organizationalUnitName:
+          type: string
+        gsuite:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Accounts.GoogleAccountGsuiteViewModel'
+        vendor:
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        projectNumber:
+          type: string
+        clientEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel'
+    Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel:
+      type: object
+      properties:
+        sourceOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        targetOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel:
+      type: object
+      properties:
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel:
+      type: object
+      properties:
+        autoDelete:
+          type: boolean
+        deviceName:
+          type: string
+        guestOsFeatures:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel'
+        eTag:
+          type: string
+        interface:
+          type: string
+        kind:
+          type: string
+        licenses:
+          type: array
+          items:
+            type: string
+        mode:
+          type: string
+        source:
+          type: string
+        type:
+          type: string
+        diskEncryptionType:
+          type: string
+        diskEncryptionTypeMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel'
+        diskEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel'
+        initializeParams:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel'
+        id:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        kmsKeyName:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel:
+      type: object
+      properties:
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel:
+      type: object
+      properties:
+        diskName:
+          type: string
+        diskSizeGb:
+          format: int64
+          type: integer
+        diskType:
+          type: string
+        sourceImage:
+          type: string
+        sourceImageEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel'
+        eTag:
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

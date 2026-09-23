@@ -1,0 +1,69 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Cloud Iam Server Certificate API
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Cloud Iam Server Certificate
+  type: InventoryAwsIam
+paths:
+  /v2/CloudIamServerCertificate:
+    get:
+      tags:
+      - Cloud Iam Server Certificate
+      operationId: CloudIamServerCertificate_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamServerCertificate.CloudIamServerCertificateViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamServerCertificate.CloudIamServerCertificateViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamServerCertificate.CloudIamServerCertificateViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamServerCertificate.CloudIamServerCertificateViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.CloudIamServerCertificate.CloudIamServerCertificateViewModel'
+      summary: Cloud iam server certificate get
+      x-summary-source: derived
+components:
+  schemas:
+    Dome9.Web.Api.CloudIamServerCertificate.CloudIamServerCertificateViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        expiration:
+          format: date-time
+          type: string
+        path:
+          type: string
+        serverCertificateId:
+          type: string
+        serverCertificateName:
+          type: string
+        uploadDate:
+          format: date-time
+          type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,91 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Google Cloud Network API
+  description: Google Cloud Network
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Google Cloud Network
+  description: Google Cloud Network
+  type: InventoryGcp
+paths:
+  /v2/GoogleCloudNetwork:
+    get:
+      tags:
+      - Google Cloud Network
+      summary: Get network details for a Google account
+      operationId: GoogleCloudNetwork_Get
+      parameters:
+      - name: cloudAccountId
+        in: query
+        description: the Google cloud account id
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Network.GoogleCloudNetworkViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Network.GoogleCloudNetworkViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Network.GoogleCloudNetworkViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Network.GoogleCloudNetworkViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Google.Network.GoogleCloudNetworkViewModel'
+components:
+  schemas:
+    Dome9.Web.Api.Google.Network.GoogleCloudNetworkViewModel:
+      type: object
+      properties:
+        cloudAccountName:
+          type: string
+        autoCreateSubnetworks:
+          type: boolean
+        creationTimestamp:
+          type: string
+        description:
+          type: string
+        eTag:
+          type: string
+        gatewayIPv4:
+          type: string
+        iPv4Range:
+          type: string
+        kind:
+          type: string
+        name:
+          type: string
+        subnetworks:
+          type: array
+          items:
+            type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic

@@ -1,0 +1,258 @@
+openapi: 3.2.0
+info:
+  version: v2
+  title: Dome9. Compliance Remediation Old API
+  description: Compliance Remediation - DEPRECATED - please use /Compliance/Remediation instead
+servers:
+- url: https://api.dome9.com
+tags:
+- name: Compliance Remediation Old
+  description: Compliance Remediation - DEPRECATED - please use /Compliance/Remediation instead
+  type: PostureManagement
+paths:
+  /v2/ComplianceRemediation:
+    get:
+      tags:
+      - Compliance Remediation Old
+      summary: Get a list of remediations for the account
+      operationId: ComplianceRemediationOld_Get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            text/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+    put:
+      tags:
+      - Compliance Remediation Old
+      summary: Update a remediation
+      operationId: ComplianceRemediationOld_Put
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+        description: details for the remediation
+        required: true
+    post:
+      tags:
+      - Compliance Remediation Old
+      summary: Add a new remediation
+      operationId: ComplianceRemediationOld_Post
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationPostOldViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationPostOldViewModel'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationPostOldViewModel'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationPostOldViewModel'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationPostOldViewModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RemediationOld.RemediationPostOldViewModel'
+        description: details for the remediation
+        required: true
+  /v2/ComplianceRemediation/{id}:
+    delete:
+      tags:
+      - Compliance Remediation Old
+      summary: Delete a remediation
+      operationId: ComplianceRemediationOld_Delete
+      parameters:
+      - name: id
+        in: path
+        description: the id of the remediation to delete
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Dome9.Web.Api.Compliance.RemediationOld.RemediationPostOldViewModel:
+      required:
+      - comment
+      type: object
+      properties:
+        ruleLogicHash:
+          pattern: ^[A-Za-z0-9+/]{22}?$
+          type: string
+        ruleName:
+          type: string
+        ruleId:
+          type: string
+        logic:
+          pattern: (name|id){1} (like){1} '{1}[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'{1}
+          type: string
+        rulesetId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        platform:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        comment:
+          type: string
+        cloudBots:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel:
+      required:
+      - comment
+      type: object
+      properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        ruleLogicHash:
+          pattern: ^[A-Za-z0-9+/]{22}?$
+          type: string
+        ruleName:
+          type: string
+        ruleId:
+          type: string
+        logic:
+          pattern: (name|id){1} (like){1} '{1}[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+'{1}
+          type: string
+        rulesetId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        platform:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        comment:
+          type: string
+        cloudBots:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    API_key_V2:
+      type: http
+      scheme: basic
