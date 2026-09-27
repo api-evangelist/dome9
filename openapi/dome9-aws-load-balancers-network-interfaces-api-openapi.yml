@@ -54,6 +54,96 @@ components:
         groupName:
           type: string
           readOnly: true
+    Dome9.Web.Api.Models.AwsNetworkInterfaceViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        externalId:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          readOnly: true
+        association:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAssociationViewModel'
+          readOnly: true
+        attachment:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAttachmentViewModel'
+          readOnly: true
+        availabilityZone:
+          type: string
+        description:
+          type: string
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceGroupIdentifierViewModel'
+          readOnly: true
+        interfaceType:
+          type: string
+        ipv6Addresses:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        macAddress:
+          type: string
+        networkInterfaceId:
+          type: string
+        ownerId:
+          type: string
+        privateDnsName:
+          type: string
+        privateIpAddress:
+          type: string
+        privateIpAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfacePrivateIpAddressViewModel'
+          readOnly: true
+        requesterId:
+          type: string
+        requesterManaged:
+          type: boolean
+        sourceDestCheck:
+          type: boolean
+        status:
+          type: string
+        subnetId:
+          type: string
+    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAttachmentViewModel:
+      type: object
+      properties:
+        attachmentId:
+          type: string
+          readOnly: true
+        attachTime:
+          format: date-time
+          type: string
+          readOnly: true
+        deleteOnTermination:
+          type: boolean
+          readOnly: true
+        deviceIndex:
+          format: int32
+          type: integer
+          readOnly: true
+        instanceId:
+          type: string
+          readOnly: true
+        instanceOwnerId:
+          type: string
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
     Dome9.Web.Api.Models.AwsLoadBalancersNetworkInterfacesViewModel:
       type: object
       properties:
@@ -310,6 +400,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsNetworkInterfaceViewModel'
+    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAssociationViewModel:
+      type: object
+      properties:
+        allocationId:
+          type: string
+          readOnly: true
+        associationId:
+          type: string
+          readOnly: true
+        ipOwnerId:
+          type: string
+          readOnly: true
+        publicDnsName:
+          type: string
+          readOnly: true
+        publicIp:
+          type: string
+          readOnly: true
     Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfacePrivateIpAddressViewModel:
       type: object
       properties:
@@ -337,114 +445,6 @@ components:
         publicDnsName:
           type: string
         publicIp:
-          type: string
-    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAssociationViewModel:
-      type: object
-      properties:
-        allocationId:
-          type: string
-          readOnly: true
-        associationId:
-          type: string
-          readOnly: true
-        ipOwnerId:
-          type: string
-          readOnly: true
-        publicDnsName:
-          type: string
-          readOnly: true
-        publicIp:
-          type: string
-          readOnly: true
-    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAttachmentViewModel:
-      type: object
-      properties:
-        attachmentId:
-          type: string
-          readOnly: true
-        attachTime:
-          format: date-time
-          type: string
-          readOnly: true
-        deleteOnTermination:
-          type: boolean
-          readOnly: true
-        deviceIndex:
-          format: int32
-          type: integer
-          readOnly: true
-        instanceId:
-          type: string
-          readOnly: true
-        instanceOwnerId:
-          type: string
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-    Dome9.Web.Api.Models.AwsNetworkInterfaceViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        externalId:
-          type: string
-          readOnly: true
-        name:
-          type: string
-          readOnly: true
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-          readOnly: true
-        association:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAssociationViewModel'
-          readOnly: true
-        attachment:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAttachmentViewModel'
-          readOnly: true
-        availabilityZone:
-          type: string
-        description:
-          type: string
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceGroupIdentifierViewModel'
-          readOnly: true
-        interfaceType:
-          type: string
-        ipv6Addresses:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        macAddress:
-          type: string
-        networkInterfaceId:
-          type: string
-        ownerId:
-          type: string
-        privateDnsName:
-          type: string
-        privateIpAddress:
-          type: string
-        privateIpAddresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfacePrivateIpAddressViewModel'
-          readOnly: true
-        requesterId:
-          type: string
-        requesterManaged:
-          type: boolean
-        sourceDestCheck:
-          type: boolean
-        status:
-          type: string
-        subnetId:
           type: string
   securitySchemes:
     API_key_V2:

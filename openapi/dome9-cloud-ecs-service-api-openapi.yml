@@ -80,15 +80,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.AwsECSDeploymentConfigurationViewModel:
-      type: object
-      properties:
-        maximumPercent:
-          format: int32
-          type: integer
-        minimumHealthyPercent:
-          format: int32
-          type: integer
     Dome9.Web.Api.AwsECSDeploymentViewModel:
       type: object
       properties:
@@ -119,18 +110,6 @@ components:
         expression:
           type: string
         type:
-          type: string
-    Dome9.Web.Api.AwsECSLoadBalancerViewModel:
-      type: object
-      properties:
-        containerName:
-          type: string
-        containerPort:
-          format: int32
-          type: integer
-        loadBalancerName:
-          type: string
-        targetGroupArn:
           type: string
     Dome9.Web.Api.CloudECSServiceViewModel:
       type: object
@@ -182,6 +161,27 @@ components:
           type: string
         type:
           type: string
+    Dome9.Web.Api.AwsECSLoadBalancerViewModel:
+      type: object
+      properties:
+        containerName:
+          type: string
+        containerPort:
+          format: int32
+          type: integer
+        loadBalancerName:
+          type: string
+        targetGroupArn:
+          type: string
+    Dome9.Web.Api.AwsECSDeploymentConfigurationViewModel:
+      type: object
+      properties:
+        maximumPercent:
+          format: int32
+          type: integer
+        minimumHealthyPercent:
+          format: int32
+          type: integer
   securitySchemes:
     API_key_V2:
       type: http

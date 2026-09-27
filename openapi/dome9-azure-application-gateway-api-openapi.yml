@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Azure Application Gateway
-      operationId: AzureApplicationGateway_Get
+      operationId: getV2AzureApplicationGatewayById
       parameters:
       - name: id
         in: path
@@ -70,160 +70,10 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Azure.ApplicationGateway.AzureApplicationGatewayViewModel'
       summary: Azure application gateway get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AzureApplicationGateway_Get
 components:
   schemas:
-    Dome9.Web.Api.Azure.ApplicationGateway.AuthenticationlCertificateViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        provisioningState:
-          type: string
-    Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        eventHubAuthorizationRuleId:
-          type: string
-        eventHubName:
-          type: string
-        logs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel'
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel'
-        storageAccount:
-          type: string
-        workspaceId:
-          type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.HttpListenerViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        frontendIPConfigurationExternalId:
-          type: string
-        frontEndPortExternalId:
-          type: string
-        hostName:
-          type: string
-        name:
-          type: string
-        protocol:
-          type: string
-        provisioningState:
-          type: string
-        requireServerNameIndication:
-          type: boolean
-        sslCertificateExternalId:
-          type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.FrontendPortViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        port:
-          format: int32
-          type: integer
-        provisioningState:
-          type: string
-    Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel:
-      type: object
-      properties:
-        category:
-          type: string
-        categoryGroup:
-          type: string
-        enabled:
-          type: boolean
-        retentionDays:
-          format: int32
-          type: integer
-        retentionStatus:
-          type: boolean
-    Dome9.Web.Api.Azure.ApplicationGateway.ClientAuthConfigurationViewModel:
-      type: object
-      properties:
-        verifyClientCertIssuerDN:
-          type: boolean
-        verifyClientRevocation:
-          type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.WafConfigurationViewModel:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        firewallMode:
-          type: string
-        ruleSetType:
-          type: string
-        ruleSetVersion:
-          type: string
-        disabledRuleGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.ApplicationGateway.DisabledRuleGroupViewModel'
-    Dome9.Web.Api.Azure.ApplicationGateway.PrivateLinkIPConfigurationViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        etag:
-          type: string
-        type:
-          type: string
-        privateIPAddress:
-          type: string
-        privateIPAllocationMethod:
-          type: string
-        primary:
-          type: boolean
-        subnetId:
-          type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.PathRuleViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        backendAddressPoolExternalId:
-          type: string
-        backendHttpSettingsExternalId:
-          type: string
-        name:
-          type: string
-        provisioningState:
-          type: string
-        paths:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.UrlPathMapViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        defaultBackendAddresPoolExternalId:
-          type: string
-        defaultRedirectConfigurationExternalId:
-          type: string
-        name:
-          type: string
-        provisioningState:
-          type: string
-        pathRules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.ApplicationGateway.PathRuleViewModel'
     Dome9.Web.Api.Azure.ApplicationGateway.ProbeViewModel:
       type: object
       properties:
@@ -248,17 +98,6 @@ components:
         unhealthyThreshold:
           format: int32
           type: integer
-    Dome9.Web.Api.Azure.ApplicationGateway.GatewayIPConfigurationViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        subnetExternalId:
-          type: string
-        provisioningState:
-          type: string
     Dome9.Web.Api.Azure.ApplicationGateway.PrivateLinkConfigurationsViewModel:
       type: object
       properties:
@@ -275,6 +114,207 @@ components:
         type:
           type: string
         provisioningState:
+          type: string
+    Dome9.Web.Api.Azure.ApplicationGateway.FrontendPortViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        port:
+          format: int32
+          type: integer
+        provisioningState:
+          type: string
+    Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel:
+      type: object
+      properties:
+        category:
+          type: string
+        enabled:
+          type: boolean
+        retentionDays:
+          format: int32
+          type: integer
+        retentionStatus:
+          type: boolean
+        timeGrain:
+          type: string
+    Dome9.Web.Api.Azure.ApplicationGateway.BackendHttpSettingsCollectionViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        authenticationCertificatesIds:
+          type: array
+          items:
+            type: string
+        cookieBasedAffinity:
+          type: string
+        name:
+          type: string
+        port:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+        provisioningState:
+          type: string
+        requestTimeout:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Azure.ApplicationGateway.UrlPathMapViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        defaultBackendAddresPoolExternalId:
+          type: string
+        defaultRedirectConfigurationExternalId:
+          type: string
+        name:
+          type: string
+        provisioningState:
+          type: string
+        pathRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.ApplicationGateway.PathRuleViewModel'
+    Dome9.Web.Api.Azure.ApplicationGateway.PathRuleViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        backendAddressPoolExternalId:
+          type: string
+        backendHttpSettingsExternalId:
+          type: string
+        name:
+          type: string
+        provisioningState:
+          type: string
+        paths:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Azure.ApplicationGateway.SkuViewModel:
+      type: object
+      properties:
+        capacity:
+          format: int32
+          type: integer
+        name:
+          type: string
+        tier:
+          type: string
+    Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel:
+      type: object
+      properties:
+        category:
+          type: string
+        categoryGroup:
+          type: string
+        enabled:
+          type: boolean
+        retentionDays:
+          format: int32
+          type: integer
+        retentionStatus:
+          type: boolean
+    Dome9.Web.Api.Azure.ApplicationGateway.SslProfileViewModel:
+      type: object
+      properties:
+        trustedClientCertificates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureNetworkSubResourceViewModel'
+        sslPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.ApplicationGateway.SslPolicyViewModel'
+        clientAuthConfiguration:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.ApplicationGateway.ClientAuthConfigurationViewModel'
+        provisioningState:
+          type: string
+        name:
+          type: string
+        etag:
+          type: string
+        type:
+          type: string
+        id:
+          type: string
+    Dome9.Web.Api.Azure.ApplicationGateway.PrivateLinkIPConfigurationViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        etag:
+          type: string
+        type:
+          type: string
+        privateIPAddress:
+          type: string
+        privateIPAllocationMethod:
+          type: string
+        primary:
+          type: boolean
+        subnetId:
+          type: string
+    Dome9.Web.Api.Azure.ApplicationGateway.AuthenticationlCertificateViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        provisioningState:
+          type: string
+    Dome9.Web.Api.Azure.ApplicationGateway.SslCertificateViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        provisioningState:
+          type: string
+    Dome9.Web.Api.Azure.ApplicationGateway.DisabledRuleGroupViewModel:
+      type: object
+      properties:
+        ruleGroupName:
+          type: string
+        rules:
+          type: array
+          items:
+            format: int32
+            type: integer
+    Dome9.Web.Api.Azure.ApplicationGateway.RequestRoutingRulesViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        backendAddressPoolExternalId:
+          type: string
+        backendHttpSettingsExternalId:
+          type: string
+        httpListnerExternalId:
+          type: string
+        name:
+          type: string
+        provisioningState:
+          type: string
+        ruleType:
+          type: string
+        urlPathMapId:
+          type: string
+    Dome9.Web.Api.Azure.ApplicationGateway.ClientAuthConfigurationViewModel:
+      type: object
+      properties:
+        verifyClientCertIssuerDN:
+          type: boolean
+        verifyClientRevocation:
           type: string
     Dome9.Web.Api.Azure.ApplicationGateway.AzureApplicationGatewayViewModel:
       type: object
@@ -391,38 +431,26 @@ components:
           type: string
         publicIPExternalId:
           type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.SkuViewModel:
+    Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel:
       type: object
       properties:
-        capacity:
-          format: int32
-          type: integer
-        name:
+        id:
           type: string
-        tier:
+        eventHubAuthorizationRuleId:
           type: string
-    Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel:
-      type: object
-      properties:
-        category:
+        eventHubName:
           type: string
-        enabled:
-          type: boolean
-        retentionDays:
-          format: int32
-          type: integer
-        retentionStatus:
-          type: boolean
-        timeGrain:
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel'
+        storageAccount:
           type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.SslCertificateViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        provisioningState:
+        workspaceId:
           type: string
     Dome9.Web.Api.Azure.ApplicationGateway.SslPolicyViewModel:
       type: object
@@ -441,48 +469,6 @@ components:
             type: string
         minProtocolVersion:
           type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.RequestRoutingRulesViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        backendAddressPoolExternalId:
-          type: string
-        backendHttpSettingsExternalId:
-          type: string
-        httpListnerExternalId:
-          type: string
-        name:
-          type: string
-        provisioningState:
-          type: string
-        ruleType:
-          type: string
-        urlPathMapId:
-          type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.BackendHttpSettingsCollectionViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        authenticationCertificatesIds:
-          type: array
-          items:
-            type: string
-        cookieBasedAffinity:
-          type: string
-        name:
-          type: string
-        port:
-          format: int32
-          type: integer
-        protocol:
-          type: string
-        provisioningState:
-          type: string
-        requestTimeout:
-          format: int32
-          type: integer
     Dome9.Web.Api.Azure.ApplicationGateway.BackendAddressPoolViewModel:
       type: object
       properties:
@@ -501,37 +487,53 @@ components:
       properties:
         id:
           type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.SslProfileViewModel:
+    Dome9.Web.Api.Azure.ApplicationGateway.WafConfigurationViewModel:
       type: object
       properties:
-        trustedClientCertificates:
+        enabled:
+          type: boolean
+        firewallMode:
+          type: string
+        ruleSetType:
+          type: string
+        ruleSetVersion:
+          type: string
+        disabledRuleGroups:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureNetworkSubResourceViewModel'
-        sslPolicy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.ApplicationGateway.SslPolicyViewModel'
-        clientAuthConfiguration:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.ApplicationGateway.ClientAuthConfigurationViewModel'
-        provisioningState:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.ApplicationGateway.DisabledRuleGroupViewModel'
+    Dome9.Web.Api.Azure.ApplicationGateway.GatewayIPConfigurationViewModel:
+      type: object
+      properties:
+        externalId:
           type: string
         name:
           type: string
-        etag:
+        subnetExternalId:
           type: string
-        type:
+        provisioningState:
           type: string
-        id:
-          type: string
-    Dome9.Web.Api.Azure.ApplicationGateway.DisabledRuleGroupViewModel:
+    Dome9.Web.Api.Azure.ApplicationGateway.HttpListenerViewModel:
       type: object
       properties:
-        ruleGroupName:
+        externalId:
           type: string
-        rules:
-          type: array
-          items:
-            format: int32
-            type: integer
+        frontendIPConfigurationExternalId:
+          type: string
+        frontEndPortExternalId:
+          type: string
+        hostName:
+          type: string
+        name:
+          type: string
+        protocol:
+          type: string
+        provisioningState:
+          type: string
+        requireServerNameIndication:
+          type: boolean
+        sslCertificateExternalId:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

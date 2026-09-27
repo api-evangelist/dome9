@@ -104,7 +104,7 @@ paths:
       tags:
       - ContinuousCompliancePolicy
       summary: Get all compliance policies for the account
-      operationId: ContinuousCompliancePolicy_Get
+      operationId: getV2ComplianceContinuousCompliancePolicy
       responses:
         '200':
           description: OK
@@ -134,6 +134,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousCompliancePolicyGetViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: ContinuousCompliancePolicy_Get
     post:
       tags:
       - ContinuousCompliancePolicy
@@ -245,7 +247,7 @@ paths:
         required: true
 components:
   schemas:
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousCompliancePolicyPostViewModel:
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousCompliancePolicyPutViewModel:
       required:
       - cloudAccountId
       - notificationIds
@@ -287,7 +289,7 @@ components:
             format: uuid
             type: string
             example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousCompliancePolicyPutViewModel:
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousCompliancePolicyPostViewModel:
       required:
       - cloudAccountId
       - notificationIds

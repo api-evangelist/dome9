@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Google Cloud Iam Policy
-      operationId: GoogleCloudIamPolicy_Get
+      operationId: getV2GoogleCloudIamPolicyById
       parameters:
       - name: id
         in: path
@@ -71,16 +71,29 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GoogleCloudIamPolicyViewModel'
       summary: Google cloud iam policy get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: GoogleCloudIamPolicy_Get
 components:
   schemas:
-    Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyAuditConfigsViewModel.GcpIamPolicyAuditLogConfigsViewModel:
+    Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyAuditConfigsViewModel:
       type: object
       properties:
         eTag:
           type: string
-        logType:
+        service:
           type: string
-        exemptedMembers:
+        auditLogConfigs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyAuditConfigsViewModel.GcpIamPolicyAuditLogConfigsViewModel'
+    Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyBindingsViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        role:
+          type: string
+        members:
           type: array
           items:
             type: string
@@ -108,25 +121,14 @@ components:
           example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
-    Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyAuditConfigsViewModel:
+    Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyAuditConfigsViewModel.GcpIamPolicyAuditLogConfigsViewModel:
       type: object
       properties:
         eTag:
           type: string
-        service:
+        logType:
           type: string
-        auditLogConfigs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyAuditConfigsViewModel.GcpIamPolicyAuditLogConfigsViewModel'
-    Dome9.Web.Api.Google.IamPolicy.GcpIamPolicyBindingsViewModel:
-      type: object
-      properties:
-        eTag:
-          type: string
-        role:
-          type: string
-        members:
+        exemptedMembers:
           type: array
           items:
             type: string

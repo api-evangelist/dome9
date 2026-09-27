@@ -47,7 +47,7 @@ paths:
     get:
       tags:
       - Cloud Vpc
-      operationId: CloudVpc_Get
+      operationId: getV2CloudVpcById
       parameters:
       - name: id
         in: path
@@ -296,6 +296,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudVpcViewModel'
       summary: Cloud vpc get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: CloudVpc_Get
 components:
   schemas:
     Dome9.Web.Api.Models.CloudVpcViewModel:

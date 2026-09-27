@@ -155,6 +155,114 @@ paths:
           description: No Content
 components:
   schemas:
+    Dome9.Web.Api.Compliance.Remediation.RemediationPostRequestModel:
+      required:
+      - comment
+      type: object
+      properties:
+        rules:
+          description: '[Optional] List of rules to apply the remediation on.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RuleViewModel'
+        logicExpressions:
+          description: '[Optional] The GSL logic expressions of the remediation.'
+          pattern: ((name|id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])
+          type: array
+          items:
+            type: string
+        severities:
+          description: '[Optional] List of severities to remediate. Valid values: [''Informational'', ''Low'', ''Medium'', ''High'', ''Critical'']'
+          type: array
+          items:
+            enum:
+            - Informational
+            - Low
+            - Medium
+            - High
+            - Critical
+            type: string
+        rulesetId:
+          format: int64
+          description: '[Required] Ruleset ID to apply remediation on.'
+          type: integer
+        cloudAccountIds:
+          description: '[Optional] List of cloud account IDs to apply remediation on.
+
+            If neither cloud account IDs nor organizational unit IDs are supplied, remediation will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        comment:
+          description: '[Required] Comment text (free text)'
+          type: string
+        cloudBots:
+          description: Cloud bots execution expressions
+          type: array
+          items:
+            type: string
+        organizationalUnitIds:
+          description: '[Optional] List of organizational unit IDs to apply remediation on.
+
+            If neither organizational unit IDs nor cloud account IDs are supplied, remediation will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        dateRange:
+          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
+          description: '[Optional] Date range for the remediation to take effect.
+
+            The exclusion will take effect permanently unless a specific date range is specified.
+
+            Leaving ''From'' null will take only ''To'' into account.
+
+            Leaving ''To'' null will take only ''From'' into account.
+
+            DateRange with both ''From'' and ''To'' null will be disregarded.'
+        platform:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        cloudAccountType:
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
     Falconetix.Model.DateTimeRange:
       type: object
       properties:
@@ -166,11 +274,16 @@ components:
           format: date-time
           description: To date time
           type: string
-    Dome9.Web.Api.Compliance.Remediation.RemediationPostRequestModel:
+    Dome9.Web.Api.Compliance.Remediation.RemediationPutRequestModel:
       required:
       - comment
       type: object
       properties:
+        id:
+          format: uuid
+          description: '[Required] Remediation ID'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
         rules:
           description: '[Optional] List of rules to apply the remediation on.'
           type: array
@@ -402,119 +515,6 @@ components:
           type: string
         name:
           description: Rule name
-          type: string
-    Dome9.Web.Api.Compliance.Remediation.RemediationPutRequestModel:
-      required:
-      - comment
-      type: object
-      properties:
-        id:
-          format: uuid
-          description: '[Required] Remediation ID'
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        rules:
-          description: '[Optional] List of rules to apply the remediation on.'
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.RuleViewModel'
-        logicExpressions:
-          description: '[Optional] The GSL logic expressions of the remediation.'
-          pattern: ((name|id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])
-          type: array
-          items:
-            type: string
-        severities:
-          description: '[Optional] List of severities to remediate. Valid values: [''Informational'', ''Low'', ''Medium'', ''High'', ''Critical'']'
-          type: array
-          items:
-            enum:
-            - Informational
-            - Low
-            - Medium
-            - High
-            - Critical
-            type: string
-        rulesetId:
-          format: int64
-          description: '[Required] Ruleset ID to apply remediation on.'
-          type: integer
-        cloudAccountIds:
-          description: '[Optional] List of cloud account IDs to apply remediation on.
-
-            If neither cloud account IDs nor organizational unit IDs are supplied, remediation will apply on all cloud accounts.
-
-            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
-        comment:
-          description: '[Required] Comment text (free text)'
-          type: string
-        cloudBots:
-          description: Cloud bots execution expressions
-          type: array
-          items:
-            type: string
-        organizationalUnitIds:
-          description: '[Optional] List of organizational unit IDs to apply remediation on.
-
-            If neither organizational unit IDs nor cloud account IDs are supplied, remediation will apply on all cloud accounts.
-
-            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
-        dateRange:
-          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
-          description: '[Optional] Date range for the remediation to take effect.
-
-            The exclusion will take effect permanently unless a specific date range is specified.
-
-            Leaving ''From'' null will take only ''To'' into account.
-
-            Leaving ''To'' null will take only ''From'' into account.
-
-            DateRange with both ''From'' and ''To'' null will be disregarded.'
-        platform:
-          enum:
-          - Aws
-          - Azure
-          - Google
-          - Kubernetes
-          - Terraform
-          - Generic
-          - KubernetesRuntimeAssurance
-          - ShiftLeft
-          - SourceCodeAssurance
-          - ImageAssurance
-          - Alibaba
-          - Cft
-          - ContainerRegistry
-          - Oci
-          - CIEM
-          type: string
-        cloudAccountType:
-          enum:
-          - Aws
-          - Azure
-          - Google
-          - Kubernetes
-          - Terraform
-          - Generic
-          - KubernetesRuntimeAssurance
-          - ShiftLeft
-          - SourceCodeAssurance
-          - ImageAssurance
-          - Alibaba
-          - Cft
-          - ContainerRegistry
-          - Oci
-          - CIEM
           type: string
   securitySchemes:
     API_key_V2:

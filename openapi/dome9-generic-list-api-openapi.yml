@@ -58,7 +58,7 @@ paths:
       tags:
       - Generic List
       summary: Get all generic lists
-      operationId: GenericList_Get
+      operationId: getV2GenericList
       responses:
         '200':
           description: OK
@@ -88,6 +88,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListResponseViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: GenericList_Get
     put:
       tags:
       - Generic List
@@ -170,15 +172,23 @@ paths:
         required: true
 components:
   schemas:
-    Dome9.Web.Api.GenericList.GenericListResponseViewModel:
+    Dome9.Web.Api.GenericList.GenericListValueViewModel:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          pattern: '[a-zA-Z0-9/.\-_:%*{}()=!&|\\$#~^+@ \u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff]+'
+          type: string
+        comment:
+          type: string
+    Dome9.Web.Api.GenericList.GenericListViewModel:
       required:
       - id
       - name
       - items
       type: object
       properties:
-        isManaged:
-          type: boolean
         id:
           format: uuid
           type: string
@@ -207,23 +217,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListValueViewModel'
-    Dome9.Web.Api.GenericList.GenericListValueViewModel:
-      required:
-      - value
-      type: object
-      properties:
-        value:
-          pattern: '[a-zA-Z0-9/.\-_:%*{}()=!&|\\$#~^+@ \u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff]+'
-          type: string
-        comment:
-          type: string
-    Dome9.Web.Api.GenericList.GenericListViewModel:
+    Dome9.Web.Api.GenericList.GenericListResponseViewModel:
       required:
       - id
       - name
       - items
       type: object
       properties:
+        isManaged:
+          type: boolean
         id:
           format: uuid
           type: string

@@ -44,7 +44,7 @@ paths:
     get:
       tags:
       - Billing
-      operationId: Billing_PPPResponse
+      operationId: getBillingPending
       parameters:
       - name: ppp_status
         in: query
@@ -72,11 +72,13 @@ paths:
                 type: object
       summary: Billing PPP response
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Billing_PPPResponse
   /billing/failure:
     get:
       tags:
       - Billing
-      operationId: Billing_PPPResponse
+      operationId: getBillingFailure
       parameters:
       - name: ppp_status
         in: query
@@ -104,6 +106,8 @@ paths:
                 type: object
       summary: Billing PPP response
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Billing_PPPResponse
   /v2/Billing:
     post:
       tags:

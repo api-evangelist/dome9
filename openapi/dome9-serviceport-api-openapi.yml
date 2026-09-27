@@ -207,15 +207,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
-    Dome9.Web.Api.Models.PortRangeViewModel:
-      type: object
-      properties:
-        from:
-          format: int32
-          type: integer
-        to:
-          format: int32
-          type: integer
     Dome9.Web.Api.Models.ScopeViewModel:
       type: object
       properties:
@@ -235,6 +226,15 @@ components:
           type: object
           additionalProperties:
             type: string
+    Dome9.Web.Api.Models.PortRangeViewModel:
+      type: object
+      properties:
+        from:
+          format: int32
+          type: integer
+        to:
+          format: int32
+          type: integer
   securitySchemes:
     API_key_V2:
       type: http

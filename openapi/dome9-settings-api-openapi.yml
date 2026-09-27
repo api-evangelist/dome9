@@ -281,6 +281,40 @@ paths:
         required: true
 components:
   schemas:
+    Falconetix.Model.ComplianceEmailNotificationsDescriptor:
+      type: object
+      properties:
+        bundleAdded:
+          type: boolean
+        bundleDeleted:
+          type: boolean
+        ruleAdded:
+          type: boolean
+        ruleChanged:
+          type: boolean
+        ruleDeleted:
+          type: boolean
+    Dome9.Web.Api.Models.SnsSettingsViewModel:
+      type: object
+      properties:
+        topicArn:
+          description: AWS SNS Topic ARN value
+          type: string
+    Falconetix.Model.IamSafeEmailNotificationsDescriptor:
+      type: object
+      properties:
+        leaseEvent:
+          type: boolean
+        leaseNotificationsOthers:
+          type: boolean
+        tamperDetected:
+          type: boolean
+        enrollmentEvent:
+          type: boolean
+        iamSafetyAccount:
+          type: boolean
+        iamSafetyInvalidCredentials:
+          type: boolean
     Falconetix.Model.EmailNotificationsDescriptor:
       type: object
       properties:
@@ -351,46 +385,6 @@ components:
           $ref: '#/components/schemas/Falconetix.Model.ComplianceEmailNotificationsDescriptor'
         kubernetes:
           $ref: '#/components/schemas/Falconetix.Model.KubernetesEmailNotificationsDescriptor'
-    Falconetix.Model.IamSafeEmailNotificationsDescriptor:
-      type: object
-      properties:
-        leaseEvent:
-          type: boolean
-        leaseNotificationsOthers:
-          type: boolean
-        tamperDetected:
-          type: boolean
-        enrollmentEvent:
-          type: boolean
-        iamSafetyAccount:
-          type: boolean
-        iamSafetyInvalidCredentials:
-          type: boolean
-    Dome9.Web.Api.Models.EmailNotificationFiltersViewModel:
-      type: object
-      properties:
-        cloudAccounts:
-          type: array
-          items:
-            type: string
-    Falconetix.Model.ComplianceEmailNotificationsDescriptor:
-      type: object
-      properties:
-        bundleAdded:
-          type: boolean
-        bundleDeleted:
-          type: boolean
-        ruleAdded:
-          type: boolean
-        ruleChanged:
-          type: boolean
-        ruleDeleted:
-          type: boolean
-    Falconetix.Model.KubernetesEmailNotificationsDescriptor:
-      type: object
-      properties:
-        agentStatusDegradation:
-          type: boolean
     Dome9.Web.Api.Models.SettingsViewModel:
       type: object
       properties:
@@ -413,12 +407,18 @@ components:
         apiKey:
           description: API Key
           type: string
-    Dome9.Web.Api.Models.SnsSettingsViewModel:
+    Dome9.Web.Api.Models.EmailNotificationFiltersViewModel:
       type: object
       properties:
-        topicArn:
-          description: AWS SNS Topic ARN value
-          type: string
+        cloudAccounts:
+          type: array
+          items:
+            type: string
+    Falconetix.Model.KubernetesEmailNotificationsDescriptor:
+      type: object
+      properties:
+        agentStatusDegradation:
+          type: boolean
   securitySchemes:
     API_key_V2:
       type: http

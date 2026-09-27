@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Cloud Route53 Domain
-      operationId: CloudRoute53Domain_Get
+      operationId: getV2CloudRoute53DomainById
       parameters:
       - name: id
         in: path
@@ -76,8 +76,33 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel'
       summary: Cloud route53 domain get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: CloudRoute53Domain_Get
 components:
   schemas:
+    Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        domainName:
+          type: string
+        autoRenew:
+          type: boolean
+        transferLock:
+          type: boolean
+        expirationTime:
+          format: date-time
+          type: string
+        details:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainDetailsViewModel'
     Dome9.Web.Api.CloudRoute53.CloudRoute53DomainDetailsViewModel:
       type: object
       properties:
@@ -107,29 +132,6 @@ components:
         updatedTime:
           format: date-time
           type: string
-    Dome9.Web.Api.CloudRoute53.CloudRoute53DomainViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        accountId:
-          format: int64
-          type: integer
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        domainName:
-          type: string
-        autoRenew:
-          type: boolean
-        transferLock:
-          type: boolean
-        expirationTime:
-          format: date-time
-          type: string
-        details:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainDetailsViewModel'
     Dome9.Web.Api.CloudRoute53.CloudRoute53DomainNameserverViewModel:
       type: object
       properties:

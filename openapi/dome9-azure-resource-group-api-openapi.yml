@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Azure Resource Group
-      operationId: AzureResourceGroup_Get
+      operationId: getV2AzureResourceGroupById
       parameters:
       - name: id
         in: path
@@ -70,6 +70,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureResourceGroupViewModel'
       summary: Azure resource group get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AzureResourceGroup_Get
 components:
   schemas:
     Dome9.Web.Api.Models.AzureResourceGroupViewModel:

@@ -96,7 +96,7 @@ paths:
       tags:
       - IP List
       summary: Get an IP List by id
-      operationId: IpList_Get
+      operationId: getV2IpListById
       parameters:
       - name: id
         in: path
@@ -124,6 +124,8 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Dome9.Web.Api.IPList.IpListViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: IpList_Get
     put:
       tags:
       - IP List
@@ -180,17 +182,6 @@ paths:
           description: No Content
 components:
   schemas:
-    Falconetix.Model.IPDescriptor:
-      required:
-      - ip
-      type: object
-      properties:
-        ip:
-          type: string
-        comment:
-          maxLength: 500
-          minLength: 0
-          type: string
     Dome9.Web.Api.IPList.IpListPutViewModel:
       type: object
       properties:
@@ -207,6 +198,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Falconetix.Model.IPDescriptor'
+    Falconetix.Model.IPDescriptor:
+      required:
+      - ip
+      type: object
+      properties:
+        ip:
+          type: string
+        comment:
+          maxLength: 500
+          minLength: 0
+          type: string
     Dome9.Web.Api.IPList.IpListViewModel:
       type: object
       properties:

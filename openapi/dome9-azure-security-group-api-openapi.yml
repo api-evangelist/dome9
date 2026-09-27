@@ -38,7 +38,7 @@ paths:
     get:
       tags:
       - Azure Security Group
-      operationId: AzureSecurityGroup_Get
+      operationId: getV2AzureSecurityGroup
       parameters:
       - name: cloudAccountId
         in: query
@@ -77,6 +77,8 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureSecurityGroupViewModel'
       summary: Azure security group get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AzureSecurityGroup_Get
 components:
   schemas:
     Dome9.Web.Api.Models.AzureSecurityGroupServiceViewModel:

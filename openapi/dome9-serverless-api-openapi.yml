@@ -169,7 +169,7 @@ paths:
       tags:
       - Serverless
       summary: Update policy config or add FSP for an AWS Cloud account
-      operationId: Serverless_PutAccount
+      operationId: patchV2ServerlessByCloudProviderAccountsByCloudAccountId
       parameters:
       - name: cloudAccountId
         in: path
@@ -225,6 +225,8 @@ paths:
             schema:
               $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel'
         required: true
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_PutAccount
   /v2/serverless/accounts/states:
     get:
       tags:
@@ -275,7 +277,7 @@ paths:
     get:
       tags:
       - Serverless
-      operationId: Serverless_GetAccountsState
+      operationId: getV2ServerlessByCloudProviderAccountsStates
       parameters:
       - name: cloudProvider
         in: path
@@ -317,6 +319,8 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
       summary: Serverless get accounts state
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_GetAccountsState
   /v2/serverless/accounts/states/{cloudAccountId}:
     get:
       tags:
@@ -362,7 +366,7 @@ paths:
     get:
       tags:
       - Serverless
-      operationId: Serverless_GetAccountState
+      operationId: getV2ServerlessByCloudProviderAccountsStatesByCloudAccountId
       parameters:
       - name: cloudAccountId
         in: path
@@ -399,6 +403,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel'
       summary: Serverless get account state
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_GetAccountState
   /v2/serverless/accounts/{cloudAccountId}/exclusions:
     get:
       tags:
@@ -520,7 +526,7 @@ paths:
     get:
       tags:
       - Serverless
-      operationId: Serverless_GetAccountExclusions
+      operationId: getV2ServerlessByCloudProviderAccountsByCloudAccountIdExclusions
       parameters:
       - name: cloudAccountId
         in: path
@@ -572,10 +578,12 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
       summary: Serverless get account exclusions
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_GetAccountExclusions
     post:
       tags:
       - Serverless
-      operationId: Serverless_PostExclusion
+      operationId: postV2ServerlessByCloudProviderAccountsByCloudAccountIdExclusions
       parameters:
       - name: cloudAccountId
         in: path
@@ -633,6 +641,8 @@ paths:
         required: true
       summary: Serverless post exclusion
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_PostExclusion
   /v2/serverless/accounts/{cloudAccountId}/rules:
     get:
       tags:
@@ -754,7 +764,7 @@ paths:
     get:
       tags:
       - Serverless
-      operationId: Serverless_GetAccountRules
+      operationId: getV2ServerlessByCloudProviderAccountsByCloudAccountIdRules
       parameters:
       - name: cloudAccountId
         in: path
@@ -806,10 +816,12 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
       summary: Serverless get account rules
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_GetAccountRules
     post:
       tags:
       - Serverless
-      operationId: Serverless_PostRule
+      operationId: postV2ServerlessByCloudProviderAccountsByCloudAccountIdRules
       parameters:
       - name: cloudAccountId
         in: path
@@ -867,6 +879,8 @@ paths:
         required: true
       summary: Serverless post rule
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_PostRule
   /v2/serverless/accounts/{cloudAccountId}/rules/{ruleId}:
     get:
       tags:
@@ -1021,7 +1035,7 @@ paths:
     get:
       tags:
       - Serverless
-      operationId: Serverless_GetRule
+      operationId: getV2ServerlessByCloudProviderAccountsByCloudAccountIdRulesByRuleId
       parameters:
       - name: cloudAccountId
         in: path
@@ -1062,10 +1076,12 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
       summary: Serverless get rule
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_GetRule
     put:
       tags:
       - Serverless
-      operationId: Serverless_PutRule
+      operationId: putV2ServerlessByCloudProviderAccountsByCloudAccountIdRulesByRuleId
       parameters:
       - name: cloudAccountId
         in: path
@@ -1128,10 +1144,12 @@ paths:
         required: true
       summary: Serverless put rule
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_PutRule
     delete:
       tags:
       - Serverless
-      operationId: Serverless_DeleteRule
+      operationId: deleteV2ServerlessByCloudProviderAccountsByCloudAccountIdRulesByRuleId
       parameters:
       - name: cloudAccountId
         in: path
@@ -1167,6 +1185,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
       summary: Serverless delete rule
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_DeleteRule
   /v2/serverless/accounts/{cloudAccountId}/exclusions/{exclusionId}:
     get:
       tags:
@@ -1321,7 +1341,7 @@ paths:
     get:
       tags:
       - Serverless
-      operationId: Serverless_GetExclusion
+      operationId: getV2ServerlessByCloudProviderAccountsByCloudAccountIdExclusionsByExclusionId
       parameters:
       - name: cloudAccountId
         in: path
@@ -1362,10 +1382,12 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
       summary: Serverless get exclusion
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_GetExclusion
     put:
       tags:
       - Serverless
-      operationId: Serverless_PutExclusion
+      operationId: putV2ServerlessByCloudProviderAccountsByCloudAccountIdExclusionsByExclusionId
       parameters:
       - name: cloudAccountId
         in: path
@@ -1428,10 +1450,12 @@ paths:
         required: true
       summary: Serverless put exclusion
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_PutExclusion
     delete:
       tags:
       - Serverless
-      operationId: Serverless_DeleteExclusion
+      operationId: deleteV2ServerlessByCloudProviderAccountsByCloudAccountIdExclusionsByExclusionId
       parameters:
       - name: cloudAccountId
         in: path
@@ -1467,6 +1491,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel'
       summary: Serverless delete exclusion
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_DeleteExclusion
   /v2/serverless/aws/accounts/{cloudAccountId}/missingPermissions:
     get:
       tags:
@@ -1561,7 +1587,7 @@ paths:
     get:
       tags:
       - Serverless
-      operationId: Serverless_GetFunction
+      operationId: getV2ServerlessAwsFunctionsById
       parameters:
       - name: id
         in: path
@@ -1583,6 +1609,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionViewModel'
       summary: Serverless get function
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_GetFunction
   /v2/serverless/azure/functions/{id}:
     get:
       tags:
@@ -1920,7 +1948,7 @@ paths:
     patch:
       tags:
       - Serverless
-      operationId: Serverless_PutFunctionFspBlock
+      operationId: patchV2ServerlessByCloudProviderFunctionsByIdFspMode
       parameters:
       - name: id
         in: path
@@ -1978,6 +2006,8 @@ paths:
         required: true
       summary: Serverless put function fsp block
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_PutFunctionFspBlock
   /v2/serverless/functions/{id}/whitelist:
     get:
       tags:
@@ -2023,7 +2053,7 @@ paths:
     get:
       tags:
       - Serverless
-      operationId: Serverless_GetFunctionWhitelist
+      operationId: getV2ServerlessByCloudProviderFunctionsByIdWhitelist
       parameters:
       - name: id
         in: path
@@ -2060,6 +2090,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel'
       summary: Serverless get function whitelist
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_GetFunctionWhitelist
   /v2/serverless/azure/functions/{id}/whitelist/{functionName}:
     get:
       tags:
@@ -2157,7 +2189,7 @@ paths:
     get:
       tags:
       - Serverless
-      operationId: Serverless_GetFunctionExclusions
+      operationId: getV2ServerlessByCloudProviderFunctionsByIdExclusions
       parameters:
       - name: id
         in: path
@@ -2209,6 +2241,8 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessExclusionViewModel'
       summary: Serverless get function exclusions
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_GetFunctionExclusions
   /v2/serverless/functions/{id}/rules:
     get:
       tags:
@@ -2269,7 +2303,7 @@ paths:
     get:
       tags:
       - Serverless
-      operationId: Serverless_GetFunctionRules
+      operationId: getV2ServerlessByCloudProviderFunctionsByIdRules
       parameters:
       - name: id
         in: path
@@ -2321,6 +2355,8 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessRuleViewModel'
       summary: Serverless get function rules
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Serverless_GetFunctionRules
   /v2/serverless/fsp/versions:
     get:
       tags:
@@ -2385,119 +2421,77 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody:
+    Dome9.Web.Api.Serverless.ServerlessFunctionAppViewModel:
       type: object
       properties:
-        fspMode:
-          enum:
-          - Alert
-          - Block
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessMissingPermissionsViewModel:
-      type: object
-      properties:
-        lastValidatePermissionsTimestamp:
-          format: int64
-          type: integer
-        validatePermissionsStatus:
-          enum:
-          - Success
-          - InProgress
-          - Error
-          type: string
-        denyPermissionsList:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPermissionViewModel'
-    Dome9.Web.Api.Serverless.ServerlessAddAccountRequest:
-      required:
-      - cloudAccountId
-      type: object
-      properties:
-        cloudAccountId:
-          type: string
-        cloudProvider:
-          enum:
-          - aws
-          - azure
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessPermissionResourceViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        description:
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessPodGroupViewModel:
-      type: object
-      properties:
-        isLearningModeActive:
+        includesFSP:
           type: boolean
         fspMode:
           enum:
           - Alert
           - Block
           type: string
-        learningModeStartTime:
-          type: string
-        learningModeEndTime:
-          type: string
-        learningModePeriod:
-          format: int32
-          type: integer
-        whiteListProgressPercent:
-          format: int32
-          type: integer
-    Falconetix.Model.Serverless.ServerlessPoliciesAction:
-      type: object
-      properties:
-        signature:
-          enum:
-          - alert
-          - block
-          type: string
-        malware:
-          enum:
-          - alert
-          - block
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel:
-      type: object
-      properties:
-        fspAutoInstrumentation:
-          type: boolean
-        fspStickyVersion:
-          type: string
-        policiesAction:
-          $ref: '#/components/schemas/Falconetix.Model.Serverless.ServerlessPoliciesAction'
-    Dome9.Web.Api.Serverless.ServerlessFspVersioViewModel:
-      type: object
-      properties:
-        fspVersion:
-          type: string
-        versionState:
-          type: string
-        unsupportedRuntimes:
+        fspFeatures:
           type: array
           items:
             type: string
-    Falconetix.Model.ServiceInterfaces.Serverless.ServerlessApiResponse:
-      type: object
-      properties:
-        data:
-          type: object
-        nextToken:
+        isRuntimeSupported:
+          type: boolean
+        runtime:
           type: string
-        statusCode:
-          format: int32
-          type: integer
-        message:
-          type: string
+        functionsSummary:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionSummaryViewModel'
+        serverlessErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessErrorViewModel'
     Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel:
       type: object
       properties:
         name:
           type: string
+    Dome9.Web.Api.Serverless.ServerlessFSPSupportedRuntimesViewModel:
+      type: object
+      properties:
+        supportedRuntimes:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.ServerlessExclusionModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        payloadsType:
+          enum:
+          - String
+          - IoFingerprint
+          - IoFeature
+          - SignatureName
+          type: string
+        target:
+          enum:
+          - Host
+          - Ip
+          - File
+          - Process
+          - Api
+          - Http
+          - Io
+          - Signature
+          type: string
+        payloads:
+          type: array
+          items:
+            type: object
+        functions:
+          type: array
+          items:
+            type: string
     Dome9.Web.Api.Serverless.ServerlessRuleViewModel:
       type: object
       properties:
@@ -2537,84 +2531,48 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Serverless.ServerlessRuleModel:
+    Dome9.Web.Api.Serverless.ServerlessFspVersioViewModel:
       type: object
       properties:
-        id:
+        fspVersion:
           type: string
-        name:
+        versionState:
           type: string
-        payloadsType:
-          enum:
-          - String
-          - SignatureName
-          type: string
-        target:
-          enum:
-          - Host
-          - Ip
-          - File
-          - Process
-          - Api
-          - Http
-          - Io
-          - Signature
-          type: string
-        payloads:
-          type: array
-          items:
-            type: object
-        functions:
+        unsupportedRuntimes:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Serverless.EnableFSPViewModel:
+    Dome9.Web.Api.Serverless.ServerlessPodGroupViewModel:
       type: object
       properties:
-        enable:
+        isLearningModeActive:
           type: boolean
-    Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel:
-      type: object
-      properties:
-        completed:
-          type: boolean
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+        learningModeStartTime:
+          type: string
+        learningModeEndTime:
+          type: string
+        learningModePeriod:
+          format: int32
+          type: integer
         whiteListProgressPercent:
           format: int32
           type: integer
-        files:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        ips:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        hosts:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        apis:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        processes:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        https:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        inputs:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        signatures:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-    Dome9.Web.Api.Serverless.WhiteListResourceViewModel:
+    Dome9.Web.Api.Serverless.ServerlessExclusionViewModel:
       type: object
       properties:
-        name:
+        scope:
+          enum:
+          - Account
+          - Function
+          - FunctionGroup
+          - FunctionVersion
+          - FunctionApp
           type: string
-        action:
-          type: string
-        source:
-          type: array
-          items:
-            type: string
-        callstackInfo:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Serverless.ServerlessExclusionModel:
-      type: object
-      properties:
         id:
           type: string
         name:
@@ -2645,6 +2603,14 @@ components:
           type: array
           items:
             type: string
+    Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody:
+      type: object
+      properties:
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
     Dome9.Web.Api.Serverless.ServerlessErrorViewModel:
       type: object
       properties:
@@ -2654,33 +2620,55 @@ components:
           type: string
         message:
           type: string
-    Dome9.Web.Api.Serverless.ServerlessFunctionSummaryViewModel:
+    Dome9.Web.Api.Serverless.ServerlessMissingPermissionsViewModel:
       type: object
       properties:
-        name:
-          type: string
-        whiteListProgress:
-          format: int32
+        lastValidatePermissionsTimestamp:
+          format: int64
           type: integer
-    Dome9.Web.Api.Serverless.ServerlessPutFunctionViewModel:
-      type: object
-      properties:
-        functionId:
-          type: string
-        fspAutoInstrumentation:
-          type: boolean
-        isLearningModeActive:
-          type: boolean
-        learningModePeriod:
-          format: int32
-          type: integer
-        fspStickyVersion:
-          type: string
-        fspMode:
+        validatePermissionsStatus:
           enum:
-          - Alert
-          - Block
+          - Success
+          - InProgress
+          - Error
           type: string
+        denyPermissionsList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPermissionViewModel'
+    Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel:
+      type: object
+      properties:
+        completed:
+          type: boolean
+        whiteListProgressPercent:
+          format: int32
+          type: integer
+        files:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        ips:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        hosts:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        apis:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        processes:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        https:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        inputs:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        signatures:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+    Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel:
+      type: object
+      properties:
+        status:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceViewModel'
     Dome9.Web.Api.Serverless.ServerlessPutSingleFunctionViewModel:
       type: object
       properties:
@@ -2698,19 +2686,78 @@ components:
           type: string
         fspStickyVersion:
           type: string
-    Dome9.Web.Api.Serverless.FunctionPermissionResourceViewModel:
+    Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel:
       type: object
       properties:
-        status:
+        functionsData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionViewModel'
+    Dome9.Web.Api.Serverless.ServerlessPermissionResourceViewModel:
+      type: object
+      properties:
+        arn:
           type: string
+        description:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessAddAccountRequest:
+      required:
+      - cloudAccountId
+      type: object
+      properties:
+        cloudAccountId:
+          type: string
+        cloudProvider:
+          enum:
+          - aws
+          - azure
+          type: string
+    Falconetix.Model.ServiceInterfaces.Serverless.ServerlessApiResponse:
+      type: object
+      properties:
+        data:
+          type: object
+        nextToken:
+          type: string
+        statusCode:
+          format: int32
+          type: integer
         message:
           type: string
-        resource:
+    Dome9.Web.Api.Serverless.WhiteListResourceViewModel:
+      type: object
+      properties:
+        name:
           type: string
         action:
           type: string
-        severity:
+        source:
+          type: array
+          items:
+            type: string
+        callstackInfo:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.FunctionPermissionViewModel:
+      type: object
+      properties:
+        name:
           type: string
+        suggestedPolicy:
+          type: object
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.FunctionPermissionResourceViewModel'
+    Dome9.Web.Api.Serverless.ServerlessFunctionSummaryViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        whiteListProgress:
+          format: int32
+          type: integer
     Dome9.Web.Api.Serverless.ServerlessFunctionViewModel:
       type: object
       properties:
@@ -2787,59 +2834,117 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Serverless.ServerlessFunctionAppViewModel:
+    Dome9.Web.Api.Serverless.FunctionPermissionResourceViewModel:
       type: object
       properties:
-        includesFSP:
+        status:
+          type: string
+        message:
+          type: string
+        resource:
+          type: string
+        action:
+          type: string
+        severity:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPutFunctionViewModel:
+      type: object
+      properties:
+        functionId:
+          type: string
+        fspAutoInstrumentation:
           type: boolean
+        isLearningModeActive:
+          type: boolean
+        learningModePeriod:
+          format: int32
+          type: integer
+        fspStickyVersion:
+          type: string
         fspMode:
           enum:
           - Alert
           - Block
           type: string
-        fspFeatures:
-          type: array
-          items:
-            type: string
-        isRuntimeSupported:
+    Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel:
+      type: object
+      properties:
+        fspAutoInstrumentation:
           type: boolean
-        runtime:
+        fspStickyVersion:
           type: string
-        functionsSummary:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessFunctionSummaryViewModel'
-        serverlessErrors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessErrorViewModel'
-    Dome9.Web.Api.Serverless.FunctionPermissionViewModel:
+        policiesAction:
+          $ref: '#/components/schemas/Falconetix.Model.Serverless.ServerlessPoliciesAction'
+    Falconetix.Model.Serverless.ServerlessPoliciesAction:
       type: object
       properties:
-        name:
+        signature:
+          enum:
+          - alert
+          - block
           type: string
-        suggestedPolicy:
-          type: object
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.FunctionPermissionResourceViewModel'
-    Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel:
+        malware:
+          enum:
+          - alert
+          - block
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPutFunctionResponseViewModel:
       type: object
       properties:
+        functionId:
+          type: string
         status:
           type: string
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceViewModel'
-    Dome9.Web.Api.Serverless.ServerlessFSPSupportedRuntimesViewModel:
-      type: object
-      properties:
-        supportedRuntimes:
-          type: array
-          items:
-            type: string
+        statusCode:
+          enum:
+          - Continue
+          - SwitchingProtocols
+          - OK
+          - Created
+          - Accepted
+          - NonAuthoritativeInformation
+          - NoContent
+          - ResetContent
+          - PartialContent
+          - MultipleChoices
+          - Ambiguous
+          - MovedPermanently
+          - Moved
+          - Found
+          - Redirect
+          - SeeOther
+          - RedirectMethod
+          - NotModified
+          - UseProxy
+          - Unused
+          - TemporaryRedirect
+          - RedirectKeepVerb
+          - BadRequest
+          - Unauthorized
+          - PaymentRequired
+          - Forbidden
+          - NotFound
+          - MethodNotAllowed
+          - NotAcceptable
+          - ProxyAuthenticationRequired
+          - RequestTimeout
+          - Conflict
+          - Gone
+          - LengthRequired
+          - PreconditionFailed
+          - RequestEntityTooLarge
+          - RequestUriTooLong
+          - UnsupportedMediaType
+          - RequestedRangeNotSatisfiable
+          - ExpectationFailed
+          - UpgradeRequired
+          - InternalServerError
+          - NotImplemented
+          - BadGateway
+          - ServiceUnavailable
+          - GatewayTimeout
+          - HttpVersionNotSupported
+          type: string
     Dome9.Web.Api.Serverless.ServerlessAccountViewModel:
       type: object
       properties:
@@ -2882,17 +2987,27 @@ components:
           type: string
         fspStickyVersion:
           type: string
-    Dome9.Web.Api.Serverless.ServerlessExclusionViewModel:
+    Dome9.Web.Api.Serverless.EnableFSPViewModel:
       type: object
       properties:
-        scope:
-          enum:
-          - Account
-          - Function
-          - FunctionGroup
-          - FunctionVersion
-          - FunctionApp
+        enable:
+          type: boolean
+    Dome9.Web.Api.Serverless.ServerlessPermissionViewModel:
+      type: object
+      properties:
+        serviceAction:
           type: string
+        roleArn:
+          type: string
+        roleName:
+          type: string
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPermissionResourceViewModel'
+    Dome9.Web.Api.Serverless.ServerlessRuleModel:
+      type: object
+      properties:
         id:
           type: string
         name:
@@ -2900,8 +3015,6 @@ components:
         payloadsType:
           enum:
           - String
-          - IoFingerprint
-          - IoFeature
           - SignatureName
           type: string
         target:
@@ -2962,83 +3075,6 @@ components:
         lastValidatePermissionsTimestamp:
           format: int64
           type: integer
-    Dome9.Web.Api.Serverless.ServerlessPermissionViewModel:
-      type: object
-      properties:
-        serviceAction:
-          type: string
-        roleArn:
-          type: string
-        roleName:
-          type: string
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPermissionResourceViewModel'
-    Dome9.Web.Api.Serverless.ServerlessPutFunctionResponseViewModel:
-      type: object
-      properties:
-        functionId:
-          type: string
-        status:
-          type: string
-        statusCode:
-          enum:
-          - Continue
-          - SwitchingProtocols
-          - OK
-          - Created
-          - Accepted
-          - NonAuthoritativeInformation
-          - NoContent
-          - ResetContent
-          - PartialContent
-          - MultipleChoices
-          - Ambiguous
-          - MovedPermanently
-          - Moved
-          - Found
-          - Redirect
-          - SeeOther
-          - RedirectMethod
-          - NotModified
-          - UseProxy
-          - Unused
-          - TemporaryRedirect
-          - RedirectKeepVerb
-          - BadRequest
-          - Unauthorized
-          - PaymentRequired
-          - Forbidden
-          - NotFound
-          - MethodNotAllowed
-          - NotAcceptable
-          - ProxyAuthenticationRequired
-          - RequestTimeout
-          - Conflict
-          - Gone
-          - LengthRequired
-          - PreconditionFailed
-          - RequestEntityTooLarge
-          - RequestUriTooLong
-          - UnsupportedMediaType
-          - RequestedRangeNotSatisfiable
-          - ExpectationFailed
-          - UpgradeRequired
-          - InternalServerError
-          - NotImplemented
-          - BadGateway
-          - ServiceUnavailable
-          - GatewayTimeout
-          - HttpVersionNotSupported
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel:
-      type: object
-      properties:
-        functionsData:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionViewModel'
   securitySchemes:
     API_key_V2:
       type: http

@@ -46,38 +46,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Falconetix.Model.AwsDynamoDbTableKeySchemaElementViewModel:
+    Falconetix.Model.AwsDynamoDbTableContinuousBackupsDescriptionViewModel:
       type: object
       properties:
-        attributeName:
+        continuousBackupsStatus:
           type: string
-        keyType:
-          type: string
-    Falconetix.Model.AwsDynamoDbTableStreamSpecificationViewModel:
-      type: object
-      properties:
-        streamEnabled:
-          type: boolean
-        streamViewType:
-          type: string
-    Falconetix.Model.AwsDynamoDbTableAttributeDefinitionViewModel:
-      type: object
-      properties:
-        attributeName:
-          type: string
-        attributeType:
-          type: string
-    Falconetix.Model.AwsDynamoDbTablePointInTimeRecoveryDescriptionViewModel:
-      type: object
-      properties:
-        earliestRestorableDateTime:
-          format: date-time
-          type: string
-        latestRestorableDateTime:
-          format: date-time
-          type: string
-        pointInTimeRecoveryStatus:
-          type: string
+        pointInTimeRecoveryDescription:
+          $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTablePointInTimeRecoveryDescriptionViewModel'
     Falconetix.Model.AwsDynamoDbTableDescriptionViewModel:
       type: object
       properties:
@@ -128,55 +103,13 @@ components:
           type: string
         continuousBackups:
           $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableContinuousBackupsDescriptionViewModel'
-    Falconetix.Model.AwsDynamoDbTableLocalSecondaryIndexDescriptionViewModel:
+    Falconetix.Model.AwsDynamoDbTableKeySchemaElementViewModel:
       type: object
       properties:
-        indexArn:
+        attributeName:
           type: string
-        indexName:
+        keyType:
           type: string
-        indexSizeBytes:
-          format: int64
-          type: integer
-        itemCount:
-          format: int64
-          type: integer
-        keySchema:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableKeySchemaElementViewModel'
-        projection:
-          $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableProjectionViewModel'
-    Falconetix.Model.AwsDynamoDbTableRestoreSummaryViewModel:
-      type: object
-      properties:
-        restoreDateTime:
-          format: date-time
-          type: string
-        restoreInProgress:
-          type: boolean
-        sourceBackupArn:
-          type: string
-        sourceTableArn:
-          type: string
-    Falconetix.Model.AwsDynamoDbTableProvisionedThroughputDescriptionViewModel:
-      type: object
-      properties:
-        lastDecreaseDateTime:
-          format: date-time
-          type: string
-        lastIncreaseDateTime:
-          format: date-time
-          type: string
-        numberOfDecreasesToday:
-          format: int64
-          type: integer
-        readCapacityUnits:
-          format: int64
-          type: integer
-        writeCapacityUnits:
-          format: int64
-          type: integer
     Falconetix.Model.AwsDynamoDbTableGlobalSecondaryIndexDescriptionViewModel:
       type: object
       properties:
@@ -202,13 +135,17 @@ components:
           $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableProjectionViewModel'
         provisionedThroughput:
           $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableProvisionedThroughputDescriptionViewModel'
-    Falconetix.Model.AwsDynamoDbTableContinuousBackupsDescriptionViewModel:
+    Falconetix.Model.AwsDynamoDbTablePointInTimeRecoveryDescriptionViewModel:
       type: object
       properties:
-        continuousBackupsStatus:
+        earliestRestorableDateTime:
+          format: date-time
           type: string
-        pointInTimeRecoveryDescription:
-          $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTablePointInTimeRecoveryDescriptionViewModel'
+        latestRestorableDateTime:
+          format: date-time
+          type: string
+        pointInTimeRecoveryStatus:
+          type: string
     Falconetix.Model.AwsDynamoDbTableProjectionViewModel:
       type: object
       properties:
@@ -218,6 +155,69 @@ components:
             type: string
         projectionType:
           type: string
+    Falconetix.Model.AwsDynamoDbTableStreamSpecificationViewModel:
+      type: object
+      properties:
+        streamEnabled:
+          type: boolean
+        streamViewType:
+          type: string
+    Falconetix.Model.AwsDynamoDbTableRestoreSummaryViewModel:
+      type: object
+      properties:
+        restoreDateTime:
+          format: date-time
+          type: string
+        restoreInProgress:
+          type: boolean
+        sourceBackupArn:
+          type: string
+        sourceTableArn:
+          type: string
+    Falconetix.Model.AwsDynamoDbTableLocalSecondaryIndexDescriptionViewModel:
+      type: object
+      properties:
+        indexArn:
+          type: string
+        indexName:
+          type: string
+        indexSizeBytes:
+          format: int64
+          type: integer
+        itemCount:
+          format: int64
+          type: integer
+        keySchema:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableKeySchemaElementViewModel'
+        projection:
+          $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableProjectionViewModel'
+    Falconetix.Model.AwsDynamoDbTableAttributeDefinitionViewModel:
+      type: object
+      properties:
+        attributeName:
+          type: string
+        attributeType:
+          type: string
+    Falconetix.Model.AwsDynamoDbTableProvisionedThroughputDescriptionViewModel:
+      type: object
+      properties:
+        lastDecreaseDateTime:
+          format: date-time
+          type: string
+        lastIncreaseDateTime:
+          format: date-time
+          type: string
+        numberOfDecreasesToday:
+          format: int64
+          type: integer
+        readCapacityUnits:
+          format: int64
+          type: integer
+        writeCapacityUnits:
+          format: int64
+          type: integer
     Falconetix.Model.AwsDynamoDbTableSSEDescriptionViewModel:
       type: object
       properties:

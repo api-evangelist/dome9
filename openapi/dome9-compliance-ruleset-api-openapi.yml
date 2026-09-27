@@ -282,6 +282,68 @@ components:
           type: boolean
         icon:
           type: string
+    Falconetix.Model.Compliance.Ruleset.RuleViewModel:
+      required:
+      - name
+      - logic
+      type: object
+      properties:
+        name:
+          description: rule name
+          type: string
+        severity:
+          description: rule severity (High/Medium/Low)
+          enum:
+          - Informational
+          - Low
+          - Medium
+          - High
+          - Critical
+          type: string
+        rlmId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        logic:
+          description: the GSL statement for the rule (text string)
+          type: string
+        description:
+          description: description of the rule (text)
+          type: string
+        remediation:
+          description: remediation text for the rule (text)
+          type: string
+        cloudbots:
+          description: the Cloudbots section for the rule (optional)
+          type: string
+        complianceTag:
+          description: the compliance section for the rule (optional)
+          type: string
+        domain:
+          description: this field is not used
+          type: string
+        priority:
+          description: this field is not used
+          type: string
+        controlTitle:
+          description: this field is not used
+          type: string
+        ruleId:
+          description: this field is not used
+          type: string
+        category:
+          description: Rule Category
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        logicHash:
+          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
+          type: string
+        isDefault:
+          description: The property represents default rule
+          type: boolean
     Dome9.Web.Api.Models.RuleBundleRequestPostViewModel:
       required:
       - name
@@ -398,68 +460,6 @@ components:
         language:
           description: the language of the text (default, 'en' - English)
           type: string
-    Falconetix.Model.Compliance.Ruleset.RuleViewModel:
-      required:
-      - name
-      - logic
-      type: object
-      properties:
-        name:
-          description: rule name
-          type: string
-        severity:
-          description: rule severity (High/Medium/Low)
-          enum:
-          - Informational
-          - Low
-          - Medium
-          - High
-          - Critical
-          type: string
-        rlmId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        logic:
-          description: the GSL statement for the rule (text string)
-          type: string
-        description:
-          description: description of the rule (text)
-          type: string
-        remediation:
-          description: remediation text for the rule (text)
-          type: string
-        cloudbots:
-          description: the Cloudbots section for the rule (optional)
-          type: string
-        complianceTag:
-          description: the compliance section for the rule (optional)
-          type: string
-        domain:
-          description: this field is not used
-          type: string
-        priority:
-          description: this field is not used
-          type: string
-        controlTitle:
-          description: this field is not used
-          type: string
-        ruleId:
-          description: this field is not used
-          type: string
-        category:
-          description: Rule Category
-          type: string
-        labels:
-          type: array
-          items:
-            type: string
-        logicHash:
-          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
-          type: string
-        isDefault:
-          description: The property represents default rule
-          type: boolean
   securitySchemes:
     API_key_V2:
       type: http

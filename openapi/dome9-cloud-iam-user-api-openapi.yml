@@ -52,13 +52,6 @@ components:
           type: string
         permissionsBoundaryType:
           type: string
-    Dome9.Web.Api.SubTypes.CloudIamUserAttachedManagedPolicyViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        name:
-          type: string
     Dome9.Web.Api.Models.CloudIamUserViewModel:
       type: object
       properties:
@@ -105,6 +98,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel.SSHPublicKeyMetaDataViewModel'
+    Dome9.Web.Api.SubTypes.CloudIamUserAttachedManagedPolicyViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        name:
+          type: string
+    Dome9.Web.Api.SubTypes.CloudIamUserInlinePolicyViewModel:
+      type: object
+      properties:
+        policyName:
+          type: string
+        policyDocument:
+          type: object
     Dome9.Web.Api.Models.CloudIamUserViewModel.SSHPublicKeyMetaDataViewModel:
       type: object
       properties:
@@ -117,13 +124,6 @@ components:
           type: string
         userName:
           type: string
-    Dome9.Web.Api.SubTypes.CloudIamUserInlinePolicyViewModel:
-      type: object
-      properties:
-        policyName:
-          type: string
-        policyDocument:
-          type: object
   securitySchemes:
     API_key_V2:
       type: http

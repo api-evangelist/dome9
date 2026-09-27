@@ -137,7 +137,7 @@ paths:
       tags:
       - Account
       summary: Account plan
-      operationId: Account_Plan
+      operationId: putV2AccountPlan
       responses:
         '200':
           description: OK
@@ -179,6 +179,8 @@ paths:
               type: string
         required: true
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Account_Plan
   /v2/account/azuremarketplace:
     put:
       tags:
@@ -742,16 +744,10 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Models.AccountStatsViewModel.GoogleCloudStatsViewModel:
+    Dome9.Web.Api.Account.AccountOwnerViewModel:
       type: object
       properties:
-        accounts:
-          format: int32
-          type: integer
-        firewallRules:
-          format: int32
-          type: integer
-        vmInstances:
+        userId:
           format: int32
           type: integer
     Falconetix.Model.Licensing.UpdatePlanContactDetailsModel:
@@ -797,11 +793,6 @@ components:
         phoneNumber:
           type: string
         message:
-          type: string
-    Dome9.Web.Api.Models.ManagingAccountViewModel:
-      type: object
-      properties:
-        accountName:
           type: string
     Dome9.Web.Api.Models.AccountStatsViewModel:
       type: object
@@ -894,69 +885,6 @@ components:
         timeStamp:
           format: date-time
           type: string
-    Dome9.Web.Api.Models.CrossAccountIdentifierViewModel:
-      type: object
-      properties:
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Models.AccountViewModel:
-      type: object
-      properties:
-        useDefaultExternalId:
-          type: boolean
-        allowEditExternalId:
-          type: boolean
-        pairedToCloudInfra:
-          type: boolean
-        crossAccountIdentifier:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-        customMessage:
-          type: string
-        plan:
-          type: string
-        ssoEnabled:
-          type: boolean
-        canGenerateCrossAccountId:
-          type: boolean
-        cloudInfraTenantId:
-          type: string
-        cloudInfraTenantName:
-          type: string
-        billingProvider:
-          description: Dome9 or other billing providers. In case of Appdirect we format it as Appdirect/Partner
-          type: string
-        billingInfo:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.BillingViewModel'
-        activeFeatures:
-          type: array
-          items:
-            type: string
-        iconUrl:
-          type: string
-        isManagedAccount:
-          type: boolean
-        maxInvalidPasswordAttempts:
-          format: int32
-          type: integer
-        sessionIdleTimeoutMinutes:
-          format: int32
-          type: integer
-        isMfaEnforced:
-          type: boolean
-        usersManagedBy:
-          enum:
-          - CloudGuard
-          - CloudInfra
-          type: string
-        planExpirationDate:
-          format: date-time
-          type: string
     Dome9.Web.Api.Models.LicenseViewModel:
       description: A view model representation of the account's License informatino
       type: object
@@ -1024,6 +952,18 @@ components:
           type: integer
         agentsEnabled:
           type: boolean
+    Dome9.Web.Api.Models.AccountStatsViewModel.GoogleCloudStatsViewModel:
+      type: object
+      properties:
+        accounts:
+          format: int32
+          type: integer
+        firewallRules:
+          format: int32
+          type: integer
+        vmInstances:
+          format: int32
+          type: integer
     Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel:
       required:
       - value
@@ -1035,43 +975,6 @@ components:
           maximum: 720
           minimum: 15
           type: integer
-    Dome9.Web.Api.Models.AccountMarketplacePutViewModel:
-      type: object
-      properties:
-        subscriptionType:
-          enum:
-          - Metered
-          - Contract
-          - Core
-          - Metered2
-          - D9
-          - Logic
-          - AzureD9
-          - AzureD9wh
-          type: string
-    Dome9.Web.Api.Models.AccountSSOConfigViewModel:
-      required:
-      - idpEndpointUrl
-      - accountSSOId
-      - x509Certificate
-      - assertionIssuer
-      - isJitProvisionAllow
-      type: object
-      properties:
-        idpEndpointUrl:
-          type: string
-        accountSSOId:
-          type: string
-        x509Certificate:
-          type: string
-        assertionIssuer:
-          type: string
-        logoutLandingPage:
-          type: string
-        isJitProvisionAllow:
-          type: boolean
-        samlRoleAttributeName:
-          type: string
     Dome9.Web.Api.Models.BillingViewModel:
       type: object
       properties:
@@ -1092,27 +995,13 @@ components:
           type: string
         value:
           type: boolean
-    Dome9.Web.Api.Models.ExceedingLicenseViewModel:
+    Falconetix.Model.AccountEmailFiltersDescriptor:
       type: object
       properties:
-        exceedingAgents:
-          format: int32
-          type: integer
-        exceedingInstances:
-          format: int32
-          type: integer
-        exceedingUsers:
-          format: int32
-          type: integer
-        isExceeding:
-          type: boolean
-          readOnly: true
-    Dome9.Web.Api.Account.AccountOwnerViewModel:
-      type: object
-      properties:
-        userId:
-          format: int32
-          type: integer
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.EmailFilterItem'
     Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel:
       required:
       - value
@@ -1381,13 +1270,126 @@ components:
         kubernetesAccounts:
           format: int32
           type: integer
-    Falconetix.Model.AccountEmailFiltersDescriptor:
+    Dome9.Web.Api.Models.ExceedingLicenseViewModel:
       type: object
       properties:
-        filters:
+        exceedingAgents:
+          format: int32
+          type: integer
+        exceedingInstances:
+          format: int32
+          type: integer
+        exceedingUsers:
+          format: int32
+          type: integer
+        isExceeding:
+          type: boolean
+          readOnly: true
+    Dome9.Web.Api.Models.CrossAccountIdentifierViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Models.AccountMarketplacePutViewModel:
+      type: object
+      properties:
+        subscriptionType:
+          enum:
+          - Metered
+          - Contract
+          - Core
+          - Metered2
+          - D9
+          - Logic
+          - AzureD9
+          - AzureD9wh
+          type: string
+    Dome9.Web.Api.Models.ManagingAccountViewModel:
+      type: object
+      properties:
+        accountName:
+          type: string
+    Dome9.Web.Api.Models.AccountViewModel:
+      type: object
+      properties:
+        useDefaultExternalId:
+          type: boolean
+        allowEditExternalId:
+          type: boolean
+        pairedToCloudInfra:
+          type: boolean
+        crossAccountIdentifier:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        customMessage:
+          type: string
+        plan:
+          type: string
+        ssoEnabled:
+          type: boolean
+        canGenerateCrossAccountId:
+          type: boolean
+        cloudInfraTenantId:
+          type: string
+        cloudInfraTenantName:
+          type: string
+        billingProvider:
+          description: Dome9 or other billing providers. In case of Appdirect we format it as Appdirect/Partner
+          type: string
+        billingInfo:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.BillingViewModel'
+        activeFeatures:
           type: array
           items:
-            $ref: '#/components/schemas/Falconetix.Model.EmailFilterItem'
+            type: string
+        iconUrl:
+          type: string
+        isManagedAccount:
+          type: boolean
+        maxInvalidPasswordAttempts:
+          format: int32
+          type: integer
+        sessionIdleTimeoutMinutes:
+          format: int32
+          type: integer
+        isMfaEnforced:
+          type: boolean
+        usersManagedBy:
+          enum:
+          - CloudGuard
+          - CloudInfra
+          type: string
+        planExpirationDate:
+          format: date-time
+          type: string
+    Dome9.Web.Api.Models.AccountSSOConfigViewModel:
+      required:
+      - idpEndpointUrl
+      - accountSSOId
+      - x509Certificate
+      - assertionIssuer
+      - isJitProvisionAllow
+      type: object
+      properties:
+        idpEndpointUrl:
+          type: string
+        accountSSOId:
+          type: string
+        x509Certificate:
+          type: string
+        assertionIssuer:
+          type: string
+        logoutLandingPage:
+          type: string
+        isJitProvisionAllow:
+          type: boolean
+        samlRoleAttributeName:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

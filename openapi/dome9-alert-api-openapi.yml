@@ -347,7 +347,7 @@ paths:
       tags:
       - Alert
       summary: Get a single alert by Id
-      operationId: Alert_Get
+      operationId: getV2AlertById
       parameters:
       - name: id
         in: path
@@ -369,6 +369,8 @@ paths:
             text/html:
               schema:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.AlertViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: Alert_Get
     patch:
       tags:
       - Alert
@@ -408,6 +410,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dome9.Web.Api.Models.GetDataParmsTimeFilter:
+      type: object
+      properties:
+        from_epoch:
+          format: int64
+          type: integer
+        to_epoch:
+          format: int64
+          type: integer
+        from:
+          type: string
+        to:
+          type: string
     Dome9.Web.Api.Models.AlertViewModel:
       type: object
       properties:
@@ -457,6 +472,31 @@ components:
         modified:
           format: date-time
           type: string
+    Dome9.Web.Api.Alerts.ExportStatusModel.ExportStatusInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - InProgress
+          - Success
+          type: string
+    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String:
+      type: object
+      properties:
+        alertId:
+          format: int64
+          type: integer
+        data:
+          type: string
+    Dome9.Web.Api.Models.AlertsCountViewModel:
+      type: object
+      properties:
+        fim:
+          format: int32
+          type: integer
+        general:
+          format: int32
+          type: integer
     Dome9.Web.Api.Models.GetDataParms_System.Object:
       type: object
       properties:
@@ -478,62 +518,6 @@ components:
           type: integer
         data:
           type: boolean
-    Dome9.Web.Api.Alerts.ExportStatusModel.ExportStatusInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - InProgress
-          - Success
-          type: string
-    Falconetix.Model.AlertPivotEntity:
-      type: object
-      properties:
-        srl:
-          type: string
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          enum:
-          - SecurityGroup
-          - Agent
-          - CloudAccount
-          - AzureSecurityGroup
-          - AzureCloudAccount
-          - KubernetesCloudAccount
-          type: string
-    Dome9.Web.Api.Models.GetDataParmsTimeFilter:
-      type: object
-      properties:
-        from_epoch:
-          format: int64
-          type: integer
-        to_epoch:
-          format: int64
-          type: integer
-        from:
-          type: string
-        to:
-          type: string
-    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String:
-      type: object
-      properties:
-        alertId:
-          format: int64
-          type: integer
-        data:
-          type: string
-    Falconetix.Model.AlertLocationEntityMetadata:
-      type: object
-      properties:
-        srl:
-          type: string
-        name:
-          type: string
-        id:
-          type: string
     Dome9.Web.Api.Models.AlertPatchViewModel:
       type: object
       properties:
@@ -561,15 +545,33 @@ components:
           - Med
           - High
           type: string
-    Dome9.Web.Api.Models.AlertsCountViewModel:
+    Falconetix.Model.AlertLocationEntityMetadata:
       type: object
       properties:
-        fim:
-          format: int32
-          type: integer
-        general:
-          format: int32
-          type: integer
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+    Falconetix.Model.AlertPivotEntity:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          enum:
+          - SecurityGroup
+          - Agent
+          - CloudAccount
+          - AzureSecurityGroup
+          - AzureCloudAccount
+          - KubernetesCloudAccount
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

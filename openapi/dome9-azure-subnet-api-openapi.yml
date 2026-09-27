@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Azure Subnet
-      operationId: AzureSubnet_Get
+      operationId: getV2AzureSubnetById
       parameters:
       - name: id
         in: path
@@ -70,6 +70,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureSubnetViewModel'
       summary: Azure subnet get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AzureSubnet_Get
 components:
   schemas:
     Dome9.Web.Api.Models.AzureSubnetViewModel:

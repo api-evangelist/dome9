@@ -728,7 +728,7 @@ paths:
       tags:
       - Azure Cloud Account
       summary: Get details for all Azure accounts for the Dome9 user
-      operationId: AzureCloudAccount_Get
+      operationId: getV2AzureCloudAccount
       responses:
         '200':
           description: OK
@@ -758,6 +758,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureCloudAccountViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: AzureCloudAccount_Get
     post:
       tags:
       - Azure Cloud Account
@@ -806,90 +808,6 @@ paths:
         required: true
 components:
   schemas:
-    Dome9.Web.Api.Azure.Accounts.AzureCloudAccountCredentialsPutViewModel:
-      required:
-      - applicationId
-      - applicationKey
-      type: object
-      properties:
-        applicationId:
-          type: string
-        applicationKey:
-          type: string
-    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel:
-      type: object
-      properties:
-        id:
-          format: uuid
-          description: account id
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel'
-    CGN.Common.Model.CloudAccounts.Onboarding.Blades.PostureManagement:
-      type: object
-      properties:
-        onboardingMode:
-          enum:
-          - read-only
-          - manage
-          type: string
-    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel:
-      required:
-      - isIgnored
-      type: object
-      properties:
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        permissionId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        isIgnored:
-          type: boolean
-        type:
-          type: string
-        subType:
-          type: string
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
-    Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel:
-      type: object
-      properties:
-        permissions:
-          description: list of missing permissions
-          type: array
-          items:
-            type: string
-        entityType:
-          type: string
-        subType:
-          type: string
-    CGN.Common.Model.CloudAccounts.Onboarding.Blades.ServerlessConfiguration:
-      type: object
-      properties:
-        isEnabled:
-          type: boolean
-    Dome9.Web.Api.Azure.Accounts.AzureAccountNameModeViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-    CGN.Common.Model.CloudAccounts.Onboarding.Blades.CdrConfiguration:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.StorageAccount'
-        isEnabled:
-          type: boolean
     Dome9.Web.Api.Models.AzureAccountCredentialsViewModel:
       required:
       - clientId
@@ -902,6 +820,27 @@ components:
         clientPassword:
           description: Password for account
           type: string
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.Blades:
+      required:
+      - awp
+      - serverless
+      - cdr
+      - postureManagement
+      type: object
+      properties:
+        awp:
+          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.AwpConfiguration'
+        serverless:
+          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.ServerlessConfiguration'
+        cdr:
+          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.CdrConfiguration'
+        postureManagement:
+          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.PostureManagement'
+    Dome9.Web.Api.Azure.Accounts.AzureAccountNameModeViewModel:
+      type: object
+      properties:
+        name:
+          type: string
     Dome9.Web.Api.Azure.Accounts.AzureAccountOperationModeViewModel:
       required:
       - operationMode
@@ -912,146 +851,13 @@ components:
           - Read
           - Manage
           type: string
-    Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel:
+    Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel:
       type: object
       properties:
-        type:
+        code:
           type: string
-        subType:
+        message:
           type: string
-        total:
-          format: int64
-          type: integer
-        error:
-          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
-    Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel:
-      type: object
-      properties:
-        srl:
-          description: internal use
-          type: string
-        consecutiveFails:
-          format: int32
-          description: number of consecutive failures due to missing permissions
-          type: integer
-        lastFail:
-          format: date-time
-          description: time of last failure
-          type: string
-        lastSuccess:
-          format: date-time
-          description: time of last successful attempt
-          type: string
-        firstFail:
-          format: date-time
-          description: time of first successful attempt
-          type: string
-        lastFailErrorCode:
-          description: error code for last failed attempt
-          type: string
-        lastFailMessage:
-          description: error message for last failed attempt
-          type: string
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        retryMetadata:
-          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel'
-        cloudAccountId:
-          format: uuid
-          description: Cloud account id
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        vendor:
-          description: cloud account provider (AWS, Azure, GCP)
-          enum:
-          - aws
-          - hp
-          - mellanox
-          - awsgov
-          - azure
-          - google
-          - awschina
-          - azuregov
-          - kubernetes
-          - azurechina
-          - terraform
-          - generic
-          - kubernetesruntimeassurance
-          - shiftleft
-          - sourcecodeassurance
-          - imageassurance
-          - alibaba
-          - cft
-          - containerregistry
-          - oci
-          - ocigov
-          - ocigovuk
-          - CIEM
-          type: string
-    Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel:
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            type: string
-        organizationalUnitId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    CGN.Common.Model.CloudAccounts.Onboarding.AzureSimplifiedOnboardingExecCmdRequest:
-      required:
-      - activeBlades
-      type: object
-      properties:
-        workflowId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        subscriptionId:
-          type: string
-        managementGroupIdOrTenantId:
-          type: string
-        useCloudGuardManagedApp:
-          type: boolean
-        validatePermission:
-          type: boolean
-        appId:
-          type: string
-        appName:
-          type: string
-        appRegistrationId:
-          type: string
-        accountType:
-          enum:
-          - aws
-          - hp
-          - mellanox
-          - awsgov
-          - azure
-          - google
-          - awschina
-          - azuregov
-          - kubernetes
-          - azurechina
-          - terraform
-          - generic
-          - kubernetesruntimeassurance
-          - shiftleft
-          - sourcecodeassurance
-          - imageassurance
-          - alibaba
-          - cft
-          - containerregistry
-          - oci
-          - ocigov
-          - ocigovuk
-          - CIEM
-          type: string
-        activeBlades:
-          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.Blades'
     Dome9.Web.Api.Models.AzureCloudAccountViewModel:
       description: account details
       required:
@@ -1146,18 +952,11 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel:
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.ServerlessConfiguration:
       type: object
       properties:
-        id:
-          format: uuid
-          description: account id
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel'
+        isEnabled:
+          type: boolean
     CGN.Common.Model.CloudAccounts.Onboarding.Blades.StorageAccount:
       type: object
       properties:
@@ -1167,64 +966,6 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    CGN.Common.Model.CloudAccounts.Onboarding.Blades.Blades:
-      required:
-      - awp
-      - serverless
-      - cdr
-      - postureManagement
-      type: object
-      properties:
-        awp:
-          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.AwpConfiguration'
-        serverless:
-          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.ServerlessConfiguration'
-        cdr:
-          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.CdrConfiguration'
-        postureManagement:
-          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.PostureManagement'
-    Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel:
-      type: object
-      properties:
-        sourceOrganizationalUnitId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        targetOrganizationalUnitId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel:
-      type: object
-      properties:
-        organizationalUnitId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    CGN.Common.Model.CloudAccounts.Onboarding.Blades.AwpConfiguration:
-      type: object
-      properties:
-        onboardingMode:
-          enum:
-          - saas
-          - inAccount
-          - inAccountHub
-          type: string
-        centralizedSubscriptionId:
-          type: string
-        withFunctionAppsScan:
-          type: boolean
-        withSseCmkEncryptedDisksScan:
-          type: boolean
-        isEnabled:
-          type: boolean
     Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel:
       type: object
       properties:
@@ -1243,6 +984,267 @@ components:
           type: integer
         error:
           $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    CGN.Common.Model.CloudAccounts.Onboarding.AzureSimplifiedOnboardingExecCmdRequest:
+      required:
+      - activeBlades
+      type: object
+      properties:
+        workflowId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        subscriptionId:
+          type: string
+        managementGroupIdOrTenantId:
+          type: string
+        useCloudGuardManagedApp:
+          type: boolean
+        validatePermission:
+          type: boolean
+        appId:
+          type: string
+        appName:
+          type: string
+        appRegistrationId:
+          type: string
+        accountType:
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        activeBlades:
+          $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.Blades'
+    Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel:
+      type: object
+      properties:
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.CdrConfiguration:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.Common.Model.CloudAccounts.Onboarding.Blades.StorageAccount'
+        isEnabled:
+          type: boolean
+    Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: string
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel:
+      required:
+      - isIgnored
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.AwpConfiguration:
+      type: object
+      properties:
+        onboardingMode:
+          enum:
+          - saas
+          - inAccount
+          - inAccountHub
+          type: string
+        centralizedSubscriptionId:
+          type: string
+        withFunctionAppsScan:
+          type: boolean
+        withSseCmkEncryptedDisksScan:
+          type: boolean
+        isEnabled:
+          type: boolean
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel'
+    CGN.Common.Model.CloudAccounts.Onboarding.Blades.PostureManagement:
+      type: object
+      properties:
+        onboardingMode:
+          enum:
+          - read-only
+          - manage
+          type: string
+    Dome9.Web.Api.Azure.Accounts.AzureCloudAccountCredentialsPutViewModel:
+      required:
+      - applicationId
+      - applicationKey
+      type: object
+      properties:
+        applicationId:
+          type: string
+        applicationKey:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel:
+      type: object
+      properties:
+        sourceOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        targetOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel:
+      type: object
+      properties:
+        permissions:
+          description: list of missing permissions
+          type: array
+          items:
+            type: string
+        entityType:
+          type: string
+        subType:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel:
+      type: object
+      properties:
+        srl:
+          description: internal use
+          type: string
+        consecutiveFails:
+          format: int32
+          description: number of consecutive failures due to missing permissions
+          type: integer
+        lastFail:
+          format: date-time
+          description: time of last failure
+          type: string
+        lastSuccess:
+          format: date-time
+          description: time of last successful attempt
+          type: string
+        firstFail:
+          format: date-time
+          description: time of first successful attempt
+          type: string
+        lastFailErrorCode:
+          description: error code for last failed attempt
+          type: string
+        lastFailMessage:
+          description: error message for last failed attempt
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        retryMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel'
+        cloudAccountId:
+          format: uuid
+          description: Cloud account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        vendor:
+          description: cloud account provider (AWS, Azure, GCP)
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel'
   securitySchemes:
     API_key_V2:
       type: http

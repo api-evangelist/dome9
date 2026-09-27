@@ -766,7 +766,7 @@ paths:
       tags:
       - Security Group
       summary: Fetch Dome9 security groups according to a filter type
-      operationId: SecurityGroup_Get
+      operationId: getV2SecurityGroup
       parameters:
       - name: filter
         in: query
@@ -811,6 +811,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: SecurityGroup_Get
     post:
       tags:
       - Security Group
@@ -853,15 +855,31 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Models.FIMPolicyViewModel.FIMRuleViewModel:
+    Dome9.Web.Api.Models.UpdateItem:
       type: object
       properties:
-        include:
-          type: boolean
+        op:
+          description: 'Usually one of:
+
+            remove
+
+            add
+
+            replace
+
+            move
+
+            copy
+
+
+            However , can be customized in some cases'
+          type: string
+        path:
+          description: the field or path to field
+          type: string
         value:
-          type: string
-        comment:
-          type: string
+          description: the target value of the operation. could be basic or complex type
+          type: object
     Falconetix.WebApi.Models.ScopeElementViewModel:
       type: object
       properties:
@@ -881,22 +899,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel:
-      required:
-      - name
-      type: object
-      properties:
-        serverId:
-          format: int32
-          type: integer
-        name:
-          maxLength: 50
-          minLength: 0
-          type: string
-        description:
-          maxLength: 256
-          minLength: 0
-          type: string
     Dome9.Web.Api.Models.SecurityGroupServiceViewModel:
       type: object
       properties:
@@ -1052,43 +1054,6 @@ components:
             $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
         description:
           type: string
-    Dome9.Common.DataTypes.PortRange:
-      type: object
-      properties:
-        portFrom:
-          format: int32
-          type: integer
-        portTo:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Models.AgentServiceViewModel:
-      required:
-      - name
-      - protocol
-      type: object
-      properties:
-        name:
-          maxLength: 50
-          minLength: 0
-          type: string
-        description:
-          maxLength: 500
-          minLength: 0
-          type: string
-        portRange:
-          $ref: '#/components/schemas/Dome9.Common.DataTypes.PortRange'
-        protocol:
-          type: string
-        normallyOpen:
-          type: boolean
-        scope:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
-        icmpType:
-          type: string
-        icmpV6Type:
-          type: string
     Dome9.Web.Api.Models.SecurityGroupViewModel:
       type: object
       properties:
@@ -1130,6 +1095,27 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupServiceViewModel'
+    Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel:
+      required:
+      - name
+      type: object
+      properties:
+        serverId:
+          format: int32
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        description:
+          maxLength: 256
+          minLength: 0
+          type: string
+    Dome9.Web.Api.Models.LoggingPolicyViewModel:
+      type: object
+      properties:
+        loggingPolicy:
+          type: string
     Dome9.Web.Api.Models.FIMPolicyViewModel:
       required:
       - frequency
@@ -1155,6 +1141,37 @@ components:
           type: array
           items:
             type: string
+    Dome9.Web.Api.Models.FIMPolicyViewModel.FIMRuleViewModel:
+      type: object
+      properties:
+        include:
+          type: boolean
+        value:
+          type: string
+        comment:
+          type: string
+    Dome9.Common.DataTypes.PortRange:
+      type: object
+      properties:
+        portFrom:
+          format: int32
+          type: integer
+        portTo:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Models.FimPolicyUpdateViewModel:
+      type: object
+      properties:
+        sgId:
+          format: int64
+          type: integer
+        fimPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel'
+    Dome9.Web.Api.Models.SecurityGroupNameViewModel:
+      type: object
+      properties:
+        name:
+          type: string
     Dome9.Web.Api.Models.ScopeViewModel:
       type: object
       properties:
@@ -1174,48 +1191,33 @@ components:
           type: object
           additionalProperties:
             type: string
-    Dome9.Web.Api.Models.FimPolicyUpdateViewModel:
-      type: object
-      properties:
-        sgId:
-          format: int64
-          type: integer
-        fimPolicy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel'
-    Dome9.Web.Api.Models.SecurityGroupNameViewModel:
+    Dome9.Web.Api.Models.AgentServiceViewModel:
+      required:
+      - name
+      - protocol
       type: object
       properties:
         name:
+          maxLength: 50
+          minLength: 0
           type: string
-    Dome9.Web.Api.Models.UpdateItem:
-      type: object
-      properties:
-        op:
-          description: 'Usually one of:
-
-            remove
-
-            add
-
-            replace
-
-            move
-
-            copy
-
-
-            However , can be customized in some cases'
+        description:
+          maxLength: 500
+          minLength: 0
           type: string
-        path:
-          description: the field or path to field
+        portRange:
+          $ref: '#/components/schemas/Dome9.Common.DataTypes.PortRange'
+        protocol:
           type: string
-        value:
-          description: the target value of the operation. could be basic or complex type
-          type: object
-    Dome9.Web.Api.Models.LoggingPolicyViewModel:
-      type: object
-      properties:
-        loggingPolicy:
+        normallyOpen:
+          type: boolean
+        scope:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        icmpType:
+          type: string
+        icmpV6Type:
           type: string
   securitySchemes:
     API_key_V2:

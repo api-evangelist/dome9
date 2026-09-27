@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Aws Config Settings
-      operationId: AwsConfigSettings_Get
+      operationId: getV2AwsConfigSettingsById
       parameters:
       - name: id
         in: path
@@ -76,6 +76,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.AwsConfigSetting.AwsConfigSettingsViewModel'
       summary: Aws config settings get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AwsConfigSettings_Get
 components:
   schemas:
     Dome9.Web.Api.AwsConfigSetting.AwsConfigSettingsViewModel:

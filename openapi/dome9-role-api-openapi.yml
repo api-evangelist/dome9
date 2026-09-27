@@ -151,7 +151,7 @@ paths:
       tags:
       - Role
       summary: Get the specific role with the specified id
-      operationId: Role_Get
+      operationId: getV2RoleById
       parameters:
       - name: id
         in: path
@@ -178,6 +178,8 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Dome9.Web.Api.Role.RoleViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: Role_Get
     put:
       tags:
       - Role
@@ -267,6 +269,21 @@ components:
           type: integer
         userName:
           type: string
+    Dome9.Web.Api.Role.EditRoleViewModel:
+      required:
+      - name
+      - permissions
+      type: object
+      properties:
+        name:
+          description: Role Name
+          type: string
+        description:
+          description: Role Description
+          type: string
+        permissions:
+          $ref: '#/components/schemas/Dome9.Web.Api.User.PermissionsViewModel'
+          description: Permissions of the role
     Dome9.Web.Api.User.PermissionsViewModel:
       type: object
       properties:
@@ -319,33 +336,6 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Role.RoleGetViewModel:
-      required:
-      - name
-      - permissions
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Role.RoleGetUserViewModel'
-        serviceAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Role.RoleGetServiceAccountViewModel'
-        id:
-          format: int64
-          description: Role Id
-          type: integer
-        name:
-          description: Role Name
-          type: string
-        description:
-          description: Role Description
-          type: string
-        permissions:
-          $ref: '#/components/schemas/Dome9.Web.Api.User.PermissionsViewModel'
-          description: Permissions of the role
     Dome9.Web.Api.Role.RoleViewModel:
       required:
       - name
@@ -365,12 +355,24 @@ components:
         permissions:
           $ref: '#/components/schemas/Dome9.Web.Api.User.PermissionsViewModel'
           description: Permissions of the role
-    Dome9.Web.Api.Role.EditRoleViewModel:
+    Dome9.Web.Api.Role.RoleGetViewModel:
       required:
       - name
       - permissions
       type: object
       properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Role.RoleGetUserViewModel'
+        serviceAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Role.RoleGetServiceAccountViewModel'
+        id:
+          format: int64
+          description: Role Id
+          type: integer
         name:
           description: Role Name
           type: string

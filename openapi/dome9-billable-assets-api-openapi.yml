@@ -32,6 +32,34 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Falconetix.Model.BillableAssets.GrandTotalData:
+      type: object
+      properties:
+        grandTotalCount:
+          format: int32
+          type: integer
+        grandTotalBillable:
+          format: int32
+          type: integer
+        grandTotalNonBillable:
+          format: int32
+          type: integer
+        grandTotalOnLineCount:
+          format: int32
+          type: integer
+    Dome9.Web.Api.BillableAssets.CloudAccountBillableAssetsViewModel:
+      type: object
+      properties:
+        cloudVendor:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        assetsCount:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.BillableAssets.AssetsViewModel'
     Dome9.Web.Api.BillableAssets.AccountBillableAssetsViewModel:
       type: object
       properties:
@@ -53,21 +81,6 @@ components:
             $ref: '#/components/schemas/Falconetix.Model.BillableAssets.AccountAssetsTotalData'
         grandTotals:
           $ref: '#/components/schemas/Falconetix.Model.BillableAssets.GrandTotalData'
-    Falconetix.Model.BillableAssets.GrandTotalData:
-      type: object
-      properties:
-        grandTotalCount:
-          format: int32
-          type: integer
-        grandTotalBillable:
-          format: int32
-          type: integer
-        grandTotalNonBillable:
-          format: int32
-          type: integer
-        grandTotalOnLineCount:
-          format: int32
-          type: integer
     Falconetix.Model.BillableAssets.AccountAssetsTotalData:
       type: object
       properties:
@@ -101,19 +114,6 @@ components:
         nonBillableCount:
           format: int32
           type: integer
-    Dome9.Web.Api.BillableAssets.CloudAccountBillableAssetsViewModel:
-      type: object
-      properties:
-        cloudVendor:
-          type: string
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        assetsCount:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.BillableAssets.AssetsViewModel'
   securitySchemes:
     API_key_V2:
       type: http

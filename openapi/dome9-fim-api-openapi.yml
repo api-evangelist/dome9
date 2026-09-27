@@ -176,6 +176,15 @@ components:
         modified:
           format: date-time
           type: string
+    Falconetix.Model.AlertLocationEntityMetadata:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
     Falconetix.Model.AlertPivotEntity:
       type: object
       properties:
@@ -193,15 +202,6 @@ components:
           - AzureSecurityGroup
           - AzureCloudAccount
           - KubernetesCloudAccount
-          type: string
-    Falconetix.Model.AlertLocationEntityMetadata:
-      type: object
-      properties:
-        srl:
-          type: string
-        name:
-          type: string
-        id:
           type: string
     Dome9.Web.Api.Models.FimGetViewModel:
       type: object

@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Azure Cosmos Db Account
-      operationId: AzureCosmosDbAccount_Get
+      operationId: getV2AzureCosmosDbAccountById
       parameters:
       - name: id
         in: path
@@ -76,22 +76,10 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel'
       summary: Azure cosmos db account get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AzureCosmosDbAccount_Get
 components:
   schemas:
-    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbLocationViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        locationName:
-          type: string
-        documentEndpoint:
-          type: string
-        provisioningState:
-          type: string
-        failoverPriority:
-          format: int32
-          type: integer
     System.Collections.Generic.KeyValuePair_System.String_System.String:
       type: object
       properties:
@@ -101,23 +89,6 @@ components:
         value:
           type: string
           readOnly: true
-    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbConsistencyPolicyViewModel:
-      type: object
-      properties:
-        defaultConsistencyLevel:
-          enum:
-          - Eventual
-          - Session
-          - BoundedStaleness
-          - Strong
-          - ConsistentPrefix
-          type: string
-        maxStalenessPrefix:
-          format: int64
-          type: integer
-        maxIntervalInSeconds:
-          format: int32
-          type: integer
     Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel:
       type: object
       properties:
@@ -167,6 +138,37 @@ components:
           type: array
           items:
             type: string
+    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbLocationViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        locationName:
+          type: string
+        documentEndpoint:
+          type: string
+        provisioningState:
+          type: string
+        failoverPriority:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbConsistencyPolicyViewModel:
+      type: object
+      properties:
+        defaultConsistencyLevel:
+          enum:
+          - Eventual
+          - Session
+          - BoundedStaleness
+          - Strong
+          - ConsistentPrefix
+          type: string
+        maxStalenessPrefix:
+          format: int64
+          type: integer
+        maxIntervalInSeconds:
+          format: int32
+          type: integer
   securitySchemes:
     API_key_V2:
       type: http

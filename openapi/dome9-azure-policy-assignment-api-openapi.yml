@@ -44,7 +44,7 @@ paths:
     get:
       tags:
       - Azure Policy Assignment
-      operationId: AzurePolicyAssignment_Get
+      operationId: getV2AzurePolicyAssignment
       responses:
         '200':
           description: OK
@@ -76,8 +76,28 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Azure.PolicyAssignment.AzurePolicyAssignmentViewModel'
       summary: Azure policy assignment get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AzurePolicyAssignment_Get
 components:
   schemas:
+    Dome9.Web.Api.Azure.AzureRestApiSkuViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        tier:
+          type: string
+    Dome9.Web.Api.Azure.PolicyAssignment.AzurePolicyAssignmentMetadataViewModel:
+      type: object
+      properties:
+        assignedBy:
+          type: string
+        createdOn:
+          format: date-time
+          type: string
+        updatedOn:
+          format: date-time
+          type: string
     Dome9.Web.Api.Azure.PolicyAssignment.AzurePolicyAssignmentViewModel:
       type: object
       properties:
@@ -95,12 +115,14 @@ components:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.AzureRestApiSkuViewModel'
         properties:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.PolicyAssignment.AzurePolicyAssignmentPropertiesViewModel'
-    Dome9.Web.Api.Azure.AzureRestApiSkuViewModel:
+    Dome9.Web.Api.Azure.AzureRestApiIdentityViewModel:
       type: object
       properties:
-        name:
+        type:
           type: string
-        tier:
+        principalId:
+          type: string
+        tenantId:
           type: string
     Dome9.Web.Api.Azure.PolicyAssignment.AzurePolicyAssignmentPropertiesViewModel:
       type: object
@@ -125,26 +147,6 @@ components:
             type: array
             items:
               type: string
-    Dome9.Web.Api.Azure.AzureRestApiIdentityViewModel:
-      type: object
-      properties:
-        type:
-          type: string
-        principalId:
-          type: string
-        tenantId:
-          type: string
-    Dome9.Web.Api.Azure.PolicyAssignment.AzurePolicyAssignmentMetadataViewModel:
-      type: object
-      properties:
-        assignedBy:
-          type: string
-        createdOn:
-          format: date-time
-          type: string
-        updatedOn:
-          format: date-time
-          type: string
   securitySchemes:
     API_key_V2:
       type: http

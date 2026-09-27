@@ -55,7 +55,7 @@ paths:
     get:
       tags:
       - Azure User
-      operationId: AzureUser_Get
+      operationId: getV2AzureUserById
       parameters:
       - name: id
         in: path
@@ -77,15 +77,10 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserViewModel'
       summary: Azure user get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AzureUser_Get
 components:
   schemas:
-    Dome9.Web.Api.Azure.User.AzureUserPasswordProfileViewModel:
-      type: object
-      properties:
-        forceChangePasswordNextSignIn:
-          type: boolean
-        forceChangePasswordNextSignInWithMfa:
-          type: boolean
     Dome9.Web.Api.Azure.User.AzureUserCredentialViewModel:
       type: object
       properties:
@@ -130,6 +125,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserLicenseAssignmentStatesViewModel'
+    Dome9.Web.Api.Azure.User.AzureUserPasswordProfileViewModel:
+      type: object
+      properties:
+        forceChangePasswordNextSignIn:
+          type: boolean
+        forceChangePasswordNextSignInWithMfa:
+          type: boolean
     Dome9.Web.Api.Azure.User.AzureUserLicenseAssignmentStatesViewModel:
       type: object
       properties:

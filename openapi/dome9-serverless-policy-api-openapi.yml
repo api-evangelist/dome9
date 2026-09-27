@@ -64,7 +64,7 @@ paths:
       tags:
       - Serverless Policy
       summary: Get all policies for the requesting account. Returns a collection of policies
-      operationId: ServerlessPolicy_GetAsync
+      operationId: getV2ServerlessPolicy
       responses:
         '200':
           description: OK
@@ -94,6 +94,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Serverless.Policy.ServerlessPolicyViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: ServerlessPolicy_GetAsync
     put:
       tags:
       - Serverless Policy

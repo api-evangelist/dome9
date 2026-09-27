@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - CloudRedshiftCluster
-      operationId: CloudRedshiftCluster_Get
+      operationId: getV2CloudRedshiftClusterById
       parameters:
       - name: id
         in: path
@@ -70,18 +70,39 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudRedshiftClusterViewModel'
       summary: Cloud redshift cluster get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: CloudRedshiftCluster_Get
 components:
   schemas:
-    Dome9.Web.Api.Models.AwsRedshiftParametersGroupViewModel:
+    Dome9.Web.Api.Models.AwsRedshiftParameterViewModel:
       type: object
       properties:
-        parameterGroupName:
+        allowedValues:
           type: string
           readOnly: true
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsRedshiftParameterViewModel'
+        applyType:
+          type: string
+          readOnly: true
+        dataType:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        isModifiable:
+          type: boolean
+          readOnly: true
+        minimumEngineVersion:
+          type: string
+          readOnly: true
+        parameterName:
+          type: string
+          readOnly: true
+        parameterValue:
+          type: string
+          readOnly: true
+        source:
+          type: string
           readOnly: true
     Dome9.Web.Api.Models.CloudRedshiftClusterViewModel:
       type: object
@@ -377,34 +398,37 @@ components:
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsRedshiftParametersGroupViewModel'
           readOnly: true
-    Dome9.Web.Api.Models.AwsRedshiftParameterViewModel:
+    Dome9.Web.Api.Models.CloudRedshiftClusterEndpointViewModel:
       type: object
       properties:
-        allowedValues:
+        port:
+          format: int32
+          type: integer
+          readOnly: true
+        address:
           type: string
           readOnly: true
-        applyType:
+    Dome9.Web.Api.Models.AwsRedshiftParametersGroupViewModel:
+      type: object
+      properties:
+        parameterGroupName:
           type: string
           readOnly: true
-        dataType:
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsRedshiftParameterViewModel'
+          readOnly: true
+    Dome9.Web.Api.Models.CloudRedshiftClusterNodeViewModel:
+      type: object
+      properties:
+        nodeRole:
           type: string
           readOnly: true
-        description:
+        privateIPAddress:
           type: string
           readOnly: true
-        isModifiable:
-          type: boolean
-          readOnly: true
-        minimumEngineVersion:
-          type: string
-          readOnly: true
-        parameterName:
-          type: string
-          readOnly: true
-        parameterValue:
-          type: string
-          readOnly: true
-        source:
+        publicIPAddress:
           type: string
           readOnly: true
     Dome9.Web.Api.Models.CloudRedshiftClusterSubnetGroupViewModel:
@@ -428,28 +452,6 @@ components:
           type: object
           additionalProperties:
             type: string
-          readOnly: true
-    Dome9.Web.Api.Models.CloudRedshiftClusterEndpointViewModel:
-      type: object
-      properties:
-        port:
-          format: int32
-          type: integer
-          readOnly: true
-        address:
-          type: string
-          readOnly: true
-    Dome9.Web.Api.Models.CloudRedshiftClusterNodeViewModel:
-      type: object
-      properties:
-        nodeRole:
-          type: string
-          readOnly: true
-        privateIPAddress:
-          type: string
-          readOnly: true
-        publicIPAddress:
-          type: string
           readOnly: true
   securitySchemes:
     API_key_V2:

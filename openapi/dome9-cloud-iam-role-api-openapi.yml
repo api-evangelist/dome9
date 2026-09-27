@@ -51,6 +51,28 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel'
 components:
   schemas:
+    Dome9.Web.Api.CloudIamRoles.AwsIamRolePolicyViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        name:
+          type: string
+    Dome9.Web.Api.Models.CloudIamRoleViewModel.PermissionsBoundary:
+      type: object
+      properties:
+        permissionsBoundaryArn:
+          type: string
+        permissionsBoundaryType:
+          type: string
+    Dome9.Web.Api.CloudIamRoles.AwsIamRoleLastUsedViewModel:
+      type: object
+      properties:
+        roleLastUsed:
+          format: date-time
+          type: string
+        region:
+          type: string
     Dome9.Web.Api.Models.CloudIamRoleViewModel:
       type: object
       properties:
@@ -95,28 +117,6 @@ components:
           $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel.PermissionsBoundary'
         assumeRolePolicy:
           type: object
-    Dome9.Web.Api.CloudIamRoles.AwsIamRoleLastUsedViewModel:
-      type: object
-      properties:
-        roleLastUsed:
-          format: date-time
-          type: string
-        region:
-          type: string
-    Dome9.Web.Api.Models.CloudIamRoleViewModel.PermissionsBoundary:
-      type: object
-      properties:
-        permissionsBoundaryArn:
-          type: string
-        permissionsBoundaryType:
-          type: string
-    Dome9.Web.Api.CloudIamRoles.AwsIamRolePolicyViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        name:
-          type: string
     Dome9.Web.Api.CloudIamRoles.CloudIamRoleInlinePolicyViewModel:
       type: object
       properties:

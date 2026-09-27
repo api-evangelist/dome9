@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Cloud Ami
-      operationId: CloudAmi_Get
+      operationId: getV2CloudAmiById
       parameters:
       - name: id
         in: path
@@ -76,26 +76,10 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel'
       summary: Cloud ami get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: CloudAmi_Get
 components:
   schemas:
-    Dome9.Web.Api.CloudAmi.CloudEc2BlockDeviceMappingViewModel:
-      type: object
-      properties:
-        deviceName:
-          type: string
-        ebs:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2EbsBlockDeviceViewModel'
-        noDevice:
-          type: string
-        virtualName:
-          type: string
-    Dome9.Web.Api.CloudAmi.CloudEc2StateReasonViewModel:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     Dome9.Web.Api.CloudAmi.CloudEc2EbsBlockDeviceViewModel:
       type: object
       properties:
@@ -113,6 +97,13 @@ components:
           type: integer
         volumeType:
           type: string
+    Dome9.Web.Api.CloudAmi.CloudEc2StateReasonViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     Dome9.Web.Api.CloudAmi.CloudEc2ProductCodeViewModel:
       type: object
       properties:
@@ -126,6 +117,17 @@ components:
         key:
           type: string
         value:
+          type: string
+    Dome9.Web.Api.CloudAmi.CloudEc2BlockDeviceMappingViewModel:
+      type: object
+      properties:
+        deviceName:
+          type: string
+        ebs:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2EbsBlockDeviceViewModel'
+        noDevice:
+          type: string
+        virtualName:
           type: string
     Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel:
       type: object

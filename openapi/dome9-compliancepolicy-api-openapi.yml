@@ -62,7 +62,7 @@ paths:
       tags:
       - CompliancePolicy
       summary: Update a Ruleset (Legacy)
-      operationId: CompliancePolicy_UpdateRuleBundle
+      operationId: putV2CompliancePolicy
       responses:
         '200':
           description: OK
@@ -97,15 +97,10 @@ paths:
             schema:
               $ref: '#/components/schemas/Dome9.Web.Api.Models.RuleBundleRequestViewModel'
         required: true
+      x-operation-id-source: normalized
+      x-operation-id-original: CompliancePolicy_UpdateRuleBundle
 components:
   schemas:
-    Falconetix.Model.Compliance.Ruleset.RuleBundleVersionViewModel:
-      type: object
-      properties:
-        version:
-          type: string
-        createdTime:
-          type: string
     Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel:
       type: object
       properties:
@@ -204,66 +199,6 @@ components:
           type: boolean
         icon:
           type: string
-    Dome9.Web.Api.Models.RuleBundleRequestViewModel:
-      required:
-      - name
-      - cloudVendor
-      type: object
-      properties:
-        id:
-          format: int64
-          description: the bundle id (returned in response)
-          type: integer
-        name:
-          description: bundle name
-          type: string
-        description:
-          description: description of the bundle
-          type: string
-        rules:
-          description: list of rules in the bundle
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleViewModel'
-        hideInCompliance:
-          type: boolean
-        minFeatureTier:
-          enum:
-          - Trial
-          - Basic
-          - Advanced
-          - Premium
-          type: string
-        cloudVendor:
-          description: the cloud provider on which the rule will be run
-          enum:
-          - aws
-          - hp
-          - mellanox
-          - awsgov
-          - azure
-          - google
-          - awschina
-          - azuregov
-          - kubernetes
-          - azurechina
-          - terraform
-          - generic
-          - kubernetesruntimeassurance
-          - shiftleft
-          - sourcecodeassurance
-          - imageassurance
-          - alibaba
-          - cft
-          - containerregistry
-          - oci
-          - ocigov
-          - ocigovuk
-          - CIEM
-          type: string
-        language:
-          description: the language of the text (default, 'en' - English)
-          type: string
     Falconetix.Model.Compliance.Ruleset.RuleViewModel:
       required:
       - name
@@ -326,6 +261,73 @@ components:
         isDefault:
           description: The property represents default rule
           type: boolean
+    Falconetix.Model.Compliance.Ruleset.RuleBundleVersionViewModel:
+      type: object
+      properties:
+        version:
+          type: string
+        createdTime:
+          type: string
+    Dome9.Web.Api.Models.RuleBundleRequestViewModel:
+      required:
+      - name
+      - cloudVendor
+      type: object
+      properties:
+        id:
+          format: int64
+          description: the bundle id (returned in response)
+          type: integer
+        name:
+          description: bundle name
+          type: string
+        description:
+          description: description of the bundle
+          type: string
+        rules:
+          description: list of rules in the bundle
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleViewModel'
+        hideInCompliance:
+          type: boolean
+        minFeatureTier:
+          enum:
+          - Trial
+          - Basic
+          - Advanced
+          - Premium
+          type: string
+        cloudVendor:
+          description: the cloud provider on which the rule will be run
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        language:
+          description: the language of the text (default, 'en' - English)
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

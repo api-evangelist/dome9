@@ -46,18 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.CloudLogGroups.CloudMetricFilterTransformations:
-      type: object
-      properties:
-        defaultValue:
-          format: double
-          type: number
-        metricName:
-          type: string
-        metricNamespace:
-          type: string
-        metricValue:
-          type: string
     Dome9.Web.Api.CloudLogGroups.CloudLogGroupViewModel:
       type: object
       properties:
@@ -318,6 +306,18 @@ components:
         storedBytes:
           format: int64
           type: integer
+    Dome9.Web.Api.CloudLogGroups.CloudMetricFilterTransformations:
+      type: object
+      properties:
+        defaultValue:
+          format: double
+          type: number
+        metricName:
+          type: string
+        metricNamespace:
+          type: string
+        metricValue:
+          type: string
     Dome9.Web.Api.CloudLogGroups.CloudMetricFilterViewModel:
       type: object
       properties:

@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   version: v2
-  title: Dome9. Cloud S3 Bucket API
+  title: Dome9. Cloud S3Bucket API
 servers:
 - url: https://api.dome9.com
 tags:
@@ -46,18 +46,99 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.CloudS3Bucket.CloudS3TagViewModel:
+    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleViewModel:
       type: object
       properties:
-        key:
+        expiration:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleExpirationViewModel'
+        id:
           type: string
-        value:
+        prefix:
           type: string
-    Dome9.Web.Api.CloudS3Bucket.CloudS3ServerSideEncryptionRuleViewModel:
+        filter:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleFilterViewModel'
+        status:
+          type: string
+        transition:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleTransitionViewModel'
+        noncurrentVersionExpiration:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleNoncurrentVersionExpirationViewModel'
+        noncurrentVersionTransition:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleNoncurrentVersionTransitionViewModel'
+        transitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleTransitionViewModel'
+        noncurrentVersionTransitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleNoncurrentVersionTransitionViewModel'
+        abortIncompleteMultipartUpload:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleAbortIncompleteMultipartUploadViewModel'
+    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketGrantViewModel:
       type: object
       properties:
-        serverSideEncryptionByDefault:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3ServerSideEncryptionByDefaultViewModel'
+        granteeType:
+          type: string
+        granteeCanonicalUser:
+          type: string
+        granteeDisplayName:
+          type: string
+        granteeEmailAddress:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        granteeURI:
+          type: string
+        granteePremissionHeaderName:
+          type: string
+        granteePremission:
+          type: string
+    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketVersioningViewModel:
+      type: object
+      properties:
+        status:
+          type: string
+        mfaDelete:
+          type: boolean
+    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketWebsiteViewModel:
+      type: object
+      properties:
+        indexDocumentSuffix:
+          type: string
+        errorDocument:
+          type: string
+        routingRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleViewModel'
+        redirectAllRequestsTo:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleRedirectViewModel'
+    Dome9.Web.Api.CloudS3Bucket.CloudS3ServerSideEncryptionByDefaultViewModel:
+      type: object
+      properties:
+        serverSideEncryptionAlgorithm:
+          type: string
+        serverSideEncryptionKeyManagementServiceKeyId:
+          type: string
+    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleNoncurrentVersionExpirationViewModel:
+      type: object
+      properties:
+        noncurrentDays:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketPublicAccessBlockViewModel:
+      type: object
+      properties:
+        blockPublicAcls:
+          type: boolean
+        ignorePublicAcls:
+          type: boolean
+        blockPublicPolicy:
+          type: boolean
+        restrictPublicBuckets:
+          type: boolean
     Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleExpirationViewModel:
       type: object
       properties:
@@ -72,6 +153,109 @@ components:
           type: integer
         expiredObjectDeleteMarker:
           type: boolean
+    Dome9.Web.Api.CloudS3Bucket.CloudS3TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecyclePrefixPredicateViewModel:
+      type: object
+      properties:
+        prefix:
+          type: string
+    Dome9.Web.Api.CloudS3Bucket.CloudS3ServerSideEncryptionRuleViewModel:
+      type: object
+      properties:
+        serverSideEncryptionByDefault:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3ServerSideEncryptionByDefaultViewModel'
+    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleConfigurationViewModel:
+      type: object
+      properties:
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleViewModel'
+    Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleRedirectViewModel:
+      type: object
+      properties:
+        hostName:
+          type: string
+        httpRedirectCode:
+          type: string
+        protocol:
+          type: string
+        replaceKeyPrefixWith:
+          type: string
+        replaceKeyWith:
+          type: string
+    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleFilterPredicateViewModel:
+      type: object
+      properties:
+        prefixOperand:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecyclePrefixPredicateViewModel'
+        tagOperands:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleTagPredicateViewModel'
+    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleAbortIncompleteMultipartUploadViewModel:
+      type: object
+      properties:
+        daysAfterInitiation:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudS3Bucket.CloudS3ReplicationConfigurationViewModel:
+      type: object
+      properties:
+        role:
+          type: string
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3ReplicationRuleViewModel'
+    Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleViewModel:
+      type: object
+      properties:
+        condition:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleConditionViewModel'
+        redirect:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleRedirectViewModel'
+    Dome9.Web.Api.CloudS3Bucket.CloudS3ReplicationDestinationViewModel:
+      type: object
+      properties:
+        bucketArn:
+          type: string
+        storageClass:
+          type: string
+    Dome9.Web.Api.CloudS3Bucket.CloudS3ServerSideEncryptionConfigurationViewModel:
+      type: object
+      properties:
+        serverSideEncryptionRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3ServerSideEncryptionRuleViewModel'
+    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketPolicyViewModel:
+      type: object
+      properties:
+        document:
+          type: string
+    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleFilterViewModel:
+      type: object
+      properties:
+        lifecycleFilterPredicate:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleFilterPredicateViewModel'
+    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketAclViewModel:
+      type: object
+      properties:
+        ownerId:
+          type: string
+        ownerDisplayName:
+          type: string
+        grants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3BucketGrantViewModel'
     Dome9.Web.Api.CloudS3Bucket.CloudS3ReplicationRuleViewModel:
       type: object
       properties:
@@ -83,39 +267,44 @@ components:
           type: string
         destination:
           $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3ReplicationDestinationViewModel'
-    Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleViewModel:
+    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketLoggingViewModel:
       type: object
       properties:
-        condition:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleConditionViewModel'
-        redirect:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleRedirectViewModel'
+        targetPrefix:
+          type: string
+        targetBucketName:
+          type: string
+        grants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3BucketGrantViewModel'
     Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleTagPredicateViewModel:
       type: object
       properties:
         tag:
           $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3TagViewModel'
-    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleFilterViewModel:
+    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleTransitionViewModel:
       type: object
       properties:
-        lifecycleFilterPredicate:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleFilterPredicateViewModel'
-    Dome9.Web.Api.CloudS3Bucket.CloudS3ReplicationConfigurationViewModel:
-      type: object
-      properties:
-        role:
+        date:
+          format: date-time
           type: string
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3ReplicationRuleViewModel'
-    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleConfigurationViewModel:
+        dateUtc:
+          format: date-time
+          type: string
+        days:
+          format: int32
+          type: integer
+        storageClass:
+          type: string
+    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleNoncurrentVersionTransitionViewModel:
       type: object
       properties:
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleViewModel'
+        noncurrentDays:
+          format: int32
+          type: integer
+        storageClass:
+          type: string
     Dome9.Web.Api.CloudS3Bucket.CloudS3BucketViewModel:
       type: object
       properties:
@@ -387,201 +576,12 @@ components:
           type: object
           additionalProperties:
             type: string
-    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketGrantViewModel:
-      type: object
-      properties:
-        granteeType:
-          type: string
-        granteeCanonicalUser:
-          type: string
-        granteeDisplayName:
-          type: string
-        granteeEmailAddress:
-          format: email
-          description: Email Address
-          type: string
-          example: MyName@gmail.com
-        granteeURI:
-          type: string
-        granteePremissionHeaderName:
-          type: string
-        granteePremission:
-          type: string
-    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleNoncurrentVersionTransitionViewModel:
-      type: object
-      properties:
-        noncurrentDays:
-          format: int32
-          type: integer
-        storageClass:
-          type: string
-    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketAclViewModel:
-      type: object
-      properties:
-        ownerId:
-          type: string
-        ownerDisplayName:
-          type: string
-        grants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3BucketGrantViewModel'
-    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketPolicyViewModel:
-      type: object
-      properties:
-        document:
-          type: string
-    Dome9.Web.Api.CloudS3Bucket.CloudS3ServerSideEncryptionByDefaultViewModel:
-      type: object
-      properties:
-        serverSideEncryptionAlgorithm:
-          type: string
-        serverSideEncryptionKeyManagementServiceKeyId:
-          type: string
-    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketVersioningViewModel:
-      type: object
-      properties:
-        status:
-          type: string
-        mfaDelete:
-          type: boolean
-    Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleRedirectViewModel:
-      type: object
-      properties:
-        hostName:
-          type: string
-        httpRedirectCode:
-          type: string
-        protocol:
-          type: string
-        replaceKeyPrefixWith:
-          type: string
-        replaceKeyWith:
-          type: string
-    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketWebsiteViewModel:
-      type: object
-      properties:
-        indexDocumentSuffix:
-          type: string
-        errorDocument:
-          type: string
-        routingRules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleViewModel'
-        redirectAllRequestsTo:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleRedirectViewModel'
-    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketPublicAccessBlockViewModel:
-      type: object
-      properties:
-        blockPublicAcls:
-          type: boolean
-        ignorePublicAcls:
-          type: boolean
-        blockPublicPolicy:
-          type: boolean
-        restrictPublicBuckets:
-          type: boolean
-    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleFilterPredicateViewModel:
-      type: object
-      properties:
-        prefixOperand:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecyclePrefixPredicateViewModel'
-        tagOperands:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleTagPredicateViewModel'
-    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleViewModel:
-      type: object
-      properties:
-        expiration:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleExpirationViewModel'
-        id:
-          type: string
-        prefix:
-          type: string
-        filter:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleFilterViewModel'
-        status:
-          type: string
-        transition:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleTransitionViewModel'
-        noncurrentVersionExpiration:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleNoncurrentVersionExpirationViewModel'
-        noncurrentVersionTransition:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleNoncurrentVersionTransitionViewModel'
-        transitions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleTransitionViewModel'
-        noncurrentVersionTransitions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleNoncurrentVersionTransitionViewModel'
-        abortIncompleteMultipartUpload:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleAbortIncompleteMultipartUploadViewModel'
-    Dome9.Web.Api.CloudS3Bucket.CloudS3BucketLoggingViewModel:
-      type: object
-      properties:
-        targetPrefix:
-          type: string
-        targetBucketName:
-          type: string
-        grants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3BucketGrantViewModel'
     Dome9.Web.Api.CloudS3Bucket.CloudS3RoutingRuleConditionViewModel:
       type: object
       properties:
         httpErrorCodeReturnedEquals:
           type: string
         keyPrefixEquals:
-          type: string
-    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleTransitionViewModel:
-      type: object
-      properties:
-        date:
-          format: date-time
-          type: string
-        dateUtc:
-          format: date-time
-          type: string
-        days:
-          format: int32
-          type: integer
-        storageClass:
-          type: string
-    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecyclePrefixPredicateViewModel:
-      type: object
-      properties:
-        prefix:
-          type: string
-    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleAbortIncompleteMultipartUploadViewModel:
-      type: object
-      properties:
-        daysAfterInitiation:
-          format: int32
-          type: integer
-    Dome9.Web.Api.CloudS3Bucket.CloudS3ServerSideEncryptionConfigurationViewModel:
-      type: object
-      properties:
-        serverSideEncryptionRules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudS3Bucket.CloudS3ServerSideEncryptionRuleViewModel'
-    Dome9.Web.Api.CloudS3Bucket.CloudS3LifecycleRuleNoncurrentVersionExpirationViewModel:
-      type: object
-      properties:
-        noncurrentDays:
-          format: int32
-          type: integer
-    Dome9.Web.Api.CloudS3Bucket.CloudS3ReplicationDestinationViewModel:
-      type: object
-      properties:
-        bucketArn:
-          type: string
-        storageClass:
           type: string
   securitySchemes:
     API_key_V2:

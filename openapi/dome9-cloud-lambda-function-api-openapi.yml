@@ -82,7 +82,7 @@ paths:
     get:
       tags:
       - Cloud Lambda Function
-      operationId: CloudLambdaFunction_Get
+      operationId: getV2CloudLambdaFunctionById
       parameters:
       - name: id
         in: path
@@ -104,12 +104,48 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudLambdaFunctionViewModel'
       summary: Cloud lambda function get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: CloudLambdaFunction_Get
 components:
   schemas:
-    CGN.Inventory.Aws.Model.WrapperModels.AwsDeadLetterConfig:
+    Falconetix.Model.CloudLambdaFunctionCorsViewModel:
       type: object
       properties:
-        targetArn:
+        allowCredentials:
+          type: boolean
+        allowHeaders:
+          type: array
+          items:
+            type: string
+        allowMethods:
+          type: array
+          items:
+            type: string
+        allowOrigins:
+          type: array
+          items:
+            type: string
+        exposeHeaders:
+          type: array
+          items:
+            type: string
+        maxAge:
+          format: int32
+          type: integer
+    Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel:
+      type: object
+      properties:
+        authType:
+          type: string
+        cors:
+          $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionCorsViewModel'
+        creationTime:
+          type: string
+        functionArn:
+          type: string
+        functionUrl:
+          type: string
+        lastModifiedTime:
           type: string
     CGN.Inventory.Aws.Model.WrapperModels.AwsEnvironmentVariable:
       type: object
@@ -425,50 +461,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel'
-    Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel:
+    CGN.Inventory.Aws.Model.WrapperModels.AwsDeadLetterConfig:
       type: object
       properties:
-        authType:
-          type: string
-        cors:
-          $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionCorsViewModel'
-        creationTime:
-          type: string
-        functionArn:
-          type: string
-        functionUrl:
-          type: string
-        lastModifiedTime:
+        targetArn:
           type: string
     CGN.Inventory.Aws.Model.WrapperModels.AwsTracingConfigResponse:
       type: object
       properties:
         mode:
           type: string
-    Falconetix.Model.CloudLambdaFunctionCorsViewModel:
-      type: object
-      properties:
-        allowCredentials:
-          type: boolean
-        allowHeaders:
-          type: array
-          items:
-            type: string
-        allowMethods:
-          type: array
-          items:
-            type: string
-        allowOrigins:
-          type: array
-          items:
-            type: string
-        exposeHeaders:
-          type: array
-          items:
-            type: string
-        maxAge:
-          format: int32
-          type: integer
   securitySchemes:
     API_key_V2:
       type: http

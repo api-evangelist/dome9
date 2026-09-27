@@ -119,7 +119,7 @@ paths:
     post:
       tags:
       - Agent
-      operationId: Agent_AttachGroupToAgent
+      operationId: postV2AgentByIdSecGroups
       parameters:
       - name: id
         in: path
@@ -169,10 +169,12 @@ paths:
         required: true
       summary: Agent attach group to agent
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Agent_AttachGroupToAgent
     delete:
       tags:
       - Agent
-      operationId: Agent_DetachGroupFromAgent
+      operationId: deleteV2AgentByIdSecGroups
       parameters:
       - name: id
         in: path
@@ -222,6 +224,8 @@ paths:
         required: true
       summary: Agent detach group from agent
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Agent_DetachGroupFromAgent
   /api/Agent/{id}/start-fim-scan:
     post:
       tags:
@@ -243,7 +247,7 @@ paths:
     post:
       tags:
       - Agent
-      operationId: Agent_StartFIMScan
+      operationId: postV2AgentByIdStartFimScan
       parameters:
       - name: id
         in: path
@@ -256,6 +260,8 @@ paths:
           description: No Content
       summary: Agent start FIM scan
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Agent_StartFIMScan
   /v2/Agent:
     get:
       tags:
@@ -343,6 +349,93 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dome9.Web.Api.Models.AgentViewModel:
+      type: object
+      properties:
+        id:
+          format: int64
+          description: Id of the Dome9 agent
+          type: integer
+        name:
+          description: Name of this Agent (server)
+          type: string
+        securityGroupIds:
+          description: List of Id of the Dome9 Security Groups that this agent is assigned to
+          type: array
+          items:
+            format: int64
+            type: integer
+        fimPolicyId:
+          format: int64
+          description: 'The Id of the security group inheriting FIM policy to this agent.
+
+            0 if no Fim policy is assigned to this agent'
+          type: integer
+        status:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentStatusViewModel'
+        cloudMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentCloudMetadataViewModel'
+        fimStatus:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentFimStatusViewModel'
+        accessPolicy:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentAccessServiceViewModel'
+        fimDisabled:
+          type: boolean
+    Dome9.Web.Api.Models.AgentSecurityGroupAttachDetachViewModel:
+      type: object
+      properties:
+        groupid:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Models.AgentStatusViewModel:
+      type: object
+      properties:
+        reportedIp:
+          type: string
+        platform:
+          enum:
+          - Windows
+          - Linux
+          - GenericLinux
+          type: string
+        osVersion:
+          type: string
+        lastAgentContact:
+          format: date-time
+          type: string
+        agentState:
+          enum:
+          - Unknown
+          - Accessible
+          - Offline
+          type: string
+        agentVersion:
+          type: string
+    Dome9.Web.Api.Models.AgentFimStatusViewModel:
+      type: object
+      properties:
+        scannerState:
+          enum:
+          - PendingForBaseline
+          - CreatingBaseline
+          - PendingForScan
+          - Scanning
+          - Idle
+          type: string
+        scanRequested:
+          format: date-time
+          type: string
+        baseLineCounter:
+          format: int32
+          type: integer
+        lastScanStarted:
+          format: date-time
+          type: string
+        lastScanEnded:
+          format: date-time
+          type: string
     Dome9.Web.Api.Models.AgentCloudMetadataViewModel:
       type: object
       properties:
@@ -726,93 +819,6 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Models.AgentFimStatusViewModel:
-      type: object
-      properties:
-        scannerState:
-          enum:
-          - PendingForBaseline
-          - CreatingBaseline
-          - PendingForScan
-          - Scanning
-          - Idle
-          type: string
-        scanRequested:
-          format: date-time
-          type: string
-        baseLineCounter:
-          format: int32
-          type: integer
-        lastScanStarted:
-          format: date-time
-          type: string
-        lastScanEnded:
-          format: date-time
-          type: string
-    Dome9.Web.Api.Models.AgentViewModel:
-      type: object
-      properties:
-        id:
-          format: int64
-          description: Id of the Dome9 agent
-          type: integer
-        name:
-          description: Name of this Agent (server)
-          type: string
-        securityGroupIds:
-          description: List of Id of the Dome9 Security Groups that this agent is assigned to
-          type: array
-          items:
-            format: int64
-            type: integer
-        fimPolicyId:
-          format: int64
-          description: 'The Id of the security group inheriting FIM policy to this agent.
-
-            0 if no Fim policy is assigned to this agent'
-          type: integer
-        status:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentStatusViewModel'
-        cloudMetadata:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentCloudMetadataViewModel'
-        fimStatus:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentFimStatusViewModel'
-        accessPolicy:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.AgentAccessServiceViewModel'
-        fimDisabled:
-          type: boolean
-    Dome9.Web.Api.Models.AgentSecurityGroupAttachDetachViewModel:
-      type: object
-      properties:
-        groupid:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Models.AgentStatusViewModel:
-      type: object
-      properties:
-        reportedIp:
-          type: string
-        platform:
-          enum:
-          - Windows
-          - Linux
-          - GenericLinux
-          type: string
-        osVersion:
-          type: string
-        lastAgentContact:
-          format: date-time
-          type: string
-        agentState:
-          enum:
-          - Unknown
-          - Accessible
-          - Offline
-          type: string
-        agentVersion:
-          type: string
   securitySchemes:
     API_key_V2:
       type: http

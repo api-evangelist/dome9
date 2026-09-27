@@ -46,66 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType:
-      type: object
-      properties:
-        value:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncLambdaAuthorizerConfig:
-      type: object
-      properties:
-        authorizerResultTtlInSeconds:
-          format: int32
-          type: integer
-        authorizerUri:
-          type: string
-        identityValidationExpression:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncAdditionalAuthenticationProvider:
-      type: object
-      properties:
-        authenticationType:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
-        lambdaAuthorizerConfig:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncLambdaAuthorizerConfig'
-        openIDConnectConfig:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncOpenIDConnectConfig'
-        userPoolConfig:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncUserPoolConfig'
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncEnhancedMetricsConfig:
-      type: object
-      properties:
-        dataSourceLevelMetricsBehavior:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
-        operationLevelMetricsConfig:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
-        resolverLevelMetricsBehavior:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncDeltaSyncConfig:
-      type: object
-      properties:
-        baseTableTTL:
-          format: int64
-          type: integer
-        deltaSyncTableName:
-          type: string
-        deltaSyncTableTTL:
-          format: int64
-          type: integer
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncElasticsearchConfig:
-      type: object
-      properties:
-        awsRegion:
-          type: string
-        endpoint:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncAwsIamConfig:
-      type: object
-      properties:
-        region:
-          type: string
-        signingServiceName:
-          type: string
     Dome9.Web.Api.AwsAppSync.AwsAppSyncViewModel:
       type: object
       properties:
@@ -183,38 +123,6 @@ components:
           type: string
         region:
           type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncLogConfig:
-      type: object
-      properties:
-        cloudWatchLogsRoleArn:
-          type: string
-        excludeVerboseContent:
-          type: boolean
-        fieldLogLevel:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncOpenSearchServiceConfig:
-      type: object
-      properties:
-        awsRegion:
-          type: string
-        endpoint:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncAuthorizationConfig:
-      type: object
-      properties:
-        authorizationType:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
-        awsIamConfig:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncAwsIamConfig'
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncUserPoolConfig:
-      type: object
-      properties:
-        appIdClientRegex:
-          type: string
-        awsRegion:
-          type: string
-        userPoolId:
-          type: string
     CGN.Inventory.Aws.Model.WrapperModels.AppSyncHttpConfig:
       type: object
       properties:
@@ -252,39 +160,6 @@ components:
       properties:
         lambdaFunctionArn:
           type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncDynamodbDataSourceConfig:
-      type: object
-      properties:
-        awsRegion:
-          type: string
-        deltaSyncConfig:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncDeltaSyncConfig'
-        tableName:
-          type: string
-        useCallerCredentials:
-          type: boolean
-        versioned:
-          type: boolean
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncRdsHttpEndpointConfig:
-      type: object
-      properties:
-        awsRegion:
-          type: string
-        awsSecretStoreArn:
-          type: string
-        databaseName:
-          type: string
-        dbClusterIdentifier:
-          type: string
-        schema:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AppSyncRelationalDatabaseConfig:
-      type: object
-      properties:
-        rdsHttpEndpointConfig:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncRdsHttpEndpointConfig'
-        relationalDatabaseSourceType:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
     CGN.Inventory.Aws.Model.WrapperModels.AppSyncOpenIDConnectConfig:
       type: object
       properties:
@@ -298,6 +173,131 @@ components:
           type: integer
         issuer:
           type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncLambdaAuthorizerConfig:
+      type: object
+      properties:
+        authorizerResultTtlInSeconds:
+          format: int32
+          type: integer
+        authorizerUri:
+          type: string
+        identityValidationExpression:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncUserPoolConfig:
+      type: object
+      properties:
+        appIdClientRegex:
+          type: string
+        awsRegion:
+          type: string
+        userPoolId:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncAwsIamConfig:
+      type: object
+      properties:
+        region:
+          type: string
+        signingServiceName:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncAuthorizationConfig:
+      type: object
+      properties:
+        authorizationType:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
+        awsIamConfig:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncAwsIamConfig'
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncOpenSearchServiceConfig:
+      type: object
+      properties:
+        awsRegion:
+          type: string
+        endpoint:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncRelationalDatabaseConfig:
+      type: object
+      properties:
+        rdsHttpEndpointConfig:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncRdsHttpEndpointConfig'
+        relationalDatabaseSourceType:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType:
+      type: object
+      properties:
+        value:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncDeltaSyncConfig:
+      type: object
+      properties:
+        baseTableTTL:
+          format: int64
+          type: integer
+        deltaSyncTableName:
+          type: string
+        deltaSyncTableTTL:
+          format: int64
+          type: integer
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncElasticsearchConfig:
+      type: object
+      properties:
+        awsRegion:
+          type: string
+        endpoint:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncRdsHttpEndpointConfig:
+      type: object
+      properties:
+        awsRegion:
+          type: string
+        awsSecretStoreArn:
+          type: string
+        databaseName:
+          type: string
+        dbClusterIdentifier:
+          type: string
+        schema:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncAdditionalAuthenticationProvider:
+      type: object
+      properties:
+        authenticationType:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
+        lambdaAuthorizerConfig:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncLambdaAuthorizerConfig'
+        openIDConnectConfig:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncOpenIDConnectConfig'
+        userPoolConfig:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncUserPoolConfig'
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncEnhancedMetricsConfig:
+      type: object
+      properties:
+        dataSourceLevelMetricsBehavior:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
+        operationLevelMetricsConfig:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
+        resolverLevelMetricsBehavior:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncDynamodbDataSourceConfig:
+      type: object
+      properties:
+        awsRegion:
+          type: string
+        deltaSyncConfig:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncDeltaSyncConfig'
+        tableName:
+          type: string
+        useCallerCredentials:
+          type: boolean
+        versioned:
+          type: boolean
+    CGN.Inventory.Aws.Model.WrapperModels.AppSyncLogConfig:
+      type: object
+      properties:
+        cloudWatchLogsRoleArn:
+          type: string
+        excludeVerboseContent:
+          type: boolean
+        fieldLogLevel:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AppSyncConstantType'
   securitySchemes:
     API_key_V2:
       type: http

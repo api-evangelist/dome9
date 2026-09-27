@@ -136,34 +136,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.AccountRegistration.AccountRegistrationWebViewModel:
-      required:
-      - email
-      type: object
-      properties:
-        recaptchaResponse:
-          type: string
-        email:
-          format: email
-          description: Email Address
-          type: string
-          example: MyName@gmail.com
-        referrer:
-          type: string
-        code:
-          maxLength: 50
-          minLength: 0
-          type: string
-    Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel:
-      type: object
-      properties:
-        email:
-          format: email
-          description: Email Address
-          type: string
-          example: MyName@gmail.com
-        referrer:
-          type: string
     Falconetix.Model.Account.AccountRegistrationSignUpViewModel:
       required:
       - email
@@ -202,6 +174,34 @@ components:
           type: string
         sendWelcomeEmail:
           type: boolean
+    Dome9.Web.Api.AccountRegistration.AccountRegistrationWebViewModel:
+      required:
+      - email
+      type: object
+      properties:
+        recaptchaResponse:
+          type: string
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        referrer:
+          type: string
+        code:
+          maxLength: 50
+          minLength: 0
+          type: string
+    Dome9.Web.Api.AccountRegistration.AccountRegistrationGetViewModel:
+      type: object
+      properties:
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        referrer:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

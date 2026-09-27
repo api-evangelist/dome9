@@ -320,7 +320,7 @@ paths:
       tags:
       - User
       summary: Get all Dome9 users for the Dome9 account
-      operationId: User_Get
+      operationId: getV2User
       responses:
         '200':
           description: OK
@@ -350,6 +350,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dome9.Web.Api.User.UserViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: User_Get
     post:
       tags:
       - User
@@ -398,6 +400,14 @@ paths:
         required: true
 components:
   schemas:
+    Dome9.Web.Api.UserAndRole.IamSafe.IamEntityLastLeaseTimeViewModel:
+      type: object
+      properties:
+        iamEntity:
+          type: string
+        lastLeaseTime:
+          format: date-time
+          type: string
     Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel:
       required:
       - iamEntities
@@ -407,91 +417,6 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeConfigViewModel:
-      type: object
-      properties:
-        cloudAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountViewModel'
-    Dome9.Web.Api.User.PermissionsViewModel:
-      type: object
-      properties:
-        access:
-          description: Access permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        manage:
-          description: Manage permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        rulesets:
-          description: Compliance permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        notifications:
-          description: Compliance permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        policies:
-          description: Compliance permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        alertActions:
-          description: Compliance permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        create:
-          description: Create permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        view:
-          description: View permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        onBoarding:
-          description: View permission SRL
-          type: array
-          items:
-            type: string
-        crossAccountAccess:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.User.UserPostViewModel:
-      required:
-      - email
-      - firstName
-      - lastName
-      type: object
-      properties:
-        email:
-          format: email
-          description: Email Address
-          pattern: ^([0-9a-zA-Z]([-.'\w\+]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*\.)+[a-zA-Z]{2,})$
-          type: string
-          example: MyName@gmail.com
-        firstName:
-          description: '[Required]'
-          maxLength: 50
-          minLength: 0
-          type: string
-        lastName:
-          description: '[Required]'
-          maxLength: 50
-          minLength: 0
-          type: string
-        ssoEnabled:
-          description: Determines whether this user is an SSO user (as opposed to Dome9 native authentication)
-          type: boolean
     Dome9.Web.Api.UserAndRole.IamSafe.UserApiKeyViewModel:
       required:
       - id
@@ -512,52 +437,13 @@ components:
         lastUsed:
           format: date-time
           type: string
-    Dome9.Web.Api.UserAndRole.MfaUserEnforcementViewModel:
+    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeConfigViewModel:
       type: object
       properties:
-        mfaCoercingDate:
-          type: string
-        isEnforced:
-          type: boolean
-        enforcerFullName:
-          type: string
-    Dome9.Web.Api.UserAndRole.IamSafe.IamEntityLastLeaseTimeViewModel:
-      type: object
-      properties:
-        iamEntity:
-          type: string
-        lastLeaseTime:
-          format: date-time
-          type: string
-    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountViewModel:
-      type: object
-      properties:
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-        externalAccountNumber:
-          type: string
-        lastLeaseTime:
-          format: date-time
-          type: string
-        state:
-          type: string
-        iamEntities:
+        cloudAccounts:
           type: array
           items:
-            type: string
-        iamEntitiesLastLeaseTime:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.IamEntityLastLeaseTimeViewModel'
-        cloudAccountState:
-          type: string
-        iamEntity:
-          type: string
-          readOnly: true
+            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountViewModel'
     Dome9.Web.Api.User.UserViewModel:
       required:
       - permissions
@@ -649,6 +535,122 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserApiKeyViewModel'
+    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        externalAccountNumber:
+          type: string
+        lastLeaseTime:
+          format: date-time
+          type: string
+        state:
+          type: string
+        iamEntities:
+          type: array
+          items:
+            type: string
+        iamEntitiesLastLeaseTime:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.IamEntityLastLeaseTimeViewModel'
+        cloudAccountState:
+          type: string
+        iamEntity:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.UserAndRole.MfaUserEnforcementViewModel:
+      type: object
+      properties:
+        mfaCoercingDate:
+          type: string
+        isEnforced:
+          type: boolean
+        enforcerFullName:
+          type: string
+    Dome9.Web.Api.User.PermissionsViewModel:
+      type: object
+      properties:
+        access:
+          description: Access permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        manage:
+          description: Manage permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        rulesets:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        notifications:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        policies:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        alertActions:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        create:
+          description: Create permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        view:
+          description: View permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        onBoarding:
+          description: View permission SRL
+          type: array
+          items:
+            type: string
+        crossAccountAccess:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.User.UserPostViewModel:
+      required:
+      - email
+      - firstName
+      - lastName
+      type: object
+      properties:
+        email:
+          format: email
+          description: Email Address
+          pattern: ^([0-9a-zA-Z]([-.'\w\+]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*\.)+[a-zA-Z]{2,})$
+          type: string
+          example: MyName@gmail.com
+        firstName:
+          description: '[Required]'
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          description: '[Required]'
+          maxLength: 50
+          minLength: 0
+          type: string
+        ssoEnabled:
+          description: Determines whether this user is an SSO user (as opposed to Dome9 native authentication)
+          type: boolean
   securitySchemes:
     API_key_V2:
       type: http

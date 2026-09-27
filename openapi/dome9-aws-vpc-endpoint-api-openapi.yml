@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Aws Vpc Endpoint
-      operationId: AwsVpcEndpoint_Get
+      operationId: getV2AwsVpcEndpointById
       parameters:
       - name: id
         in: path
@@ -76,12 +76,46 @@ paths:
                 $ref: '#/components/schemas/Falconetix.Model.AwsVpcEndpointViewModel'
       summary: Aws vpc endpoint get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AwsVpcEndpoint_Get
 components:
   schemas:
+    Falconetix.Model.AwsPrivateDnsDetailsViewModel:
+      type: object
+      properties:
+        privateDnsName:
+          type: string
     Falconetix.Model.AwsServiceTypeDetailViewModel:
       type: object
       properties:
         serviceType:
+          type: string
+    Falconetix.Model.AwsVpcEndpointViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        creationTimestamp:
+          format: date-time
+          type: string
+        policyDocument:
+          type: string
+        routeTableIds:
+          type: array
+          items:
+            type: string
+        serviceName:
+          type: string
+        endpointServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.VpcEndpointServiceViewModel'
+        state:
+          type: string
+        vpcEndpointId:
+          type: string
+        vpcId:
           type: string
     Falconetix.Model.VpcEndpointServiceViewModel:
       type: object
@@ -128,38 +162,6 @@ components:
             type: string
         vpcEndpointPolicySupported:
           type: boolean
-    Falconetix.Model.AwsVpcEndpointViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        creationTimestamp:
-          format: date-time
-          type: string
-        policyDocument:
-          type: string
-        routeTableIds:
-          type: array
-          items:
-            type: string
-        serviceName:
-          type: string
-        endpointServices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.VpcEndpointServiceViewModel'
-        state:
-          type: string
-        vpcEndpointId:
-          type: string
-        vpcId:
-          type: string
-    Falconetix.Model.AwsPrivateDnsDetailsViewModel:
-      type: object
-      properties:
-        privateDnsName:
-          type: string
   securitySchemes:
     API_key_V2:
       type: http

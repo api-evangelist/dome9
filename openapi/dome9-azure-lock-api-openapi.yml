@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Azure Lock
-      operationId: AzureLock_Get
+      operationId: getV2AzureLockById
       parameters:
       - name: id
         in: path
@@ -70,6 +70,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Azure.Locks.AzureLockViewModel'
       summary: Azure lock get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AzureLock_Get
 components:
   schemas:
     Dome9.Web.Api.Azure.Locks.AzureLockViewModel:

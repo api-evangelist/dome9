@@ -165,6 +165,16 @@ paths:
         required: true
 components:
   schemas:
+    Dome9.Web.Api.LicenseActivator.LicenseGetRequestModel:
+      required:
+      - userName
+      - password
+      type: object
+      properties:
+        userName:
+          type: string
+        password:
+          type: string
     Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel:
       required:
       - services
@@ -179,6 +189,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModelService'
+    Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel:
+      required:
+      - licenses
+      - userName
+      - password
+      type: object
+      properties:
+        licenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel'
+        userName:
+          type: string
+        password:
+          type: string
     Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModelService:
       type: object
       properties:
@@ -289,16 +314,6 @@ components:
           type: integer
         macro:
           type: string
-    Dome9.Web.Api.LicenseActivator.LicenseGetRequestModel:
-      required:
-      - userName
-      - password
-      type: object
-      properties:
-        userName:
-          type: string
-        password:
-          type: string
     Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel:
       type: object
       properties:
@@ -330,21 +345,6 @@ components:
           type: string
         expirationDate:
           format: date-time
-          type: string
-    Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel:
-      required:
-      - licenses
-      - userName
-      - password
-      type: object
-      properties:
-        licenses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel'
-        userName:
-          type: string
-        password:
           type: string
   securitySchemes:
     API_key_V2:

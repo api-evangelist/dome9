@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Cloud Efs
-      operationId: CloudEfs_Get
+      operationId: getV2CloudEfsById
       parameters:
       - name: id
         in: path
@@ -70,8 +70,31 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.CloudEfsViewModel'
       summary: Cloud efs get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: CloudEfs_Get
 components:
   schemas:
+    Dome9.Web.Api.CloudEfsMountTargetViewModel:
+      type: object
+      properties:
+        fileSystemId:
+          type: string
+        ipAddress:
+          type: string
+        lifeCycleState:
+          type: string
+        mountTargetId:
+          type: string
+        networkInterfaceId:
+          type: string
+        ownerId:
+          type: string
+        subnetId:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            type: string
     Dome9.Web.Api.CloudEfsViewModel:
       type: object
       properties:
@@ -352,27 +375,6 @@ components:
           - eu_jovanovac_1
           - ap_singapore_2
           type: string
-    Dome9.Web.Api.CloudEfsMountTargetViewModel:
-      type: object
-      properties:
-        fileSystemId:
-          type: string
-        ipAddress:
-          type: string
-        lifeCycleState:
-          type: string
-        mountTargetId:
-          type: string
-        networkInterfaceId:
-          type: string
-        ownerId:
-          type: string
-        subnetId:
-          type: string
-        securityGroups:
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.CloudEfsSizeInBytesViewModel:
       type: object
       properties:

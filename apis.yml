@@ -39,6 +39,9 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dome9.png
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-25
 tags:
   - Cloud Security
   - Compliance
@@ -2232,8 +2235,6 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
-  - Bigtable
-  tags_raw:
   - Big Table
   properties:
   - type: OpenAPI
@@ -3124,8 +3125,6 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
-  - CloudTrail
-  tags_raw:
   - Cloud Trail
   properties:
   - type: OpenAPI
@@ -3948,8 +3947,6 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
-  - SecurityGroup
-  tags_raw:
   - Security Group
   properties:
   - type: OpenAPI
@@ -3990,8 +3987,6 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
-  - ServiceAccount
-  tags_raw:
   - Service Account
   properties:
   - type: OpenAPI
@@ -4012,8 +4007,6 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
-  - shiftleft
-  tags_raw:
   - Shift Left
   properties:
   - type: OpenAPI

@@ -46,6 +46,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dome9.Web.Api.CloudSqs.CloudSqsViewModel.AwsSqsRedrivePolicyViewModel:
+      type: object
+      properties:
+        deadLetterTargetArn:
+          type: string
+        maxReceiveCount:
+          format: int32
+          type: integer
     Dome9.Web.Api.CloudSqs.CloudSqsViewModel:
       type: object
       properties:
@@ -320,14 +328,6 @@ components:
             type: string
         sqsManagedSseEnabled:
           type: boolean
-    Dome9.Web.Api.CloudSqs.CloudSqsViewModel.AwsSqsRedrivePolicyViewModel:
-      type: object
-      properties:
-        deadLetterTargetArn:
-          type: string
-        maxReceiveCount:
-          format: int32
-          type: integer
   securitySchemes:
     API_key_V2:
       type: http

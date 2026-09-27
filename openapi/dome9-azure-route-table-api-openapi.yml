@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Azure Route Table
-      operationId: AzureRouteTable_GetAsync
+      operationId: getV2AzureRouteTableById
       parameters:
       - name: id
         in: path
@@ -70,32 +70,10 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Azure.RouteTable.AzureRouteTableViewModel'
       summary: Azure route table get async
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AzureRouteTable_GetAsync
 components:
   schemas:
-    Dome9.Web.Api.Azure.RouteTable.AzureRouteViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        etag:
-          type: string
-          readOnly: true
-        name:
-          type: string
-          readOnly: true
-        addressPrefix:
-          type: string
-          readOnly: true
-        nextHopIpAddress:
-          type: string
-          readOnly: true
-        nextHopType:
-          type: string
-          readOnly: true
-        provisioningState:
-          type: string
-          readOnly: true
     Dome9.Web.Api.Azure.RouteTable.AzureRouteTableViewModel:
       type: object
       properties:
@@ -135,6 +113,30 @@ components:
           type: string
           readOnly: true
         resourceGroup:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.Azure.RouteTable.AzureRouteViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        etag:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        addressPrefix:
+          type: string
+          readOnly: true
+        nextHopIpAddress:
+          type: string
+          readOnly: true
+        nextHopType:
+          type: string
+          readOnly: true
+        provisioningState:
           type: string
           readOnly: true
   securitySchemes:

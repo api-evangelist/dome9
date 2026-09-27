@@ -47,7 +47,7 @@ paths:
     get:
       tags:
       - Cloud Load Balancer
-      operationId: CloudLoadBalancer_Get
+      operationId: getV2CloudLoadBalancerById
       parameters:
       - name: id
         in: path
@@ -75,35 +75,10 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudLoadBalancerViewModel'
       summary: Cloud load balancer get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: CloudLoadBalancer_Get
 components:
   schemas:
-    Dome9.Web.Api.Models.CloudLoadBalancerAccessLogViewModel:
-      type: object
-      properties:
-        emitInterval:
-          format: int32
-          type: integer
-        enabled:
-          type: boolean
-        s3BucketName:
-          type: string
-        s3BucketPrefix:
-          type: string
-    Dome9.Web.Api.Models.CloudLoadBalancerListenerViewModel:
-      type: object
-      properties:
-        sourcePort:
-          format: int32
-          type: integer
-        instancePort:
-          format: int32
-          type: integer
-        sourceProtocol:
-          type: string
-        instanceProtocol:
-          type: string
-        sslCertificateId:
-          type: string
     Dome9.Web.Api.Models.CloudLoadBalancerViewModel:
       type: object
       properties:
@@ -359,6 +334,33 @@ components:
           type: string
         accessLog:
           $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudLoadBalancerAccessLogViewModel'
+    Dome9.Web.Api.Models.CloudLoadBalancerListenerViewModel:
+      type: object
+      properties:
+        sourcePort:
+          format: int32
+          type: integer
+        instancePort:
+          format: int32
+          type: integer
+        sourceProtocol:
+          type: string
+        instanceProtocol:
+          type: string
+        sslCertificateId:
+          type: string
+    Dome9.Web.Api.Models.CloudLoadBalancerAccessLogViewModel:
+      type: object
+      properties:
+        emitInterval:
+          format: int32
+          type: integer
+        enabled:
+          type: boolean
+        s3BucketName:
+          type: string
+        s3BucketPrefix:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

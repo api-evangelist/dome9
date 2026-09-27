@@ -106,55 +106,6 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Onboarding.ViewModel.OnboardingInfoViewModel'
 components:
   schemas:
-    Dome9.Web.Api.Onboarding.ViewModel.Parameter:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    Dome9.Web.Api.Onboarding.ViewModel.OnboardingInfoViewModel:
-      type: object
-      properties:
-        onboardingId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        initiatedUserName:
-          type: string
-        initiatedUserId:
-          format: int32
-          type: integer
-        environmentId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        environmentName:
-          type: string
-        environmentExternalId:
-          type: string
-        rootStackId:
-          type: string
-        cftVersion:
-          type: string
-        onboardingRequest:
-          $ref: '#/components/schemas/Dome9.Web.Api.Onboarding.Requests.OnboardingConfigurationRequest'
-        statuses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Onboarding.ViewModel.OnboardingStatus'
-        intelligenceStackRegion:
-          type: string
-    Falconetix.Model.Onboarding.Logic.IntelligenceConfigurations:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        rulesets:
-          type: array
-          items:
-            format: int64
-            type: integer
     Dome9.Web.Api.Onboarding.ViewModel.AwsStackConfigViewModel:
       type: object
       properties:
@@ -170,31 +121,6 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Onboarding.ViewModel.OnboardingStatus:
-      type: object
-      properties:
-        module:
-          type: string
-        feature:
-          type: string
-        status:
-          type: string
-        statusMessage:
-          type: string
-        stackStatus:
-          type: string
-        stackMessage:
-          type: string
-        remediationRecommendation:
-          type: string
-    Falconetix.Model.Onboarding.PostureManagement.PostureManagementConfiguration:
-      type: object
-      properties:
-        rulesets:
-          type: array
-          items:
-            format: int64
-            type: integer
     Dome9.Web.Api.Onboarding.Requests.OnboardingConfigurationRequest:
       type: object
       properties:
@@ -239,6 +165,80 @@ components:
           $ref: '#/components/schemas/Falconetix.Model.Onboarding.Serverless.ServerlessConfiguration'
         intelligenceConfigurations:
           $ref: '#/components/schemas/Falconetix.Model.Onboarding.Logic.IntelligenceConfigurations'
+    Falconetix.Model.Onboarding.PostureManagement.PostureManagementConfiguration:
+      type: object
+      properties:
+        rulesets:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Dome9.Web.Api.Onboarding.ViewModel.Parameter:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Onboarding.ViewModel.OnboardingStatus:
+      type: object
+      properties:
+        module:
+          type: string
+        feature:
+          type: string
+        status:
+          type: string
+        statusMessage:
+          type: string
+        stackStatus:
+          type: string
+        stackMessage:
+          type: string
+        remediationRecommendation:
+          type: string
+    Falconetix.Model.Onboarding.Logic.IntelligenceConfigurations:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        rulesets:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Dome9.Web.Api.Onboarding.ViewModel.OnboardingInfoViewModel:
+      type: object
+      properties:
+        onboardingId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        initiatedUserName:
+          type: string
+        initiatedUserId:
+          format: int32
+          type: integer
+        environmentId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        environmentName:
+          type: string
+        environmentExternalId:
+          type: string
+        rootStackId:
+          type: string
+        cftVersion:
+          type: string
+        onboardingRequest:
+          $ref: '#/components/schemas/Dome9.Web.Api.Onboarding.Requests.OnboardingConfigurationRequest'
+        statuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Onboarding.ViewModel.OnboardingStatus'
+        intelligenceStackRegion:
+          type: string
     Falconetix.Model.Onboarding.Serverless.ServerlessConfiguration:
       type: object
       properties:

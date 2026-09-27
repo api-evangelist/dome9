@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Azure Virtual Network Peering
-      operationId: AzureVirtualNetworkPeering_Get
+      operationId: getV2AzureVirtualNetworkPeeringById
       parameters:
       - name: id
         in: path
@@ -70,6 +70,8 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel'
       summary: Azure virtual network peering get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: AzureVirtualNetworkPeering_Get
 components:
   schemas:
     Dome9.Web.Api.Model.AzureVirtualNetworkPeeringViewModel:

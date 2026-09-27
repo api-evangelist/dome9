@@ -46,62 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.CloudKms.AwsMultiRegionKeyViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        region:
-          type: string
-    Dome9.Web.Api.CloudKms.CloudKmsViewModel:
-      type: object
-      properties:
-        id:
-          description: Id
-          type: string
-          readOnly: true
-        externalId:
-          description: ExternalId
-          type: string
-          readOnly: true
-        name:
-          description: Name
-          type: string
-          readOnly: true
-        cloudAccountId:
-          format: uuid
-          description: CloudAccountId
-          type: string
-          readOnly: true
-          example: 00000000-0000-0000-0000-000000000000
-        accountId:
-          format: int64
-          description: AccountId
-          type: integer
-          readOnly: true
-        externalAccountNumber:
-          description: External account number
-          type: string
-        arn:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsKeyMetadataViewModel'
-        rotationStatus:
-          type: boolean
-        keyRotation:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.KmsRotationViewModel'
-        policies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsPolicyViewModel'
-        alias:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsAliasViewModel'
-        tags:
-          type: object
-          additionalProperties:
-            type: string
     Dome9.Web.Api.CloudKms.CloudKmsKeyMetadataViewModel:
       type: object
       properties:
@@ -206,13 +150,6 @@ components:
           type: boolean
         multiRegionConfiguration:
           $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.AwsMultiRegionConfigurationViewModel'
-    Dome9.Web.Api.CloudKms.CloudKmsPolicyViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        document:
-          type: object
     Dome9.Web.Api.CloudKms.KmsRotationViewModel:
       type: object
       properties:
@@ -227,17 +164,6 @@ components:
         rotationPeriodInDays:
           format: int32
           type: integer
-    Dome9.Web.Api.CloudKms.AwsMultiRegionConfigurationViewModel:
-      type: object
-      properties:
-        type:
-          type: string
-        primaryKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.AwsMultiRegionKeyViewModel'
-        replicaKeys:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.AwsMultiRegionKeyViewModel'
     Dome9.Web.Api.CloudKms.CloudKmsAliasViewModel:
       type: object
       properties:
@@ -273,6 +199,80 @@ components:
         targetKeyId:
           description: Target key ID
           type: string
+    Dome9.Web.Api.CloudKms.CloudKmsPolicyViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        document:
+          type: object
+    Dome9.Web.Api.CloudKms.AwsMultiRegionKeyViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        region:
+          type: string
+    Dome9.Web.Api.CloudKms.AwsMultiRegionConfigurationViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        primaryKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.AwsMultiRegionKeyViewModel'
+        replicaKeys:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.AwsMultiRegionKeyViewModel'
+    Dome9.Web.Api.CloudKms.CloudKmsViewModel:
+      type: object
+      properties:
+        id:
+          description: Id
+          type: string
+          readOnly: true
+        externalId:
+          description: ExternalId
+          type: string
+          readOnly: true
+        name:
+          description: Name
+          type: string
+          readOnly: true
+        cloudAccountId:
+          format: uuid
+          description: CloudAccountId
+          type: string
+          readOnly: true
+          example: 00000000-0000-0000-0000-000000000000
+        accountId:
+          format: int64
+          description: AccountId
+          type: integer
+          readOnly: true
+        externalAccountNumber:
+          description: External account number
+          type: string
+        arn:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsKeyMetadataViewModel'
+        rotationStatus:
+          type: boolean
+        keyRotation:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.KmsRotationViewModel'
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsPolicyViewModel'
+        alias:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudKms.CloudKmsAliasViewModel'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
   securitySchemes:
     API_key_V2:
       type: http

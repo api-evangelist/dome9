@@ -142,7 +142,7 @@ paths:
       tags:
       - Exclusion Old
       summary: Get details for a specific exclusion
-      operationId: ExclusionOld_Get
+      operationId: getV2ExclusionById
       parameters:
       - name: id
         in: path
@@ -170,6 +170,8 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: ExclusionOld_Get
     delete:
       tags:
       - Exclusion Old
@@ -188,11 +190,15 @@ paths:
           description: No Content
 components:
   schemas:
-    Dome9.Web.Api.Compliance.ExclusionOld.ExclusionPostOldViewModel:
+    Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel:
       required:
       - comment
       type: object
       properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
         ruleLogicHash:
           description: '[Optional] Hash for the rule logic. If not specified, the exclusion logic applies to all rules.'
           pattern: ^[A-Za-z0-9+/]{22}?$
@@ -235,15 +241,11 @@ components:
         comment:
           description: Comment text (free text)
           type: string
-    Dome9.Web.Api.Compliance.ExclusionOld.ExclusionGetOldViewModel:
+    Dome9.Web.Api.Compliance.ExclusionOld.ExclusionPostOldViewModel:
       required:
       - comment
       type: object
       properties:
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
         ruleLogicHash:
           description: '[Optional] Hash for the rule logic. If not specified, the exclusion logic applies to all rules.'
           pattern: ^[A-Za-z0-9+/]{22}?$

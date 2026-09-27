@@ -48,7 +48,7 @@ paths:
     get:
       tags:
       - Gcp Pub Sub
-      operationId: GcpPubSub_Get
+      operationId: getTopicsByCloudAccountId
       parameters:
       - name: cloudAccountId
         in: path
@@ -86,11 +86,13 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel'
       summary: Gcp pub sub get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: GcpPubSub_Get
   /subscriptions/{cloudAccountId}/{project}/{topic}:
     get:
       tags:
       - Gcp Pub Sub
-      operationId: GcpPubSub_Get
+      operationId: getSubscriptionsByCloudAccountIdByProjectByTopic
       parameters:
       - name: cloudAccountId
         in: path
@@ -138,6 +140,8 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubSubscriptionViewModel'
       summary: Gcp pub sub get
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: GcpPubSub_Get
 components:
   schemas:
     Dome9.Web.Api.Google.PubSub.GcpPubSubTopicMessageStoragePolicyViewModel:
@@ -147,6 +151,48 @@ components:
           type: array
           items:
             type: string
+    Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel.GcpPubSubPolicyBindingViewModel:
+      type: object
+      properties:
+        condition:
+          type: object
+        members:
+          type: array
+          items:
+            type: string
+        role:
+          type: string
+    Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel:
+      type: object
+      properties:
+        bindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel.GcpPubSubPolicyBindingViewModel'
+        eTag:
+          type: string
+        version:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel:
+      type: object
+      properties:
+        messageStoragePolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicMessageStoragePolicyViewModel'
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        policy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel'
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
     Dome9.Web.Api.Google.PubSub.GcpPubSubSubscriptionViewModel:
       type: object
       properties:
@@ -173,48 +219,6 @@ components:
           type: string
           example: 00000000-0000-0000-0000-000000000000
         name:
-          type: string
-    Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel:
-      type: object
-      properties:
-        messageStoragePolicy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicMessageStoragePolicyViewModel'
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        policy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel'
-        id:
-          type: string
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-    Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel:
-      type: object
-      properties:
-        bindings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel.GcpPubSubPolicyBindingViewModel'
-        eTag:
-          type: string
-        version:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel.GcpPubSubPolicyBindingViewModel:
-      type: object
-      properties:
-        condition:
-          type: object
-        members:
-          type: array
-          items:
-            type: string
-        role:
           type: string
   securitySchemes:
     API_key_V2:

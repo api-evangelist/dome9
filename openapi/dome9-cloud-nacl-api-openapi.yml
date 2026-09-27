@@ -45,17 +45,6 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudNaclViewModel'
 components:
   schemas:
-    Dome9.Web.Api.Controllers.NaclEntryIcmpTypeCodeViewModel:
-      type: object
-      properties:
-        type:
-          format: int32
-          type: integer
-        code:
-          format: int32
-          type: integer
-        description:
-          type: string
     Dome9.Web.Api.Controllers.CloudNaclEntryViewModel:
       type: object
       properties:
@@ -321,14 +310,16 @@ components:
           type: object
           additionalProperties:
             type: string
-    Dome9.Web.Api.Controllers.CloudNaclAssociationViewModel:
+    Dome9.Web.Api.Controllers.NaclEntryIcmpTypeCodeViewModel:
       type: object
       properties:
-        naclId:
-          type: string
-        nAclAssociationId:
-          type: string
-        subnetId:
+        type:
+          format: int32
+          type: integer
+        code:
+          format: int32
+          type: integer
+        description:
           type: string
     CGN.Inventory.Aws.Model.WrapperModels.NaclEntryPortRange:
       type: object
@@ -339,6 +330,15 @@ components:
         to:
           format: int32
           type: integer
+    Dome9.Web.Api.Controllers.CloudNaclAssociationViewModel:
+      type: object
+      properties:
+        naclId:
+          type: string
+        nAclAssociationId:
+          type: string
+        subnetId:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

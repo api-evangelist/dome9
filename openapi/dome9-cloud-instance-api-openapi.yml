@@ -450,7 +450,7 @@ paths:
       tags:
       - Cloud Instance
       summary: Fetch a specific AWS EC2 instance
-      operationId: CloudInstance_Get
+      operationId: getV2CloudInstanceById
       parameters:
       - name: id
         in: path
@@ -477,97 +477,10 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceViewModel'
+      x-operation-id-source: normalized
+      x-operation-id-original: CloudInstance_Get
 components:
   schemas:
-    Falconetix.Model.AwsGuardDutyPortProbeActionViewModel:
-      type: object
-      properties:
-        blocked:
-          type: boolean
-        portProbeDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyPortProbeDetailViewModel'
-    Dome9.Web.Api.Models.CloudInstanceNicViewModel:
-      type: object
-      properties:
-        publicIpAddress:
-          type: string
-        privateIpAddress:
-          type: string
-        securityGroupIds:
-          type: array
-          items:
-            type: string
-        privateDnsName:
-          type: string
-        name:
-          type: string
-        externalId:
-          type: string
-        subnetId:
-          type: string
-        macAddress:
-          type: string
-    Dome9.Web.Api.Models.CloudInstanceMetadataOptionsViewModel:
-      type: object
-      properties:
-        httpEndpoint:
-          type: string
-        httpPutResponseHopLimit:
-          format: int32
-          type: integer
-        httpTokens:
-          type: string
-        state:
-          type: string
-    Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel:
-      type: object
-      properties:
-        city:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyCityViewModel'
-        country:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyCountryViewModel'
-        geoLocation:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyGeoLocationViewModel'
-        ipAddressV4:
-          type: string
-        organization:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyOrganizationViewModel'
-    Falconetix.Model.AwsGuardDutyAwsApiCallActionViewModel:
-      type: object
-      properties:
-        api:
-          type: string
-        callerType:
-          type: string
-        domainDetails:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyDomainDetailsViewModel'
-        remoteIpDetails:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel'
-        serviceName:
-          type: string
-    Falconetix.Model.AwsGuardDutyIamInstanceProfileViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        id:
-          type: string
-    Falconetix.Model.AwsGuardDutyTagViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    Dome9.Web.Api.Models.AwsEc2StateReasonViewModel:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     Falconetix.Model.AwsGuardDutyLocalPortDetailsViewModel:
       type: object
       properties:
@@ -576,122 +489,25 @@ components:
           type: integer
         portName:
           type: string
-    Dome9.Web.Api.Models.AwsSsmInstanceAssociationStatusAggregatedCountViewModel:
+    Falconetix.Model.AwsGuardDutyActionViewModel:
       type: object
       properties:
-        key:
+        actionType:
           type: string
-        value:
-          format: int32
-          type: integer
-    Falconetix.Model.AwsGuardDutyServiceViewModel:
-      type: object
-      properties:
-        action:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyActionViewModel'
-        archived:
-          type: boolean
-        count:
-          format: int32
-          type: integer
-        detectorId:
-          type: string
-        eventFirstSeen:
-          type: string
-        eventLastSeen:
-          type: string
-        resourceRole:
-          type: string
-        serviceName:
-          type: string
-        userFeedback:
-          type: string
-    Dome9.Web.Api.Models.CloudSsmInstanceInformationViewModel:
-      type: object
-      properties:
-        activationId:
-          type: string
-        agentVersion:
-          type: string
-        associationOverview:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSsmInstanceInformationAssociationOverviewViewModel'
-        associationStatus:
-          type: string
-        computerName:
-          type: string
-        iamRole:
-          type: string
-        instanceId:
-          type: string
-        ipAddress:
-          type: string
-        isLatestVersion:
-          type: boolean
-        lastAssociationExecutionDate:
-          format: int64
-          type: integer
-        lastSuccessfulAssociationExecutionDate:
-          format: int64
-          type: integer
-        name:
-          type: string
-        pingStatus:
-          type: string
-        platformName:
-          type: string
-        platformType:
-          type: string
-        platformVersion:
-          type: string
-        registrationDate:
-          format: int64
-          type: integer
-        resourceType:
-          type: string
+        awsApiCallAction:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyAwsApiCallActionViewModel'
+        dnsRequestAction:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyDnsRequestActionViewModel'
+        networkConnectionAction:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyNetworkConnectionActionViewModel'
+        portProbeAction:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyPortProbeActionViewModel'
     Dome9.Web.Api.CloudAmi.CloudEc2TagViewModel:
       type: object
       properties:
         key:
           type: string
         value:
-          type: string
-    Falconetix.Model.AwsGuardDutyProductCodeViewModel:
-      type: object
-      properties:
-        code:
-          type: string
-        productType:
-          type: string
-    Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel:
-      type: object
-      properties:
-        groupid:
-          format: int32
-          type: integer
-        nicname:
-          type: string
-        policyGroupId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    Falconetix.Model.AwsGuardDutyOrganizationViewModel:
-      type: object
-      properties:
-        asn:
-          type: string
-        asnOrg:
-          type: string
-        isp:
-          type: string
-        org:
-          type: string
-    Falconetix.Model.AwsGuardDutyRemotePortDetailsViewModel:
-      type: object
-      properties:
-        port:
-          format: int32
-          type: integer
-        portName:
           type: string
     Dome9.Web.Api.Models.CloudInstanceImageDetailsViewModel:
       type: object
@@ -744,15 +560,109 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2TagViewModel'
-    Dome9.Web.Api.Models.AwsSsmInstanceInformationAssociationOverviewViewModel:
+    Dome9.Web.Api.Models.AwsEc2ProductCodeViewModel:
       type: object
       properties:
-        detailedStatus:
+        productCodeId:
           type: string
-        instanceAssociationStatusAggregatedCount:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSsmInstanceAssociationStatusAggregatedCountViewModel'
+        productCodeType:
+          type: string
+    Falconetix.Model.AwsGuardDutyCountryViewModel:
+      type: object
+      properties:
+        countryCode:
+          type: string
+        countryName:
+          type: string
+    Dome9.Web.Api.Models.CloudSsmInstanceInformationViewModel:
+      type: object
+      properties:
+        activationId:
+          type: string
+        agentVersion:
+          type: string
+        associationOverview:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSsmInstanceInformationAssociationOverviewViewModel'
+        associationStatus:
+          type: string
+        computerName:
+          type: string
+        iamRole:
+          type: string
+        instanceId:
+          type: string
+        ipAddress:
+          type: string
+        isLatestVersion:
+          type: boolean
+        lastAssociationExecutionDate:
+          format: int64
+          type: integer
+        lastSuccessfulAssociationExecutionDate:
+          format: int64
+          type: integer
+        name:
+          type: string
+        pingStatus:
+          type: string
+        platformName:
+          type: string
+        platformType:
+          type: string
+        platformVersion:
+          type: string
+        registrationDate:
+          format: int64
+          type: integer
+        resourceType:
+          type: string
+    Falconetix.Model.AwsGuardDutyRemotePortDetailsViewModel:
+      type: object
+      properties:
+        port:
+          format: int32
+          type: integer
+        portName:
+          type: string
+    Falconetix.Model.AwsGuardDutyResourceViewModel:
+      type: object
+      properties:
+        accessKeyDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyAccessKeyDetailsViewModel'
+        instanceDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyInstanceDetailsViewModel'
+        resourceType:
+          type: string
+    Dome9.Web.Api.Models.AwsSsmInstancePatchStateViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        patchGroup:
+          type: string
+        baselineId:
+          type: string
+        installedCount:
+          format: int32
+          type: integer
+        missingCount:
+          format: int32
+          type: integer
+        failedCount:
+          format: int32
+          type: integer
+        installedOtherCount:
+          format: int32
+          type: integer
+        notApplicableCount:
+          format: int32
+          type: integer
+        securityNonCompliantCount:
+          format: int32
+          type: integer
+        unreportedNotApplicableCount:
+          format: int32
+          type: integer
     Falconetix.Model.AwsGuardDutyInstanceDetailsViewModel:
       type: object
       properties:
@@ -784,6 +694,256 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyTagViewModel'
+    Falconetix.Model.AwsGuardDutySecurityGroupViewModel:
+      type: object
+      properties:
+        groupId:
+          type: string
+        groupName:
+          type: string
+    Dome9.Web.Api.Models.CloudInstanceMetadataOptionsViewModel:
+      type: object
+      properties:
+        httpEndpoint:
+          type: string
+        httpPutResponseHopLimit:
+          format: int32
+          type: integer
+        httpTokens:
+          type: string
+        state:
+          type: string
+    Falconetix.Model.AwsGuardDutyCityViewModel:
+      type: object
+      properties:
+        cityName:
+          type: string
+    Falconetix.Model.AwsGuardDutyNetworkInterfaceViewModel:
+      type: object
+      properties:
+        ipv6Addresses:
+          type: array
+          items:
+            type: string
+        privateDnsName:
+          type: string
+        privateIpAddress:
+          type: string
+        privateIpAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyPrivateIpAddressDetailsViewModel'
+        publicDnsName:
+          type: string
+        publicIp:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutySecurityGroupViewModel'
+        subnetId:
+          type: string
+        vpcId:
+          type: string
+    Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel:
+      type: object
+      properties:
+        city:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyCityViewModel'
+        country:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyCountryViewModel'
+        geoLocation:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyGeoLocationViewModel'
+        ipAddressV4:
+          type: string
+        organization:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyOrganizationViewModel'
+    Falconetix.Model.AwsGuardDutyPortProbeDetailViewModel:
+      type: object
+      properties:
+        localPortDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyLocalPortDetailsViewModel'
+        remoteIpDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel'
+    Dome9.Web.Api.Models.CloudInstanceNicViewModel:
+      type: object
+      properties:
+        publicIpAddress:
+          type: string
+        privateIpAddress:
+          type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        privateDnsName:
+          type: string
+        name:
+          type: string
+        externalId:
+          type: string
+        subnetId:
+          type: string
+        macAddress:
+          type: string
+    Falconetix.Model.AwsGuardDutyPortProbeActionViewModel:
+      type: object
+      properties:
+        blocked:
+          type: boolean
+        portProbeDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyPortProbeDetailViewModel'
+    Falconetix.Model.AwsGuardDutyFindingsResponse:
+      type: object
+      properties:
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyFindingViewModel'
+        guardDutyState:
+          enum:
+          - Enabled
+          - Disabled
+          type: string
+    Falconetix.Model.AwsGuardDutyGeoLocationViewModel:
+      type: object
+      properties:
+        lat:
+          format: double
+          type: number
+        lon:
+          format: double
+          type: number
+    Falconetix.Model.AwsGuardDutyTagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Models.CloudInstanceSecurityGroupAttachDetachViewModel:
+      type: object
+      properties:
+        groupid:
+          format: int32
+          type: integer
+        nicname:
+          type: string
+        policyGroupId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Falconetix.Model.AwsGuardDutyFindingViewModel:
+      type: object
+      properties:
+        accountId:
+          type: string
+        arn:
+          type: string
+        confidence:
+          format: double
+          type: number
+        createdAt:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        partition:
+          type: string
+        region:
+          type: string
+        resource:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyResourceViewModel'
+        schemaVersion:
+          type: string
+        service:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyServiceViewModel'
+        severity:
+          format: double
+          type: number
+        title:
+          type: string
+        type:
+          type: string
+        updatedAt:
+          type: string
+    Falconetix.Model.AwsGuardDutyAwsApiCallActionViewModel:
+      type: object
+      properties:
+        api:
+          type: string
+        callerType:
+          type: string
+        domainDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyDomainDetailsViewModel'
+        remoteIpDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel'
+        serviceName:
+          type: string
+    Falconetix.Model.AwsGuardDutyDomainDetailsViewModel:
+      type: object
+      properties: {}
+    Falconetix.Model.AwsGuardDutyServiceViewModel:
+      type: object
+      properties:
+        action:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyActionViewModel'
+        archived:
+          type: boolean
+        count:
+          format: int32
+          type: integer
+        detectorId:
+          type: string
+        eventFirstSeen:
+          type: string
+        eventLastSeen:
+          type: string
+        resourceRole:
+          type: string
+        serviceName:
+          type: string
+        userFeedback:
+          type: string
+    Falconetix.Model.AwsGuardDutyNetworkConnectionActionViewModel:
+      type: object
+      properties:
+        blocked:
+          type: boolean
+        connectionDirection:
+          type: string
+        localPortDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyLocalPortDetailsViewModel'
+        protocol:
+          type: string
+        remoteIpDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel'
+        remotePortDetails:
+          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemotePortDetailsViewModel'
+    Falconetix.Model.AwsGuardDutyDnsRequestActionViewModel:
+      type: object
+      properties:
+        domain:
+          type: string
+    Dome9.Web.Api.Models.AwsEc2StateReasonViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.Models.AwsSsmInstanceInformationAssociationOverviewViewModel:
+      type: object
+      properties:
+        detailedStatus:
+          type: string
+        instanceAssociationStatusAggregatedCount:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSsmInstanceAssociationStatusAggregatedCountViewModel'
     Falconetix.Model.AwsGuardDutyAccessKeyDetailsViewModel:
       type: object
       properties:
@@ -795,19 +955,14 @@ components:
           type: string
         userType:
           type: string
-    Falconetix.Model.AwsGuardDutyActionViewModel:
+    Dome9.Web.Api.Models.AwsSsmInstanceAssociationStatusAggregatedCountViewModel:
       type: object
       properties:
-        actionType:
+        key:
           type: string
-        awsApiCallAction:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyAwsApiCallActionViewModel'
-        dnsRequestAction:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyDnsRequestActionViewModel'
-        networkConnectionAction:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyNetworkConnectionActionViewModel'
-        portProbeAction:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyPortProbeActionViewModel'
+        value:
+          format: int32
+          type: integer
     Dome9.Web.Api.Models.CloudInstanceViewModel:
       type: object
       properties:
@@ -1075,77 +1230,30 @@ components:
           $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudInstanceImageDetailsViewModel'
         ssmInstancePatchState:
           $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsSsmInstancePatchStateViewModel'
-    Falconetix.Model.AwsGuardDutyCountryViewModel:
+    Falconetix.Model.AwsGuardDutyOrganizationViewModel:
       type: object
       properties:
-        countryCode:
+        asn:
           type: string
-        countryName:
+        asnOrg:
           type: string
-    Dome9.Web.Api.Models.AwsSsmInstancePatchStateViewModel:
+        isp:
+          type: string
+        org:
+          type: string
+    Falconetix.Model.AwsGuardDutyIamInstanceProfileViewModel:
       type: object
       properties:
+        arn:
+          type: string
         id:
           type: string
-        patchGroup:
-          type: string
-        baselineId:
-          type: string
-        installedCount:
-          format: int32
-          type: integer
-        missingCount:
-          format: int32
-          type: integer
-        failedCount:
-          format: int32
-          type: integer
-        installedOtherCount:
-          format: int32
-          type: integer
-        notApplicableCount:
-          format: int32
-          type: integer
-        securityNonCompliantCount:
-          format: int32
-          type: integer
-        unreportedNotApplicableCount:
-          format: int32
-          type: integer
-    Falconetix.Model.AwsGuardDutyDnsRequestActionViewModel:
+    Falconetix.Model.AwsGuardDutyProductCodeViewModel:
       type: object
       properties:
-        domain:
+        code:
           type: string
-    Falconetix.Model.AwsGuardDutyResourceViewModel:
-      type: object
-      properties:
-        accessKeyDetails:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyAccessKeyDetailsViewModel'
-        instanceDetails:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyInstanceDetailsViewModel'
-        resourceType:
-          type: string
-    Falconetix.Model.AwsGuardDutySecurityGroupViewModel:
-      type: object
-      properties:
-        groupId:
-          type: string
-        groupName:
-          type: string
-    Falconetix.Model.AwsGuardDutyPortProbeDetailViewModel:
-      type: object
-      properties:
-        localPortDetails:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyLocalPortDetailsViewModel'
-        remoteIpDetails:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel'
-    Dome9.Web.Api.Models.AwsEc2ProductCodeViewModel:
-      type: object
-      properties:
-        productCodeId:
-          type: string
-        productCodeType:
+        productType:
           type: string
     Falconetix.Model.AwsGuardDutyPrivateIpAddressDetailsViewModel:
       type: object
@@ -1154,112 +1262,6 @@ components:
           type: string
         privateIpAddress:
           type: string
-    Falconetix.Model.AwsGuardDutyDomainDetailsViewModel:
-      type: object
-      properties: {}
-    Falconetix.Model.AwsGuardDutyFindingViewModel:
-      type: object
-      properties:
-        accountId:
-          type: string
-        arn:
-          type: string
-        confidence:
-          format: double
-          type: number
-        createdAt:
-          type: string
-        description:
-          type: string
-        id:
-          type: string
-        partition:
-          type: string
-        region:
-          type: string
-        resource:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyResourceViewModel'
-        schemaVersion:
-          type: string
-        service:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyServiceViewModel'
-        severity:
-          format: double
-          type: number
-        title:
-          type: string
-        type:
-          type: string
-        updatedAt:
-          type: string
-    Falconetix.Model.AwsGuardDutyNetworkInterfaceViewModel:
-      type: object
-      properties:
-        ipv6Addresses:
-          type: array
-          items:
-            type: string
-        privateDnsName:
-          type: string
-        privateIpAddress:
-          type: string
-        privateIpAddresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyPrivateIpAddressDetailsViewModel'
-        publicDnsName:
-          type: string
-        publicIp:
-          type: string
-        securityGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutySecurityGroupViewModel'
-        subnetId:
-          type: string
-        vpcId:
-          type: string
-    Falconetix.Model.AwsGuardDutyNetworkConnectionActionViewModel:
-      type: object
-      properties:
-        blocked:
-          type: boolean
-        connectionDirection:
-          type: string
-        localPortDetails:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyLocalPortDetailsViewModel'
-        protocol:
-          type: string
-        remoteIpDetails:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemoteIpDetailsViewModel'
-        remotePortDetails:
-          $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyRemotePortDetailsViewModel'
-    Falconetix.Model.AwsGuardDutyFindingsResponse:
-      type: object
-      properties:
-        findings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.AwsGuardDutyFindingViewModel'
-        guardDutyState:
-          enum:
-          - Enabled
-          - Disabled
-          type: string
-    Falconetix.Model.AwsGuardDutyCityViewModel:
-      type: object
-      properties:
-        cityName:
-          type: string
-    Falconetix.Model.AwsGuardDutyGeoLocationViewModel:
-      type: object
-      properties:
-        lat:
-          format: double
-          type: number
-        lon:
-          format: double
-          type: number
   securitySchemes:
     API_key_V2:
       type: http
