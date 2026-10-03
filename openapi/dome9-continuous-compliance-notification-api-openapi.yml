@@ -415,19 +415,67 @@ components:
         historyCreationTime:
           format: date-time
           type: string
-    Dome9.Web.Api.Compliance.ContinuousCompliance.GcpSecurityCommandCenterIntegrationViewModel:
+    Dome9.Web.Api.Compliance.ContinuousCompliance.AzureSecurityCenterIntegrationNotificationViewModel:
+      required:
+      - subscription
       type: object
       properties:
-        state:
+        subscription:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceCircuitBreakerGetViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        accountId:
+          format: int64
+          type: integer
+        notificationId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        intgrationType:
           enum:
-          - Disabled
-          - Enabled
+          - Sns
+          - EmailPerFinding
+          - IndexElasticSearch
+          - PagerDuty
+          - AwsSecurityHub
+          - GcpSecurityCommandCenter
+          - Webhook
+          - AzureSecurityCenter
+          - Slack
+          - AggregatedEmail
+          - Teams
+          - Eventarc
+          - SlackSingleMessage
+          - TeamsSingleMessage
           type: string
-        projectId:
+        errorCode:
           type: string
-        sourceId:
+        errorDescription:
           type: string
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationPutViewModel:
+        update:
+          format: date-time
+          type: string
+        numOfTries:
+          format: int32
+          type: integer
+    Dome9.BL.Std.Services.ContinuousAssessment.ContinuousComplianceNotificationService.PublishResultItem:
+      type: object
+      properties:
+        policyId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        histories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.BL.Std.Services.ContinuousAssessment.ContinuousComplianceNotificationService.PolicyHistoryMetadata'
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationPostViewModel:
       required:
       - name
       type: object
@@ -452,42 +500,42 @@ components:
           $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationFilterViewModel'
         sendOnEachOccurrence:
           type: boolean
-    Dome9.Web.Api.Compliance.ContinuousCompliance.AwsSecurityHubIntegrationNotificationViewModel:
+    Falconetix.Model.RuleEngine.Entities.ContinuousComplianceNotificationEntity.ReportScheduleData:
       required:
-      - externalAccountId
-      - region
+      - cronExpression
+      - recipients
       type: object
       properties:
-        externalAccountId:
-          pattern: ^\d{12}$
+        cronExpression:
           type: string
-        region:
+        type:
+          enum:
+          - Detailed
+          - Summary
+          - FullCsv
+          - FullCsvZip
+          - ExecutivePlatform
           type: string
-    Dome9.BL.Std.Services.ContinuousAssessment.ContinuousComplianceNotificationService.PublishResult:
-      type: object
-      properties:
-        workflowId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        handledPolicies:
+        isIntelligence:
+          type: boolean
+        recipients:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.BL.Std.Services.ContinuousAssessment.ContinuousComplianceNotificationService.PublishResultItem'
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceCircuitBreakerGetAllViewModel:
+            type: string
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ScheduledReportNotificationViewModel:
       type: object
       properties:
-        accountId:
-          format: int64
-          type: integer
-        notificationId:
-          format: uuid
+        emailSendingState:
+          format: email
+          description: Email Address
+          enum:
+          - Disabled
+          - Enabled
           type: string
-          example: 00000000-0000-0000-0000-000000000000
-        integrationsIssues:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.CircuitBreakerIntgrationViewModel'
+          example: MyName@gmail.com
+        scheduleData:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.ContinuousComplianceNotificationEntity.ReportScheduleData'
+          description: Set or Get Notification schedule
     Dome9.Web.Api.Compliance.ContinuousCompliance.ChangeDetectionNotificationViewModel:
       type: object
       properties:
@@ -567,139 +615,6 @@ components:
           $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.TeamsNotificationDataViewModel'
         eventarcData:
           $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.EventarcNotificationDataViewModel'
-    Dome9.BL.Std.Services.ContinuousAssessment.ContinuousComplianceNotificationService.PublishResultItem:
-      type: object
-      properties:
-        policyId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        histories:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.BL.Std.Services.ContinuousAssessment.ContinuousComplianceNotificationService.PolicyHistoryMetadata'
-    Falconetix.Model.RuleEngine.Entities.ContinuousComplianceNotificationEntity.EmailPerFindingNotificationData:
-      required:
-      - recipients
-      type: object
-      properties:
-        recipients:
-          type: array
-          items:
-            type: string
-        notificationOutputFormat:
-          enum:
-          - JsonWithFullEntity
-          - JsonWithBasicEntity
-          - Json
-          - PlainText
-          - SplunkBasic
-          - ServiceNow
-          - QRadar
-          - JsonFirstLevelEntity
-          - Jira
-          type: string
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationPostViewModel:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          maxLength: 100
-          minLength: 0
-          type: string
-        description:
-          maxLength: 500
-          minLength: 0
-          type: string
-        alertsConsole:
-          type: boolean
-        scheduledReport:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ScheduledReportNotificationViewModel'
-        changeDetection:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ChangeDetectionNotificationViewModel'
-        gcpSecurityCommandCenterIntegration:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.GcpSecurityCommandCenterIntegrationViewModel'
-        filter:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationFilterViewModel'
-        sendOnEachOccurrence:
-          type: boolean
-    Dome9.Web.Api.Compliance.ContinuousCompliance.SlackNotificationDataViewModel:
-      type: object
-      properties:
-        url:
-          type: string
-    Dome9.Web.Api.Compliance.ContinuousCompliance.SnsDataNotificationViewModel:
-      type: object
-      properties:
-        snsTopicArn:
-          description: Set and Get SNS Topic ARN
-          pattern: ^arn:(?<partition>(aws[\w\-]*)):(?<service>[\w]*):(?<region>[\w\d-]*):(?<accountId>[\d]*):(((?<resource>[\w+=,\.@\-_ ]+)[\/:]?)+)$
-          type: string
-        snsOutputFormat:
-          enum:
-          - JsonWithFullEntity
-          - JsonWithBasicEntity
-          - Json
-          - PlainText
-          - SplunkBasic
-          - ServiceNow
-          - QRadar
-          - JsonFirstLevelEntity
-          - Jira
-          type: string
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ScheduledReportNotificationViewModel:
-      type: object
-      properties:
-        emailSendingState:
-          format: email
-          description: Email Address
-          enum:
-          - Disabled
-          - Enabled
-          type: string
-          example: MyName@gmail.com
-        scheduleData:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.ContinuousComplianceNotificationEntity.ReportScheduleData'
-          description: Set or Get Notification schedule
-    Dome9.Web.Api.Compliance.ContinuousCompliance.AzureSecurityCenterIntegrationNotificationViewModel:
-      required:
-      - subscription
-      type: object
-      properties:
-        subscription:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationGetViewModel:
-      required:
-      - name
-      type: object
-      properties:
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          maxLength: 100
-          minLength: 0
-          type: string
-        description:
-          maxLength: 500
-          minLength: 0
-          type: string
-        alertsConsole:
-          type: boolean
-        scheduledReport:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ScheduledReportNotificationViewModel'
-        changeDetection:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ChangeDetectionNotificationViewModel'
-        gcpSecurityCommandCenterIntegration:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.GcpSecurityCommandCenterIntegrationViewModel'
-        filter:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationFilterViewModel'
-        sendOnEachOccurrence:
-          type: boolean
     Dome9.Web.Api.Compliance.ContinuousCompliance.TicketingSystemNotificationDataViewModel:
       type: object
       properties:
@@ -727,155 +642,48 @@ components:
         issueType:
           description: Set and Get Ticketing system default issue type (optional). Tickets opened for Compliance issues will use this issue type.
           type: string
-    Falconetix.Model.RuleEngine.Entities.TagRuleEntity:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    Falconetix.Model.RuleEngine.Entities.ContinuousComplianceNotificationEntity.ReportScheduleData:
-      required:
-      - cronExpression
-      - recipients
-      type: object
-      properties:
-        cronExpression:
-          type: string
-        type:
-          enum:
-          - Detailed
-          - Summary
-          - FullCsv
-          - FullCsvZip
-          - ExecutivePlatform
-          type: string
-        isIntelligence:
-          type: boolean
-        recipients:
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.Compliance.ContinuousCompliance.TeamsNotificationDataViewModel:
       type: object
       properties:
         url:
           type: string
-    Falconetix.Model.RuleEngine.Entities.ContinuousComplianceNotificationEntity.EmailNotificationData:
+    Dome9.Web.Api.Compliance.ContinuousCompliance.GcpSecurityCommandCenterIntegrationViewModel:
+      type: object
+      properties:
+        state:
+          enum:
+          - Disabled
+          - Enabled
+          type: string
+        projectId:
+          type: string
+        sourceId:
+          type: string
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationPutViewModel:
       required:
-      - recipients
+      - name
       type: object
       properties:
-        recipients:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceCircuitBreakerGetViewModel:
-      type: object
-      properties:
-        id:
+        name:
+          maxLength: 100
+          minLength: 0
           type: string
-          readOnly: true
-        accountId:
-          format: int64
-          type: integer
-        notificationId:
-          format: uuid
+        description:
+          maxLength: 500
+          minLength: 0
           type: string
-          example: 00000000-0000-0000-0000-000000000000
-        intgrationType:
-          enum:
-          - Sns
-          - EmailPerFinding
-          - IndexElasticSearch
-          - PagerDuty
-          - AwsSecurityHub
-          - GcpSecurityCommandCenter
-          - Webhook
-          - AzureSecurityCenter
-          - Slack
-          - AggregatedEmail
-          - Teams
-          - Eventarc
-          - SlackSingleMessage
-          - TeamsSingleMessage
-          type: string
-        errorCode:
-          type: string
-        errorDescription:
-          type: string
-        update:
-          format: date-time
-          type: string
-        numOfTries:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Compliance.ContinuousCompliance.CircuitBreakerIntgrationViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        intgrationType:
-          enum:
-          - Sns
-          - EmailPerFinding
-          - IndexElasticSearch
-          - PagerDuty
-          - AwsSecurityHub
-          - GcpSecurityCommandCenter
-          - Webhook
-          - AzureSecurityCenter
-          - Slack
-          - AggregatedEmail
-          - Teams
-          - Eventarc
-          - SlackSingleMessage
-          - TeamsSingleMessage
-          type: string
-        errorCode:
-          type: string
-        errorDescription:
-          type: string
-        update:
-          format: date-time
-          type: string
-        numOfTries:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Compliance.ContinuousCompliance.EventarcNotificationDataViewModel:
-      type: object
-      properties:
-        channelConnectionId:
-          type: string
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationSyncViewModel:
-      type: object
-      properties:
-        notificationTargets:
-          type: array
-          items:
-            enum:
-            - Sns
-            - EmailPerFinding
-            - IndexElasticSearch
-            - PagerDuty
-            - AwsSecurityHub
-            - GcpSecurityCommandCenter
-            - Webhook
-            - AzureSecurityCenter
-            - Slack
-            - AggregatedEmail
-            - Teams
-            - Eventarc
-            - SlackSingleMessage
-            - TeamsSingleMessage
-            type: string
-        specificPolicies:
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
+        alertsConsole:
+          type: boolean
+        scheduledReport:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ScheduledReportNotificationViewModel'
+        changeDetection:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ChangeDetectionNotificationViewModel'
+        gcpSecurityCommandCenterIntegration:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.GcpSecurityCommandCenterIntegrationViewModel'
+        filter:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationFilterViewModel'
+        sendOnEachOccurrence:
+          type: boolean
     Dome9.Web.Api.Compliance.ContinuousCompliance.WebhookNotificationDataViewModel:
       required:
       - url
@@ -919,6 +727,110 @@ components:
           type: boolean
         advancedUrl:
           type: boolean
+    Falconetix.Model.RuleEngine.Entities.ContinuousComplianceNotificationEntity.EmailPerFindingNotificationData:
+      required:
+      - recipients
+      type: object
+      properties:
+        recipients:
+          type: array
+          items:
+            type: string
+        notificationOutputFormat:
+          enum:
+          - JsonWithFullEntity
+          - JsonWithBasicEntity
+          - Json
+          - PlainText
+          - SplunkBasic
+          - ServiceNow
+          - QRadar
+          - JsonFirstLevelEntity
+          - Jira
+          type: string
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationSyncViewModel:
+      type: object
+      properties:
+        notificationTargets:
+          type: array
+          items:
+            enum:
+            - Sns
+            - EmailPerFinding
+            - IndexElasticSearch
+            - PagerDuty
+            - AwsSecurityHub
+            - GcpSecurityCommandCenter
+            - Webhook
+            - AzureSecurityCenter
+            - Slack
+            - AggregatedEmail
+            - Teams
+            - Eventarc
+            - SlackSingleMessage
+            - TeamsSingleMessage
+            type: string
+        specificPolicies:
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Compliance.ContinuousCompliance.SnsDataNotificationViewModel:
+      type: object
+      properties:
+        snsTopicArn:
+          description: Set and Get SNS Topic ARN
+          pattern: ^arn:(?<partition>(aws[\w\-]*)):(?<service>[\w]*):(?<region>[\w\d-]*):(?<accountId>[\d]*):(((?<resource>[\w+=,\.@\-_ ]+)[\/:]?)+)$
+          type: string
+        snsOutputFormat:
+          enum:
+          - JsonWithFullEntity
+          - JsonWithBasicEntity
+          - Json
+          - PlainText
+          - SplunkBasic
+          - ServiceNow
+          - QRadar
+          - JsonFirstLevelEntity
+          - Jira
+          type: string
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationGetViewModel:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          maxLength: 100
+          minLength: 0
+          type: string
+        description:
+          maxLength: 500
+          minLength: 0
+          type: string
+        alertsConsole:
+          type: boolean
+        scheduledReport:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ScheduledReportNotificationViewModel'
+        changeDetection:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ChangeDetectionNotificationViewModel'
+        gcpSecurityCommandCenterIntegration:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.GcpSecurityCommandCenterIntegrationViewModel'
+        filter:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationFilterViewModel'
+        sendOnEachOccurrence:
+          type: boolean
+    Falconetix.Model.RuleEngine.Entities.TagRuleEntity:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
     Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceNotificationFilterViewModel:
       type: object
       properties:
@@ -948,6 +860,94 @@ components:
           type: array
           items:
             type: string
+    Dome9.Web.Api.Compliance.ContinuousCompliance.EventarcNotificationDataViewModel:
+      type: object
+      properties:
+        channelConnectionId:
+          type: string
+    Dome9.Web.Api.Compliance.ContinuousCompliance.AwsSecurityHubIntegrationNotificationViewModel:
+      required:
+      - externalAccountId
+      - region
+      type: object
+      properties:
+        externalAccountId:
+          pattern: ^\d{12}$
+          type: string
+        region:
+          type: string
+    Dome9.Web.Api.Compliance.ContinuousCompliance.SlackNotificationDataViewModel:
+      type: object
+      properties:
+        url:
+          type: string
+    Falconetix.Model.RuleEngine.Entities.ContinuousComplianceNotificationEntity.EmailNotificationData:
+      required:
+      - recipients
+      type: object
+      properties:
+        recipients:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Compliance.ContinuousCompliance.CircuitBreakerIntgrationViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        intgrationType:
+          enum:
+          - Sns
+          - EmailPerFinding
+          - IndexElasticSearch
+          - PagerDuty
+          - AwsSecurityHub
+          - GcpSecurityCommandCenter
+          - Webhook
+          - AzureSecurityCenter
+          - Slack
+          - AggregatedEmail
+          - Teams
+          - Eventarc
+          - SlackSingleMessage
+          - TeamsSingleMessage
+          type: string
+        errorCode:
+          type: string
+        errorDescription:
+          type: string
+        update:
+          format: date-time
+          type: string
+        numOfTries:
+          format: int32
+          type: integer
+    Dome9.BL.Std.Services.ContinuousAssessment.ContinuousComplianceNotificationService.PublishResult:
+      type: object
+      properties:
+        workflowId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        handledPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.BL.Std.Services.ContinuousAssessment.ContinuousComplianceNotificationService.PublishResultItem'
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousComplianceCircuitBreakerGetAllViewModel:
+      type: object
+      properties:
+        accountId:
+          format: int64
+          type: integer
+        notificationId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        integrationsIssues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.ContinuousCompliance.CircuitBreakerIntgrationViewModel'
   securitySchemes:
     API_key_V2:
       type: http

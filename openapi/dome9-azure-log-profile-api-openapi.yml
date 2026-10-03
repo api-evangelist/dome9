@@ -46,30 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Azure.LogProfile.AzureLogProfileViewModel:
-      type: object
-      properties:
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-        properties:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfilePropertiesViewModel'
-        accountId:
-          format: int64
-          type: integer
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        resourceGroup:
-          type: string
     Dome9.Web.Api.Azure.LogProfile.AzureLogProfileRetentionPolicyViewModel:
       type: object
       properties:
@@ -95,6 +71,30 @@ components:
             type: string
         retentionPolicy:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfileRetentionPolicyViewModel'
+    Dome9.Web.Api.Azure.LogProfile.AzureLogProfileViewModel:
+      type: object
+      properties:
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        properties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfilePropertiesViewModel'
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        resourceGroup:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

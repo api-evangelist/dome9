@@ -80,13 +80,27 @@ paths:
       x-operation-id-original: AzureDisk_Get
 components:
   schemas:
-    Dome9.Web.Api.Azure.Disk.DiskEncryptionSettingViewModel:
+    Dome9.Web.Api.Azure.Disk.DiskImageDiskReferenceViewModel:
       type: object
       properties:
-        diskEncryptionKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskDiskEncryptionKeyViewModel'
-        keyEncryptionKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskKeyEncryptionKeyViewModel'
+        id:
+          type: string
+        lun:
+          type: string
+    Dome9.Web.Api.Azure.Disk.DiskKeyEncryptionKeyViewModel:
+      type: object
+      properties:
+        sourceVault:
+          type: string
+        keyUrl:
+          type: string
+    Falconetix.Model.RuleEngine.Entities.BaseEntities.Azure.Disk.DiskSkuRuleEntity:
+      type: object
+      properties:
+        name:
+          type: string
+        tier:
+          type: string
     Dome9.Web.Api.Azure.Disk.DiskEncryptionSettingsCollectionViewModel:
       type: object
       properties:
@@ -98,6 +112,53 @@ components:
             $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskEncryptionSettingViewModel'
         encryptionSettingsVersion:
           type: string
+    Dome9.Web.Api.Azure.Disk.DiskViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        properties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskPropertiesViewModel'
+        location:
+          type: string
+        managedBy:
+          type: string
+        zones:
+          type: array
+          items:
+            type: string
+        managedByExtended:
+          type: array
+          items:
+            type: string
+        sku:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.BaseEntities.Azure.Disk.DiskSkuRuleEntity'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Dome9.Web.Api.Azure.Disk.DiskEncryptionSettingViewModel:
+      type: object
+      properties:
+        diskEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskDiskEncryptionKeyViewModel'
+        keyEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskKeyEncryptionKeyViewModel'
     Dome9.Web.Api.Azure.Disk.DiskCreationDataViewModel:
       type: object
       properties:
@@ -121,12 +182,12 @@ components:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskImageDiskReferenceViewModel'
         imageReference:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskImageDiskReferenceViewModel'
-    Dome9.Web.Api.Azure.Disk.DiskKeyEncryptionKeyViewModel:
+    Dome9.Web.Api.Azure.Disk.DiskDiskEncryptionKeyViewModel:
       type: object
       properties:
         sourceVault:
           type: string
-        keyUrl:
+        secretUrl:
           type: string
     Dome9.Web.Api.Azure.Disk.DiskPropertiesViewModel:
       type: object
@@ -172,67 +233,6 @@ components:
         shareInfo:
           type: array
           items:
-            type: string
-    Dome9.Web.Api.Azure.Disk.DiskImageDiskReferenceViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        lun:
-          type: string
-    Falconetix.Model.RuleEngine.Entities.BaseEntities.Azure.Disk.DiskSkuRuleEntity:
-      type: object
-      properties:
-        name:
-          type: string
-        tier:
-          type: string
-    Dome9.Web.Api.Azure.Disk.DiskDiskEncryptionKeyViewModel:
-      type: object
-      properties:
-        sourceVault:
-          type: string
-        secretUrl:
-          type: string
-    Dome9.Web.Api.Azure.Disk.DiskViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        externalId:
-          type: string
-        accountId:
-          format: int64
-          type: integer
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-        region:
-          type: string
-        resourceGroup:
-          type: string
-        properties:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskPropertiesViewModel'
-        location:
-          type: string
-        managedBy:
-          type: string
-        zones:
-          type: array
-          items:
-            type: string
-        managedByExtended:
-          type: array
-          items:
-            type: string
-        sku:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.BaseEntities.Azure.Disk.DiskSkuRuleEntity'
-        tags:
-          type: object
-          additionalProperties:
             type: string
   securitySchemes:
     API_key_V2:

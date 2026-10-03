@@ -46,17 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.AwsQuickSight.NetworkInterfaceViewModel:
-      type: object
-      properties:
-        availabilityZone:
-          type: string
-        errorMessage:
-          type: string
-        networkInterfaceId:
-          type: string
-        status:
-          type: string
     Dome9.Web.Api.CloudIamRoles.AwsIamRolePolicyViewModel:
       type: object
       properties:
@@ -64,67 +53,12 @@ components:
           type: string
         name:
           type: string
-    Dome9.Web.Api.AwsQuickSight.AwsQuickSightVpcConnectionsViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        availabilityStatus:
-          type: string
-        createdTime:
-          format: int64
-          type: integer
-        dnsResolvers:
-          type: array
-          items:
-            type: string
-        lastUpdatedTime:
-          format: int64
-          type: integer
-        name:
-          type: string
-        networkInterfaces:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.NetworkInterfaceViewModel'
-        roleArn:
-          type: string
-        securityGroupIds:
-          type: array
-          items:
-            type: string
-        status:
-          type: string
-        vpcConnectionId:
-          type: string
-        vpcId:
-          type: string
-        dome9Id:
-          type: string
-        accountNumber:
-          type: string
-        region:
-          type: string
-        securityGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.AwsSecurityGroup.AwsSecurityGroupViewModel'
-        role:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel'
     Dome9.Web.Api.Models.CloudIamRoleViewModel.PermissionsBoundary:
       type: object
       properties:
         permissionsBoundaryArn:
           type: string
         permissionsBoundaryType:
-          type: string
-    Dome9.Web.Api.CloudIamRoles.AwsIamRoleLastUsedViewModel:
-      type: object
-      properties:
-        roleLastUsed:
-          format: date-time
-          type: string
-        region:
           type: string
     Dome9.Web.Api.Models.CloudIamRoleViewModel:
       type: object
@@ -177,6 +111,72 @@ components:
           type: string
         policyDocument:
           type: object
+    Dome9.Web.Api.AwsQuickSight.AwsQuickSightVpcConnectionsViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        availabilityStatus:
+          type: string
+        createdTime:
+          format: int64
+          type: integer
+        dnsResolvers:
+          type: array
+          items:
+            type: string
+        lastUpdatedTime:
+          format: int64
+          type: integer
+        name:
+          type: string
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsQuickSight.NetworkInterfaceViewModel'
+        roleArn:
+          type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+        vpcConnectionId:
+          type: string
+        vpcId:
+          type: string
+        dome9Id:
+          type: string
+        accountNumber:
+          type: string
+        region:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsSecurityGroup.AwsSecurityGroupViewModel'
+        role:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamRoleViewModel'
+    Dome9.Web.Api.AwsQuickSight.NetworkInterfaceViewModel:
+      type: object
+      properties:
+        availabilityZone:
+          type: string
+        errorMessage:
+          type: string
+        networkInterfaceId:
+          type: string
+        status:
+          type: string
+    Dome9.Web.Api.CloudIamRoles.AwsIamRoleLastUsedViewModel:
+      type: object
+      properties:
+        roleLastUsed:
+          format: date-time
+          type: string
+        region:
+          type: string
     Dome9.Web.Api.AwsSecurityGroup.AwsSecurityGroupViewModel:
       type: object
       properties:

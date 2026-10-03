@@ -81,6 +81,21 @@ paths:
       x-operation-id-original: AzureUser_Get
 components:
   schemas:
+    Dome9.Web.Api.Azure.User.AzureUserLicenseAssignmentStatesViewModel:
+      type: object
+      properties:
+        assignedByGroup:
+          type: string
+        error:
+          type: string
+        skuId:
+          type: string
+        state:
+          type: string
+        disabledPlans:
+          type: array
+          items:
+            type: string
     Dome9.Web.Api.Azure.User.AzureUserCredentialViewModel:
       type: object
       properties:
@@ -94,6 +109,13 @@ components:
           type: array
           items:
             type: string
+    Dome9.Web.Api.Azure.User.AzureUserPasswordProfileViewModel:
+      type: object
+      properties:
+        forceChangePasswordNextSignIn:
+          type: boolean
+        forceChangePasswordNextSignInWithMfa:
+          type: boolean
     Dome9.Web.Api.Azure.User.AzureUserViewModel:
       type: object
       properties:
@@ -125,28 +147,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserLicenseAssignmentStatesViewModel'
-    Dome9.Web.Api.Azure.User.AzureUserPasswordProfileViewModel:
-      type: object
-      properties:
-        forceChangePasswordNextSignIn:
-          type: boolean
-        forceChangePasswordNextSignInWithMfa:
-          type: boolean
-    Dome9.Web.Api.Azure.User.AzureUserLicenseAssignmentStatesViewModel:
-      type: object
-      properties:
-        assignedByGroup:
-          type: string
-        error:
-          type: string
-        skuId:
-          type: string
-        state:
-          type: string
-        disabledPlans:
-          type: array
-          items:
-            type: string
   securitySchemes:
     API_key_V2:
       type: http

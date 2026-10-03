@@ -46,10 +46,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.CloudRouteTables.CloudPropagatingVgwViewModel:
+    Dome9.Web.Api.CloudRouteTables.CloudRouteTableAssociationViewModel:
       type: object
       properties:
-        gatewayId:
+        isMain:
+          type: boolean
+        routeTableAssociationId:
+          type: string
+        routeTableId:
+          type: string
+        subnetId:
           type: string
     Dome9.Web.Api.CloudRouteTables.CloudRouteViewModel:
       type: object
@@ -80,16 +86,10 @@ components:
           type: string
         transitGatewayId:
           type: string
-    Dome9.Web.Api.CloudRouteTables.CloudRouteTableAssociationViewModel:
+    Dome9.Web.Api.CloudRouteTables.CloudPropagatingVgwViewModel:
       type: object
       properties:
-        isMain:
-          type: boolean
-        routeTableAssociationId:
-          type: string
-        routeTableId:
-          type: string
-        subnetId:
+        gatewayId:
           type: string
     Dome9.Web.Api.CloudRouteTables.CloudRouteTableViewModel:
       type: object

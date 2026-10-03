@@ -95,7 +95,7 @@ components:
           type: boolean
         hostType:
           type: string
-    Falconetix.Model.AppServiceFunctionsViewModel:
+    Falconetix.Model.AppServiceApplicationSettings:
       type: object
       properties:
         id:
@@ -106,34 +106,10 @@ components:
           type: string
         kind:
           type: string
-        functionAppId:
-          type: string
-        scriptRootPathHref:
-          type: string
-        scriptHref:
-          type: string
-        configHref:
-          type: string
-        secretsFileHref:
-          type: string
-        href:
-          type: string
-        config:
-          type: string
-        files:
+        properties:
           type: object
           additionalProperties:
             type: string
-        testData:
-          type: string
-        testDataHref:
-          type: string
-        invokeUrlTemplate:
-          type: string
-        language:
-          type: string
-        isDisabled:
-          type: boolean
     Falconetix.Model.AzureAppServiceViewModel:
       type: object
       properties:
@@ -167,21 +143,6 @@ components:
             $ref: '#/components/schemas/Falconetix.Model.AppServiceFunctionsViewModel'
         applicationSettings:
           $ref: '#/components/schemas/Falconetix.Model.AppServiceApplicationSettings'
-    Falconetix.Model.AppServiceApplicationSettings:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-        kind:
-          type: string
-        properties:
-          type: object
-          additionalProperties:
-            type: string
     Falconetix.Model.AppServiceSiteInnerViewModel:
       type: object
       properties:
@@ -224,6 +185,45 @@ components:
           type: string
         kind:
           type: string
+    Falconetix.Model.AppServiceFunctionsViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        kind:
+          type: string
+        functionAppId:
+          type: string
+        scriptRootPathHref:
+          type: string
+        scriptHref:
+          type: string
+        configHref:
+          type: string
+        secretsFileHref:
+          type: string
+        href:
+          type: string
+        config:
+          type: string
+        files:
+          type: object
+          additionalProperties:
+            type: string
+        testData:
+          type: string
+        testDataHref:
+          type: string
+        invokeUrlTemplate:
+          type: string
+        language:
+          type: string
+        isDisabled:
+          type: boolean
   securitySchemes:
     API_key_V2:
       type: http

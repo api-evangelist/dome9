@@ -937,25 +937,58 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Views.Clarity.ClarityAssetsForSecurityGroupsViewModel:
+    Falconetix.Model.Clarity.ClarityCloudAccountsContainer:
       type: object
       properties:
-        virtualMachines:
+        awsCloudAccounts:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineViewModel'
-        virtualMachineScaleSets:
+            $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAwsCloudAccount'
+        azureCloudAccounts:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineScaleSetViewModel'
-        loadBalancers:
+            $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAzureCloudAccount'
+        googleCloudAccounts:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureLoadBalancerViewModel'
-        securityGroups:
+            $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCloudAccount'
+    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel:
+      type: object
+      properties:
+        autoDelete:
+          type: boolean
+        deviceName:
+          type: string
+        guestOsFeatures:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureSecurityGroupViewModel'
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel'
+        eTag:
+          type: string
+        interface:
+          type: string
+        kind:
+          type: string
+        licenses:
+          type: array
+          items:
+            type: string
+        mode:
+          type: string
+        source:
+          type: string
+        type:
+          type: string
+        diskEncryptionType:
+          type: string
+        diskEncryptionTypeMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel'
+        diskEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel'
+        initializeParams:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel'
+        id:
+          type: string
     Falconetix.Model.Clarity.ClarityAzureCounterView:
       type: object
       properties:
@@ -1011,14 +1044,110 @@ components:
           items:
             format: int64
             type: integer
-    Falconetix.Model.Clarity.PeeringStatus:
+    Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel:
       type: object
       properties:
-        peeringId:
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupViewModel'
+        referencedSecurityGroupsWithPeeredVpc:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupViewModel'
+        unmanagedReferencedSecurityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupViewModel'
+    Dome9.Web.Api.Views.Clarity.AzureSecurityGroupServiceViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        priority:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+        sourceAddressPrefix:
+          type: string
+        sourceAddressPrefixes:
+          type: array
+          items:
+            type: string
+        sourcePortRange:
+          type: string
+        sourcePortRanges:
+          type: array
+          items:
+            type: string
+        destinationAddressPrefix:
+          type: string
+        destinationAddressPrefixes:
+          type: array
+          items:
+            type: string
+        destinationPortRange:
+          type: string
+        destinationPortRanges:
+          type: array
+          items:
+            type: string
+        access:
+          enum:
+          - Allow
+          - Deny
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        kmsKeyName:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        subscriptionId:
           type: string
         cloudAccountId:
+          format: uuid
           type: string
-        code:
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        virtualNetworkId:
+          type: string
+        virtualNetworkName:
+          type: string
+        isRunning:
+          type: boolean
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel'
+        operatingSystem:
+          type: string
+        size:
+          type: string
+        virtualHardDiskUri:
           type: string
     Falconetix.Model.Clarity.ClarityGoogleCloudAccount.CredentialsModel:
       type: object
@@ -1030,56 +1159,307 @@ components:
           description: Email Address
           type: string
           example: MyName@gmail.com
-    Falconetix.Model.Clarity.ClarityVpc:
+    Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel:
       type: object
       properties:
-        externalAccountNumber:
+        externalId:
           type: string
-        rds:
-          format: int64
-          type: integer
-        redshift:
-          format: int64
-          type: integer
-        alb:
-          format: int64
-          type: integer
-        elb:
-          format: int64
-          type: integer
-        efs:
-          format: int64
-          type: integer
-        lambda:
-          format: int64
-          type: integer
-        instances:
-          format: int64
-          type: integer
+        canIpForward:
+          type: boolean
+        cpuPlatform:
+          type: string
+        creationTimestamp:
+          type: string
+        description:
+          type: string
+        disks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel'
+        machineType:
+          type: string
+        networkInterfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel.NetworkInterfaceViewModel'
+        status:
+          type: string
+        statusMessage:
+          type: string
+        networkTags:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        zone:
+          type: string
+        region:
+          type: string
+        isRunning:
+          type: boolean
+          readOnly: true
+        isBillable:
+          type: boolean
+          readOnly: true
         id:
-          type: string
-        name:
           type: string
         cloudAccountId:
           format: uuid
           type: string
           example: 00000000-0000-0000-0000-000000000000
-        cloudAccountName:
+        name:
           type: string
-        peerings:
+    Dome9.Web.Api.Views.Clarity.ClarityAzureNicIpConfigurationViewModel:
+      type: object
+      properties:
+        isPrimary:
+          type: boolean
+        privateIPAddress:
+          type: string
+        privateIPAddressVersion:
+          type: string
+        privateIPAllocationMethod:
+          type: string
+        publicIPAddress:
+          type: string
+        subnet:
+          $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureSubnetViewModel'
+        subnetSecurityGroupId:
+          type: string
+    Dome9.Web.Api.Views.Clarity.GcpServiceRuleViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        number:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+        source:
+          type: string
+        destination:
+          type: string
+        destinationPort:
+          format: int32
+          type: integer
+        destinationPortTo:
+          format: int32
+          type: integer
+        direction:
+          type: string
+        action:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AwsEnvironmentVariable:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityAzureLoadBalancerViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        subscriptionId:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalId:
+          type: string
+        backEndIPConfigurations:
           type: array
           items:
-            $ref: '#/components/schemas/Falconetix.Model.Clarity.PeeringStatus'
-        cidrBlock:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel'
+        inBoundNATs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel'
+        frontEndIPConfigurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNicIpConfigurationViewModel'
+    Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel:
+      type: object
+      properties:
+        id:
           type: string
-        environmentType:
-          enum:
-          - LOCAL
-          - FOREIGN_REGION
-          - FOREIGN_CLOUD_ACCOUNT
-          - FOREIGN_UNKNOWN
+        name:
           type: string
-        region:
+        ipConfigurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNicIpConfigurationViewModel'
+        enableIPForwarding:
+          type: boolean
+        primary:
+          type: boolean
+        macAddress:
+          type: string
+        networkSecurityGroupId:
+          type: string
+    Dome9.Web.Api.Views.Clarity.GoogleFirewallRuleScopeViewModel:
+      type: object
+      properties:
+        ipProtocol:
+          type: string
+        ports:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel.NetworkInterfaceViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        network:
+          type: string
+        networkIP:
+          type: string
+        subnetwork:
+          type: string
+        publicIP:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel:
+      type: object
+      properties:
+        diskName:
+          type: string
+        diskSizeGb:
+          format: int64
+          type: integer
+        diskType:
+          type: string
+        sourceImage:
+          type: string
+        sourceImageEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel'
+        eTag:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AwsTracingConfigResponse:
+      type: object
+      properties:
+        mode:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        kmsKeyName:
+          type: string
+    Falconetix.Model.Clarity.ClarityAzureCloudAccount:
+      type: object
+      properties:
+        subscriptionId:
+          type: string
+        tenantId:
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        assetsCounter:
+          format: int64
+          type: integer
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Falconetix.Model.Clarity.ClarityAwsCloudAccount:
+      type: object
+      properties:
+        externalAccountNumber:
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        assetsCounter:
+          format: int64
+          type: integer
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Dome9.Web.Api.Views.Clarity.ClarityAssetsForSecurityGroupsViewModel:
+      type: object
+      properties:
+        virtualMachines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineViewModel'
+        virtualMachineScaleSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineScaleSetViewModel'
+        loadBalancers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureLoadBalancerViewModel'
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureSecurityGroupViewModel'
+    Dome9.Web.Api.Models.CloudSecurityGroupViewModel:
+      type: object
+      properties:
+        securityGroupId:
+          format: int64
+          type: integer
+        services:
+          type: object
+          properties:
+            inbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupServiceViewModel'
+            outbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupServiceViewModel'
+        externalId:
+          type: string
+        isProtected:
+          type: boolean
+        securityGroupName:
+          type: string
+        description:
+          type: string
+        vpcId:
+          type: string
+        vpcName:
+          type: string
+        regionId:
           enum:
           - us_east_1
           - us_west_1
@@ -1291,14 +1671,314 @@ components:
           - eu_jovanovac_1
           - ap_singapore_2
           type: string
-        assetsCounter:
-          format: int64
-          type: integer
-        concurrentAssetsCounter:
+        cloudAccountId:
+          type: string
+        cloudAccountName:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Falconetix.WebApi.Models.ScopeElementViewModel:
+      type: object
+      properties:
+        type:
+          enum:
+          - CIDR
+          - DNS
+          - IPList
+          - MagicIP
+          - AWS
+          - Tag
+          - ASG
+          - CIDRv6
+          - PrefixList
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+    Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel:
+      type: object
+      properties:
+        authType:
+          type: string
+        cors:
+          $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionCorsViewModel'
+        creationTime:
+          type: string
+        functionArn:
+          type: string
+        functionUrl:
+          type: string
+        lastModifiedTime:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel:
+      type: object
+      properties:
+        isGoogleManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerSuppliedKey:
+          type: boolean
+          readOnly: true
+    Falconetix.Model.Clarity.PeeringStatus:
+      type: object
+      properties:
+        peeringId:
+          type: string
+        cloudAccountId:
+          type: string
+        code:
+          type: string
+    Falconetix.Model.CloudLambdaFunctionCorsViewModel:
+      type: object
+      properties:
+        allowCredentials:
+          type: boolean
+        allowHeaders:
           type: array
           items:
-            format: int64
-            type: integer
+            type: string
+        allowMethods:
+          type: array
+          items:
+            type: string
+        allowOrigins:
+          type: array
+          items:
+            type: string
+        exposeHeaders:
+          type: array
+          items:
+            type: string
+        maxAge:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Models.CloudSecurityGroupServiceViewModel:
+      required:
+      - name
+      - protocolType
+      - openForAll
+      type: object
+      properties:
+        inbound:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        protocolType:
+          description: Service Protocol
+          enum:
+          - ALL
+          - HOPOPT
+          - ICMP
+          - IGMP
+          - GGP
+          - IPV4
+          - ST
+          - TCP
+          - CBT
+          - EGP
+          - IGP
+          - BBN_RCC_MON
+          - NVP2
+          - PUP
+          - ARGUS
+          - EMCON
+          - XNET
+          - CHAOS
+          - UDP
+          - MUX
+          - DCN_MEAS
+          - HMP
+          - PRM
+          - XNS_IDP
+          - TRUNK1
+          - TRUNK2
+          - LEAF1
+          - LEAF2
+          - RDP
+          - IRTP
+          - ISO_TP4
+          - NETBLT
+          - MFE_NSP
+          - MERIT_INP
+          - DCCP
+          - ThreePC
+          - IDPR
+          - XTP
+          - DDP
+          - IDPR_CMTP
+          - TPplusplus
+          - IL
+          - IPV6
+          - SDRP
+          - IPV6_ROUTE
+          - IPV6_FRAG
+          - IDRP
+          - RSVP
+          - GRE
+          - DSR
+          - BNA
+          - ESP
+          - AH
+          - I_NLSP
+          - SWIPE
+          - NARP
+          - MOBILE
+          - TLSP
+          - SKIP
+          - ICMPV6
+          - IPV6_NONXT
+          - IPV6_OPTS
+          - CFTP
+          - SAT_EXPAK
+          - KRYPTOLAN
+          - RVD
+          - IPPC
+          - SAT_MON
+          - VISA
+          - IPCV
+          - CPNX
+          - CPHB
+          - WSN
+          - PVP
+          - BR_SAT_MON
+          - SUN_ND
+          - WB_MON
+          - WB_EXPAK
+          - ISO_IP
+          - VMTP
+          - SECURE_VMTP
+          - VINES
+          - TTP
+          - NSFNET_IGP
+          - DGP
+          - TCF
+          - EIGRP
+          - OSPFIGP
+          - SPRITE_RPC
+          - LARP
+          - MTP
+          - AX25
+          - IPIP
+          - MICP
+          - SCC_SP
+          - ETHERIP
+          - ENCAP
+          - GMTP
+          - IFMP
+          - PNNI
+          - PIM
+          - ARIS
+          - SCPS
+          - QNX
+          - AN
+          - IPCOMP
+          - SNP
+          - COMPAQ_PEER
+          - IPX_IN_IP
+          - VRRP
+          - PGM
+          - L2TP
+          - DDX
+          - IATP
+          - STP
+          - SRP
+          - UTI
+          - SMP
+          - SM
+          - PTP
+          - ISIS
+          - FIRE
+          - CRTP
+          - CRUDP
+          - SSCOPMCE
+          - IPLT
+          - SPS
+          - PIPE
+          - SCTP
+          - FC
+          - RSVP_E2E_IGNORE
+          - MOBILITY_HEADER
+          - UDPLITE
+          - MPLS_IN_IP
+          - MANET
+          - HIP
+          - SHIM6
+          - WESP
+          - ROHC
+          type: string
+        port:
+          description: indicates a port range
+          type: string
+        openForAll:
+          description: indicates the service is open to all ports
+          type: boolean
+        scope:
+          description: List of scopes for the service (CIDR / DNS / AWS Security group / IP List / Magic IP)
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        icmpType:
+          description: / ICMP type (when protocol is ICMP)
+          enum:
+          - All
+          - EchoReply
+          - DestinationUnreachable
+          - SourceQuench
+          - Redirect
+          - AlternateHostAddress
+          - Echo
+          - RouterAdvertisement
+          - RouterSelection
+          - TimeExceeded
+          - ParameterProblem
+          - Timestamp
+          - TimestampReply
+          - InformationRequest
+          - InformationReply
+          - AddressMaskRequest
+          - AddressMaskReply
+          - Traceroute
+          - DatagramConversionError
+          - MobileHostRedirect
+          - IPv6WhereAreYou
+          - IPv6IAmHere
+          - MobileRegistrationRequest
+          - MobileRegistrationReply
+          - DomainNameRequest
+          - DomainNameReply
+          - SKIP
+          - Photuris
+          type: string
+        icmpv6Type:
+          description: ICMP V6 type (when protocol is ICMPV6)
+          enum:
+          - All
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityGoogleAssetsAndSgContainerViewModel:
+      type: object
+      properties:
+        virtualMachines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel'
+        firewallRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleFirewallRuleViewModel'
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleSecurityGroupViewModel'
     Falconetix.Model.Clarity.ClarityRegion:
       type: object
       properties:
@@ -1526,153 +2206,6 @@ components:
           items:
             format: int64
             type: integer
-    Falconetix.Model.Clarity.ClarityCloudAccountsContainer:
-      type: object
-      properties:
-        awsCloudAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAwsCloudAccount'
-        azureCloudAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityAzureCloudAccount'
-        googleCloudAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCloudAccount'
-    Dome9.Web.Api.Views.Clarity.GoogleFirewallRuleScopeViewModel:
-      type: object
-      properties:
-        ipProtocol:
-          type: string
-        ports:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Views.Clarity.ClarityAzureLoadBalancerViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        subscriptionId:
-          type: string
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        externalId:
-          type: string
-        backEndIPConfigurations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel'
-        inBoundNATs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel'
-        frontEndIPConfigurations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNicIpConfigurationViewModel'
-    Dome9.Web.Api.Views.Clarity.ClarityGoogleSecurityGroupViewModel:
-      type: object
-      properties:
-        network:
-          type: string
-        externalId:
-          type: string
-        inboundRules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GcpServiceRuleViewModel'
-        outboundRules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GcpServiceRuleViewModel'
-        vmInstances:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GcpVmInstanceIdentityViewModel'
-        id:
-          type: string
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel:
-      type: object
-      properties:
-        autoDelete:
-          type: boolean
-        deviceName:
-          type: string
-        guestOsFeatures:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel'
-        eTag:
-          type: string
-        interface:
-          type: string
-        kind:
-          type: string
-        licenses:
-          type: array
-          items:
-            type: string
-        mode:
-          type: string
-        source:
-          type: string
-        type:
-          type: string
-        diskEncryptionType:
-          type: string
-        diskEncryptionTypeMetadata:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel'
-        diskEncryptionKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel'
-        initializeParams:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel'
-        id:
-          type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel:
-      type: object
-      properties:
-        isGoogleManagedKey:
-          type: boolean
-          readOnly: true
-        isCustomerManagedKey:
-          type: boolean
-          readOnly: true
-        isCustomerSuppliedKey:
-          type: boolean
-          readOnly: true
-    Falconetix.Model.Clarity.ClarityGoogleCloudAccount:
-      type: object
-      properties:
-        credentials:
-          $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCloudAccount.CredentialsModel'
-          readOnly: true
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-        assetsCounter:
-          format: int64
-          type: integer
-        concurrentAssetsCounter:
-          type: array
-          items:
-            format: int64
-            type: integer
     Falconetix.Model.Clarity.ClarityGoogleCounterView:
       type: object
       properties:
@@ -1719,322 +2252,6 @@ components:
           items:
             format: int64
             type: integer
-    Dome9.Web.Api.Views.Clarity.AzureSecurityGroupServiceViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        priority:
-          format: int32
-          type: integer
-        protocol:
-          type: string
-        sourceAddressPrefix:
-          type: string
-        sourceAddressPrefixes:
-          type: array
-          items:
-            type: string
-        sourcePortRange:
-          type: string
-        sourcePortRanges:
-          type: array
-          items:
-            type: string
-        destinationAddressPrefix:
-          type: string
-        destinationAddressPrefixes:
-          type: array
-          items:
-            type: string
-        destinationPortRange:
-          type: string
-        destinationPortRanges:
-          type: array
-          items:
-            type: string
-        access:
-          enum:
-          - Allow
-          - Deny
-          type: string
-    Dome9.Web.Api.Views.Clarity.ClarityGoogleAssetsAndSgContainerViewModel:
-      type: object
-      properties:
-        virtualMachines:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel'
-        firewallRules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleFirewallRuleViewModel'
-        securityGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleSecurityGroupViewModel'
-    CGN.Inventory.Aws.Model.WrapperModels.AwsEnvironmentVariable:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel:
-      type: object
-      properties:
-        type:
-          type: string
-        eTag:
-          type: string
-    Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        ipConfigurations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNicIpConfigurationViewModel'
-        enableIPForwarding:
-          type: boolean
-        primary:
-          type: boolean
-        macAddress:
-          type: string
-        networkSecurityGroupId:
-          type: string
-    Falconetix.Model.Clarity.ClarityAzureCloudAccount:
-      type: object
-      properties:
-        subscriptionId:
-          type: string
-        tenantId:
-          type: string
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-        assetsCounter:
-          format: int64
-          type: integer
-        concurrentAssetsCounter:
-          type: array
-          items:
-            format: int64
-            type: integer
-    Dome9.Web.Api.Models.CloudSecurityGroupServiceViewModel:
-      required:
-      - name
-      - protocolType
-      - openForAll
-      type: object
-      properties:
-        inbound:
-          type: boolean
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        protocolType:
-          description: Service Protocol
-          enum:
-          - ALL
-          - HOPOPT
-          - ICMP
-          - IGMP
-          - GGP
-          - IPV4
-          - ST
-          - TCP
-          - CBT
-          - EGP
-          - IGP
-          - BBN_RCC_MON
-          - NVP2
-          - PUP
-          - ARGUS
-          - EMCON
-          - XNET
-          - CHAOS
-          - UDP
-          - MUX
-          - DCN_MEAS
-          - HMP
-          - PRM
-          - XNS_IDP
-          - TRUNK1
-          - TRUNK2
-          - LEAF1
-          - LEAF2
-          - RDP
-          - IRTP
-          - ISO_TP4
-          - NETBLT
-          - MFE_NSP
-          - MERIT_INP
-          - DCCP
-          - ThreePC
-          - IDPR
-          - XTP
-          - DDP
-          - IDPR_CMTP
-          - TPplusplus
-          - IL
-          - IPV6
-          - SDRP
-          - IPV6_ROUTE
-          - IPV6_FRAG
-          - IDRP
-          - RSVP
-          - GRE
-          - DSR
-          - BNA
-          - ESP
-          - AH
-          - I_NLSP
-          - SWIPE
-          - NARP
-          - MOBILE
-          - TLSP
-          - SKIP
-          - ICMPV6
-          - IPV6_NONXT
-          - IPV6_OPTS
-          - CFTP
-          - SAT_EXPAK
-          - KRYPTOLAN
-          - RVD
-          - IPPC
-          - SAT_MON
-          - VISA
-          - IPCV
-          - CPNX
-          - CPHB
-          - WSN
-          - PVP
-          - BR_SAT_MON
-          - SUN_ND
-          - WB_MON
-          - WB_EXPAK
-          - ISO_IP
-          - VMTP
-          - SECURE_VMTP
-          - VINES
-          - TTP
-          - NSFNET_IGP
-          - DGP
-          - TCF
-          - EIGRP
-          - OSPFIGP
-          - SPRITE_RPC
-          - LARP
-          - MTP
-          - AX25
-          - IPIP
-          - MICP
-          - SCC_SP
-          - ETHERIP
-          - ENCAP
-          - GMTP
-          - IFMP
-          - PNNI
-          - PIM
-          - ARIS
-          - SCPS
-          - QNX
-          - AN
-          - IPCOMP
-          - SNP
-          - COMPAQ_PEER
-          - IPX_IN_IP
-          - VRRP
-          - PGM
-          - L2TP
-          - DDX
-          - IATP
-          - STP
-          - SRP
-          - UTI
-          - SMP
-          - SM
-          - PTP
-          - ISIS
-          - FIRE
-          - CRTP
-          - CRUDP
-          - SSCOPMCE
-          - IPLT
-          - SPS
-          - PIPE
-          - SCTP
-          - FC
-          - RSVP_E2E_IGNORE
-          - MOBILITY_HEADER
-          - UDPLITE
-          - MPLS_IN_IP
-          - MANET
-          - HIP
-          - SHIM6
-          - WESP
-          - ROHC
-          type: string
-        port:
-          description: indicates a port range
-          type: string
-        openForAll:
-          description: indicates the service is open to all ports
-          type: boolean
-        scope:
-          description: List of scopes for the service (CIDR / DNS / AWS Security group / IP List / Magic IP)
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
-        icmpType:
-          description: / ICMP type (when protocol is ICMP)
-          enum:
-          - All
-          - EchoReply
-          - DestinationUnreachable
-          - SourceQuench
-          - Redirect
-          - AlternateHostAddress
-          - Echo
-          - RouterAdvertisement
-          - RouterSelection
-          - TimeExceeded
-          - ParameterProblem
-          - Timestamp
-          - TimestampReply
-          - InformationRequest
-          - InformationReply
-          - AddressMaskRequest
-          - AddressMaskReply
-          - Traceroute
-          - DatagramConversionError
-          - MobileHostRedirect
-          - IPv6WhereAreYou
-          - IPv6IAmHere
-          - MobileRegistrationRequest
-          - MobileRegistrationReply
-          - DomainNameRequest
-          - DomainNameReply
-          - SKIP
-          - Photuris
-          type: string
-        icmpv6Type:
-          description: ICMP V6 type (when protocol is ICMPV6)
-          enum:
-          - All
-          type: string
     Dome9.Web.Api.Models.CloudLambdaFunctionViewModel:
       type: object
       properties:
@@ -2342,261 +2559,76 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel'
-    CGN.Inventory.Aws.Model.WrapperModels.AwsDeadLetterConfig:
+    Falconetix.Model.Clarity.ClarityGoogleCloudAccount:
       type: object
       properties:
-        targetArn:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AwsTracingConfigResponse:
-      type: object
-      properties:
-        mode:
-          type: string
-    Falconetix.Model.CloudLambdaFunctionCorsViewModel:
-      type: object
-      properties:
-        allowCredentials:
-          type: boolean
-        allowHeaders:
-          type: array
-          items:
-            type: string
-        allowMethods:
-          type: array
-          items:
-            type: string
-        allowOrigins:
-          type: array
-          items:
-            type: string
-        exposeHeaders:
-          type: array
-          items:
-            type: string
-        maxAge:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        canIpForward:
-          type: boolean
-        cpuPlatform:
-          type: string
-        creationTimestamp:
-          type: string
-        description:
-          type: string
-        disks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel'
-        machineType:
-          type: string
-        networkInterfaces:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel.NetworkInterfaceViewModel'
-        status:
-          type: string
-        statusMessage:
-          type: string
-        networkTags:
-          type: array
-          items:
-            type: string
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
-        labels:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
-        zone:
-          type: string
-        region:
-          type: string
-        isRunning:
-          type: boolean
-          readOnly: true
-        isBillable:
-          type: boolean
+        credentials:
+          $ref: '#/components/schemas/Falconetix.Model.Clarity.ClarityGoogleCloudAccount.CredentialsModel'
           readOnly: true
         id:
-          type: string
-        cloudAccountId:
           format: uuid
           type: string
           example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
-    Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        externalId:
-          type: string
-        accountId:
+        assetsCounter:
           format: int64
           type: integer
-        subscriptionId:
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Falconetix.Model.Clarity.ClarityVpc:
+      type: object
+      properties:
+        externalAccountNumber:
+          type: string
+        rds:
+          format: int64
+          type: integer
+        redshift:
+          format: int64
+          type: integer
+        alb:
+          format: int64
+          type: integer
+        elb:
+          format: int64
+          type: integer
+        efs:
+          format: int64
+          type: integer
+        lambda:
+          format: int64
+          type: integer
+        instances:
+          format: int64
+          type: integer
+        id:
+          type: string
+        name:
           type: string
         cloudAccountId:
           format: uuid
           type: string
           example: 00000000-0000-0000-0000-000000000000
-        name:
+        cloudAccountName:
+          type: string
+        peerings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Clarity.PeeringStatus'
+        cidrBlock:
+          type: string
+        environmentType:
+          enum:
+          - LOCAL
+          - FOREIGN_REGION
+          - FOREIGN_CLOUD_ACCOUNT
+          - FOREIGN_UNKNOWN
           type: string
         region:
-          type: string
-        resourceGroup:
-          type: string
-        virtualNetworkId:
-          type: string
-        virtualNetworkName:
-          type: string
-        isRunning:
-          type: boolean
-        networkInterfaces:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureNetworkInterfaceViewModel'
-        operatingSystem:
-          type: string
-        size:
-          type: string
-        virtualHardDiskUri:
-          type: string
-    Falconetix.WebApi.Models.ScopeElementViewModel:
-      type: object
-      properties:
-        type:
-          enum:
-          - CIDR
-          - DNS
-          - IPList
-          - MagicIP
-          - AWS
-          - Tag
-          - ASG
-          - CIDRv6
-          - PrefixList
-          type: string
-        data:
-          type: object
-          additionalProperties:
-            type: string
-    Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel:
-      type: object
-      properties:
-        authType:
-          type: string
-        cors:
-          $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionCorsViewModel'
-        creationTime:
-          type: string
-        functionArn:
-          type: string
-        functionUrl:
-          type: string
-        lastModifiedTime:
-          type: string
-    Dome9.Web.Api.Views.Clarity.ClarityGoogleFirewallRuleViewModel:
-      type: object
-      properties:
-        creationTimestamp:
-          type: string
-        allowed:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GoogleFirewallRuleScopeViewModel'
-        denied:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GoogleFirewallRuleScopeViewModel'
-        destinationRanges:
-          type: array
-          items:
-            type: string
-        description:
-          type: string
-        network:
-          type: string
-        sourceRanges:
-          type: array
-          items:
-            type: string
-        sourceTags:
-          type: array
-          items:
-            type: string
-        targetTags:
-          type: array
-          items:
-            type: string
-        isProtected:
-          type: boolean
-        priority:
-          format: int32
-          type: integer
-        direction:
-          enum:
-          - Ingress
-          - Egress
-          type: string
-        id:
-          type: string
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-    Dome9.Web.Api.Views.Clarity.ClarityAzureSubnetViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        externalId:
-          type: string
-        name:
-          type: string
-        addressRange:
-          type: string
-    Dome9.Web.Api.Models.CloudSecurityGroupViewModel:
-      type: object
-      properties:
-        securityGroupId:
-          format: int64
-          type: integer
-        services:
-          type: object
-          properties:
-            inbound:
-              type: array
-              items:
-                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupServiceViewModel'
-            outbound:
-              type: array
-              items:
-                $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupServiceViewModel'
-        externalId:
-          type: string
-        isProtected:
-          type: boolean
-        securityGroupName:
-          type: string
-        description:
-          type: string
-        vpcId:
-          type: string
-        vpcName:
-          type: string
-        regionId:
           enum:
           - us_east_1
           - us_west_1
@@ -2808,14 +2840,14 @@ components:
           - eu_jovanovac_1
           - ap_singapore_2
           type: string
-        cloudAccountId:
-          type: string
-        cloudAccountName:
-          type: string
-        tags:
-          type: object
-          additionalProperties:
-            type: string
+        assetsCounter:
+          format: int64
+          type: integer
+        concurrentAssetsCounter:
+          type: array
+          items:
+            format: int64
+            type: integer
     Dome9.Web.Api.Views.Clarity.ClarityAzureVirtualMachineScaleSetViewModel:
       type: object
       properties:
@@ -2854,21 +2886,43 @@ components:
           type: object
           additionalProperties:
             type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel:
+    Dome9.Web.Api.Views.Clarity.ClarityAzureSubnetViewModel:
       type: object
       properties:
-        diskName:
+        id:
           type: string
-        diskSizeGb:
-          format: int64
-          type: integer
-        diskType:
+        externalId:
           type: string
-        sourceImage:
+        name:
           type: string
-        sourceImageEncryptionKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel'
-        eTag:
+        addressRange:
+          type: string
+    Dome9.Web.Api.Views.Clarity.ClarityGoogleSecurityGroupViewModel:
+      type: object
+      properties:
+        network:
+          type: string
+        externalId:
+          type: string
+        inboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GcpServiceRuleViewModel'
+        outboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GcpServiceRuleViewModel'
+        vmInstances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GcpVmInstanceIdentityViewModel'
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
           type: string
     Dome9.Web.Api.Views.Clarity.GcpVmInstanceIdentityViewModel:
       type: object
@@ -2879,97 +2933,6 @@ components:
           type: string
         selfLink:
           type: string
-    Dome9.Web.Api.Views.Clarity.ClarityAzureNicIpConfigurationViewModel:
-      type: object
-      properties:
-        isPrimary:
-          type: boolean
-        privateIPAddress:
-          type: string
-        privateIPAddressVersion:
-          type: string
-        privateIPAllocationMethod:
-          type: string
-        publicIPAddress:
-          type: string
-        subnet:
-          $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.ClarityAzureSubnetViewModel'
-        subnetSecurityGroupId:
-          type: string
-    Dome9.Web.Api.Views.Clarity.ClarityGoogleVMInstanceViewModel.NetworkInterfaceViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        network:
-          type: string
-        networkIP:
-          type: string
-        subnetwork:
-          type: string
-        publicIP:
-          type: string
-    Dome9.Web.Api.Views.Clarity.GcpServiceRuleViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        number:
-          format: int32
-          type: integer
-        protocol:
-          type: string
-        source:
-          type: string
-        destination:
-          type: string
-        destinationPort:
-          format: int32
-          type: integer
-        destinationPortTo:
-          format: int32
-          type: integer
-        direction:
-          type: string
-        action:
-          type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
-      type: object
-      properties:
-        eTag:
-          type: string
-        rawKey:
-          type: string
-        sha256:
-          type: string
-        kmsKeyName:
-          type: string
-    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    Falconetix.Model.Clarity.ClarityAwsCloudAccount:
-      type: object
-      properties:
-        externalAccountNumber:
-          type: string
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-        assetsCounter:
-          format: int64
-          type: integer
-        concurrentAssetsCounter:
-          type: array
-          items:
-            format: int64
-            type: integer
     Dome9.Web.Api.Views.Clarity.ClarityAzureSecurityGroupViewModel:
       type: object
       properties:
@@ -2997,32 +2960,69 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.AzureSecurityGroupServiceViewModel'
-    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
+    CGN.Inventory.Aws.Model.WrapperModels.AwsDeadLetterConfig:
       type: object
       properties:
-        kmsKeyName:
+        targetArn:
           type: string
-        rawKey:
-          type: string
-        sha256:
-          type: string
-        eTag:
-          type: string
-    Dome9.Web.Api.Controllers.ClaritySecurityGroupsViewModel:
+    Dome9.Web.Api.Views.Clarity.ClarityGoogleFirewallRuleViewModel:
       type: object
       properties:
-        securityGroups:
+        creationTimestamp:
+          type: string
+        allowed:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupViewModel'
-        referencedSecurityGroupsWithPeeredVpc:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GoogleFirewallRuleScopeViewModel'
+        denied:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupViewModel'
-        unmanagedReferencedSecurityGroups:
+            $ref: '#/components/schemas/Dome9.Web.Api.Views.Clarity.GoogleFirewallRuleScopeViewModel'
+        destinationRanges:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupViewModel'
+            type: string
+        description:
+          type: string
+        network:
+          type: string
+        sourceRanges:
+          type: array
+          items:
+            type: string
+        sourceTags:
+          type: array
+          items:
+            type: string
+        targetTags:
+          type: array
+          items:
+            type: string
+        isProtected:
+          type: boolean
+        priority:
+          format: int32
+          type: integer
+        direction:
+          enum:
+          - Ingress
+          - Egress
+          type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

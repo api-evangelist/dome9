@@ -46,48 +46,26 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Falconetix.Model.CloudAcmExtendedKeyUsageViewModel:
+    Falconetix.Model.CloudAcmRenewalSummaryViewModel:
       type: object
       properties:
-        name:
-          type: string
-        oid:
-          type: string
-    Falconetix.Model.CloudAcmDomainValidationViewModel:
-      type: object
-      properties:
-        domainName:
-          type: string
-        resourceRecord:
-          $ref: '#/components/schemas/Falconetix.Model.CloudAcmResourceRecordViewModel'
-        validationDomain:
-          type: string
-        validationEmails:
+        domainValidationOptions:
           type: array
           items:
-            type: string
-        validationMethod:
-          type: string
-        validationStatus:
+            $ref: '#/components/schemas/Falconetix.Model.CloudAcmDomainValidationViewModel'
+        renewalStatus:
           type: string
     Falconetix.Model.CloudAcmCertificateOptionsSummaryViewModel:
       type: object
       properties:
         certificateTransparencyLoggingPreference:
           type: string
-    Falconetix.Model.CloudAcmKeyUsageViewModel:
+    Falconetix.Model.CloudAcmExtendedKeyUsageViewModel:
       type: object
       properties:
         name:
           type: string
-    Falconetix.Model.CloudAcmResourceRecordViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        value:
+        oid:
           type: string
     Falconetix.Model.CloudAcmCertificateDetailViewModel:
       type: object
@@ -161,14 +139,36 @@ components:
           additionalProperties:
             type: string
           readOnly: true
-    Falconetix.Model.CloudAcmRenewalSummaryViewModel:
+    Falconetix.Model.CloudAcmKeyUsageViewModel:
       type: object
       properties:
-        domainValidationOptions:
+        name:
+          type: string
+    Falconetix.Model.CloudAcmResourceRecordViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          type: string
+    Falconetix.Model.CloudAcmDomainValidationViewModel:
+      type: object
+      properties:
+        domainName:
+          type: string
+        resourceRecord:
+          $ref: '#/components/schemas/Falconetix.Model.CloudAcmResourceRecordViewModel'
+        validationDomain:
+          type: string
+        validationEmails:
           type: array
           items:
-            $ref: '#/components/schemas/Falconetix.Model.CloudAcmDomainValidationViewModel'
-        renewalStatus:
+            type: string
+        validationMethod:
+          type: string
+        validationStatus:
           type: string
   securitySchemes:
     API_key_V2:

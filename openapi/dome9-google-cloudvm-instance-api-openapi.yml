@@ -133,37 +133,6 @@ components:
           type: string
         externalId:
           type: string
-    Dome9.Web.Api.Google.Firewall.GoogleFirewallRuleScopeViewModel:
-      type: object
-      properties:
-        ipProtocol:
-          type: string
-        ports:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Google.Instance.NetworkDetailViewModel:
-      type: object
-      properties:
-        vmInstanceName:
-          type: string
-        resourceType:
-          enum:
-          - Local
-          - Shared
-          type: string
-        network:
-          type: string
-        inboundRules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GoogleCloudFirewallRuleWithSecurityGroupsViewModel'
-        outboundRules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GoogleCloudFirewallRuleWithSecurityGroupsViewModel'
-        networkInterface:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel'
     Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel:
       type: object
       properties:
@@ -213,17 +182,15 @@ components:
         isCustomerSuppliedKey:
           type: boolean
           readOnly: true
-    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
+    Dome9.Web.Api.Google.Firewall.GoogleFirewallRuleScopeViewModel:
       type: object
       properties:
-        eTag:
+        ipProtocol:
           type: string
-        rawKey:
-          type: string
-        sha256:
-          type: string
-        kmsKeyName:
-          type: string
+        ports:
+          type: array
+          items:
+            type: string
     Dome9.Web.Api.Google.Instance.GoogleCloudFirewallRuleWithSecurityGroupsViewModel:
       type: object
       properties:
@@ -281,13 +248,6 @@ components:
           example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
-    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
     Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel:
       type: object
       properties:
@@ -301,6 +261,28 @@ components:
           type: string
         publicIP:
           type: string
+    Dome9.Web.Api.Google.Instance.NetworkDetailViewModel:
+      type: object
+      properties:
+        vmInstanceName:
+          type: string
+        resourceType:
+          enum:
+          - Local
+          - Shared
+          type: string
+        network:
+          type: string
+        inboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GoogleCloudFirewallRuleWithSecurityGroupsViewModel'
+        outboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GoogleCloudFirewallRuleWithSecurityGroupsViewModel'
+        networkInterface:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel'
     Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel:
       type: object
       properties:
@@ -367,17 +349,6 @@ components:
           example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
-      type: object
-      properties:
-        kmsKeyName:
-          type: string
-        rawKey:
-          type: string
-        sha256:
-          type: string
-        eTag:
-          type: string
     Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel:
       type: object
       properties:
@@ -393,6 +364,35 @@ components:
         sourceImageEncryptionKey:
           $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel'
         eTag:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        kmsKeyName:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        kmsKeyName:
           type: string
   securitySchemes:
     API_key_V2:

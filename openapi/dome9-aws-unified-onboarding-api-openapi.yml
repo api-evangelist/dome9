@@ -106,21 +106,21 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Onboarding.ViewModel.OnboardingInfoViewModel'
 components:
   schemas:
-    Dome9.Web.Api.Onboarding.ViewModel.AwsStackConfigViewModel:
+    Falconetix.Model.Onboarding.Logic.IntelligenceConfigurations:
       type: object
       properties:
-        stackName:
-          type: string
-        templateUrl:
-          type: string
-        parameters:
+        enabled:
+          type: boolean
+        rulesets:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Onboarding.ViewModel.Parameter'
-        iamCapabilities:
-          type: array
-          items:
-            type: string
+            format: int64
+            type: integer
+    Falconetix.Model.Onboarding.Serverless.ServerlessConfiguration:
+      type: object
+      properties:
+        enabled:
+          type: boolean
     Dome9.Web.Api.Onboarding.Requests.OnboardingConfigurationRequest:
       type: object
       properties:
@@ -165,48 +165,6 @@ components:
           $ref: '#/components/schemas/Falconetix.Model.Onboarding.Serverless.ServerlessConfiguration'
         intelligenceConfigurations:
           $ref: '#/components/schemas/Falconetix.Model.Onboarding.Logic.IntelligenceConfigurations'
-    Falconetix.Model.Onboarding.PostureManagement.PostureManagementConfiguration:
-      type: object
-      properties:
-        rulesets:
-          type: array
-          items:
-            format: int64
-            type: integer
-    Dome9.Web.Api.Onboarding.ViewModel.Parameter:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    Dome9.Web.Api.Onboarding.ViewModel.OnboardingStatus:
-      type: object
-      properties:
-        module:
-          type: string
-        feature:
-          type: string
-        status:
-          type: string
-        statusMessage:
-          type: string
-        stackStatus:
-          type: string
-        stackMessage:
-          type: string
-        remediationRecommendation:
-          type: string
-    Falconetix.Model.Onboarding.Logic.IntelligenceConfigurations:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        rulesets:
-          type: array
-          items:
-            format: int64
-            type: integer
     Dome9.Web.Api.Onboarding.ViewModel.OnboardingInfoViewModel:
       type: object
       properties:
@@ -239,11 +197,53 @@ components:
             $ref: '#/components/schemas/Dome9.Web.Api.Onboarding.ViewModel.OnboardingStatus'
         intelligenceStackRegion:
           type: string
-    Falconetix.Model.Onboarding.Serverless.ServerlessConfiguration:
+    Dome9.Web.Api.Onboarding.ViewModel.Parameter:
       type: object
       properties:
-        enabled:
-          type: boolean
+        key:
+          type: string
+        value:
+          type: string
+    Falconetix.Model.Onboarding.PostureManagement.PostureManagementConfiguration:
+      type: object
+      properties:
+        rulesets:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Dome9.Web.Api.Onboarding.ViewModel.AwsStackConfigViewModel:
+      type: object
+      properties:
+        stackName:
+          type: string
+        templateUrl:
+          type: string
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Onboarding.ViewModel.Parameter'
+        iamCapabilities:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Onboarding.ViewModel.OnboardingStatus:
+      type: object
+      properties:
+        module:
+          type: string
+        feature:
+          type: string
+        status:
+          type: string
+        statusMessage:
+          type: string
+        stackStatus:
+          type: string
+        stackMessage:
+          type: string
+        remediationRecommendation:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

@@ -165,41 +165,44 @@ paths:
         required: true
 components:
   schemas:
+    Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel:
+      type: object
+      properties:
+        accountId:
+          format: int64
+          type: integer
+        userCenterId:
+          format: int64
+          type: integer
+        accountName:
+          type: string
+        productId:
+          type: string
+        sku:
+          type: string
+        productType:
+          enum:
+          - Unknown
+          - Dome9
+          - Logic
+          type: string
+        macro:
+          type: string
+        qty:
+          format: int32
+          type: integer
+        startDate:
+          format: date-time
+          type: string
+        expirationDate:
+          format: date-time
+          type: string
     Dome9.Web.Api.LicenseActivator.LicenseGetRequestModel:
       required:
       - userName
       - password
       type: object
       properties:
-        userName:
-          type: string
-        password:
-          type: string
-    Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel:
-      required:
-      - services
-      type: object
-      properties:
-        userCenterAccountId:
-          format: int64
-          type: integer
-        accountName:
-          type: string
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModelService'
-    Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel:
-      required:
-      - licenses
-      - userName
-      - password
-      type: object
-      properties:
-        licenses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel'
         userName:
           type: string
         password:
@@ -314,37 +317,34 @@ components:
           type: integer
         macro:
           type: string
-    Dome9.Web.Api.LicenseActivator.Dome9LicenseViewModel:
+    Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel:
+      required:
+      - services
       type: object
       properties:
-        accountId:
-          format: int64
-          type: integer
-        userCenterId:
+        userCenterAccountId:
           format: int64
           type: integer
         accountName:
           type: string
-        productId:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModelService'
+    Dome9.Web.Api.LicenseActivator.LicenseActivateRequestModel:
+      required:
+      - licenses
+      - userName
+      - password
+      type: object
+      properties:
+        licenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.LicenseActivator.LicenseActivatorViewModel'
+        userName:
           type: string
-        sku:
-          type: string
-        productType:
-          enum:
-          - Unknown
-          - Dome9
-          - Logic
-          type: string
-        macro:
-          type: string
-        qty:
-          format: int32
-          type: integer
-        startDate:
-          format: date-time
-          type: string
-        expirationDate:
-          format: date-time
+        password:
           type: string
   securitySchemes:
     API_key_V2:

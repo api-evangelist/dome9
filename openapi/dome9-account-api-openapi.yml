@@ -744,56 +744,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Account.AccountOwnerViewModel:
-      type: object
-      properties:
-        userId:
-          format: int32
-          type: integer
-    Falconetix.Model.Licensing.UpdatePlanContactDetailsModel:
-      type: object
-      properties:
-        plan:
-          enum:
-          - Undecided
-          - Beta_Trial_Plan
-          - FREE
-          - METERED
-          - CF_BASIC
-          - CF_DEFAULT
-          - Starter
-          - Growth
-          - Large
-          - XL
-          - SecOpsR2
-          - SecOpsR5
-          - Enterprise
-          - FREE_Unlimited
-          - SecOpsX20
-          - SecOpsX50
-          - SecOpsX100
-          - Rackers
-          - Amazonian
-          - Reseller
-          - SecOpsX10
-          - MSP
-          - POC
-          - AWS_Metered
-          - Enterprise_Trial
-          - Enterprise_Friend
-          - Core_M
-          - Core_L
-          - Enterprise_New
-          - Googler
-          - CheckpointEmployee
-          - Enterprise_PAYG
-          type: string
-        name:
-          type: string
-        phoneNumber:
-          type: string
-        message:
-          type: string
     Dome9.Web.Api.Models.AccountStatsViewModel:
       type: object
       properties:
@@ -885,72 +835,12 @@ components:
         timeStamp:
           format: date-time
           type: string
-    Dome9.Web.Api.Models.LicenseViewModel:
-      description: A view model representation of the account's License informatino
+    Falconetix.Model.EmailFilterItem:
       type: object
       properties:
-        planName:
+        key:
           type: string
-        agents:
-          format: int32
-          type: integer
-        instances:
-          format: int32
-          type: integer
-        users:
-          format: int32
-          type: integer
-        trialEnd:
-          format: date-time
-          type: string
-        trialExtensionCount:
-          format: int32
-          type: integer
-        maxTrialExtensionsAllowed:
-          format: int32
-          type: integer
-        featureTier:
-          enum:
-          - Trial
-          - Basic
-          - Advanced
-          - Premium
-          type: string
-        maxClarityEntriesAllowed:
-          format: int32
-          type: integer
-        clarityEntriesCount:
-          format: int32
-          type: integer
-        networkEnabled:
-          type: boolean
-        complianceEnabled:
-          type: boolean
-        complianceUpdatedBy:
-          type: string
-        complianceUpdatedDate:
-          format: date-time
-          type: string
-        canUpdateAccountFeatures:
-          type: boolean
-        iamsafeEnabled:
-          type: boolean
-        enterpriseEnabled:
-          type: boolean
-        enterpriseUpdatedBy:
-          type: string
-        enterpriseUpdatedDate:
-          format: date-time
-          type: string
-        fimEnabled:
-          type: boolean
-        allowedUsers:
-          format: int32
-          type: integer
-        poAssets:
-          format: int32
-          type: integer
-        agentsEnabled:
+        value:
           type: boolean
     Dome9.Web.Api.Models.AccountStatsViewModel.GoogleCloudStatsViewModel:
       type: object
@@ -963,54 +853,6 @@ components:
           type: integer
         vmInstances:
           format: int32
-          type: integer
-    Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel:
-      required:
-      - value
-      type: object
-      properties:
-        value:
-          format: int32
-          description: The value of the session idle timeout in minutes, value must be set to a number between 15 and 720.
-          maximum: 720
-          minimum: 15
-          type: integer
-    Dome9.Web.Api.Models.BillingViewModel:
-      type: object
-      properties:
-        cardHolder:
-          type: string
-        last4Digits:
-          type: string
-        expMonth:
-          format: int32
-          type: integer
-        expYear:
-          format: int32
-          type: integer
-    Falconetix.Model.EmailFilterItem:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: boolean
-    Falconetix.Model.AccountEmailFiltersDescriptor:
-      type: object
-      properties:
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.EmailFilterItem'
-    Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel:
-      required:
-      - value
-      type: object
-      properties:
-        value:
-          format: int32
-          maximum: 100
-          minimum: 3
           type: integer
     Dome9.Web.Api.Account.AccountUsageViewModel:
       type: object
@@ -1270,6 +1112,170 @@ components:
         kubernetesAccounts:
           format: int32
           type: integer
+    Falconetix.Model.Licensing.UpdatePlanContactDetailsModel:
+      type: object
+      properties:
+        plan:
+          enum:
+          - Undecided
+          - Beta_Trial_Plan
+          - FREE
+          - METERED
+          - CF_BASIC
+          - CF_DEFAULT
+          - Starter
+          - Growth
+          - Large
+          - XL
+          - SecOpsR2
+          - SecOpsR5
+          - Enterprise
+          - FREE_Unlimited
+          - SecOpsX20
+          - SecOpsX50
+          - SecOpsX100
+          - Rackers
+          - Amazonian
+          - Reseller
+          - SecOpsX10
+          - MSP
+          - POC
+          - AWS_Metered
+          - Enterprise_Trial
+          - Enterprise_Friend
+          - Core_M
+          - Core_L
+          - Enterprise_New
+          - Googler
+          - CheckpointEmployee
+          - Enterprise_PAYG
+          type: string
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.Models.AccountSSOConfigViewModel:
+      required:
+      - idpEndpointUrl
+      - accountSSOId
+      - x509Certificate
+      - assertionIssuer
+      - isJitProvisionAllow
+      type: object
+      properties:
+        idpEndpointUrl:
+          type: string
+        accountSSOId:
+          type: string
+        x509Certificate:
+          type: string
+        assertionIssuer:
+          type: string
+        logoutLandingPage:
+          type: string
+        isJitProvisionAllow:
+          type: boolean
+        samlRoleAttributeName:
+          type: string
+    Dome9.Web.Api.Models.LicenseViewModel:
+      description: A view model representation of the account's License informatino
+      type: object
+      properties:
+        planName:
+          type: string
+        agents:
+          format: int32
+          type: integer
+        instances:
+          format: int32
+          type: integer
+        users:
+          format: int32
+          type: integer
+        trialEnd:
+          format: date-time
+          type: string
+        trialExtensionCount:
+          format: int32
+          type: integer
+        maxTrialExtensionsAllowed:
+          format: int32
+          type: integer
+        featureTier:
+          enum:
+          - Trial
+          - Basic
+          - Advanced
+          - Premium
+          type: string
+        maxClarityEntriesAllowed:
+          format: int32
+          type: integer
+        clarityEntriesCount:
+          format: int32
+          type: integer
+        networkEnabled:
+          type: boolean
+        complianceEnabled:
+          type: boolean
+        complianceUpdatedBy:
+          type: string
+        complianceUpdatedDate:
+          format: date-time
+          type: string
+        canUpdateAccountFeatures:
+          type: boolean
+        iamsafeEnabled:
+          type: boolean
+        enterpriseEnabled:
+          type: boolean
+        enterpriseUpdatedBy:
+          type: string
+        enterpriseUpdatedDate:
+          format: date-time
+          type: string
+        fimEnabled:
+          type: boolean
+        allowedUsers:
+          format: int32
+          type: integer
+        poAssets:
+          format: int32
+          type: integer
+        agentsEnabled:
+          type: boolean
+    Dome9.Web.Api.Models.ManagingAccountViewModel:
+      type: object
+      properties:
+        accountName:
+          type: string
+    Dome9.Web.Api.Models.AccountMarketplacePutViewModel:
+      type: object
+      properties:
+        subscriptionType:
+          enum:
+          - Metered
+          - Contract
+          - Core
+          - Metered2
+          - D9
+          - Logic
+          - AzureD9
+          - AzureD9wh
+          type: string
+    Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          format: int32
+          description: The value of the session idle timeout in minutes, value must be set to a number between 15 and 720.
+          maximum: 720
+          minimum: 15
+          type: integer
     Dome9.Web.Api.Models.ExceedingLicenseViewModel:
       type: object
       properties:
@@ -1292,25 +1298,6 @@ components:
           format: uuid
           type: string
           example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Models.AccountMarketplacePutViewModel:
-      type: object
-      properties:
-        subscriptionType:
-          enum:
-          - Metered
-          - Contract
-          - Core
-          - Metered2
-          - D9
-          - Logic
-          - AzureD9
-          - AzureD9wh
-          type: string
-    Dome9.Web.Api.Models.ManagingAccountViewModel:
-      type: object
-      properties:
-        accountName:
-          type: string
     Dome9.Web.Api.Models.AccountViewModel:
       type: object
       properties:
@@ -1367,29 +1354,42 @@ components:
         planExpirationDate:
           format: date-time
           type: string
-    Dome9.Web.Api.Models.AccountSSOConfigViewModel:
-      required:
-      - idpEndpointUrl
-      - accountSSOId
-      - x509Certificate
-      - assertionIssuer
-      - isJitProvisionAllow
+    Dome9.Web.Api.Account.AccountOwnerViewModel:
       type: object
       properties:
-        idpEndpointUrl:
+        userId:
+          format: int32
+          type: integer
+    Falconetix.Model.AccountEmailFiltersDescriptor:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.EmailFilterItem'
+    Dome9.Web.Api.Models.BillingViewModel:
+      type: object
+      properties:
+        cardHolder:
           type: string
-        accountSSOId:
+        last4Digits:
           type: string
-        x509Certificate:
-          type: string
-        assertionIssuer:
-          type: string
-        logoutLandingPage:
-          type: string
-        isJitProvisionAllow:
-          type: boolean
-        samlRoleAttributeName:
-          type: string
+        expMonth:
+          format: int32
+          type: integer
+        expYear:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          format: int32
+          maximum: 100
+          minimum: 3
+          type: integer
   securitySchemes:
     API_key_V2:
       type: http

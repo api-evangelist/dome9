@@ -74,6 +74,17 @@ paths:
       x-operation-id-original: CloudRedshiftCluster_Get
 components:
   schemas:
+    Dome9.Web.Api.Models.AwsRedshiftParametersGroupViewModel:
+      type: object
+      properties:
+        parameterGroupName:
+          type: string
+          readOnly: true
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsRedshiftParameterViewModel'
+          readOnly: true
     Dome9.Web.Api.Models.AwsRedshiftParameterViewModel:
       type: object
       properties:
@@ -102,6 +113,18 @@ components:
           type: string
           readOnly: true
         source:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.Models.CloudRedshiftClusterNodeViewModel:
+      type: object
+      properties:
+        nodeRole:
+          type: string
+          readOnly: true
+        privateIPAddress:
+          type: string
+          readOnly: true
+        publicIPAddress:
           type: string
           readOnly: true
     Dome9.Web.Api.Models.CloudRedshiftClusterViewModel:
@@ -406,29 +429,6 @@ components:
           type: integer
           readOnly: true
         address:
-          type: string
-          readOnly: true
-    Dome9.Web.Api.Models.AwsRedshiftParametersGroupViewModel:
-      type: object
-      properties:
-        parameterGroupName:
-          type: string
-          readOnly: true
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsRedshiftParameterViewModel'
-          readOnly: true
-    Dome9.Web.Api.Models.CloudRedshiftClusterNodeViewModel:
-      type: object
-      properties:
-        nodeRole:
-          type: string
-          readOnly: true
-        privateIPAddress:
-          type: string
-          readOnly: true
-        publicIPAddress:
           type: string
           readOnly: true
     Dome9.Web.Api.Models.CloudRedshiftClusterSubnetGroupViewModel:

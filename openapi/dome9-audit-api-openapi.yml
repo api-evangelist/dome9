@@ -441,12 +441,6 @@ components:
           type: string
         client_ip:
           type: string
-    Falconetix.Model.Audit.CountAuditResult:
-      type: object
-      properties:
-        count:
-          format: int32
-          type: integer
     Falconetix.Model.Audit.SystemAuditResult:
       type: object
       properties:
@@ -478,6 +472,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
+    Falconetix.Model.Audit.CountAuditResult:
+      type: object
+      properties:
+        count:
+          format: int32
+          type: integer
     Dome9.Web.Api.Models.AuditEntryViewModel:
       type: object
       properties:

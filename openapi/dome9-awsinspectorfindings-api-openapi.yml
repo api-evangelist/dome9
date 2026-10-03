@@ -52,6 +52,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Falconetix.Model.AwsInspectorRulesPackageViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        provider:
+          type: string
+        version:
+          type: string
     Falconetix.Model.AwsInspectorFindingsViewModel:
       type: object
       properties:
@@ -77,19 +90,6 @@ components:
         recommendation:
           type: string
         severity:
-          type: string
-    Falconetix.Model.AwsInspectorRulesPackageViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        provider:
-          type: string
-        version:
           type: string
   securitySchemes:
     API_key_V2:

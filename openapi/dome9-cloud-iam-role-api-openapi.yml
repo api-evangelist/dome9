@@ -65,14 +65,6 @@ components:
           type: string
         permissionsBoundaryType:
           type: string
-    Dome9.Web.Api.CloudIamRoles.AwsIamRoleLastUsedViewModel:
-      type: object
-      properties:
-        roleLastUsed:
-          format: date-time
-          type: string
-        region:
-          type: string
     Dome9.Web.Api.Models.CloudIamRoleViewModel:
       type: object
       properties:
@@ -124,6 +116,14 @@ components:
           type: string
         policyDocument:
           type: object
+    Dome9.Web.Api.CloudIamRoles.AwsIamRoleLastUsedViewModel:
+      type: object
+      properties:
+        roleLastUsed:
+          format: date-time
+          type: string
+        region:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

@@ -80,37 +80,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.AwsECSDeploymentViewModel:
-      type: object
-      properties:
-        createdAt:
-          format: date-time
-          type: string
-        desiredCount:
-          format: int32
-          type: integer
-        id:
-          type: string
-        pendingCount:
-          format: int32
-          type: integer
-        runningCount:
-          format: int32
-          type: integer
-        status:
-          type: string
-        taskDefinition:
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-    Dome9.Web.Api.AwsECSPlacementConstraintViewModel:
-      type: object
-      properties:
-        expression:
-          type: string
-        type:
-          type: string
     Dome9.Web.Api.CloudECSServiceViewModel:
       type: object
       properties:
@@ -173,6 +142,30 @@ components:
           type: string
         targetGroupArn:
           type: string
+    Dome9.Web.Api.AwsECSDeploymentViewModel:
+      type: object
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        desiredCount:
+          format: int32
+          type: integer
+        id:
+          type: string
+        pendingCount:
+          format: int32
+          type: integer
+        runningCount:
+          format: int32
+          type: integer
+        status:
+          type: string
+        taskDefinition:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
     Dome9.Web.Api.AwsECSDeploymentConfigurationViewModel:
       type: object
       properties:
@@ -182,6 +175,13 @@ components:
         minimumHealthyPercent:
           format: int32
           type: integer
+    Dome9.Web.Api.AwsECSPlacementConstraintViewModel:
+      type: object
+      properties:
+        expression:
+          type: string
+        type:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

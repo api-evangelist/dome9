@@ -32,19 +32,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Falconetix.Model.BillableAssets.GrandTotalData:
+    Dome9.Web.Api.BillableAssets.AssetsViewModel:
       type: object
       properties:
-        grandTotalCount:
+        assetType:
+          type: string
+        totalCount:
           format: int32
           type: integer
-        grandTotalBillable:
+        billableCount:
           format: int32
           type: integer
-        grandTotalNonBillable:
-          format: int32
-          type: integer
-        grandTotalOnLineCount:
+        nonBillableCount:
           format: int32
           type: integer
     Dome9.Web.Api.BillableAssets.CloudAccountBillableAssetsViewModel:
@@ -60,6 +59,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.BillableAssets.AssetsViewModel'
+    Falconetix.Model.BillableAssets.AccountAssetsTotalData:
+      type: object
+      properties:
+        vendor:
+          type: string
+        assetType:
+          type: string
+        totalCount:
+          format: int32
+          type: integer
+        totalBillable:
+          format: int32
+          type: integer
+        totalNonBillable:
+          format: int32
+          type: integer
+        totalOnLineCount:
+          format: int32
+          type: integer
     Dome9.Web.Api.BillableAssets.AccountBillableAssetsViewModel:
       type: object
       properties:
@@ -81,37 +99,19 @@ components:
             $ref: '#/components/schemas/Falconetix.Model.BillableAssets.AccountAssetsTotalData'
         grandTotals:
           $ref: '#/components/schemas/Falconetix.Model.BillableAssets.GrandTotalData'
-    Falconetix.Model.BillableAssets.AccountAssetsTotalData:
+    Falconetix.Model.BillableAssets.GrandTotalData:
       type: object
       properties:
-        vendor:
-          type: string
-        assetType:
-          type: string
-        totalCount:
+        grandTotalCount:
           format: int32
           type: integer
-        totalBillable:
+        grandTotalBillable:
           format: int32
           type: integer
-        totalNonBillable:
+        grandTotalNonBillable:
           format: int32
           type: integer
-        totalOnLineCount:
-          format: int32
-          type: integer
-    Dome9.Web.Api.BillableAssets.AssetsViewModel:
-      type: object
-      properties:
-        assetType:
-          type: string
-        totalCount:
-          format: int32
-          type: integer
-        billableCount:
-          format: int32
-          type: integer
-        nonBillableCount:
+        grandTotalOnLineCount:
           format: int32
           type: integer
   securitySchemes:

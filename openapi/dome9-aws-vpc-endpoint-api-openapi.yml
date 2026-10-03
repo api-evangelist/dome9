@@ -80,16 +80,6 @@ paths:
       x-operation-id-original: AwsVpcEndpoint_Get
 components:
   schemas:
-    Falconetix.Model.AwsPrivateDnsDetailsViewModel:
-      type: object
-      properties:
-        privateDnsName:
-          type: string
-    Falconetix.Model.AwsServiceTypeDetailViewModel:
-      type: object
-      properties:
-        serviceType:
-          type: string
     Falconetix.Model.AwsVpcEndpointViewModel:
       type: object
       properties:
@@ -116,6 +106,11 @@ components:
         vpcEndpointId:
           type: string
         vpcId:
+          type: string
+    Falconetix.Model.AwsServiceTypeDetailViewModel:
+      type: object
+      properties:
+        serviceType:
           type: string
     Falconetix.Model.VpcEndpointServiceViewModel:
       type: object
@@ -162,6 +157,11 @@ components:
             type: string
         vpcEndpointPolicySupported:
           type: boolean
+    Falconetix.Model.AwsPrivateDnsDetailsViewModel:
+      type: object
+      properties:
+        privateDnsName:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

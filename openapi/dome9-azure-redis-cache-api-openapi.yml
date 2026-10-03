@@ -74,19 +74,15 @@ paths:
       x-operation-id-original: AzureRedisCache_Get
 components:
   schemas:
-    Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel:
+    Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureSkuViewModel:
       type: object
       properties:
-        category:
-          type: string
-        enabled:
-          type: boolean
-        retentionDays:
+        capacity:
           format: int32
           type: integer
-        retentionStatus:
-          type: boolean
-        timeGrain:
+        family:
+          type: string
+        name:
           type: string
     Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisCacheViewModel:
       type: object
@@ -167,46 +163,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel'
-    Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        eventHubAuthorizationRuleId:
-          type: string
-        eventHubName:
-          type: string
-        logs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel'
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel'
-        storageAccount:
-          type: string
-        workspaceId:
-          type: string
-    System.Collections.Generic.KeyValuePair_System.String_System.String:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-    Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisScheduleEntryViewModel:
-      type: object
-      properties:
-        dayOfWeek:
-          type: string
-        maintenanceWindow:
-          type: string
-        startHourUtc:
-          format: int32
-          type: integer
     Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisLinkedServerViewModel:
       type: object
       properties:
@@ -247,16 +203,60 @@ components:
           type: string
         startIp:
           type: string
-    Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureSkuViewModel:
+    System.Collections.Generic.KeyValuePair_System.String_System.String:
       type: object
       properties:
-        capacity:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel:
+      type: object
+      properties:
+        category:
+          type: string
+        enabled:
+          type: boolean
+        retentionDays:
           format: int32
           type: integer
-        family:
+        retentionStatus:
+          type: boolean
+        timeGrain:
           type: string
-        name:
+    Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel:
+      type: object
+      properties:
+        id:
           type: string
+        eventHubAuthorizationRuleId:
+          type: string
+        eventHubName:
+          type: string
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel'
+        storageAccount:
+          type: string
+        workspaceId:
+          type: string
+    Dome9.Web.Api.Azure.RedisCache.ViewModels.AzureRedisScheduleEntryViewModel:
+      type: object
+      properties:
+        dayOfWeek:
+          type: string
+        maintenanceWindow:
+          type: string
+        startHourUtc:
+          format: int32
+          type: integer
   securitySchemes:
     API_key_V2:
       type: http

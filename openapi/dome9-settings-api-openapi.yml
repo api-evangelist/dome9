@@ -294,12 +294,13 @@ components:
           type: boolean
         ruleDeleted:
           type: boolean
-    Dome9.Web.Api.Models.SnsSettingsViewModel:
+    Dome9.Web.Api.Models.EmailNotificationFiltersViewModel:
       type: object
       properties:
-        topicArn:
-          description: AWS SNS Topic ARN value
-          type: string
+        cloudAccounts:
+          type: array
+          items:
+            type: string
     Falconetix.Model.IamSafeEmailNotificationsDescriptor:
       type: object
       properties:
@@ -315,6 +316,12 @@ components:
           type: boolean
         iamSafetyInvalidCredentials:
           type: boolean
+    Dome9.Web.Api.Models.SnsSettingsViewModel:
+      type: object
+      properties:
+        topicArn:
+          description: AWS SNS Topic ARN value
+          type: string
     Falconetix.Model.EmailNotificationsDescriptor:
       type: object
       properties:
@@ -407,13 +414,6 @@ components:
         apiKey:
           description: API Key
           type: string
-    Dome9.Web.Api.Models.EmailNotificationFiltersViewModel:
-      type: object
-      properties:
-        cloudAccounts:
-          type: array
-          items:
-            type: string
     Falconetix.Model.KubernetesEmailNotificationsDescriptor:
       type: object
       properties:

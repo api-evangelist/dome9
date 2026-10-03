@@ -46,77 +46,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.CloudElastiCache.ElastiCachePendingModifiedValuesVM:
-      type: object
-      properties:
-        cacheNodeIdsToRemove:
-          type: array
-          items:
-            type: string
-        cacheNodeType:
-          type: string
-        engineVersion:
-          type: string
-        numCacheNodes:
-          format: int32
-          type: integer
-    Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterEndpointVM:
-      type: object
-      properties:
-        address:
-          type: string
-        port:
-          format: int32
-          type: integer
-    Dome9.Web.Api.CloudElastiCache.ElastiCacheNotificationConfigurationVM:
-      type: object
-      properties:
-        topicArn:
-          type: string
-        topicStatus:
-          type: string
-    Dome9.Web.Api.CloudElastiCache.ElastiCacheParameterGroupStatusVM:
-      type: object
-      properties:
-        cacheNodeIdsToReboot:
-          type: array
-          items:
-            type: string
-        cacheParameterGroupName:
-          type: string
-        parameterApplyStatus:
-          type: string
-    Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterNodeVM:
-      type: object
-      properties:
-        cacheNodeCreateTime:
-          format: date-time
-          type: string
-        cacheNodeId:
-          type: string
-        cacheNodeStatus:
-          type: string
-        customerAvailabilityZone:
-          type: string
-        endpoint:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterEndpointVM'
-        parameterGroupStatus:
-          type: string
-        sourceCacheNodeId:
-          type: string
-    Dome9.Web.Api.CloudElastiCache.ElastiCacheCachedSecurityGroupMembershipVM:
-      type: object
-      properties:
-        cacheSecurityGroupName:
-          type: string
-        status:
-          type: string
     Dome9.Web.Api.CloudElastiCache.ElastiCacheSecurityGroupMembershipVM:
       type: object
       properties:
         securityGroupId:
           type: string
         status:
+          type: string
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheNotificationConfigurationVM:
+      type: object
+      properties:
+        topicArn:
+          type: string
+        topicStatus:
           type: string
     Dome9.Web.Api.CloudElastiCache.CloudElastiCacheClusterViewModel:
       type: object
@@ -204,6 +146,64 @@ components:
           type: boolean
         transitEncryptionEnabled:
           type: boolean
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterEndpointVM:
+      type: object
+      properties:
+        address:
+          type: string
+        port:
+          format: int32
+          type: integer
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterNodeVM:
+      type: object
+      properties:
+        cacheNodeCreateTime:
+          format: date-time
+          type: string
+        cacheNodeId:
+          type: string
+        cacheNodeStatus:
+          type: string
+        customerAvailabilityZone:
+          type: string
+        endpoint:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudElastiCache.ElastiCacheClusterEndpointVM'
+        parameterGroupStatus:
+          type: string
+        sourceCacheNodeId:
+          type: string
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheCachedSecurityGroupMembershipVM:
+      type: object
+      properties:
+        cacheSecurityGroupName:
+          type: string
+        status:
+          type: string
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheParameterGroupStatusVM:
+      type: object
+      properties:
+        cacheNodeIdsToReboot:
+          type: array
+          items:
+            type: string
+        cacheParameterGroupName:
+          type: string
+        parameterApplyStatus:
+          type: string
+    Dome9.Web.Api.CloudElastiCache.ElastiCachePendingModifiedValuesVM:
+      type: object
+      properties:
+        cacheNodeIdsToRemove:
+          type: array
+          items:
+            type: string
+        cacheNodeType:
+          type: string
+        engineVersion:
+          type: string
+        numCacheNodes:
+          format: int32
+          type: integer
   securitySchemes:
     API_key_V2:
       type: http

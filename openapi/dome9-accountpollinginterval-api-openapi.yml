@@ -130,6 +130,52 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Falconetix.Model.SRL:
+      description: 'a URL like convention for D9 services.
+
+        Can identity a service port on an agent server or an Amazon service on a security group in an AWS account'
+      type: object
+      properties:
+        address:
+          type: string
+        sType:
+          enum:
+          - error
+          - cmp
+          - amz
+          - secgrp
+          - iplist
+          - blacklist
+          - user
+          - fim
+          - azure
+          - google
+          - compliance
+          - kubernetes
+          - organizationalUnit
+          - ShiftLeft
+          - KubernetesRuntimeAssurance
+          - alibaba
+          - KubernetesInterface
+          - ContainerRegistry
+          - oci
+          - cloudguardResources
+          - cspmResources
+          - networkSecurityResources
+          - ciemResources
+          - cdrResources
+          - codeSecurityResources
+          type: string
+          readOnly: true
+        id:
+          type: string
+          readOnly: true
+    Dome9.BL.Services.PollingInterval.UpdatePollingIntervalRequestViewModel:
+      type: object
+      properties:
+        interval:
+          format: int32
+          type: integer
     Dome9.Web.Api.AccountPollingInterval.CreatePollingIntervalViewModel:
       type: object
       properties:
@@ -587,52 +633,6 @@ components:
           type: string
         entityType:
           type: string
-    Falconetix.Model.SRL:
-      description: 'a URL like convention for D9 services.
-
-        Can identity a service port on an agent server or an Amazon service on a security group in an AWS account'
-      type: object
-      properties:
-        address:
-          type: string
-        sType:
-          enum:
-          - error
-          - cmp
-          - amz
-          - secgrp
-          - iplist
-          - blacklist
-          - user
-          - fim
-          - azure
-          - google
-          - compliance
-          - kubernetes
-          - organizationalUnit
-          - ShiftLeft
-          - KubernetesRuntimeAssurance
-          - alibaba
-          - KubernetesInterface
-          - ContainerRegistry
-          - oci
-          - cloudguardResources
-          - cspmResources
-          - networkSecurityResources
-          - ciemResources
-          - cdrResources
-          - codeSecurityResources
-          type: string
-          readOnly: true
-        id:
-          type: string
-          readOnly: true
-    Dome9.BL.Services.PollingInterval.UpdatePollingIntervalRequestViewModel:
-      type: object
-      properties:
-        interval:
-          format: int32
-          type: integer
   securitySchemes:
     API_key_V2:
       type: http

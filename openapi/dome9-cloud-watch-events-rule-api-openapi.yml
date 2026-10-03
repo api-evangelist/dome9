@@ -48,28 +48,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.EventRule.AwsEventTargetViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        id:
-          type: string
-        input:
-          type: string
-        inputPath:
-          type: string
-        roleArn:
-          type: string
-        inputTransformer:
-          $ref: '#/components/schemas/Dome9.Web.Api.EventRule.AwsEventTargetTransformerViewModel'
-        sqsParameters:
-          $ref: '#/components/schemas/Dome9.Web.Api.EventRule.AwsEventTargetSqsViewModel'
-    Dome9.Web.Api.EventRule.AwsEventTargetSqsViewModel:
-      type: object
-      properties:
-        messageGroupId:
-          type: string
     Dome9.Web.Api.EventRule.AwsEventTargetTransformerViewModel:
       type: object
       properties:
@@ -105,6 +83,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.EventRule.AwsEventTargetViewModel'
+    Dome9.Web.Api.EventRule.AwsEventTargetViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        input:
+          type: string
+        inputPath:
+          type: string
+        roleArn:
+          type: string
+        inputTransformer:
+          $ref: '#/components/schemas/Dome9.Web.Api.EventRule.AwsEventTargetTransformerViewModel'
+        sqsParameters:
+          $ref: '#/components/schemas/Dome9.Web.Api.EventRule.AwsEventTargetSqsViewModel'
+    Dome9.Web.Api.EventRule.AwsEventTargetSqsViewModel:
+      type: object
+      properties:
+        messageGroupId:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

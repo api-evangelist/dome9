@@ -101,6 +101,135 @@ paths:
       x-operation-id-original: CompliancePolicy_UpdateRuleBundle
 components:
   schemas:
+    Dome9.Web.Api.Models.RuleBundleRequestViewModel:
+      required:
+      - name
+      - cloudVendor
+      type: object
+      properties:
+        id:
+          format: int64
+          description: the bundle id (returned in response)
+          type: integer
+        name:
+          description: bundle name
+          type: string
+        description:
+          description: description of the bundle
+          type: string
+        rules:
+          description: list of rules in the bundle
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleViewModel'
+        hideInCompliance:
+          type: boolean
+        minFeatureTier:
+          enum:
+          - Trial
+          - Basic
+          - Advanced
+          - Premium
+          type: string
+        cloudVendor:
+          description: the cloud provider on which the rule will be run
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        language:
+          description: the language of the text (default, 'en' - English)
+          type: string
+    Falconetix.Model.Compliance.Ruleset.RuleViewModel:
+      required:
+      - name
+      - logic
+      type: object
+      properties:
+        name:
+          description: rule name
+          type: string
+        severity:
+          description: rule severity (High/Medium/Low)
+          enum:
+          - Informational
+          - Low
+          - Medium
+          - High
+          - Critical
+          type: string
+        rlmId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        logic:
+          description: the GSL statement for the rule (text string)
+          type: string
+        description:
+          description: description of the rule (text)
+          type: string
+        remediation:
+          description: remediation text for the rule (text)
+          type: string
+        cloudbots:
+          description: the Cloudbots section for the rule (optional)
+          type: string
+        complianceTag:
+          description: the compliance section for the rule (optional)
+          type: string
+        domain:
+          description: this field is not used
+          type: string
+        priority:
+          description: this field is not used
+          type: string
+        controlTitle:
+          description: this field is not used
+          type: string
+        ruleId:
+          description: this field is not used
+          type: string
+        category:
+          description: Rule Category
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        logicHash:
+          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
+          type: string
+        isDefault:
+          description: The property represents default rule
+          type: boolean
+    Falconetix.Model.Compliance.Ruleset.RuleBundleVersionViewModel:
+      type: object
+      properties:
+        version:
+          type: string
+        createdTime:
+          type: string
     Falconetix.Model.Compliance.Ruleset.RuleBundleResultViewModel:
       type: object
       properties:
@@ -198,135 +327,6 @@ components:
         common:
           type: boolean
         icon:
-          type: string
-    Falconetix.Model.Compliance.Ruleset.RuleViewModel:
-      required:
-      - name
-      - logic
-      type: object
-      properties:
-        name:
-          description: rule name
-          type: string
-        severity:
-          description: rule severity (High/Medium/Low)
-          enum:
-          - Informational
-          - Low
-          - Medium
-          - High
-          - Critical
-          type: string
-        rlmId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        logic:
-          description: the GSL statement for the rule (text string)
-          type: string
-        description:
-          description: description of the rule (text)
-          type: string
-        remediation:
-          description: remediation text for the rule (text)
-          type: string
-        cloudbots:
-          description: the Cloudbots section for the rule (optional)
-          type: string
-        complianceTag:
-          description: the compliance section for the rule (optional)
-          type: string
-        domain:
-          description: this field is not used
-          type: string
-        priority:
-          description: this field is not used
-          type: string
-        controlTitle:
-          description: this field is not used
-          type: string
-        ruleId:
-          description: this field is not used
-          type: string
-        category:
-          description: Rule Category
-          type: string
-        labels:
-          type: array
-          items:
-            type: string
-        logicHash:
-          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
-          type: string
-        isDefault:
-          description: The property represents default rule
-          type: boolean
-    Falconetix.Model.Compliance.Ruleset.RuleBundleVersionViewModel:
-      type: object
-      properties:
-        version:
-          type: string
-        createdTime:
-          type: string
-    Dome9.Web.Api.Models.RuleBundleRequestViewModel:
-      required:
-      - name
-      - cloudVendor
-      type: object
-      properties:
-        id:
-          format: int64
-          description: the bundle id (returned in response)
-          type: integer
-        name:
-          description: bundle name
-          type: string
-        description:
-          description: description of the bundle
-          type: string
-        rules:
-          description: list of rules in the bundle
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleViewModel'
-        hideInCompliance:
-          type: boolean
-        minFeatureTier:
-          enum:
-          - Trial
-          - Basic
-          - Advanced
-          - Premium
-          type: string
-        cloudVendor:
-          description: the cloud provider on which the rule will be run
-          enum:
-          - aws
-          - hp
-          - mellanox
-          - awsgov
-          - azure
-          - google
-          - awschina
-          - azuregov
-          - kubernetes
-          - azurechina
-          - terraform
-          - generic
-          - kubernetesruntimeassurance
-          - shiftleft
-          - sourcecodeassurance
-          - imageassurance
-          - alibaba
-          - cft
-          - containerregistry
-          - oci
-          - ocigov
-          - ocigovuk
-          - CIEM
-          type: string
-        language:
-          description: the language of the text (default, 'en' - English)
           type: string
   securitySchemes:
     API_key_V2:

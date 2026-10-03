@@ -74,6 +74,35 @@ paths:
       x-operation-id-original: CloudDbInstance_Get
 components:
   schemas:
+    Dome9.Web.Api.CloudDbInstances.CloudDbInstanceSubnetGroupViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        vpcId:
+          type: string
+          readOnly: true
+        subnets:
+          type: array
+          items:
+            type: string
+          readOnly: true
+    Dome9.Web.Api.CloudDbInstances.CloudDbInstanceEndpointViewModel:
+      type: object
+      properties:
+        address:
+          type: string
+          readOnly: true
+        port:
+          format: int32
+          type: integer
+          readOnly: true
+        hostedZoneId:
+          type: string
     Dome9.Web.Api.CloudDbInstances.CloudDbInstanceViewModel:
       type: object
       properties:
@@ -389,35 +418,6 @@ components:
           type: boolean
         iamDatabaseAuthenticationEnabled:
           type: boolean
-    Dome9.Web.Api.CloudDbInstances.CloudDbInstanceSubnetGroupViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-          readOnly: true
-        description:
-          type: string
-          readOnly: true
-        vpcId:
-          type: string
-          readOnly: true
-        subnets:
-          type: array
-          items:
-            type: string
-          readOnly: true
-    Dome9.Web.Api.CloudDbInstances.CloudDbInstanceEndpointViewModel:
-      type: object
-      properties:
-        address:
-          type: string
-          readOnly: true
-        port:
-          format: int32
-          type: integer
-          readOnly: true
-        hostedZoneId:
-          type: string
   securitySchemes:
     API_key_V2:
       type: http

@@ -46,6 +46,84 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchLogPublishingOptionViewModel:
+      type: object
+      properties:
+        cloudWatchLogsLogGroupArn:
+          type: string
+        enabled:
+          type: boolean
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchCognitoOptionsViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        identityPoolId:
+          type: string
+        roleArn:
+          type: string
+        userPoolId:
+          type: string
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchClusterConfigViewModel:
+      type: object
+      properties:
+        dedicatedMasterCount:
+          format: int32
+          type: integer
+        dedicatedMasterEnabled:
+          type: boolean
+        dedicatedMasterType:
+          type: string
+        instanceCount:
+          format: int32
+          type: integer
+        instanceType:
+          type: string
+        zoneAwarenessConfig:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchZoneAwarenessConfigViewModel'
+        zoneAwarenessEnabled:
+          type: boolean
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchServiceSoftwareOptionsViewModel:
+      type: object
+      properties:
+        automatedUpdateDate:
+          format: date-time
+          type: string
+        cancellable:
+          type: boolean
+        currentVersion:
+          type: string
+        description:
+          type: string
+        newVersion:
+          type: string
+        updateAvailable:
+          type: boolean
+        updateStatus:
+          type: string
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchSnapshotOptionsViewModel:
+      type: object
+      properties:
+        automatedSnapshotStartHour:
+          format: int32
+          type: integer
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchVPCDerivedInfoViewModel:
+      type: object
+      properties:
+        availabilityZones:
+          type: array
+          items:
+            type: string
+        securityGroupIds:
+          type: array
+          items:
+            type: string
+        subnetIds:
+          type: array
+          items:
+            type: string
+        vpcId:
+          type: string
     Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchEBSOptionsViewModel:
       type: object
       properties:
@@ -66,6 +144,17 @@ components:
           type: boolean
         kmsKeyId:
           type: string
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchNodeToNodeEncryptionOptionsViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchZoneAwarenessConfigViewModel:
+      type: object
+      properties:
+        availabilityZoneCount:
+          format: int32
+          type: integer
     Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchDomainStatusViewModel:
       type: object
       properties:
@@ -117,95 +206,6 @@ components:
           type: boolean
         vpcOptions:
           $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchVPCDerivedInfoViewModel'
-    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchSnapshotOptionsViewModel:
-      type: object
-      properties:
-        automatedSnapshotStartHour:
-          format: int32
-          type: integer
-    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchZoneAwarenessConfigViewModel:
-      type: object
-      properties:
-        availabilityZoneCount:
-          format: int32
-          type: integer
-    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchLogPublishingOptionViewModel:
-      type: object
-      properties:
-        cloudWatchLogsLogGroupArn:
-          type: string
-        enabled:
-          type: boolean
-    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchServiceSoftwareOptionsViewModel:
-      type: object
-      properties:
-        automatedUpdateDate:
-          format: date-time
-          type: string
-        cancellable:
-          type: boolean
-        currentVersion:
-          type: string
-        description:
-          type: string
-        newVersion:
-          type: string
-        updateAvailable:
-          type: boolean
-        updateStatus:
-          type: string
-    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchCognitoOptionsViewModel:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        identityPoolId:
-          type: string
-        roleArn:
-          type: string
-        userPoolId:
-          type: string
-    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchClusterConfigViewModel:
-      type: object
-      properties:
-        dedicatedMasterCount:
-          format: int32
-          type: integer
-        dedicatedMasterEnabled:
-          type: boolean
-        dedicatedMasterType:
-          type: string
-        instanceCount:
-          format: int32
-          type: integer
-        instanceType:
-          type: string
-        zoneAwarenessConfig:
-          $ref: '#/components/schemas/Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchZoneAwarenessConfigViewModel'
-        zoneAwarenessEnabled:
-          type: boolean
-    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchNodeToNodeEncryptionOptionsViewModel:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-    Dome9.Web.Api.AwsElasticsearch.AwsElasticsearchVPCDerivedInfoViewModel:
-      type: object
-      properties:
-        availabilityZones:
-          type: array
-          items:
-            type: string
-        securityGroupIds:
-          type: array
-          items:
-            type: string
-        subnetIds:
-          type: array
-          items:
-            type: string
-        vpcId:
-          type: string
   securitySchemes:
     API_key_V2:
       type: http

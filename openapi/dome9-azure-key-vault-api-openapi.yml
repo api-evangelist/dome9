@@ -74,6 +74,106 @@ paths:
       x-operation-id-original: AzureKeyVault_Get
 components:
   schemas:
+    Dome9.Web.Api.Azure.KeyVault.PropertiesViewModel:
+      type: object
+      properties:
+        enabledForDeployment:
+          type: boolean
+        enabledForDiskEncryption:
+          type: boolean
+        enabledForTemplateDeployment:
+          type: boolean
+        enableSoftDelete:
+          type: boolean
+        sku:
+          type: string
+        vaultUri:
+          type: string
+        tenantId:
+          type: string
+        accessPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.KeyVault.AccessPolicyViewModel'
+    Dome9.Web.Api.Azure.KeyVault.SecretViewModel:
+      type: object
+      properties:
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        managed:
+          type: boolean
+        contentType:
+          type: string
+        created:
+          format: date-time
+          type: string
+        enabled:
+          type: boolean
+        expires:
+          format: date-time
+          type: string
+        notBefore:
+          format: date-time
+          type: string
+        updated:
+          format: date-time
+          type: string
+        identifier:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+    Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        eventHubAuthorizationRuleId:
+          type: string
+        eventHubName:
+          type: string
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel'
+        storageAccount:
+          type: string
+        workspaceId:
+          type: string
+    Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel:
+      type: object
+      properties:
+        category:
+          type: string
+        categoryGroup:
+          type: string
+        enabled:
+          type: boolean
+        retentionDays:
+          format: int32
+          type: integer
+        retentionStatus:
+          type: boolean
+    Dome9.Web.Api.Azure.KeyVault.AccessPolicyViewModel:
+      type: object
+      properties:
+        applicationId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        objectId:
+          type: string
+        tenantId:
+          type: string
+        permissions:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.KeyVault.PermissionsViewModel'
     Dome9.Web.Api.Azure.KeyVault.AzureKeyVaultViewModel:
       type: object
       properties:
@@ -135,19 +235,35 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Azure.KeyVault.AccessPolicyViewModel:
+    Dome9.Web.Api.Azure.KeyVault.CertificatePolicyX509PropertiesViewModel:
       type: object
       properties:
-        applicationId:
-          format: uuid
+        ekus:
+          type: array
+          items:
+            type: string
+        keyUsage:
+          type: array
+          items:
+            type: string
+        subject:
           type: string
-          example: 00000000-0000-0000-0000-000000000000
-        objectId:
+        dnsNames:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Azure.KeyVault.CertificatePolicyKeyPropertiesViewModel:
+      type: object
+      properties:
+        exportable:
+          type: boolean
+        keySize:
+          format: int32
+          type: integer
+        keyType:
           type: string
-        tenantId:
-          type: string
-        permissions:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.KeyVault.PermissionsViewModel'
+        reuseKey:
+          type: boolean
     Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel:
       type: object
       properties:
@@ -162,27 +278,23 @@ components:
           type: boolean
         timeGrain:
           type: string
-    Dome9.Web.Api.Azure.DiagnosticSettings.DiagnosticSettingsViewModel:
+    Dome9.Web.Api.Azure.KeyVault.CertificatePolicyViewModel:
       type: object
       properties:
-        id:
+        issuerName:
           type: string
-        eventHubAuthorizationRuleId:
+        certificateType:
           type: string
-        eventHubName:
-          type: string
-        logs:
+        keyProperties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.KeyVault.CertificatePolicyKeyPropertiesViewModel'
+        lifeTimeActions:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel'
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.DiagnosticSettings.MetricAuditViewModel'
-        storageAccount:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.KeyVault.CertificatePolicyLifeTimeActionViewModel'
+        secretContentType:
           type: string
-        workspaceId:
-          type: string
+        x509CertificateProperties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.KeyVault.CertificatePolicyX509PropertiesViewModel'
     Dome9.Web.Api.Azure.KeyVault.CertificateViewModel:
       type: object
       properties:
@@ -214,40 +326,6 @@ components:
           type: string
         version:
           type: string
-    Dome9.Web.Api.Azure.KeyVault.CertificatePolicyViewModel:
-      type: object
-      properties:
-        issuerName:
-          type: string
-        certificateType:
-          type: string
-        keyProperties:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.KeyVault.CertificatePolicyKeyPropertiesViewModel'
-        lifeTimeActions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.KeyVault.CertificatePolicyLifeTimeActionViewModel'
-        secretContentType:
-          type: string
-        x509CertificateProperties:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.KeyVault.CertificatePolicyX509PropertiesViewModel'
-    Dome9.Web.Api.Azure.KeyVault.CertificatePolicyX509PropertiesViewModel:
-      type: object
-      properties:
-        ekus:
-          type: array
-          items:
-            type: string
-        keyUsage:
-          type: array
-          items:
-            type: string
-        subject:
-          type: string
-        dnsNames:
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.Azure.KeyVault.CertificatePolicyLifeTimeActionViewModel:
       type: object
       properties:
@@ -288,84 +366,6 @@ components:
           type: string
         version:
           type: string
-    Dome9.Web.Api.Azure.KeyVault.SecretViewModel:
-      type: object
-      properties:
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-        managed:
-          type: boolean
-        contentType:
-          type: string
-        created:
-          format: date-time
-          type: string
-        enabled:
-          type: boolean
-        expires:
-          format: date-time
-          type: string
-        notBefore:
-          format: date-time
-          type: string
-        updated:
-          format: date-time
-          type: string
-        identifier:
-          type: string
-        name:
-          type: string
-        version:
-          type: string
-    Dome9.Web.Api.Azure.KeyVault.PropertiesViewModel:
-      type: object
-      properties:
-        enabledForDeployment:
-          type: boolean
-        enabledForDiskEncryption:
-          type: boolean
-        enabledForTemplateDeployment:
-          type: boolean
-        enableSoftDelete:
-          type: boolean
-        sku:
-          type: string
-        vaultUri:
-          type: string
-        tenantId:
-          type: string
-        accessPolicies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.KeyVault.AccessPolicyViewModel'
-    Dome9.Web.Api.Azure.DiagnosticSettings.LogAuditViewModel:
-      type: object
-      properties:
-        category:
-          type: string
-        categoryGroup:
-          type: string
-        enabled:
-          type: boolean
-        retentionDays:
-          format: int32
-          type: integer
-        retentionStatus:
-          type: boolean
-    Dome9.Web.Api.Azure.KeyVault.CertificatePolicyKeyPropertiesViewModel:
-      type: object
-      properties:
-        exportable:
-          type: boolean
-        keySize:
-          format: int32
-          type: integer
-        keyType:
-          type: string
-        reuseKey:
-          type: boolean
   securitySchemes:
     API_key_V2:
       type: http

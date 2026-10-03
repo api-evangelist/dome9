@@ -855,6 +855,33 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dome9.Web.Api.Models.FimPolicyUpdateViewModel:
+      type: object
+      properties:
+        sgId:
+          format: int64
+          type: integer
+        fimPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel'
+    Falconetix.WebApi.Models.ScopeElementViewModel:
+      type: object
+      properties:
+        type:
+          enum:
+          - CIDR
+          - DNS
+          - IPList
+          - MagicIP
+          - AWS
+          - Tag
+          - ASG
+          - CIDRv6
+          - PrefixList
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
     Dome9.Web.Api.Models.UpdateItem:
       type: object
       properties:
@@ -880,7 +907,7 @@ components:
         value:
           description: the target value of the operation. could be basic or complex type
           type: object
-    Falconetix.WebApi.Models.ScopeElementViewModel:
+    Dome9.Web.Api.Models.ScopeViewModel:
       type: object
       properties:
         type:
@@ -899,6 +926,144 @@ components:
           type: object
           additionalProperties:
             type: string
+    Dome9.Web.Api.Models.LoggingPolicyViewModel:
+      type: object
+      properties:
+        loggingPolicy:
+          type: string
+    Dome9.Web.Api.Models.AgentServiceViewModel:
+      required:
+      - name
+      - protocol
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        description:
+          maxLength: 500
+          minLength: 0
+          type: string
+        portRange:
+          $ref: '#/components/schemas/Dome9.Common.DataTypes.PortRange'
+        protocol:
+          type: string
+        normallyOpen:
+          type: boolean
+        scope:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        icmpType:
+          type: string
+        icmpV6Type:
+          type: string
+    Dome9.Common.DataTypes.PortRange:
+      type: object
+      properties:
+        portFrom:
+          format: int32
+          type: integer
+        portTo:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Models.SecurityGroupNameViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+    Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel:
+      required:
+      - name
+      type: object
+      properties:
+        serverId:
+          format: int32
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        description:
+          maxLength: 256
+          minLength: 0
+          type: string
+    Dome9.Web.Api.Models.FIMPolicyViewModel:
+      required:
+      - frequency
+      - enabled
+      - rules
+      - excludedFileTypes
+      type: object
+      properties:
+        frequency:
+          enum:
+          - Every6Hours
+          - Every12Hours
+          - OnceADay
+          - OnceAWeek
+          type: string
+        enabled:
+          type: boolean
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel.FIMRuleViewModel'
+        excludedFileTypes:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Models.FIMPolicyViewModel.FIMRuleViewModel:
+      type: object
+      properties:
+        include:
+          type: boolean
+        value:
+          type: string
+        comment:
+          type: string
+    Dome9.Web.Api.Models.SecurityGroupViewModel:
+      type: object
+      properties:
+        securityGroupId:
+          format: int64
+          type: integer
+        securityGroupName:
+          type: string
+        securityGroupDescription:
+          type: string
+        loggingPolicy:
+          enum:
+          - NoLogging
+          - LogSuccess
+          - LogDeny
+          - LogBoth
+          type: string
+        fimPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel'
+        whitelist:
+          type: object
+          properties:
+            inbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+            outbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
+        services:
+          type: object
+          properties:
+            inbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupServiceViewModel'
+            outbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupServiceViewModel'
     Dome9.Web.Api.Models.SecurityGroupServiceViewModel:
       type: object
       properties:
@@ -1053,171 +1218,6 @@ components:
           items:
             $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
         description:
-          type: string
-    Dome9.Web.Api.Models.SecurityGroupViewModel:
-      type: object
-      properties:
-        securityGroupId:
-          format: int64
-          type: integer
-        securityGroupName:
-          type: string
-        securityGroupDescription:
-          type: string
-        loggingPolicy:
-          enum:
-          - NoLogging
-          - LogSuccess
-          - LogDeny
-          - LogBoth
-          type: string
-        fimPolicy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel'
-        whitelist:
-          type: object
-          properties:
-            inbound:
-              type: array
-              items:
-                $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
-            outbound:
-              type: array
-              items:
-                $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
-        services:
-          type: object
-          properties:
-            inbound:
-              type: array
-              items:
-                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupServiceViewModel'
-            outbound:
-              type: array
-              items:
-                $ref: '#/components/schemas/Dome9.Web.Api.Models.SecurityGroupServiceViewModel'
-    Dome9.Web.Api.SecurityGroup.AddSecurityGroupViewModel:
-      required:
-      - name
-      type: object
-      properties:
-        serverId:
-          format: int32
-          type: integer
-        name:
-          maxLength: 50
-          minLength: 0
-          type: string
-        description:
-          maxLength: 256
-          minLength: 0
-          type: string
-    Dome9.Web.Api.Models.LoggingPolicyViewModel:
-      type: object
-      properties:
-        loggingPolicy:
-          type: string
-    Dome9.Web.Api.Models.FIMPolicyViewModel:
-      required:
-      - frequency
-      - enabled
-      - rules
-      - excludedFileTypes
-      type: object
-      properties:
-        frequency:
-          enum:
-          - Every6Hours
-          - Every12Hours
-          - OnceADay
-          - OnceAWeek
-          type: string
-        enabled:
-          type: boolean
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel.FIMRuleViewModel'
-        excludedFileTypes:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Models.FIMPolicyViewModel.FIMRuleViewModel:
-      type: object
-      properties:
-        include:
-          type: boolean
-        value:
-          type: string
-        comment:
-          type: string
-    Dome9.Common.DataTypes.PortRange:
-      type: object
-      properties:
-        portFrom:
-          format: int32
-          type: integer
-        portTo:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Models.FimPolicyUpdateViewModel:
-      type: object
-      properties:
-        sgId:
-          format: int64
-          type: integer
-        fimPolicy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.FIMPolicyViewModel'
-    Dome9.Web.Api.Models.SecurityGroupNameViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-    Dome9.Web.Api.Models.ScopeViewModel:
-      type: object
-      properties:
-        type:
-          enum:
-          - CIDR
-          - DNS
-          - IPList
-          - MagicIP
-          - AWS
-          - Tag
-          - ASG
-          - CIDRv6
-          - PrefixList
-          type: string
-        data:
-          type: object
-          additionalProperties:
-            type: string
-    Dome9.Web.Api.Models.AgentServiceViewModel:
-      required:
-      - name
-      - protocol
-      type: object
-      properties:
-        name:
-          maxLength: 50
-          minLength: 0
-          type: string
-        description:
-          maxLength: 500
-          minLength: 0
-          type: string
-        portRange:
-          $ref: '#/components/schemas/Dome9.Common.DataTypes.PortRange'
-        protocol:
-          type: string
-        normallyOpen:
-          type: boolean
-        scope:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.WebApi.Models.ScopeElementViewModel'
-        icmpType:
-          type: string
-        icmpV6Type:
           type: string
   securitySchemes:
     API_key_V2:

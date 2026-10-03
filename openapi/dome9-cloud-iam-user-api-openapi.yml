@@ -45,13 +45,6 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel'
 components:
   schemas:
-    Dome9.Web.Api.Models.CloudIamUserViewModel.PermissionsBoundary:
-      type: object
-      properties:
-        permissionsBoundaryArn:
-          type: string
-        permissionsBoundaryType:
-          type: string
     Dome9.Web.Api.Models.CloudIamUserViewModel:
       type: object
       properties:
@@ -104,6 +97,13 @@ components:
         arn:
           type: string
         name:
+          type: string
+    Dome9.Web.Api.Models.CloudIamUserViewModel.PermissionsBoundary:
+      type: object
+      properties:
+        permissionsBoundaryArn:
+          type: string
+        permissionsBoundaryType:
           type: string
     Dome9.Web.Api.SubTypes.CloudIamUserInlinePolicyViewModel:
       type: object

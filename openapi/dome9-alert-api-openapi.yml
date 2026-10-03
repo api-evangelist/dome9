@@ -410,6 +410,41 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Falconetix.Model.AlertPivotEntity:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          enum:
+          - SecurityGroup
+          - Agent
+          - CloudAccount
+          - AzureSecurityGroup
+          - AzureCloudAccount
+          - KubernetesCloudAccount
+          type: string
+    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean:
+      type: object
+      properties:
+        alertId:
+          format: int64
+          type: integer
+        data:
+          type: boolean
+    Falconetix.Model.AlertLocationEntityMetadata:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
     Dome9.Web.Api.Models.GetDataParmsTimeFilter:
       type: object
       properties:
@@ -423,6 +458,49 @@ components:
           type: string
         to:
           type: string
+    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_Falconetix.Model.WarningSeverity:
+      type: object
+      properties:
+        alertId:
+          format: int64
+          type: integer
+        data:
+          enum:
+          - None
+          - Low
+          - Med
+          - High
+          type: string
+    Dome9.Web.Api.Models.GetDataParms_System.Object:
+      type: object
+      properties:
+        filter:
+          type: string
+        page_size:
+          format: int64
+          type: integer
+        page_index:
+          format: int64
+          type: integer
+        dateRange:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.GetDataParmsTimeFilter'
+    Dome9.Web.Api.Alerts.ExportStatusModel.ExportStatusInfo:
+      type: object
+      properties:
+        status:
+          enum:
+          - InProgress
+          - Success
+          type: string
+    Dome9.Web.Api.Models.AlertsCountViewModel:
+      type: object
+      properties:
+        fim:
+          format: int32
+          type: integer
+        general:
+          format: int32
+          type: integer
     Dome9.Web.Api.Models.AlertViewModel:
       type: object
       properties:
@@ -472,52 +550,6 @@ components:
         modified:
           format: date-time
           type: string
-    Dome9.Web.Api.Alerts.ExportStatusModel.ExportStatusInfo:
-      type: object
-      properties:
-        status:
-          enum:
-          - InProgress
-          - Success
-          type: string
-    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String:
-      type: object
-      properties:
-        alertId:
-          format: int64
-          type: integer
-        data:
-          type: string
-    Dome9.Web.Api.Models.AlertsCountViewModel:
-      type: object
-      properties:
-        fim:
-          format: int32
-          type: integer
-        general:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Models.GetDataParms_System.Object:
-      type: object
-      properties:
-        filter:
-          type: string
-        page_size:
-          format: int64
-          type: integer
-        page_index:
-          format: int64
-          type: integer
-        dateRange:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.GetDataParmsTimeFilter'
-    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean:
-      type: object
-      properties:
-        alertId:
-          format: int64
-          type: integer
-        data:
-          type: boolean
     Dome9.Web.Api.Models.AlertPatchViewModel:
       type: object
       properties:
@@ -532,45 +564,13 @@ components:
           - Med
           - High
           type: string
-    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_Falconetix.Model.WarningSeverity:
+    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.String:
       type: object
       properties:
         alertId:
           format: int64
           type: integer
         data:
-          enum:
-          - None
-          - Low
-          - Med
-          - High
-          type: string
-    Falconetix.Model.AlertLocationEntityMetadata:
-      type: object
-      properties:
-        srl:
-          type: string
-        name:
-          type: string
-        id:
-          type: string
-    Falconetix.Model.AlertPivotEntity:
-      type: object
-      properties:
-        srl:
-          type: string
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          enum:
-          - SecurityGroup
-          - Agent
-          - CloudAccount
-          - AzureSecurityGroup
-          - AzureCloudAccount
-          - KubernetesCloudAccount
           type: string
   securitySchemes:
     API_key_V2:

@@ -80,15 +80,6 @@ paths:
       x-operation-id-original: AzureCosmosDbAccount_Get
 components:
   schemas:
-    System.Collections.Generic.KeyValuePair_System.String_System.String:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
     Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbAccountViewModel:
       type: object
       properties:
@@ -138,20 +129,15 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbLocationViewModel:
+    System.Collections.Generic.KeyValuePair_System.String_System.String:
       type: object
       properties:
-        id:
+        key:
           type: string
-        locationName:
+          readOnly: true
+        value:
           type: string
-        documentEndpoint:
-          type: string
-        provisioningState:
-          type: string
-        failoverPriority:
-          format: int32
-          type: integer
+          readOnly: true
     Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbConsistencyPolicyViewModel:
       type: object
       properties:
@@ -167,6 +153,20 @@ components:
           format: int64
           type: integer
         maxIntervalInSeconds:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbLocationViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        locationName:
+          type: string
+        documentEndpoint:
+          type: string
+        provisioningState:
+          type: string
+        failoverPriority:
           format: int32
           type: integer
   securitySchemes:

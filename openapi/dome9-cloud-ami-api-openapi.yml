@@ -80,6 +80,13 @@ paths:
       x-operation-id-original: CloudAmi_Get
 components:
   schemas:
+    Dome9.Web.Api.CloudAmi.CloudEc2ProductCodeViewModel:
+      type: object
+      properties:
+        productCodeId:
+          type: string
+        productCodeType:
+          type: string
     Dome9.Web.Api.CloudAmi.CloudEc2EbsBlockDeviceViewModel:
       type: object
       properties:
@@ -97,20 +104,6 @@ components:
           type: integer
         volumeType:
           type: string
-    Dome9.Web.Api.CloudAmi.CloudEc2StateReasonViewModel:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    Dome9.Web.Api.CloudAmi.CloudEc2ProductCodeViewModel:
-      type: object
-      properties:
-        productCodeId:
-          type: string
-        productCodeType:
-          type: string
     Dome9.Web.Api.CloudAmi.CloudEc2TagViewModel:
       type: object
       properties:
@@ -118,16 +111,12 @@ components:
           type: string
         value:
           type: string
-    Dome9.Web.Api.CloudAmi.CloudEc2BlockDeviceMappingViewModel:
+    Dome9.Web.Api.CloudAmi.CloudEc2StateReasonViewModel:
       type: object
       properties:
-        deviceName:
+        code:
           type: string
-        ebs:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2EbsBlockDeviceViewModel'
-        noDevice:
-          type: string
-        virtualName:
+        message:
           type: string
     Dome9.Web.Api.CloudAmi.CloudEc2ImageViewModel:
       type: object
@@ -195,6 +184,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2TagViewModel'
+    Dome9.Web.Api.CloudAmi.CloudEc2BlockDeviceMappingViewModel:
+      type: object
+      properties:
+        deviceName:
+          type: string
+        ebs:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudAmi.CloudEc2EbsBlockDeviceViewModel'
+        noDevice:
+          type: string
+        virtualName:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

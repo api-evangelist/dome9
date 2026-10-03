@@ -234,6 +234,35 @@ paths:
         required: true
 components:
   schemas:
+    Dome9.Web.Api.Compliance.Serverless.Policy.ServerlessPolicyRequestModel:
+      required:
+      - cloudAccountId
+      - topic
+      - notificationIds
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        topic:
+          enum:
+          - TASK
+          - SECURITY_EVENT
+          - MANAGEMENT
+          type: string
+        notificationIds:
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        provider:
+          enum:
+          - aws
+          - azure
+          - kubernetes
+          type: string
     Dome9.Web.Api.Compliance.Serverless.Policy.ServerlessPolicyViewModel:
       type: object
       properties:
@@ -264,35 +293,6 @@ components:
           - kubernetes
           type: string
         errorMessage:
-          type: string
-    Dome9.Web.Api.Compliance.Serverless.Policy.ServerlessPolicyRequestModel:
-      required:
-      - cloudAccountId
-      - topic
-      - notificationIds
-      type: object
-      properties:
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        topic:
-          enum:
-          - TASK
-          - SECURITY_EVENT
-          - MANAGEMENT
-          type: string
-        notificationIds:
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
-        provider:
-          enum:
-          - aws
-          - azure
-          - kubernetes
           type: string
   securitySchemes:
     API_key_V2:

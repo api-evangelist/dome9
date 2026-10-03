@@ -351,18 +351,6 @@ components:
             example: 00000000-0000-0000-0000-000000000000
         errorMessage:
           type: string
-    Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel:
-      type: object
-      properties:
-        rulesetId:
-          format: int64
-          type: integer
-        cloudAccountIds:
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
     Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel:
       required:
       - targetType
@@ -396,6 +384,18 @@ components:
         rulesetVersion:
           type: string
         notificationIds:
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel:
+      type: object
+      properties:
+        rulesetId:
+          format: int64
+          type: integer
+        cloudAccountIds:
           type: array
           items:
             format: uuid

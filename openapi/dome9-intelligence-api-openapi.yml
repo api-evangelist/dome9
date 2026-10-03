@@ -2086,86 +2086,6 @@ paths:
         required: true
 components:
   schemas:
-    Falconetix.Model.Magellan.MagellanOnboardingModel:
-      type: object
-      properties:
-        cloudAccountId:
-          description: AWS cloud account id
-          type: string
-        bucketName:
-          description: The name of the bucket that Magellan (logic) will use for the onboarding [case sensitive]
-          type: string
-        isUnifiedOnboarding:
-          type: boolean
-        rulesetsIds:
-          type: array
-          items:
-            format: int64
-            type: integer
-    Falconetix.Model.Magellan.MagellanAccountOffboardingModel:
-      type: object
-      properties:
-        cloudAccountId:
-          type: string
-        vendor:
-          enum:
-          - AWS
-          - Azure
-          - GCP
-          - Kubernetes
-          - Alibaba
-          - OCI
-          type: string
-        logTypes:
-          type: array
-          items:
-            enum:
-            - flowlogs
-            - CloudTrail
-            - Both
-            - GuardDuty
-            type: string
-    Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAlibabaActionTrailOnboardingModel:
-      type: object
-      properties:
-        cloudAccountNumbers:
-          type: array
-          items:
-            type: string
-    Falconetix.Model.Magellan.MagellanGcpOnboardingModel:
-      type: object
-      properties:
-        cloudAccounts:
-          type: array
-          items:
-            type: string
-        logType:
-          enum:
-          - NetworkTraffic
-          - AccountActivity
-          - Both
-          type: string
-    Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAzureNewStorageDetailsAfterArmModel:
-      type: object
-      properties:
-        storageDetails:
-          type: array
-          items:
-            type: string
-        subscriptionId:
-          type: string
-    Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel:
-      type: object
-      properties:
-        cloudAccountId:
-          description: AWS cloud account id
-          type: string
-        isOnboarded:
-          description: indicates whether the account was successfully onboarded to Magellan (Log.ic)
-          type: boolean
-        bucketName:
-          description: The name of the bucket that Magellan (logic) will use for the onboarding [case sensitive]
-          type: string
     Falconetix.Model.Magellan.MagellanCustomOnboardingModel:
       type: object
       properties:
@@ -2201,6 +2121,86 @@ components:
         isAutoDiscoveryEnabled:
           description: Boolean that check if the bucket should support auto discovery of additional accounts
           type: boolean
+    Falconetix.Model.Magellan.MagellanAccountOffboardingModel:
+      type: object
+      properties:
+        cloudAccountId:
+          type: string
+        vendor:
+          enum:
+          - AWS
+          - Azure
+          - GCP
+          - Kubernetes
+          - Alibaba
+          - OCI
+          type: string
+        logTypes:
+          type: array
+          items:
+            enum:
+            - flowlogs
+            - CloudTrail
+            - Both
+            - GuardDuty
+            type: string
+    Falconetix.Model.Magellan.MagellanOnboardingModel:
+      type: object
+      properties:
+        cloudAccountId:
+          description: AWS cloud account id
+          type: string
+        bucketName:
+          description: The name of the bucket that Magellan (logic) will use for the onboarding [case sensitive]
+          type: string
+        isUnifiedOnboarding:
+          type: boolean
+        rulesetsIds:
+          type: array
+          items:
+            format: int64
+            type: integer
+    Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAzureNewStorageDetailsAfterArmModel:
+      type: object
+      properties:
+        storageDetails:
+          type: array
+          items:
+            type: string
+        subscriptionId:
+          type: string
+    Falconetix.Model.Magellan.MagellanOnboardingAzurePricingStorage.MagellanAlibabaActionTrailOnboardingModel:
+      type: object
+      properties:
+        cloudAccountNumbers:
+          type: array
+          items:
+            type: string
+    Falconetix.Model.Magellan.MagellanGcpOnboardingModel:
+      type: object
+      properties:
+        cloudAccounts:
+          type: array
+          items:
+            type: string
+        logType:
+          enum:
+          - NetworkTraffic
+          - AccountActivity
+          - Both
+          type: string
+    Dome9.Web.Api.Views.Magellan.AwsLogicLogViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          description: AWS cloud account id
+          type: string
+        isOnboarded:
+          description: indicates whether the account was successfully onboarded to Magellan (Log.ic)
+          type: boolean
+        bucketName:
+          description: The name of the bucket that Magellan (logic) will use for the onboarding [case sensitive]
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

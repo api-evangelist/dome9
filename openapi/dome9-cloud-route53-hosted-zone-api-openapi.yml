@@ -46,13 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.CloudRoute53.CloudRoute53LinkedServiceViewModel:
-      type: object
-      properties:
-        servicePrincipal:
-          type: string
-        description:
-          type: string
     Dome9.Web.Api.CloudRoute53.CloudRoute53AliasTargetViewModel:
       type: object
       properties:
@@ -62,14 +55,10 @@ components:
           type: string
         evaluateTargetHealth:
           type: boolean
-    Dome9.Web.Api.CloudRoute53.CloudRoute53QueryLoggingConfigViewModel:
+    Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordViewModel:
       type: object
       properties:
-        cloudWatchLogsLogGroupArn:
-          type: string
-        hostedZoneId:
-          type: string
-        id:
+        value:
           type: string
     Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordSetViewModel:
       type: object
@@ -314,6 +303,22 @@ components:
           type: string
         trafficPolicyInstanceId:
           type: string
+    Dome9.Web.Api.CloudRoute53.CloudRoute53QueryLoggingConfigViewModel:
+      type: object
+      properties:
+        cloudWatchLogsLogGroupArn:
+          type: string
+        hostedZoneId:
+          type: string
+        id:
+          type: string
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
     Dome9.Web.Api.CloudRoute53.CloudRoute53HostedZoneViewModel:
       type: object
       properties:
@@ -349,20 +354,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
-    Dome9.Web.Api.CloudRoute53.CloudRoute53HostedZoneConfigViewModel:
-      type: object
-      properties:
-        comment:
-          type: string
-        privateZone:
-          type: boolean
-    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
     Dome9.Web.Api.CloudRoute53.CloudRoute53GeoLocationViewModel:
       type: object
       properties:
@@ -372,11 +363,20 @@ components:
           type: string
         subdivisionCode:
           type: string
-    Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordViewModel:
+    Dome9.Web.Api.CloudRoute53.CloudRoute53LinkedServiceViewModel:
       type: object
       properties:
-        value:
+        servicePrincipal:
           type: string
+        description:
+          type: string
+    Dome9.Web.Api.CloudRoute53.CloudRoute53HostedZoneConfigViewModel:
+      type: object
+      properties:
+        comment:
+          type: string
+        privateZone:
+          type: boolean
   securitySchemes:
     API_key_V2:
       type: http

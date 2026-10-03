@@ -80,6 +80,26 @@ paths:
       x-operation-id-original: AzureLogicApp_Get
 components:
   schemas:
+    Falconetix.Model.AzureLogicAppWorkflowParameterViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+        value:
+          type: object
+        metadata:
+          type: object
+    Falconetix.Model.AzureLogicAppResourceReferenceViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
     Falconetix.Model.AzureLogicAppViewModel:
       type: object
       properties:
@@ -161,26 +181,6 @@ components:
           type: string
         plan:
           $ref: '#/components/schemas/Falconetix.Model.AzureLogicAppResourceReferenceViewModel'
-    Falconetix.Model.AzureLogicAppResourceReferenceViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-    Falconetix.Model.AzureLogicAppWorkflowParameterViewModel:
-      type: object
-      properties:
-        type:
-          type: string
-        description:
-          type: string
-        value:
-          type: object
-        metadata:
-          type: object
   securitySchemes:
     API_key_V2:
       type: http

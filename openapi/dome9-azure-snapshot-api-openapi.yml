@@ -81,31 +81,38 @@ components:
           type: string
         type:
           type: string
-    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotExtendedLocationViewModel:
+    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotGalleryImageReferenceViewModel:
+      type: object
+      properties:
+        communityGalleryImageId:
+          type: string
+        id:
+          type: string
+        lun:
+          format: int32
+          type: integer
+        sharedGalleryImageId:
+          type: string
+    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotSkuViewModel:
       type: object
       properties:
         name:
           type: string
-        type:
-          type: string
-    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotEncryptionSettingViewModel:
-      type: object
-      properties:
-        keyEncryptionKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotEncryptionKeyViewModel'
-        diskEncryptionKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotEncryptionKeyViewModel'
-    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotCopyCompletionErrorViewModel:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
+        tier:
           type: string
     Dome9.Web.Api.Azure.Snapshot.AzureSnapshotSourceVaultViewModel:
       type: object
       properties:
         id:
+          type: string
+    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotPurchasePlanViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        publisher:
+          type: string
+        product:
           type: string
     Dome9.Web.Api.Azure.Snapshot.AzureSnapshotCreationDataViewModel:
       type: object
@@ -138,6 +145,13 @@ components:
         uploadSizeBytes:
           format: int64
           type: integer
+    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotExtendedLocationViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
     Dome9.Web.Api.Azure.Snapshot.AzureSnapshotSecurityProfileViewModel:
       type: object
       properties:
@@ -145,60 +159,13 @@ components:
           type: string
         secureVMDiskEncryptionSetId:
           type: string
-    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotGalleryImageReferenceViewModel:
+    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotTagViewModel:
       type: object
       properties:
-        communityGalleryImageId:
+        key:
           type: string
-        id:
+        value:
           type: string
-        lun:
-          format: int32
-          type: integer
-        sharedGalleryImageId:
-          type: string
-    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotEncryptionKeyViewModel:
-      type: object
-      properties:
-        secretUrl:
-          type: string
-        sourceVault:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotSourceVaultViewModel'
-    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        location:
-          type: string
-        managedBy:
-          type: string
-        extendedLocation:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotExtendedLocationViewModel'
-        properties:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotPropertiesViewModel'
-        type:
-          type: string
-        sku:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotSkuViewModel'
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotTagViewModel'
-    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotSkuViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        tier:
-          type: string
-    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotSupportedCapabilitiesViewModel:
-      type: object
-      properties:
-        acceleratedNetwork:
-          type: boolean
     Dome9.Web.Api.Azure.Snapshot.AzureSnapshotPropertiesViewModel:
       type: object
       properties:
@@ -252,22 +219,6 @@ components:
           type: string
         uniqueId:
           type: string
-    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotTagViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotPurchasePlanViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        publisher:
-          type: string
-        product:
-          type: string
     Dome9.Web.Api.Azure.Snapshot.AzureSnapshotEncryptionSettingsCollectionViewModel:
       type: object
       properties:
@@ -275,6 +226,55 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotEncryptionSettingViewModel'
+    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotEncryptionSettingViewModel:
+      type: object
+      properties:
+        keyEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotEncryptionKeyViewModel'
+        diskEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotEncryptionKeyViewModel'
+    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotEncryptionKeyViewModel:
+      type: object
+      properties:
+        secretUrl:
+          type: string
+        sourceVault:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotSourceVaultViewModel'
+    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotSupportedCapabilitiesViewModel:
+      type: object
+      properties:
+        acceleratedNetwork:
+          type: boolean
+    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotCopyCompletionErrorViewModel:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+    Dome9.Web.Api.Azure.Snapshot.AzureSnapshotViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        location:
+          type: string
+        managedBy:
+          type: string
+        extendedLocation:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotExtendedLocationViewModel'
+        properties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotPropertiesViewModel'
+        type:
+          type: string
+        sku:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotSkuViewModel'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.Snapshot.AzureSnapshotTagViewModel'
   securitySchemes:
     API_key_V2:
       type: http

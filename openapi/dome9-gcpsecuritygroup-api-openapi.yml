@@ -116,18 +116,6 @@ components:
           $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel'
         id:
           type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel:
-      type: object
-      properties:
-        isGoogleManagedKey:
-          type: boolean
-          readOnly: true
-        isCustomerManagedKey:
-          type: boolean
-          readOnly: true
-        isCustomerSuppliedKey:
-          type: boolean
-          readOnly: true
     Dome9.Web.Api.Google.SecurityGroup.GcpSecurityGroupViewModel:
       type: object
       properties:
@@ -155,24 +143,18 @@ components:
           example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
+    Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel:
       type: object
       properties:
-        eTag:
-          type: string
-        rawKey:
-          type: string
-        sha256:
-          type: string
-        kmsKeyName:
-          type: string
-    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
+        isGoogleManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerSuppliedKey:
+          type: boolean
+          readOnly: true
     Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel:
       type: object
       properties:
@@ -185,34 +167,6 @@ components:
         subnetwork:
           type: string
         publicIP:
-          type: string
-    Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        enabled:
-          type: boolean
-        description:
-          type: string
-        number:
-          format: int32
-          type: integer
-        protocol:
-          type: string
-        source:
-          type: string
-        destination:
-          type: string
-        destinationPort:
-          format: int32
-          type: integer
-        destinationPortTo:
-          format: int32
-          type: integer
-        direction:
-          type: string
-        action:
           type: string
     Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel:
       type: object
@@ -280,17 +234,6 @@ components:
           example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
-      type: object
-      properties:
-        kmsKeyName:
-          type: string
-        rawKey:
-          type: string
-        sha256:
-          type: string
-        eTag:
-          type: string
     Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel:
       type: object
       properties:
@@ -306,6 +249,63 @@ components:
         sourceImageEncryptionKey:
           $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel'
         eTag:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        kmsKeyName:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        kmsKeyName:
+          type: string
+    Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        enabled:
+          type: boolean
+        description:
+          type: string
+        number:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+        source:
+          type: string
+        destination:
+          type: string
+        destinationPort:
+          format: int32
+          type: integer
+        destinationPortTo:
+          format: int32
+          type: integer
+        direction:
+          type: string
+        action:
           type: string
   securitySchemes:
     API_key_V2:

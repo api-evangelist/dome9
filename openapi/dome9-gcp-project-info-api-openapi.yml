@@ -54,13 +54,6 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.GcpProjectInfoViewModel'
 components:
   schemas:
-    Dome9.Web.Api.Google.ProjectInfo.ItemsDataViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
     Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
       type: object
       properties:
@@ -68,20 +61,6 @@ components:
           type: string
         value:
           type: string
-    Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyViewModel:
-      type: object
-      properties:
-        version:
-          format: int32
-          type: integer
-        constraint:
-          type: string
-        eTag:
-          type: string
-        listPolicy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyListPolicyViewModel'
-        booleanPolicy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyBooleanPolicyViewModel'
     Dome9.Web.Api.Google.ProjectInfo.GcpProjectInfoViewModel:
       type: object
       properties:
@@ -133,6 +112,31 @@ components:
           type: string
         inheritFromParent:
           type: boolean
+    Dome9.Web.Api.Google.ProjectInfo.ItemsDataViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.ProjectInfo.GcpProjectMetadataViewModel:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.ItemsDataViewModel'
+        eTag:
+          type: string
+        kind:
+          type: string
+    Dome9.Web.Api.Google.ProjectInfo.GcpProjectEnrolledServiceViewModel:
+      type: object
+      properties:
+        cloudProduct:
+          type: string
+        enrollmentLevel:
+          type: string
     Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyBooleanPolicyViewModel:
       type: object
       properties:
@@ -157,24 +161,20 @@ components:
           type: boolean
         invalidKeyVersion:
           type: boolean
-    Dome9.Web.Api.Google.ProjectInfo.GcpProjectEnrolledServiceViewModel:
+    Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyViewModel:
       type: object
       properties:
-        cloudProduct:
+        version:
+          format: int32
+          type: integer
+        constraint:
           type: string
-        enrollmentLevel:
-          type: string
-    Dome9.Web.Api.Google.ProjectInfo.GcpProjectMetadataViewModel:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.ProjectInfo.ItemsDataViewModel'
         eTag:
           type: string
-        kind:
-          type: string
+        listPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyListPolicyViewModel'
+        booleanPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.OrgPolicy.GcpOrgPolicyBooleanPolicyViewModel'
   securitySchemes:
     API_key_V2:
       type: http

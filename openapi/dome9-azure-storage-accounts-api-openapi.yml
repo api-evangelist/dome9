@@ -74,14 +74,12 @@ paths:
       x-operation-id-original: AzureStorageAccounts_Get
 components:
   schemas:
-    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountVirtualNetworkRuleViewModel:
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEndPointViewModel:
       type: object
       properties:
-        action:
+        service:
           type: string
-        state:
-          type: string
-        virtualNetworkResourceId:
+        uri:
           type: string
     Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountKeyVaultPropertiesViewModel:
       type: object
@@ -99,13 +97,6 @@ components:
           type: string
         ipAddressOrRange:
           type: string
-    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEndPointViewModel:
-      type: object
-      properties:
-        service:
-          type: string
-        uri:
-          type: string
     Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountNetworkRuleSetViewModel:
       type: object
       properties:
@@ -121,16 +112,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountVirtualNetworkRuleViewModel'
-    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEncryptionServiceViewModel:
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEncryptionViewModel:
       type: object
       properties:
-        serviceType:
+        keySource:
           type: string
-        enabled:
-          type: boolean
-        lastEnabledTime:
-          format: date-time
-          type: string
+        keyVaultProperties:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountKeyVaultPropertiesViewModel'
+        servicesEncryption:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEncryptionServiceViewModel'
     Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountViewModel:
       type: object
       properties:
@@ -199,17 +191,25 @@ components:
           type: boolean
         advancedThreatProtectionEnabled:
           type: boolean
-    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEncryptionViewModel:
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountVirtualNetworkRuleViewModel:
       type: object
       properties:
-        keySource:
+        action:
           type: string
-        keyVaultProperties:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountKeyVaultPropertiesViewModel'
-        servicesEncryption:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEncryptionServiceViewModel'
+        state:
+          type: string
+        virtualNetworkResourceId:
+          type: string
+    Dome9.Web.Api.Azure.Storage.ViewModels.AzureStorageAccountEncryptionServiceViewModel:
+      type: object
+      properties:
+        serviceType:
+          type: string
+        enabled:
+          type: boolean
+        lastEnabledTime:
+          format: date-time
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

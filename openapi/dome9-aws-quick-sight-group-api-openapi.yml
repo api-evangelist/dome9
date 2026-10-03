@@ -46,13 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.AwsQuickSight.QuickSightGroupMemberViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        memberName:
-          type: string
     Dome9.Web.Api.AwsQuickSight.AwsQuickSightGroupViewModel:
       type: object
       properties:
@@ -73,6 +66,13 @@ components:
         accountNumber:
           type: string
         region:
+          type: string
+    Dome9.Web.Api.AwsQuickSight.QuickSightGroupMemberViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        memberName:
           type: string
   securitySchemes:
     API_key_V2:

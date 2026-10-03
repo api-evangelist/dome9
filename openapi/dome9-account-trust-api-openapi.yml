@@ -215,40 +215,6 @@ paths:
           description: No Content
 components:
   schemas:
-    Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel:
-      type: object
-      properties:
-        roles:
-          description: A list of role names that can be assumed by a user in the trusted account, leave empty to allow all roles to be assumed
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Account.AccountTrustPutViewModel:
-      required:
-      - description
-      type: object
-      properties:
-        description:
-          description: A description for the account trust
-          type: string
-        restrictions:
-          $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel'
-          description: Restrictions configuration for the account trust
-    Dome9.Web.Api.Account.AccountTrustAssumableRolesViewModel:
-      type: object
-      properties:
-        accountName:
-          description: The trsuted account name
-          type: string
-        accountId:
-          format: int64
-          description: The trsuted account Id
-          type: integer
-        roles:
-          description: List of roles that can be assumed by a user in the trusted account
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.Account.AccountTrustViewModel:
       required:
       - sourceAccountId
@@ -292,6 +258,40 @@ components:
           type: string
         restrictions:
           $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel'
+    Dome9.Web.Api.Account.AccountTrustAssumableRolesViewModel:
+      type: object
+      properties:
+        accountName:
+          description: The trsuted account name
+          type: string
+        accountId:
+          format: int64
+          description: The trsuted account Id
+          type: integer
+        roles:
+          description: List of roles that can be assumed by a user in the trusted account
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel:
+      type: object
+      properties:
+        roles:
+          description: A list of role names that can be assumed by a user in the trusted account, leave empty to allow all roles to be assumed
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Account.AccountTrustPutViewModel:
+      required:
+      - description
+      type: object
+      properties:
+        description:
+          description: A description for the account trust
+          type: string
+        restrictions:
+          $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel'
+          description: Restrictions configuration for the account trust
   securitySchemes:
     API_key_V2:
       type: http

@@ -180,6 +180,25 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dome9.Web.Api.Models.ScopeViewModel:
+      type: object
+      properties:
+        type:
+          enum:
+          - CIDR
+          - DNS
+          - IPList
+          - MagicIP
+          - AWS
+          - Tag
+          - ASG
+          - CIDRv6
+          - PrefixList
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
     Dome9.Web.Api.Models.ServicePortViewModel:
       type: object
       properties:
@@ -500,16 +519,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Models.ScopeViewModel'
-    Dome9.Web.Api.Models.EmergencyPolicyViewModel:
-      type: object
-      properties:
-        timeout:
-          format: int32
-          type: integer
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.ServicePortViewModel'
     Dome9.Web.Api.Models.PortRangeViewModel:
       type: object
       properties:
@@ -524,25 +533,16 @@ components:
       properties:
         timeout:
           type: string
-    Dome9.Web.Api.Models.ScopeViewModel:
+    Dome9.Web.Api.Models.EmergencyPolicyViewModel:
       type: object
       properties:
-        type:
-          enum:
-          - CIDR
-          - DNS
-          - IPList
-          - MagicIP
-          - AWS
-          - Tag
-          - ASG
-          - CIDRv6
-          - PrefixList
-          type: string
-        data:
-          type: object
-          additionalProperties:
-            type: string
+        timeout:
+          format: int32
+          type: integer
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.ServicePortViewModel'
   securitySchemes:
     API_key_V2:
       type: http

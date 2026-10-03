@@ -56,44 +56,9 @@ paths:
         required: true
 components:
   schemas:
-    CGN.OpenSearch.Model.CommonViewModels.SortingViewModel:
+    Dome9.Web.Api.ProtectedAsset.OpenSecurityIssuesViewModel:
       type: object
       properties:
-        fieldName:
-          type: string
-        direction:
-          format: int32
-          type: integer
-    CGN.OpenSearch.Model.CommonViewModels.FieldAggregationViewModel:
-      type: object
-      properties:
-        value:
-          type: object
-        count:
-          format: int64
-          type: integer
-    CGN.OpenSearch.Model.AssetsIndexer.AssetIndexerExternalAdditionalField:
-      type: object
-      properties:
-        source:
-          type: string
-        name:
-          type: string
-        value:
-          type: string
-    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    CGN.VLM.Model.Entities.VulnerabilitySeverityStats:
-      type: object
-      properties:
-        all:
-          format: int32
-          type: integer
         critical:
           format: int32
           type: integer
@@ -106,23 +71,6 @@ components:
         low:
           format: int32
           type: integer
-        informational:
-          format: int32
-          type: integer
-        unknown:
-          format: int32
-          type: integer
-    CGN.OpenSearch.Model.CommonViewModels.AdditionalFieldsRequestViewModel:
-      type: object
-      properties:
-        source:
-          type: string
-        filterFields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
-        sortField:
-          $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.SortingViewModel'
     CGN.Common.Model.Vlm.VlmAssetMetadata:
       type: object
       properties:
@@ -132,33 +80,6 @@ components:
           type: string
         scanStatusDetails:
           type: string
-    Dome9.Web.Api.ProtectedAsset.ProtectedAssetPaganationViewModel:
-      type: object
-      properties:
-        searchRequest:
-          $ref: '#/components/schemas/Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
-          description: search request for findings
-        assets:
-          description: current page of findings
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.ProtectedAsset.ProtectedAssetViewModel'
-        totalCount:
-          format: int64
-          description: total number of findings
-          type: integer
-        aggregations:
-          description: aggregate findings per search or filter entity (facet)
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldAggregationViewModel'
-        searchAfter:
-          description: token for next page of results
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.ProtectedAsset.ProtectedAssetViewModel:
       type: object
       properties:
@@ -265,34 +186,55 @@ components:
           description: Asset context
         vulnerability:
           $ref: '#/components/schemas/CGN.Common.Model.Vlm.VlmAssetMetadata'
-    CGN.OpenSearch.Model.CommonViewModels.TagViewModel:
+    CGN.OpenSearch.Model.CommonViewModels.FieldAggregationViewModel:
       type: object
       properties:
-        key:
-          type: string
         value:
-          type: string
-    Dome9.Web.Api.ProtectedAsset.ContextViewModel:
+          type: object
+        count:
+          format: int64
+          type: integer
+    CGN.VLM.Model.Entities.VulnerabilityStats:
       type: object
       properties:
-        networkExposure:
+        cve:
+          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
+        cveFixable:
+          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
+        threat:
+          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
+        secret:
+          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
+        knownExploit:
+          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
+        cveExcluded:
+          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
+        threatsExcluded:
+          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
+        secretExcluded:
+          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
+    CGN.OpenSearch.Model.CommonViewModels.SearchFilterViewModel:
+      type: object
+      properties:
+        freeTextPhrase:
           type: string
-        iamSensitivity:
-          format: double
-          type: number
-        dataSensitivity:
+        freeTextNamePhrase:
           type: string
-        iamExposure:
+        freeTextForIdsPhrase:
           type: string
-        dataClassifications:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.TagViewModel'
+        includedEntityTypes:
           type: array
           items:
             type: string
-        wafProtection:
-          type: string
-        openSecurityIssues:
-          $ref: '#/components/schemas/Dome9.Web.Api.ProtectedAsset.OpenSecurityIssuesViewModel'
-        networkInspection:
+        excludedEntityTypes:
           type: array
           items:
             type: string
@@ -333,9 +275,61 @@ components:
           $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.AdditionalFieldsRequestViewModel'
         filterEntitiesWithoutRiskScore:
           type: boolean
-    Dome9.Web.Api.ProtectedAsset.OpenSecurityIssuesViewModel:
+    CGN.OpenSearch.Model.CommonViewModels.TagViewModel:
       type: object
       properties:
+        key:
+          type: string
+        value:
+          type: string
+    CGN.OpenSearch.Model.AssetsIndexer.AssetIndexerAdditionalField:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.ProtectedAsset.ProtectedAssetPaganationViewModel:
+      type: object
+      properties:
+        searchRequest:
+          $ref: '#/components/schemas/Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel'
+          description: search request for findings
+        assets:
+          description: current page of findings
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.ProtectedAsset.ProtectedAssetViewModel'
+        totalCount:
+          format: int64
+          description: total number of findings
+          type: integer
+        aggregations:
+          description: aggregate findings per search or filter entity (facet)
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldAggregationViewModel'
+        searchAfter:
+          description: token for next page of results
+          type: array
+          items:
+            type: string
+    CGN.OpenSearch.Model.CommonViewModels.SortingViewModel:
+      type: object
+      properties:
+        fieldName:
+          type: string
+        direction:
+          format: int32
+          type: integer
+    CGN.VLM.Model.Entities.VulnerabilitySeverityStats:
+      type: object
+      properties:
+        all:
+          format: int32
+          type: integer
         critical:
           format: int32
           type: integer
@@ -348,51 +342,57 @@ components:
         low:
           format: int32
           type: integer
-    CGN.OpenSearch.Model.CommonViewModels.SearchFilterViewModel:
+        informational:
+          format: int32
+          type: integer
+        unknown:
+          format: int32
+          type: integer
+    Dome9.Web.Api.ProtectedAsset.ContextViewModel:
       type: object
       properties:
-        freeTextPhrase:
+        networkExposure:
           type: string
-        freeTextNamePhrase:
+        iamSensitivity:
+          format: double
+          type: number
+        dataSensitivity:
           type: string
-        freeTextForIdsPhrase:
+        iamExposure:
           type: string
-        fields:
+        dataClassifications:
+          type: array
+          items:
+            type: string
+        wafProtection:
+          type: string
+        openSecurityIssues:
+          $ref: '#/components/schemas/Dome9.Web.Api.ProtectedAsset.OpenSecurityIssuesViewModel'
+        networkInspection:
+          type: array
+          items:
+            type: string
+    CGN.OpenSearch.Model.CommonViewModels.AdditionalFieldsRequestViewModel:
+      type: object
+      properties:
+        source:
+          type: string
+        filterFields:
           type: array
           items:
             $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.TagViewModel'
-        includedEntityTypes:
-          type: array
-          items:
-            type: string
-        excludedEntityTypes:
-          type: array
-          items:
-            type: string
-    CGN.VLM.Model.Entities.VulnerabilityStats:
+        sortField:
+          $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.SortingViewModel'
+    CGN.OpenSearch.Model.AssetsIndexer.AssetIndexerExternalAdditionalField:
       type: object
       properties:
-        cve:
-          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
-        cveFixable:
-          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
-        threat:
-          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
-        secret:
-          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
-        knownExploit:
-          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
-        cveExcluded:
-          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
-        threatsExcluded:
-          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
-        secretExcluded:
-          $ref: '#/components/schemas/CGN.VLM.Model.Entities.VulnerabilitySeverityStats'
-    CGN.OpenSearch.Model.AssetsIndexer.AssetIndexerAdditionalField:
+        source:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
       type: object
       properties:
         name:

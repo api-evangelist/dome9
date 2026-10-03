@@ -304,6 +304,26 @@ components:
           example: MyName@gmail.com
         recaptchaResponse:
           type: string
+    Dome9.Web.Api.Auth.ChangePasswordViewModel:
+      required:
+      - currentPassword
+      - newPassword
+      type: object
+      properties:
+        currentPassword:
+          type: string
+        newPassword:
+          type: string
+    Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel:
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
     Dome9.Web.Api.Auth.AssumeRoleViewModel:
       type: object
       properties:
@@ -343,26 +363,6 @@ components:
           type: string
         mfaCode:
           type: string
-    Dome9.Web.Api.Auth.ChangePasswordViewModel:
-      required:
-      - currentPassword
-      - newPassword
-      type: object
-      properties:
-        currentPassword:
-          type: string
-        newPassword:
-          type: string
-    Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel:
-      required:
-      - email
-      type: object
-      properties:
-        email:
-          format: email
-          description: Email Address
-          type: string
-          example: MyName@gmail.com
   securitySchemes:
     API_key_V2:
       type: http

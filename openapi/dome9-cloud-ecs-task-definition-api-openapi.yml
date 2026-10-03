@@ -46,70 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.AwsECSKeyValuePairViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    Dome9.Web.Api.AwsECSVolumeFromViewModel:
-      type: object
-      properties:
-        readOnly:
-          type: boolean
-        sourceContainer:
-          type: string
-    Dome9.Web.Api.CloudEcsTaskDefinitionViewModel:
-      type: object
-      properties:
-        containerDefinitions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSContainerDefinitionViewModel'
-        family:
-          type: string
-        networkMode:
-          type: string
-        placementConstraints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSTaskDefinitionPlacementConstraintViewModel'
-        requiresAttributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSAttributeViewModel'
-        revision:
-          format: int32
-          type: integer
-        status:
-          type: string
-        taskDefinitionArn:
-          type: string
-        taskRoleArn:
-          type: string
-        volumes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSVolumeViewModel'
-    Dome9.Web.Api.AwsECSMountPointViewModel:
-      type: object
-      properties:
-        containerPath:
-          type: string
-        readOnly:
-          type: boolean
-        sourceVolume:
-          type: string
-    System.Collections.Generic.KeyValuePair_System.String_System.String:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
     Dome9.Web.Api.AwsECSTaskDefinitionPlacementConstraintViewModel:
       type: object
       properties:
@@ -121,33 +57,6 @@ components:
       type: object
       properties:
         sourcePath:
-          type: string
-    Dome9.Web.Api.AwsECSHostEntryViewModel:
-      type: object
-      properties:
-        hostname:
-          type: string
-        ipAddress:
-          type: string
-    Dome9.Web.Api.AwsECSLogConfigurationViewModel:
-      type: object
-      properties:
-        logDriver:
-          type: string
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
-    Dome9.Web.Api.AwsECSPortMappingViewModel:
-      type: object
-      properties:
-        containerPort:
-          format: int32
-          type: integer
-        hostPort:
-          format: int32
-          type: integer
-        protocol:
           type: string
     Dome9.Web.Api.AwsECSContainerDefinitionViewModel:
       type: object
@@ -244,6 +153,74 @@ components:
         softLimit:
           format: int32
           type: integer
+    Dome9.Web.Api.AwsECSMountPointViewModel:
+      type: object
+      properties:
+        containerPath:
+          type: string
+        readOnly:
+          type: boolean
+        sourceVolume:
+          type: string
+    Dome9.Web.Api.AwsECSLogConfigurationViewModel:
+      type: object
+      properties:
+        logDriver:
+          type: string
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
+    Dome9.Web.Api.AwsECSPortMappingViewModel:
+      type: object
+      properties:
+        containerPort:
+          format: int32
+          type: integer
+        hostPort:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+    Dome9.Web.Api.AwsECSVolumeViewModel:
+      type: object
+      properties:
+        host:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsECSHostVolumePropertiesViewModel'
+        name:
+          type: string
+    Dome9.Web.Api.CloudEcsTaskDefinitionViewModel:
+      type: object
+      properties:
+        containerDefinitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSContainerDefinitionViewModel'
+        family:
+          type: string
+        networkMode:
+          type: string
+        placementConstraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSTaskDefinitionPlacementConstraintViewModel'
+        requiresAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSAttributeViewModel'
+        revision:
+          format: int32
+          type: integer
+        status:
+          type: string
+        taskDefinitionArn:
+          type: string
+        taskRoleArn:
+          type: string
+        volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsECSVolumeViewModel'
     Dome9.Web.Api.AwsECSAttributeViewModel:
       type: object
       properties:
@@ -255,12 +232,35 @@ components:
           type: string
         value:
           type: string
-    Dome9.Web.Api.AwsECSVolumeViewModel:
+    Dome9.Web.Api.AwsECSVolumeFromViewModel:
       type: object
       properties:
-        host:
-          $ref: '#/components/schemas/Dome9.Web.Api.AwsECSHostVolumePropertiesViewModel'
+        readOnly:
+          type: boolean
+        sourceContainer:
+          type: string
+    System.Collections.Generic.KeyValuePair_System.String_System.String:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    Dome9.Web.Api.AwsECSHostEntryViewModel:
+      type: object
+      properties:
+        hostname:
+          type: string
+        ipAddress:
+          type: string
+    Dome9.Web.Api.AwsECSKeyValuePairViewModel:
+      type: object
+      properties:
         name:
+          type: string
+        value:
           type: string
   securitySchemes:
     API_key_V2:

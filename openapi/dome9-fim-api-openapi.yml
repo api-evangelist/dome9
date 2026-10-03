@@ -105,6 +105,43 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Falconetix.Model.AlertPivotEntity:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          enum:
+          - SecurityGroup
+          - Agent
+          - CloudAccount
+          - AzureSecurityGroup
+          - AzureCloudAccount
+          - KubernetesCloudAccount
+          type: string
+    Dome9.Web.Api.Models.FimGetViewModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.FimAlertViewModel'
+        total:
+          format: int64
+          type: integer
+    Falconetix.Model.AlertLocationEntityMetadata:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
     Dome9.Web.Api.Models.FimAlertViewModel:
       description: "An single FIM event representation. \nCurrently based on the AlertViewModel"
       required:
@@ -176,43 +213,6 @@ components:
         modified:
           format: date-time
           type: string
-    Falconetix.Model.AlertLocationEntityMetadata:
-      type: object
-      properties:
-        srl:
-          type: string
-        name:
-          type: string
-        id:
-          type: string
-    Falconetix.Model.AlertPivotEntity:
-      type: object
-      properties:
-        srl:
-          type: string
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          enum:
-          - SecurityGroup
-          - Agent
-          - CloudAccount
-          - AzureSecurityGroup
-          - AzureCloudAccount
-          - KubernetesCloudAccount
-          type: string
-    Dome9.Web.Api.Models.FimGetViewModel:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.FimAlertViewModel'
-        total:
-          format: int64
-          type: integer
   securitySchemes:
     API_key_V2:
       type: http

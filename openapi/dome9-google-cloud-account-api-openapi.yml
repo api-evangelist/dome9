@@ -794,6 +794,77 @@ paths:
           description: No Content
 components:
   schemas:
+    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel:
+      type: object
+      properties:
+        autoDelete:
+          type: boolean
+        deviceName:
+          type: string
+        guestOsFeatures:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel'
+        eTag:
+          type: string
+        interface:
+          type: string
+        kind:
+          type: string
+        licenses:
+          type: array
+          items:
+            type: string
+        mode:
+          type: string
+        source:
+          type: string
+        type:
+          type: string
+        diskEncryptionType:
+          type: string
+        diskEncryptionTypeMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel'
+        diskEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel'
+        initializeParams:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel'
+        id:
+          type: string
+    Dome9.Web.Api.Google.Accounts.GoogleCloudAccountPostViewModel:
+      required:
+      - name
+      - serviceAccountCredentials
+      type: object
+      properties:
+        name:
+          description: Google account name in Dome9
+          type: string
+        serviceAccountCredentials:
+          description: The service account JSON block (from the GCP console)
+          type: object
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        gsuiteUser:
+          type: string
+        domainName:
+          type: string
+    Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel:
+      type: object
+      properties:
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     Dome9.Web.Api.Google.Accounts.GoogleAccountStatsViewModel:
       type: object
       properties:
@@ -822,25 +893,57 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
-    Dome9.Web.Api.Google.SecurityGroup.GcpSecurityGroupViewModel:
+    Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel:
       type: object
       properties:
-        network:
+        canIpForward:
+          type: boolean
+        cpuPlatform:
           type: string
         externalId:
           type: string
-        inboundRules:
+        creationTimestamp:
+          type: string
+        description:
+          type: string
+        disks:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel'
-        outboundRules:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel'
+        machineType:
+          type: string
+        sourceMachineImage:
+          type: string
+        networkInterfaces:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel'
-        vmInstances:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel'
+        status:
+          type: string
+        statusMessage:
+          type: string
+        networkTags:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+            type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
+        zone:
+          type: string
+        region:
+          type: string
+        isRunning:
+          type: boolean
+          readOnly: true
+        isBillable:
+          type: boolean
+          readOnly: true
         id:
           type: string
         cloudAccountId:
@@ -849,6 +952,46 @@ components:
           example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
+    Dome9.Web.Api.Google.Accounts.GoogleAccountOnboardingDetailsViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        projectId:
+          type: string
+        clientEmail:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        domainName:
+          type: string
+        gSuitUser:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
+      type: object
+      properties:
+        kmsKeyName:
+          type: string
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        eTag:
+          type: string
+    Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel:
+      type: object
+      properties:
+        sourceOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        targetOrganizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
     Dome9.Web.Api.Google.Accounts.GoogleCloudAccountGetViewModel:
       type: object
       properties:
@@ -910,210 +1053,6 @@ components:
           description: Email Address
           type: string
           example: MyName@gmail.com
-    Dome9.Web.Api.Google.Accounts.GoogleAccountOnboardingDetailsViewModel:
-      type: object
-      properties:
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        projectId:
-          type: string
-        clientEmail:
-          format: email
-          description: Email Address
-          type: string
-          example: MyName@gmail.com
-        domainName:
-          type: string
-        gSuitUser:
-          type: string
-    Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    Dome9.Web.Api.Google.Accounts.GoogleAccountGsuiteViewModel:
-      type: object
-      properties:
-        gsuiteUser:
-          type: string
-        domainName:
-          type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel:
-      type: object
-      properties:
-        autoDelete:
-          type: boolean
-        deviceName:
-          type: string
-        guestOsFeatures:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel'
-        eTag:
-          type: string
-        interface:
-          type: string
-        kind:
-          type: string
-        licenses:
-          type: array
-          items:
-            type: string
-        mode:
-          type: string
-        source:
-          type: string
-        type:
-          type: string
-        diskEncryptionType:
-          type: string
-        diskEncryptionTypeMetadata:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel'
-        diskEncryptionKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel'
-        initializeParams:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel'
-        id:
-          type: string
-    Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel:
-      type: object
-      properties:
-        isGoogleManagedKey:
-          type: boolean
-          readOnly: true
-        isCustomerManagedKey:
-          type: boolean
-          readOnly: true
-        isCustomerSuppliedKey:
-          type: boolean
-          readOnly: true
-    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel:
-      type: object
-      properties:
-        permissionId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        isIgnored:
-          type: boolean
-        type:
-          type: string
-        subType:
-          type: string
-        total:
-          format: int64
-          type: integer
-        error:
-          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
-    Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel:
-      type: object
-      properties:
-        organizationalUnitId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel:
-      type: object
-      properties:
-        type:
-          type: string
-        eTag:
-          type: string
-    Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel:
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            type: string
-        organizationalUnitId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel:
-      type: object
-      properties:
-        canIpForward:
-          type: boolean
-        cpuPlatform:
-          type: string
-        externalId:
-          type: string
-        creationTimestamp:
-          type: string
-        description:
-          type: string
-        disks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskViewModel'
-        machineType:
-          type: string
-        sourceMachineImage:
-          type: string
-        networkInterfaces:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel'
-        status:
-          type: string
-        statusMessage:
-          type: string
-        networkTags:
-          type: array
-          items:
-            type: string
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
-        labels:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.TagViewModel'
-        zone:
-          type: string
-        region:
-          type: string
-        isRunning:
-          type: boolean
-          readOnly: true
-        isBillable:
-          type: boolean
-          readOnly: true
-        id:
-          type: string
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-    Falconetix.Model.Google.NetworkStat:
-      type: object
-      properties:
-        networkId:
-          type: string
-        networkName:
-          type: string
-        resourceType:
-          enum:
-          - Local
-          - Shared
-          type: string
-        vmInstancesCount:
-          format: int32
-          type: integer
-        securityGroupsCount:
-          format: int32
-          type: integer
-        firewallRulesCount:
-          format: int32
-          type: integer
     Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel:
       required:
       - isIgnored
@@ -1137,76 +1076,66 @@ components:
           type: string
         errorMessage:
           type: string
-    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel:
+    Falconetix.Model.Google.NetworkStat:
       type: object
       properties:
-        id:
-          format: uuid
-          description: account id
+        networkId:
           type: string
-          example: 00000000-0000-0000-0000-000000000000
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel'
+        networkName:
+          type: string
+        resourceType:
+          enum:
+          - Local
+          - Shared
+          type: string
+        vmInstancesCount:
+          format: int32
+          type: integer
+        securityGroupsCount:
+          format: int32
+          type: integer
+        firewallRulesCount:
+          format: int32
+          type: integer
     Dome9.Web.Api.Google.Accounts.GoogleAccountNameViewModel:
       type: object
       properties:
         name:
           type: string
-    Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel:
+    Dome9.Web.Api.Google.Instance.GcpComputeGuestOsFeatureViewModel:
       type: object
       properties:
-        name:
+        type:
           type: string
-        network:
+        eTag:
           type: string
-        networkIP:
-          type: string
-        subnetwork:
-          type: string
-        publicIP:
-          type: string
-    Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel:
+    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel:
       type: object
       properties:
-        name:
+        diskName:
           type: string
-        enabled:
-          type: boolean
-        description:
-          type: string
-        number:
-          format: int32
+        diskSizeGb:
+          format: int64
           type: integer
-        protocol:
+        diskType:
           type: string
-        source:
+        sourceImage:
           type: string
-        destination:
+        sourceImageEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel'
+        eTag:
           type: string
-        destinationPort:
-          format: int32
-          type: integer
-        destinationPortTo:
-          format: int32
-          type: integer
-        direction:
-          type: string
-        action:
-          type: string
-    Dome9.Web.Api.Google.Accounts.GoogleCloudAccountUpdateViewModel:
-      required:
-      - name
-      - serviceAccountCredentials
+    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
       type: object
       properties:
-        name:
-          description: Google account name in Dome9
+        eTag:
           type: string
-        serviceAccountCredentials:
-          description: The service account JSON block (from the GCP console)
-          type: object
+        rawKey:
+          type: string
+        sha256:
+          type: string
+        kmsKeyName:
+          type: string
     Dome9.Web.Api.Google.Network.GoogleCloudNetworkViewModel:
       type: object
       properties:
@@ -1238,22 +1167,84 @@ components:
           format: uuid
           type: string
           example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Google.Instance.GcpComputeAttachedDiskInitializeParamsViewModel:
+    Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel:
       type: object
       properties:
-        diskName:
+        name:
           type: string
-        diskSizeGb:
-          format: int64
+        enabled:
+          type: boolean
+        description:
+          type: string
+        number:
+          format: int32
           type: integer
-        diskType:
+        protocol:
           type: string
-        sourceImage:
+        source:
           type: string
-        sourceImageEncryptionKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel'
-        eTag:
+        destination:
           type: string
+        destinationPort:
+          format: int32
+          type: integer
+        destinationPortTo:
+          format: int32
+          type: integer
+        direction:
+          type: string
+        action:
+          type: string
+    Dome9.Web.Api.Google.Instance.GcpComputeDiskEncryptionTypeMetadataViewModel:
+      type: object
+      properties:
+        isGoogleManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerManagedKey:
+          type: boolean
+          readOnly: true
+        isCustomerSuppliedKey:
+          type: boolean
+          readOnly: true
+    Dome9.Web.Api.Google.SecurityGroup.GcpSecurityGroupViewModel:
+      type: object
+      properties:
+        network:
+          type: string
+        externalId:
+          type: string
+        inboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel'
+        outboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.SecurityGroup.GcpServiceRuleViewModel'
+        vmInstances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Instance.GcpVMInstanceViewModel'
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: string
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
     Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel:
       type: object
       properties:
@@ -1266,41 +1257,37 @@ components:
           type: integer
         error:
           $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
-    Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel:
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel:
       type: object
       properties:
-        sourceOrganizationalUnitId:
+        permissionId:
           format: uuid
           type: string
           example: 00000000-0000-0000-0000-000000000000
-        targetOrganizationalUnitId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Google.Instance.GcpComputeInstanceCustomerEncryptionKeyViewModel:
-      type: object
-      properties:
-        eTag:
-          type: string
-        rawKey:
-          type: string
-        sha256:
-          type: string
-        kmsKeyName:
-          type: string
-    Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel:
-      type: object
-      properties:
-        permissions:
-          description: list of missing permissions
-          type: array
-          items:
-            type: string
-        entityType:
+        isIgnored:
+          type: boolean
+        type:
           type: string
         subType:
           type: string
-    Dome9.Web.Api.Google.Accounts.GoogleCloudAccountPostViewModel:
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel'
+    Dome9.Web.Api.Google.Accounts.GoogleCloudAccountUpdateViewModel:
       required:
       - name
       - serviceAccountCredentials
@@ -1312,21 +1299,6 @@ components:
         serviceAccountCredentials:
           description: The service account JSON block (from the GCP console)
           type: object
-        organizationalUnitId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        gsuiteUser:
-          type: string
-        domainName:
-          type: string
-    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
     Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel:
       type: object
       properties:
@@ -1393,7 +1365,14 @@ components:
           - ocigovuk
           - CIEM
           type: string
-    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel:
+    Dome9.Web.Api.Google.Accounts.GoogleAccountGsuiteViewModel:
+      type: object
+      properties:
+        gsuiteUser:
+          type: string
+        domainName:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel:
       type: object
       properties:
         id:
@@ -1404,17 +1383,38 @@ components:
         actions:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel'
-    Dome9.Web.Api.Google.Instance.GcpComputeCustomerEncryptionKeyViewModel:
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel'
+    Dome9.Web.Api.Google.Instance.NetworkInterfaceViewModel:
       type: object
       properties:
-        kmsKeyName:
+        name:
           type: string
-        rawKey:
+        network:
           type: string
-        sha256:
+        networkIP:
           type: string
-        eTag:
+        subnetwork:
+          type: string
+        publicIP:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel:
+      type: object
+      properties:
+        permissions:
+          description: list of missing permissions
+          type: array
+          items:
+            type: string
+        entityType:
+          type: string
+        subType:
+          type: string
+    Dome9.Web.Api.Shared.SharedViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
           type: string
   securitySchemes:
     API_key_V2:

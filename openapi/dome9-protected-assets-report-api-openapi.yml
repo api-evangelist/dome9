@@ -163,21 +163,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CGN.OpenSearch.Model.CommonViewModels.SortingViewModel:
-      type: object
-      properties:
-        fieldName:
-          type: string
-        direction:
-          format: int32
-          type: integer
-    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
     Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel:
       type: object
       properties:
@@ -214,17 +199,6 @@ components:
           type: array
           items:
             type: string
-    CGN.OpenSearch.Model.CommonViewModels.AdditionalFieldsRequestViewModel:
-      type: object
-      properties:
-        source:
-          type: string
-        filterFields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
-        sortField:
-          $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.SortingViewModel'
     Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel:
       description: Search or filter parameters. This object is passed via url so the field names are short because quary params are limited (about 2000 chars)
       type: object
@@ -266,6 +240,32 @@ components:
       type: object
       properties:
         key:
+          type: string
+        value:
+          type: string
+    CGN.OpenSearch.Model.CommonViewModels.SortingViewModel:
+      type: object
+      properties:
+        fieldName:
+          type: string
+        direction:
+          format: int32
+          type: integer
+    CGN.OpenSearch.Model.CommonViewModels.AdditionalFieldsRequestViewModel:
+      type: object
+      properties:
+        source:
+          type: string
+        filterFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
+        sortField:
+          $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.SortingViewModel'
+    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
+      type: object
+      properties:
+        name:
           type: string
         value:
           type: string

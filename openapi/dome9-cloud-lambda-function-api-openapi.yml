@@ -108,6 +108,28 @@ paths:
       x-operation-id-original: CloudLambdaFunction_Get
 components:
   schemas:
+    CGN.Inventory.Aws.Model.WrapperModels.AwsEnvironmentVariable:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel:
+      type: object
+      properties:
+        authType:
+          type: string
+        cors:
+          $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionCorsViewModel'
+        creationTime:
+          type: string
+        functionArn:
+          type: string
+        functionUrl:
+          type: string
+        lastModifiedTime:
+          type: string
     Falconetix.Model.CloudLambdaFunctionCorsViewModel:
       type: object
       properties:
@@ -132,27 +154,15 @@ components:
         maxAge:
           format: int32
           type: integer
-    Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel:
+    CGN.Inventory.Aws.Model.WrapperModels.AwsDeadLetterConfig:
       type: object
       properties:
-        authType:
+        targetArn:
           type: string
-        cors:
-          $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionCorsViewModel'
-        creationTime:
-          type: string
-        functionArn:
-          type: string
-        functionUrl:
-          type: string
-        lastModifiedTime:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AwsEnvironmentVariable:
+    CGN.Inventory.Aws.Model.WrapperModels.AwsTracingConfigResponse:
       type: object
       properties:
-        key:
-          type: string
-        value:
+        mode:
           type: string
     Dome9.Web.Api.Models.CloudLambdaFunctionViewModel:
       type: object
@@ -461,16 +471,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel'
-    CGN.Inventory.Aws.Model.WrapperModels.AwsDeadLetterConfig:
-      type: object
-      properties:
-        targetArn:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AwsTracingConfigResponse:
-      type: object
-      properties:
-        mode:
-          type: string
   securitySchemes:
     API_key_V2:
       type: http
