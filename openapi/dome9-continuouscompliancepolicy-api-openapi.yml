@@ -247,16 +247,12 @@ paths:
         required: true
 components:
   schemas:
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousCompliancePolicyGetViewModel:
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousCompliancePolicyPutViewModel:
       required:
       - cloudAccountId
       - notificationIds
       type: object
       properties:
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
         cloudAccountId:
           format: uuid
           description: the cloud account id
@@ -293,12 +289,16 @@ components:
             format: uuid
             type: string
             example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousCompliancePolicyPutViewModel:
+    Dome9.Web.Api.Compliance.ContinuousCompliance.ContinuousCompliancePolicyGetViewModel:
       required:
       - cloudAccountId
       - notificationIds
       type: object
       properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
         cloudAccountId:
           format: uuid
           description: the cloud account id

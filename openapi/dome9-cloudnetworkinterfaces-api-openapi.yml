@@ -46,15 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceGroupIdentifierViewModel:
-      type: object
-      properties:
-        groupId:
-          type: string
-          readOnly: true
-        groupName:
-          type: string
-          readOnly: true
     Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceViewModel:
       type: object
       properties:
@@ -344,37 +335,13 @@ components:
           type: string
         subnetId:
           type: string
-    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfacePrivateIpAddressViewModel:
+    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceGroupIdentifierViewModel:
       type: object
       properties:
-        association:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsEc2NetworkInterfaceAssociation'
-          readOnly: true
-        primary:
-          type: boolean
-          readOnly: true
-        privateDnsName:
+        groupId:
           type: string
           readOnly: true
-        privateIpAddress:
-          type: string
-          readOnly: true
-    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAssociationViewModel:
-      type: object
-      properties:
-        allocationId:
-          type: string
-          readOnly: true
-        associationId:
-          type: string
-          readOnly: true
-        ipOwnerId:
-          type: string
-          readOnly: true
-        publicDnsName:
-          type: string
-          readOnly: true
-        publicIp:
+        groupName:
           type: string
           readOnly: true
     Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAttachmentViewModel:
@@ -403,6 +370,24 @@ components:
         status:
           type: string
           readOnly: true
+    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAssociationViewModel:
+      type: object
+      properties:
+        allocationId:
+          type: string
+          readOnly: true
+        associationId:
+          type: string
+          readOnly: true
+        ipOwnerId:
+          type: string
+          readOnly: true
+        publicDnsName:
+          type: string
+          readOnly: true
+        publicIp:
+          type: string
+          readOnly: true
     CGN.Inventory.Aws.Model.WrapperModels.AwsEc2NetworkInterfaceAssociation:
       type: object
       properties:
@@ -416,6 +401,21 @@ components:
           type: string
         publicIp:
           type: string
+    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfacePrivateIpAddressViewModel:
+      type: object
+      properties:
+        association:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsEc2NetworkInterfaceAssociation'
+          readOnly: true
+        primary:
+          type: boolean
+          readOnly: true
+        privateDnsName:
+          type: string
+          readOnly: true
+        privateIpAddress:
+          type: string
+          readOnly: true
   securitySchemes:
     API_key_V2:
       type: http

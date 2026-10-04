@@ -72,148 +72,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Google.StorageBucket.GcpCorsDataViewModel:
-      type: object
-      properties:
-        maxAgeSeconds:
-          format: int32
-          type: integer
-        method:
-          type: array
-          items:
-            type: string
-        origin:
-          type: array
-          items:
-            type: string
-        responseHeader:
-          type: array
-          items:
-            type: string
-    Falconetix.Model.Google.ApiWrapperModels.GoogleCloudResourceUri:
-      type: object
-      properties:
-        address:
-          type: string
-        projectId:
-          description: https://www.googleapis.com/compute/v1/projects/[project-id]/....
-          type: string
-        resourceName:
-          description: 'https://www.googleapis.com/compute/v1/projects/dome9-144807/global/networks/...
-
-            returns the last segment of the uri'
-          type: string
-    Dome9.Web.Api.Google.StorageBucket.GcpProjectTeamDataViewModel:
-      type: object
-      properties:
-        projectNumber:
-          type: string
-        team:
-          type: string
-    Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel:
-      type: object
-      properties:
-        action:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel.GcpActionDataViewModel'
-        condition:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel.GcpConditionDataViewModel'
-    Dome9.Web.Api.Google.StorageBucket.GcpAccessControlViewModel:
-      type: object
-      properties:
-        bucket:
-          type: string
-        domain:
-          type: string
-        email:
-          format: email
-          description: Email Address
-          type: string
-          example: MyName@gmail.com
-        entity:
-          type: string
-        entityId:
-          type: string
-        eTag:
-          type: string
-        generation:
-          format: int64
-          type: integer
-        id:
-          type: string
-        kind:
-          type: string
-        object__:
-          type: string
-        projectTeam:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpProjectTeamDataViewModel'
-        role:
-          type: string
-        selfLink:
-          type: string
-    Dome9.Web.Api.Google.StorageBucket.GcpLoggingDataViewModel:
-      type: object
-      properties:
-        logBucket:
-          type: string
-        logObjectPrefix:
-          type: string
-    Dome9.Web.Api.Google.StorageBucket.GcpIamConfigurationDataViewModel:
-      type: object
-      properties:
-        bucketPolicyOnly:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpIamConfigurationDataViewModel.GcpBucketPolicyOnlyDataViewModel'
-        uniformBucketLevelAccess:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpIamConfigurationDataViewModel.GcpUniformBucketLevelAccessDataViewModel'
-        publicAccessPrevention:
-          type: string
-    Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel.GcpConditionDataViewModel:
-      type: object
-      properties:
-        age:
-          format: int32
-          type: integer
-        createdBefore:
-          type: string
-        isLive:
-          type: boolean
-        matchesStorageClass:
-          type: array
-          items:
-            type: string
-        numNewerVersions:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Google.StorageBucket.GcpLifecycleDataViewModel:
-      type: object
-      properties:
-        rule:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel'
-    Falconetix.Model.GcpStorageBucketCustomPlacementConfig:
-      type: object
-      properties:
-        dataLocations:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel.GcpActionDataViewModel:
-      type: object
-      properties:
-        storageClass:
-          type: string
-        type:
-          type: string
-    Dome9.Web.Api.Google.StorageBucket.GcpIamConfigurationDataViewModel.GcpUniformBucketLevelAccessDataViewModel:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        lockedTimeRaw:
-          type: string
-        lockedTime:
-          format: date-time
-          type: string
     Dome9.Web.Api.Google.StorageBucket.GcpStorageBucketViewModel:
       type: object
       properties:
@@ -297,12 +155,118 @@ components:
           example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
+    Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel.GcpActionDataViewModel:
+      type: object
+      properties:
+        storageClass:
+          type: string
+        type:
+          type: string
+    Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel.GcpConditionDataViewModel:
+      type: object
+      properties:
+        age:
+          format: int32
+          type: integer
+        createdBefore:
+          type: string
+        isLive:
+          type: boolean
+        matchesStorageClass:
+          type: array
+          items:
+            type: string
+        numNewerVersions:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Google.StorageBucket.GcpVersioningDataViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+    Dome9.Web.Api.Google.StorageBucket.GcpAccessControlViewModel:
+      type: object
+      properties:
+        bucket:
+          type: string
+        domain:
+          type: string
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        entity:
+          type: string
+        entityId:
+          type: string
+        eTag:
+          type: string
+        generation:
+          format: int64
+          type: integer
+        id:
+          type: string
+        kind:
+          type: string
+        object__:
+          type: string
+        projectTeam:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpProjectTeamDataViewModel'
+        role:
+          type: string
+        selfLink:
+          type: string
+    Dome9.Web.Api.Google.StorageBucket.GcpLoggingDataViewModel:
+      type: object
+      properties:
+        logBucket:
+          type: string
+        logObjectPrefix:
+          type: string
+    Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel:
+      type: object
+      properties:
+        action:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel.GcpActionDataViewModel'
+        condition:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel.GcpConditionDataViewModel'
+    Falconetix.Model.GcpStorageBucketCustomPlacementConfig:
+      type: object
+      properties:
+        dataLocations:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Google.StorageBucket.GcpIamConfigurationDataViewModel.GcpUniformBucketLevelAccessDataViewModel:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        lockedTimeRaw:
+          type: string
+        lockedTime:
+          format: date-time
+          type: string
     Dome9.Web.Api.Google.StorageBucket.GcpWebsiteDataViewModel:
       type: object
       properties:
         mainPageSuffix:
           type: string
         notFoundPage:
+          type: string
+    Falconetix.Model.Google.ApiWrapperModels.GoogleCloudResourceUri:
+      type: object
+      properties:
+        address:
+          type: string
+        projectId:
+          description: https://www.googleapis.com/compute/v1/projects/[project-id]/....
+          type: string
+        resourceName:
+          description: 'https://www.googleapis.com/compute/v1/projects/dome9-144807/global/networks/...
+
+            returns the last segment of the uri'
           type: string
     Dome9.Web.Api.Google.StorageBucket.GcpRetentionPolicyDataViewModel:
       type: object
@@ -317,23 +281,43 @@ components:
         retentionPeriod:
           format: int64
           type: integer
-    Dome9.Web.Api.Google.StorageBucket.GcpOwnerDataViewModel:
+    Dome9.Web.Api.Google.StorageBucket.GcpLifecycleDataViewModel:
       type: object
       properties:
-        entity:
-          type: string
-        entityId:
-          type: string
+        rule:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpRuleDataViewModel'
+    Dome9.Web.Api.Google.StorageBucket.GcpCorsDataViewModel:
+      type: object
+      properties:
+        maxAgeSeconds:
+          format: int32
+          type: integer
+        method:
+          type: array
+          items:
+            type: string
+        origin:
+          type: array
+          items:
+            type: string
+        responseHeader:
+          type: array
+          items:
+            type: string
     Dome9.Web.Api.Google.StorageBucket.GcpBillingDataViewModel:
       type: object
       properties:
         requesterPays:
           type: boolean
-    Dome9.Web.Api.Google.StorageBucket.GcpVersioningDataViewModel:
+    Dome9.Web.Api.Google.StorageBucket.GcpProjectTeamDataViewModel:
       type: object
       properties:
-        enabled:
-          type: boolean
+        projectNumber:
+          type: string
+        team:
+          type: string
     Dome9.Web.Api.Google.StorageBucket.GcpIamConfigurationDataViewModel.GcpBucketPolicyOnlyDataViewModel:
       type: object
       properties:
@@ -343,6 +327,22 @@ components:
           type: string
         lockedTime:
           format: date-time
+          type: string
+    Dome9.Web.Api.Google.StorageBucket.GcpIamConfigurationDataViewModel:
+      type: object
+      properties:
+        bucketPolicyOnly:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpIamConfigurationDataViewModel.GcpBucketPolicyOnlyDataViewModel'
+        uniformBucketLevelAccess:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.StorageBucket.GcpIamConfigurationDataViewModel.GcpUniformBucketLevelAccessDataViewModel'
+        publicAccessPrevention:
+          type: string
+    Dome9.Web.Api.Google.StorageBucket.GcpOwnerDataViewModel:
+      type: object
+      properties:
+        entity:
+          type: string
+        entityId:
           type: string
   securitySchemes:
     API_key_V2:

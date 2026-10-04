@@ -331,6 +331,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Falconetix.Model.OrganizationalUnit.OrganizationalUnitNodeViewModel'
+    Dome9.BL.Std.Services.OrganizationalUnit.UpdateOrganizationalUnitViewModel:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 0
+          pattern: '[^/]+$'
+          type: string
+        parentId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
     Falconetix.Model.OrganizationalUnit.OrganizationalUnitViewModel:
       type: object
       properties:
@@ -436,20 +450,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.BL.Std.Helpers.TreeNode_Falconetix.Model.OrganizationalUnit.OrganizationalUnitEntityTreeItem_System.String'
-    Dome9.BL.Std.Services.OrganizationalUnit.UpdateOrganizationalUnitViewModel:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          maxLength: 50
-          minLength: 0
-          pattern: '[^/]+$'
-          type: string
-        parentId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
   securitySchemes:
     API_key_V2:
       type: http

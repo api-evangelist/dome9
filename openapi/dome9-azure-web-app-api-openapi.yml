@@ -80,21 +80,6 @@ paths:
       x-operation-id-original: AzureWebApp_Get
 components:
   schemas:
-    Falconetix.Model.AppServiceHostNameSslStateViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        sslState:
-          type: string
-        virtualIP:
-          type: string
-        thumbprint:
-          type: string
-        toUpdate:
-          type: boolean
-        hostType:
-          type: string
     Falconetix.Model.AppServiceApplicationSettings:
       type: object
       properties:
@@ -110,39 +95,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Falconetix.Model.AzureAppServiceViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        externalId:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        subscriptionId:
-          type: string
-        tenantId:
-          type: string
-        region:
-          type: string
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-        inner:
-          $ref: '#/components/schemas/Falconetix.Model.AppServiceSiteInnerViewModel'
-        functions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.AppServiceFunctionsViewModel'
-        applicationSettings:
-          $ref: '#/components/schemas/Falconetix.Model.AppServiceApplicationSettings'
     Falconetix.Model.AppServiceSiteInnerViewModel:
       type: object
       properties:
@@ -185,6 +137,39 @@ components:
           type: string
         kind:
           type: string
+    Falconetix.Model.AzureAppServiceViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        subscriptionId:
+          type: string
+        tenantId:
+          type: string
+        region:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        inner:
+          $ref: '#/components/schemas/Falconetix.Model.AppServiceSiteInnerViewModel'
+        functions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AppServiceFunctionsViewModel'
+        applicationSettings:
+          $ref: '#/components/schemas/Falconetix.Model.AppServiceApplicationSettings'
     Falconetix.Model.AppServiceFunctionsViewModel:
       type: object
       properties:
@@ -224,6 +209,21 @@ components:
           type: string
         isDisabled:
           type: boolean
+    Falconetix.Model.AppServiceHostNameSslStateViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        sslState:
+          type: string
+        virtualIP:
+          type: string
+        thumbprint:
+          type: string
+        toUpdate:
+          type: boolean
+        hostType:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

@@ -46,24 +46,11 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Falconetix.Model.AwsDynamoDbTableProvisionedThroughputDescriptionViewModel:
+    Falconetix.Model.AwsDynamoDbTableSSEDescriptionViewModel:
       type: object
       properties:
-        lastDecreaseDateTime:
-          format: date-time
+        status:
           type: string
-        lastIncreaseDateTime:
-          format: date-time
-          type: string
-        numberOfDecreasesToday:
-          format: int64
-          type: integer
-        readCapacityUnits:
-          format: int64
-          type: integer
-        writeCapacityUnits:
-          format: int64
-          type: integer
     Falconetix.Model.AwsDynamoDbTableContinuousBackupsDescriptionViewModel:
       type: object
       properties:
@@ -78,12 +65,17 @@ components:
           type: string
         attributeType:
           type: string
-    Falconetix.Model.AwsDynamoDbTableKeySchemaElementViewModel:
+    Falconetix.Model.AwsDynamoDbTableRestoreSummaryViewModel:
       type: object
       properties:
-        attributeName:
+        restoreDateTime:
+          format: date-time
           type: string
-        keyType:
+        restoreInProgress:
+          type: boolean
+        sourceBackupArn:
+          type: string
+        sourceTableArn:
           type: string
     Falconetix.Model.AwsDynamoDbTablePointInTimeRecoveryDescriptionViewModel:
       type: object
@@ -96,17 +88,14 @@ components:
           type: string
         pointInTimeRecoveryStatus:
           type: string
-    Falconetix.Model.AwsDynamoDbTableStreamSpecificationViewModel:
+    Falconetix.Model.AwsDynamoDbTableProjectionViewModel:
       type: object
       properties:
-        streamEnabled:
-          type: boolean
-        streamViewType:
-          type: string
-    Falconetix.Model.AwsDynamoDbTableSSEDescriptionViewModel:
-      type: object
-      properties:
-        status:
+        nonKeyAttributes:
+          type: array
+          items:
+            type: string
+        projectionType:
           type: string
     Falconetix.Model.AwsDynamoDbTableGlobalSecondaryIndexDescriptionViewModel:
       type: object
@@ -133,45 +122,19 @@ components:
           $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableProjectionViewModel'
         provisionedThroughput:
           $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableProvisionedThroughputDescriptionViewModel'
-    Falconetix.Model.AwsDynamoDbTableProjectionViewModel:
+    Falconetix.Model.AwsDynamoDbTableKeySchemaElementViewModel:
       type: object
       properties:
-        nonKeyAttributes:
-          type: array
-          items:
-            type: string
-        projectionType:
+        attributeName:
           type: string
-    Falconetix.Model.AwsDynamoDbTableLocalSecondaryIndexDescriptionViewModel:
+        keyType:
+          type: string
+    Falconetix.Model.AwsDynamoDbTableStreamSpecificationViewModel:
       type: object
       properties:
-        indexArn:
-          type: string
-        indexName:
-          type: string
-        indexSizeBytes:
-          format: int64
-          type: integer
-        itemCount:
-          format: int64
-          type: integer
-        keySchema:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableKeySchemaElementViewModel'
-        projection:
-          $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableProjectionViewModel'
-    Falconetix.Model.AwsDynamoDbTableRestoreSummaryViewModel:
-      type: object
-      properties:
-        restoreDateTime:
-          format: date-time
-          type: string
-        restoreInProgress:
+        streamEnabled:
           type: boolean
-        sourceBackupArn:
-          type: string
-        sourceTableArn:
+        streamViewType:
           type: string
     Falconetix.Model.AwsDynamoDbTableDescriptionViewModel:
       type: object
@@ -223,6 +186,43 @@ components:
           type: string
         continuousBackups:
           $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableContinuousBackupsDescriptionViewModel'
+    Falconetix.Model.AwsDynamoDbTableProvisionedThroughputDescriptionViewModel:
+      type: object
+      properties:
+        lastDecreaseDateTime:
+          format: date-time
+          type: string
+        lastIncreaseDateTime:
+          format: date-time
+          type: string
+        numberOfDecreasesToday:
+          format: int64
+          type: integer
+        readCapacityUnits:
+          format: int64
+          type: integer
+        writeCapacityUnits:
+          format: int64
+          type: integer
+    Falconetix.Model.AwsDynamoDbTableLocalSecondaryIndexDescriptionViewModel:
+      type: object
+      properties:
+        indexArn:
+          type: string
+        indexName:
+          type: string
+        indexSizeBytes:
+          format: int64
+          type: integer
+        itemCount:
+          format: int64
+          type: integer
+        keySchema:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableKeySchemaElementViewModel'
+        projection:
+          $ref: '#/components/schemas/Falconetix.Model.AwsDynamoDbTableProjectionViewModel'
   securitySchemes:
     API_key_V2:
       type: http

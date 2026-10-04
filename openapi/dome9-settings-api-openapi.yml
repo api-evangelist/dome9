@@ -281,26 +281,11 @@ paths:
         required: true
 components:
   schemas:
-    Falconetix.Model.ComplianceEmailNotificationsDescriptor:
+    Falconetix.Model.KubernetesEmailNotificationsDescriptor:
       type: object
       properties:
-        bundleAdded:
+        agentStatusDegradation:
           type: boolean
-        bundleDeleted:
-          type: boolean
-        ruleAdded:
-          type: boolean
-        ruleChanged:
-          type: boolean
-        ruleDeleted:
-          type: boolean
-    Dome9.Web.Api.Models.EmailNotificationFiltersViewModel:
-      type: object
-      properties:
-        cloudAccounts:
-          type: array
-          items:
-            type: string
     Falconetix.Model.IamSafeEmailNotificationsDescriptor:
       type: object
       properties:
@@ -316,12 +301,54 @@ components:
           type: boolean
         iamSafetyInvalidCredentials:
           type: boolean
+    Dome9.Web.Api.Models.EmailNotificationFiltersViewModel:
+      type: object
+      properties:
+        cloudAccounts:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Models.SettingsViewModel:
+      type: object
+      properties:
+        pairingKey:
+          description: pairing key
+          type: string
+        emailNotifications:
+          $ref: '#/components/schemas/Falconetix.Model.EmailNotificationsDescriptor'
+          description: email notification details
+        defaultLeaseTime:
+          format: double
+          description: default lease time
+          type: number
+        snsTopicArn:
+          description: ARN for SNS Topic
+          type: string
+        mfaEnabled:
+          description: MFA is enabled
+          type: boolean
+        apiKey:
+          description: API Key
+          type: string
     Dome9.Web.Api.Models.SnsSettingsViewModel:
       type: object
       properties:
         topicArn:
           description: AWS SNS Topic ARN value
           type: string
+    Falconetix.Model.ComplianceEmailNotificationsDescriptor:
+      type: object
+      properties:
+        bundleAdded:
+          type: boolean
+        bundleDeleted:
+          type: boolean
+        ruleAdded:
+          type: boolean
+        ruleChanged:
+          type: boolean
+        ruleDeleted:
+          type: boolean
     Falconetix.Model.EmailNotificationsDescriptor:
       type: object
       properties:
@@ -392,33 +419,6 @@ components:
           $ref: '#/components/schemas/Falconetix.Model.ComplianceEmailNotificationsDescriptor'
         kubernetes:
           $ref: '#/components/schemas/Falconetix.Model.KubernetesEmailNotificationsDescriptor'
-    Dome9.Web.Api.Models.SettingsViewModel:
-      type: object
-      properties:
-        pairingKey:
-          description: pairing key
-          type: string
-        emailNotifications:
-          $ref: '#/components/schemas/Falconetix.Model.EmailNotificationsDescriptor'
-          description: email notification details
-        defaultLeaseTime:
-          format: double
-          description: default lease time
-          type: number
-        snsTopicArn:
-          description: ARN for SNS Topic
-          type: string
-        mfaEnabled:
-          description: MFA is enabled
-          type: boolean
-        apiKey:
-          description: API Key
-          type: string
-    Falconetix.Model.KubernetesEmailNotificationsDescriptor:
-      type: object
-      properties:
-        agentStatusDegradation:
-          type: boolean
   securitySchemes:
     API_key_V2:
       type: http

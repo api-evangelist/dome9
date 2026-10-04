@@ -56,132 +56,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Azure.SqlServers.ViewModels.GeoBackupPolicyViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        region:
-          type: string
-        state:
-          type: string
-    Dome9.Web.Api.Azure.SqlServers.ViewModels.ProtectionPolicyResourceViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        retentionPolicyType:
-          type: string
-        retentionPolicyDuration:
-          format: int32
-          type: integer
-        retentionPolicyDurationType:
-          type: string
-    Dome9.Web.Api.Azure.SqlServers.ViewModels.DataMaskingRuleViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        columnName:
-          type: string
-        dataMaskingRuleId:
-          type: string
-        maskingFunction:
-          type: string
-        numberFrom:
-          format: int32
-          type: integer
-        numberTo:
-          format: int32
-          type: integer
-        prefix:
-          type: string
-        replacementString:
-          type: string
-        suffix:
-          type: string
-        state:
-          type: string
-        schemaName:
-          type: string
-        tableName:
-          type: string
-    Dome9.Web.Api.Azure.SqlServers.ViewModels.ReplicationLinkViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        isTerminationAllowed:
-          type: boolean
-        region:
-          type: string
-        partnerDatabase:
-          type: string
-        partnerRegion:
-          type: string
-        partnerRole:
-          type: string
-        percentComplete:
-          format: int32
-          type: integer
-        replicationMode:
-          type: string
-        replicationState:
-          type: string
-        role:
-          type: string
-    Dome9.Web.Api.Azure.SqlServers.ViewModels.BackupLongTermRetentionPolicyViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        recoveryServicesBackupPolicyResourceId:
-          type: string
-        state:
-          type: string
-    Dome9.Web.Api.Azure.SqlServers.ViewModels.BlobAuditingPolicyViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        auditActionsAndGroups:
-          type: array
-          items:
-            type: string
-        isStorageSecondaryKeyInUse:
-          type: boolean
-        retentionDays:
-          format: int32
-          type: integer
-        state:
-          type: string
-        storageAccountAccessKey:
-          type: string
-        storageAccountSubscriptionId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        storageEndpoint:
-          type: string
-    Dome9.Web.Api.Azure.SqlServers.ViewModels.TransparentDataEncryptionViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        status:
-          type: string
     Dome9.Web.Api.Azure.SqlServers.ViewModels.AzureSqlDbViewModel:
       type: object
       properties:
@@ -285,6 +159,132 @@ components:
         storageEndpoint:
           type: string
         useServerDefault:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.BlobAuditingPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        auditActionsAndGroups:
+          type: array
+          items:
+            type: string
+        isStorageSecondaryKeyInUse:
+          type: boolean
+        retentionDays:
+          format: int32
+          type: integer
+        state:
+          type: string
+        storageAccountAccessKey:
+          type: string
+        storageAccountSubscriptionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        storageEndpoint:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.TransparentDataEncryptionViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.BackupLongTermRetentionPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        recoveryServicesBackupPolicyResourceId:
+          type: string
+        state:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.DataMaskingRuleViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        columnName:
+          type: string
+        dataMaskingRuleId:
+          type: string
+        maskingFunction:
+          type: string
+        numberFrom:
+          format: int32
+          type: integer
+        numberTo:
+          format: int32
+          type: integer
+        prefix:
+          type: string
+        replacementString:
+          type: string
+        suffix:
+          type: string
+        state:
+          type: string
+        schemaName:
+          type: string
+        tableName:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.GeoBackupPolicyViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        state:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.ReplicationLinkViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        isTerminationAllowed:
+          type: boolean
+        region:
+          type: string
+        partnerDatabase:
+          type: string
+        partnerRegion:
+          type: string
+        partnerRole:
+          type: string
+        percentComplete:
+          format: int32
+          type: integer
+        replicationMode:
+          type: string
+        replicationState:
+          type: string
+        role:
+          type: string
+    Dome9.Web.Api.Azure.SqlServers.ViewModels.ProtectionPolicyResourceViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        retentionPolicyType:
+          type: string
+        retentionPolicyDuration:
+          format: int32
+          type: integer
+        retentionPolicyDurationType:
           type: string
   securitySchemes:
     API_key_V2:

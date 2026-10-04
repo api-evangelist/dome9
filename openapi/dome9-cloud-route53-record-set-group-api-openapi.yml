@@ -46,6 +46,24 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dome9.Web.Api.CloudRoute53.CloudRoute53GeoLocationViewModel:
+      type: object
+      properties:
+        continentCode:
+          type: string
+        countryCode:
+          type: string
+        subdivisionCode:
+          type: string
+    Dome9.Web.Api.CloudRoute53.CloudRoute53RecordSetGroupViewModel:
+      type: object
+      properties:
+        hostedZoneMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53HostZoneMetadataViewModel'
+        recordSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordSetViewModel'
     Dome9.Web.Api.CloudRoute53.CloudRoute53AliasTargetViewModel:
       type: object
       properties:
@@ -55,11 +73,6 @@ components:
           type: string
         evaluateTargetHealth:
           type: boolean
-    Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordViewModel:
-      type: object
-      properties:
-        value:
-          type: string
     Dome9.Web.Api.CloudRoute53.CloudRoute53HostZoneMetadataViewModel:
       type: object
       properties:
@@ -321,30 +334,17 @@ components:
           type: string
         trafficPolicyInstanceId:
           type: string
-    Dome9.Web.Api.CloudRoute53.CloudRoute53RecordSetGroupViewModel:
-      type: object
-      properties:
-        hostedZoneMetadata:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53HostZoneMetadataViewModel'
-        recordSets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordSetViewModel'
-    Dome9.Web.Api.CloudRoute53.CloudRoute53GeoLocationViewModel:
-      type: object
-      properties:
-        continentCode:
-          type: string
-        countryCode:
-          type: string
-        subdivisionCode:
-          type: string
     Dome9.Web.Api.CloudRoute53.CloudRoute53LinkedServiceViewModel:
       type: object
       properties:
         servicePrincipal:
           type: string
         description:
+          type: string
+    Dome9.Web.Api.CloudRoute53.CloudRoute53ResourceRecordViewModel:
+      type: object
+      properties:
+        value:
           type: string
   securitySchemes:
     API_key_V2:

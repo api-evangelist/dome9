@@ -419,6 +419,31 @@ paths:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.AuditEntryViewModel'
 components:
   schemas:
+    Falconetix.Model.Audit.SystemAuditResult:
+      type: object
+      properties:
+        description:
+          type: string
+        time:
+          format: date-time
+          type: string
+        event_name:
+          type: string
+        cloud_account_id:
+          type: string
+    Dome9.Web.Api.Models.AuditEntryViewModel:
+      type: object
+      properties:
+        id:
+          type: object
+        cell:
+          type: array
+          items:
+            type: object
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
     Falconetix.Model.Audit.ApiAuditResult:
       type: object
       properties:
@@ -440,18 +465,6 @@ components:
         event_name:
           type: string
         client_ip:
-          type: string
-    Falconetix.Model.Audit.SystemAuditResult:
-      type: object
-      properties:
-        description:
-          type: string
-        time:
-          format: date-time
-          type: string
-        event_name:
-          type: string
-        cloud_account_id:
           type: string
     Dome9.Web.Api.Models.AuditViewModel:
       type: object
@@ -478,19 +491,6 @@ components:
         count:
           format: int32
           type: integer
-    Dome9.Web.Api.Models.AuditEntryViewModel:
-      type: object
-      properties:
-        id:
-          type: object
-        cell:
-          type: array
-          items:
-            type: object
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
   securitySchemes:
     API_key_V2:
       type: http

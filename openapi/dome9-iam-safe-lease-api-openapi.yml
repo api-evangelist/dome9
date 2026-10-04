@@ -239,6 +239,23 @@ components:
           type: array
           items:
             type: string
+    Dome9.Web.Api.Leases.IamSafeLeasePostViewModel:
+      required:
+      - cloudAccountId
+      - code
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        expirationDate:
+          format: date-time
+          type: string
+        code:
+          type: string
+        iamEntityArn:
+          type: string
     Dome9.Web.Api.Leases.IamSafeCustomLeasePostViewModel:
       required:
       - cloudAccountId
@@ -256,23 +273,6 @@ components:
           type: string
         iamEntityArn:
           description: '[Required] AWS IAM user or role ARN affected by lease'
-          type: string
-    Dome9.Web.Api.Leases.IamSafeLeasePostViewModel:
-      required:
-      - cloudAccountId
-      - code
-      type: object
-      properties:
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        expirationDate:
-          format: date-time
-          type: string
-        code:
-          type: string
-        iamEntityArn:
           type: string
   securitySchemes:
     API_key_V2:

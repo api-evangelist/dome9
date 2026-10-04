@@ -156,11 +156,15 @@ paths:
           description: No Content
 components:
   schemas:
-    Dome9.Web.Api.Compliance.RemediationOld.RemediationPostOldViewModel:
+    Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel:
       required:
       - comment
       type: object
       properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
         ruleLogicHash:
           pattern: ^[A-Za-z0-9+/]{22}?$
           type: string
@@ -202,15 +206,11 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Compliance.RemediationOld.RemediationGetOldViewModel:
+    Dome9.Web.Api.Compliance.RemediationOld.RemediationPostOldViewModel:
       required:
       - comment
       type: object
       properties:
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
         ruleLogicHash:
           pattern: ^[A-Za-z0-9+/]{22}?$
           type: string

@@ -163,6 +163,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
     Falconetix.Model.ProtectedAssetsReport.ProtectedAssetsReportViewModel_Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel:
       type: object
       properties:
@@ -174,31 +181,21 @@ components:
           type: array
           items:
             type: string
-    CGN.OpenSearch.Model.CommonViewModels.SearchFilterViewModel:
+    CGN.OpenSearch.Model.CommonViewModels.SortingViewModel:
       type: object
       properties:
-        freeTextPhrase:
+        fieldName:
           type: string
-        freeTextNamePhrase:
+        direction:
+          format: int32
+          type: integer
+    CGN.OpenSearch.Model.CommonViewModels.TagViewModel:
+      type: object
+      properties:
+        key:
           type: string
-        freeTextForIdsPhrase:
+        value:
           type: string
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.TagViewModel'
-        includedEntityTypes:
-          type: array
-          items:
-            type: string
-        excludedEntityTypes:
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.ProtectedAsset.SearchRequestViewModel:
       description: Search or filter parameters. This object is passed via url so the field names are short because quary params are limited (about 2000 chars)
       type: object
@@ -236,21 +233,6 @@ components:
           $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.AdditionalFieldsRequestViewModel'
         filterEntitiesWithoutRiskScore:
           type: boolean
-    CGN.OpenSearch.Model.CommonViewModels.TagViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    CGN.OpenSearch.Model.CommonViewModels.SortingViewModel:
-      type: object
-      properties:
-        fieldName:
-          type: string
-        direction:
-          format: int32
-          type: integer
     CGN.OpenSearch.Model.CommonViewModels.AdditionalFieldsRequestViewModel:
       type: object
       properties:
@@ -262,13 +244,31 @@ components:
             $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
         sortField:
           $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.SortingViewModel'
-    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
+    CGN.OpenSearch.Model.CommonViewModels.SearchFilterViewModel:
       type: object
       properties:
-        name:
+        freeTextPhrase:
           type: string
-        value:
+        freeTextNamePhrase:
           type: string
+        freeTextForIdsPhrase:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.TagViewModel'
+        includedEntityTypes:
+          type: array
+          items:
+            type: string
+        excludedEntityTypes:
+          type: array
+          items:
+            type: string
   securitySchemes:
     API_key_V2:
       type: http

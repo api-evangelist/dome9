@@ -157,22 +157,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Tenable.Account.TenableAccountViewModel:
-      required:
-      - name
-      - accessKey
-      - secretKey
-      type: object
-      properties:
-        name:
-          description: Tenable account name in Dome9
-          type: string
-        accessKey:
-          description: Tenable API Access Key
-          type: string
-        secretKey:
-          description: Tenable  API Secret Key
-          type: string
     Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncViewModel:
       required:
       - tenableDome9Id
@@ -222,6 +206,22 @@ components:
         accessKey:
           type: string
         secretKey:
+          type: string
+    Dome9.Web.Api.Tenable.Account.TenableAccountViewModel:
+      required:
+      - name
+      - accessKey
+      - secretKey
+      type: object
+      properties:
+        name:
+          description: Tenable account name in Dome9
+          type: string
+        accessKey:
+          description: Tenable API Access Key
+          type: string
+        secretKey:
+          description: Tenable  API Secret Key
           type: string
   securitySchemes:
     API_key_V2:

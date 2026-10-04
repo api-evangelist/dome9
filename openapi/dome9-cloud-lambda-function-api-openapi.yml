@@ -108,12 +108,15 @@ paths:
       x-operation-id-original: CloudLambdaFunction_Get
 components:
   schemas:
-    CGN.Inventory.Aws.Model.WrapperModels.AwsEnvironmentVariable:
+    CGN.Inventory.Aws.Model.WrapperModels.AwsDeadLetterConfig:
       type: object
       properties:
-        key:
+        targetArn:
           type: string
-        value:
+    CGN.Inventory.Aws.Model.WrapperModels.AwsTracingConfigResponse:
+      type: object
+      properties:
+        mode:
           type: string
     Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel:
       type: object
@@ -129,40 +132,6 @@ components:
         functionUrl:
           type: string
         lastModifiedTime:
-          type: string
-    Falconetix.Model.CloudLambdaFunctionCorsViewModel:
-      type: object
-      properties:
-        allowCredentials:
-          type: boolean
-        allowHeaders:
-          type: array
-          items:
-            type: string
-        allowMethods:
-          type: array
-          items:
-            type: string
-        allowOrigins:
-          type: array
-          items:
-            type: string
-        exposeHeaders:
-          type: array
-          items:
-            type: string
-        maxAge:
-          format: int32
-          type: integer
-    CGN.Inventory.Aws.Model.WrapperModels.AwsDeadLetterConfig:
-      type: object
-      properties:
-        targetArn:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AwsTracingConfigResponse:
-      type: object
-      properties:
-        mode:
           type: string
     Dome9.Web.Api.Models.CloudLambdaFunctionViewModel:
       type: object
@@ -471,6 +440,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Falconetix.Model.CloudLambdaFunctionUrlConfigViewModel'
+    Falconetix.Model.CloudLambdaFunctionCorsViewModel:
+      type: object
+      properties:
+        allowCredentials:
+          type: boolean
+        allowHeaders:
+          type: array
+          items:
+            type: string
+        allowMethods:
+          type: array
+          items:
+            type: string
+        allowOrigins:
+          type: array
+          items:
+            type: string
+        exposeHeaders:
+          type: array
+          items:
+            type: string
+        maxAge:
+          format: int32
+          type: integer
+    CGN.Inventory.Aws.Model.WrapperModels.AwsEnvironmentVariable:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

@@ -47,145 +47,6 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.CloudTrail.CloudTrailViewModel'
 components:
   schemas:
-    Dome9.Web.Api.CloudTrail.CloudTrailStatusViewModel:
-      type: object
-      properties:
-        isLogging:
-          description: 'Gets and sets the property IsLogging.
-
-            Whether the CloudTrail is currently logging AWS API calls.'
-          type: boolean
-        latestCloudWatchLogsDeliveryError:
-          description: 'Gets and sets the property LatestCloudWatchLogsDeliveryError.
-
-            Displays any CloudWatch Logs error that CloudTrail encountered when attempting
-
-            to deliver logs to CloudWatch Logs.'
-          type: string
-        latestCloudWatchLogsDeliveryTime:
-          format: date-time
-          description: 'Gets and sets the property LatestCloudWatchLogsDeliveryTime.
-
-            Displays the most recent date and time when CloudTrail delivered logs to
-
-            CloudWatch Logs.'
-          type: string
-        latestDeliveryAttemptSucceeded:
-          description: 'Gets and sets the property LatestDeliveryAttemptSucceeded.
-
-            This field is deprecated.'
-          type: string
-        latestDeliveryAttemptTime:
-          description: 'Gets and sets the property LatestDeliveryAttemptTime.
-
-            This field is deprecated.'
-          type: string
-        latestDeliveryError:
-          description: 'Gets and sets the property LatestDeliveryError.
-
-            Displays any Amazon S3 error that CloudTrail encountered when attempting
-
-            to deliver log files to the designated bucket. For more information see the
-
-            topic Error Responses in the Amazon S3 API Reference.
-
-            This error occurs only when there is a problem with the destination S3 bucket
-
-            and will not occur for timeouts. To resolve the issue, create a new bucket
-
-            and call UpdateTrail to specify the new bucket, or fix the existing objects
-
-            so that CloudTrail can again write to the bucket.'
-          type: string
-        latestDeliveryTime:
-          format: date-time
-          description: 'Gets and sets the property LatestDeliveryTime.
-
-            Specifies the date and time that CloudTrail last delivered log files to an
-
-            account''s Amazon S3 bucket.'
-          type: string
-        latestDigestDeliveryError:
-          description: 'Gets and sets the property LatestDigestDeliveryError.
-
-            Displays any Amazon S3 error that CloudTrail encountered when attempting
-
-            to deliver a digest file to the designated bucket. For more information see
-
-            the topic Error Responses in the Amazon S3 API Reference.
-
-            This error occurs only when there is a problem with the destination S3 bucket
-
-            and will not occur for timeouts. To resolve the issue, create a new bucket
-
-            and call UpdateTrail to specify the new bucket, or fix the existing objects
-
-            so that CloudTrail can again write to the bucket.'
-          type: string
-        latestDigestDeliveryTime:
-          format: date-time
-          description: 'Gets and sets the property LatestDigestDeliveryTime.
-
-            Specifies the date and time that CloudTrail last delivered a digest file
-
-            to an account''s Amazon S3 bucket.'
-          type: string
-        latestNotificationAttemptSucceeded:
-          description: 'Gets and sets the property LatestNotificationAttemptSucceeded.
-
-            This field is deprecated.'
-          type: string
-        latestNotificationAttemptTime:
-          description: 'Gets and sets the property LatestNotificationAttemptTime.
-
-            This field is deprecated.'
-          type: string
-        latestNotificationError:
-          description: 'Gets and sets the property LatestNotificationError.
-
-            Displays any Amazon SNS error that CloudTrail encountered when attempting
-
-            to send a notification. For more information about Amazon SNS errors, see
-
-            the Amazon SNS Developer Guide.'
-          type: string
-        latestNotificationTime:
-          format: date-time
-          description: 'Gets and sets the property LatestNotificationTime.
-
-            Specifies the date and time of the most recent Amazon SNS notification that
-
-            CloudTrail has written a new log file to an account''s Amazon S3 bucket.'
-          type: string
-        startLoggingTime:
-          format: date-time
-          description: 'Gets and sets the property StartLoggingTime.
-
-            Specifies the most recent date and time when CloudTrail started recording
-
-            API calls for an AWS account.'
-          type: string
-        stopLoggingTime:
-          format: date-time
-          description: 'Gets and sets the property StopLoggingTime.
-
-            Specifies the most recent date and time when CloudTrail stopped recording
-
-            API calls for an AWS account.'
-          type: string
-        timeLoggingStarted:
-          description: 'Gets and sets the property TimeLoggingStarted.
-
-            This field is deprecated.'
-          type: string
-        timeLoggingStopped:
-          description: 'Gets and sets the property TimeLoggingStopped.
-
-            This field is deprecated.'
-          type: string
-        externalId:
-          description: ExternalId
-          type: string
     Dome9.Web.Api.CloudTrail.CloudTrailViewModel:
       type: object
       properties:
@@ -507,6 +368,145 @@ components:
         cloudTrailStatus:
           $ref: '#/components/schemas/Dome9.Web.Api.CloudTrail.CloudTrailStatusViewModel'
           description: CloudTrail status
+    Dome9.Web.Api.CloudTrail.CloudTrailStatusViewModel:
+      type: object
+      properties:
+        isLogging:
+          description: 'Gets and sets the property IsLogging.
+
+            Whether the CloudTrail is currently logging AWS API calls.'
+          type: boolean
+        latestCloudWatchLogsDeliveryError:
+          description: 'Gets and sets the property LatestCloudWatchLogsDeliveryError.
+
+            Displays any CloudWatch Logs error that CloudTrail encountered when attempting
+
+            to deliver logs to CloudWatch Logs.'
+          type: string
+        latestCloudWatchLogsDeliveryTime:
+          format: date-time
+          description: 'Gets and sets the property LatestCloudWatchLogsDeliveryTime.
+
+            Displays the most recent date and time when CloudTrail delivered logs to
+
+            CloudWatch Logs.'
+          type: string
+        latestDeliveryAttemptSucceeded:
+          description: 'Gets and sets the property LatestDeliveryAttemptSucceeded.
+
+            This field is deprecated.'
+          type: string
+        latestDeliveryAttemptTime:
+          description: 'Gets and sets the property LatestDeliveryAttemptTime.
+
+            This field is deprecated.'
+          type: string
+        latestDeliveryError:
+          description: 'Gets and sets the property LatestDeliveryError.
+
+            Displays any Amazon S3 error that CloudTrail encountered when attempting
+
+            to deliver log files to the designated bucket. For more information see the
+
+            topic Error Responses in the Amazon S3 API Reference.
+
+            This error occurs only when there is a problem with the destination S3 bucket
+
+            and will not occur for timeouts. To resolve the issue, create a new bucket
+
+            and call UpdateTrail to specify the new bucket, or fix the existing objects
+
+            so that CloudTrail can again write to the bucket.'
+          type: string
+        latestDeliveryTime:
+          format: date-time
+          description: 'Gets and sets the property LatestDeliveryTime.
+
+            Specifies the date and time that CloudTrail last delivered log files to an
+
+            account''s Amazon S3 bucket.'
+          type: string
+        latestDigestDeliveryError:
+          description: 'Gets and sets the property LatestDigestDeliveryError.
+
+            Displays any Amazon S3 error that CloudTrail encountered when attempting
+
+            to deliver a digest file to the designated bucket. For more information see
+
+            the topic Error Responses in the Amazon S3 API Reference.
+
+            This error occurs only when there is a problem with the destination S3 bucket
+
+            and will not occur for timeouts. To resolve the issue, create a new bucket
+
+            and call UpdateTrail to specify the new bucket, or fix the existing objects
+
+            so that CloudTrail can again write to the bucket.'
+          type: string
+        latestDigestDeliveryTime:
+          format: date-time
+          description: 'Gets and sets the property LatestDigestDeliveryTime.
+
+            Specifies the date and time that CloudTrail last delivered a digest file
+
+            to an account''s Amazon S3 bucket.'
+          type: string
+        latestNotificationAttemptSucceeded:
+          description: 'Gets and sets the property LatestNotificationAttemptSucceeded.
+
+            This field is deprecated.'
+          type: string
+        latestNotificationAttemptTime:
+          description: 'Gets and sets the property LatestNotificationAttemptTime.
+
+            This field is deprecated.'
+          type: string
+        latestNotificationError:
+          description: 'Gets and sets the property LatestNotificationError.
+
+            Displays any Amazon SNS error that CloudTrail encountered when attempting
+
+            to send a notification. For more information about Amazon SNS errors, see
+
+            the Amazon SNS Developer Guide.'
+          type: string
+        latestNotificationTime:
+          format: date-time
+          description: 'Gets and sets the property LatestNotificationTime.
+
+            Specifies the date and time of the most recent Amazon SNS notification that
+
+            CloudTrail has written a new log file to an account''s Amazon S3 bucket.'
+          type: string
+        startLoggingTime:
+          format: date-time
+          description: 'Gets and sets the property StartLoggingTime.
+
+            Specifies the most recent date and time when CloudTrail started recording
+
+            API calls for an AWS account.'
+          type: string
+        stopLoggingTime:
+          format: date-time
+          description: 'Gets and sets the property StopLoggingTime.
+
+            Specifies the most recent date and time when CloudTrail stopped recording
+
+            API calls for an AWS account.'
+          type: string
+        timeLoggingStarted:
+          description: 'Gets and sets the property TimeLoggingStarted.
+
+            This field is deprecated.'
+          type: string
+        timeLoggingStopped:
+          description: 'Gets and sets the property TimeLoggingStopped.
+
+            This field is deprecated.'
+          type: string
+        externalId:
+          description: ExternalId
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

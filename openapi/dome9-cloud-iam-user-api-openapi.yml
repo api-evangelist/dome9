@@ -45,6 +45,32 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel'
 components:
   schemas:
+    Dome9.Web.Api.SubTypes.CloudIamUserInlinePolicyViewModel:
+      type: object
+      properties:
+        policyName:
+          type: string
+        policyDocument:
+          type: object
+    Dome9.Web.Api.SubTypes.CloudIamUserAttachedManagedPolicyViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        name:
+          type: string
+    Dome9.Web.Api.Models.CloudIamUserViewModel.SSHPublicKeyMetaDataViewModel:
+      type: object
+      properties:
+        sshPublicKeyId:
+          type: string
+        status:
+          type: string
+        uploadDate:
+          format: date-time
+          type: string
+        userName:
+          type: string
     Dome9.Web.Api.Models.CloudIamUserViewModel:
       type: object
       properties:
@@ -91,38 +117,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudIamUserViewModel.SSHPublicKeyMetaDataViewModel'
-    Dome9.Web.Api.SubTypes.CloudIamUserAttachedManagedPolicyViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        name:
-          type: string
     Dome9.Web.Api.Models.CloudIamUserViewModel.PermissionsBoundary:
       type: object
       properties:
         permissionsBoundaryArn:
           type: string
         permissionsBoundaryType:
-          type: string
-    Dome9.Web.Api.SubTypes.CloudIamUserInlinePolicyViewModel:
-      type: object
-      properties:
-        policyName:
-          type: string
-        policyDocument:
-          type: object
-    Dome9.Web.Api.Models.CloudIamUserViewModel.SSHPublicKeyMetaDataViewModel:
-      type: object
-      properties:
-        sshPublicKeyId:
-          type: string
-        status:
-          type: string
-        uploadDate:
-          format: date-time
-          type: string
-        userName:
           type: string
   securitySchemes:
     API_key_V2:

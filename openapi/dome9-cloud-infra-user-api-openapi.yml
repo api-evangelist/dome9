@@ -113,6 +113,20 @@ components:
           items:
             format: int64
             type: integer
+    Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserResponseViewModel:
+      type: object
+      properties:
+        failedRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CloudInfraUserCreationFailureResult'
+        totalFailedRecords:
+          format: int32
+          type: integer
+          readOnly: true
+        totalSuccessfulRecords:
+          format: int32
+          type: integer
     Falconetix.Model.CloudInfra.CloudInfraUserViewModel:
       type: object
       properties:
@@ -137,20 +151,6 @@ components:
           type: string
         existInDome9:
           type: boolean
-    Dome9.Web.Api.UserAndRole.CreateDome9CloudInfraUserResponseViewModel:
-      type: object
-      properties:
-        failedRecords:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.CloudInfraUserCreationFailureResult'
-        totalFailedRecords:
-          format: int32
-          type: integer
-          readOnly: true
-        totalSuccessfulRecords:
-          format: int32
-          type: integer
   securitySchemes:
     API_key_V2:
       type: http

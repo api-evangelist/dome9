@@ -213,386 +213,6 @@ paths:
           description: No Content
 components:
   schemas:
-    Dome9.Web.Api.Compliance.Finding.SearchRequestViewModel:
-      type: object
-      properties:
-        searchAfter:
-          description: token for the page of findings (first page if not specified)
-          type: array
-          items:
-            type: string
-        pageSize:
-          format: int32
-          description: 'page size (number of findings returned per page). default: 10.'
-          maximum: 10000
-          minimum: 0
-          type: integer
-        skipAggregations:
-          type: boolean
-        lowAggregationsSize:
-          type: boolean
-        sorting:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SortingViewModel'
-          description: sort data
-        multiSorting:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SortingViewModel'
-        filter:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SearchFilterViewModel'
-          description: filter
-        dataSource:
-          enum:
-          - Finding
-          - Archive
-          type: string
-    Falconetix.Model.ExternalFindings.ExternalFindingsFieldViewModel:
-      type: object
-      properties:
-        name:
-          maxLength: 30
-          minLength: 0
-          type: string
-        value:
-          maxLength: 100
-          minLength: 0
-          type: string
-        comment:
-          maxLength: 100
-          minLength: 0
-          type: string
-    Falconetix.Model.ExternalFindings.ExternalFindingsRulesPackageViewModel:
-      type: object
-      properties:
-        id:
-          maxLength: 30
-          minLength: 0
-          type: string
-        name:
-          maxLength: 100
-          minLength: 0
-          type: string
-        provider:
-          maxLength: 30
-          minLength: 0
-          type: string
-        version:
-          maxLength: 30
-          minLength: 0
-          type: string
-    Dome9.Web.Api.Compliance.Finding.SearchFilterViewModel:
-      type: object
-      properties:
-        freeTextPhrase:
-          description: free text
-          type: string
-        fields:
-          description: fields
-          type: array
-          items:
-            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
-        onlyCIEM:
-          type: boolean
-        onlyCustomPolicy:
-          description: Filtering all findings created by custom policy
-          type: boolean
-        creationTime:
-          $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel'
-        updatedTime:
-          $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel'
-        hasRemediation:
-          type: boolean
-    Falconetix.Model.RuleEngine.Entities.FindingAdditionalFieldViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    Falconetix.Model.ExternalFindings.ExternalFindingUpsertRequestViewModel:
-      required:
-      - resourceId
-      - resourceType
-      - externalCloudAccountId
-      - vendor
-      - findingSource
-      - findingSeverity
-      - findingId
-      - findingCreatedAt
-      - findingTitle
-      type: object
-      properties:
-        resourceId:
-          description: cloud entity resource Id such as AWS ec2 instance id, or  Azure vm id etc
-          maxLength: 250
-          minLength: 0
-          type: string
-        resourceName:
-          description: '[optional] cloud entity resource name such as AWS lambda name'
-          maxLength: 250
-          minLength: 0
-          type: string
-        resourceType:
-          description: the entityType, as used by the Dome9 Rule engine.
-          type: string
-        externalCloudAccountId:
-          description: the cloud account id, i.e., Aws account id, Azure subscriptionId, or GCP projectId
-          maxLength: 100
-          minLength: 0
-          type: string
-        vendor:
-          description: the cloud vendor, Aws, Azure, or Gcp
-          enum:
-          - aws
-          - hp
-          - mellanox
-          - awsgov
-          - azure
-          - google
-          - awschina
-          - azuregov
-          - kubernetes
-          - azurechina
-          - terraform
-          - generic
-          - kubernetesruntimeassurance
-          - shiftleft
-          - sourcecodeassurance
-          - imageassurance
-          - alibaba
-          - cft
-          - containerregistry
-          - oci
-          - ocigov
-          - ocigovuk
-          - CIEM
-          type: string
-        findingSource:
-          description: the name of the external source, e.g., qualys , tenable etc
-          maxLength: 30
-          minLength: 0
-          type: string
-        findingSourceDescription:
-          description: '[optional] additional description of external source'
-          maxLength: 250
-          minLength: 0
-          type: string
-        findingSourceUrl:
-          description: external URL describing the finding
-          maxLength: 250
-          minLength: 0
-          type: string
-        findingSeverity:
-          description: the Dome9 Severity level for the finding, Low, Medium, or High
-          enum:
-          - Low
-          - Medium
-          - High
-          - Critical
-          - Informational
-          type: string
-        originalFindingSeverity:
-          description: original external source  severity for the finding
-          maxLength: 30
-          minLength: 0
-          type: string
-        findingId:
-          description: unique identifier for the finding. This must be unique for all findings from this source.
-          maxLength: 250
-          minLength: 0
-          type: string
-        scanId:
-          description: '[optional] refering scan id'
-          maxLength: 250
-          minLength: 0
-          type: string
-        findingCreatedAt:
-          format: date-time
-          description: date finding was created, in ISO8601 Date String format
-          type: string
-        findingTitle:
-          description: short description of the finding
-          maxLength: 250
-          minLength: 0
-          type: string
-        findingDescription:
-          description: description of the finding
-          maxLength: 500
-          minLength: 0
-          type: string
-        findingStatus:
-          description: Finding status text
-          maxLength: 30
-          minLength: 0
-          type: string
-        findingCategory:
-          description: Finding Category text
-          maxLength: 50
-          minLength: 0
-          type: string
-        findingRecommendation:
-          description: Finding Recommendation/remediation  text
-          maxLength: 500
-          minLength: 0
-          type: string
-        relatedFindingsRef:
-          description: FindingIds that are related to this finding
-          type: array
-          items:
-            type: string
-        ruleId:
-          description: '[optional] Rule id or Plugin id that is used to generate the finding'
-          maxLength: 250
-          minLength: 0
-          type: string
-        findingRulesPackage:
-          $ref: '#/components/schemas/Falconetix.Model.ExternalFindings.ExternalFindingsRulesPackageViewModel'
-          description: ''
-        additionalFields:
-          description: Additional fields that can be added as part of the finding object, as  (name, value) pairs
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.ExternalFindings.ExternalFindingsFieldViewModel'
-        findingAlertType:
-          description: Alert Type for Events page possible values SecurityEvent, Task(POSTURE FINDINGS) if no value provided using default SecurityEvent
-          maxLength: 50
-          minLength: 0
-          type: string
-    Dome9.Web.Api.ExternalFindings.ExternalFindingPaginationViewModel:
-      type: object
-      properties:
-        searchRequest:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SearchRequestViewModel'
-          description: search request for findings
-        findings:
-          description: current page of findings
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.FindingViewModel'
-        totalFindingsCount:
-          format: int64
-          description: total number of findings
-          type: integer
-        aggregations:
-          description: aggregate findings per search or filter entity (facet)
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.FieldAggregationViewModel'
-        searchAfter:
-          description: token for next page of results
-          type: array
-          items:
-            type: string
-    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    Falconetix.Model.RuleEngine.Entities.TagRuleEntity:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel:
-      type: object
-      properties:
-        from:
-          format: date-time
-          type: string
-        to:
-          format: date-time
-          type: string
-    Falconetix.Model.RuleEngine.Entities.Compliance.AssessmentFinding.MagellanData:
-      type: object
-      properties:
-        alertWindowStartTime:
-          format: date-time
-          type: string
-        alertWindowEndTime:
-          format: date-time
-          type: string
-    Dome9.Web.Api.Compliance.Finding.SortingViewModel:
-      type: object
-      properties:
-        fieldName:
-          description: Field name
-          type: string
-        direction:
-          format: int32
-          description: direction. 1 is asc, -1 desc
-          type: integer
-    Falconetix.Model.ExternalFindings.FailedExternalFindingsResponse:
-      type: object
-      properties:
-        request:
-          $ref: '#/components/schemas/Falconetix.Model.ExternalFindings.ExternalFindingUpsertRequestViewModel'
-        reason:
-          type: string
-    Falconetix.Model.ExternalFindings.ExternalFindingsResponseViewModel:
-      type: object
-      properties:
-        failedRecords:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.ExternalFindings.FailedExternalFindingsResponse'
-        totalFailedRecords:
-          format: int32
-          type: integer
-          readOnly: true
-        totalSuccessfulRecords:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Compliance.Finding.FieldAggregationViewModel:
-      type: object
-      properties:
-        value:
-          type: object
-        count:
-          format: int64
-          type: integer
-    Dome9.Web.Api.Compliance.Finding.FindingCommentViewModel:
-      description: comments for a finding (listed by user)
-      type: object
-      properties:
-        text:
-          type: string
-        timestamp:
-          format: date-time
-          type: string
-        userName:
-          type: string
-    Falconetix.Model.ExternalFindings.ExternalFindingsOperationRequestViewModel:
-      required:
-      - findingSource
-      - externalCloudAccountId
-      type: object
-      properties:
-        findingSource:
-          description: the external system sending the finding (e.g, Qualys)
-          maxLength: 30
-          minLength: 0
-          type: string
-        resourceId:
-          description: The id of the cloud entity related to the finding, as identified by the cloud provider (e.g., an instanceId for AWS)
-          maxLength: 250
-          minLength: 0
-          type: string
-        findingId:
-          description: a unique id for the finding, set by the external source. This must be unique for all findings from this source.
-          maxLength: 250
-          minLength: 0
-          type: string
-        externalCloudAccountId:
-          description: the cloud id of the entity, as identified by the cloud provider (e.g., the AWS account number, or Azure subscription id)
-          maxLength: 250
-          minLength: 0
-          type: string
     Falconetix.Model.ElasticSearch.WebhookResponse.WebhookResponseMessage:
       type: object
       properties:
@@ -814,6 +434,386 @@ components:
           type: array
           items:
             type: string
+    Falconetix.Model.RuleEngine.Entities.TagRuleEntity:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Compliance.Finding.FieldAggregationViewModel:
+      type: object
+      properties:
+        value:
+          type: object
+        count:
+          format: int64
+          type: integer
+    Dome9.Web.Api.ExternalFindings.ExternalFindingPaginationViewModel:
+      type: object
+      properties:
+        searchRequest:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SearchRequestViewModel'
+          description: search request for findings
+        findings:
+          description: current page of findings
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.FindingViewModel'
+        totalFindingsCount:
+          format: int64
+          description: total number of findings
+          type: integer
+        aggregations:
+          description: aggregate findings per search or filter entity (facet)
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.FieldAggregationViewModel'
+        searchAfter:
+          description: token for next page of results
+          type: array
+          items:
+            type: string
+    Falconetix.Model.ExternalFindings.ExternalFindingUpsertRequestViewModel:
+      required:
+      - resourceId
+      - resourceType
+      - externalCloudAccountId
+      - vendor
+      - findingSource
+      - findingSeverity
+      - findingId
+      - findingCreatedAt
+      - findingTitle
+      type: object
+      properties:
+        resourceId:
+          description: cloud entity resource Id such as AWS ec2 instance id, or  Azure vm id etc
+          maxLength: 250
+          minLength: 0
+          type: string
+        resourceName:
+          description: '[optional] cloud entity resource name such as AWS lambda name'
+          maxLength: 250
+          minLength: 0
+          type: string
+        resourceType:
+          description: the entityType, as used by the Dome9 Rule engine.
+          type: string
+        externalCloudAccountId:
+          description: the cloud account id, i.e., Aws account id, Azure subscriptionId, or GCP projectId
+          maxLength: 100
+          minLength: 0
+          type: string
+        vendor:
+          description: the cloud vendor, Aws, Azure, or Gcp
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        findingSource:
+          description: the name of the external source, e.g., qualys , tenable etc
+          maxLength: 30
+          minLength: 0
+          type: string
+        findingSourceDescription:
+          description: '[optional] additional description of external source'
+          maxLength: 250
+          minLength: 0
+          type: string
+        findingSourceUrl:
+          description: external URL describing the finding
+          maxLength: 250
+          minLength: 0
+          type: string
+        findingSeverity:
+          description: the Dome9 Severity level for the finding, Low, Medium, or High
+          enum:
+          - Low
+          - Medium
+          - High
+          - Critical
+          - Informational
+          type: string
+        originalFindingSeverity:
+          description: original external source  severity for the finding
+          maxLength: 30
+          minLength: 0
+          type: string
+        findingId:
+          description: unique identifier for the finding. This must be unique for all findings from this source.
+          maxLength: 250
+          minLength: 0
+          type: string
+        scanId:
+          description: '[optional] refering scan id'
+          maxLength: 250
+          minLength: 0
+          type: string
+        findingCreatedAt:
+          format: date-time
+          description: date finding was created, in ISO8601 Date String format
+          type: string
+        findingTitle:
+          description: short description of the finding
+          maxLength: 250
+          minLength: 0
+          type: string
+        findingDescription:
+          description: description of the finding
+          maxLength: 500
+          minLength: 0
+          type: string
+        findingStatus:
+          description: Finding status text
+          maxLength: 30
+          minLength: 0
+          type: string
+        findingCategory:
+          description: Finding Category text
+          maxLength: 50
+          minLength: 0
+          type: string
+        findingRecommendation:
+          description: Finding Recommendation/remediation  text
+          maxLength: 500
+          minLength: 0
+          type: string
+        relatedFindingsRef:
+          description: FindingIds that are related to this finding
+          type: array
+          items:
+            type: string
+        ruleId:
+          description: '[optional] Rule id or Plugin id that is used to generate the finding'
+          maxLength: 250
+          minLength: 0
+          type: string
+        findingRulesPackage:
+          $ref: '#/components/schemas/Falconetix.Model.ExternalFindings.ExternalFindingsRulesPackageViewModel'
+          description: ''
+        additionalFields:
+          description: Additional fields that can be added as part of the finding object, as  (name, value) pairs
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.ExternalFindings.ExternalFindingsFieldViewModel'
+        findingAlertType:
+          description: Alert Type for Events page possible values SecurityEvent, Task(POSTURE FINDINGS) if no value provided using default SecurityEvent
+          maxLength: 50
+          minLength: 0
+          type: string
+    Falconetix.Model.RuleEngine.Entities.FindingAdditionalFieldViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Compliance.Finding.SearchRequestViewModel:
+      type: object
+      properties:
+        searchAfter:
+          description: token for the page of findings (first page if not specified)
+          type: array
+          items:
+            type: string
+        pageSize:
+          format: int32
+          description: 'page size (number of findings returned per page). default: 10.'
+          maximum: 10000
+          minimum: 0
+          type: integer
+        skipAggregations:
+          type: boolean
+        lowAggregationsSize:
+          type: boolean
+        sorting:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SortingViewModel'
+          description: sort data
+        multiSorting:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SortingViewModel'
+        filter:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SearchFilterViewModel'
+          description: filter
+        dataSource:
+          enum:
+          - Finding
+          - Archive
+          type: string
+    Dome9.Web.Api.Compliance.Finding.SortingViewModel:
+      type: object
+      properties:
+        fieldName:
+          description: Field name
+          type: string
+        direction:
+          format: int32
+          description: direction. 1 is asc, -1 desc
+          type: integer
+    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Falconetix.Model.ExternalFindings.ExternalFindingsOperationRequestViewModel:
+      required:
+      - findingSource
+      - externalCloudAccountId
+      type: object
+      properties:
+        findingSource:
+          description: the external system sending the finding (e.g, Qualys)
+          maxLength: 30
+          minLength: 0
+          type: string
+        resourceId:
+          description: The id of the cloud entity related to the finding, as identified by the cloud provider (e.g., an instanceId for AWS)
+          maxLength: 250
+          minLength: 0
+          type: string
+        findingId:
+          description: a unique id for the finding, set by the external source. This must be unique for all findings from this source.
+          maxLength: 250
+          minLength: 0
+          type: string
+        externalCloudAccountId:
+          description: the cloud id of the entity, as identified by the cloud provider (e.g., the AWS account number, or Azure subscription id)
+          maxLength: 250
+          minLength: 0
+          type: string
+    Dome9.Web.Api.Compliance.Finding.FindingCommentViewModel:
+      description: comments for a finding (listed by user)
+      type: object
+      properties:
+        text:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        userName:
+          type: string
+    Falconetix.Model.RuleEngine.Entities.Compliance.AssessmentFinding.MagellanData:
+      type: object
+      properties:
+        alertWindowStartTime:
+          format: date-time
+          type: string
+        alertWindowEndTime:
+          format: date-time
+          type: string
+    Falconetix.Model.ExternalFindings.ExternalFindingsResponseViewModel:
+      type: object
+      properties:
+        failedRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.ExternalFindings.FailedExternalFindingsResponse'
+        totalFailedRecords:
+          format: int32
+          type: integer
+          readOnly: true
+        totalSuccessfulRecords:
+          format: int32
+          type: integer
+    Falconetix.Model.ExternalFindings.ExternalFindingsFieldViewModel:
+      type: object
+      properties:
+        name:
+          maxLength: 30
+          minLength: 0
+          type: string
+        value:
+          maxLength: 100
+          minLength: 0
+          type: string
+        comment:
+          maxLength: 100
+          minLength: 0
+          type: string
+    Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel:
+      type: object
+      properties:
+        from:
+          format: date-time
+          type: string
+        to:
+          format: date-time
+          type: string
+    Falconetix.Model.ExternalFindings.FailedExternalFindingsResponse:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/Falconetix.Model.ExternalFindings.ExternalFindingUpsertRequestViewModel'
+        reason:
+          type: string
+    Dome9.Web.Api.Compliance.Finding.SearchFilterViewModel:
+      type: object
+      properties:
+        freeTextPhrase:
+          description: free text
+          type: string
+        fields:
+          description: fields
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
+        onlyCIEM:
+          type: boolean
+        onlyCustomPolicy:
+          description: Filtering all findings created by custom policy
+          type: boolean
+        creationTime:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel'
+        updatedTime:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel'
+        hasRemediation:
+          type: boolean
+    Falconetix.Model.ExternalFindings.ExternalFindingsRulesPackageViewModel:
+      type: object
+      properties:
+        id:
+          maxLength: 30
+          minLength: 0
+          type: string
+        name:
+          maxLength: 100
+          minLength: 0
+          type: string
+        provider:
+          maxLength: 30
+          minLength: 0
+          type: string
+        version:
+          maxLength: 30
+          minLength: 0
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

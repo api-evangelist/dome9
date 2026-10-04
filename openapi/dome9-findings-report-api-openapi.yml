@@ -163,6 +163,73 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Compliance.Finding.SortingViewModel:
+      type: object
+      properties:
+        fieldName:
+          description: Field name
+          type: string
+        direction:
+          format: int32
+          description: direction. 1 is asc, -1 desc
+          type: integer
+    Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel:
+      type: object
+      properties:
+        from:
+          format: date-time
+          type: string
+        to:
+          format: date-time
+          type: string
+    Dome9.Web.Api.Compliance.Finding.SearchFilterViewModel:
+      type: object
+      properties:
+        freeTextPhrase:
+          description: free text
+          type: string
+        fields:
+          description: fields
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
+        onlyCIEM:
+          type: boolean
+        onlyCustomPolicy:
+          description: Filtering all findings created by custom policy
+          type: boolean
+        creationTime:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel'
+        updatedTime:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel'
+        hasRemediation:
+          type: boolean
+    Dome9.Web.Api.Compliance.Report.FindingsReportViewModel:
+      type: object
+      properties:
+        searchRequest:
+          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SearchRequestViewModel'
+          description: search request for findings
+        recipents:
+          description: recipents for mail
+          type: array
+          items:
+            type: string
+        selectedColumns:
+          description: Selected Columns
+          type: array
+          items:
+            type: string
+        showExcluded:
+          description: Show Excluded Column
+          type: boolean
     Dome9.Web.Api.Compliance.Finding.SearchRequestViewModel:
       type: object
       properties:
@@ -195,73 +262,6 @@ components:
           enum:
           - Finding
           - Archive
-          type: string
-    Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel:
-      type: object
-      properties:
-        from:
-          format: date-time
-          type: string
-        to:
-          format: date-time
-          type: string
-    Dome9.Web.Api.Compliance.Finding.SortingViewModel:
-      type: object
-      properties:
-        fieldName:
-          description: Field name
-          type: string
-        direction:
-          format: int32
-          description: direction. 1 is asc, -1 desc
-          type: integer
-    Dome9.Web.Api.Compliance.Report.FindingsReportViewModel:
-      type: object
-      properties:
-        searchRequest:
-          $ref: '#/components/schemas/Dome9.Web.Api.Compliance.Finding.SearchRequestViewModel'
-          description: search request for findings
-        recipents:
-          description: recipents for mail
-          type: array
-          items:
-            type: string
-        selectedColumns:
-          description: Selected Columns
-          type: array
-          items:
-            type: string
-        showExcluded:
-          description: Show Excluded Column
-          type: boolean
-    Dome9.Web.Api.Compliance.Finding.SearchFilterViewModel:
-      type: object
-      properties:
-        freeTextPhrase:
-          description: free text
-          type: string
-        fields:
-          description: fields
-          type: array
-          items:
-            $ref: '#/components/schemas/CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel'
-        onlyCIEM:
-          type: boolean
-        onlyCustomPolicy:
-          description: Filtering all findings created by custom policy
-          type: boolean
-        creationTime:
-          $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel'
-        updatedTime:
-          $ref: '#/components/schemas/Dome9.Web.Api.Shared.SharedViewModels.DateRangeViewModel'
-        hasRemediation:
-          type: boolean
-    CGN.OpenSearch.Model.CommonViewModels.FieldFilterViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
           type: string
   securitySchemes:
     API_key_V2:

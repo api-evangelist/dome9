@@ -81,6 +81,37 @@ paths:
       x-operation-id-original: AzureUser_Get
 components:
   schemas:
+    Dome9.Web.Api.Azure.User.AzureUserViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        externalId:
+          type: string
+        userPrincipalName:
+          type: string
+        displayName:
+          type: string
+        userType:
+          type: string
+        createdDateTime:
+          format: date-time
+          type: string
+        lastPasswordChangeDateTime:
+          format: date-time
+          type: string
+        passwordPolicies:
+          type: string
+        userCredentialRegistionDetails:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserCredentialViewModel'
+        passwordProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserPasswordProfileViewModel'
+        licenseAssignmentStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserLicenseAssignmentStatesViewModel'
     Dome9.Web.Api.Azure.User.AzureUserLicenseAssignmentStatesViewModel:
       type: object
       properties:
@@ -116,37 +147,6 @@ components:
           type: boolean
         forceChangePasswordNextSignInWithMfa:
           type: boolean
-    Dome9.Web.Api.Azure.User.AzureUserViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        externalId:
-          type: string
-        userPrincipalName:
-          type: string
-        displayName:
-          type: string
-        userType:
-          type: string
-        createdDateTime:
-          format: date-time
-          type: string
-        lastPasswordChangeDateTime:
-          format: date-time
-          type: string
-        passwordPolicies:
-          type: string
-        userCredentialRegistionDetails:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserCredentialViewModel'
-        passwordProfile:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserPasswordProfileViewModel'
-        licenseAssignmentStates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.User.AzureUserLicenseAssignmentStatesViewModel'
   securitySchemes:
     API_key_V2:
       type: http

@@ -144,13 +144,6 @@ paths:
       x-operation-id-original: GcpPubSub_Get
 components:
   schemas:
-    Dome9.Web.Api.Google.PubSub.GcpPubSubTopicMessageStoragePolicyViewModel:
-      type: object
-      properties:
-        allowedRegions:
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel.GcpPubSubPolicyBindingViewModel:
       type: object
       properties:
@@ -174,25 +167,13 @@ components:
         version:
           format: int32
           type: integer
-    Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel:
+    Dome9.Web.Api.Google.PubSub.GcpPubSubTopicMessageStoragePolicyViewModel:
       type: object
       properties:
-        messageStoragePolicy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicMessageStoragePolicyViewModel'
-        labels:
-          type: object
-          additionalProperties:
+        allowedRegions:
+          type: array
+          items:
             type: string
-        policy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel'
-        id:
-          type: string
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
     Dome9.Web.Api.Google.PubSub.GcpPubSubSubscriptionViewModel:
       type: object
       properties:
@@ -212,6 +193,25 @@ components:
           type: boolean
         topic:
           type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+    Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel:
+      type: object
+      properties:
+        messageStoragePolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubTopicMessageStoragePolicyViewModel'
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        policy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel'
         id:
           type: string
         cloudAccountId:

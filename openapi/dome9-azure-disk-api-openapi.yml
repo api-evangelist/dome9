@@ -80,27 +80,6 @@ paths:
       x-operation-id-original: AzureDisk_Get
 components:
   schemas:
-    Dome9.Web.Api.Azure.Disk.DiskImageDiskReferenceViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        lun:
-          type: string
-    Dome9.Web.Api.Azure.Disk.DiskKeyEncryptionKeyViewModel:
-      type: object
-      properties:
-        sourceVault:
-          type: string
-        keyUrl:
-          type: string
-    Falconetix.Model.RuleEngine.Entities.BaseEntities.Azure.Disk.DiskSkuRuleEntity:
-      type: object
-      properties:
-        name:
-          type: string
-        tier:
-          type: string
     Dome9.Web.Api.Azure.Disk.DiskEncryptionSettingsCollectionViewModel:
       type: object
       properties:
@@ -152,6 +131,20 @@ components:
           type: object
           additionalProperties:
             type: string
+    Dome9.Web.Api.Azure.Disk.DiskImageDiskReferenceViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        lun:
+          type: string
+    Dome9.Web.Api.Azure.Disk.DiskDiskEncryptionKeyViewModel:
+      type: object
+      properties:
+        sourceVault:
+          type: string
+        secretUrl:
+          type: string
     Dome9.Web.Api.Azure.Disk.DiskEncryptionSettingViewModel:
       type: object
       properties:
@@ -159,35 +152,12 @@ components:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskDiskEncryptionKeyViewModel'
         keyEncryptionKey:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskKeyEncryptionKeyViewModel'
-    Dome9.Web.Api.Azure.Disk.DiskCreationDataViewModel:
+    Falconetix.Model.RuleEngine.Entities.BaseEntities.Azure.Disk.DiskSkuRuleEntity:
       type: object
       properties:
-        createOption:
+        name:
           type: string
-        sourceResourceId:
-          type: string
-        sourceUniqueId:
-          type: string
-        sourceUri:
-          type: string
-        storageAccountId:
-          type: string
-        uploadSizeBytes:
-          format: int64
-          type: integer
-        logicalSectorSize:
-          format: int64
-          type: integer
-        galleryImageReference:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskImageDiskReferenceViewModel'
-        imageReference:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskImageDiskReferenceViewModel'
-    Dome9.Web.Api.Azure.Disk.DiskDiskEncryptionKeyViewModel:
-      type: object
-      properties:
-        sourceVault:
-          type: string
-        secretUrl:
+        tier:
           type: string
     Dome9.Web.Api.Azure.Disk.DiskPropertiesViewModel:
       type: object
@@ -234,6 +204,36 @@ components:
           type: array
           items:
             type: string
+    Dome9.Web.Api.Azure.Disk.DiskCreationDataViewModel:
+      type: object
+      properties:
+        createOption:
+          type: string
+        sourceResourceId:
+          type: string
+        sourceUniqueId:
+          type: string
+        sourceUri:
+          type: string
+        storageAccountId:
+          type: string
+        uploadSizeBytes:
+          format: int64
+          type: integer
+        logicalSectorSize:
+          format: int64
+          type: integer
+        galleryImageReference:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskImageDiskReferenceViewModel'
+        imageReference:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.Disk.DiskImageDiskReferenceViewModel'
+    Dome9.Web.Api.Azure.Disk.DiskKeyEncryptionKeyViewModel:
+      type: object
+      properties:
+        sourceVault:
+          type: string
+        keyUrl:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

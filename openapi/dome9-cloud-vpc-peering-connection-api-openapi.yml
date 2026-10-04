@@ -46,18 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Models.CloudVpcPeeringInfoViewModel:
-      type: object
-      properties:
-        externalAccountId:
-          type: string
-          readOnly: true
-        vpcId:
-          type: string
-          readOnly: true
-        cidrBlock:
-          type: string
-          readOnly: true
     Dome9.Web.Api.Models.CloudVpcPeeringConnectionViewModel:
       type: object
       properties:
@@ -308,6 +296,18 @@ components:
           readOnly: true
         expirationTime:
           format: date-time
+          type: string
+          readOnly: true
+    Dome9.Web.Api.Models.CloudVpcPeeringInfoViewModel:
+      type: object
+      properties:
+        externalAccountId:
+          type: string
+          readOnly: true
+        vpcId:
+          type: string
+          readOnly: true
+        cidrBlock:
           type: string
           readOnly: true
   securitySchemes:

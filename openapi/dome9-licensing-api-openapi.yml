@@ -93,6 +93,11 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dome9.Web.Api.Controllers.LicensingController.ComplianceApprovalNeededViewModel:
+      type: object
+      properties:
+        isComplianceApprovalNeeded:
+          type: boolean
     Dome9.Web.Api.Controllers.LicensingController.LicensingViewModel:
       type: object
       properties:
@@ -116,11 +121,6 @@ components:
           - Enterprise
           type: string
         featureEnabled:
-          type: boolean
-    Dome9.Web.Api.Controllers.LicensingController.ComplianceApprovalNeededViewModel:
-      type: object
-      properties:
-        isComplianceApprovalNeeded:
           type: boolean
   securitySchemes:
     API_key_V2:

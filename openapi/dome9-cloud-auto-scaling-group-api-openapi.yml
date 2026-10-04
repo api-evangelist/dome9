@@ -46,11 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupLaunchTemplateOverrides:
-      type: object
-      properties:
-        launchTemplateSpecification:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupLaunchTemplateSpecification'
     Dome9.Web.Api.CloudAutoScalingGroup.CloudAutoScalingGroupViewModel:
       type: object
       properties:
@@ -374,40 +369,6 @@ components:
         vpcZoneIdentifier:
           type: string
           readOnly: true
-    CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupLaunchTemplateSpecification:
-      type: object
-      properties:
-        launchTemplateId:
-          type: string
-        launchTemplateName:
-          type: string
-        version:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupSuspendedProcess:
-      type: object
-      properties:
-        name:
-          type: string
-        reason:
-          type: string
-    CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupInstancesDistribution:
-      type: object
-      properties:
-        onDemandAllocationStrategy:
-          type: string
-        onDemandBaseCapacity:
-          format: int32
-          type: integer
-        onDemandPercentageAboveBaseCapacity:
-          format: int32
-          type: integer
-        spotAllocationStrategy:
-          type: string
-        spotInstancePools:
-          format: int32
-          type: integer
-        spotMaxPrice:
-          type: string
     CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingLaunchTemplate:
       type: object
       properties:
@@ -417,17 +378,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupLaunchTemplateOverrides'
-    CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupMixedInstancePolicy:
+    CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupLaunchTemplateSpecification:
       type: object
       properties:
-        instancesDistribution:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupInstancesDistribution'
+        launchTemplateId:
+          type: string
         launchTemplateName:
           type: string
+        version:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupLaunchTemplateOverrides:
+      type: object
+      properties:
         launchTemplateSpecification:
           $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupLaunchTemplateSpecification'
-        launchTemplate:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingLaunchTemplate'
+    CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupSuspendedProcess:
+      type: object
+      properties:
+        name:
+          type: string
+        reason:
+          type: string
     CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupInstance:
       type: object
       properties:
@@ -448,6 +419,35 @@ components:
           type: string
         protectionFromScaleIn:
           type: boolean
+    CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupMixedInstancePolicy:
+      type: object
+      properties:
+        instancesDistribution:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupInstancesDistribution'
+        launchTemplateName:
+          type: string
+        launchTemplateSpecification:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupLaunchTemplateSpecification'
+        launchTemplate:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingLaunchTemplate'
+    CGN.Inventory.Aws.Model.WrapperModels.AwsAutoScalingGroupInstancesDistribution:
+      type: object
+      properties:
+        onDemandAllocationStrategy:
+          type: string
+        onDemandBaseCapacity:
+          format: int32
+          type: integer
+        onDemandPercentageAboveBaseCapacity:
+          format: int32
+          type: integer
+        spotAllocationStrategy:
+          type: string
+        spotInstancePools:
+          format: int32
+          type: integer
+        spotMaxPrice:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

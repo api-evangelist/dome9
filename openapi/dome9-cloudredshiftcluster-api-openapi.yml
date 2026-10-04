@@ -74,16 +74,37 @@ paths:
       x-operation-id-original: CloudRedshiftCluster_Get
 components:
   schemas:
-    Dome9.Web.Api.Models.AwsRedshiftParametersGroupViewModel:
+    Dome9.Web.Api.Models.CloudRedshiftClusterSubnetGroupViewModel:
       type: object
       properties:
-        parameterGroupName:
+        name:
           type: string
           readOnly: true
-        parameters:
+        description:
+          type: string
+          readOnly: true
+        vpcId:
+          type: string
+          readOnly: true
+        subnets:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsRedshiftParameterViewModel'
+            type: string
+          readOnly: true
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          readOnly: true
+    Dome9.Web.Api.Models.CloudRedshiftClusterEndpointViewModel:
+      type: object
+      properties:
+        port:
+          format: int32
+          type: integer
+          readOnly: true
+        address:
+          type: string
           readOnly: true
     Dome9.Web.Api.Models.AwsRedshiftParameterViewModel:
       type: object
@@ -113,18 +134,6 @@ components:
           type: string
           readOnly: true
         source:
-          type: string
-          readOnly: true
-    Dome9.Web.Api.Models.CloudRedshiftClusterNodeViewModel:
-      type: object
-      properties:
-        nodeRole:
-          type: string
-          readOnly: true
-        privateIPAddress:
-          type: string
-          readOnly: true
-        publicIPAddress:
           type: string
           readOnly: true
     Dome9.Web.Api.Models.CloudRedshiftClusterViewModel:
@@ -421,37 +430,28 @@ components:
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsRedshiftParametersGroupViewModel'
           readOnly: true
-    Dome9.Web.Api.Models.CloudRedshiftClusterEndpointViewModel:
+    Dome9.Web.Api.Models.AwsRedshiftParametersGroupViewModel:
       type: object
       properties:
-        port:
-          format: int32
-          type: integer
-          readOnly: true
-        address:
+        parameterGroupName:
           type: string
           readOnly: true
-    Dome9.Web.Api.Models.CloudRedshiftClusterSubnetGroupViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-          readOnly: true
-        description:
-          type: string
-          readOnly: true
-        vpcId:
-          type: string
-          readOnly: true
-        subnets:
+        parameters:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsRedshiftParameterViewModel'
           readOnly: true
-        tags:
-          type: object
-          additionalProperties:
-            type: string
+    Dome9.Web.Api.Models.CloudRedshiftClusterNodeViewModel:
+      type: object
+      properties:
+        nodeRole:
+          type: string
+          readOnly: true
+        privateIPAddress:
+          type: string
+          readOnly: true
+        publicIPAddress:
+          type: string
           readOnly: true
   securitySchemes:
     API_key_V2:

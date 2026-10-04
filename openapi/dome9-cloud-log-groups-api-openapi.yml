@@ -46,6 +46,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dome9.Web.Api.CloudLogGroups.CloudMetricFilterViewModel:
+      type: object
+      properties:
+        creationTime:
+          format: date-time
+          type: string
+        filterName:
+          type: string
+        filterPattern:
+          type: string
+        metricTransformations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudLogGroups.CloudMetricFilterTransformations'
     Dome9.Web.Api.CloudLogGroups.CloudLogGroupViewModel:
       type: object
       properties:
@@ -318,20 +332,6 @@ components:
           type: string
         metricValue:
           type: string
-    Dome9.Web.Api.CloudLogGroups.CloudMetricFilterViewModel:
-      type: object
-      properties:
-        creationTime:
-          format: date-time
-          type: string
-        filterName:
-          type: string
-        filterPattern:
-          type: string
-        metricTransformations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudLogGroups.CloudMetricFilterTransformations'
   securitySchemes:
     API_key_V2:
       type: http

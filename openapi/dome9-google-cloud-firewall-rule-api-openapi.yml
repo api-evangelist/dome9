@@ -52,15 +52,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Google.Firewall.GoogleFirewallRuleScopeViewModel:
-      type: object
-      properties:
-        ipProtocol:
-          type: string
-        ports:
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.Google.Firewall.GoogleCloudFirewallRuleViewModel:
       type: object
       properties:
@@ -114,6 +105,15 @@ components:
           example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
+    Dome9.Web.Api.Google.Firewall.GoogleFirewallRuleScopeViewModel:
+      type: object
+      properties:
+        ipProtocol:
+          type: string
+        ports:
+          type: array
+          items:
+            type: string
   securitySchemes:
     API_key_V2:
       type: http

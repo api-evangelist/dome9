@@ -488,32 +488,6 @@ paths:
         required: true
 components:
   schemas:
-    Falconetix.WebApi.Models.ScopeElementViewModel:
-      type: object
-      properties:
-        type:
-          enum:
-          - CIDR
-          - DNS
-          - IPList
-          - MagicIP
-          - AWS
-          - Tag
-          - ASG
-          - CIDRv6
-          - PrefixList
-          type: string
-        data:
-          type: object
-          additionalProperties:
-            type: string
-    Dome9.Web.Api.Models.CloudSecurityGroupTagsChangeViewModel:
-      type: object
-      properties:
-        tags:
-          type: object
-          additionalProperties:
-            type: string
     Dome9.Web.Api.Models.CloudSecurityGroupProtectionModeChangeViewModel:
       required:
       - protectionMode
@@ -526,7 +500,14 @@ components:
           type: string
         securityGroupId:
           type: string
-    Dome9.Web.Api.Models.CloudSecurityGroupPolicyViewModel:
+    Dome9.Web.Api.Models.CloudSecurityGroupTagsChangeViewModel:
+      type: object
+      properties:
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Dome9.Web.Api.Models.CloudSecurityGroupBaseViewModel:
       type: object
       properties:
         externalId:
@@ -761,20 +742,6 @@ components:
           type: object
           additionalProperties:
             type: string
-        securityGroupId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        srl:
-          type: string
-        inboundServices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupPolicyServiceViewModel'
-        outboundServices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupPolicyServiceViewModel'
     Dome9.Web.Api.Models.CloudSecurityGroupPolicyServiceViewModel:
       required:
       - name
@@ -1185,7 +1152,7 @@ components:
           enum:
           - All
           type: string
-    Dome9.Web.Api.Models.CloudSecurityGroupBaseViewModel:
+    Dome9.Web.Api.Models.CloudSecurityGroupPolicyViewModel:
       type: object
       properties:
         externalId:
@@ -1417,6 +1384,39 @@ components:
         cloudAccountName:
           type: string
         tags:
+          type: object
+          additionalProperties:
+            type: string
+        securityGroupId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        srl:
+          type: string
+        inboundServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupPolicyServiceViewModel'
+        outboundServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudSecurityGroupPolicyServiceViewModel'
+    Falconetix.WebApi.Models.ScopeElementViewModel:
+      type: object
+      properties:
+        type:
+          enum:
+          - CIDR
+          - DNS
+          - IPList
+          - MagicIP
+          - AWS
+          - Tag
+          - ASG
+          - CIDRv6
+          - PrefixList
+          type: string
+        data:
           type: object
           additionalProperties:
             type: string

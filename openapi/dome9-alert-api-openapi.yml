@@ -410,41 +410,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Falconetix.Model.AlertPivotEntity:
-      type: object
-      properties:
-        srl:
-          type: string
-        name:
-          type: string
-        id:
-          type: string
-        type:
-          enum:
-          - SecurityGroup
-          - Agent
-          - CloudAccount
-          - AzureSecurityGroup
-          - AzureCloudAccount
-          - KubernetesCloudAccount
-          type: string
-    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean:
-      type: object
-      properties:
-        alertId:
-          format: int64
-          type: integer
-        data:
-          type: boolean
-    Falconetix.Model.AlertLocationEntityMetadata:
-      type: object
-      properties:
-        srl:
-          type: string
-        name:
-          type: string
-        id:
-          type: string
     Dome9.Web.Api.Models.GetDataParmsTimeFilter:
       type: object
       properties:
@@ -471,6 +436,24 @@ components:
           - Med
           - High
           type: string
+    Falconetix.Model.AlertPivotEntity:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+        type:
+          enum:
+          - SecurityGroup
+          - Agent
+          - CloudAccount
+          - AzureSecurityGroup
+          - AzureCloudAccount
+          - KubernetesCloudAccount
+          type: string
     Dome9.Web.Api.Models.GetDataParms_System.Object:
       type: object
       properties:
@@ -492,15 +475,6 @@ components:
           - InProgress
           - Success
           type: string
-    Dome9.Web.Api.Models.AlertsCountViewModel:
-      type: object
-      properties:
-        fim:
-          format: int32
-          type: integer
-        general:
-          format: int32
-          type: integer
     Dome9.Web.Api.Models.AlertViewModel:
       type: object
       properties:
@@ -550,6 +524,24 @@ components:
         modified:
           format: date-time
           type: string
+    Dome9.Web.Api.Models.AlertsCountViewModel:
+      type: object
+      properties:
+        fim:
+          format: int32
+          type: integer
+        general:
+          format: int32
+          type: integer
+    Falconetix.Model.AlertLocationEntityMetadata:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
     Dome9.Web.Api.Models.AlertPatchViewModel:
       type: object
       properties:
@@ -572,6 +564,14 @@ components:
           type: integer
         data:
           type: string
+    Dome9.Web.Api.Models.AlertsPartialUpdateViewModel_System.Boolean:
+      type: object
+      properties:
+        alertId:
+          format: int64
+          type: integer
+        data:
+          type: boolean
   securitySchemes:
     API_key_V2:
       type: http

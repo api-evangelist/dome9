@@ -46,14 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Azure.LogProfile.AzureLogProfileRetentionPolicyViewModel:
-      type: object
-      properties:
-        enabled:
-          type: string
-        days:
-          format: int32
-          type: integer
     Dome9.Web.Api.Azure.LogProfile.AzureLogProfilePropertiesViewModel:
       type: object
       properties:
@@ -71,6 +63,14 @@ components:
             type: string
         retentionPolicy:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.LogProfile.AzureLogProfileRetentionPolicyViewModel'
+    Dome9.Web.Api.Azure.LogProfile.AzureLogProfileRetentionPolicyViewModel:
+      type: object
+      properties:
+        enabled:
+          type: string
+        days:
+          format: int32
+          type: integer
     Dome9.Web.Api.Azure.LogProfile.AzureLogProfileViewModel:
       type: object
       properties:

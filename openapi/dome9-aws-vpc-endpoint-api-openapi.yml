@@ -107,11 +107,6 @@ components:
           type: string
         vpcId:
           type: string
-    Falconetix.Model.AwsServiceTypeDetailViewModel:
-      type: object
-      properties:
-        serviceType:
-          type: string
     Falconetix.Model.VpcEndpointServiceViewModel:
       type: object
       properties:
@@ -161,6 +156,11 @@ components:
       type: object
       properties:
         privateDnsName:
+          type: string
+    Falconetix.Model.AwsServiceTypeDetailViewModel:
+      type: object
+      properties:
+        serviceType:
           type: string
   securitySchemes:
     API_key_V2:

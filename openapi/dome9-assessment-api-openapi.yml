@@ -53,89 +53,11 @@ paths:
         required: true
 components:
   schemas:
-    Falconetix.Model.RuleEngine.ViewModels.Assessment.BaseAssessmentRequestViewModel:
-      description: 'Roy note: This is a temp impl that unites the request the result and the rule. All these 3 concepts will be split.'
+    Falconetix.Model.RuleEngine.Entities.RuleTestResult:
       type: object
       properties:
-        dome9CloudAccountId:
-          format: uuid
-          description: The Dome9 account id
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        externalCloudAccountId:
-          description: account id on cloud provider (AWS, Azure, GCP)
-          type: string
-        cloudAccountId:
-          description: account id on cloud provider (AWS, Azure, GCP)
-          type: string
-        cloudAccountType:
-          description: the cloud provider (AWS/Azure/GCP)
-          enum:
-          - Aws
-          - Azure
-          - Google
-          - Kubernetes
-          - Terraform
-          - Generic
-          - KubernetesRuntimeAssurance
-          - ShiftLeft
-          - SourceCodeAssurance
-          - ImageAssurance
-          - Alibaba
-          - Cft
-          - ContainerRegistry
-          - Oci
-          - CIEM
-          type: string
-        requestId:
-          format: uuid
-          description: the assessment id (returned in the response)
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        shouldMinimizeResult:
-          description: Minimized the entity results
-          type: boolean
-    Falconetix.Model.RuleEngine.Entities.ValidationResult:
-      type: object
-      properties:
-        validationStatus:
-          enum:
-          - Relevant
-          - Valid
-          - Excluded
-          type: string
-        isRelevant:
-          description: 'means if entity is relevant for this rule
-
-            for example rule = "Instance where name like ''%db%'' should have...", returns false in instance name = ''scheduler1'''
-          type: boolean
-        isValid:
-          description: 'means if entity is compliant.
-
-            for example for rule="Instance should have vpc", return true if instance i-123 is under vpc-234, and false if not'
-          type: boolean
-        isExcluded:
-          description: 'means if entity is excluded.
-
-            for example for rule="Instance should have vpc exclude name=''test''", return true if instance name is test, and false if not'
-          type: boolean
-        exclusionId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        remediationId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
         error:
-          description: note that the lambda is not aware of this field
           type: string
-        testObj:
-          description: note that the lambda is not aware of this field
-          type: object
-    Falconetix.Model.RuleEngine.Entities.RuleTestResultStats:
-      type: object
-      properties:
         testedCount:
           format: int32
           type: integer
@@ -145,11 +67,25 @@ components:
         nonComplyingCount:
           format: int32
           type: integer
-    Falconetix.Model.Entites.RuleEngine.LocationMetadata:
+        exclusionStats:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleTestResultStats'
+        entityResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.ValidationResult'
+        rule:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleEntity'
+        testPassed:
+          type: boolean
+    Falconetix.Model.RuleEngine.ViewModels.Assessment.EntityWithPermissionIssueViewModel:
       type: object
       properties:
-        account:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.LocationConventionMetadataViewModel'
+        externalId:
+          type: string
+        name:
+          type: string
+        cloudVendorIdentifier:
+          type: string
     Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentBundleRequestViewModel:
       type: object
       properties:
@@ -203,6 +139,17 @@ components:
         shouldMinimizeResult:
           description: Minimized the entity results
           type: boolean
+    Falconetix.Model.RuleEngine.ViewModels.LocationConventionMetadataViewModel:
+      type: object
+      properties:
+        srl:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+        externalId:
+          type: string
     Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentResultViewModel_Newtonsoft.Json.Linq.JRaw:
       description: the API result structure. Aggregates results from multiple tests
       type: object
@@ -244,41 +191,19 @@ components:
           format: uuid
           type: string
           example: 00000000-0000-0000-0000-000000000000
-    Falconetix.Model.RuleEngine.ViewModels.LocationConventionMetadataViewModel:
+    Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentDataSyncStatusEntityViewModel:
       type: object
       properties:
-        srl:
+        entityType:
           type: string
-        name:
-          type: string
-        id:
-          type: string
-        externalId:
-          type: string
-    Falconetix.Model.RuleEngine.Entities.RuleTestResult:
-      type: object
-      properties:
-        error:
-          type: string
-        testedCount:
-          format: int32
-          type: integer
-        relevantCount:
-          format: int32
-          type: integer
-        nonComplyingCount:
-          format: int32
-          type: integer
-        exclusionStats:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleTestResultStats'
-        entityResults:
+        recentlySuccessfulSync:
+          type: boolean
+        generalFetchPermissionIssues:
+          type: boolean
+        entitiesWithPermissionIssues:
           type: array
           items:
-            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.ValidationResult'
-        rule:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleEntity'
-        testPassed:
-          type: boolean
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.EntityWithPermissionIssueViewModel'
     Falconetix.Model.RuleEngine.Entities.RuleEntity:
       type: object
       properties:
@@ -341,28 +266,103 @@ components:
           description: The property represents default rule
           type: boolean
           readOnly: true
-    Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentDataSyncStatusEntityViewModel:
+    Falconetix.Model.Entites.RuleEngine.LocationMetadata:
       type: object
       properties:
-        entityType:
-          type: string
-        recentlySuccessfulSync:
-          type: boolean
-        generalFetchPermissionIssues:
-          type: boolean
-        entitiesWithPermissionIssues:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.EntityWithPermissionIssueViewModel'
-    Falconetix.Model.RuleEngine.ViewModels.Assessment.EntityWithPermissionIssueViewModel:
+        account:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.LocationConventionMetadataViewModel'
+    Falconetix.Model.RuleEngine.Entities.ValidationResult:
       type: object
       properties:
-        externalId:
+        validationStatus:
+          enum:
+          - Relevant
+          - Valid
+          - Excluded
           type: string
-        name:
+        isRelevant:
+          description: 'means if entity is relevant for this rule
+
+            for example rule = "Instance where name like ''%db%'' should have...", returns false in instance name = ''scheduler1'''
+          type: boolean
+        isValid:
+          description: 'means if entity is compliant.
+
+            for example for rule="Instance should have vpc", return true if instance i-123 is under vpc-234, and false if not'
+          type: boolean
+        isExcluded:
+          description: 'means if entity is excluded.
+
+            for example for rule="Instance should have vpc exclude name=''test''", return true if instance name is test, and false if not'
+          type: boolean
+        exclusionId:
+          format: uuid
           type: string
-        cloudVendorIdentifier:
+          example: 00000000-0000-0000-0000-000000000000
+        remediationId:
+          format: uuid
           type: string
+          example: 00000000-0000-0000-0000-000000000000
+        error:
+          description: note that the lambda is not aware of this field
+          type: string
+        testObj:
+          description: note that the lambda is not aware of this field
+          type: object
+    Falconetix.Model.RuleEngine.Entities.RuleTestResultStats:
+      type: object
+      properties:
+        testedCount:
+          format: int32
+          type: integer
+        relevantCount:
+          format: int32
+          type: integer
+        nonComplyingCount:
+          format: int32
+          type: integer
+    Falconetix.Model.RuleEngine.ViewModels.Assessment.BaseAssessmentRequestViewModel:
+      description: 'Roy note: This is a temp impl that unites the request the result and the rule. All these 3 concepts will be split.'
+      type: object
+      properties:
+        dome9CloudAccountId:
+          format: uuid
+          description: The Dome9 account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalCloudAccountId:
+          description: account id on cloud provider (AWS, Azure, GCP)
+          type: string
+        cloudAccountId:
+          description: account id on cloud provider (AWS, Azure, GCP)
+          type: string
+        cloudAccountType:
+          description: the cloud provider (AWS/Azure/GCP)
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        requestId:
+          format: uuid
+          description: the assessment id (returned in the response)
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        shouldMinimizeResult:
+          description: Minimized the entity results
+          type: boolean
   securitySchemes:
     API_key_V2:
       type: http

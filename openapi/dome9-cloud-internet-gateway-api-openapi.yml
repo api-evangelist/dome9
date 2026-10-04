@@ -46,13 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.SubTypes.CloudVpcAttachmentViewModel:
-      type: object
-      properties:
-        state:
-          type: string
-        vpcId:
-          type: string
     Dome9.Web.Api.CloudInternetGateways.CloudInternetGatewayViewModel:
       type: object
       properties:
@@ -75,6 +68,13 @@ components:
           type: object
           additionalProperties:
             type: string
+    Dome9.Web.Api.SubTypes.CloudVpcAttachmentViewModel:
+      type: object
+      properties:
+        state:
+          type: string
+        vpcId:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

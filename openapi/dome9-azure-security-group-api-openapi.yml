@@ -81,45 +81,6 @@ paths:
       x-operation-id-original: AzureSecurityGroup_Get
 components:
   schemas:
-    Dome9.Web.Api.Models.AzureSecurityGroupViewModel:
-      type: object
-      properties:
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-        id:
-          type: string
-        accountId:
-          format: int64
-          type: integer
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        cloudAccountName:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        region:
-          type: string
-        resourceGroup:
-          type: string
-        isProtected:
-          type: boolean
-        services:
-          type: object
-          properties:
-            inbound:
-              type: array
-              items:
-                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureSecurityGroupServiceViewModel'
-            outbound:
-              type: array
-              items:
-                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureSecurityGroupServiceViewModel'
     Dome9.Web.Api.Models.AzureSecurityGroupServiceViewModel:
       type: object
       properties:
@@ -160,6 +121,45 @@ components:
             type: string
         isDefault:
           type: boolean
+    Dome9.Web.Api.Models.AzureSecurityGroupViewModel:
+      type: object
+      properties:
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        id:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cloudAccountName:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        region:
+          type: string
+        resourceGroup:
+          type: string
+        isProtected:
+          type: boolean
+        services:
+          type: object
+          properties:
+            inbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureSecurityGroupServiceViewModel'
+            outbound:
+              type: array
+              items:
+                $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureSecurityGroupServiceViewModel'
   securitySchemes:
     API_key_V2:
       type: http

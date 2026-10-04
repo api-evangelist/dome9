@@ -314,78 +314,6 @@ paths:
       x-operation-id-original: Msp_DeleteIcon
 components:
   schemas:
-    Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel:
-      type: object
-      properties:
-        url:
-          type: string
-    Dome9.Web.Api.Account.AccountTrustViewModel:
-      required:
-      - sourceAccountId
-      - description
-      type: object
-      properties:
-        id:
-          format: uuid
-          description: Account trust id
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        targetAccountName:
-          description: The trusting account name
-          type: string
-        sourceAccountName:
-          description: The trsuted account name
-          type: string
-        sourceAccountId:
-          format: uuid
-          description: The Dome9 account id to trust
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        description:
-          description: Description for the trust (a way to document the justification of the trust)
-          type: string
-        restrictions:
-          $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel'
-    Dome9.MSP.Api.V1.ManagedAccountGetUserViewModel:
-      required:
-      - managedAccountId
-      - email
-      - firstName
-      - lastName
-      type: object
-      properties:
-        userId:
-          format: int64
-          description: Dome9 user unique identifier
-          type: integer
-        managedAccountId:
-          format: int64
-          description: Dome9 account unique identifier
-          type: integer
-        email:
-          format: email
-          description: Email Address
-          type: string
-          example: MyName@gmail.com
-        firstName:
-          maxLength: 50
-          minLength: 0
-          type: string
-        lastName:
-          maxLength: 50
-          minLength: 0
-          type: string
-        ssoEnabled:
-          description: Enabling SAML 2.0 SSO
-          type: boolean
-    Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel:
-      type: object
-      properties:
-        roles:
-          description: A list of role names that can be assumed by a user in the trusted account, leave empty to allow all roles to be assumed
-          type: array
-          items:
-            type: string
     Dome9.MSP.Api.V1.ManagedAccountPostViewModel:
       required:
       - companyName
@@ -414,34 +342,6 @@ components:
           type: string
         adminLastName:
           type: string
-    Dome9.MSP.Api.V1.ManagedAccountPostUserViewModel:
-      required:
-      - managedAccountId
-      - email
-      - firstName
-      - lastName
-      type: object
-      properties:
-        managedAccountId:
-          format: int64
-          description: Dome9 account unique identifier
-          type: integer
-        email:
-          format: email
-          description: Email Address
-          type: string
-          example: MyName@gmail.com
-        firstName:
-          maxLength: 50
-          minLength: 0
-          type: string
-        lastName:
-          maxLength: 50
-          minLength: 0
-          type: string
-        ssoEnabled:
-          description: Enabling SAML 2.0 SSO
-          type: boolean
     Dome9.MSP.Api.V1.ManagedAccountPutIconViewModel:
       type: object
       properties:
@@ -480,6 +380,106 @@ components:
         adminFirstName:
           type: string
         adminLastName:
+          type: string
+    Dome9.MSP.Api.V1.ManagedAccountGetUserViewModel:
+      required:
+      - managedAccountId
+      - email
+      - firstName
+      - lastName
+      type: object
+      properties:
+        userId:
+          format: int64
+          description: Dome9 user unique identifier
+          type: integer
+        managedAccountId:
+          format: int64
+          description: Dome9 account unique identifier
+          type: integer
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        firstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        ssoEnabled:
+          description: Enabling SAML 2.0 SSO
+          type: boolean
+    Dome9.Web.Api.Account.AccountTrustViewModel:
+      required:
+      - sourceAccountId
+      - description
+      type: object
+      properties:
+        id:
+          format: uuid
+          description: Account trust id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        targetAccountName:
+          description: The trusting account name
+          type: string
+        sourceAccountName:
+          description: The trsuted account name
+          type: string
+        sourceAccountId:
+          format: uuid
+          description: The Dome9 account id to trust
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        description:
+          description: Description for the trust (a way to document the justification of the trust)
+          type: string
+        restrictions:
+          $ref: '#/components/schemas/Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel'
+    Dome9.Web.Api.Account.AccountTrustRestrictionsViewModel:
+      type: object
+      properties:
+        roles:
+          description: A list of role names that can be assumed by a user in the trusted account, leave empty to allow all roles to be assumed
+          type: array
+          items:
+            type: string
+    Dome9.MSP.Api.V1.ManagedAccountPostUserViewModel:
+      required:
+      - managedAccountId
+      - email
+      - firstName
+      - lastName
+      type: object
+      properties:
+        managedAccountId:
+          format: int64
+          description: Dome9 account unique identifier
+          type: integer
+        email:
+          format: email
+          description: Email Address
+          type: string
+          example: MyName@gmail.com
+        firstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        ssoEnabled:
+          description: Enabling SAML 2.0 SSO
+          type: boolean
+    Dome9.MSP.Api.V1.ManagedAccountGetIconViewModel:
+      type: object
+      properties:
+        url:
           type: string
   securitySchemes:
     API_key_V2:

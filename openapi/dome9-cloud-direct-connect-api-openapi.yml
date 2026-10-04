@@ -77,22 +77,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.CloudDirectConnect.AwsDirectConnectVirtualInterfaceViewModel.BgpPeerViewModel:
-      type: object
-      properties:
-        addressFamily:
-          type: string
-        amazonAddress:
-          type: string
-        asn:
-          format: int32
-          type: integer
-        bgpPeerState:
-          type: string
-        bgpStatus:
-          type: string
-        customerAddress:
-          type: string
     Dome9.Web.Api.CloudDirectConnect.AwsDirectConnectVirtualInterfaceViewModel:
       type: object
       properties:
@@ -134,15 +118,6 @@ components:
         vlan:
           format: int32
           type: integer
-    Dome9.Web.Api.CloudWatch.AwsCloudWatchDataPointViewModel:
-      type: object
-      properties:
-        value:
-          format: double
-          type: number
-        timestamp:
-          format: date-time
-          type: string
     Dome9.Web.Api.CloudDirectConnect.AwsDirectConnectMetricsViewModel:
       type: object
       properties:
@@ -154,6 +129,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.CloudWatch.AwsCloudWatchDataPointViewModel'
+    Dome9.Web.Api.CloudDirectConnect.AwsDirectConnectVirtualInterfaceViewModel.BgpPeerViewModel:
+      type: object
+      properties:
+        addressFamily:
+          type: string
+        amazonAddress:
+          type: string
+        asn:
+          format: int32
+          type: integer
+        bgpPeerState:
+          type: string
+        bgpStatus:
+          type: string
+        customerAddress:
+          type: string
     Dome9.Web.Api.CloudDirectConnect.CloudDirectConnectViewModel:
       type: object
       properties:
@@ -399,6 +390,15 @@ components:
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.CloudDirectConnect.AwsDirectConnectVirtualInterfaceViewModel'
           readOnly: true
+    Dome9.Web.Api.CloudWatch.AwsCloudWatchDataPointViewModel:
+      type: object
+      properties:
+        value:
+          format: double
+          type: number
+        timestamp:
+          format: date-time
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

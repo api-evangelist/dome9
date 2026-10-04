@@ -86,6 +86,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.CloudIamGroups.CloudIamGroupInlinePolicyViewModel'
+    Dome9.Web.Api.CloudIamGroups.CloudIamGroupInlinePolicyViewModel:
+      type: object
+      properties:
+        policyName:
+          type: string
+        policyDocument:
+          type: object
     Dome9.Web.Api.CloudIamGroupPolicy.AwsIamGroupPolicyViewModel:
       type: object
       properties:
@@ -95,13 +102,6 @@ components:
         name:
           description: name
           type: string
-    Dome9.Web.Api.CloudIamGroups.CloudIamGroupInlinePolicyViewModel:
-      type: object
-      properties:
-        policyName:
-          type: string
-        policyDocument:
-          type: object
   securitySchemes:
     API_key_V2:
       type: http

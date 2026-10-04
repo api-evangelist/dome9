@@ -80,6 +80,15 @@ paths:
       x-operation-id-original: CloudRoute53Domain_Get
 components:
   schemas:
+    Dome9.Web.Api.CloudRoute53.CloudRoute53DomainNameserverViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        glueIps:
+          type: array
+          items:
+            type: string
     Dome9.Web.Api.CloudRoute53.CloudRoute53DomainDetailsViewModel:
       type: object
       properties:
@@ -132,15 +141,6 @@ components:
           type: string
         details:
           $ref: '#/components/schemas/Dome9.Web.Api.CloudRoute53.CloudRoute53DomainDetailsViewModel'
-    Dome9.Web.Api.CloudRoute53.CloudRoute53DomainNameserverViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        glueIps:
-          type: array
-          items:
-            type: string
   securitySchemes:
     API_key_V2:
       type: http

@@ -172,21 +172,6 @@ paths:
         required: true
 components:
   schemas:
-    Dome9.Web.Api.GenericList.GenericListViewModelBase:
-      required:
-      - name
-      - items
-      type: object
-      properties:
-        name:
-          pattern: '[a-zA-Z0-9/\-_:]*[a-zA-Z]+[a-zA-Z0-9/\-_:]*'
-          type: string
-        description:
-          type: string
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListValueViewModel'
     Dome9.Web.Api.GenericList.GenericListValueViewModel:
       required:
       - value
@@ -197,6 +182,28 @@ components:
           type: string
         comment:
           type: string
+    Dome9.Web.Api.GenericList.GenericListResponseViewModel:
+      required:
+      - id
+      - name
+      - items
+      type: object
+      properties:
+        isManaged:
+          type: boolean
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          pattern: '[a-zA-Z0-9/\-_:]*[a-zA-Z]+[a-zA-Z0-9/\-_:]*'
+          type: string
+        description:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListValueViewModel'
     Dome9.Web.Api.GenericList.GenericListViewModel:
       required:
       - id
@@ -217,19 +224,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListValueViewModel'
-    Dome9.Web.Api.GenericList.GenericListResponseViewModel:
+    Dome9.Web.Api.GenericList.GenericListViewModelBase:
       required:
-      - id
       - name
       - items
       type: object
       properties:
-        isManaged:
-          type: boolean
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
         name:
           pattern: '[a-zA-Z0-9/\-_:]*[a-zA-Z]+[a-zA-Z0-9/\-_:]*'
           type: string

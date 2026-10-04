@@ -74,6 +74,15 @@ paths:
       x-operation-id-original: AzureLoadBalancer_Get
 components:
   schemas:
+    Dome9.Web.Api.Models.AzureBackendAddressPoolViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        virtualMachines:
+          type: array
+          items:
+            type: string
     Dome9.Web.Api.Models.AzureLoadBalancerViewModel:
       type: object
       properties:
@@ -141,31 +150,6 @@ components:
           type: string
         enableFloatingIP:
           type: boolean
-    Dome9.Web.Api.Models.AzureIPConfigurationViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        publicIPAddress:
-          type: string
-        publicIPAllocationMethod:
-          enum:
-          - Unallocated
-          - Dynamic
-          - Static
-          type: string
-        dnsName:
-          type: string
-        privateIPAddress:
-          type: string
-        privateIPAllocationMethod:
-          enum:
-          - Unallocated
-          - Dynamic
-          - Static
-          type: string
-        subnet:
-          type: string
     Dome9.Web.Api.Models.AzureLoadBalancingServiceViewModel:
       type: object
       properties:
@@ -190,15 +174,6 @@ components:
           type: string
         enableFloatingIP:
           type: boolean
-    Dome9.Web.Api.Models.AzureBackendAddressPoolViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        virtualMachines:
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.Models.AzureLoadBalancerProbeViewModel:
       type: object
       properties:
@@ -216,6 +191,31 @@ components:
           format: int32
           type: integer
         requestPath:
+          type: string
+    Dome9.Web.Api.Models.AzureIPConfigurationViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        publicIPAddress:
+          type: string
+        publicIPAllocationMethod:
+          enum:
+          - Unallocated
+          - Dynamic
+          - Static
+          type: string
+        dnsName:
+          type: string
+        privateIPAddress:
+          type: string
+        privateIPAllocationMethod:
+          enum:
+          - Unallocated
+          - Dynamic
+          - Static
+          type: string
+        subnet:
           type: string
   securitySchemes:
     API_key_V2:

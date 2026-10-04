@@ -190,65 +190,30 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Falconetix.Model.RuleEngine.Entities.ValidationResult:
+    Falconetix.Model.RuleEngine.Entities.RuleTestResult:
       type: object
       properties:
-        validationStatus:
-          enum:
-          - Relevant
-          - Valid
-          - Excluded
-          type: string
-        isRelevant:
-          description: 'means if entity is relevant for this rule
-
-            for example rule = "Instance where name like ''%db%'' should have...", returns false in instance name = ''scheduler1'''
-          type: boolean
-        isValid:
-          description: 'means if entity is compliant.
-
-            for example for rule="Instance should have vpc", return true if instance i-123 is under vpc-234, and false if not'
-          type: boolean
-        isExcluded:
-          description: 'means if entity is excluded.
-
-            for example for rule="Instance should have vpc exclude name=''test''", return true if instance name is test, and false if not'
-          type: boolean
-        exclusionId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        remediationId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
         error:
-          description: note that the lambda is not aware of this field
           type: string
-        testObj:
-          description: note that the lambda is not aware of this field
-          type: object
-    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryViewResultViewModel:
-      type: object
-      properties:
-        createdTime:
-          format: date-time
-          type: string
-        id:
-          format: int64
+        testedCount:
+          format: int32
           type: integer
-        assessmentId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        request:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryBundleResultViewModel'
-        assessmentPassed:
+        relevantCount:
+          format: int32
+          type: integer
+        nonComplyingCount:
+          format: int32
+          type: integer
+        exclusionStats:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleTestResultStats'
+        entityResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.ValidationResult'
+        rule:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleEntity'
+        testPassed:
           type: boolean
-        hasErrors:
-          type: boolean
-        stats:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel'
     Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryResultViewModel:
       type: object
       properties:
@@ -274,30 +239,6 @@ components:
           type: boolean
         stats:
           $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel'
-    Falconetix.Model.RuleEngine.Entities.RuleTestResult:
-      type: object
-      properties:
-        error:
-          type: string
-        testedCount:
-          format: int32
-          type: integer
-        relevantCount:
-          format: int32
-          type: integer
-        nonComplyingCount:
-          format: int32
-          type: integer
-        exclusionStats:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleTestResultStats'
-        entityResults:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.ValidationResult'
-        rule:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleEntity'
-        testPassed:
-          type: boolean
     Falconetix.Model.RuleEngine.Entities.RuleEntity:
       type: object
       properties:
@@ -360,6 +301,65 @@ components:
           description: The property represents default rule
           type: boolean
           readOnly: true
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryViewResultViewModel:
+      type: object
+      properties:
+        createdTime:
+          format: date-time
+          type: string
+        id:
+          format: int64
+          type: integer
+        assessmentId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        request:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryBundleResultViewModel'
+        assessmentPassed:
+          type: boolean
+        hasErrors:
+          type: boolean
+        stats:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel'
+    Falconetix.Model.RuleEngine.Entities.ValidationResult:
+      type: object
+      properties:
+        validationStatus:
+          enum:
+          - Relevant
+          - Valid
+          - Excluded
+          type: string
+        isRelevant:
+          description: 'means if entity is relevant for this rule
+
+            for example rule = "Instance where name like ''%db%'' should have...", returns false in instance name = ''scheduler1'''
+          type: boolean
+        isValid:
+          description: 'means if entity is compliant.
+
+            for example for rule="Instance should have vpc", return true if instance i-123 is under vpc-234, and false if not'
+          type: boolean
+        isExcluded:
+          description: 'means if entity is excluded.
+
+            for example for rule="Instance should have vpc exclude name=''test''", return true if instance name is test, and false if not'
+          type: boolean
+        exclusionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        remediationId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        error:
+          description: note that the lambda is not aware of this field
+          type: string
+        testObj:
+          description: note that the lambda is not aware of this field
+          type: object
     Falconetix.Model.RuleEngine.Entities.RuleTestResultStats:
       type: object
       properties:
@@ -370,21 +370,6 @@ components:
           format: int32
           type: integer
         nonComplyingCount:
-          format: int32
-          type: integer
-    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel:
-      type: object
-      properties:
-        passed:
-          format: int32
-          type: integer
-        failed:
-          format: int32
-          type: integer
-        error:
-          format: int32
-          type: integer
-        failedEntities:
           format: int32
           type: integer
     Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryBundleResultViewModel:
@@ -437,6 +422,21 @@ components:
         shouldMinimizeResult:
           description: Minimized the entity results
           type: boolean
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel:
+      type: object
+      properties:
+        passed:
+          format: int32
+          type: integer
+        failed:
+          format: int32
+          type: integer
+        error:
+          format: int32
+          type: integer
+        failedEntities:
+          format: int32
+          type: integer
   securitySchemes:
     API_key_V2:
       type: http

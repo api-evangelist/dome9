@@ -80,39 +80,12 @@ paths:
       x-operation-id-original: AwsEmrCluster_Get
 components:
   schemas:
-    Dome9.Web.Api.AwsEmrCluster.AwsEmrApplicationViewModel:
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStateChangeReasonViewModel:
       type: object
       properties:
-        additionalInfo:
-          type: object
-          additionalProperties:
-            type: string
-        args:
-          type: array
-          items:
-            type: string
-        name:
+        code:
           type: string
-        version:
-          type: string
-    Dome9.Web.Api.AwsEmrCluster.AwsEmrEbsVolumeViewModel:
-      type: object
-      properties:
-        device:
-          type: string
-        volumeId:
-          type: string
-    Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterTimelineViewModel:
-      type: object
-      properties:
-        creationDateTime:
-          format: date-time
-          type: string
-        endDateTime:
-          format: date-time
-          type: string
-        readyDateTime:
-          format: date-time
+        message:
           type: string
     Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceViewModel:
       type: object
@@ -143,6 +116,24 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStatusViewModel'
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStatusViewModel:
+      type: object
+      properties:
+        state:
+          type: string
+        stateChangeReason:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStateChangeReasonViewModel'
+        timeline:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceTimelineViewModel'
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterStatusViewModel:
+      type: object
+      properties:
+        state:
+          type: string
+        stateChangeReason:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterStateChangeReasonViewModel'
+        timeline:
+          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterTimelineViewModel'
     Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterViewModel:
       type: object
       properties:
@@ -219,15 +210,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceViewModel'
-    Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStatusViewModel:
-      type: object
-      properties:
-        state:
-          type: string
-        stateChangeReason:
-          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStateChangeReasonViewModel'
-        timeline:
-          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceTimelineViewModel'
     Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterStateChangeReasonViewModel:
       type: object
       properties:
@@ -235,15 +217,6 @@ components:
           type: string
         message:
           type: string
-    Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterStatusViewModel:
-      type: object
-      properties:
-        state:
-          type: string
-        stateChangeReason:
-          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterStateChangeReasonViewModel'
-        timeline:
-          $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterTimelineViewModel'
     System.Collections.Generic.KeyValuePair_System.String_System.String:
       type: object
       properties:
@@ -253,38 +226,6 @@ components:
         value:
           type: string
           readOnly: true
-    Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceStateChangeReasonViewModel:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceTimelineViewModel:
-      type: object
-      properties:
-        creationDateTime:
-          format: date-time
-          type: string
-        endDateTime:
-          format: date-time
-          type: string
-        readyDateTime:
-          format: date-time
-          type: string
-    Dome9.Web.Api.AwsEmrCluster.AwsEmrConfigurationViewModel:
-      type: object
-      properties:
-        classification:
-          type: string
-        configurations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrConfigurationViewModel'
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
     Dome9.Web.Api.AwsEmrCluster.AwsEmrEc2InstanceAttributesViewModel:
       type: object
       properties:
@@ -317,6 +258,65 @@ components:
           items:
             type: string
         serviceAccessSecurityGroup:
+          type: string
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrEbsVolumeViewModel:
+      type: object
+      properties:
+        device:
+          type: string
+        volumeId:
+          type: string
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrConfigurationViewModel:
+      type: object
+      properties:
+        classification:
+          type: string
+        configurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.AwsEmrCluster.AwsEmrConfigurationViewModel'
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/System.Collections.Generic.KeyValuePair_System.String_System.String'
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrApplicationViewModel:
+      type: object
+      properties:
+        additionalInfo:
+          type: object
+          additionalProperties:
+            type: string
+        args:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        version:
+          type: string
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrClusterTimelineViewModel:
+      type: object
+      properties:
+        creationDateTime:
+          format: date-time
+          type: string
+        endDateTime:
+          format: date-time
+          type: string
+        readyDateTime:
+          format: date-time
+          type: string
+    Dome9.Web.Api.AwsEmrCluster.AwsEmrInstanceTimelineViewModel:
+      type: object
+      properties:
+        creationDateTime:
+          format: date-time
+          type: string
+        endDateTime:
+          format: date-time
+          type: string
+        readyDateTime:
+          format: date-time
           type: string
   securitySchemes:
     API_key_V2:

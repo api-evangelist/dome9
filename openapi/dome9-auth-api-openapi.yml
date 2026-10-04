@@ -292,17 +292,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Auth.ResetPasswordRequestViewModel:
+    Dome9.Web.Api.Auth.ResetPasswordPostViewModel:
       required:
-      - email
+      - requestId
+      - verificationToken
+      - password
       type: object
       properties:
-        email:
-          format: email
-          description: Email Address
+        requestId:
+          format: uuid
           type: string
-          example: MyName@gmail.com
-        recaptchaResponse:
+          example: 00000000-0000-0000-0000-000000000000
+        verificationToken:
+          type: string
+        password:
+          type: string
+        mfaCode:
           type: string
     Dome9.Web.Api.Auth.ChangePasswordViewModel:
       required:
@@ -314,16 +319,6 @@ components:
           type: string
         newPassword:
           type: string
-    Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel:
-      required:
-      - email
-      type: object
-      properties:
-        email:
-          format: email
-          description: Email Address
-          type: string
-          example: MyName@gmail.com
     Dome9.Web.Api.Auth.AssumeRoleViewModel:
       type: object
       properties:
@@ -346,22 +341,27 @@ components:
           type: string
         mfa:
           type: boolean
-    Dome9.Web.Api.Auth.ResetPasswordPostViewModel:
+    Dome9.Web.Api.Auth.ResetPasswordByEmailRequestViewModel:
       required:
-      - requestId
-      - verificationToken
-      - password
+      - email
       type: object
       properties:
-        requestId:
-          format: uuid
+        email:
+          format: email
+          description: Email Address
           type: string
-          example: 00000000-0000-0000-0000-000000000000
-        verificationToken:
+          example: MyName@gmail.com
+    Dome9.Web.Api.Auth.ResetPasswordRequestViewModel:
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          format: email
+          description: Email Address
           type: string
-        password:
-          type: string
-        mfaCode:
+          example: MyName@gmail.com
+        recaptchaResponse:
           type: string
   securitySchemes:
     API_key_V2:

@@ -744,116 +744,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Models.AccountStatsViewModel:
-      type: object
-      properties:
-        dome9Users:
-          format: int32
-          type: integer
-        dome9Roles:
-          format: int32
-          type: integer
-        awsRdsInstances:
-          format: int32
-          type: integer
-        awsInstances:
-          format: int32
-          type: integer
-        awsElbs:
-          format: int32
-          type: integer
-        awsAlbs:
-          format: int32
-          type: integer
-        awsNlbs:
-          format: int32
-          type: integer
-        agents:
-          format: int32
-          type: integer
-        awsLambdaFunctions:
-          format: int32
-          type: integer
-        awsAccounts:
-          format: int32
-          type: integer
-        awsSecurityGroups:
-          format: int32
-          type: integer
-        awsRedshiftClusters:
-          format: int32
-          type: integer
-        dome9SecurityGroups:
-          format: int32
-          type: integer
-        azureAccounts:
-          format: int32
-          type: integer
-        azureVms:
-          format: int32
-          type: integer
-        azureElbs:
-          format: int32
-          type: integer
-        azureNsgs:
-          format: int32
-          type: integer
-        googleCloud:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountStatsViewModel.GoogleCloudStatsViewModel'
-        awsEfs:
-          format: int32
-          type: integer
-        kubernetesNodes:
-          format: int32
-          type: integer
-        kubernetesAccounts:
-          format: int32
-          type: integer
-        alibabaAccounts:
-          format: int32
-          type: integer
-        alibabaRdsDbInstanceCount:
-          format: int32
-          type: integer
-        alibabaEcsInstanceCount:
-          format: int32
-          type: integer
-        ociAccounts:
-          format: int32
-          type: integer
-        ociOnlineBillableVirtualMachinesCount:
-          format: int32
-          type: integer
-        ociDatabasesCount:
-          format: int32
-          type: integer
-        source:
-          enum:
-          - ElasticSearch
-          - Database
-          type: string
-        timeStamp:
-          format: date-time
-          type: string
-    Falconetix.Model.EmailFilterItem:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: boolean
-    Dome9.Web.Api.Models.AccountStatsViewModel.GoogleCloudStatsViewModel:
-      type: object
-      properties:
-        accounts:
-          format: int32
-          type: integer
-        firewallRules:
-          format: int32
-          type: integer
-        vmInstances:
-          format: int32
-          type: integer
     Dome9.Web.Api.Account.AccountUsageViewModel:
       type: object
       properties:
@@ -1112,49 +1002,90 @@ components:
         kubernetesAccounts:
           format: int32
           type: integer
-    Falconetix.Model.Licensing.UpdatePlanContactDetailsModel:
+    Falconetix.Model.AccountEmailFiltersDescriptor:
       type: object
       properties:
-        plan:
-          enum:
-          - Undecided
-          - Beta_Trial_Plan
-          - FREE
-          - METERED
-          - CF_BASIC
-          - CF_DEFAULT
-          - Starter
-          - Growth
-          - Large
-          - XL
-          - SecOpsR2
-          - SecOpsR5
-          - Enterprise
-          - FREE_Unlimited
-          - SecOpsX20
-          - SecOpsX50
-          - SecOpsX100
-          - Rackers
-          - Amazonian
-          - Reseller
-          - SecOpsX10
-          - MSP
-          - POC
-          - AWS_Metered
-          - Enterprise_Trial
-          - Enterprise_Friend
-          - Core_M
-          - Core_L
-          - Enterprise_New
-          - Googler
-          - CheckpointEmployee
-          - Enterprise_PAYG
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.EmailFilterItem'
+    Dome9.Web.Api.Models.AccountStatsViewModel.GoogleCloudStatsViewModel:
+      type: object
+      properties:
+        accounts:
+          format: int32
+          type: integer
+        firewallRules:
+          format: int32
+          type: integer
+        vmInstances:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          format: int32
+          maximum: 100
+          minimum: 3
+          type: integer
+    Dome9.Web.Api.Models.AccountViewModel:
+      type: object
+      properties:
+        useDefaultExternalId:
+          type: boolean
+        allowEditExternalId:
+          type: boolean
+        pairedToCloudInfra:
+          type: boolean
+        crossAccountIdentifier:
+          format: uuid
           type: string
+          example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
-        phoneNumber:
+        customMessage:
           type: string
-        message:
+        plan:
+          type: string
+        ssoEnabled:
+          type: boolean
+        canGenerateCrossAccountId:
+          type: boolean
+        cloudInfraTenantId:
+          type: string
+        cloudInfraTenantName:
+          type: string
+        billingProvider:
+          description: Dome9 or other billing providers. In case of Appdirect we format it as Appdirect/Partner
+          type: string
+        billingInfo:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.BillingViewModel'
+        activeFeatures:
+          type: array
+          items:
+            type: string
+        iconUrl:
+          type: string
+        isManagedAccount:
+          type: boolean
+        maxInvalidPasswordAttempts:
+          format: int32
+          type: integer
+        sessionIdleTimeoutMinutes:
+          format: int32
+          type: integer
+        isMfaEnforced:
+          type: boolean
+        usersManagedBy:
+          enum:
+          - CloudGuard
+          - CloudInfra
+          type: string
+        planExpirationDate:
+          format: date-time
           type: string
     Dome9.Web.Api.Models.AccountSSOConfigViewModel:
       required:
@@ -1179,6 +1110,24 @@ components:
           type: boolean
         samlRoleAttributeName:
           type: string
+    Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          format: int32
+          description: The value of the session idle timeout in minutes, value must be set to a number between 15 and 720.
+          maximum: 720
+          minimum: 15
+          type: integer
+    Dome9.Web.Api.Models.CrossAccountIdentifierViewModel:
+      type: object
+      properties:
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
     Dome9.Web.Api.Models.LicenseViewModel:
       description: A view model representation of the account's License informatino
       type: object
@@ -1251,31 +1200,167 @@ components:
       properties:
         accountName:
           type: string
-    Dome9.Web.Api.Models.AccountMarketplacePutViewModel:
+    Dome9.Web.Api.Models.BillingViewModel:
       type: object
       properties:
-        subscriptionType:
-          enum:
-          - Metered
-          - Contract
-          - Core
-          - Metered2
-          - D9
-          - Logic
-          - AzureD9
-          - AzureD9wh
+        cardHolder:
           type: string
-    Dome9.Web.Api.Account.SessionIdleTimeoutMinutesViewModel:
-      required:
-      - value
+        last4Digits:
+          type: string
+        expMonth:
+          format: int32
+          type: integer
+        expYear:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Account.AccountOwnerViewModel:
       type: object
       properties:
-        value:
+        userId:
           format: int32
-          description: The value of the session idle timeout in minutes, value must be set to a number between 15 and 720.
-          maximum: 720
-          minimum: 15
           type: integer
+    Falconetix.Model.Licensing.UpdatePlanContactDetailsModel:
+      type: object
+      properties:
+        plan:
+          enum:
+          - Undecided
+          - Beta_Trial_Plan
+          - FREE
+          - METERED
+          - CF_BASIC
+          - CF_DEFAULT
+          - Starter
+          - Growth
+          - Large
+          - XL
+          - SecOpsR2
+          - SecOpsR5
+          - Enterprise
+          - FREE_Unlimited
+          - SecOpsX20
+          - SecOpsX50
+          - SecOpsX100
+          - Rackers
+          - Amazonian
+          - Reseller
+          - SecOpsX10
+          - MSP
+          - POC
+          - AWS_Metered
+          - Enterprise_Trial
+          - Enterprise_Friend
+          - Core_M
+          - Core_L
+          - Enterprise_New
+          - Googler
+          - CheckpointEmployee
+          - Enterprise_PAYG
+          type: string
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        message:
+          type: string
+    Falconetix.Model.EmailFilterItem:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: boolean
+    Dome9.Web.Api.Models.AccountStatsViewModel:
+      type: object
+      properties:
+        dome9Users:
+          format: int32
+          type: integer
+        dome9Roles:
+          format: int32
+          type: integer
+        awsRdsInstances:
+          format: int32
+          type: integer
+        awsInstances:
+          format: int32
+          type: integer
+        awsElbs:
+          format: int32
+          type: integer
+        awsAlbs:
+          format: int32
+          type: integer
+        awsNlbs:
+          format: int32
+          type: integer
+        agents:
+          format: int32
+          type: integer
+        awsLambdaFunctions:
+          format: int32
+          type: integer
+        awsAccounts:
+          format: int32
+          type: integer
+        awsSecurityGroups:
+          format: int32
+          type: integer
+        awsRedshiftClusters:
+          format: int32
+          type: integer
+        dome9SecurityGroups:
+          format: int32
+          type: integer
+        azureAccounts:
+          format: int32
+          type: integer
+        azureVms:
+          format: int32
+          type: integer
+        azureElbs:
+          format: int32
+          type: integer
+        azureNsgs:
+          format: int32
+          type: integer
+        googleCloud:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AccountStatsViewModel.GoogleCloudStatsViewModel'
+        awsEfs:
+          format: int32
+          type: integer
+        kubernetesNodes:
+          format: int32
+          type: integer
+        kubernetesAccounts:
+          format: int32
+          type: integer
+        alibabaAccounts:
+          format: int32
+          type: integer
+        alibabaRdsDbInstanceCount:
+          format: int32
+          type: integer
+        alibabaEcsInstanceCount:
+          format: int32
+          type: integer
+        ociAccounts:
+          format: int32
+          type: integer
+        ociOnlineBillableVirtualMachinesCount:
+          format: int32
+          type: integer
+        ociDatabasesCount:
+          format: int32
+          type: integer
+        source:
+          enum:
+          - ElasticSearch
+          - Database
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
     Dome9.Web.Api.Models.ExceedingLicenseViewModel:
       type: object
       properties:
@@ -1291,105 +1376,20 @@ components:
         isExceeding:
           type: boolean
           readOnly: true
-    Dome9.Web.Api.Models.CrossAccountIdentifierViewModel:
+    Dome9.Web.Api.Models.AccountMarketplacePutViewModel:
       type: object
       properties:
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Models.AccountViewModel:
-      type: object
-      properties:
-        useDefaultExternalId:
-          type: boolean
-        allowEditExternalId:
-          type: boolean
-        pairedToCloudInfra:
-          type: boolean
-        crossAccountIdentifier:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-        customMessage:
-          type: string
-        plan:
-          type: string
-        ssoEnabled:
-          type: boolean
-        canGenerateCrossAccountId:
-          type: boolean
-        cloudInfraTenantId:
-          type: string
-        cloudInfraTenantName:
-          type: string
-        billingProvider:
-          description: Dome9 or other billing providers. In case of Appdirect we format it as Appdirect/Partner
-          type: string
-        billingInfo:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.BillingViewModel'
-        activeFeatures:
-          type: array
-          items:
-            type: string
-        iconUrl:
-          type: string
-        isManagedAccount:
-          type: boolean
-        maxInvalidPasswordAttempts:
-          format: int32
-          type: integer
-        sessionIdleTimeoutMinutes:
-          format: int32
-          type: integer
-        isMfaEnforced:
-          type: boolean
-        usersManagedBy:
+        subscriptionType:
           enum:
-          - CloudGuard
-          - CloudInfra
+          - Metered
+          - Contract
+          - Core
+          - Metered2
+          - D9
+          - Logic
+          - AzureD9
+          - AzureD9wh
           type: string
-        planExpirationDate:
-          format: date-time
-          type: string
-    Dome9.Web.Api.Account.AccountOwnerViewModel:
-      type: object
-      properties:
-        userId:
-          format: int32
-          type: integer
-    Falconetix.Model.AccountEmailFiltersDescriptor:
-      type: object
-      properties:
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.EmailFilterItem'
-    Dome9.Web.Api.Models.BillingViewModel:
-      type: object
-      properties:
-        cardHolder:
-          type: string
-        last4Digits:
-          type: string
-        expMonth:
-          format: int32
-          type: integer
-        expYear:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Account.MaxInvalidPasswordAttemptsViewModel:
-      required:
-      - value
-      type: object
-      properties:
-        value:
-          format: int32
-          maximum: 100
-          minimum: 3
-          type: integer
   securitySchemes:
     API_key_V2:
       type: http

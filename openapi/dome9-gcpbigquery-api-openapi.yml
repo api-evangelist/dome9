@@ -53,15 +53,6 @@ components:
           type: string
         eTag:
           type: string
-    Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryReferenceViewModel:
-      type: object
-      properties:
-        datasetId:
-          type: string
-        eTag:
-          type: string
-        projectId:
-          type: string
     Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryViewModel:
       type: object
       properties:
@@ -100,6 +91,15 @@ components:
           type: string
           example: 00000000-0000-0000-0000-000000000000
         name:
+          type: string
+    Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryReferenceViewModel:
+      type: object
+      properties:
+        datasetId:
+          type: string
+        eTag:
+          type: string
+        projectId:
           type: string
     Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryDatasetAccessViewModel:
       type: object

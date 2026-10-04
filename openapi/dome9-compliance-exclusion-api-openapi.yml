@@ -155,9 +155,14 @@ paths:
           description: No Content
 components:
   schemas:
-    Dome9.Web.Api.Compliance.Exclusion.ExclusionPostRequestModel:
+    Dome9.Web.Api.Compliance.Exclusion.ExclusionPutRequestModel:
       type: object
       properties:
+        id:
+          format: uuid
+          description: '[Required] Exclusion ID'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
         rulesetId:
           format: int64
           description: '[Required] Ruleset ID to apply exclusion on.'
@@ -399,29 +404,9 @@ components:
           format: date-time
           description: To date time
           type: string
-    Dome9.Web.Api.Compliance.RuleViewModel:
+    Dome9.Web.Api.Compliance.Exclusion.ExclusionPostRequestModel:
       type: object
       properties:
-        logicHash:
-          description: Rule logic hash
-          pattern: ^[A-Za-z0-9+/]{22}?$
-          type: string
-        rlmId:
-          type: string
-        id:
-          description: Rule ID
-          type: string
-        name:
-          description: Rule name
-          type: string
-    Dome9.Web.Api.Compliance.Exclusion.ExclusionPutRequestModel:
-      type: object
-      properties:
-        id:
-          format: uuid
-          description: '[Required] Exclusion ID'
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
         rulesetId:
           format: int64
           description: '[Required] Ruleset ID to apply exclusion on.'
@@ -534,6 +519,21 @@ components:
           - ContainerRegistry
           - Oci
           - CIEM
+          type: string
+    Dome9.Web.Api.Compliance.RuleViewModel:
+      type: object
+      properties:
+        logicHash:
+          description: Rule logic hash
+          pattern: ^[A-Za-z0-9+/]{22}?$
+          type: string
+        rlmId:
+          type: string
+        id:
+          description: Rule ID
+          type: string
+        name:
+          description: Rule name
           type: string
   securitySchemes:
     API_key_V2:

@@ -97,6 +97,18 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.CloudIamPolicyViewModel'
 components:
   schemas:
+    Dome9.Web.Api.CloudIamPolicyVersionViewModel:
+      type: object
+      properties:
+        versionId:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        document:
+          type: object
+        isDefaultVersion:
+          type: boolean
     Dome9.Web.Api.CloudIamPolicyViewModel:
       type: object
       properties:
@@ -137,18 +149,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Dome9.Web.Api.CloudIamPolicyVersionViewModel:
-      type: object
-      properties:
-        versionId:
-          type: string
-        createDate:
-          format: date-time
-          type: string
-        document:
-          type: object
-        isDefaultVersion:
-          type: boolean
   securitySchemes:
     API_key_V2:
       type: http

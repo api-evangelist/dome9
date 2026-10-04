@@ -81,6 +81,36 @@ paths:
       x-operation-id-original: AzureVirtualMachine_Get
 components:
   schemas:
+    Dome9.Web.Api.Models.AzureNetworkInterfaceViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        dnsSettings:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureNetworkInterfaceDnsSettingsViewModel'
+        ipConfigurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureNicIpConfigurationViewModel'
+        subnet:
+          type: string
+        enableIPForwarding:
+          type: boolean
+        primary:
+          type: boolean
+        macAddress:
+          type: string
+        networkSecurityGroup:
+          type: string
+    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeKeyVaultSecretReferenceViewModel:
+      type: object
+      properties:
+        secretUrl:
+          type: string
+        sourceVault:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeSubResourceViewModel'
     Dome9.Web.Api.Models.AzureVirtualMachineViewModel:
       type: object
       properties:
@@ -148,33 +178,6 @@ components:
           type: string
         storageProfile:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeStorageProfileViewModel'
-    CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineDisk:
-      type: object
-      properties:
-        name:
-          type: string
-        status:
-          $ref: '#/components/schemas/CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineStatus'
-        encryptionSettings:
-          type: array
-          items:
-            $ref: '#/components/schemas/CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineDiskEncryptionSettings'
-    CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineDiskEncryptionSettings:
-      type: object
-      properties:
-        diskEncryptionKey:
-          type: string
-        keyEncryptionKey:
-          type: string
-        enabled:
-          type: boolean
-    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDiffDiskSettingsViewModel:
-      type: object
-      properties:
-        option:
-          type: string
-        placement:
-          type: string
     Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDataDiskViewModel:
       type: object
       properties:
@@ -210,6 +213,11 @@ components:
           type: string
         deleteOption:
           type: string
+    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeVirtualHardDiskViewModel:
+      type: object
+      properties:
+        uri:
+          type: string
     Dome9.Web.Api.Azure.VirtualMachines.AzureNicIpConfigurationViewModel:
       type: object
       properties:
@@ -239,106 +247,38 @@ components:
           type: string
         subnet:
           type: string
-    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeVirtualHardDiskViewModel:
+    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeManagedDiskParametersViewModel:
       type: object
       properties:
-        uri:
-          type: string
-    Dome9.Web.Api.Models.AzureNetworkInterfaceDnsSettingsViewModel:
-      type: object
-      properties:
-        appliedDNSServers:
-          type: array
-          items:
-            type: string
-        dnsServers:
-          type: array
-          items:
-            type: string
-        internalDNSNameLabel:
-          type: string
-        internalFQDN:
-          type: string
-    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeSubResourceViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-    Dome9.Web.Api.Models.VirtualMachineExtensionViewModel:
-      type: object
-      properties:
-        forceUpdateTag:
-          type: string
-        publisher:
-          type: string
-        virtualMachineExtensionType:
-          type: string
-        typeHandlerVersion:
-          type: string
-        autoUpgradeMinorVersion:
-          type: boolean
-        provisioningState:
-          type: string
-        status:
-          type: string
-    CGN.Inventory.Azure.Model.WrapperModels.Compute.MachineImage:
-      type: object
-      properties:
-        id:
-          type: string
-        offer:
-          type: string
-        publisher:
-          type: string
-        sku:
-          type: string
-        version:
-          type: string
-        exactVersion:
-          type: string
-    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeVMDiskSecurityProfileViewModel:
-      type: object
-      properties:
-        securityEncryptionType:
+        storageAccountType:
           type: string
         diskEncryptionSet:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDiskEncryptionSetParametersViewModel'
-    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDiskEncryptionSettingsViewModel:
+        securityProfile:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeVMDiskSecurityProfileViewModel'
+        id:
+          type: string
+    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDiffDiskSettingsViewModel:
       type: object
       properties:
-        diskEncryptionKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeKeyVaultSecretReferenceViewModel'
-        keyEncryptionKey:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeKeyVaultKeyReferenceViewModel'
-        enabled:
-          type: boolean
-    CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineStatus:
+        option:
+          type: string
+        placement:
+          type: string
+    CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineAgent:
       type: object
       properties:
-        code:
+        status:
+          $ref: '#/components/schemas/CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineStatus'
+        vmAgentVersion:
           type: string
-        displayStatus:
-          type: string
-        level:
-          type: string
-        message:
-          type: string
-        time:
-          format: date-time
-          type: string
-    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeStorageProfileViewModel:
+    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeKeyVaultKeyReferenceViewModel:
       type: object
       properties:
-        imageReference:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeImageReferenceViewModel'
-        osDisk:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeOSDiskViewModel'
-        dataDisks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDataDiskViewModel'
-        diskControllerType:
+        keyUrl:
           type: string
+        sourceVault:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeSubResourceViewModel'
     Dome9.Web.Api.Azure.VirtualMachines.AzureComputeImageReferenceViewModel:
       type: object
       properties:
@@ -358,16 +298,20 @@ components:
           type: string
         id:
           type: string
-    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeManagedDiskParametersViewModel:
+    CGN.Inventory.Azure.Model.WrapperModels.Compute.MachineImage:
       type: object
       properties:
-        storageAccountType:
-          type: string
-        diskEncryptionSet:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDiskEncryptionSetParametersViewModel'
-        securityProfile:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeVMDiskSecurityProfileViewModel'
         id:
+          type: string
+        offer:
+          type: string
+        publisher:
+          type: string
+        sku:
+          type: string
+        version:
+          type: string
+        exactVersion:
           type: string
     Dome9.Web.Api.Azure.VirtualMachines.AzureComputeOSDiskViewModel:
       type: object
@@ -397,51 +341,107 @@ components:
           $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeManagedDiskParametersViewModel'
         deleteOption:
           type: string
-    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeKeyVaultKeyReferenceViewModel:
+    Dome9.Web.Api.Models.VirtualMachineExtensionViewModel:
       type: object
       properties:
-        keyUrl:
+        forceUpdateTag:
           type: string
-        sourceVault:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeSubResourceViewModel'
-    Dome9.Web.Api.Models.AzureNetworkInterfaceViewModel:
+        publisher:
+          type: string
+        virtualMachineExtensionType:
+          type: string
+        typeHandlerVersion:
+          type: string
+        autoUpgradeMinorVersion:
+          type: boolean
+        provisioningState:
+          type: string
+        status:
+          type: string
+    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDiskEncryptionSetParametersViewModel:
       type: object
       properties:
         id:
           type: string
-        name:
-          type: string
-        dnsSettings:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.AzureNetworkInterfaceDnsSettingsViewModel'
-        ipConfigurations:
+    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeStorageProfileViewModel:
+      type: object
+      properties:
+        imageReference:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeImageReferenceViewModel'
+        osDisk:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeOSDiskViewModel'
+        dataDisks:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureNicIpConfigurationViewModel'
-        subnet:
+            $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDataDiskViewModel'
+        diskControllerType:
           type: string
-        enableIPForwarding:
-          type: boolean
-        primary:
-          type: boolean
-        macAddress:
-          type: string
-        networkSecurityGroup:
-          type: string
-    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeKeyVaultSecretReferenceViewModel:
+    CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineStatus:
       type: object
       properties:
-        secretUrl:
+        code:
           type: string
-        sourceVault:
-          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeSubResourceViewModel'
-    CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineAgent:
+        displayStatus:
+          type: string
+        level:
+          type: string
+        message:
+          type: string
+        time:
+          format: date-time
+          type: string
+    Dome9.Web.Api.Models.AzureNetworkInterfaceDnsSettingsViewModel:
       type: object
       properties:
+        appliedDNSServers:
+          type: array
+          items:
+            type: string
+        dnsServers:
+          type: array
+          items:
+            type: string
+        internalDNSNameLabel:
+          type: string
+        internalFQDN:
+          type: string
+    CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineDisk:
+      type: object
+      properties:
+        name:
+          type: string
         status:
           $ref: '#/components/schemas/CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineStatus'
-        vmAgentVersion:
+        encryptionSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineDiskEncryptionSettings'
+    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDiskEncryptionSettingsViewModel:
+      type: object
+      properties:
+        diskEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeKeyVaultSecretReferenceViewModel'
+        keyEncryptionKey:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeKeyVaultKeyReferenceViewModel'
+        enabled:
+          type: boolean
+    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeVMDiskSecurityProfileViewModel:
+      type: object
+      properties:
+        securityEncryptionType:
           type: string
-    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDiskEncryptionSetParametersViewModel:
+        diskEncryptionSet:
+          $ref: '#/components/schemas/Dome9.Web.Api.Azure.VirtualMachines.AzureComputeDiskEncryptionSetParametersViewModel'
+    CGN.Inventory.Azure.Model.WrapperModels.Compute.VirtualMachineDiskEncryptionSettings:
+      type: object
+      properties:
+        diskEncryptionKey:
+          type: string
+        keyEncryptionKey:
+          type: string
+        enabled:
+          type: boolean
+    Dome9.Web.Api.Azure.VirtualMachines.AzureComputeSubResourceViewModel:
       type: object
       properties:
         id:

@@ -2235,8 +2235,6 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
-  - Bigtable
-  tags_raw:
   - Big Table
   properties:
   - type: OpenAPI
@@ -3127,8 +3125,6 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
-  - CloudTrail
-  tags_raw:
   - Cloud Trail
   properties:
   - type: OpenAPI
@@ -3951,8 +3947,6 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
-  - SecurityGroup
-  tags_raw:
   - Security Group
   properties:
   - type: OpenAPI
@@ -3993,8 +3987,6 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
-  - ServiceAccount
-  tags_raw:
   - Service Account
   properties:
   - type: OpenAPI
@@ -4015,8 +4007,6 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
-  - shiftleft
-  tags_raw:
   - Shift Left
   properties:
   - type: OpenAPI
