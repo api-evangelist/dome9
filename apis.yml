@@ -2235,6 +2235,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - Bigtable
+  tags_raw:
   - Big Table
   properties:
   - type: OpenAPI
@@ -3125,6 +3127,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - CloudTrail
+  tags_raw:
   - Cloud Trail
   properties:
   - type: OpenAPI
@@ -3947,6 +3951,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - SecurityGroup
+  tags_raw:
   - Security Group
   properties:
   - type: OpenAPI
@@ -3987,6 +3993,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - ServiceAccount
+  tags_raw:
   - Service Account
   properties:
   - type: OpenAPI
@@ -4007,6 +4015,8 @@ apis:
   humanURL: https://docs.cgn.portal.checkpoint.com/
   baseURL: https://api.dome9.com/v2
   tags:
+  - shiftleft
+  tags_raw:
   - Shift Left
   properties:
   - type: OpenAPI
@@ -4042,6 +4052,9 @@ apis:
   - type: PostmanCollection
     url: https://www.postman.com/dome9-security/workspace/dome9-api
 common:
+  - type: CapabilityMap
+    url: capabilities/dome9-capability-edges.yml
+    name: Dome9 Business Capability Map
   - type: Overlay
     url: overlays/dome9-api-overlay.yaml
   - type: DomainSecurity
