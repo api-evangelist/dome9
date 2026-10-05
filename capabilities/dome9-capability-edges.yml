@@ -1,0 +1,482 @@
+slug: dome9
+provider: Dome9
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 44
+edges:
+- tag: Cloud Iam Group
+  spec_file: dome9-cloud-iam-group-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /v2/CloudIamGroup — 'Cloud iam group get'; schemas CloudIamGroupViewModel, AwsIamGroupPolicyViewModel,
+    CloudIamGroupInlinePolicyViewModel
+  reason: Cloud IAM groups and their attached/inline permission policies — access-entitlement structures.
+    This is Identity & Access Management, not HR grouping or any business noun.
+- tag: Cloud Iam Policy
+  spec_file: dome9-cloud-iam-policy-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '''Fetch all IAM policies'' and ''Fetch all defaults IAM policies''; schemas CloudIamPolicyViewModel,
+    CloudIamPolicyVersionViewModel'
+  reason: Enumerates cloud IAM permission policies and their versions — authorisation policy inventory,
+    i.e. Identity & Access Management. Note this is access policy, not corporate Policy Management (BC-130.20).
+- tag: Cloud Iam Role
+  spec_file: dome9-cloud-iam-role-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '''Fetch all IAM roles for the user from all cloud accounts''; schemas CloudIamRoleViewModel.PermissionsBoundary,
+    AwsIamRoleLastUsedViewModel'
+  reason: Cloud IAM roles with permissions boundaries, inline policies and last-used data — role-based
+    access entitlement visibility, clearly Identity & Access Management rather than HR role/job management.
+- tag: Cloud Iam User
+  spec_file: dome9-cloud-iam-user-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '''Fetch all IAM users for the user from all cloud accounts''; schemas CloudIamUserAttachedManagedPolicyViewModel,
+    CloudIamUserViewModel.SSHPublicKeyMetaDataViewModel'
+  reason: Lists cloud IAM user principals with attached managed policies, permissions boundaries and SSH
+    keys — machine/human identity and entitlement inventory. Identity & Access Management; not customer
+    or employee data management.
+- tag: Iam Safe Lease
+  spec_file: dome9-iam-safe-lease-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /v2/iam-safe-leases/custom-lease  'Create a new lease for AWS IAM user or role'; GET
+    /v2/iam-safe-leases/me 'Get leases for this user (me)'
+  reason: IAM Safe leases grant, list and revoke time-bound elevated permissions for AWS IAM users and
+    roles — privileged/just-in-time access administration, squarely Identity & Access Management.
+- tag: Aws Security Group Policy
+  spec_file: dome9-aws-security-group-policy-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: '''Create a new AWS security group'', ''Creat a new Service (rule) for the security group'',
+    ''Update protection mode to security group'', ''Delete a service (rule) from an AWS security group'''
+  reason: Full CRUD over AWS security group firewall rules and protection mode — active administration
+    of network security controls, squarely Cybersecurity Management. Left at L1 because rule administration
+    spans security architecture and operational control without the spec naming either.
+- tag: Cloud Iam Credential Report
+  spec_file: dome9-cloud-iam-credential-report-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: GET /v2/CloudIamCredentialReport/user — 'Cloud iam credential report get user'; schemas CloudIamCredentialReportUserAccessKeyViewModel,
+    CloudIamCredentialReportUserCertificateViewModel
+  reason: Retrieves IAM credential reports per user including access keys and certificates — credential
+    inventory and hygiene reporting, squarely Identity & Access Management. Could arguably sit under security
+    governance reporting, hence 0.8 rather than higher.
+- tag: Cloud Security Group
+  spec_file: dome9-cloud-security-group-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: '"AWS Security Groups"; POST /v2/cloudsecuritygroup/{id}/protection-mode "Change the protection
+    mode for an AWS security group"; POST /v2/cloudsecuritygroup/{groupid}/services/{policyType} "Creat
+    a new Service (rule) for the security group"'
+  reason: Full CRUD over AWS security groups and their firewall rules, plus protection-mode changes and
+    revision history — active configuration and enforcement of network security controls, i.e. Cybersecurity
+    Management. L2 left null because the operations straddle security architecture/control configuration
+    rather than naming one narrower sub-capability.
+- tag: Security Group
+  spec_file: dome9-security-group-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: '"Security group create inbound service", "Security group update fim policy", "Security group
+    disable FIM"'
+  reason: Operations manage cloud security-group firewall rules (inbound/outbound services, port ranges)
+    and file-integrity-monitoring policies — direct configuration of technical security controls. L1 cybersecurity
+    asserted; the surface mixes preventative control configuration and detection policy, so no L2.
+- tag: Serverless
+  spec_file: dome9-serverless-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: '"Enable Serverless protection", "Serverless post exclusion", schema "ServerlessMissingPermissionsViewModel"'
+  reason: Enables and configures security protection, policy config and exclusions for serverless functions
+    across cloud accounts — cloud workload security control management. Mapped at L1 as the operations
+    span policy, permissions and protection state.
+- tag: Tenable Account
+  spec_file: dome9-tenable-account-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.8
+  evidence: '''Onboard Tenable accounts''; POST /v2/TenableAccount/Sync ''Tenable account sync vulnerabilities'';
+    schema TenableVulnerabilitySyncResultViewModel'
+  reason: The tag integrates the Tenable vulnerability scanner and synchronises vulnerability findings
+    into CloudGuard, which realises vulnerability scanning/remediation workflow rather than generic integration
+    config.
+- tag: User
+  spec_file: dome9-user-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: '''Create a new Dome9 user'', ''Unlock a user that was locked out after a certain number of
+    failed…'', ''Update IAM Safe entities for a user'', schema MfaUserEnforcementViewModel'
+  reason: Operations manage user accounts, lockout, MFA enforcement and cloud IAM entity assignments —
+    identity and access administration. Some chance this is better read as tenant user administration,
+    hence not maximal confidence.
+- tag: Azure Security Group Policy
+  spec_file: dome9-azure-security-group-policy-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.78
+  evidence: '"Azure Network Security Group Policies"; "AzureSecurityGroupPolicy_Post  Create a security
+    group policy"; "Enable or disable Tamper Protetion for a specific security group policy"'
+  reason: Operations create, update and tamper-protect Azure network security group (firewall) policies
+    — this is management of network security controls, i.e. Cybersecurity Management. No L2 fits cleanly
+    (not IAM, not vuln scanning, not SOC response), so only the L1 is asserted.
+- tag: Finding
+  spec_file: dome9-finding-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.78
+  evidence: 'openapi description: "Compliance Findings"; "Get statistics for each rule in a bundle (number
+    failures)"; "Filter findings by account, region, VPC, IP, instance name"'
+  reason: 'Core cloud-security posture finding management: rule-bundle failures, severity, assignee, comments,
+    bulk close/archive across cloud accounts. Plainly cybersecurity; L2 left null because it straddles
+    security governance/compliance posture and remediation of control failures.'
+- tag: Google Cloud Iam Policy
+  spec_file: dome9-google-cloud-iam-policy-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: GET /v2/GoogleCloudIamPolicy — "Google cloud iam policy get"; schemas GcpIamPolicyBindingsViewModel,
+    GcpIamPolicyAuditLogConfigsViewModel
+  reason: Exposes GCP IAM policy bindings and audit log configuration — authorisation policy visibility.
+    Squarely Identity & Access Management within cybersecurity.
+- tag: Clarity
+  spec_file: dome9-clarity-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.75
+  evidence: '''Clarity get security groups async'', ''Clarity get azure assets security groups async'',
+    ''Clarity get google assets group by network async''; schema ''GoogleFirewallRuleScopeViewModel'''
+  reason: Cross-cloud visualisation of networks, security groups and firewall rules — network security
+    posture visibility, clearly a cybersecurity capability. Sits between security architecture visibility
+    and posture governance, so only the L1 is asserted.
+- tag: Compliance Ruleset
+  spec_file: dome9-compliance-ruleset-api-openapi.yml
+  capability_id: BC-620.10
+  capability_id_l1: BC-620
+  capability_name: Security Strategy & Governance Management
+  confidence: 0.75
+  evidence: '''Get all rulesets for the account'', ''Create a new ruleset''; schemas Compliance.Ruleset.RuleBundleResultViewModel,
+    RuleBundleVersionViewModel'
+  reason: CRUD over bundles of cloud security compliance rules — authoring and versioning of security
+    policy/standard content, i.e. security governance and GRC content management.
+- tag: Continuous Compliance Policy V2
+  spec_file: dome9-continuous-compliance-policy-v2-api-openapi.yml
+  capability_id: BC-620.10
+  capability_id_l1: BC-620
+  capability_name: Security Strategy & Governance Management
+  confidence: 0.75
+  evidence: '''Continuous Compliance Policies'' — ''Evaluate the ruleset version elected for each cloud
+    account'', ''Create new policies.'''
+  reason: Binds compliance rulesets to cloud accounts for continuous assessment — administration of the
+    security compliance/GRC policy framework.
+- tag: ContinuousCompliancePolicy
+  spec_file: dome9-continuouscompliancepolicy-api-openapi.yml
+  capability_id: BC-620.10
+  capability_id_l1: BC-620
+  capability_name: Security Strategy & Governance Management
+  confidence: 0.75
+  evidence: '''Get all compliance policies for the account'', ''Create a new compliance policy'''
+  reason: Lifecycle management of continuous cloud security compliance policies — security governance/GRC
+    policy administration.
+- tag: MSP
+  spec_file: dome9-msp-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.75
+  evidence: POST /msp/v1/account  'Create a new managed account'; DELETE /msp/v1/account/{accountId} 'Delete
+    An account that was previously created by this'; POST /msp/v1/account/user 'Create a new user in a
+    managed account'
+  reason: MSP-facing surface that creates and deletes managed customer accounts (tenants) and their users,
+    plus per-account branding icons — tenant provisioning and lifecycle in a multi-tenant SaaS, with a
+    secondary tenant-configuration (branding) element.
+- tag: Protected Asset
+  spec_file: dome9-protected-asset-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.75
+  evidence: '"Search API for protected assets" with schemas "OpenSecurityIssuesViewModel", "VulnerabilityStats",
+    "VulnerabilitySeverityStats"'
+  reason: The operation searches the inventory of cloud assets under security protection, returning open
+    security issues and vulnerability severity statistics per asset. That is cybersecurity posture management;
+    it straddles vulnerability management and security governance reporting, so only the L1 is asserted.
+- tag: Access Lease
+  spec_file: dome9-access-lease-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /v2/accesslease/aws AccessLease_AcquireAwsLease "Create a new Access Lease for an AWS
+    service"; "Terminate an Access Lease"
+  reason: Dome9 access leases grant time-limited, on-demand access to cloud services and can be terminated
+    — i.e. provisioning and revoking privileged access, which is Identity & Access Management within the
+    security domain rather than any commercial leasing concept.
+- tag: Account Trust
+  spec_file: dome9-account-trust-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: '"Allow you to define a trust between accounts in order to allow users in a certain account
+    to make changes and operation on another account. Actions can be taken on a trustee account via a
+    role which is defined on it. The role should be assumed by a user from the trusted account."'
+  reason: Cross-account trust definitions and assumable roles are delegated-access administration — role
+    assumption and access restrictions between accounts, squarely Identity & Access Management.
+- tag: Assessment
+  spec_file: dome9-assessment-api-openapi.yml
+  capability_id: BC-620.10
+  capability_id_l1: BC-620
+  capability_name: Security Strategy & Governance Management
+  confidence: 0.72
+  evidence: '"Run and View Compliance Assessments"; POST /v2/assessment/bundleV2 "Run an assessment on
+    a cloud environment using a bundle (V2)"'
+  reason: Executes rule-engine compliance assessments (rulesets/bundles) against cloud environments —
+    security posture governance and compliance assurance, i.e. security GRC rather than financial or internal-audit
+    compliance.
+- tag: AwsInspectorFindings
+  spec_file: dome9-awsinspectorfindings-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.72
+  evidence: GET /v2/AwsInspectorFindings "Aws inspector findings get"; schemas "AwsInspectorFindingsViewModel",
+    "AwsInspectorRulesPackageViewModel"
+  reason: AWS Inspector findings are vulnerability-assessment results against rules packages; exposing
+    them maps to vulnerability management. Confidence tempered because the operation is a single read
+    with no remediation workflow.
+- tag: GcpSecurityGroup
+  spec_file: dome9-gcpsecuritygroup-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.72
+  evidence: GET /v2/GcpSecurityGroup/{ExternalId} — "get Gcp Security Group by external id"; schema GcpSecurityGroup.GcpServiceRuleViewModel
+  reason: Exposes GCP security group (network access rule) configuration for posture assessment by a CSPM
+    tool. Clearly cybersecurity control visibility; sub-capability ambiguous between security architecture
+    and governance, so L1 only.
+- tag: Google Cloud Firewall Rule
+  spec_file: dome9-google-cloud-firewall-rule-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.72
+  evidence: GET /v2/GoogleCloudFirewallRule — "Google cloud firewall rule get"; schema GoogleFirewallRuleScopeViewModel
+  reason: Retrieval of GCP firewall rule configuration for security posture evaluation. Network security
+    control visibility — cybersecurity, at L1 since no sub-capability is explicitly named.
+- tag: Agentless
+  spec_file: dome9-agentless-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: openapi description "Agentless Workload Posture"; GET /v2/workload/agentless/{cloudProvider}/accounts/{id}
+    "Get AWP account scanner configuration"; "Enable AWP AWS account"
+  reason: Onboarding and configuring agentless workload-posture scanners across AWS/Azure accounts is
+    security scanning of cloud workloads. L1 Cybersecurity Management is well grounded; whether it is
+    vulnerability management or broader posture assessment is ambiguous, so no L2 is asserted.
+- tag: Assessment History V2
+  spec_file: dome9-assessment-history-v2-api-openapi.yml
+  capability_id: BC-620.10
+  capability_id_l1: BC-620
+  capability_name: Security Strategy & Governance Management
+  confidence: 0.7
+  evidence: '"Compliance Assessment History"; "Get an executive report of assessments for the selected
+    ruleset and platform"; schema StatsBySeverityViewModel'
+  reason: Historical results, trends and executive reporting of security-compliance assessments across
+    cloud accounts — reporting layer of the security posture/GRC capability.
+- tag: Aws Security Group
+  spec_file: dome9-aws-security-group-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: '''Get all referenced security groups'' and ''Get all Aws security group Entities'', schema
+    AwsSecurityGroupViewModel'
+  reason: Enumerates AWS security groups (network firewall rule sets) and their cross-references — a core
+    cloud network security control surface. Mapped at L1 Cybersecurity Management; read-only scope does
+    not pin a specific sub-capability.
+- tag: AzureSqlDb
+  spec_file: dome9-azuresqldb-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: GET /v2/AzureSqlDb — schemas include 'BlobAuditingPolicyViewModel', 'TransparentDataEncryptionViewModel',
+    'SecurityAleryPolicyViewModel'
+  reason: Read-only retrieval of Azure SQL database security configuration (auditing policy, transparent
+    data encryption, security alert policy) for cloud security posture assessment — a cybersecurity capability.
+    No single L2 fits cleanly (posture/config assessment sits between governance, architecture and vulnerability
+    management), so only the L1 is asserted.
+- tag: Billing
+  spec_file: dome9-billing-api-openapi.yml
+  capability_id: BC-4250.40
+  capability_id_l1: BC-4250
+  capability_name: Payment Collection & Dunning
+  confidence: 0.7
+  evidence: POST /v2/Billing 'Billing_CreatePaymentRequest'; GET /billing/success, /billing/pending, /billing/failure
+    'Billing PPP response'
+  reason: Creation of payment requests plus payment-provider success/pending/failure callbacks is payment
+    authorisation and collection for the SaaS subscription, not general financial accounting.
+- tag: Cloud Iam Account Summary
+  spec_file: dome9-cloud-iam-account-summary-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /v2/CloudIamAccountSummary — 'Cloud iam account summary get'; schema CloudIamAccountSummaryViewModel
+  reason: Surfaces the cloud account's IAM summary (user/MFA/credential posture counts), i.e. identity
+    and access configuration visibility. Identity & Access Management is the honest fit; confidence tempered
+    because only one read operation and no explicit field list is given.
+- tag: Cloud Iam Password Policy
+  spec_file: dome9-cloud-iam-password-policy-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /v2/CloudIamPasswordPolicy; schema Dome9.Web.Api.Models.CloudIamPasswordPolicy
+  reason: Reads the cloud account IAM password policy (credential strength/rotation settings) — an access-management
+    control configuration. Mapped to Identity & Access Management; the operation summary in the spec is
+    mislabelled ('Fetch all IAM roles'), so confidence is moderate, but path and schema both say password
+    policy.
+- tag: Cloud Iam Virtual Mfa Device
+  spec_file: dome9-cloud-iam-virtual-mfa-device-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /v2/CloudIamVirtualMfaDevice  CloudIamVirtualMfaDevice_Get — schema Dome9.Web.Api.CloudIamVirtualMfaDevices.CloudIamVirtualMfaDeviceViewModel
+  reason: Exposes cloud IAM virtual MFA device inventory from monitored cloud accounts, i.e. visibility
+    over identity and multi-factor access controls, which sits under Identity & Access Management. Single
+    read-only operation keeps confidence moderate.
+- tag: Compliance Exclusion
+  spec_file: dome9-compliance-exclusion-api-openapi.yml
+  capability_id: BC-620.10
+  capability_id_l1: BC-620
+  capability_name: Security Strategy & Governance Management
+  confidence: 0.7
+  evidence: '''Compliance Exclusions'' — ''Get a list of exclusions for the account'', ''Add a new exclusion'';
+    schema Dome9.Web.Api.Compliance.RuleViewModel'
+  reason: Manages exceptions to cloud security compliance rules — security GRC policy administration,
+    matching Security Strategy & Governance Management rather than enterprise regulatory compliance.
+- tag: CompliancePolicy
+  spec_file: dome9-compliancepolicy-api-openapi.yml
+  capability_id: BC-620.10
+  capability_id_l1: BC-620
+  capability_name: Security Strategy & Governance Management
+  confidence: 0.7
+  evidence: PUT /v2/CompliancePolicy/{id}  'Update a Ruleset (Legacy)'; schema RuleBundleRequestViewModel
+  reason: Legacy endpoint that updates compliance rulesets; same security policy/ruleset governance surface
+    as Compliance Ruleset despite the 'Policy' tag name.
+- tag: External Findings
+  spec_file: dome9-external-findings-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: '"Findings from External (3rd-party) systems"; "Add a list of findings to Dome9, from an external
+    source."; schema "ExternalFindingsRulesPackageViewModel"'
+  reason: Ingestion, search, archival and deletion of third-party security findings into the CSPM platform
+    — clearly cybersecurity posture/finding management. Left at L1 because the findings could be misconfiguration,
+    vulnerability or detection-derived and the context does not disambiguate the sub-capability.
+- tag: GcpServiceAccount
+  spec_file: dome9-gcpserviceaccount-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /v2/GcpServiceAccount — "Gcp service account get all"; schema GcpServiceAccount.GcpServiceAccountKeyViewModel
+  reason: Inventory of GCP service accounts and their keys — machine identities and credentials — read
+    for security posture. This is identity and access management visibility, not a business-domain object.
+- tag: Intelligence
+  spec_file: dome9-intelligence-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.7
+  evidence: '"CloudGuard Intelligence allows you to visualize and analyze Account Activity and Network
+    Traffic into and out of your cloud environment"; POST /v2/view/magellan/magellan-cloudtrail-onboarding
+    ''Onboard an account for Account Activity.'''
+  reason: Onboards cloud accounts so their CloudTrail/ActionTrail activity and VPC flow logs are ingested
+    for security analysis — log-driven threat detection and monitoring. Most operations are onboarding/notification
+    plumbing, so confidence is moderate.
+- tag: LicenseActivator
+  spec_file: dome9-licenseactivator-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.7
+  evidence: POST /v2/LicenseActivator/ActivateUserLicense  'Activate given license to the account'; GET
+    /v2/LicenseActivator/GetAllProductKeys 'Returns all user activate license'
+  reason: Lists product keys and activates purchased licenses against an account — commercial entitlement
+    activation in the SaaS subscription lifecycle. Held at L1 as the evidence straddles provisioning (activation)
+    and entitlement resolution.
+- tag: Protected Assets Report
+  spec_file: dome9-protected-assets-report-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: 'openapi description: "Compliance Protected Asset csv reports"; "Protected assets report export
+    to csv"'
+  reason: Export of compliance/posture reports over the protected cloud-asset estate — security compliance
+    reporting within the CSPM product. Mapped at L1 only since the operations are generic CSV export and
+    do not clearly name a sub-capability (governance reporting vs vulnerability remediation).
+- tag: Role
+  spec_file: dome9-role-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"Create a new role", "Get all roles for the account", schema "Dome9.Web.Api.User.PermissionsViewModel"'
+  reason: Full CRUD over roles that carry permission sets and are attached to users and service accounts
+    — role-based access administration, which is the Identity & Access Management sub-capability. Confidence
+    held moderate because this is RBAC configuration inside one vendor's console rather than enterprise-wide
+    IAM.
+- tag: Service Account
+  spec_file: dome9-service-account-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"Create a new Service Account", "Generate a new access key and secret for a specific Service
+    Account", "Update a Service Account (Name and Roles)"'
+  reason: Lifecycle and credential issuance for non-human (service) identities with role assignment —
+    machine identity and access management. Could alternatively be read as developer credential management,
+    so confidence is moderate.
