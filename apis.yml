@@ -4042,6 +4042,8 @@ apis:
   - type: PostmanCollection
     url: https://www.postman.com/dome9-security/workspace/dome9-api
 common:
+  - type: FinOps
+    url: finops/dome9-finops.yml
   - type: CapabilityMap
     url: capabilities/dome9-capability-edges.yml
     name: Dome9 Business Capability Map
