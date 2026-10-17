@@ -105,6 +105,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Dome9.Web.Api.Models.FimGetViewModel:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.FimAlertViewModel'
+        total:
+          format: int64
+          type: integer
     Falconetix.Model.AlertPivotEntity:
       type: object
       properties:
@@ -203,16 +213,6 @@ components:
         modified:
           format: date-time
           type: string
-    Dome9.Web.Api.Models.FimGetViewModel:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.FimAlertViewModel'
-        total:
-          format: int64
-          type: integer
   securitySchemes:
     API_key_V2:
       type: http

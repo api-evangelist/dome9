@@ -58,7 +58,7 @@ paths:
             text/xml:
               schema:
                 $ref: '#/components/schemas/Dome9.Web.Api.Models.AppD9AccountViewModel'
-      summary: Application D9 account info
+      summary: Application D9Account info
       x-summary-source: derived
   /v2/application/intercom:
     get:
@@ -88,13 +88,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Models.AppMenuViewModel:
-      type: object
-      properties:
-        permissions:
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.Models.AppIntercomViewModel:
       type: object
       properties:
@@ -117,6 +110,13 @@ components:
       properties:
         d9AwsAccountNumber:
           type: string
+    Dome9.Web.Api.Models.AppMenuViewModel:
+      type: object
+      properties:
+        permissions:
+          type: array
+          items:
+            type: string
   securitySchemes:
     API_key_V2:
       type: http

@@ -105,16 +105,6 @@ paths:
       x-operation-id-original: ManagedGenericList_Get
 components:
   schemas:
-    Dome9.Web.Api.GenericList.GenericListValueViewModel:
-      required:
-      - value
-      type: object
-      properties:
-        value:
-          pattern: '[a-zA-Z0-9/.\-_:%*{}()=!&|\\$#~^+@ \u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff]+'
-          type: string
-        comment:
-          type: string
     Dome9.Web.Api.GenericList.GenericListResponseViewModel:
       required:
       - id
@@ -137,6 +127,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.GenericList.GenericListValueViewModel'
+    Dome9.Web.Api.GenericList.GenericListValueViewModel:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          pattern: '[a-zA-Z0-9/.\-_:%*{}()=!&|\\$#~^+@ \u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff]+'
+          type: string
+        comment:
+          type: string
   securitySchemes:
     API_key_V2:
       type: http

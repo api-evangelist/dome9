@@ -74,6 +74,15 @@ paths:
       x-operation-id-original: CloudEfs_Get
 components:
   schemas:
+    Dome9.Web.Api.CloudEfsSizeInBytesViewModel:
+      type: object
+      properties:
+        timeStamp:
+          format: date-time
+          type: string
+        value:
+          format: int64
+          type: integer
     Dome9.Web.Api.CloudEfsViewModel:
       type: object
       properties:
@@ -354,15 +363,6 @@ components:
           - eu_jovanovac_1
           - ap_singapore_2
           type: string
-    Dome9.Web.Api.CloudEfsSizeInBytesViewModel:
-      type: object
-      properties:
-        timeStamp:
-          format: date-time
-          type: string
-        value:
-          format: int64
-          type: integer
     Dome9.Web.Api.CloudEfsMountTargetViewModel:
       type: object
       properties:

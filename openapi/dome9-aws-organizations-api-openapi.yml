@@ -82,27 +82,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.AwsOrganizationViewModel:
+    Dome9.Web.Api.Organizations.AwsOrganizationTagViewModel:
       type: object
       properties:
-        id:
+        key:
           type: string
-        name:
+        value:
           type: string
-        unitPath:
-          type: string
-        arn:
-          type: string
-        organizationType:
-          enum:
-          - Root
-          - Account
-          - Unit
-          type: string
-        organizationPolicies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Organizations.AwsOrganizationPolicyViewModel'
     Dome9.Web.Api.Organizations.AwsOrganizationPolicyViewModel:
       type: object
       properties:
@@ -119,13 +105,6 @@ components:
         name:
           type: string
         summaryType:
-          type: string
-    Dome9.Web.Api.Organizations.AwsOrganizationTagViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
           type: string
     Dome9.Web.Api.AwsOrganizationAccountViewModel:
       type: object
@@ -167,6 +146,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Organizations.AwsOrganizationTagViewModel'
+    Dome9.Web.Api.AwsOrganizationViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        unitPath:
+          type: string
+        arn:
+          type: string
+        organizationType:
+          enum:
+          - Root
+          - Account
+          - Unit
+          type: string
+        organizationPolicies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Organizations.AwsOrganizationPolicyViewModel'
   securitySchemes:
     API_key_V2:
       type: http

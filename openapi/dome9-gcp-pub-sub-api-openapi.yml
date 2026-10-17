@@ -144,17 +144,6 @@ paths:
       x-operation-id-original: GcpPubSub_Get
 components:
   schemas:
-    Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel.GcpPubSubPolicyBindingViewModel:
-      type: object
-      properties:
-        condition:
-          type: object
-        members:
-          type: array
-          items:
-            type: string
-        role:
-          type: string
     Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel:
       type: object
       properties:
@@ -200,6 +189,17 @@ components:
           type: string
           example: 00000000-0000-0000-0000-000000000000
         name:
+          type: string
+    Dome9.Web.Api.Google.PubSub.GcpPubSubIamPolicyViewModel.GcpPubSubPolicyBindingViewModel:
+      type: object
+      properties:
+        condition:
+          type: object
+        members:
+          type: array
+          items:
+            type: string
+        role:
           type: string
     Dome9.Web.Api.Google.PubSub.GcpPubSubTopicViewModel:
       type: object

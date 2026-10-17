@@ -45,15 +45,6 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudNaclViewModel'
 components:
   schemas:
-    Dome9.Web.Api.Controllers.CloudNaclAssociationViewModel:
-      type: object
-      properties:
-        naclId:
-          type: string
-        nAclAssociationId:
-          type: string
-        subnetId:
-          type: string
     Dome9.Web.Api.Controllers.NaclEntryIcmpTypeCodeViewModel:
       type: object
       properties:
@@ -65,24 +56,15 @@ components:
           type: integer
         description:
           type: string
-    Dome9.Web.Api.Controllers.CloudNaclEntryViewModel:
+    Dome9.Web.Api.Controllers.CloudNaclAssociationViewModel:
       type: object
       properties:
-        protocol:
+        naclId:
           type: string
-        ruleNumber:
-          format: int32
-          type: integer
-        ruleAction:
+        nAclAssociationId:
           type: string
-        egress:
-          type: boolean
-        cidrBlock:
+        subnetId:
           type: string
-        portRange:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.NaclEntryPortRange'
-        icmpTypeCode:
-          $ref: '#/components/schemas/Dome9.Web.Api.Controllers.NaclEntryIcmpTypeCodeViewModel'
     Dome9.Web.Api.Models.CloudNaclViewModel:
       type: object
       properties:
@@ -339,6 +321,24 @@ components:
         to:
           format: int32
           type: integer
+    Dome9.Web.Api.Controllers.CloudNaclEntryViewModel:
+      type: object
+      properties:
+        protocol:
+          type: string
+        ruleNumber:
+          format: int32
+          type: integer
+        ruleAction:
+          type: string
+        egress:
+          type: boolean
+        cidrBlock:
+          type: string
+        portRange:
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.NaclEntryPortRange'
+        icmpTypeCode:
+          $ref: '#/components/schemas/Dome9.Web.Api.Controllers.NaclEntryIcmpTypeCodeViewModel'
   securitySchemes:
     API_key_V2:
       type: http

@@ -182,6 +182,17 @@ paths:
           description: No Content
 components:
   schemas:
+    Falconetix.Model.IPDescriptor:
+      required:
+      - ip
+      type: object
+      properties:
+        ip:
+          type: string
+        comment:
+          maxLength: 500
+          minLength: 0
+          type: string
     Dome9.Web.Api.IPList.IpListPutViewModel:
       type: object
       properties:
@@ -198,17 +209,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Falconetix.Model.IPDescriptor'
-    Falconetix.Model.IPDescriptor:
-      required:
-      - ip
-      type: object
-      properties:
-        ip:
-          type: string
-        comment:
-          maxLength: 500
-          minLength: 0
-          type: string
     Dome9.Web.Api.IPList.IpListViewModel:
       type: object
       properties:

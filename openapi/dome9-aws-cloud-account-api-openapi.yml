@@ -752,13 +752,94 @@ paths:
           description: No Content
 components:
   schemas:
-    Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel:
+    Dome9.Web.Api.Models.AwsSyncNowResultViewModel:
       type: object
       properties:
-        entries:
-          type: array
-          items:
-            type: string
+        cloudAccountId:
+          format: uuid
+          description: the AWS account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: the account name
+          type: string
+        externalAccountNumber:
+          description: the AWS external account number
+          type: string
+        workFlowId:
+          format: uuid
+          description: the AWS workflow id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel:
+      type: object
+      properties:
+        srl:
+          description: internal use
+          type: string
+        consecutiveFails:
+          format: int32
+          description: number of consecutive failures due to missing permissions
+          type: integer
+        lastFail:
+          format: date-time
+          description: time of last failure
+          type: string
+        lastSuccess:
+          format: date-time
+          description: time of last successful attempt
+          type: string
+        firstFail:
+          format: date-time
+          description: time of first successful attempt
+          type: string
+        lastFailErrorCode:
+          description: error code for last failed attempt
+          type: string
+        lastFailMessage:
+          description: error message for last failed attempt
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        retryMetadata:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel'
+        cloudAccountId:
+          format: uuid
+          description: Cloud account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        vendor:
+          description: cloud account provider (AWS, Azure, GCP)
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+    Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel:
+      type: object
+      properties:
         organizationalUnitId:
           format: uuid
           type: string
@@ -775,6 +856,29 @@ components:
           type: string
         subType:
           type: string
+    Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    Dome9.Web.Api.Models.CloudAccountIamSafeIamEntitiesViewModel:
+      type: object
+      properties:
+        rolesArns:
+          type: array
+          items:
+            type: string
+        usersArns:
+          type: array
+          items:
+            type: string
     Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel:
       type: object
       properties:
@@ -1004,92 +1108,6 @@ components:
           - FullManage
           - Reset
           type: string
-    Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel:
-      type: object
-      properties:
-        cloudAccountId:
-          format: uuid
-          description: 'The Dome9 cloud account id, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        externalAccountNumber:
-          description: 'Aws external account number, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
-          type: string
-        data:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
-    Dome9.Web.Api.Shared.Permissions.MissingPermissionViewModel:
-      type: object
-      properties:
-        srl:
-          description: internal use
-          type: string
-        consecutiveFails:
-          format: int32
-          description: number of consecutive failures due to missing permissions
-          type: integer
-        lastFail:
-          format: date-time
-          description: time of last failure
-          type: string
-        lastSuccess:
-          format: date-time
-          description: time of last successful attempt
-          type: string
-        firstFail:
-          format: date-time
-          description: time of first successful attempt
-          type: string
-        lastFailErrorCode:
-          description: error code for last failed attempt
-          type: string
-        lastFailMessage:
-          description: error message for last failed attempt
-          type: string
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        retryMetadata:
-          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionMetadataViewModel'
-        cloudAccountId:
-          format: uuid
-          description: Cloud account id
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        vendor:
-          description: cloud account provider (AWS, Azure, GCP)
-          enum:
-          - aws
-          - hp
-          - mellanox
-          - awsgov
-          - azure
-          - google
-          - awschina
-          - azuregov
-          - kubernetes
-          - azurechina
-          - terraform
-          - generic
-          - kubernetesruntimeassurance
-          - shiftleft
-          - sourcecodeassurance
-          - imageassurance
-          - alibaba
-          - cft
-          - containerregistry
-          - oci
-          - ocigov
-          - ocigovuk
-          - CIEM
-          type: string
     Dome9.Web.Api.Models.CloudAccountIamSafeViewModel:
       type: object
       properties:
@@ -1111,6 +1129,75 @@ components:
           $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountIamSafeIamEntitiesViewModel'
         restrictedIamEntities:
           $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountIamSafeIamEntitiesViewModel'
+    Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel:
+      type: object
+      properties:
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        total:
+          format: int64
+          type: integer
+        error:
+          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
+    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel:
+      required:
+      - isIgnored
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        permissionId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isIgnored:
+          type: boolean
+        type:
+          type: string
+        subType:
+          type: string
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+    Dome9.Web.Api.Models.CloudAccountNetSecViewModel:
+      type: object
+      properties:
+        regions:
+          description: List of network security configuration per AWS region
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+    Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountCredentialsViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          description: 'The Dome9 cloud account id, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccountNumber:
+          description: 'Aws external account number, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
+          type: string
+        data:
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountCredentialsViewModel'
     Dome9.Web.Api.Models.CloudAccountCredentialsViewModel:
       type: object
       properties:
@@ -1137,32 +1224,7 @@ components:
 
             This filed is determined based on the operation response status performed by Dome9 on the target AWS cloud account.'
           type: boolean
-    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel:
-      type: object
-      properties:
-        permissionId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        isIgnored:
-          type: boolean
-        type:
-          type: string
-        subType:
-          type: string
-        total:
-          format: int64
-          type: integer
-        error:
-          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
-    Dome9.Web.Api.Models.SeverlessConfigViewModel:
-      type: object
-      properties:
-        codeAnalyzerEnabled:
-          type: boolean
-        codeDependencyAnalyzerEnabled:
-          type: boolean
-    Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountCredentialsViewModel:
+    Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel:
       type: object
       properties:
         cloudAccountId:
@@ -1174,7 +1236,25 @@ components:
           description: 'Aws external account number, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
           type: string
         data:
-          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountCredentialsViewModel'
+          $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+    Dome9.Web.Api.Models.SeverlessConfigViewModel:
+      type: object
+      properties:
+        codeAnalyzerEnabled:
+          type: boolean
+        codeDependencyAnalyzerEnabled:
+          type: boolean
+    Dome9.BL.Std.Services.OrganizationalUnit.AttachCloudAccountsViewModel:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: string
+        organizationalUnitId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
     Dome9.BL.Std.Services.OrganizationalUnit.MoveOrganizationalUnitViewModel:
       type: object
       properties:
@@ -1186,50 +1266,6 @@ components:
           format: uuid
           type: string
           example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Models.AwsSyncNowResultViewModel:
-      type: object
-      properties:
-        cloudAccountId:
-          format: uuid
-          description: the AWS account id
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          description: the account name
-          type: string
-        externalAccountNumber:
-          description: the AWS external account number
-          type: string
-        workFlowId:
-          format: uuid
-          description: the AWS workflow id
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_System.String:
-      type: object
-      properties:
-        cloudAccountId:
-          format: uuid
-          description: 'The Dome9 cloud account id, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        externalAccountNumber:
-          description: 'Aws external account number, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
-          type: string
-        data:
-          type: string
-    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel:
-      type: object
-      properties:
-        id:
-          format: uuid
-          description: account id
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel'
     Dome9.Web.Api.Models.CloudAccountViewModel:
       type: object
       properties:
@@ -1324,39 +1360,18 @@ components:
           - CloudGuardManaged
           - CustomerManaged
           type: string
-    Dome9.Web.Api.Models.CloudAccountIamSafeIamEntitiesViewModel:
-      type: object
-      properties:
-        rolesArns:
-          type: array
-          items:
-            type: string
-        usersArns:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableUpdateViewModel:
-      required:
-      - isIgnored
+    Dome9.Web.Api.Models.CloudAccountPartialUpdateViewModel_System.String:
       type: object
       properties:
         cloudAccountId:
           format: uuid
+          description: 'The Dome9 cloud account id, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
           type: string
           example: 00000000-0000-0000-0000-000000000000
-        permissionId:
-          format: uuid
+        externalAccountNumber:
+          description: 'Aws external account number, at least one of the following properties must be provided: "cloudAccountId", "externalAccountNumber"'
           type: string
-          example: 00000000-0000-0000-0000-000000000000
-        isIgnored:
-          type: boolean
-        type:
-          type: string
-        subType:
-          type: string
-        errorCode:
-          type: string
-        errorMessage:
+        data:
           type: string
     Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsViewModel:
       type: object
@@ -1370,33 +1385,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel'
-    Dome9.Web.Api.Shared.Permissions.CloudAccountExternalActionStatusViewModel:
+    Dome9.Web.Api.Shared.Permissions.CloudAccountMissingPermissionsIgnorableViewModel:
       type: object
       properties:
-        type:
-          type: string
-        subType:
-          type: string
-        total:
-          format: int64
-          type: integer
-        error:
-          $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.CloudAccountActionFailureViewModel'
-    Dome9.BL.Std.Services.OrganizationalUnit.UpdateIdViewModel:
-      type: object
-      properties:
-        organizationalUnitId:
+        id:
           format: uuid
+          description: account id
           type: string
           example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Models.CloudAccountNetSecViewModel:
-      type: object
-      properties:
-        regions:
-          description: List of network security configuration per AWS region
+        actions:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Models.CloudAccountRegionConfigurationViewModel'
+            $ref: '#/components/schemas/Dome9.Web.Api.Shared.Permissions.MissingPermissionsIgnorableViewModel'
   securitySchemes:
     API_key_V2:
       type: http

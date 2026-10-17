@@ -291,6 +291,56 @@ paths:
         required: true
 components:
   schemas:
+    Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel:
+      required:
+      - targetType
+      - rulesetId
+      - notificationIds
+      type: object
+      properties:
+        targetId:
+          type: string
+        targetType:
+          enum:
+          - Aws
+          - Azure
+          - Gcp
+          - Kubernetes
+          - OrganizationalUnit
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Vendor
+          - Oci
+          - CIEM
+          type: string
+        rulesetId:
+          format: int64
+          type: integer
+        rulesetVersion:
+          type: string
+        notificationIds:
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+    Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel:
+      type: object
+      properties:
+        rulesetId:
+          format: int64
+          type: integer
+        cloudAccountIds:
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
     Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyViewModel:
       type: object
       properties:
@@ -351,56 +401,6 @@ components:
             example: 00000000-0000-0000-0000-000000000000
         errorMessage:
           type: string
-    Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.ContinuousCompliancePolicyRequestModel:
-      required:
-      - targetType
-      - rulesetId
-      - notificationIds
-      type: object
-      properties:
-        targetId:
-          type: string
-        targetType:
-          enum:
-          - Aws
-          - Azure
-          - Gcp
-          - Kubernetes
-          - OrganizationalUnit
-          - Terraform
-          - Generic
-          - KubernetesRuntimeAssurance
-          - ShiftLeft
-          - Alibaba
-          - Cft
-          - ContainerRegistry
-          - Vendor
-          - Oci
-          - CIEM
-          type: string
-        rulesetId:
-          format: int64
-          type: integer
-        rulesetVersion:
-          type: string
-        notificationIds:
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Compliance.ContinuousCompliancePolicyV2.EvaluateRulesetVersionsRequestModel:
-      type: object
-      properties:
-        rulesetId:
-          format: int64
-          type: integer
-        cloudAccountIds:
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
   securitySchemes:
     API_key_V2:
       type: http

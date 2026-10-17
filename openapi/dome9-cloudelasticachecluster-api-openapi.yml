@@ -54,17 +54,6 @@ components:
         port:
           format: int32
           type: integer
-    Dome9.Web.Api.CloudElastiCache.ElastiCacheParameterGroupStatusVM:
-      type: object
-      properties:
-        cacheNodeIdsToReboot:
-          type: array
-          items:
-            type: string
-        cacheParameterGroupName:
-          type: string
-        parameterApplyStatus:
-          type: string
     Dome9.Web.Api.CloudElastiCache.ElastiCacheNotificationConfigurationVM:
       type: object
       properties:
@@ -76,6 +65,13 @@ components:
       type: object
       properties:
         securityGroupId:
+          type: string
+        status:
+          type: string
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheCachedSecurityGroupMembershipVM:
+      type: object
+      properties:
+        cacheSecurityGroupName:
           type: string
         status:
           type: string
@@ -97,27 +93,6 @@ components:
           type: string
         sourceCacheNodeId:
           type: string
-    Dome9.Web.Api.CloudElastiCache.ElastiCacheCachedSecurityGroupMembershipVM:
-      type: object
-      properties:
-        cacheSecurityGroupName:
-          type: string
-        status:
-          type: string
-    Dome9.Web.Api.CloudElastiCache.ElastiCachePendingModifiedValuesVM:
-      type: object
-      properties:
-        cacheNodeIdsToRemove:
-          type: array
-          items:
-            type: string
-        cacheNodeType:
-          type: string
-        engineVersion:
-          type: string
-        numCacheNodes:
-          format: int32
-          type: integer
     Dome9.Web.Api.CloudElastiCache.CloudElastiCacheClusterViewModel:
       type: object
       properties:
@@ -204,6 +179,31 @@ components:
           type: boolean
         transitEncryptionEnabled:
           type: boolean
+    Dome9.Web.Api.CloudElastiCache.ElastiCacheParameterGroupStatusVM:
+      type: object
+      properties:
+        cacheNodeIdsToReboot:
+          type: array
+          items:
+            type: string
+        cacheParameterGroupName:
+          type: string
+        parameterApplyStatus:
+          type: string
+    Dome9.Web.Api.CloudElastiCache.ElastiCachePendingModifiedValuesVM:
+      type: object
+      properties:
+        cacheNodeIdsToRemove:
+          type: array
+          items:
+            type: string
+        cacheNodeType:
+          type: string
+        engineVersion:
+          type: string
+        numCacheNodes:
+          format: int32
+          type: integer
   securitySchemes:
     API_key_V2:
       type: http

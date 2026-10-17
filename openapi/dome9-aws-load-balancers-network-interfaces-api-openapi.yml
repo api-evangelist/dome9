@@ -45,77 +45,19 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsLoadBalancersNetworkInterfacesViewModel'
 components:
   schemas:
-    Dome9.Web.Api.Models.AwsNetworkInterfaceViewModel:
+    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfacePrivateIpAddressViewModel:
       type: object
       properties:
-        id:
-          type: string
-          readOnly: true
-        externalId:
-          type: string
-          readOnly: true
-        name:
-          type: string
-          readOnly: true
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-          readOnly: true
         association:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAssociationViewModel'
+          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsEc2NetworkInterfaceAssociation'
           readOnly: true
-        attachment:
-          $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAttachmentViewModel'
+        primary:
+          type: boolean
           readOnly: true
-        availabilityZone:
-          type: string
-        description:
-          type: string
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceGroupIdentifierViewModel'
-          readOnly: true
-        interfaceType:
-          type: string
-        ipv6Addresses:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        macAddress:
-          type: string
-        networkInterfaceId:
-          type: string
-        ownerId:
-          type: string
         privateDnsName:
           type: string
+          readOnly: true
         privateIpAddress:
-          type: string
-        privateIpAddresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfacePrivateIpAddressViewModel'
-          readOnly: true
-        requesterId:
-          type: string
-        requesterManaged:
-          type: boolean
-        sourceDestCheck:
-          type: boolean
-        status:
-          type: string
-        subnetId:
-          type: string
-    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceGroupIdentifierViewModel:
-      type: object
-      properties:
-        groupId:
-          type: string
-          readOnly: true
-        groupName:
           type: string
           readOnly: true
     Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAttachmentViewModel:
@@ -162,19 +104,6 @@ components:
         publicIp:
           type: string
           readOnly: true
-    CGN.Inventory.Aws.Model.WrapperModels.AwsEc2NetworkInterfaceAssociation:
-      type: object
-      properties:
-        allocationId:
-          type: string
-        associationId:
-          type: string
-        ipOwnerId:
-          type: string
-        publicDnsName:
-          type: string
-        publicIp:
-          type: string
     Dome9.Web.Api.Models.AwsLoadBalancersNetworkInterfacesViewModel:
       type: object
       properties:
@@ -431,19 +360,90 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Models.AwsNetworkInterfaceViewModel'
-    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfacePrivateIpAddressViewModel:
+    Dome9.Web.Api.Models.AwsNetworkInterfaceViewModel:
       type: object
       properties:
-        association:
-          $ref: '#/components/schemas/CGN.Inventory.Aws.Model.WrapperModels.AwsEc2NetworkInterfaceAssociation'
-          readOnly: true
-        primary:
-          type: boolean
-          readOnly: true
-        privateDnsName:
+        id:
           type: string
           readOnly: true
+        externalId:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          readOnly: true
+        association:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAssociationViewModel'
+          readOnly: true
+        attachment:
+          $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceAttachmentViewModel'
+          readOnly: true
+        availabilityZone:
+          type: string
+        description:
+          type: string
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceGroupIdentifierViewModel'
+          readOnly: true
+        interfaceType:
+          type: string
+        ipv6Addresses:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        macAddress:
+          type: string
+        networkInterfaceId:
+          type: string
+        ownerId:
+          type: string
+        privateDnsName:
+          type: string
         privateIpAddress:
+          type: string
+        privateIpAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfacePrivateIpAddressViewModel'
+          readOnly: true
+        requesterId:
+          type: string
+        requesterManaged:
+          type: boolean
+        sourceDestCheck:
+          type: boolean
+        status:
+          type: string
+        subnetId:
+          type: string
+    CGN.Inventory.Aws.Model.WrapperModels.AwsEc2NetworkInterfaceAssociation:
+      type: object
+      properties:
+        allocationId:
+          type: string
+        associationId:
+          type: string
+        ipOwnerId:
+          type: string
+        publicDnsName:
+          type: string
+        publicIp:
+          type: string
+    Dome9.Web.Api.CloudNetworkInerfaces.CloudNetworkInterfaceGroupIdentifierViewModel:
+      type: object
+      properties:
+        groupId:
+          type: string
+          readOnly: true
+        groupName:
           type: string
           readOnly: true
   securitySchemes:

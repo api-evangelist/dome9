@@ -239,89 +239,6 @@ components:
           type: boolean
         stats:
           $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel'
-    Falconetix.Model.RuleEngine.Entities.RuleEntity:
-      type: object
-      properties:
-        rlmId:
-          format: uuid
-          description: rlm rule id, do not expose this on API for now
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          description: rule name
-          type: string
-        severity:
-          description: rule severity (High/Medium/Low)
-          enum:
-          - Informational
-          - Low
-          - Medium
-          - High
-          - Critical
-          type: string
-        logic:
-          description: the GSL statement for the rule (text string)
-          type: string
-        description:
-          description: description of the rule (text)
-          type: string
-        remediation:
-          description: remediation text for the rule (text)
-          type: string
-        cloudbots:
-          description: the Cloudbots section for the rule (optional)
-          type: string
-        complianceTag:
-          description: the compliance section for the rule (optional)
-          type: string
-        domain:
-          description: this field is not used
-          type: string
-        priority:
-          description: this field is not used
-          type: string
-        controlTitle:
-          description: this field is not used
-          type: string
-        ruleId:
-          description: this field is not used
-          type: string
-        category:
-          description: Rule Category
-          type: string
-        labels:
-          type: array
-          items:
-            type: string
-        logicHash:
-          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
-          type: string
-          readOnly: true
-        isDefault:
-          description: The property represents default rule
-          type: boolean
-          readOnly: true
-    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryViewResultViewModel:
-      type: object
-      properties:
-        createdTime:
-          format: date-time
-          type: string
-        id:
-          format: int64
-          type: integer
-        assessmentId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        request:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryBundleResultViewModel'
-        assessmentPassed:
-          type: boolean
-        hasErrors:
-          type: boolean
-        stats:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel'
     Falconetix.Model.RuleEngine.Entities.ValidationResult:
       type: object
       properties:
@@ -360,18 +277,27 @@ components:
         testObj:
           description: note that the lambda is not aware of this field
           type: object
-    Falconetix.Model.RuleEngine.Entities.RuleTestResultStats:
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryViewResultViewModel:
       type: object
       properties:
-        testedCount:
-          format: int32
+        createdTime:
+          format: date-time
+          type: string
+        id:
+          format: int64
           type: integer
-        relevantCount:
-          format: int32
-          type: integer
-        nonComplyingCount:
-          format: int32
-          type: integer
+        assessmentId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        request:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryBundleResultViewModel'
+        assessmentPassed:
+          type: boolean
+        hasErrors:
+          type: boolean
+        stats:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryStatsViewModel'
     Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.AssessmentHistoryBundleResultViewModel:
       type: object
       properties:
@@ -437,6 +363,80 @@ components:
         failedEntities:
           format: int32
           type: integer
+    Falconetix.Model.RuleEngine.Entities.RuleTestResultStats:
+      type: object
+      properties:
+        testedCount:
+          format: int32
+          type: integer
+        relevantCount:
+          format: int32
+          type: integer
+        nonComplyingCount:
+          format: int32
+          type: integer
+    Falconetix.Model.RuleEngine.Entities.RuleEntity:
+      type: object
+      properties:
+        rlmId:
+          format: uuid
+          description: rlm rule id, do not expose this on API for now
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          description: rule name
+          type: string
+        severity:
+          description: rule severity (High/Medium/Low)
+          enum:
+          - Informational
+          - Low
+          - Medium
+          - High
+          - Critical
+          type: string
+        logic:
+          description: the GSL statement for the rule (text string)
+          type: string
+        description:
+          description: description of the rule (text)
+          type: string
+        remediation:
+          description: remediation text for the rule (text)
+          type: string
+        cloudbots:
+          description: the Cloudbots section for the rule (optional)
+          type: string
+        complianceTag:
+          description: the compliance section for the rule (optional)
+          type: string
+        domain:
+          description: this field is not used
+          type: string
+        priority:
+          description: this field is not used
+          type: string
+        controlTitle:
+          description: this field is not used
+          type: string
+        ruleId:
+          description: this field is not used
+          type: string
+        category:
+          description: Rule Category
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        logicHash:
+          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
+          type: string
+          readOnly: true
+        isDefault:
+          description: The property represents default rule
+          type: boolean
+          readOnly: true
   securitySchemes:
     API_key_V2:
       type: http

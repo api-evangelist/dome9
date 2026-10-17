@@ -771,98 +771,64 @@ paths:
           description: No Content
 components:
   schemas:
-    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel:
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentHistoryStatsV2ViewModel:
       type: object
       properties:
-        informational:
+        passed:
           format: int32
+          description: number of passed rules
           type: integer
-        low:
+        passedRulesBySeverity:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel'
+          description: passed rules divided by severity
+        failed:
           format: int32
+          description: number of failed rules
           type: integer
-        medium:
+        failedRulesBySeverity:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel'
+          description: failed rules divided by severity
+        error:
           format: int32
+          description: number of errors
           type: integer
-        high:
-          format: int32
-          type: integer
-        critical:
-          format: int32
-          type: integer
-    Falconetix.Model.RuleEngine.Entities.OrganizationalUnitAssessmentHistoryViewModel:
-      type: object
-      properties:
-        organizationalUnitPaths:
-          type: array
-          items:
-            type: string
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        bundleId:
-          format: int64
-          type: integer
-        statistics:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.AssessmentHistoryStats'
-        resultId:
-          format: int64
-          type: integer
-        resultDate:
-          format: date-time
-          type: string
-        triggeredBy:
-          enum:
-          - Unknown
-          - ContinuousCompliancePolicy
-          - Manual
-          - SystemBundle
-          - Serverless
-          - Logic
-          - Magellan
-          - KubernetesRuntimeAssurance
-          - ContainersRuntimeProtection
-          - ExternalFinding
-          - CIEM
-          - Incident
-          - WorkloadChangeMonitoring
-          - Agentless
-          type: string
-    Falconetix.Model.RuleEngine.ViewModels.Assessment.EntityWithPermissionIssueViewModel:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        cloudVendorIdentifier:
-          type: string
-    Falconetix.Model.Compliance.AssessmentTrend.AssessmentTrendItemViewModel:
-      type: object
-      properties:
-        assessmentDate:
-          format: date-time
-          type: string
         failedTests:
-          format: int64
-          type: integer
-        totalTests:
-          format: int64
-          type: integer
-        passedTests:
-          format: int64
-          type: integer
-          readOnly: true
-    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentViewsByTimeRangeRequest.SortingFieldViewModel:
-      type: object
-      properties:
-        fieldName:
-          description: field to sort the retrieved results
-          type: string
-        direction:
           format: int32
-          description: direction of sort
+          description: number of failed tests (entities) - same entity will be counted multiple times if it is relevant for multiple failed tests)
           type: integer
+        logicallyTested:
+          format: int32
+          description: Total number of tests performed
+          type: integer
+        failedEntities:
+          format: int32
+          description: number of failed entities. (Distinct count of the entities - no duplications)
+          type: integer
+        excludedTests:
+          format: int32
+          description: number of excluded tests
+          type: integer
+        excludedFailedTests:
+          format: int32
+          description: number of excluded tests that also failed
+          type: integer
+        excludedRules:
+          format: int32
+          description: number of rules that contains only excluded tests
+          type: integer
+        excludedRulesBySeverity:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel'
+          description: excluded rules divided by severity
+        failedTestsBySeverity:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel'
+          description: 'Amount of failed tests (entities) divided by severity.
+
+            (same entity will be counted multiple times if it is relevant for multiple failed tests)'
+        totalRelevantTestsBySeverity:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel'
+          description: 'Amount of Relevant tests (entities) divided by severity.
+
+            (same entity will be counted multiple times if it is relevant for multiple failed tests)'
     Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentViewsByTimeRangeRequest:
       required:
       - creationTime
@@ -922,231 +888,6 @@ components:
           $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentViewsByTimeRangeRequest.SortingFieldViewModel'
         hideCount:
           type: boolean
-    Falconetix.Model.RuleEngine.ViewModels.Exclusion.ExclusionViewModel:
-      required:
-      - comment
-      type: object
-      properties:
-        platform:
-          description: Exclusion platform
-          enum:
-          - Aws
-          - Azure
-          - Google
-          - Kubernetes
-          - Terraform
-          - Generic
-          - KubernetesRuntimeAssurance
-          - ShiftLeft
-          - SourceCodeAssurance
-          - ImageAssurance
-          - Alibaba
-          - Cft
-          - ContainerRegistry
-          - Oci
-          - CIEM
-          type: string
-        id:
-          format: uuid
-          description: Exclusion ID
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        rules:
-          description: '[Optional] List of rules to apply the exclusion on.'
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Exclusion.RuleViewModel'
-        logicExpressions:
-          description: '[Optional] The GSL logic expressions of the exclusion.'
-          pattern: ((name|id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(severity like '(informational|low|medium|high|critical)')|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])
-          type: array
-          items:
-            type: string
-        regions:
-          description: '[Optional] List of regions to exclude, for example ''us_east_1''.'
-          type: array
-          items:
-            type: string
-        rulesetId:
-          format: int64
-          description: Ruleset ID to apply exclusion on.
-          type: integer
-        cloudAccountIds:
-          description: '[Optional] List of cloud account IDs to apply exclusion on.
-
-            If neither cloud account IDs nor organizational unit IDs are supplied, exclusion will apply on all cloud accounts.
-
-            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
-        organizationalUnitIds:
-          description: '[Optional] List of organizational unit IDs to apply exclusion on.
-
-            If neither organizational unit IDs nor cloud account IDs are supplied, exclusion will apply on all cloud accounts.
-
-            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
-        comment:
-          description: Comment text (free text)
-          type: string
-        dateRange:
-          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
-          description: '[Optional] Effective date range for the exclusion.
-
-            Leaving ''From'' null will take only ''To'' into account.
-
-            Leaving ''To'' null will take only ''From'' into account.
-
-            DateRange with both ''From'' and ''To'' null will be disregarded.'
-    Falconetix.Model.RuleEngine.Entities.AssessmentsRequestFilterViewModel:
-      description: Assessment Filter Model
-      required:
-      - cloudAccountBundleFilters
-      type: object
-      properties:
-        cloudAccountBundleFilters:
-          description: Cloud Account Filter Models
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.CloudAccountBundleFilterViewModel'
-        from:
-          format: date-time
-          description: '[OPTIONAL] Filter latest results that are later than this date.'
-          type: string
-        to:
-          format: date-time
-          description: '[OPTIONAL] Filter latest results that are earlier than this date.'
-          type: string
-    Falconetix.Model.RuleEngine.Entities.TagRuleEntity:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentHistoryBundleResultV2ViewModel:
-      type: object
-      properties:
-        isTemplate:
-          type: boolean
-        id:
-          format: int64
-          description: the bundle id
-          type: integer
-        version:
-          type: string
-        name:
-          description: the bundle name
-          type: string
-        description:
-          description: the bundle description
-          type: string
-        dome9CloudAccountId:
-          format: uuid
-          description: The Dome9 account id
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        externalCloudAccountId:
-          description: account id on cloud provider (AWS, Azure, GCP)
-          type: string
-        cloudAccountId:
-          description: account id on cloud provider (AWS, Azure, GCP)
-          type: string
-        cloudAccountType:
-          description: the cloud provider (AWS/Azure/GCP)
-          enum:
-          - Aws
-          - Azure
-          - Google
-          - Kubernetes
-          - Terraform
-          - Generic
-          - KubernetesRuntimeAssurance
-          - ShiftLeft
-          - SourceCodeAssurance
-          - ImageAssurance
-          - Alibaba
-          - Cft
-          - ContainerRegistry
-          - Oci
-          - CIEM
-          type: string
-        requestId:
-          format: uuid
-          description: the assessment id (returned in the response)
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        shouldMinimizeResult:
-          description: Minimized the entity results
-          type: boolean
-    Falconetix.Model.DateTimeRange:
-      type: object
-      properties:
-        from:
-          format: date-time
-          description: From date time
-          type: string
-        to:
-          format: date-time
-          description: To date time
-          type: string
-    Falconetix.Model.RuleEngine.Entities.AssessmentExecutiveReportEnvironmentFinding:
-      type: object
-      properties:
-        accountId:
-          type: string
-        name:
-          type: string
-        countFindingsBySeverity:
-          type: object
-          additionalProperties:
-            format: int32
-            type: integer
-    Falconetix.Model.RuleEngine.Entities.ValidationResult:
-      type: object
-      properties:
-        validationStatus:
-          enum:
-          - Relevant
-          - Valid
-          - Excluded
-          type: string
-        isRelevant:
-          description: 'means if entity is relevant for this rule
-
-            for example rule = "Instance where name like ''%db%'' should have...", returns false in instance name = ''scheduler1'''
-          type: boolean
-        isValid:
-          description: 'means if entity is compliant.
-
-            for example for rule="Instance should have vpc", return true if instance i-123 is under vpc-234, and false if not'
-          type: boolean
-        isExcluded:
-          description: 'means if entity is excluded.
-
-            for example for rule="Instance should have vpc exclude name=''test''", return true if instance name is test, and false if not'
-          type: boolean
-        exclusionId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        remediationId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        error:
-          description: note that the lambda is not aware of this field
-          type: string
-        testObj:
-          description: note that the lambda is not aware of this field
-          type: object
     Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentHistoryViewResultV2ViewModel:
       type: object
       properties:
@@ -1199,29 +940,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Falconetix.Model.RuleEngine.Entities.VpcMinimizedEntity:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-    Falconetix.Model.RuleEngine.Entities.OrganizationalUnitAssessmentHistoryRequestModel:
-      type: object
-      properties:
-        organizationalUnitIds:
-          description: List of Organizational Units on which assessments were run
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
-        bundleIds:
-          description: List of bundles (rulesets) run on the accounts in the Organizational Units
-          type: array
-          items:
-            format: int64
-            type: integer
     ? Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentHistoryResultV2ViewModel_Falconetix.Model.RuleEngine.Entities.AssessmentHistoryMinimizedEntity
     : type: object
       properties:
@@ -1299,6 +1017,22 @@ components:
           type: object
           additionalProperties:
             type: string
+    Falconetix.Model.Compliance.AssessmentTrend.AssessmentTrendItemViewModel:
+      type: object
+      properties:
+        assessmentDate:
+          format: date-time
+          type: string
+        failedTests:
+          format: int64
+          type: integer
+        totalTests:
+          format: int64
+          type: integer
+        passedTests:
+          format: int64
+          type: integer
+          readOnly: true
     Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessnentHistoryViewResultsTimeRangeViewModel:
       type: object
       properties:
@@ -1319,212 +1053,102 @@ components:
           format: uuid
           type: string
           example: 00000000-0000-0000-0000-000000000000
-    Falconetix.Model.Compliance.Ruleset.RuleViewModel:
-      required:
-      - name
-      - logic
+    Falconetix.Model.RuleEngine.Entities.ValidationResult:
       type: object
       properties:
-        name:
-          description: rule name
-          type: string
-        severity:
-          description: rule severity (High/Medium/Low)
+        validationStatus:
           enum:
-          - Informational
-          - Low
-          - Medium
-          - High
-          - Critical
+          - Relevant
+          - Valid
+          - Excluded
           type: string
-        rlmId:
+        isRelevant:
+          description: 'means if entity is relevant for this rule
+
+            for example rule = "Instance where name like ''%db%'' should have...", returns false in instance name = ''scheduler1'''
+          type: boolean
+        isValid:
+          description: 'means if entity is compliant.
+
+            for example for rule="Instance should have vpc", return true if instance i-123 is under vpc-234, and false if not'
+          type: boolean
+        isExcluded:
+          description: 'means if entity is excluded.
+
+            for example for rule="Instance should have vpc exclude name=''test''", return true if instance name is test, and false if not'
+          type: boolean
+        exclusionId:
           format: uuid
           type: string
           example: 00000000-0000-0000-0000-000000000000
-        logic:
-          description: the GSL statement for the rule (text string)
+        remediationId:
+          format: uuid
           type: string
-        description:
-          description: description of the rule (text)
+          example: 00000000-0000-0000-0000-000000000000
+        error:
+          description: note that the lambda is not aware of this field
           type: string
-        remediation:
-          description: remediation text for the rule (text)
+        testObj:
+          description: note that the lambda is not aware of this field
+          type: object
+    Falconetix.Model.RuleEngine.Entities.TagRuleEntity:
+      type: object
+      properties:
+        key:
           type: string
-        cloudbots:
-          description: the Cloudbots section for the rule (optional)
+        value:
           type: string
-        complianceTag:
-          description: the compliance section for the rule (optional)
+    Falconetix.Model.RuleEngine.Entities.AssessmentHistoryMinimizedEntity:
+      type: object
+      properties:
+        dome9Id:
           type: string
-        domain:
-          description: this field is not used
-          type: string
-        priority:
-          description: this field is not used
-          type: string
-        controlTitle:
-          description: this field is not used
-          type: string
-        ruleId:
-          description: this field is not used
+        name:
           type: string
         category:
-          description: Rule Category
           type: string
-        labels:
+        region:
+          type: string
+        vpc:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.VpcMinimizedEntity'
+        network:
+          type: string
+        virtualNetwork:
+          type: string
+        tags:
           type: array
           items:
-            type: string
-        logicHash:
-          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.TagRuleEntity'
+        accountNumber:
           type: string
-        isDefault:
-          description: The property represents default rule
-          type: boolean
-    Falconetix.Model.RuleEngine.Entities.AssessmentExecutiveReport:
-      type: object
-      properties:
-        date:
-          format: date-time
-          description: date of assessment
+        vendorIdentifier:
           type: string
-        rulesetName:
-          description: bundle name
+        id:
           type: string
-        vendor:
-          enum:
-          - aws
-          - hp
-          - mellanox
-          - awsgov
-          - azure
-          - google
-          - awschina
-          - azuregov
-          - kubernetes
-          - azurechina
-          - terraform
-          - generic
-          - kubernetesruntimeassurance
-          - shiftleft
-          - sourcecodeassurance
-          - imageassurance
-          - alibaba
-          - cft
-          - containerregistry
-          - oci
-          - ocigov
-          - ocigovuk
-          - CIEM
+        type:
           type: string
-        numberOfEnvironments:
-          format: int32
-          type: integer
-        topEnvironmentsWithHighSeverityFindings:
-          description: Top 10 environments with high severity findings and number of findings for each environment
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.AssessmentExecutiveReportEnvironmentFinding'
-        testedEntities:
-          description: Entity name and number of entities in each category
-          type: object
-          additionalProperties:
-            format: int32
-            type: integer
-        failedTestedBySeverity:
-          type: object
-          additionalProperties:
-            format: int32
-            type: integer
-        passedPerEntityType:
-          type: object
-          additionalProperties:
-            format: int32
-            type: integer
-        failedPerEntityType:
-          type: object
-          additionalProperties:
-            format: int32
-            type: integer
-        allTestsScore:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.AssessmentData.TestsScore'
-    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentHistoryStatsV2ViewModel:
-      type: object
-      properties:
-        passed:
-          format: int32
-          description: number of passed rules
-          type: integer
-        passedRulesBySeverity:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel'
-          description: passed rules divided by severity
-        failed:
-          format: int32
-          description: number of failed rules
-          type: integer
-        failedRulesBySeverity:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel'
-          description: failed rules divided by severity
-        error:
-          format: int32
-          description: number of errors
-          type: integer
-        failedTests:
-          format: int32
-          description: number of failed tests (entities) - same entity will be counted multiple times if it is relevant for multiple failed tests)
-          type: integer
-        logicallyTested:
-          format: int32
-          description: Total number of tests performed
-          type: integer
-        failedEntities:
-          format: int32
-          description: number of failed entities. (Distinct count of the entities - no duplications)
-          type: integer
-        excludedTests:
-          format: int32
-          description: number of excluded tests
-          type: integer
-        excludedFailedTests:
-          format: int32
-          description: number of excluded tests that also failed
-          type: integer
-        excludedRules:
-          format: int32
-          description: number of rules that contains only excluded tests
-          type: integer
-        excludedRulesBySeverity:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel'
-          description: excluded rules divided by severity
-        failedTestsBySeverity:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel'
-          description: 'Amount of failed tests (entities) divided by severity.
-
-            (same entity will be counted multiple times if it is relevant for multiple failed tests)'
-        totalRelevantTestsBySeverity:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel'
-          description: 'Amount of Relevant tests (entities) divided by severity.
-
-            (same entity will be counted multiple times if it is relevant for multiple failed tests)'
-    Falconetix.Model.RuleEngine.AssessmentData.TestsScore:
-      type: object
-      properties:
-        tested:
-          format: int64
-          type: integer
-        passed:
-          format: int64
-          type: integer
-        failed:
-          format: int64
-          type: integer
-    Falconetix.Model.RuleEngine.ViewModels.Remediation.RemediationViewModel:
+    Falconetix.Model.RuleEngine.Entities.CloudAccountBundleFilterViewModel:
+      description: Filter model per cloud account type
       required:
-      - comment
+      - bundleIds
+      - cloudAccountIds
       type: object
       properties:
-        platform:
-          description: Remediation platform
+        bundleIds:
+          description: Bundle IDs
+          type: array
+          items:
+            format: int64
+            type: integer
+        cloudAccountIds:
+          description: Cloud Account IDs (GUIDs)
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        cloudAccountType:
+          description: Cloud Account Type - "Aws", "Azure", "Google"
           enum:
           - Aws
           - Azure
@@ -1542,65 +1166,19 @@ components:
           - Oci
           - CIEM
           type: string
-        id:
-          format: uuid
-          description: Remediation ID
+    Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentDataSyncStatusEntityViewModel:
+      type: object
+      properties:
+        entityType:
           type: string
-          example: 00000000-0000-0000-0000-000000000000
-        rules:
-          description: '[Optional] List of rules to apply the remediation on.'
+        recentlySuccessfulSync:
+          type: boolean
+        generalFetchPermissionIssues:
+          type: boolean
+        entitiesWithPermissionIssues:
           type: array
           items:
-            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Exclusion.RuleViewModel'
-        logicExpressions:
-          description: '[Optional] The GSL logic expressions of the exclusion.'
-          pattern: ((name|id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(severity like '(informational|low|medium|high|critical)')|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])
-          type: array
-          items:
-            type: string
-        rulesetId:
-          format: int64
-          description: Ruleset ID to apply exclusion on.
-          type: integer
-        cloudAccountIds:
-          description: '[Optional] List of cloud account IDs to apply exclusion on.
-
-            If neither cloud account IDs nor organizational unit IDs are supplied, exclusion will apply on all cloud accounts.
-
-            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
-        comment:
-          description: Comment text (free text)
-          type: string
-        cloudBots:
-          description: Cloud bots execution expressions
-          type: array
-          items:
-            type: string
-        organizationalUnitIds:
-          description: '[Optional] List of organizational unit IDs to apply exclusion on.
-
-            If neither organizational unit IDs nor cloud account IDs are supplied, exclusion will apply on all cloud accounts.
-
-            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
-          type: array
-          items:
-            format: uuid
-            type: string
-            example: 00000000-0000-0000-0000-000000000000
-        dateRange:
-          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
-          description: '[Optional] Effective date range for the exclusion.
-
-            Leaving ''From'' null will take only ''To'' into account.
-
-            Leaving ''To'' null will take only ''From'' into account.
-
-            DateRange with both ''From'' and ''To'' null will be disregarded.'
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.EntityWithPermissionIssueViewModel'
     Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentHistoryResultV2ViewModel_Newtonsoft.Json.Linq.JRaw:
       type: object
       properties:
@@ -1685,19 +1263,172 @@ components:
           type: string
         value:
           type: string
-    Falconetix.Model.RuleEngine.ViewModels.Assessment.AssessmentDataSyncStatusEntityViewModel:
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.RuleTestResultViewModel:
       type: object
       properties:
-        entityType:
+        error:
           type: string
-        recentlySuccessfulSync:
-          type: boolean
-        generalFetchPermissionIssues:
-          type: boolean
-        entitiesWithPermissionIssues:
+        testedCount:
+          format: int32
+          type: integer
+        relevantCount:
+          format: int32
+          type: integer
+        nonComplyingCount:
+          format: int32
+          type: integer
+        exclusionStats:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleTestResultStats'
+        entityResults:
           type: array
           items:
-            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Assessment.EntityWithPermissionIssueViewModel'
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.ValidationResult'
+        entityResultsCount:
+          format: int32
+          type: integer
+        entityType:
+          type: string
+        rule:
+          $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleViewModel'
+        testPassed:
+          type: boolean
+    Falconetix.Model.RuleEngine.Entities.AssessmentExecutiveReport:
+      type: object
+      properties:
+        date:
+          format: date-time
+          description: date of assessment
+          type: string
+        rulesetName:
+          description: bundle name
+          type: string
+        vendor:
+          enum:
+          - aws
+          - hp
+          - mellanox
+          - awsgov
+          - azure
+          - google
+          - awschina
+          - azuregov
+          - kubernetes
+          - azurechina
+          - terraform
+          - generic
+          - kubernetesruntimeassurance
+          - shiftleft
+          - sourcecodeassurance
+          - imageassurance
+          - alibaba
+          - cft
+          - containerregistry
+          - oci
+          - ocigov
+          - ocigovuk
+          - CIEM
+          type: string
+        numberOfEnvironments:
+          format: int32
+          type: integer
+        topEnvironmentsWithHighSeverityFindings:
+          description: Top 10 environments with high severity findings and number of findings for each environment
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.AssessmentExecutiveReportEnvironmentFinding'
+        testedEntities:
+          description: Entity name and number of entities in each category
+          type: object
+          additionalProperties:
+            format: int32
+            type: integer
+        failedTestedBySeverity:
+          type: object
+          additionalProperties:
+            format: int32
+            type: integer
+        passedPerEntityType:
+          type: object
+          additionalProperties:
+            format: int32
+            type: integer
+        failedPerEntityType:
+          type: object
+          additionalProperties:
+            format: int32
+            type: integer
+        allTestsScore:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.AssessmentData.TestsScore'
+    Falconetix.Model.RuleEngine.Entities.OrganizationalUnitAssessmentHistoryViewModel:
+      type: object
+      properties:
+        organizationalUnitPaths:
+          type: array
+          items:
+            type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        bundleId:
+          format: int64
+          type: integer
+        statistics:
+          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.AssessmentHistoryStats'
+        resultId:
+          format: int64
+          type: integer
+        resultDate:
+          format: date-time
+          type: string
+        triggeredBy:
+          enum:
+          - Unknown
+          - ContinuousCompliancePolicy
+          - Manual
+          - SystemBundle
+          - Serverless
+          - Logic
+          - Magellan
+          - KubernetesRuntimeAssurance
+          - ContainersRuntimeProtection
+          - ExternalFinding
+          - CIEM
+          - Incident
+          - WorkloadChangeMonitoring
+          - Agentless
+          type: string
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentViewsByTimeRangeRequest.CreationTimeFieldViewModel:
+      required:
+      - from
+      - to
+      type: object
+      properties:
+        from:
+          format: date-time
+          description: Starting time/date for assessments to be retrieved
+          type: string
+        to:
+          format: date-time
+          description: End time/date for assessments to be retrieved
+          type: string
+    Falconetix.Model.RuleEngine.Entities.VpcMinimizedEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentViewsByTimeRangeRequest.SortingFieldViewModel:
+      type: object
+      properties:
+        fieldName:
+          description: field to sort the retrieved results
+          type: string
+        direction:
+          format: int32
+          description: direction of sort
+          type: integer
     Falconetix.Model.RuleEngine.Entities.AssessmentHistoryStats:
       type: object
       properties:
@@ -1741,35 +1472,18 @@ components:
           $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.StatsBySeverity'
         totalRelevantTestsBySeverity:
           $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.StatsBySeverity'
-    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.RuleTestResultViewModel:
+    Falconetix.Model.RuleEngine.AssessmentData.TestsScore:
       type: object
       properties:
-        error:
-          type: string
-        testedCount:
-          format: int32
+        tested:
+          format: int64
           type: integer
-        relevantCount:
-          format: int32
+        passed:
+          format: int64
           type: integer
-        nonComplyingCount:
-          format: int32
+        failed:
+          format: int64
           type: integer
-        exclusionStats:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.RuleTestResultStats'
-        entityResults:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.ValidationResult'
-        entityResultsCount:
-          format: int32
-          type: integer
-        entityType:
-          type: string
-        rule:
-          $ref: '#/components/schemas/Falconetix.Model.Compliance.Ruleset.RuleViewModel'
-        testPassed:
-          type: boolean
     Falconetix.Model.RuleEngine.Entities.RuleTestResultStats:
       type: object
       properties:
@@ -1782,57 +1496,44 @@ components:
         nonComplyingCount:
           format: int32
           type: integer
-    Falconetix.Model.RuleEngine.Entities.AssessmentHistoryMinimizedEntity:
+    Falconetix.Model.RuleEngine.ViewModels.Exclusion.RuleViewModel:
       type: object
       properties:
-        dome9Id:
-          type: string
-        name:
-          type: string
-        category:
-          type: string
-        region:
-          type: string
-        vpc:
-          $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.VpcMinimizedEntity'
-        network:
-          type: string
-        virtualNetwork:
-          type: string
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.TagRuleEntity'
-        accountNumber:
-          type: string
-        vendorIdentifier:
+        logicHash:
+          description: Rule logic hash
+          pattern: ^[A-Za-z0-9+/]{22}?$
           type: string
         id:
+          description: Rule ID
           type: string
-        type:
+        name:
+          description: Rule name
           type: string
-    Falconetix.Model.RuleEngine.Entities.CloudAccountBundleFilterViewModel:
-      description: Filter model per cloud account type
-      required:
-      - bundleIds
-      - cloudAccountIds
+        rlmId:
+          type: string
+    Falconetix.Model.RuleEngine.Entities.OrganizationalUnitAssessmentHistoryRequestModel:
       type: object
       properties:
-        bundleIds:
-          description: Bundle IDs
-          type: array
-          items:
-            format: int64
-            type: integer
-        cloudAccountIds:
-          description: Cloud Account IDs (GUIDs)
+        organizationalUnitIds:
+          description: List of Organizational Units on which assessments were run
           type: array
           items:
             format: uuid
             type: string
             example: 00000000-0000-0000-0000-000000000000
-        cloudAccountType:
-          description: Cloud Account Type - "Aws", "Azure", "Google"
+        bundleIds:
+          description: List of bundles (rulesets) run on the accounts in the Organizational Units
+          type: array
+          items:
+            format: int64
+            type: integer
+    Falconetix.Model.RuleEngine.ViewModels.Exclusion.ExclusionViewModel:
+      required:
+      - comment
+      type: object
+      properties:
+        platform:
+          description: Exclusion platform
           enum:
           - Aws
           - Azure
@@ -1849,6 +1550,102 @@ components:
           - ContainerRegistry
           - Oci
           - CIEM
+          type: string
+        id:
+          format: uuid
+          description: Exclusion ID
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        rules:
+          description: '[Optional] List of rules to apply the exclusion on.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Exclusion.RuleViewModel'
+        logicExpressions:
+          description: '[Optional] The GSL logic expressions of the exclusion.'
+          pattern: ((name|id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(severity like '(informational|low|medium|high|critical)')|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])
+          type: array
+          items:
+            type: string
+        regions:
+          description: '[Optional] List of regions to exclude, for example ''us_east_1''.'
+          type: array
+          items:
+            type: string
+        rulesetId:
+          format: int64
+          description: Ruleset ID to apply exclusion on.
+          type: integer
+        cloudAccountIds:
+          description: '[Optional] List of cloud account IDs to apply exclusion on.
+
+            If neither cloud account IDs nor organizational unit IDs are supplied, exclusion will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        organizationalUnitIds:
+          description: '[Optional] List of organizational unit IDs to apply exclusion on.
+
+            If neither organizational unit IDs nor cloud account IDs are supplied, exclusion will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        comment:
+          description: Comment text (free text)
+          type: string
+        dateRange:
+          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
+          description: '[Optional] Effective date range for the exclusion.
+
+            Leaving ''From'' null will take only ''To'' into account.
+
+            Leaving ''To'' null will take only ''From'' into account.
+
+            DateRange with both ''From'' and ''To'' null will be disregarded.'
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.StatsBySeverityViewModel:
+      type: object
+      properties:
+        informational:
+          format: int32
+          type: integer
+        low:
+          format: int32
+          type: integer
+        medium:
+          format: int32
+          type: integer
+        high:
+          format: int32
+          type: integer
+        critical:
+          format: int32
+          type: integer
+    Falconetix.Model.RuleEngine.Entities.AssessmentsRequestFilterViewModel:
+      description: Assessment Filter Model
+      required:
+      - cloudAccountBundleFilters
+      type: object
+      properties:
+        cloudAccountBundleFilters:
+          description: Cloud Account Filter Models
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.Entities.CloudAccountBundleFilterViewModel'
+        from:
+          format: date-time
+          description: '[OPTIONAL] Filter latest results that are later than this date.'
+          type: string
+        to:
+          format: date-time
+          description: '[OPTIONAL] Filter latest results that are earlier than this date.'
           type: string
     Falconetix.Model.RuleEngine.Entities.StatsBySeverity:
       type: object
@@ -1868,35 +1665,238 @@ components:
         critical:
           format: int32
           type: integer
-    Falconetix.Model.RuleEngine.ViewModels.Exclusion.RuleViewModel:
+    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentHistoryBundleResultV2ViewModel:
       type: object
       properties:
-        logicHash:
-          description: Rule logic hash
-          pattern: ^[A-Za-z0-9+/]{22}?$
-          type: string
+        isTemplate:
+          type: boolean
         id:
-          description: Rule ID
+          format: int64
+          description: the bundle id
+          type: integer
+        version:
           type: string
         name:
-          description: Rule name
+          description: the bundle name
           type: string
-        rlmId:
+        description:
+          description: the bundle description
           type: string
-    Falconetix.Model.RuleEngine.ViewModels.AssessmentHistory.V2.AssessmentViewsByTimeRangeRequest.CreationTimeFieldViewModel:
-      required:
-      - from
-      - to
+        dome9CloudAccountId:
+          format: uuid
+          description: The Dome9 account id
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalCloudAccountId:
+          description: account id on cloud provider (AWS, Azure, GCP)
+          type: string
+        cloudAccountId:
+          description: account id on cloud provider (AWS, Azure, GCP)
+          type: string
+        cloudAccountType:
+          description: the cloud provider (AWS/Azure/GCP)
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        requestId:
+          format: uuid
+          description: the assessment id (returned in the response)
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        shouldMinimizeResult:
+          description: Minimized the entity results
+          type: boolean
+    Falconetix.Model.RuleEngine.ViewModels.Assessment.EntityWithPermissionIssueViewModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        cloudVendorIdentifier:
+          type: string
+    Falconetix.Model.RuleEngine.Entities.AssessmentExecutiveReportEnvironmentFinding:
+      type: object
+      properties:
+        accountId:
+          type: string
+        name:
+          type: string
+        countFindingsBySeverity:
+          type: object
+          additionalProperties:
+            format: int32
+            type: integer
+    Falconetix.Model.DateTimeRange:
       type: object
       properties:
         from:
           format: date-time
-          description: Starting time/date for assessments to be retrieved
+          description: From date time
           type: string
         to:
           format: date-time
-          description: End time/date for assessments to be retrieved
+          description: To date time
           type: string
+    Falconetix.Model.Compliance.Ruleset.RuleViewModel:
+      required:
+      - name
+      - logic
+      type: object
+      properties:
+        name:
+          description: rule name
+          type: string
+        severity:
+          description: rule severity (High/Medium/Low)
+          enum:
+          - Informational
+          - Low
+          - Medium
+          - High
+          - Critical
+          type: string
+        rlmId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        logic:
+          description: the GSL statement for the rule (text string)
+          type: string
+        description:
+          description: description of the rule (text)
+          type: string
+        remediation:
+          description: remediation text for the rule (text)
+          type: string
+        cloudbots:
+          description: the Cloudbots section for the rule (optional)
+          type: string
+        complianceTag:
+          description: the compliance section for the rule (optional)
+          type: string
+        domain:
+          description: this field is not used
+          type: string
+        priority:
+          description: this field is not used
+          type: string
+        controlTitle:
+          description: this field is not used
+          type: string
+        ruleId:
+          description: this field is not used
+          type: string
+        category:
+          description: Rule Category
+          type: string
+        labels:
+          type: array
+          items:
+            type: string
+        logicHash:
+          description: MD5 hash of the rule logic (serves as a unique ID for the rule), returned in response
+          type: string
+        isDefault:
+          description: The property represents default rule
+          type: boolean
+    Falconetix.Model.RuleEngine.ViewModels.Remediation.RemediationViewModel:
+      required:
+      - comment
+      type: object
+      properties:
+        platform:
+          description: Remediation platform
+          enum:
+          - Aws
+          - Azure
+          - Google
+          - Kubernetes
+          - Terraform
+          - Generic
+          - KubernetesRuntimeAssurance
+          - ShiftLeft
+          - SourceCodeAssurance
+          - ImageAssurance
+          - Alibaba
+          - Cft
+          - ContainerRegistry
+          - Oci
+          - CIEM
+          type: string
+        id:
+          format: uuid
+          description: Remediation ID
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        rules:
+          description: '[Optional] List of rules to apply the remediation on.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Falconetix.Model.RuleEngine.ViewModels.Exclusion.RuleViewModel'
+        logicExpressions:
+          description: '[Optional] The GSL logic expressions of the exclusion.'
+          pattern: ((name|id|accountNumber) like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')|(severity like '(informational|low|medium|high|critical)')|(tags contain \[(key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')( or key like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+' and value like '[a-zA-Z0-9/.\-_:%"*{},;()=!&|\$#~^+@?<>\[\] À-ÖØ-öø-ÿ]+')*\])
+          type: array
+          items:
+            type: string
+        rulesetId:
+          format: int64
+          description: Ruleset ID to apply exclusion on.
+          type: integer
+        cloudAccountIds:
+          description: '[Optional] List of cloud account IDs to apply exclusion on.
+
+            If neither cloud account IDs nor organizational unit IDs are supplied, exclusion will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        comment:
+          description: Comment text (free text)
+          type: string
+        cloudBots:
+          description: Cloud bots execution expressions
+          type: array
+          items:
+            type: string
+        organizationalUnitIds:
+          description: '[Optional] List of organizational unit IDs to apply exclusion on.
+
+            If neither organizational unit IDs nor cloud account IDs are supplied, exclusion will apply on all cloud accounts.
+
+            If both organizational unit IDs and cloud account IDs are supplied, only organizational unit IDs will take effect.'
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+        dateRange:
+          $ref: '#/components/schemas/Falconetix.Model.DateTimeRange'
+          description: '[Optional] Effective date range for the exclusion.
+
+            Leaving ''From'' null will take only ''To'' into account.
+
+            Leaving ''To'' null will take only ''From'' into account.
+
+            DateRange with both ''From'' and ''To'' null will be disregarded.'
   securitySchemes:
     API_key_V2:
       type: http

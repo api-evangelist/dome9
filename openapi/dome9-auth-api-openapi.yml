@@ -292,46 +292,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Auth.ResetPasswordPostViewModel:
+    Dome9.Web.Api.Auth.ResetPasswordRequestViewModel:
       required:
-      - requestId
-      - verificationToken
-      - password
+      - email
       type: object
       properties:
-        requestId:
-          format: uuid
+        email:
+          format: email
+          description: Email Address
           type: string
-          example: 00000000-0000-0000-0000-000000000000
-        verificationToken:
+          example: MyName@gmail.com
+        recaptchaResponse:
           type: string
-        password:
-          type: string
-        mfaCode:
-          type: string
-    Dome9.Web.Api.Auth.ChangePasswordViewModel:
-      required:
-      - currentPassword
-      - newPassword
-      type: object
-      properties:
-        currentPassword:
-          type: string
-        newPassword:
-          type: string
-    Dome9.Web.Api.Auth.AssumeRoleViewModel:
-      type: object
-      properties:
-        accountId:
-          format: int32
-          type: integer
-        roleName:
-          type: string
-        expirationInMin:
-          format: int32
-          maximum: 300
-          minimum: 5
-          type: integer
     Dome9.Web.Api.Auth.ResetPasswordGetViewModel:
       required:
       - verificationToken
@@ -351,17 +323,45 @@ components:
           description: Email Address
           type: string
           example: MyName@gmail.com
-    Dome9.Web.Api.Auth.ResetPasswordRequestViewModel:
+    Dome9.Web.Api.Auth.ResetPasswordPostViewModel:
       required:
-      - email
+      - requestId
+      - verificationToken
+      - password
       type: object
       properties:
-        email:
-          format: email
-          description: Email Address
+        requestId:
+          format: uuid
           type: string
-          example: MyName@gmail.com
-        recaptchaResponse:
+          example: 00000000-0000-0000-0000-000000000000
+        verificationToken:
+          type: string
+        password:
+          type: string
+        mfaCode:
+          type: string
+    Dome9.Web.Api.Auth.AssumeRoleViewModel:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        roleName:
+          type: string
+        expirationInMin:
+          format: int32
+          maximum: 300
+          minimum: 5
+          type: integer
+    Dome9.Web.Api.Auth.ChangePasswordViewModel:
+      required:
+      - currentPassword
+      - newPassword
+      type: object
+      properties:
+        currentPassword:
+          type: string
+        newPassword:
           type: string
   securitySchemes:
     API_key_V2:

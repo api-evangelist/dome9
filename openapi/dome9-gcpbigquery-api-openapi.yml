@@ -46,13 +46,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryEncryptionConfigurationViewModel:
-      type: object
-      properties:
-        kmsKeyName:
-          type: string
-        eTag:
-          type: string
     Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryViewModel:
       type: object
       properties:
@@ -92,14 +85,12 @@ components:
           example: 00000000-0000-0000-0000-000000000000
         name:
           type: string
-    Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryReferenceViewModel:
+    Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryEncryptionConfigurationViewModel:
       type: object
       properties:
-        datasetId:
+        kmsKeyName:
           type: string
         eTag:
-          type: string
-        projectId:
           type: string
     Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryDatasetAccessViewModel:
       type: object
@@ -121,6 +112,15 @@ components:
         specialGroup:
           type: string
         iamMember:
+          type: string
+    Dome9.Web.Api.Google.GcpBigQuery.GcpBigQueryReferenceViewModel:
+      type: object
+      properties:
+        datasetId:
+          type: string
+        eTag:
+          type: string
+        projectId:
           type: string
   securitySchemes:
     API_key_V2:

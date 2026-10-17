@@ -400,15 +400,85 @@ paths:
         required: true
 components:
   schemas:
-    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel:
-      required:
-      - iamEntities
+    Dome9.Web.Api.User.PermissionsViewModel:
       type: object
       properties:
-        iamEntities:
+        access:
+          description: Access permission list (list of SRLs)
           type: array
           items:
             type: string
+        manage:
+          description: Manage permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        rulesets:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        notifications:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        policies:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        alertActions:
+          description: Compliance permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        create:
+          description: Create permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        view:
+          description: View permission list (list of SRLs)
+          type: array
+          items:
+            type: string
+        onBoarding:
+          description: View permission SRL
+          type: array
+          items:
+            type: string
+        crossAccountAccess:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeConfigViewModel:
+      type: object
+      properties:
+        cloudAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountViewModel'
+    Dome9.Web.Api.UserAndRole.IamSafe.UserApiKeyViewModel:
+      required:
+      - id
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 0
+          pattern: '[^/]+$'
+          type: string
+        id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        dateCreated:
+          format: date-time
+          type: string
+        lastUsed:
+          format: date-time
+          type: string
     Dome9.Web.Api.User.UserPostViewModel:
       required:
       - email
@@ -526,25 +596,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserApiKeyViewModel'
-    Dome9.Web.Api.UserAndRole.IamSafe.UserApiKeyViewModel:
+    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountPutViewModel:
       required:
-      - id
+      - iamEntities
       type: object
       properties:
-        name:
-          maxLength: 50
-          minLength: 0
-          pattern: '[^/]+$'
+        iamEntities:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.UserAndRole.IamSafe.IamEntityLastLeaseTimeViewModel:
+      type: object
+      properties:
+        iamEntity:
           type: string
-        id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        dateCreated:
+        lastLeaseTime:
           format: date-time
           type: string
-        lastUsed:
-          format: date-time
+    Dome9.Web.Api.UserAndRole.MfaUserEnforcementViewModel:
+      type: object
+      properties:
+        mfaCoercingDate:
+          type: string
+        isEnforced:
+          type: boolean
+        enforcerFullName:
           type: string
     Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountViewModel:
       type: object
@@ -575,82 +651,6 @@ components:
         iamEntity:
           type: string
           readOnly: true
-    Dome9.Web.Api.UserAndRole.IamSafe.IamEntityLastLeaseTimeViewModel:
-      type: object
-      properties:
-        iamEntity:
-          type: string
-        lastLeaseTime:
-          format: date-time
-          type: string
-    Dome9.Web.Api.UserAndRole.MfaUserEnforcementViewModel:
-      type: object
-      properties:
-        mfaCoercingDate:
-          type: string
-        isEnforced:
-          type: boolean
-        enforcerFullName:
-          type: string
-    Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeConfigViewModel:
-      type: object
-      properties:
-        cloudAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.UserAndRole.IamSafe.UserIamSafeAccountViewModel'
-    Dome9.Web.Api.User.PermissionsViewModel:
-      type: object
-      properties:
-        access:
-          description: Access permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        manage:
-          description: Manage permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        rulesets:
-          description: Compliance permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        notifications:
-          description: Compliance permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        policies:
-          description: Compliance permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        alertActions:
-          description: Compliance permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        create:
-          description: Create permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        view:
-          description: View permission list (list of SRLs)
-          type: array
-          items:
-            type: string
-        onBoarding:
-          description: View permission SRL
-          type: array
-          items:
-            type: string
-        crossAccountAccess:
-          type: array
-          items:
-            type: string
   securitySchemes:
     API_key_V2:
       type: http

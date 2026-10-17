@@ -157,25 +157,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncViewModel:
-      required:
-      - tenableDome9Id
-      type: object
-      properties:
-        since:
-          format: date-time
-          type: string
-        tenableDome9Id:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-    Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncResultViewModel:
-      type: object
-      properties:
-        workFlow:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
     Dome9.Web.Api.Tenable.Account.TenableAccountStatusViewModel:
       type: object
       properties:
@@ -207,6 +188,18 @@ components:
           type: string
         secretKey:
           type: string
+    Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncViewModel:
+      required:
+      - tenableDome9Id
+      type: object
+      properties:
+        since:
+          format: date-time
+          type: string
+        tenableDome9Id:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
     Dome9.Web.Api.Tenable.Account.TenableAccountViewModel:
       required:
       - name
@@ -223,6 +216,13 @@ components:
         secretKey:
           description: Tenable  API Secret Key
           type: string
+    Dome9.Web.Api.Tenable.Account.TenableVulnerabilitySyncResultViewModel:
+      type: object
+      properties:
+        workFlow:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
   securitySchemes:
     API_key_V2:
       type: http

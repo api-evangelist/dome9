@@ -52,18 +52,75 @@ paths:
                   $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsKeyRingViewModel'
 components:
   schemas:
-    Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyBindingViewModel:
+    Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyViewModel:
       type: object
       properties:
-        condition:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyExprViewModel'
-        members:
+        auditConfigs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyAuditConfigViewModel'
+        bindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyBindingViewModel'
+        eTag:
+          type: string
+        version:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyAuditLogConfigViewModel:
+      type: object
+      properties:
+        exemptedMembers:
           type: array
           items:
             type: string
-        role:
+        logType:
           type: string
         eTag:
+          type: string
+    Dome9.Web.Api.Google.Kms.GcpKmsKeyRingLabelViewModel:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    Dome9.Web.Api.Google.Kms.GcpKmsKeyRingCryptoKeyVersionViewModel:
+      type: object
+      properties:
+        eTag:
+          type: string
+        name:
+          type: string
+        createTime:
+          type: string
+        destroyTime:
+          type: string
+        destroyEventTime:
+          type: string
+        protectionLevel:
+          type: string
+        state:
+          type: string
+    Dome9.Web.Api.Google.Kms.GcpKmsKeyRingViewModel:
+      type: object
+      properties:
+        cryptoKeys:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsKeyRingCryptoKeyViewModel'
+        iamPolicy:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyViewModel'
+        region:
+          type: string
+        id:
+          type: string
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
           type: string
     Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyExprViewModel:
       type: object
@@ -75,6 +132,19 @@ components:
         location:
           type: string
         title:
+          type: string
+        eTag:
+          type: string
+    Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyBindingViewModel:
+      type: object
+      properties:
+        condition:
+          $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyExprViewModel'
+        members:
+          type: array
+          items:
+            type: string
+        role:
           type: string
         eTag:
           type: string
@@ -104,40 +174,6 @@ components:
           type: string
         iamPolicy:
           $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyViewModel'
-    Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyAuditLogConfigViewModel:
-      type: object
-      properties:
-        exemptedMembers:
-          type: array
-          items:
-            type: string
-        logType:
-          type: string
-        eTag:
-          type: string
-    Dome9.Web.Api.Google.Kms.GcpKmsKeyRingLabelViewModel:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyViewModel:
-      type: object
-      properties:
-        auditConfigs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyAuditConfigViewModel'
-        bindings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyBindingViewModel'
-        eTag:
-          type: string
-        version:
-          format: int32
-          type: integer
     Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyAuditConfigViewModel:
       type: object
       properties:
@@ -148,42 +184,6 @@ components:
         service:
           type: string
         eTag:
-          type: string
-    Dome9.Web.Api.Google.Kms.GcpKmsKeyRingViewModel:
-      type: object
-      properties:
-        cryptoKeys:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsKeyRingCryptoKeyViewModel'
-        iamPolicy:
-          $ref: '#/components/schemas/Dome9.Web.Api.Google.Kms.GcpKmsIamPolicyViewModel'
-        region:
-          type: string
-        id:
-          type: string
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        name:
-          type: string
-    Dome9.Web.Api.Google.Kms.GcpKmsKeyRingCryptoKeyVersionViewModel:
-      type: object
-      properties:
-        eTag:
-          type: string
-        name:
-          type: string
-        createTime:
-          type: string
-        destroyTime:
-          type: string
-        destroyEventTime:
-          type: string
-        protectionLevel:
-          type: string
-        state:
           type: string
   securitySchemes:
     API_key_V2:

@@ -129,6 +129,20 @@ components:
           type: array
           items:
             type: string
+    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbLocationViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+        locationName:
+          type: string
+        documentEndpoint:
+          type: string
+        provisioningState:
+          type: string
+        failoverPriority:
+          format: int32
+          type: integer
     Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbConsistencyPolicyViewModel:
       type: object
       properties:
@@ -155,20 +169,6 @@ components:
         value:
           type: string
           readOnly: true
-    Dome9.Web.Api.Azure.CosmosDbAccount.AzureCosmosDbLocationViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-        locationName:
-          type: string
-        documentEndpoint:
-          type: string
-        provisioningState:
-          type: string
-        failoverPriority:
-          format: int32
-          type: integer
   securitySchemes:
     API_key_V2:
       type: http

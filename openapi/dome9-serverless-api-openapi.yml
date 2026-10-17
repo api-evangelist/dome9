@@ -2421,20 +2421,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Dome9.Web.Api.Serverless.ServerlessFSPSupportedRuntimesViewModel:
-      type: object
-      properties:
-        supportedRuntimes:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel:
-      type: object
-      properties:
-        functionsData:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionViewModel'
     Dome9.Web.Api.Serverless.ServerlessFunctionAppViewModel:
       type: object
       properties:
@@ -2461,63 +2447,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessErrorViewModel'
-    Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel:
-      type: object
-      properties:
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        externalAccountNumber:
-          type: string
-        cloudVendor:
-          enum:
-          - aws
-          - azure
-          - kubernetes
-          type: string
-        state:
-          type: string
-        accountId:
-          format: int64
-          type: integer
-        reason:
-          type: string
-        shouldUpdate:
-          type: boolean
-        isOrgOnboarding:
-          type: boolean
-        isOrgOnboardingManagement:
-          type: boolean
-        hasMissingPermissions:
-          type: boolean
-        validatePermissionsStatus:
-          enum:
-          - Success
-          - InProgress
-          - Error
-          type: string
-        lastValidatePermissionsTimestamp:
-          format: int64
-          type: integer
-    Dome9.Web.Api.Serverless.ServerlessPermissionViewModel:
-      type: object
-      properties:
-        serviceAction:
-          type: string
-        roleArn:
-          type: string
-        roleName:
-          type: string
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPermissionResourceViewModel'
-    Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel:
-      type: object
-      properties:
-        name:
-          type: string
     Dome9.Web.Api.Serverless.ServerlessPutFunctionResponseViewModel:
       type: object
       properties:
@@ -2575,11 +2504,160 @@ components:
           - GatewayTimeout
           - HttpVersionNotSupported
           type: string
+    Dome9.Web.Api.Serverless.ServerlessAddAccountRequest:
+      required:
+      - cloudAccountId
+      type: object
+      properties:
+        cloudAccountId:
+          type: string
+        cloudProvider:
+          enum:
+          - aws
+          - azure
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessFunctionSummaryViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        whiteListProgress:
+          format: int32
+          type: integer
+    Dome9.Web.Api.Serverless.FunctionPermissionResourceViewModel:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        resource:
+          type: string
+        action:
+          type: string
+        severity:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPutFunctionViewModel:
+      type: object
+      properties:
+        functionId:
+          type: string
+        fspAutoInstrumentation:
+          type: boolean
+        isLearningModeActive:
+          type: boolean
+        learningModePeriod:
+          format: int32
+          type: integer
+        fspStickyVersion:
+          type: string
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessExclusionModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        payloadsType:
+          enum:
+          - String
+          - IoFingerprint
+          - IoFeature
+          - SignatureName
+          type: string
+        target:
+          enum:
+          - Host
+          - Ip
+          - File
+          - Process
+          - Api
+          - Http
+          - Io
+          - Signature
+          type: string
+        payloads:
+          type: array
+          items:
+            type: object
+        functions:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel:
+      type: object
+      properties:
+        status:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceViewModel'
+    Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel:
+      type: object
+      properties:
+        fspAutoInstrumentation:
+          type: boolean
+        fspStickyVersion:
+          type: string
+        policiesAction:
+          $ref: '#/components/schemas/Falconetix.Model.Serverless.ServerlessPoliciesAction'
+    Dome9.Web.Api.Serverless.ServerlessPodGroupViewModel:
+      type: object
+      properties:
+        isLearningModeActive:
+          type: boolean
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+        learningModeStartTime:
+          type: string
+        learningModeEndTime:
+          type: string
+        learningModePeriod:
+          format: int32
+          type: integer
+        whiteListProgressPercent:
+          format: int32
+          type: integer
     Dome9.Web.Api.Serverless.EnableFSPViewModel:
       type: object
       properties:
         enable:
           type: boolean
+    Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody:
+      type: object
+      properties:
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessDeleteRuleViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPermissionViewModel:
+      type: object
+      properties:
+        serviceAction:
+          type: string
+        roleArn:
+          type: string
+        roleName:
+          type: string
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPermissionResourceViewModel'
     Dome9.Web.Api.Serverless.ServerlessMissingPermissionsViewModel:
       type: object
       properties:
@@ -2596,6 +2674,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPermissionViewModel'
+    Dome9.Web.Api.Serverless.ServerlessPutFunctionsListViewModel:
+      type: object
+      properties:
+        functionsData:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.ServerlessPutFunctionViewModel'
+    Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel:
+      type: object
+      properties:
+        completed:
+          type: boolean
+        whiteListProgressPercent:
+          format: int32
+          type: integer
+        files:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        ips:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        hosts:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        apis:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        processes:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        https:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        inputs:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
+        signatures:
+          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
     Dome9.Web.Api.Serverless.WhiteListResourceViewModel:
       type: object
       properties:
@@ -2611,6 +2720,215 @@ components:
           type: array
           items:
             type: string
+    Dome9.Web.Api.Serverless.ServerlessFspVersioViewModel:
+      type: object
+      properties:
+        fspVersion:
+          type: string
+        versionState:
+          type: string
+        unsupportedRuntimes:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.ServerlessErrorViewModel:
+      type: object
+      properties:
+        type:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessAccountViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cloudVendor:
+          enum:
+          - aws
+          - azure
+          - kubernetes
+          type: string
+        state:
+          type: string
+        crossAccountRoleTemplateURL:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        status:
+          type: string
+        reason:
+          type: string
+        shouldUpdate:
+          type: boolean
+        isOrgOnboarding:
+          type: boolean
+        isOrgOnboardingManagement:
+          type: boolean
+        hasMissingPermissions:
+          type: boolean
+        deleteAccountRoleTemplateURL:
+          type: string
+        genericTemplateUrl:
+          type: string
+        fspAutoInstrumentation:
+          type: boolean
+        fspAutoInstrumentationState:
+          type: string
+        fspStickyVersion:
+          type: string
+    Falconetix.Model.ServiceInterfaces.Serverless.ServerlessApiResponse:
+      type: object
+      properties:
+        data:
+          type: object
+        nextToken:
+          type: string
+        statusCode:
+          format: int32
+          type: integer
+        message:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPutSingleFunctionViewModel:
+      type: object
+      properties:
+        fspAutoInstrumentation:
+          type: boolean
+        isLearningModeActive:
+          type: boolean
+        learningModePeriod:
+          format: int32
+          type: integer
+        fspMode:
+          enum:
+          - Alert
+          - Block
+          type: string
+        fspStickyVersion:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessPermissionResourceViewModel:
+      type: object
+      properties:
+        arn:
+          type: string
+        description:
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessFSPSupportedRuntimesViewModel:
+      type: object
+      properties:
+        supportedRuntimes:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.ServerlessExclusionViewModel:
+      type: object
+      properties:
+        scope:
+          enum:
+          - Account
+          - Function
+          - FunctionGroup
+          - FunctionVersion
+          - FunctionApp
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        payloadsType:
+          enum:
+          - String
+          - IoFingerprint
+          - IoFeature
+          - SignatureName
+          type: string
+        target:
+          enum:
+          - Host
+          - Ip
+          - File
+          - Process
+          - Api
+          - Http
+          - Io
+          - Signature
+          type: string
+        payloads:
+          type: array
+          items:
+            type: object
+        functions:
+          type: array
+          items:
+            type: string
+    Dome9.Web.Api.Serverless.FunctionPermissionViewModel:
+      type: object
+      properties:
+        name:
+          type: string
+        suggestedPolicy:
+          type: object
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.FunctionPermissionResourceViewModel'
+    Falconetix.Model.Serverless.ServerlessPoliciesAction:
+      type: object
+      properties:
+        signature:
+          enum:
+          - alert
+          - block
+          type: string
+        malware:
+          enum:
+          - alert
+          - block
+          type: string
+    Dome9.Web.Api.Serverless.ServerlessAccountStatusViewModel:
+      type: object
+      properties:
+        cloudAccountId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        externalAccountNumber:
+          type: string
+        cloudVendor:
+          enum:
+          - aws
+          - azure
+          - kubernetes
+          type: string
+        state:
+          type: string
+        accountId:
+          format: int64
+          type: integer
+        reason:
+          type: string
+        shouldUpdate:
+          type: boolean
+        isOrgOnboarding:
+          type: boolean
+        isOrgOnboardingManagement:
+          type: boolean
+        hasMissingPermissions:
+          type: boolean
+        validatePermissionsStatus:
+          enum:
+          - Success
+          - InProgress
+          - Error
+          type: string
+        lastValidatePermissionsTimestamp:
+          format: int64
+          type: integer
     Dome9.Web.Api.Serverless.ServerlessFunctionViewModel:
       type: object
       properties:
@@ -2687,268 +3005,6 @@ components:
           type: array
           items:
             type: string
-    Dome9.Web.Api.Serverless.ServerlessExclusionModel:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        payloadsType:
-          enum:
-          - String
-          - IoFingerprint
-          - IoFeature
-          - SignatureName
-          type: string
-        target:
-          enum:
-          - Host
-          - Ip
-          - File
-          - Process
-          - Api
-          - Http
-          - Io
-          - Signature
-          type: string
-        payloads:
-          type: array
-          items:
-            type: object
-        functions:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Serverless.FunctionPermissionResourceViewModel:
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
-        resource:
-          type: string
-        action:
-          type: string
-        severity:
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessPodGroupViewModel:
-      type: object
-      properties:
-        isLearningModeActive:
-          type: boolean
-        fspMode:
-          enum:
-          - Alert
-          - Block
-          type: string
-        learningModeStartTime:
-          type: string
-        learningModeEndTime:
-          type: string
-        learningModePeriod:
-          format: int32
-          type: integer
-        whiteListProgressPercent:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Serverless.ServerlessFunctionSummaryViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        whiteListProgress:
-          format: int32
-          type: integer
-    Dome9.Web.Api.Serverless.ServerlessEnableFunctionFSPBlockBody:
-      type: object
-      properties:
-        fspMode:
-          enum:
-          - Alert
-          - Block
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessRuleModel:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        payloadsType:
-          enum:
-          - String
-          - SignatureName
-          type: string
-        target:
-          enum:
-          - Host
-          - Ip
-          - File
-          - Process
-          - Api
-          - Http
-          - Io
-          - Signature
-          type: string
-        payloads:
-          type: array
-          items:
-            type: object
-        functions:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Serverless.ServerlessFspVersioViewModel:
-      type: object
-      properties:
-        fspVersion:
-          type: string
-        versionState:
-          type: string
-        unsupportedRuntimes:
-          type: array
-          items:
-            type: string
-    Dome9.Web.Api.Serverless.ServerlessErrorViewModel:
-      type: object
-      properties:
-        type:
-          type: string
-        status:
-          type: string
-        message:
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessPutFunctionViewModel:
-      type: object
-      properties:
-        functionId:
-          type: string
-        fspAutoInstrumentation:
-          type: boolean
-        isLearningModeActive:
-          type: boolean
-        learningModePeriod:
-          format: int32
-          type: integer
-        fspStickyVersion:
-          type: string
-        fspMode:
-          enum:
-          - Alert
-          - Block
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessAddAccountRequest:
-      required:
-      - cloudAccountId
-      type: object
-      properties:
-        cloudAccountId:
-          type: string
-        cloudProvider:
-          enum:
-          - aws
-          - azure
-          type: string
-    Dome9.Web.Api.Serverless.FunctionPermissionViewModel:
-      type: object
-      properties:
-        name:
-          type: string
-        suggestedPolicy:
-          type: object
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.FunctionPermissionResourceViewModel'
-    Dome9.Web.Api.Serverless.ServerlessPutAccountViewModel:
-      type: object
-      properties:
-        fspAutoInstrumentation:
-          type: boolean
-        fspStickyVersion:
-          type: string
-        policiesAction:
-          $ref: '#/components/schemas/Falconetix.Model.Serverless.ServerlessPoliciesAction'
-    Dome9.Web.Api.Serverless.ServerlessPermissionResourceViewModel:
-      type: object
-      properties:
-        arn:
-          type: string
-        description:
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessPutSingleFunctionViewModel:
-      type: object
-      properties:
-        fspAutoInstrumentation:
-          type: boolean
-        isLearningModeActive:
-          type: boolean
-        learningModePeriod:
-          format: int32
-          type: integer
-        fspMode:
-          enum:
-          - Alert
-          - Block
-          type: string
-        fspStickyVersion:
-          type: string
-    Falconetix.Model.Serverless.ServerlessPoliciesAction:
-      type: object
-      properties:
-        signature:
-          enum:
-          - alert
-          - block
-          type: string
-        malware:
-          enum:
-          - alert
-          - block
-          type: string
-    Dome9.Web.Api.Serverless.ServerlessExclusionViewModel:
-      type: object
-      properties:
-        scope:
-          enum:
-          - Account
-          - Function
-          - FunctionGroup
-          - FunctionVersion
-          - FunctionApp
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        payloadsType:
-          enum:
-          - String
-          - IoFingerprint
-          - IoFeature
-          - SignatureName
-          type: string
-        target:
-          enum:
-          - Host
-          - Ip
-          - File
-          - Process
-          - Api
-          - Http
-          - Io
-          - Signature
-          type: string
-        payloads:
-          type: array
-          items:
-            type: object
-        functions:
-          type: array
-          items:
-            type: string
     Dome9.Web.Api.Serverless.ServerlessRuleViewModel:
       type: object
       properties:
@@ -2988,93 +3044,37 @@ components:
           type: array
           items:
             type: string
-    Falconetix.Model.ServiceInterfaces.Serverless.ServerlessApiResponse:
+    Dome9.Web.Api.Serverless.ServerlessRuleModel:
       type: object
       properties:
-        data:
-          type: object
-        nextToken:
+        id:
           type: string
-        statusCode:
-          format: int32
-          type: integer
-        message:
+        name:
           type: string
-    Dome9.Web.Api.Serverless.ServerlessWhiteListViewModel:
-      type: object
-      properties:
-        completed:
-          type: boolean
-        whiteListProgressPercent:
-          format: int32
-          type: integer
-        files:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        ips:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        hosts:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        apis:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        processes:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        https:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        inputs:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-        signatures:
-          $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel'
-    Dome9.Web.Api.Serverless.WhiteListResourceTypeViewModel:
-      type: object
-      properties:
-        status:
+        payloadsType:
+          enum:
+          - String
+          - SignatureName
           type: string
-        items:
+        target:
+          enum:
+          - Host
+          - Ip
+          - File
+          - Process
+          - Api
+          - Http
+          - Io
+          - Signature
+          type: string
+        payloads:
           type: array
           items:
-            $ref: '#/components/schemas/Dome9.Web.Api.Serverless.WhiteListResourceViewModel'
-    Dome9.Web.Api.Serverless.ServerlessAccountViewModel:
-      type: object
-      properties:
-        cloudAccountId:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        cloudVendor:
-          enum:
-          - aws
-          - azure
-          - kubernetes
-          type: string
-        state:
-          type: string
-        crossAccountRoleTemplateURL:
-          type: string
-        accountId:
-          format: int64
-          type: integer
-        status:
-          type: string
-        reason:
-          type: string
-        shouldUpdate:
-          type: boolean
-        isOrgOnboarding:
-          type: boolean
-        isOrgOnboardingManagement:
-          type: boolean
-        hasMissingPermissions:
-          type: boolean
-        deleteAccountRoleTemplateURL:
-          type: string
-        genericTemplateUrl:
-          type: string
-        fspAutoInstrumentation:
-          type: boolean
-        fspAutoInstrumentationState:
-          type: string
-        fspStickyVersion:
-          type: string
+            type: object
+        functions:
+          type: array
+          items:
+            type: string
   securitySchemes:
     API_key_V2:
       type: http
